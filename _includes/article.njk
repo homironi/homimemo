@@ -1,0 +1,77 @@
+---
+title: ほみのひとくちまみむめも
+---
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<title>{{ title }}</title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--favicon-->
+		<link rel="icon" href="../../common/favicon.ico" type="image/x-icon" />
+		<!--フォント-->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;600&display=swap" />
+		<!--css-->
+		<link rel="stylesheet" href="../../common/styles/reset.css" />
+		<link rel="stylesheet" href="../../common/styles/base.css" />
+		<link rel="stylesheet" href="../../common/styles/baseElement.css" />
+
+		<link rel="stylesheet" href="../../common/styles/headerLayout.css" />
+		<link rel="stylesheet" href="../../common/styles/headerThema.css" />
+		<link rel="stylesheet" href="../../common/styles/footerLayout.css" />
+		<link rel="stylesheet" href="../../common/styles/footerThema.css" />
+
+		<link rel="stylesheet" href="../../common/styles/articleLayeout.css" />
+		<link rel="stylesheet" href="../../common/styles/articleThema.css" />
+	</head>
+	<body>
+		<div id="headerContainer">
+			ヘッダー
+			<div class="headerNotice">おしらせえ</div>
+		</div>
+		<div class="container">
+			<main class="mainContainer">
+				<div class="sideLWrapper">
+					<div class="sideLInner">
+						<div class="shareButtons">ついった はてぶ など記事を共有できるボタン</div>
+						<section class="tableOfContentInner">
+                            {# 記事内容から自動で目次が作られます #}
+							{{content | toc | safe}}
+						</section>
+					</div>
+				</div>
+				<div class="contentWrapper">
+					<article class="articleInner">
+						<header class="articleHeader">
+							パンくずリスト
+							<h1>記事たいとる！</h1>
+							<time datetime="2023-06-17">2023年6月17日（公開日）</time>
+							<time datetime="2023-06-18">2023年6月18日（更新日）</time>
+							<p class="resizeImg">
+								<img src="https://placehold.jp/896x504.png" />
+							</p>
+							記事のへっだー！画像とかタイトルとかいれよう！
+						</header>
+						<section class="content">
+                            {# 外部ファイルから記事内容が入ります #}
+							{{content | safe}}
+							<div class="shareButtons">ついった はてぶ など記事を共有できるボタン</div>
+						</section>
+					</article>
+				</div>
+				<section class="sideRWrapper">
+					<div class="sideRInner">
+						<h2>右サイド</h2>
+						なんかプロフィールとか関連記事とか広告とかああああああ
+					</div>
+				</section>
+			</main>
+			<div id="footerContainer">
+				ふったー
+			</div>
+		</div>
+	</body>
+</html>
