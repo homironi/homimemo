@@ -1,0 +1,3 @@
+# Ignore test files
+.cache
+test/stubs-layout-cache/_includes/*.js
