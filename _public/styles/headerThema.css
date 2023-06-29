@@ -1,0 +1,7 @@
+.header-inner {
+	color: var(--text-color-white);
+	background-color: var(--color-sub);
+}
+.headerNotice {
+	background-color: var(--color-accent);
+}

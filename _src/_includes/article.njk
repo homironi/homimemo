@@ -1,0 +1,56 @@
+---
+layout: base.njk
+---
+
+{% include "head.njk" %}
+{# 記事のcss #}
+{% block css -%}
+<link rel="stylesheet" href="/styles/articleLayout.css" />
+<link rel="stylesheet" href="/styles/articleThema.css" />
+{%- endblock%}
+
+{% include "header.njk" %}
+
+<div class="container">
+    <main class="mainContainer">
+        <div class="sideLWrapper">
+            <div class="sideLInner">
+                <div class="shareButtons">ついった はてぶ など記事を共有できるボタン</div>
+                <section class="tableOfContentInner">
+                    {# 記事内容から自動で目次が作られます #}
+                    {{content | toc | safe}}
+                </section>
+            </div>
+        </div>
+        <div class="contentWrapper">
+            <article class="articleInner">
+                <div class="articleHeader">
+                    パンくずリスト
+                    <h1>記事たいとる！</h1>
+                    {# 公開日 #}
+                    <time datetime={{createDate | dateFormat}}>{{createDate | dateFormat | dateFormatJapanese}}（公開日）</time>
+                    {# 更新日 #}
+                    <time datetime={{page.date | dateFormat}}>{{page.date | dateFormat | dateFormatJapanese}}（更新日）</time>
+                    {# 記事のヘッダー画像 #}
+                    <div class="resizeImg">
+                        <img src="https://placehold.jp/896x504.png" />
+                    </div>
+                    記事のへっだー！画像とかタイトルとかいれよう！
+                </div>
+                <section class="content">
+                    {# 記事内容が入ります #}
+                    {{content | safe}}
+                    <div class="shareButtons">ついった はてぶ など記事を共有できるボタン</div>
+                </section>
+            </article>
+        </div>
+        <section class="sideRWrapper">
+            <div class="sideRInner">
+                <h2>右サイド</h2>
+                なんかプロフィールとか関連記事とか広告とかああああああ
+            </div>
+        </section>
+    </main>
+</div>
+
+{% include "footer.njk" %}

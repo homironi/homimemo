@@ -1,0 +1,56 @@
+.mainContainer {
+	display: -webkit-flex;
+	display: flex;
+	width: var(--content-width);
+	margin: 0 auto;
+}
+.contentWrapper {
+	-webkit-flex: 4;
+	flex: 4;
+	margin: 0 32px;
+}
+.sideLWrapper {
+	-webkit-flex: 1;
+	flex: 1;
+}
+.sideRWrapper {
+	-webkit-flex: 1;
+	flex: 1;
+}
+.sideLInner {
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0;
+}
+.tableOfContentInner {
+	padding: 24px;
+}
+
+/* 横幅が指定ピクセルまで、以下を適用 */
+@media screen and (max-width: 1280px) {
+	.mainContainer {
+		display: -webkit-flex;
+		display: flex;
+		width: auto;
+		margin: 0 2%;
+	}
+	.sideRWrapper {
+		display: none;
+	}
+	.contentWrapper {
+		margin-right: 0;
+		margin-left: 2%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.mainContainer,
+	.contentWrapper,
+	.sideLWrapper,
+	.sideRWrapper {
+		display: block;
+	}
+	.contentWrapper {
+		margin: 0;
+	}
+}
