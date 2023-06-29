@@ -1,0 +1,18 @@
+:root {
+	/* color */
+	--color-main: #fcf9f7;
+	--shadow-color-main: #f3e8e4;
+	--color-sub: #79cceeee;
+	--color-accent: #fdb515;
+	--text-color-white: #ffffff;
+	--text-color-black: #111111;
+
+	/* property */
+	--shadow-blur-radius: 8px;
+	--shadow-spread-radius: 1px;
+
+	--content-width: 1240px;
+	--header-content-height: 80px;
+	--heder-notice-height: 0px;
+	--header-height: calc(var(--header-content-height) + var(--heder-notice-height));
+}

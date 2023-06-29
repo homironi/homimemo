@@ -1,6 +1,7 @@
 ---
-layout: article
-title: My Rad Markdown Blog Post
+title: タイトル！
+description: うおおおおおお
+createDate: 2023-07-01
 ---
 
 # {{ title }}
