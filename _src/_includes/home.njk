@@ -1,0 +1,20 @@
+---
+layout: base.njk
+---
+
+{% include "head.njk" %}
+{# Homeのcss #}
+{% block css -%}
+<link rel="stylesheet" href="/styles/homeLayout.css" />
+{%- endblock%}
+
+<div class="container">
+    <main class="mainContainer">
+        <div class="contentWrapper">
+           <div class="resizeImg">
+            <img src="/images/homeHeader.png" />
+            </div>
+        </div>
+    </main>
+</div>
+{% include "footer.njk" %}

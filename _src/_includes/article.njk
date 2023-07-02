@@ -8,9 +8,7 @@ layout: base.njk
 <link rel="stylesheet" href="/styles/articleLayout.css" />
 <link rel="stylesheet" href="/styles/articleThema.css" />
 {%- endblock%}
-
 {% include "header.njk" %}
-
 <div class="container">
     <main class="mainContainer">
         <div class="sideLWrapper">
@@ -26,6 +24,7 @@ layout: base.njk
             <article class="articleInner">
                 <div class="articleHeader">
                     パンくずリスト
+                    {{ collections.all | eleventyNavigationBreadcrumb("記事", { includeSelf: true }) | eleventyNavigationToHtml | safe }}
                     <h1>記事たいとる！</h1>
                     {# 公開日 #}
                     <time datetime={{createDate | dateFormat}}>{{createDate | dateFormat | dateFormatJapanese}}（公開日）</time>
@@ -52,5 +51,4 @@ layout: base.njk
         </section>
     </main>
 </div>
-
 {% include "footer.njk" %}

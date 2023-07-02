@@ -2,6 +2,9 @@
 title: タイトル！
 description: うおおおおおお
 createDate: 2023-07-01
+eleventyNavigation:
+    key: 記事
+    parent: Home
 ---
 
 # {{ title }}
