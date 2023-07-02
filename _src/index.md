@@ -1,11 +1,15 @@
 ---
-title: タイトル！
-description: うおおおおおお
+title: ほみのひとくちまみむメモ
+description: ゲームやお絵かきなどいろんなことを書く、ほみの個人サイトです。
 createDate: 2023-07-01
-layout: article.njk
+layout: home.njk
+eleventyNavigation:
+    key: Home
 ---
 
 # {{ title }}
+
+ほおおおおむ
 
 ## aaaH2
 

@@ -2,8 +2,11 @@
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 
-// 目次（パンくずも）
+// 目次
 const pluginTOC = require('eleventy-plugin-toc');
+
+// ナビゲーション+パンくずリスト
+const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 
 module.exports = function (eleventyConfig) {
 
@@ -36,6 +39,9 @@ module.exports = function (eleventyConfig) {
             tags: ['h2', 'h3'],
             wrapper: 'div'
         });
+
+    // ナビゲーション+パンくずリスト
+    eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
 
     // ファビコンのコピー
