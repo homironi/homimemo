@@ -3,17 +3,20 @@ layout: base.njk
 ---
 
 {% include "head.njk" %}
-{# 記事のcss #}
+{# css #}
 {% block css -%}
 <link rel="stylesheet" href="/styles/articleLayout.css" />
 <link rel="stylesheet" href="/styles/articleThema.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 {%- endblock%}
 {% include "header.njk" %}
+{% include "navigation.njk" %}
+{% include "notice.njk" %}
 <div class="container">
     <main class="mainContainer">
         <div class="sideLWrapper">
             <div class="sideLInner">
-                <div class="shareButtons">ついった はてぶ など記事を共有できるボタン</div>
+                {% include "shareButtons.njk" %}
                 <section class="tableOfContentInner">
                     {# 記事内容から自動で目次が作られます #}
                     {{content | toc | safe}}
@@ -23,23 +26,23 @@ layout: base.njk
         <div class="contentWrapper">
             <article class="articleInner">
                 <div class="articleHeader">
-                    パンくずリスト
-                    {{ collections.all | eleventyNavigationBreadcrumb("記事", { includeSelf: true }) | eleventyNavigationToHtml | safe }}
-                    <h1>記事たいとる！</h1>
+                    {% include "breadcrumb.njk" %}
+                    <h1>{{title}}</h1>
                     {# 公開日 #}
-                    <time datetime={{createDate | dateFormat}}>{{createDate | dateFormat | dateFormatJapanese}}（公開日）</time>
+                    <span class="material-symbols-outlined">calendar_today</span>
+                    <time datetime={{createDate | dateFormat}}>公開 {{createDate | dateFormat | dateFormatJapanese}}</time>
                     {# 更新日 #}
-                    <time datetime={{page.date | dateFormat}}>{{page.date | dateFormat | dateFormatJapanese}}（更新日）</time>
+                    <span class="material-symbols-outlined">history</span>
+                    <time datetime={{page.date | dateFormat}}>更新 {{page.date | dateFormat | dateFormatJapanese}}</time>
                     {# 記事のヘッダー画像 #}
                     <div class="resizeImg">
-                        <img src="https://placehold.jp/896x504.png" />
+                        <img src= {{headerImg}} />
                     </div>
-                    記事のへっだー！画像とかタイトルとかいれよう！
                 </div>
                 <section class="content">
                     {# 記事内容が入ります #}
                     {{content | safe}}
-                    <div class="shareButtons">ついった はてぶ など記事を共有できるボタン</div>
+                    {% include "shareButtons.njk" %}
                 </section>
             </article>
         </div>

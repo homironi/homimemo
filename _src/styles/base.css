@@ -1,7 +1,7 @@
 html {
 	font-family: "IBM Plex Sans JP", sans-serif;
 	background-color: var(--color-main);
-	background-image: url(../images/backGround.png);
+	background-image: url(../images/background.png);
 	background-size: 256px;
 	background-repeat: repeat;
 	color: var(--text-color-black);

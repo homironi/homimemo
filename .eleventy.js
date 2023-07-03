@@ -60,6 +60,7 @@ module.exports = function (eleventyConfig) {
             "njk",
             "html",
             "liquid",
+            'xml'
         ],
 
         // Pre-process *.md files with: (default: `liquid`)
@@ -73,6 +74,7 @@ module.exports = function (eleventyConfig) {
         dir: {
             input: "_src",          // default: "."
             output: "_public",      // default: "_site"
+            layouts: "_layouts"
         },
     }
 };
