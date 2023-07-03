@@ -1,17 +1,16 @@
 ---
-title: 記事サンプル１
-description: うおおおおおお
-createDate: 2023-07-01
+layout: article.njk
+title: このサイトについて - about
+description: このサイトについての説明です。
+createDate: 2023-07-02
 headerImg: https://placehold.jp/896x504.png
 eleventyNavigation:
-    key: 記事サンプル１
+    key: このサイトについて
     parent: Home
-    order: 2
-tags:
-    - タグ
+    order: 1
 ---
 
-# {{ title }}
+# このサイト「{{ data.globalTitle }}」について
 
 ## aaaH2
 

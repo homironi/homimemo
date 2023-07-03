@@ -1,0 +1,12 @@
+.navigationBar {
+	background-color: var(--color-black-area);
+}
+
+.navigationBar ul li a {
+	color: var(--color-main);
+	text-decoration: none;
+}
+
+.navigationBar ul li a::after {
+	background-color: var(--color-main);
+}

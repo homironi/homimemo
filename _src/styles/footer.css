@@ -1,3 +1,9 @@
-.footer-inner {
-	background-color: var(--color-accent);
+.footerContainer {
+	padding: 40px 80px;
+	background-color: var(--color-black-area);
+	color: var(--text-color-white);
+}
+
+.footerLogo {
+	height: 40px;
 }

@@ -3,8 +3,19 @@
 <link rel="stylesheet" href="/styles/footer.css" />
 {%- endblock%}
 
-<header class="footerContainer">
+<footer class="footerContainer">
     <div class = "footer-inner">
-    	ふったー
+        {# サイトマップ #}
+        
+    	<p>外部リンク</p>
+        {% include "myLink.njk" %}
+        {# フッターロゴ #}
+        <a href  = "/">
+            <div class="homeImg">
+                <img class = "footerLogo" src="/images/logo.png" />
+            </div>
+        </a>
+        {# copyright #}
+        <p class = "copyright">©2023- ほみ</p>
     </div>
-</header>
+</footer>

@@ -1,6 +1,6 @@
 .header-inner {
 	height: var(--header-content-height);
 }
-.headerNotice {
-	height: var(--header-notice-height);
+.homeImg img {
+	height: var(--header-content-height);
 }

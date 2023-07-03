@@ -4,6 +4,8 @@
 	--shadow-color-main: #f3e8e4;
 	--color-sub: #79cceeee;
 	--color-accent: #fdb515;
+	--color-black-area: #333333;
+	--color-black-area-hover: #555555;
 	--text-color-white: #ffffff;
 	--text-color-black: #111111;
 
@@ -13,6 +15,7 @@
 
 	--content-width: 1240px;
 	--header-content-height: 80px;
-	--heder-notice-height: 0px;
+	--heder-notice-height: 80px;
 	--header-height: calc(var(--header-content-height) + var(--heder-notice-height));
+	--border-bottom-h2: 4px;
 }
