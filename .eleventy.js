@@ -26,6 +26,15 @@ module.exports = function (eleventyConfig) {
         return `${Year}年${Month}月${Date}日`;
     });
 
+    // タグリスト
+    eleventyConfig.addFilter("getAllTags", collection => {
+        let tagSet = new Set();
+        for (let item of collection) {
+            (item.data.tags || []).forEach(tag => tagSet.add(tag));
+        }
+        return Array.from(tagSet);
+    });
+
     // Markdown
     eleventyConfig.setLibrary
         (
@@ -52,6 +61,10 @@ module.exports = function (eleventyConfig) {
 
     // cssフォルダのコピー
     eleventyConfig.addPassthroughCopy("_src/styles");
+    eleventyConfig.addPassthroughCopy("_src/images");
+
+    // robots.txtのコピー
+    eleventyConfig.addPassthroughCopy("_src/robots.txt");
 
     return {
         // Control which files Eleventy will process
