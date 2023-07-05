@@ -15,5 +15,5 @@
 }
 
 .breadcrumb li:last-child::before {
-	content: "🌱";
+	content: "▽";
 }
