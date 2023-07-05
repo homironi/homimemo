@@ -17,17 +17,22 @@
 	</url>
 	
 	<url>
+		<loc>https://homironi.com/articles/sample/</loc>
+		<lastmod>Wed Jul 05 2023 21:22:14 GMT+0900 (日本標準時)</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://homironi.com/tags/</loc>
+		<lastmod>Wed Jul 05 2023 23:10:06 GMT+0900 (日本標準時)</lastmod>
+	</url>
+	
+	<url>
 		<loc>https://homironi.com/tags/1/</loc>
-		<lastmod>Wed Jul 05 2023 21:20:07 GMT+0900 (日本標準時)</lastmod>
+		<lastmod>Wed Jul 05 2023 23:11:52 GMT+0900 (日本標準時)</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://homironi.com/tags/2/</loc>
-		<lastmod>Wed Jul 05 2023 21:20:07 GMT+0900 (日本標準時)</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://homironi.com/articles/sample/</loc>
-		<lastmod>Wed Jul 05 2023 21:22:14 GMT+0900 (日本標準時)</lastmod>
+		<lastmod>Wed Jul 05 2023 23:11:52 GMT+0900 (日本標準時)</lastmod>
 	</url>
 </urlset>

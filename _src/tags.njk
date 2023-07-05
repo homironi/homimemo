@@ -8,16 +8,12 @@ pagination:
   addAllPagesToCollections: true
 layout: base.njk
 eleventyComputed:
-  title: タグ {{ tag }}
-permalink: /tags/{{ tag | slugify }}/
-eleventyNavigation:
-    key: “{{ tag }}”
-    parent: タグ一覧
+  title: "{{ tag }}"
+  permalink: /tags/{{ tag | slugify }}/
 ---
-<h1>タグ {{ tag }}”</h1>
 
 {% set postslist = collections[ tag ] %}
-<h1>タグ</h1>
+<h1>タグ： {{ tag }}</h1>
 
 <ol reversed class="postlist" style="counter-reset: start-from {{ (postslistCounter or postslist.length) + 1 }}">
 {% for post in postslist | reverse %}
