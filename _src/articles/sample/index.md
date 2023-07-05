@@ -4,7 +4,7 @@ description: うおおおおおお
 createDate: 2023-07-01
 headerImg: https://placehold.jp/896x504.png
 eleventyNavigation:
-    key: カテゴリー
+    key: カテゴリさんぷる
     parent: Home
     order: 2
 tags:

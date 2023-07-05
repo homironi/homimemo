@@ -7,5 +7,5 @@ headerImg: https://placehold.jp/896x504.png
 eleventyNavigation:
     key: プライバシーポリシー
     parent: Home
-    order: 2
+    order: 99
 ---
