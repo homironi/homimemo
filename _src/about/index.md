@@ -6,7 +6,7 @@ createDate: 2023-07-02
 headerImg: https://placehold.jp/896x504.png
 eleventyNavigation:
     key: このサイトについて
-    parent: Home
+    parent: home
     order: 1
 ---
 
