@@ -10,6 +10,9 @@ layout: base.njk
 eleventyComputed:
   title: "{{ tag }}"
   permalink: /tags/{{ tag | slugify }}/
+  eleventyNavigation:
+      key: "{{ tag }}"
+      parent: タグ一覧
 ---
 
 {% set postslist = collections[ tag ] %}
