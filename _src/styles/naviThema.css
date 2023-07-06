@@ -3,10 +3,22 @@
 }
 
 .navigationBar ul li a {
-	color: var(--color-main);
+	color: var(--text-color-white);
 	text-decoration: none;
 }
 
 .navigationBar ul li a::after {
 	background-color: var(--color-main);
+}
+
+.navigationBar ul ul {
+	background-color: var(--color-black-area);
+}
+
+.navigationBar ul ul li a {
+	color: var(--text-color-white);
+}
+
+.navigationBar ul ul li a:hover {
+	background-color: var(--color-black-area-hover);
 }

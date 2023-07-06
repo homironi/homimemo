@@ -5,7 +5,7 @@ createDate: 2023-07-01
 headerImg: https://placehold.jp/896x504.png
 eleventyNavigation:
     key: カテゴリさんぷる
-    parent: home
+    parent: カテゴリ一覧
     order: 2
 tags:
     - タグ1

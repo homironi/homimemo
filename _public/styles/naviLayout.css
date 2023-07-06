@@ -2,11 +2,21 @@
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	display: flex;
+}
+
+/* 最上位レベルの要素 */
+.navigationBar > ul > li {
+	display: inline-block;
 }
 
 .navigationBar ul li {
-	display: inline-block;
+	position: relative;
+}
+
+/* ホバーされた子要素 */
+.navigationBar ul li:hover > ul {
+	display: block;
+	width: 100%;
 }
 
 .navigationBar ul li a {
@@ -27,6 +37,35 @@
 	transition: transform 0.3s ease;
 }
 
+.navigationBar ul ul li a::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	transform: none;
+	transition: unset;
+}
+
 .navigationBar ul li a:hover::after {
 	transform: scaleX(1);
+}
+
+.navigationBar ul ul li a:hover::after {
+	transform: none;
+}
+
+.navigationBar ul ul {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	padding: 0;
+}
+.navigationBar ul ul li {
+	display: block;
+}
+.navigationBar ul ul li a {
+	display: block;
+	padding: 10px;
+	text-decoration: none;
 }
