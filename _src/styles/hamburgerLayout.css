@@ -1,42 +1,156 @@
-.menu-btn {
-	display: inline-block;
-	cursor: pointer;
-	width: 40px;
-	height: 40px;
+/**
+ * ヘッダーのラッパー
+ */
+div.navigationBar {
+	position: relative;
 }
 
-.hamburger {
-	content: "";
-	display: inline-block;
-	transition: transform 0.3s ease-in-out;
-}
-#menu-toggle {
-	display: none;
-}
-#menu-toggle:checked + .menu-btn .hamburger {
-	transform: rotate(45deg);
-}
-
-#menu-toggle:checked ~ .menu {
-	transform: translateX(100%);
-}
-
-.menu {
+/**
+* ハンバーガーメニューのラッパー
+*/
+div.hamburgerMenuWrapper {
+	/* ハンバーガーメニューを表示する */
+	display: block;
+	width: 320px;
+	/* 絶対配置 */
 	position: absolute;
 	top: 0;
 	right: 0;
-	width: 80%;
-	height: 100%;
-	background-color: #fff;
-	transform: translateX(0);
-	transition: transform 0.3s ease-in-out;
 }
 
-.menu li {
+/**
+ * ナビゲーションメニューのボタンがクリックされたかを判別するためのチェックボックス
+ */
+.menu-toggle {
+	/* 非表示 */
+	display: none;
+}
+
+/**
+ * ナビゲーションメニューのボタン
+ */
+.menu-btn {
+	display: block;
+	width: 35px;
+	height: 35px;
+	/* 右寄せ */
+	margin: 0 0 5px auto;
+	position: relative;
+	z-index: 1;
+}
+
+/* 三本線を作る */
+.menu-btn span,
+.menu-btn:before,
+.menu-btn:after {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 25px;
+	height: 2.5px;
+	margin: auto;
+	background-color: var(--text-color-white);
+}
+
+/**
+ * 真ん中の線
+ */
+.menu-btn span {
+	z-index: 2;
+	overflow: hidden;
+}
+
+/**
+ * 上の線
+ */
+.menu-btn:before {
+	content: "";
+	z-index: 3;
+	/* 上にずらす */
+	transform: translate(0, -8px);
+}
+
+/**
+ * 下の線
+ */
+.menu-btn:after {
+	content: "";
+	z-index: 3;
+	/* 下にずらす */
+	transform: translate(0, 8px);
+}
+
+/**
+ * 真ん中の線（クリック時）
+ */
+#menu-toggle:checked ~ .menu-btn span {
+	/* 非表示にする */
+	opacity: 0;
+}
+
+/**
+ * 上の線（クリック時）
+ */
+#menu-toggle:checked ~ .menu-btn:before {
+	/* 45度回転させる */
+	transform: rotate(45deg);
+}
+
+/**
+ * 下の線（クリック時）
+ */
+#menu-toggle:checked ~ .menu-btn:after {
+	/* -45度回転させる */
+	transform: rotate(-45deg);
+}
+
+/* アニメーションをつける */
+.menu-btn:before,
+.menu-btn:after {
+	transition: transform 300ms;
+}
+
+/**
+ * メニュー
+ */
+.menuList {
+	/* 通常時は非表示 */
+	display: none;
+	background-color: var(--color-sub);
+}
+
+/**
+ * ナビゲーションボタンがクリックされた時のメニュー
+ */
+#menu-toggle:checked ~ .menuList {
+	/* ナビゲーションメニューのボタンがクリックされたら表示 */
+	display: block;
+	opacity: 100%;
+}
+
+/* メニューのリスト */
+.hamburgerMenuInner ul {
+	list-style: none;
+	margin: 0;
 	padding: 10px;
 }
 
-.menu li a {
+.hamburgerMenuInner ul li a {
+	padding: 10px;
+}
+
+.menuList ul li:hover > ul {
+	display: block;
+	width: 100%;
+}
+
+/* リンクの装飾 */
+.menuList ul li a {
 	text-decoration: none;
-	color: var(--text-color-white);
+}
+
+.menuList ul li a:hover {
+	background-color: var(--color-black-area-hover);
 }
