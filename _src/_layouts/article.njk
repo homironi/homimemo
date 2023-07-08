@@ -27,7 +27,7 @@ layout: base.njk
                     <span class="material-symbols-outlined">calendar_today</span>
                     <time datetime={{createDate | dateFormat}}>公開 {{createDate | dateFormat | dateFormatJapanese}}</time>
                     {# 更新日 #}
-                    <span class="material-symbols-outlined">history</span>
+                    <span class="material-symbols-outlined">published_with_changes</span>
                     <time datetime={{page.date | dateFormat}}>更新 {{page.date | dateFormat | dateFormatJapanese}}</time>
                     {# 記事のヘッダー画像 #}
                     <div class="resizeImg">
@@ -45,6 +45,7 @@ layout: base.njk
             <div class="sideRInner">
                 <h2>右サイド</h2>
                 なんかプロフィールとか関連記事とか広告とかああああああ
+                </form>
             </div>
         </section>
     </main>
