@@ -2,7 +2,9 @@
 	/* color */
 	--color-main: #fcf9f7;
 	--shadow-color-main: #f3e8e4;
-	--color-sub: #79cceeee;
+	--color-sub: #79cdee;
+	--color-sub-pale: #a9dcf0;
+	--color-sub-dark: #79bcd6;
 	--color-accent: #fdb515;
 	--color-black-area: #333333;
 	--color-black-area-hover: #555555;
