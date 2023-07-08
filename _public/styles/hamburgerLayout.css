@@ -1,6 +1,3 @@
-/**
- * ヘッダーのラッパー
- */
 div.navigationBar {
 	position: relative;
 }
@@ -11,7 +8,7 @@ div.navigationBar {
 div.hamburgerMenuWrapper {
 	/* ハンバーガーメニューを表示する */
 	display: block;
-	width: 320px;
+	width: 60%;
 	/* 絶対配置 */
 	position: absolute;
 	top: 0;
@@ -112,18 +109,14 @@ div.hamburgerMenuWrapper {
 	transition: transform 300ms;
 }
 
-/**
- * メニュー
- */
+/* メニューリスト */
 .menuList {
 	/* 通常時は非表示 */
 	display: none;
 	background-color: var(--color-sub);
 }
 
-/**
- * ナビゲーションボタンがクリックされた時のメニュー
- */
+/* ナビゲーションボタンがクリックされた時のメニュー */
 #menu-toggle:checked ~ .menuList {
 	/* ナビゲーションメニューのボタンがクリックされたら表示 */
 	display: block;
@@ -134,7 +127,6 @@ div.hamburgerMenuWrapper {
 .hamburgerMenuInner ul {
 	list-style: none;
 	margin: 0;
-	padding: 10px;
 }
 
 .hamburgerMenuInner ul li a {
@@ -143,13 +135,33 @@ div.hamburgerMenuWrapper {
 
 .menuList ul li:hover > ul {
 	display: block;
+	width: 100%;
 }
 
 /* リンクの装飾 */
-.menuList ul li a {
-	text-decoration: none;
+.menuList ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
-.menuList ul li a:hover {
-	background-color: var(--color-black-area-hover);
+.menuList ul li {
+	position: relative;
+}
+
+/* ホバーされた子要素 */
+.menuList ul li:hover > ul {
+	display: none;
+	width: 100%;
+}
+
+.menuList ul li a {
+	display: block;
+	position: relative;
+	text-decoration: none;
+	padding: 15px;
+}
+
+.menuList ul ul {
+	display: none;
 }
