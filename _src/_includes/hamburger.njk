@@ -4,10 +4,12 @@
 <link rel="stylesheet" href="/styles/hamburgerThema.css" />
 {%- endblock%}
 
-<input type="checkbox" id="menu-toggle">
-<label for="menu-toggle" class="menu-btn">
-  <span class="hamburger">≡</span>
-</label>
-<ul class="menu">
-{{collections.all | eleventyNavigation("home") | eleventyNavigationToHtml | safe }}
-</ul>
+<div class = "hamburgerMenu">
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="menu-btn">
+    <span class="hamburger">≡</span>
+  </label>
+  <ul class="menu">
+  {{collections.all | eleventyNavigation("home") | eleventyNavigationToHtml | safe }}
+  </ul>
+</div>
