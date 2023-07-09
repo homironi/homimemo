@@ -6,46 +6,44 @@ layout: base.njk
 <link rel="stylesheet" href="/styles/articleLayout.css" />
 <link rel="stylesheet" href="/styles/articleThema.css" />
 {%- endblock%}
-<div class="container">
-    <main class="mainContainer">
-        <div class="sideLWrapper">
-            <div class="sideLInner">
-                {% include "shareButtons.njk" %}
-                <section class="tableOfContentInner">
-                    {# 記事内容から自動で目次が作られます #}
-                    {{content | toc | safe}}
-                </section>
-            </div>
+<main class="mainContainer">
+    <div class="sideLWrapper">
+        <div class="sideLInner">
+            {% include "shareButtons.njk" %}
+            <section class="tableOfContentInner">
+                {# 記事内容から自動で目次が作られます #}
+                {{content | toc | safe}}
+            </section>
         </div>
-        <div class="contentWrapper">
-            <article class="articleInner">
-                <div class="articleHeader">
-                    {% include "breadcrumb.njk" %}
-                    <h1>{{title}}</h1>
-                    {# 公開日 #}
-                    <span class="material-symbols-outlined">calendar_today</span>
-                    <time datetime={{createDate | dateFormat}}>公開 {{createDate | dateFormat | dateFormatJapanese}}</time>
-                    {# 更新日 #}
-                    <span class="material-symbols-outlined">published_with_changes</span>
-                    <time datetime={{page.date | dateFormat}}>更新 {{page.date | dateFormat | dateFormatJapanese}}</time>
-                    {# 記事のヘッダー画像 #}
-                    <div class="resizeImg">
-                        <img src= {{headerImg}} />
-                    </div>
+    </div>
+    <div class="contentWrapper">
+        <article class="articleInner">
+            <div class="articleHeader">
+                {% include "breadcrumb.njk" %}
+                <h1>{{title}}</h1>
+                {# 公開日 #}
+                <span class="material-symbols-outlined">calendar_today</span>
+                <time datetime={{createDate | dateFormat}}>公開 {{createDate | dateFormat | dateFormatJapanese}}</time>
+                {# 更新日 #}
+                <span class="material-symbols-outlined">published_with_changes</span>
+                <time datetime={{page.date | dateFormat}}>更新 {{page.date | dateFormat | dateFormatJapanese}}</time>
+                {# 記事のヘッダー画像 #}
+                <div class="resizeImg">
+                    <img src= {{headerImg}} />
                 </div>
-                <section class="content">
-                    {# 記事内容が入ります #}
-                    {{content | safe}}
-                    {% include "shareButtons.njk" %}
-                </section>
-            </article>
-        </div>
-        <section class="sideRWrapper">
-            <div class="sideRInner">
-                <h2>右サイド</h2>
-                なんかプロフィールとか関連記事とか広告とかああああああ
-                </form>
             </div>
-        </section>
-    </main>
-</div>
+            <section class="content">
+                {# 記事内容が入ります #}
+                {{content | safe}}
+                {% include "shareButtons.njk" %}
+            </section>
+        </article>
+    </div>
+    <section class="sideRWrapper">
+        <div class="sideRInner">
+            <h2>右サイド</h2>
+            なんかプロフィールとか関連記事とか広告とかああああああ
+            </form>
+        </div>
+    </section>
+</main>

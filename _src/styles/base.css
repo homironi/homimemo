@@ -16,3 +16,7 @@ html {
 .material-symbols-outlined {
 	vertical-align: -4px;
 }
+.container {
+	position: relative;
+	z-index: -1;
+}
