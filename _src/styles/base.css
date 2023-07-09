@@ -12,3 +12,7 @@ html {
 .resizeImg img {
 	width: 100%;
 }
+
+.material-symbols-outlined {
+	vertical-align: -4px;
+}
