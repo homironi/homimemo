@@ -15,23 +15,27 @@ pagenation:
 {%- endblock%}
 
 <main class="mainContainer">
-        <div class="contentWrapper">
-            <category class="categoryInner">
-                <section class="categoryHeader">
-                    {% include "breadcrumb.njk" %}
-                    <h1>{{title}}カテゴリ一覧</h1>
-                    {# 説明などをここに #}
-                    {{content | safe}}
-                </section>
-                <section class="content">
-                    {# このカテゴリの記事一覧 #}
-                    {% set postList = collections[ category ] %}
-                    {%- for post in postList | reverse %}
-                      <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
-                    {%- endfor %}
-                    {# ページの共有ボタン #}
-                    {% include "shareButtons.njk" %}
-                </section>
-            </category>
-        </div>
-    </main>
+    <div class="contentWrapper">
+        <category class="categoryInner">
+            <section class="categoryHeader">
+                {% include "breadcrumb.njk" %}
+                <h1>{{title}}カテゴリ一覧</h1>
+                {# 説明などをここに #}
+                {{content | safe}}
+            </section>
+            <section class="content">
+                {# このカテゴリの記事一覧 #}
+                {% set postList = collections[ category ] %}
+                {% import "card.njk" as card %}
+                {%- for post in postList | reverse %}
+                    <li>
+                    {{ card.card(post.headerImg, post.headerImgAlt, post.data.title, post.data.description) }}
+                    <a href="{{ post.url }}">{{ post.data.title }}</a>
+                    </li>
+                {%- endfor %}
+                {# ページの共有ボタン #}
+                {% include "shareButtons.njk" %}
+            </section>
+        </category>
+    </div>
+</main>
