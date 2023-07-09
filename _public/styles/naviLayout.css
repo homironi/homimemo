@@ -1,3 +1,8 @@
+.navigationBar {
+	position: relative;
+	z-index: 1;
+}
+
 .navigationBar ul {
 	list-style-type: none;
 	margin: 0;
