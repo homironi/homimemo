@@ -1,0 +1,17 @@
+{# 
+{% import "card.njk" as card %}
+
+{% for post in postList %}
+    {{ card.card(post.headerImg, post.headerImgAlt, post.data.title, post.data.description) }}
+    <a href="{{ post.url }}">{{ post.data.title }}</a>
+{% endfor %}
+
+#}
+
+{% macro card(image, alt, title, description) %}
+    <div class="card">
+        <img src="{{ image }}" alt="{{ alt }}">
+        <h2>{{ title }}</h2>
+        <p>{{ description }}</p>
+    </div>
+{% endmacro %}
