@@ -4,6 +4,14 @@
 <title>{{ title }} | {{data.globalTitle}}</title>
 <meta name = "description" content ="{{description}}"/>
 <meta name = "date" content = {{page.date | dateFormat}}>
+{# Twitter Cards #}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@homiRoni" />
+<meta name="twitter:domain" content="homironi.com" />
+<meta name="twitter:title" content={{title}}>
+<meta name="twitter:description" content={{description}}>
+<meta name="twitter:image" content={{headerImg}}>
+<meta name="twitter:image:alt" content={{headerImgAlt}}>
 {# ファビコン #}
 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 {# フォント #}
