@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>タグ2 | ほみのひとくちまみむメモ</title>
+<title>雑記 | ほみのひとくちまみむメモ</title>
 <meta name = "description" content =""/>
-<meta name = "date" content = 2023-07-06>
+<meta name = "date" content = 2023-07-09>
 
 <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
@@ -39,9 +39,7 @@
 <link rel="stylesheet" href="/styles/naviThema.css" />
 <nav class = "navigationBar">
     <ul><li><a href="/about/">このサイトについて</a></li>
-<li><a href="/categories/">カテゴリ一覧</a><ul><li><a href="/categories/sample/">カテゴリさんぷる</a></li></ul></li>
-<li><a href="/tags/">タグ一覧</a><ul><li><a href="/tags/1/">タグ1</a></li>
-<li><a href="/tags/2/">タグ2</a></li></ul></li>
+<li><a href="/categories/">カテゴリ一覧</a><ul><li><a href="/categories/memo/">雑記</a><ul><li><a href="/categories/memo/sample/">記事サンプル１</a></li></ul></li></ul></li>
 <li><a href="/privacyPolicy/">プライバシーポリシー</a></li></ul>
 </nav>
 
@@ -56,9 +54,7 @@
     </label>
     <ul class="menuList">
     <ul><li><a href="/about/">このサイトについて</a></li>
-<li><a href="/categories/">カテゴリ一覧</a><ul><li><a href="/categories/sample/">カテゴリさんぷる</a></li></ul></li>
-<li><a href="/tags/">タグ一覧</a><ul><li><a href="/tags/1/">タグ1</a></li>
-<li><a href="/tags/2/">タグ2</a></li></ul></li>
+<li><a href="/categories/">カテゴリ一覧</a><ul><li><a href="/categories/memo/">雑記</a><ul><li><a href="/categories/memo/sample/">記事サンプル１</a></li></ul></li></ul></li>
 <li><a href="/privacyPolicy/">プライバシーポリシー</a></li></ul>
     </ul>
   </div>
@@ -68,22 +64,42 @@
 <div class="headerNotice">
     <p>現在サイト構築中です。</p>
 </div>
+<div class="container">
 	
+<link rel="stylesheet" href="/styles/categoryListLayout.css" />
+<link rel="stylesheet" href="/styles/categoryListThema.css" />
 
-<h1>タグ： タグ2</h1>
+<main class="mainContainer">
+        <div class="contentWrapper">
+            <article class="articleInner">
+                <div class="articleHeader">
+                    <link rel="stylesheet" href="/styles/breadcrumb.css" />
 
-<ol reversed class="postlist" style="counter-reset: start-from 2">
-
-	<li class="postlist-item">
-		<a href="/categories/sample/" class="postlist-link">
-      記事サンプル１
-      </a>
-		<time class="postlist-date" datetime="2023-07-07">
-      2023年07月07日
-    </time>
-	</li>
-
-</ol>
+<div class = "breadcrumb">
+    <ul><li><a href="/">home</a></li>
+<li><a href="/categories/">カテゴリ一覧</a></li>
+<li><a href="/categories/memo/">雑記</a></li></ul>
+</div>
+                    <h1>雑記カテゴリ一覧</h1>
+                </div>
+                <section class="content">
+                    
+                      <li><a href="/categories/memo/sample/">記事サンプル１</a></li>
+                    
+                    <div class="shareButtons">
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" 
+    class="twitter-share-button"
+    data-show-count="false"
+    data-via="homiRoni"
+    data-hashtags=ほみのひとくちまみむメモ>
+    </a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+                </section>
+            </article>
+        </div>
+    </main>
+</div>
 
 <link rel="stylesheet" href="/styles/footer.css" />
 

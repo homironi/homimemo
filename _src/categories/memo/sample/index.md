@@ -4,12 +4,11 @@ description: うおおおおおお
 createDate: 2023-07-01
 headerImg: https://placehold.jp/896x504.png
 eleventyNavigation:
-    key: カテゴリさんぷる
-    parent: カテゴリ一覧
-    order: 2
+    key: 記事サンプル１
+    parent: 雑記
+category: memo
 tags:
-    - タグ1
-    - タグ2
+    - memo
 ---
 
 # {{ title }}

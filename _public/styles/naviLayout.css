@@ -69,3 +69,11 @@
 	padding: 10px;
 	text-decoration: none;
 }
+/* 1階層分だけ子要素を表示するので、それ以下は非表示 */
+.navigationBar ul ul ul {
+	display: none;
+}
+
+.navigationBar ul ul ul li {
+	display: none;
+}
