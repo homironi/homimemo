@@ -26,6 +26,10 @@
 	padding: 24px;
 }
 
+.material-symbols-outlined {
+	vertical-align: -4px;
+}
+
 /* 横幅が指定ピクセルまで、以下を適用 */
 @media screen and (max-width: 1280px) {
 	.mainContainer {
