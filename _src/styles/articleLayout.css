@@ -7,7 +7,7 @@
 .contentWrapper {
 	-webkit-flex: 4;
 	flex: 4;
-	margin: 0 32px;
+	margin: 0 3%;
 }
 .sideLWrapper {
 	-webkit-flex: 1;
@@ -23,7 +23,7 @@
 	top: 0;
 }
 .tableOfContentInner {
-	padding: 24px;
+	padding: 3%;
 }
 
 /* 横幅が指定ピクセルまで、以下を適用 */

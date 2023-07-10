@@ -1,3 +1,6 @@
 .card img {
 	width: 100%;
 }
+.cardInner {
+	padding: 3%;
+}
