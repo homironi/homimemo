@@ -4,3 +4,9 @@
 .cardContent {
 	margin: 2%;
 }
+.description {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	height: 3%;
+}

@@ -29,7 +29,7 @@ module.exports = function (eleventyConfig) {
     // Custom filter: dateLatest
     eleventyConfig.addFilter('dateLatest', function (posts) {
         // Sort the posts by date in descending order (newest to oldest)
-        return posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        return posts.sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
     });
 
 

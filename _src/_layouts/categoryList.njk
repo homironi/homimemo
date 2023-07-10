@@ -29,14 +29,17 @@ pagenation:
                 {{content | safe}}
             </section>
             <section class="content">
-                <section class = "postList">
-                    {# このカテゴリの記事一覧 #}
-                    {% set postList = collections[ category ] %}
-                    {% import "card.njk" as card %}
-                    {%- for post in postList | dateLatest  %}
-                        {{card.card(post)}}
-                    {%- endfor %}
-                </section>
+                <div class ="postListsWrapper">
+                    <section class = "postList">
+                        {# このカテゴリの記事一覧 #}
+                        {% set postList = collections[ category ] %}
+                        {% import "card.njk" as card %}
+                        {# 新しい順で戦闘に来るように処理したいので逆順にする #}
+                        {%- for post in postList | dateLatest |reverse %}
+                            {{card.card(post)}}
+                        {%- endfor %}
+                    </section>
+                </div>
                 {# ページの共有ボタン #}
                 {% include "shareButtons.njk" %}
             </section>
