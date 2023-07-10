@@ -33,8 +33,10 @@ layout: base.njk
                 </div>
             </div>
             <section class="content">
-                {# 記事内容が入ります #}
-                {{content | safe}}
+                <article class="mainArticle">
+                    {# 記事内容が入ります #}
+                    {{content | safe}}
+                </article>
                 {% include "shareButtons.njk" %}
             </section>
         </article>
