@@ -27,7 +27,7 @@ pagenation:
                 {# このカテゴリの記事一覧 #}
                 {% set postList = collections[ category ] %}
                 {% import "card.njk" as card %}
-                {%- for post in postList | reverse %}
+                {%- for post in postList | dateLatest  %}
                     <li>
                     {{ card.card(post.headerImg, post.headerImgAlt, post.data.title, post.data.description) }}
                     <a href="{{ post.url }}">{{ post.data.title }}</a>

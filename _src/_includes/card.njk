@@ -7,6 +7,11 @@
 {% endfor %}
 
 #}
+{# css #}
+{% block css -%}
+<link rel="stylesheet" href="/styles/cardLayout.css" />
+<link rel="stylesheet" href="/styles/cardThema.css" />
+{%- endblock%}
 
 {% macro card(image, alt, title, description) %}
     <div class="card">
