@@ -25,6 +25,13 @@ module.exports = function (eleventyConfig) {
         const Date = date[2];
         return `${Year}年${Month}月${Date}日`;
     });
+    // 日付が新しい順に並び替えたリストを返す
+    // Custom filter: dateLatest
+    eleventyConfig.addFilter('dateLatest', function (posts) {
+        // Sort the posts by date in descending order (newest to oldest)
+        return posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    });
+
 
     // タグリスト
     eleventyConfig.addFilter("getAllTags", collection => {
