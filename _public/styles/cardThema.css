@@ -2,8 +2,11 @@
 	background-color: var(--color-main);
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
 	box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
+	transition: box-shadow 0.3s;
+	transition: transform 0.3s;
 }
-.card a:hover {
+.card:hover {
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
-	box-shadow: 0px 0px var(--shadow-blur-radius * 4px) var(--shadow-spread-radius * 4px) var(--shadow-color-main);
+	box-shadow: 0px 0px calc(var(--shadow-blur-radius) * 2) var(--shadow-spread-radius) var(--shadow-color-main-pale);
+	transform: scale(1.02);
 }
