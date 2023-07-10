@@ -2,7 +2,6 @@
 	background-color: var(--color-main);
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
 	box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
-	transition: box-shadow 0.3s;
 	transition: transform 0.3s;
 }
 .card:hover {
