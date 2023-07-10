@@ -7,7 +7,7 @@
 .contentWrapper {
 	-webkit-flex: 8;
 	flex: 8;
-	margin: 0 32px;
+	margin: 0 3%;
 }
 .sideLWrapper {
 	-webkit-flex: 1;
@@ -29,5 +29,43 @@
 .card {
 	width: 50%;
 	height: 30%;
-	margin: 4px;
+	margin: 3%;
+}
+
+/* 横幅が指定ピクセルまで、以下を適用 */
+@media screen and (max-width: 1280px) {
+	.mainContainer {
+		display: -webkit-flex;
+		display: flex;
+		width: auto;
+		margin: 0 2%;
+	}
+	.sideRWrapper {
+		display: none;
+	}
+	.contentWrapper {
+		margin-right: 0;
+		margin-left: 2%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.mainContainer,
+	.contentWrapper,
+	.sideLWrapper,
+	.sideRWrapper {
+		display: block;
+	}
+	.contentWrapper {
+		margin: 0;
+	}
+
+	.postList {
+		display: block;
+	}
+	.card {
+		width: 100%;
+		height: 60%;
+		margin: 0;
+	}
 }
