@@ -1,6 +1,6 @@
 .card img {
 	width: 100%;
 }
-.cardInner {
-	padding: 3%;
+.cardContent {
+	margin: 2%;
 }

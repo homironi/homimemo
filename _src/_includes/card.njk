@@ -5,8 +5,10 @@
             src="{{ post.data.headerImg }}" 
             alt= "{{ post.data.headerImgAlt }}"
             /> 
-            <h3>{{ post.data.title }}</h3>
-            <p>{{ post.data.description }}</p>
+            <div class ="cardContent">
+                <h3>{{ post.data.title }}</h3>
+                <p>{{ post.data.description }}</p>
+            </div>
         </a>
     </div>
 {% endmacro %}
