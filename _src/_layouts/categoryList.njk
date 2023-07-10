@@ -32,9 +32,7 @@ pagenation:
                     {% set postList = collections[ category ] %}
                     {% import "card.njk" as card %}
                     {%- for post in postList | dateLatest  %}
-                        <li>
                         {{card.card(post)}}
-                        </li>
                     {%- endfor %}
                 </section>
                 {# ページの共有ボタン #}

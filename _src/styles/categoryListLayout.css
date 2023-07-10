@@ -1,3 +1,12 @@
+.postList {
+	display: flex;
+}
+
 .postList li {
 	list-style: none;
+}
+
+.card {
+	width: 20%;
+	height: 30%;
 }

@@ -1,7 +1,10 @@
 {% macro card(post) %}
     <div class="card">
         <a href ="{{ post.url }}" class ="cardInner">
-            <img src="{{ post.headerImg }}" alt= "{{ post.headerImgAlt }}">
+            <img 
+            src="{{ post.data.headerImg }}" 
+            alt= "{{ post.data.headerImgAlt }}"
+            /> 
             <h3>{{ post.data.title }}</h3>
             <p>{{ post.data.description }}</p>
         </a>
