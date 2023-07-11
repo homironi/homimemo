@@ -22,9 +22,6 @@
 	list-style: none;
 }
 
-.postListsWrapper {
-}
-
 .postList {
 	display: flex;
 	flex-wrap: wrap;
