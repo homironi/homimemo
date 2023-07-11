@@ -35,7 +35,7 @@
 }
 .card {
 	width: calc(50% - 20px); /* Adjust the width and spacing as needed */
-	height: calc(10% - 10px); /* Adjust the height and spacing as needed */
+	height: 30%; /* Adjust the height and spacing as needed */
 	margin-bottom: 10px; /* Adjust the vertical spacing between cards */
 }
 
