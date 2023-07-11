@@ -4,9 +4,18 @@
 .cardContent {
 	margin: 2%;
 }
+.title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1; /* Number of lines to display */
+	-webkit-box-orient: vertical;
+}
 .description {
 	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: nowrap;
-	height: 3%;
+	display: -webkit-box;
+	-webkit-line-clamp: 3; /* Number of lines to display */
+	-webkit-box-orient: vertical;
+	height: 50px;
 }
