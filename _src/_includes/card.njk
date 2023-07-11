@@ -8,6 +8,18 @@
             <div class ="cardContent">
                 <h3 class = "title">{{ post.data.title }}</h3>
                 <p class ="description">{{ post.data.description }}</p>
+                <div class = "date">
+                    {# 公開日 #}
+                    <span class="material-symbols-outlined">calendar_today</span>
+                    <time datetime={{post.data.createDate | dateFormat}}>
+                        {{post.data.createDate | dateFormat | dateFormatJapanese}}
+                    </time>
+                    {# 更新日 #}
+                    <span class="material-symbols-outlined">published_with_changes</span>
+                    <time datetime={{post.date | dateFormat}}>
+                        {{post.date | dateFormat | dateFormatJapanese}}
+                    </time>
+                </div>
             </div>
         </a>
     </div>

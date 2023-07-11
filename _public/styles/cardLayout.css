@@ -8,8 +8,9 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
-	-webkit-line-clamp: 1; /* Number of lines to display */
+	-webkit-line-clamp: 2; /* Number of lines to display */
 	-webkit-box-orient: vertical;
+	height: 50px;
 }
 .description {
 	overflow: hidden;
@@ -17,5 +18,20 @@
 	display: -webkit-box;
 	-webkit-line-clamp: 3; /* Number of lines to display */
 	-webkit-box-orient: vertical;
-	height: 3em;
+	height: 70px;
+}
+
+.card a {
+	text-decoration: none;
+}
+
+.date {
+	color: var(--text-color-black-pale);
+	text-align: right;
+	margin-top: 2%;
+	font-size: 0.8em;
+}
+
+.material-symbols-outlined {
+	font-size: 1.5em;
 }
