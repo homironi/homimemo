@@ -6,9 +6,15 @@ html {
 	background-repeat: repeat;
 	color: var(--text-color-black);
 }
+
 .container {
 	margin: 32px 0;
 }
+
+.contentWrapper {
+	padding: 3%;
+}
+
 .resizeImg img {
 	width: 100%;
 }

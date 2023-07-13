@@ -1,3 +1,5 @@
 .contentWrapper {
 	background-color: var(--color-main);
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
 }
