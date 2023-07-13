@@ -7,7 +7,6 @@
 .contentWrapper {
 	-webkit-flex: 8;
 	flex: 8;
-	margin: 0 3%;
 }
 .sideLWrapper {
 	-webkit-flex: 1;
@@ -29,14 +28,10 @@
 	align-items: flex-start;
 }
 
-.cardWrapper {
-	width: 50%; /* Adjust the width as needed */
-	margin-bottom: 20px; /* Adjust the spacing between postLists */
-}
 .card {
-	width: calc(50% - 20px); /* Adjust the width and spacing as needed */
-	height: 30%; /* Adjust the height and spacing as needed */
-	margin-bottom: 10px; /* Adjust the vertical spacing between cards */
+	width: calc(50% - 10px);
+	height: 30%;
+	margin-bottom: 4%;
 }
 
 /* 横幅が指定ピクセルまで、以下を適用 */

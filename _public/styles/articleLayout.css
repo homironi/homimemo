@@ -1,3 +1,10 @@
+.articleHeader,
+.content {
+	margin: 24px 0;
+}
+.articleInner .tableOfContentInner {
+	margin: 32px;
+}
 .mainContainer {
 	display: -webkit-flex;
 	display: flex;
@@ -16,6 +23,10 @@
 .sideRWrapper {
 	-webkit-flex: 1;
 	flex: 1;
+}
+
+.sideRInner {
+	padding: 8px;
 }
 .sideLInner {
 	position: sticky;
