@@ -9,7 +9,6 @@ const pluginTOC = require('eleventy-plugin-toc');
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 
 module.exports = function (eleventyConfig) {
-
     // 記事の日付のフィルター：
     eleventyConfig.addFilter("dateFormat", function (value) {
         const Year = value.getFullYear();
@@ -31,7 +30,6 @@ module.exports = function (eleventyConfig) {
         // Sort the posts by date in descending order (newest to oldest)
         return posts.sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
     });
-
 
     // タグリスト
     eleventyConfig.addFilter("getAllTags", collection => {
