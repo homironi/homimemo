@@ -3,7 +3,7 @@ layout: base.njk
 eleventyNavigation:
     parent: カテゴリ一覧
     order: 0
-permalink: "/categories/{{ category | slugify }}/index.html"
+permalink: "/categories/{{ category | slugify }}/{% if paged.number > 1 %}page/{{ paged.number }}/{% endif %}index.html"
 ---
 {# css #}
 {% block css -%}
@@ -22,8 +22,6 @@ permalink: "/categories/{{ category | slugify }}/index.html"
             <section class="categoryHeader">
                 {% include "breadcrumb.njk" %}
                 {{pagination.pages | safe}}
-                {{ categoryPages.posts.length }}
-                {{ categoryPages.number }}
                 {{collections[category].length}}
                 <h1>{{title}}カテゴリ一覧</h1>
                 {# 説明などをここに #}

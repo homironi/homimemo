@@ -17,11 +17,6 @@
 	</url>
 	
 	<url>
-		<loc>https://homironi.com/</loc>
-		<lastmod>Sun Jul 09 2023 17:25:24 GMT+0900 (日本標準時)</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://homironi.com/categories/memo/sample copy/</loc>
 		<lastmod>Tue Jul 11 2023 08:17:38 GMT+0900 (日本標準時)</lastmod>
 	</url>
@@ -64,5 +59,10 @@
 	<url>
 		<loc>https://homironi.com/categories/memo/sample4/</loc>
 		<lastmod>Thu Jul 13 2023 21:55:19 GMT+0900 (日本標準時)</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://homironi.com/</loc>
+		<lastmod>Tue Jul 18 2023 21:40:02 GMT+0900 (日本標準時)</lastmod>
 	</url>
 </urlset>
