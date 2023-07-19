@@ -27,10 +27,12 @@ layout: base.njk
                 {# 更新日 #}
                 <span class="material-symbols-outlined">published_with_changes</span>
                 <time datetime={{page.date | dateFormat}}>更新 {{page.date | dateFormat | dateFormatJapanese}}</time>
+                {%if headerImg%}
                 {# 記事のヘッダー画像 #}
                 <div class="resizeImg">
                     <img src= {{headerImg}} />
                 </div>
+                {%endif%}
             </div>
             <section class="content">
                 <article class="mainArticle">
