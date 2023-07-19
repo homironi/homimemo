@@ -7,3 +7,9 @@
 .footerLogo {
 	height: 40px;
 }
+
+.twitter-follow-button,
+.g-ytsubscribe {
+	display: inline-block;
+	margin-right: 2%;
+}
