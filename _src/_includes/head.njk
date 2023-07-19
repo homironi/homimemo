@@ -1,7 +1,14 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>{{ title }} | {{data.globalTitle}}</title>
+<title>
+    {{ title }} | 
+    {% if title != data.globalTitle %}
+        {{data.globalTitle}}
+    {% else %}
+        {{data.globalDescription}}
+    {% endif %}
+</title>
 <meta name = "description" content ="{{description}}"/>
 <meta name = "date" content = {{page.date | dateFormat}}>
 {# Twitter Cards #}
