@@ -8,8 +8,36 @@
 	height: 40px;
 }
 
+.footerLogo {
+	margin: 0 auto;
+}
+
+.copyright {
+	text-align: center;
+}
+
+.links {
+	margin: 2% 0;
+}
+
 .twitter-follow-button,
 .g-ytsubscribe {
 	display: inline-block;
 	margin-right: 2%;
+}
+
+.copyright {
+	margin: 2% 0;
+}
+
+.siteMap {
+	margin: 4%;
+}
+
+.sitMap a {
+	color: var(--text-color-white);
+}
+
+.hr {
+	margin: 2% 0;
 }
