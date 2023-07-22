@@ -1,6 +1,7 @@
 .navigationBar {
 	position: relative;
 	z-index: 1;
+	font-size: 0.9em;
 }
 
 .navigationBar ul {
@@ -19,7 +20,7 @@
 	display: block;
 	position: relative;
 	text-decoration: none;
-	padding: 15px;
+	padding: 0.8em;
 }
 
 .navigationBar ul li a::after {
