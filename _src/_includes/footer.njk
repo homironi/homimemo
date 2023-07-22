@@ -6,22 +6,20 @@
 <footer class="footerContainer">
     <div class = "footer-inner">
         {# サイト内リンク #}
-        <div class = "sitMap">
-            <a href = "/privacyPolicy">
-                <span>プライバシーポリシー</span>
-            </a>
-        </div>
+        <ul class = "siteNavigation">
+        {% include "siteNavigation.njk" %}
+        </ul>
         <hr class ="hr">
     	<p>外部リンク</p>
         <div class ="links">
             {% include "myLink.njk" %}
         </div>
         {# フッターロゴ #}
-        <a class ="logoLink" href  = "/">
-            <div class="homeImg">
-                <img class = "footerLogo" src="/images/logo.png" />
-            </div>
-        </a>
+        <div class="logoImg">
+            <a class ="logoLink" href  = "/">
+                <img class = "footerLogo resizeImg" src="/images/logo.png" />
+            </a>
+        </div>
         {# copyright #}
         <p class = "copyright">© 2023- ほみ</p>
     </div>

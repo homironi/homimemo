@@ -2,10 +2,17 @@
 	padding: 2% 4%;
 	background-color: var(--color-black-area);
 	color: var(--text-color-white);
+	font-size: 0.8em;
+}
+
+.logoImg {
+	text-align: center;
+	width: 200px;
+	margin: 0 auto;
 }
 
 .footerLogo {
-	height: 40px;
+	display: inline-block;
 }
 
 .footerLogo {
@@ -27,17 +34,42 @@
 }
 
 .copyright {
-	margin: 2% 0;
-}
-
-.siteMap {
-	margin: 4%;
-}
-
-.sitMap a {
-	color: var(--text-color-white);
+	margin: 1% 0;
 }
 
 .hr {
 	margin: 2% 0;
+}
+
+@media screen and (max-width: 768px) {
+	.logoImg {
+		width: 30%;
+	}
+}
+
+/* siteNavigation */
+.siteNavigation {
+	display: flex;
+}
+
+.siteNavigation li {
+	margin: 0.8em 0;
+}
+
+.siteNavigation ul {
+	padding-left: 1em;
+	margin: 0 2%;
+}
+
+.siteNavigation ul ul ul {
+	display: none;
+}
+
+.siteNavigation li a::before {
+	content: ">";
+}
+
+.siteNavigation li a {
+	color: var(--text-color-white);
+	text-decoration: none;
 }

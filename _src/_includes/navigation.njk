@@ -4,6 +4,6 @@
 <link rel="stylesheet" href="/styles/naviThema.css" />
 {%- endblock%}
 <nav class = "navigationBar">
-    {{collections.all | eleventyNavigation("home") | eleventyNavigationToHtml | safe }}
+    {% include "siteNavigation.njk" %}
 </nav>
 {% include "hamburger.njk" %}
