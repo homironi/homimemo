@@ -51,16 +51,19 @@
 <link rel="stylesheet" href="/styles/naviLayout.css" />
 <link rel="stylesheet" href="/styles/naviThema.css" />
 <nav class = "navigationBar">
-    <ul><li><a href="/about/">このサイトについて</a></li>
-<li><a href="/categories/">カテゴリ一覧</a><ul><li><a href="/categories/memo/">雑記</a><ul><li><a href="/categories/memo/sample copy/">記事サンプル１</a></li>
-<li><a href="/categories/memo/sample/">記事サンプル１</a></li>
-<li><a href="/categories/memo/sample2/">記事サンプル2</a></li>
-<li><a href="/categories/memo/sample3 copy/">記事サンプル3</a></li>
-<li><a href="/categories/memo/sample3/">記事サンプル3</a></li>
-<li><a href="/categories/memo/sample4 copy/">記事サンプル3</a></li>
-<li><a href="/categories/memo/memo!!/">さんぷるううううううううううううううう</a></li>
-<li><a href="/categories/memo/sample4/">記事サンプル3</a></li></ul></li></ul></li>
-<li><a href="/privacyPolicy/">プライバシーポリシー</a></li></ul>
+     
+<ul class = "categories">
+    <li><a href = "/categories">カテゴリ一覧</a></li>
+    <ul>
+        <li><a href = "/categories/memo">雑記</a></li>
+    </ul>
+</ul>
+
+<ul class = "abouts">
+    <li><a href = "/about">このサイトについて</a></li>
+    <li><a href = "/privacyPolicy">プライバシーポリシー</a></li>
+</ul>
+
 </nav>
 
 <link rel="stylesheet" href="/styles/hamburgerLayout.css" />
@@ -73,16 +76,19 @@
       <span class="hamburger"></span>
     </label>
     <ul class="menuList">
-    <ul><li><a href="/about/">このサイトについて</a></li>
-<li><a href="/categories/">カテゴリ一覧</a><ul><li><a href="/categories/memo/">雑記</a><ul><li><a href="/categories/memo/sample copy/">記事サンプル１</a></li>
-<li><a href="/categories/memo/sample/">記事サンプル１</a></li>
-<li><a href="/categories/memo/sample2/">記事サンプル2</a></li>
-<li><a href="/categories/memo/sample3 copy/">記事サンプル3</a></li>
-<li><a href="/categories/memo/sample3/">記事サンプル3</a></li>
-<li><a href="/categories/memo/sample4 copy/">記事サンプル3</a></li>
-<li><a href="/categories/memo/memo!!/">さんぷるううううううううううううううう</a></li>
-<li><a href="/categories/memo/sample4/">記事サンプル3</a></li></ul></li></ul></li>
-<li><a href="/privacyPolicy/">プライバシーポリシー</a></li></ul>
+       
+<ul class = "categories">
+    <li><a href = "/categories">カテゴリ一覧</a></li>
+    <ul>
+        <li><a href = "/categories/memo">雑記</a></li>
+    </ul>
+</ul>
+
+<ul class = "abouts">
+    <li><a href = "/about">このサイトについて</a></li>
+    <li><a href = "/privacyPolicy">プライバシーポリシー</a></li>
+</ul>
+
     </ul>
   </div>
 </div>
@@ -104,11 +110,21 @@
 <footer class="footerContainer">
     <div class = "footer-inner">
         
-        <div class = "sitMap">
-            <a href = "/privacyPolicy">
-                <span>プライバシーポリシー</span>
-            </a>
-        </div>
+        <ul class = "siteNavigation">
+         
+<ul class = "categories">
+    <li><a href = "/categories">カテゴリ一覧</a></li>
+    <ul>
+        <li><a href = "/categories/memo">雑記</a></li>
+    </ul>
+</ul>
+
+<ul class = "abouts">
+    <li><a href = "/about">このサイトについて</a></li>
+    <li><a href = "/privacyPolicy">プライバシーポリシー</a></li>
+</ul>
+
+        </ul>
         <hr class ="hr">
     	<p>外部リンク</p>
         <div class ="links">
@@ -121,11 +137,11 @@ Follow @homiRoni</a>
 <div class="g-ytsubscribe" data-channelid="UCbPm_K8ZG7u5tg66TwY8Z1Q" data-layout="default" data-count="default"></div>
         </div>
         
-        <a class ="logoLink" href  = "/">
-            <div class="homeImg">
-                <img class = "footerLogo" src="/images/logo.png" />
-            </div>
-        </a>
+        <div class="logoImg">
+            <a class ="logoLink" href  = "/">
+                <img class = "footerLogo resizeImg" src="/images/logo.png" />
+            </a>
+        </div>
         
         <p class = "copyright">© 2023- ほみ</p>
     </div>

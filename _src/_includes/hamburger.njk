@@ -11,7 +11,7 @@
       <span class="hamburger"></span>
     </label>
     <ul class="menuList">
-    {{collections.all | eleventyNavigation("home") | eleventyNavigationToHtml | safe }}
+      {% include "siteNavigation.njk" %}
     </ul>
   </div>
 </div>
