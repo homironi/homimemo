@@ -167,3 +167,13 @@ div.hamburgerMenuWrapper {
 .menuList ul ul {
 	display: none;
 }
+
+/* カテゴリーだけカテゴリの中身を表示するように */
+.menuList .categories li {
+	display: none;
+}
+
+.menuList .categories ul,
+.menuList .categories ul li {
+	display: block;
+}

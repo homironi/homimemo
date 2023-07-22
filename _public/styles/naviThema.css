@@ -10,7 +10,3 @@
 .navigationBar ul li a::after {
 	background-color: var(--color-main);
 }
-/* 
-.navigationBar ul ul {
-	background-color: var(--color-black-area);
-} */
