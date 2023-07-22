@@ -65,11 +65,15 @@
 	display: none;
 }
 
+.siteNavigation li a {
+	color: var(--text-color-white);
+	text-decoration: none;
+}
+
 .siteNavigation li a::before {
 	content: ">";
 }
 
-.siteNavigation li a {
-	color: var(--text-color-white);
-	text-decoration: none;
+.siteNavigation li a:hover {
+	color: var(--text-color-white-dark);
 }
