@@ -15,16 +15,6 @@
 	display: inline-block;
 }
 
-.navigationBar ul li {
-	position: relative;
-}
-
-/* ホバーされた子要素 */
-.navigationBar ul li:hover > ul {
-	display: block;
-	width: 100%;
-}
-
 .navigationBar ul li a {
 	display: block;
 	position: relative;
@@ -43,38 +33,10 @@
 	transition: transform 0.3s ease;
 }
 
-.navigationBar ul ul li a::after {
-	content: "";
-	position: absolute;
-	width: 0;
-	height: 0;
-	transform: none;
-	transition: unset;
-}
-
 .navigationBar ul li a:hover::after {
 	transform: scaleX(1);
 }
 
-.navigationBar ul ul li a:hover::after {
-	transform: none;
-}
-
-.navigationBar ul ul {
-	display: none;
-	position: absolute;
-	top: 100%;
-	left: 0;
-	padding: 0;
-}
-.navigationBar ul ul li {
-	display: block;
-}
-.navigationBar ul ul li a {
-	display: block;
-	padding: 10px;
-	text-decoration: none;
-}
 /* 1階層分だけ子要素を表示するので、それ以下は非表示 */
 .navigationBar ul ul ul {
 	display: none;
@@ -87,4 +49,14 @@
 	.navigationBar {
 		display: none;
 	}
+}
+
+/* カテゴリーだけカテゴリの中身を表示するように */
+.navigationBar .categories li {
+	display: none;
+}
+
+.navigationBar .categories ul,
+.navigationBar .categories ul li {
+	display: inline-block;
 }
