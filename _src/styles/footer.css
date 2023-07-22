@@ -23,16 +23,6 @@
 	text-align: center;
 }
 
-.links {
-	margin: 2% 0;
-}
-
-.twitter-follow-button,
-.g-ytsubscribe {
-	display: inline-block;
-	margin-right: 2%;
-}
-
 .copyright {
 	margin: 1% 0;
 }
@@ -45,6 +35,23 @@
 	.logoImg {
 		width: 30%;
 	}
+}
+
+/* リンクの設定 */
+.links {
+	margin: 2% 0;
+}
+
+.twitter-follow-button,
+.g-ytsubscribe {
+	display: inline-block;
+	margin-right: 2%;
+}
+
+.githubLink .resizeImg {
+	display: inline-block;
+	width: 2em;
+	margin: 0 1%;
 }
 
 /* siteNavigation */
