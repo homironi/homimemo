@@ -5,3 +5,9 @@
 .contentWrapper {
 	padding: 0;
 }
+
+.contentInner {
+	margin: 0 2%;
+	padding: 2%;
+	background-color: var(--color-main);
+}
