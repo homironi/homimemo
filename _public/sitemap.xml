@@ -47,11 +47,6 @@
 	</url>
 	
 	<url>
-		<loc>https://homironi.com/privacyPolicy/</loc>
-		<lastmod>Sat Jul 01 2023 09:00:00 GMT+0900 (日本標準時)</lastmod>
-	</url>
-	
-	<url>
 		<loc>https://homironi.com/categories/memo/sample3/</loc>
 		<lastmod>Sun Jul 09 2023 09:00:00 GMT+0900 (日本標準時)</lastmod>
 	</url>
@@ -84,5 +79,15 @@
 	<url>
 		<loc>https://homironi.com/categories/memo/sample4/</loc>
 		<lastmod>Tue Jul 11 2023 09:00:00 GMT+0900 (日本標準時)</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://homironi.com/disclaimer/</loc>
+		<lastmod>Sun Jul 23 2023 09:00:00 GMT+0900 (日本標準時)</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://homironi.com/privacyPolicy/</loc>
+		<lastmod>Sun Jul 23 2023 09:00:00 GMT+0900 (日本標準時)</lastmod>
 	</url>
 </urlset>

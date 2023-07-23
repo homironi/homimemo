@@ -14,11 +14,13 @@
                     <time datetime={{post.date | dateFormat}}>
                         {{post.date | dateFormat | dateFormatJapanese}}
                     </time>
+                    {% if post.data.lastEditDate%}
                     {# 更新日 #}
                     <span class="material-symbols-outlined">published_with_changes</span>
                     <time datetime={{post.data.lastEditDate | dateFormat}}>
                         {{post.data.lastEditDate | dateFormat | dateFormatJapanese}}
                     </time>
+                    {% endif %}
                 </div>
             </div>
         </a>
