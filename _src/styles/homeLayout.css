@@ -11,3 +11,7 @@
 	padding: 2%;
 	background-color: var(--color-main);
 }
+
+.homeImg {
+	display: inline-block;
+}
