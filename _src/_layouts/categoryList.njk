@@ -58,7 +58,7 @@ eleventyNavigation:
                     </li>
                     {% endif %}
                     {# このページのリンク #}
-                    <li><a href={{ pagination.hrefs[ pagination.pageNumber ] }} class = "current">{{ pagination.pageNumber + 1 }}</a></li>
+                    <li class = "current"><a href={{ pagination.hrefs[ pagination.pageNumber ] }}>{{ pagination.pageNumber + 1 }}</a></li>
                     {# 一つ次のページ #}
                     {% if pagination.href.next != pagination.href.last %}
                     <li>
