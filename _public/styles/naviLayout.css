@@ -61,3 +61,7 @@
 .navigationBar .categories ul li {
 	display: inline-block;
 }
+
+.navigationBar .abouts ul {
+	display: none;
+}

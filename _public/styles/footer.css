@@ -64,8 +64,16 @@
 }
 
 .siteNavigation ul {
-	padding-left: 1em;
 	margin: 0 2%;
+}
+
+.siteNavigation ul ul {
+	padding-left: 1em;
+}
+
+.siteNavigation .abouts ul {
+	padding-left: 0;
+	margin: 0;
 }
 
 .siteNavigation ul ul ul {
@@ -83,4 +91,12 @@
 
 .siteNavigation li a:hover {
 	color: var(--text-color-white-dark);
+}
+
+.siteNavigation .categories {
+	flex: 1;
+}
+
+.siteNavigation .abouts {
+	flex: 1;
 }
