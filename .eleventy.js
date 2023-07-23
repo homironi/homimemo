@@ -28,7 +28,16 @@ module.exports = function (eleventyConfig) {
     // Custom filter: dateLatest
     eleventyConfig.addFilter('dateLatest', function (posts) {
         // Sort the posts by date in descending order (newest to oldest)
-        return posts.sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
+        return posts.sort((a, b) => new Date(b.lastEditDate) - new Date(a.lastEditDate));
+    });
+
+    eleventyConfig.addFilter('slice', function (posts, start, end) {
+        if (!Array.isArray(posts) || typeof start !== 'number' || typeof end !== 'number') {
+            throw new Error('Invalid input for arraySliceFilter. Expected an array, start index, and end index.');
+        }
+
+        // Perform array slicing
+        return posts.slice(start, end);
     });
 
     // タグリスト

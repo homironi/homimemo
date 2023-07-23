@@ -1,7 +1,8 @@
 ---
 title: 記事サンプル１
 description: うおおおおおお
-createDate: 2023-07-01
+date: 2023-07-01
+lastEditDate: 2023-07-01
 headerImg: https://placehold.jp/896x504.png
 eleventyNavigation:
     key: 記事サンプル１
