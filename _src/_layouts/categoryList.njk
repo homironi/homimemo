@@ -42,13 +42,20 @@ eleventyNavigation:
                 </div>
                 {# ページ移動のリンク #}
                 <nav class = "pagiNav">
-                    <li>{% if page.url != pagination.href.first %}<a href={{ pagination.href.first }}>｜＜</a>{% else %}｜＜{% endif %}</li>
-                    <li>{% if pagination.href.previous %}<a href={{ pagination.href.previous }}>＜</a>{% else %}＜{% endif %}</li>
-                    {% for pageKey in pagination.pages %}
-                    <li><a href={{ pagination.hrefs[ loop.index0 ] }}>{{ loop.index }}</a></li>
-                    {% endfor %}
-                    <li>{% if pagination.href.next %}<a href={{ pagination.href.next }}>＞</a>{% else %}＞{% endif %}</li>
-                    <li>{% if page.url != pagination.href.last %}<a href={{ pagination.href.last }}>＞｜</a>{% else %}＞｜{% endif %}</li>
+                    {# 最初のページ #}
+                    <li>{% if page.url != pagination.href.first %}<a href={{ pagination.href.first }}>1</a>{% endif %}</li>
+                    {# 一つ前のページ #}
+                    {% if pagination.href.previous != pagination.href.first %}
+                    <li>{% if (pagination.href.previous) %}<a href={{ pagination.href.previous }}>{{ pagination.pageNumber - 1 + 1}}</a>{% endif %}</li>
+                    {% endif %}
+                    {# このページのリンク #}
+                    <li><a href={{ pagination.hrefs[ pagination.pageNumber ] }} class = "currentPage">{{ pagination.pageNumber + 1 }}</a></li>
+                    {# 一つ次のページ #}
+                    {% if pagination.href.next != pagination.href.last %}
+                    <li>{% if pagination.href.next %}<a href={{ pagination.href.next }}>{{ pagination.pageNumber + 1 + 1 }}</a>{% endif %}</li>
+                    {% endif %}
+                    {# 最後のページ #}
+                    <li>{% if page.url != pagination.href.last %}<a href={{ pagination.href.last }}>{{pagination.hrefs.length}}</a>{% endif %}</li>
                 </nav>
                 {# ページの共有ボタン #}
                 {% include "shareButtons.njk" %}
