@@ -67,6 +67,11 @@
 }
 
 /* テキストの装飾に関するもの */
+.articleDate {
+	color: var(--text-color-black-pale);
+	font-size: 0.9em;
+}
+
 .content h2::before {
 	display: inline-block;
 	content: "";
