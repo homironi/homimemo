@@ -1,11 +1,11 @@
 ---
 layout: article.njk
-title: 免責事項
-description: 当サイトの免責事項です。
+title: お問い合わせ
+description: 当サイトのお問い合わせです。
 date: 2023-07-23
 headerImg: https://placehold.jp/896x504.png
 eleventyNavigation:
-    key: 免責事項
+    key: お問い合わせ
     parent: home
-    order: 99
+    order: 97
 ---
