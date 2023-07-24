@@ -2,6 +2,8 @@
 	position: relative;
 	z-index: 1;
 	font-size: 0.9em;
+
+	background-color: var(--color-black-area);
 }
 
 .navigationBar ul {
@@ -21,6 +23,9 @@
 	position: relative;
 	text-decoration: none;
 	padding: 0.8em;
+
+	color: var(--text-color-white);
+	text-decoration: none;
 }
 
 .navigationBar ul li a::after {
@@ -32,6 +37,8 @@
 	height: 4px;
 	transform: scaleX(0);
 	transition: transform 0.3s ease;
+
+	background-color: var(--color-main);
 }
 
 .navigationBar ul li a:hover::after {
@@ -64,4 +71,8 @@
 
 .navigationBar .abouts ul {
 	display: none;
+}
+
+.navigationBar ul li a:hover {
+	color: var(--text-color-white-dark);
 }
