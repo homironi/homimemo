@@ -1,7 +1,13 @@
 .header-inner {
+	height: var(--header-content-height);
+
 	color: var(--text-color-white);
 	background-color: var(--color-sub);
 }
+.homeImg img {
+	height: var(--header-content-height);
+}
+
 .headerNotice {
 	background-color: var(--color-accent);
 }

@@ -116,6 +116,8 @@ div.hamburgerMenuWrapper {
 	/* 通常時は非表示 */
 	display: none;
 	background-color: var(--color-sub);
+
+	background-color: var(--color-black-area);
 }
 
 /* ナビゲーションボタンがクリックされた時のメニュー */
@@ -162,6 +164,8 @@ div.hamburgerMenuWrapper {
 	position: relative;
 	text-decoration: none;
 	padding: 15px;
+
+	color: var(--text-color-white);
 }
 
 .menuList ul ul {
@@ -176,4 +180,12 @@ div.hamburgerMenuWrapper {
 .menuList .categories ul,
 .menuList .categories ul li {
 	display: block;
+}
+
+.menuList ul li a:hover {
+	background-color: var(--color-black-area-hover);
+}
+
+.menuList ul li a:hover::before {
+	content: "▼";
 }

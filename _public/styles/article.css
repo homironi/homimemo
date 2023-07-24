@@ -2,24 +2,37 @@
 .content {
 	margin: 24px 0;
 }
+
 .articleInner .tableOfContentInner {
 	margin: 32px;
+
+	background-color: var(--color-main);
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
 }
+
 .mainContainer {
 	display: -webkit-flex;
 	display: flex;
 	width: var(--content-width);
 	margin: 0 auto;
 }
+
 .contentWrapper {
 	-webkit-flex: 4;
 	flex: 6;
 	margin: 0 3%;
+
+	background-color: var(--color-main);
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
 }
+
 .sideLWrapper {
 	-webkit-flex: 1;
 	flex: 2;
 }
+
 .sideRWrapper {
 	-webkit-flex: 1;
 	flex: 2;
@@ -27,14 +40,26 @@
 
 .sideRInner {
 	padding: 8px;
+
+	background-color: var(--color-main);
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
 }
+
 .sideLInner {
 	position: sticky;
 	position: -webkit-sticky;
 	top: 0;
 }
+
 .tableOfContentInner {
 	padding: 3%;
+
+	background-color: var(--color-main);
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
+	border-radius: 6px;
+	border-top: solid 12px var(--color-sub);
 }
 
 /* 横幅が指定ピクセルまで、以下を適用 */
