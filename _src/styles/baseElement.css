@@ -4,9 +4,10 @@
 	--shadow-color-main: #f3e8e4;
 	--shadow-color-main-pale: #ebddd8d5;
 	--color-sub: #79cdee;
-	--color-sub-alpha: #79cdeee3;
 	--color-sub-pale: #a9dcf0;
+	--color-sub-light: #dcf5ff;
 	--color-sub-dark: #79bcd6;
+	--color-sub-alpha: #79cdeee3;
 	--color-accent: #fdb515;
 	--color-black-area: #333333;
 	--color-black-area-hover: #555555;
@@ -14,6 +15,7 @@
 	--text-color-white-dark: #dbd9d9;
 	--text-color-black: #111111;
 	--text-color-black-pale: #858585;
+	--shadow-color-common: #11111131;
 
 	/* property */
 	--shadow-blur-radius: 8px;

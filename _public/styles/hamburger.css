@@ -39,6 +39,11 @@ div.hamburgerMenuWrapper {
 
 	background-color: var(--color-sub-alpha);
 	border-radius: 50%;
+	border: solid var(--color-sub-light) 0.1em;
+
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-common),
+		0 0 0 0.08em var(--color-sub-dark);
 }
 
 /* 三本線を作る */
@@ -132,8 +137,7 @@ div.hamburgerMenuWrapper {
 
 /* メニューのリスト */
 .hamburgerMenuInner {
-	margin-top: 2%;
-	margin-right: 2%;
+	margin: 2%;
 }
 
 .hamburgerMenuInner ul {
