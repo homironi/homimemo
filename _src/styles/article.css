@@ -102,6 +102,7 @@
 	content: "";
 	width: 1.2em;
 	height: 1.2em;
+
 	background: url(/images/icon.png) no-repeat;
 	background-size: contain;
 	margin-right: 0.2em;
@@ -111,6 +112,8 @@
 .content h2 {
 	margin-top: 1em;
 	margin-bottom: 0.5em;
+
+	border-bottom: 0.1em solid var(--color-sub);
 }
 
 .content hr {
