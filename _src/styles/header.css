@@ -1,11 +1,11 @@
 .header-inner {
-	height: var(--header-content-height);
+	width: 100%;
 
 	color: var(--text-color-white);
 	background-color: var(--color-sub);
 }
 .homeImg img {
-	height: var(--header-content-height);
+	width: 33%;
 }
 
 .headerNotice {

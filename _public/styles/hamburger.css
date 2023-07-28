@@ -11,10 +11,10 @@ div.hamburgerMenuWrapper {
 	display: block;
 	width: 60%;
 	/* 絶対配置 */
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: 0;
-	z-index: 1;
+	z-index: 3;
 }
 
 /**
@@ -30,12 +30,15 @@ div.hamburgerMenuWrapper {
  */
 .menu-btn {
 	display: block;
-	width: 35px;
-	height: 35px;
+	width: 3em;
+	height: 3em;
 	/* 右寄せ */
 	margin: 0 0 5px auto;
 	position: relative;
 	z-index: 1;
+
+	background-color: var(--color-sub-alpha);
+	border-radius: 50%;
 }
 
 /* 三本線を作る */
@@ -128,6 +131,11 @@ div.hamburgerMenuWrapper {
 }
 
 /* メニューのリスト */
+.hamburgerMenuInner {
+	margin-top: 2%;
+	margin-right: 2%;
+}
+
 .hamburgerMenuInner ul {
 	list-style: none;
 	margin: 0;
