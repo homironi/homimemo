@@ -41,7 +41,11 @@ eleventyNavigation:
                 {# ページ移動のリンク #}
                 <nav class = "pagiNav">
                     {# 最初のページ #}
-                    <li>{% if page.url != pagination.href.first %}<a href={{ pagination.href.first }}>1</a>{% endif %}</li>
+                    {% if page.url != pagination.href.first %}
+                    <li>
+                        <a href={{ pagination.href.first }}>1</a>
+                    </li>
+                    {% endif %}
                     {# 前のリンクと最初のページの数の差が2位上なら表示 #}
                     {% set preNum = pagination.pageNumber - 1 + 1 %}
                     {% if preNum - 1 > 1 %}
@@ -49,33 +53,33 @@ eleventyNavigation:
                     {% endif %}
                     {# 一つ前のページ #}
                     {% if pagination.href.previous != pagination.href.first %}
+                    {% if (pagination.href.previous) %}
                     <li>
-                        {% if (pagination.href.previous) %}
                         <a href={{ pagination.href.previous }}>{{ preNum }}</a>
-                        {% endif %}
                     </li>
+                    {% endif %}
                     {% endif %}
                     {# このページのリンク #}
                     <li class = "current"><a href={{ pagination.hrefs[ pagination.pageNumber ] }}>{{ pagination.pageNumber + 1 }}</a></li>
                     {# 一つ次のページ #}
                     {% if pagination.href.next != pagination.href.last %}
+                    {% set nextNum = pagination.pageNumber + 1 + 1 %}
+                    {% if pagination.href.next %}
                     <li>
-                        {% set nextNum = pagination.pageNumber + 1 + 1 %}
-                        {% if pagination.href.next %}
                         <a href={{ pagination.href.next }}>{{ nextNum }}</a>
-                        {% endif %}
                     </li>
+                    {% endif %}
                     {% endif %}
                     {# 次のリンクと最後のページの数の差が2位上なら表示 #}
                     {% if pagination.hrefs.length - nextNum > 1 %}
                     <li class = "between">…</li>
                     {% endif %}
                     {# 最後のページ #}
+                    {% if page.url != pagination.href.last %}
                     <li>
-                        {% if page.url != pagination.href.last %}
                         <a href={{ pagination.href.last }}>{{pagination.hrefs.length}}</a>
-                        {% endif %}
                     </li>
+                    {% endif %}
                 </nav>
                 {# ページの共有ボタン #}
                 {% include "shareButtons.njk" %}
