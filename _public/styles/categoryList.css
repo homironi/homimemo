@@ -78,15 +78,26 @@
 
 /* ページネーションナビゲーション */
 .pagiNav {
-	margin: 0 auto;
+	margin: 1em 0;
 	text-align: center;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
 }
 .pagiNav li {
 	list-style: none;
 	display: inline-block;
-
-	color: var(--text-color-white);
+	margin: 0 0.2em;
 	font-size: 1.3em;
+
+	background-color: unset;
+	border: solid var(--color-sub);
+
+	transition: transform 0.3s;
+}
+
+.pagiNav li:hover {
+	transform: scale(1.1);
 }
 
 .pagiNav li a {
@@ -94,27 +105,25 @@
 	display: inline-block;
 	width: 1.3em;
 	height: 1.3em;
-	transition: transform 0.3s;
-	background-color: var(--color-sub);
-	color: var(--text-color-white);
-}
 
-.pagiNav li a:hover {
-	transform: scale(1.1);
+	color: var(--color-sub);
 }
 
 .pagiNav .current {
 	font-size: 1.8em;
+
+	background-color: var(--color-sub);
 }
 
 .pagiNav .current a {
-	background-color: var(--color-accent);
-	font-weight: bold;
+	color: var(--text-color-white);
 }
 
 .pagiNav .between,
 .pagiNav .between:hover {
 	background-color: unset;
-	color: var(--text-color-black);
+	color: var(--color-sub);
 	border: none;
+	transition: unset;
+	transform: none;
 }
