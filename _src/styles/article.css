@@ -94,7 +94,8 @@
 /* テキストの装飾に関するもの */
 .articleDate {
 	color: var(--text-color-black-pale);
-	font-size: 0.9em;
+	font-size: 0.8em;
+	text-align: right;
 }
 
 .content h2::before {
@@ -118,4 +119,10 @@
 
 .content hr {
 	margin: 1em 0;
+}
+
+@media screen and (max-width: 768px) {
+	.articleDate time {
+		display: block;
+	}
 }
