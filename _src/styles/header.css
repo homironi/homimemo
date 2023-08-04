@@ -5,9 +5,15 @@
 	background-color: var(--color-sub);
 }
 .homeImg img {
-	width: 33%;
+	width: 16em;
 }
 
 .headerNotice {
 	background-color: var(--color-accent);
+}
+
+@media screen and (max-width: 768px) {
+	.homeImg img {
+		width: 33%;
+	}
 }
