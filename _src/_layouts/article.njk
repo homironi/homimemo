@@ -10,6 +10,7 @@ layout: base.njk
         <div class="sideLInner">
             {% include "shareButtons.njk" %}
             <section class="tableOfContentInner">
+                <h3>目次</h3>
                 {# 記事内容から自動で目次が作られます #}
                 {{content | toc | safe}}
             </section>
@@ -19,7 +20,7 @@ layout: base.njk
         <article class="articleInner">
             <div class="articleHeader">
                 {% include "breadcrumb.njk" %}
-                <h1>{{title}}</h1>
+                <h1 class = "title">{{ title }}</h1>
                 <div class = "articleDate">
                     {# 公開日 #}
                     <time datetime={{page.date | dateFormat}}>
