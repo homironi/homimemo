@@ -1,4 +1,0 @@
-Sitemap: https://www.homironi.com/sitemap.xml
-
-User-agent: *
-Disallow:
