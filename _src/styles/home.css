@@ -12,6 +12,6 @@
 	background-color: var(--color-main);
 }
 
-.homeImg {
-	display: inline-block;
+.logo {
+	background-color: var(--color-sub);
 }
