@@ -1,6 +1,7 @@
 // マークダウン
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
+const markdownItAttrs = require('markdown-it-attrs');
 
 // 目次
 const pluginTOC = require('eleventy-plugin-toc');
@@ -40,6 +41,13 @@ module.exports = function (eleventyConfig) {
         return posts.slice(start, end);
     });
 
+
+    eleventyConfig.addFilter('markdownWithClasses', function (content) {
+        const md = markdownIt({ html: true }).use(markdownItAttrs);
+
+        return md.render(content);
+    });
+
     // タグリスト
     eleventyConfig.addFilter("getAllTags", collection => {
         let tagSet = new Set();
@@ -53,7 +61,16 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.setLibrary
         (
             'md',
-            markdownIt().use(markdownItAnchor)
+            markdownIt()
+                // Markdownにidを設定してくれる
+                .use(markdownItAnchor)
+                // Markdownにクラスなどを設定できるように
+                .use(markdownItAttrs, {
+                    // optional, these are default options
+                    leftDelimiter: '{',
+                    rightDelimiter: '}',
+                    allowedAttributes: []  // empty array = all attributes are allowed
+                })
         );
 
     // 目次
