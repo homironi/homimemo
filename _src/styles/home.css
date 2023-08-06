@@ -15,3 +15,8 @@
 .logo {
 	background-color: var(--color-sub);
 }
+
+.logo img {
+	width: 32em;
+	margin: 0 auto;
+}
