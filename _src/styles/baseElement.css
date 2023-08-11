@@ -17,6 +17,9 @@
 	--text-color-black-pale: #858585;
 	--shadow-color-common: #56389c31;
 
+	/* board */
+	--board-color-background: #ffffff;
+
 	/* property */
 	--shadow-blur-radius: 8px;
 	--shadow-spread-radius: 1px;
