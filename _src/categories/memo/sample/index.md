@@ -3,11 +3,9 @@ title: 記事サンプル１
 description: うおおおおおお
 date: 2023-07-01
 lastEditDate: 2023-07-01
-headerImg: https://placehold.jp/896x504.png
 eleventyNavigation:
     key: 記事サンプル１
     parent: 雑記
-category: memo
 tags:
     - memo
 ---
