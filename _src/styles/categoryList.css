@@ -21,6 +21,10 @@
 	flex: 1;
 }
 
+.postListsWrapper {
+	margin: 1em 0;
+}
+
 .postList li {
 	list-style: none;
 }
