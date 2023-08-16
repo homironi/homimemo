@@ -1,5 +1,5 @@
 .sideRInner {
-	padding: 8px;
+	padding: 0 0.8em;
 
 	background-color: var(--color-main);
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
@@ -8,4 +8,8 @@
 
 .pin {
 	width: 2em;
+}
+
+.board {
+	padding-bottom: 1em;
 }
