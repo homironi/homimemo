@@ -10,6 +10,7 @@ tags:
 
 {# css #}
 {% block css -%}
+<link rel="stylesheet" href="/styles/column3.css" />
 <link rel="stylesheet" href="/styles/categoryArticles.css" />
 {# includeしてるもののcss #}
 <link rel="stylesheet" href="/styles/card.css" />
@@ -42,8 +43,9 @@ tags:
                     </section>
                 </div>
                 {% include "pagination.njk" %}
-                <hr>
-                {# ページの共有ボタン #}
+            </section>
+            <hr>
+            <section class="categoryHeader">
                 {% include "shareButtons.njk" %}
                 {% include "categoryList.njk" %}
             </section>
