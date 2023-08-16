@@ -1,5 +1,6 @@
 {
     "globalTitle": "ほみむメモ",
     "globalDescription":"ゲーム、お絵描き、なんかつくる。",
-    "siteUrl": "https://homironi.com"
+    "siteUrl": "https://homironi.com",
+    "articleImgDir": "/Images/header/article"
 }
