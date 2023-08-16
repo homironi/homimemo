@@ -4,6 +4,7 @@ headerImg: https://placehold.jp/896x504.png
 ---
 {# css #}
 {% block css -%}
+<link rel="stylesheet" href="/styles/column3.css" />
 <link rel="stylesheet" href="/styles/article.css" />
 <link rel="stylesheet" href="/styles/board.css" />
 {%- endblock%}
@@ -20,7 +21,7 @@ headerImg: https://placehold.jp/896x504.png
     </div>
     <div class="contentWrapper">
         <article class="articleInner">
-            <div class="articleHeader">
+            <section class="articleHeader">
                 {% include "breadcrumb.njk" %}
                 <h1 class = "title">{{ title }}</h1>
                 <div class = "articleDate">
@@ -43,13 +44,15 @@ headerImg: https://placehold.jp/896x504.png
                     <img src= {{headerImg}} />
                 </div>
                 {%endif%}
-            </div>
+            </section>
             <section class="content">
                 <article class="mainArticle">
                     {# 記事内容が入ります #}
                     {{content | safe}}
                 </article>
-                <hr>
+            </section>
+            <hr>
+            <section class="articleHeader">
                 {% include "shareButtons.njk" %}
                 {% include "categoryList.njk" %}
             </section>
