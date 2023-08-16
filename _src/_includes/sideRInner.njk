@@ -1,0 +1,13 @@
+{# css #}
+{% block css -%}
+<link rel="stylesheet" href="/styles/sideRInner.css" />
+<link rel="stylesheet" href="/styles/categoryList.css" />
+{%- endblock%}
+<div class="sideRInner">
+    <div class = "board">
+        <div class="pin">
+            <img src = "/images/items/pin.svg" />
+        </div>
+        {% include "categoryList.njk" %}
+    </div>
+</div>

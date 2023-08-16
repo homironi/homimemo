@@ -1,5 +1,5 @@
-<h3>カテゴリ一覧</h3>
-<ul class = "categories">
+<h3 calss = "categoryHeader">カテゴリ一覧</h3>
+<ul class = "categoryList">
 {# ナビゲーションを利用してフィルタリング #}
 {%- for category in collections.categories -%}
   <li><a href="{{ category.url }}">{{ category.data.title }}</a></li>

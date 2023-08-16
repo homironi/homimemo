@@ -1,6 +1,7 @@
 :root {
 	/* color */
 	--color-main: #fcf9f7;
+	--color-main-dark: #ebe6e3;
 	--shadow-color-main: #f3e8e4;
 	--shadow-color-main-pale: #ebddd8d5;
 	--color-sub: #79cdee;
