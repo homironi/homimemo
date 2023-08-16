@@ -1,6 +1,5 @@
-.articleHeader,
 .content {
-	margin: 24px 0;
+	margin: 3em 0;
 }
 
 .articleInner .tableOfContentInner {
@@ -28,45 +27,6 @@
 }
 
 /* テキストの装飾に関するもの */
-.articleDate {
-	color: var(--text-color-black-pale);
-	font-size: 0.8em;
-	text-align: right;
-}
-
-.mainArticle h2::before {
-	display: inline-block;
-	content: "";
-	width: 1.2em;
-	height: 1.2em;
-
-	background: url(/images/icon_chara.svg) no-repeat;
-	background-size: contain;
-	margin-right: 0.2em;
-	vertical-align: middle;
-}
-
-.mainArticle h2 {
-	margin-top: 1em;
-	margin-bottom: 0.5em;
-	font-size: 2em;
-	padding: 0.18em 0;
-
-	border-style: double;
-	border-color: var(--color-sub);
-	border-width: 0.2em 0;
-}
-
-.mainArticle h3 {
-	margin-top: 1em;
-	margin-bottom: 0.5em;
-	font-size: 1.5em;
-
-	border-style: solid;
-	border-color: var(--color-sub);
-	border-width: 0 0 0.1em 0;
-}
-
 @media screen and (max-width: 768px) {
 	.articleDate time {
 		display: block;
