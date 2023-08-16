@@ -1,5 +1,5 @@
 ---
-layout: categoryList.njk
+layout: categoryArticles.njk
 title: 雑記
 description: 雑記カテゴリの記事一覧です。日々あったことや他のカテゴリに分類しにくいような内容です。
 eleventyNavigation:
