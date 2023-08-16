@@ -12,6 +12,7 @@ tags:
 {% block css -%}
 <link rel="stylesheet" href="/styles/column3.css" />
 <link rel="stylesheet" href="/styles/categoryArticles.css" />
+<link rel="stylesheet" href="/styles/textContent.css" />
 {# includeしてるもののcss #}
 <link rel="stylesheet" href="/styles/card.css" />
 <link rel="stylesheet" href="/styles/pagination.css" />
@@ -24,7 +25,7 @@ tags:
         <category class="categoryInner">
             <section class="categoryHeader">
                 {% include "breadcrumb.njk" %}
-                <h1>{{title}}カテゴリ一覧</h1>
+                <h1 class = "title">{{title}}カテゴリ一覧</h1>
                 {# 説明などをここに #}
                 {{content | safe}}
             </section>
