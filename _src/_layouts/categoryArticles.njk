@@ -42,11 +42,14 @@ tags:
                     </section>
                 </div>
                 {% include "pagination.njk" %}
+                <hr>
                 {# ページの共有ボタン #}
                 {% include "shareButtons.njk" %}
+                {% include "categoryList.njk" %}
             </section>
         </category>
     </div>
     <div class = "sideRWrapper">
+        {% include "sideRInner.njk" %}
     </div>
 </main>

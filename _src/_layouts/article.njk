@@ -5,6 +5,7 @@ headerImg: https://placehold.jp/896x504.png
 {# css #}
 {% block css -%}
 <link rel="stylesheet" href="/styles/article.css" />
+<link rel="stylesheet" href="/styles/board.css" />
 {%- endblock%}
 <main class="mainContainer">
     <div class="sideLWrapper">
@@ -50,16 +51,11 @@ headerImg: https://placehold.jp/896x504.png
                 </article>
                 <hr>
                 {% include "shareButtons.njk" %}
-                <hr>
-                {% include "categories.njk" %}
+                {% include "categoryList.njk" %}
             </section>
         </article>
     </div>
     <section class="sideRWrapper">
-        <div class="sideRInner">
-            <h2>右サイド</h2>
-            なんかプロフィールとか関連記事とか広告とかああああああ
-            {% include "categories.njk" %}
-        </div>
+        {% include "sideRInner.njk" %}
     </section>
 </main>
