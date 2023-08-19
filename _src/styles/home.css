@@ -37,6 +37,10 @@
 	text-align: center;
 }
 
+.updateInfo h3 {
+	border-bottom: 0.2em dotted var(--color-main-dark);
+}
+
 .pin {
 	width: 3em;
 }
