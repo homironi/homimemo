@@ -26,6 +26,12 @@
 	border-top: solid 12px var(--color-sub);
 }
 
+@media screen and (max-width: 1280px) {
+	.articleFooter .categoryListWrapper {
+		display: none;
+	}
+}
+
 /* テキストの装飾に関するもの */
 @media screen and (max-width: 768px) {
 	.articleDate time {
