@@ -15,6 +15,10 @@
 	margin: 0 auto;
 }
 
+.containerRWrapper {
+	display: flex;
+}
+
 .sideLWrapper {
 	-webkit-flex: 2;
 	flex: 2;
@@ -27,30 +31,51 @@
 
 /* 横幅が指定ピクセルまで、以下を適用 */
 @media screen and (max-width: 1280px) {
+	.containerRWrapper {
+		display: block;
+	}
+
 	.mainContainer {
-		display: -webkit-flex;
-		display: flex;
+		width: unset;
+	}
+	.containerRWrapper,
+	.sideLWrapper {
 		width: auto;
 		margin: 0 2%;
 	}
-	.sideRWrapper {
-		display: none;
-	}
-	.contentWrapper {
+	.sideLWrapper {
 		margin-right: 0;
-		margin-left: 2%;
+	}
+	.sideRWrapper {
+		display: block;
+		margin-top: 1em;
+	}
+	.contentWrapper,
+	.sideRWrapper {
+		margin-right: 0;
+		margin-left: 1.4em;
 	}
 }
 
 @media screen and (max-width: 768px) {
 	.mainContainer,
+	.containerRWrapper,
 	.contentWrapper,
 	.sideLWrapper,
 	.sideRWrapper {
 		display: block;
 	}
-	.contentWrapper {
-		margin: 2% 0;
+	.mainContainer {
+		margin: 0 1em;
+	}
+	.contentWrapper,
+	.sideRWrapper {
+		margin: 0;
+	}
+	.containerRWrapper,
+	.sideLWrapper,
+	.sideRWrapper {
+		margin: 1em 0;
 	}
 }
 
