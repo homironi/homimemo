@@ -21,38 +21,40 @@ tags:
 <main class="mainContainer">
     <div class = "sideLWrapper">
     </div>
-    <div class="contentWrapper">
-        <category class="categoryInner">
-            <section class="categoryHeader">
-                {% include "breadcrumb.njk" %}
-                <h1 class = "title">{{title}}カテゴリ一覧</h1>
-                {# 説明などをここに #}
-                {{content | safe}}
-            </section>
-            <section class="content">
-                <div class ="postListsWrapper">
-                    <section class = "postList">
-                        {# このカテゴリの記事一覧 #}
-                        {% set startNum = posts.length * pagination.pageNumber %}
-                        {% set endNum = startNum + posts.length %}
-                        {# 新しい順で先頭に来るように処理したいので逆順にする #}
-                        {% set postList = collections[category] | dateLatest | reverse | slice(startNum, endNum)%}
-                        {% import "card.njk" as card %}
-                        {%- for post in postList  %}
-                            {{card.card(post)}}
-                        {%- endfor %}
-                    </section>
-                </div>
-                {% include "pagination.njk" %}
-            </section>
-            <hr>
-            <section class="categoryHeader">
-                {% include "shareButtons.njk" %}
-                {% include "categoryList.njk" %}
-            </section>
-        </category>
-    </div>
-    <div class = "sideRWrapper">
-        {% include "sideRInner.njk" %}
+    <div class = "containerRWrapper">
+        <div class="contentWrapper">
+            <category class="categoryInner">
+                <section class="categoryHeader">
+                    {% include "breadcrumb.njk" %}
+                    <h1 class = "title">{{title}}カテゴリ一覧</h1>
+                    {# 説明などをここに #}
+                    {{content | safe}}
+                </section>
+                <section class="content">
+                    <div class ="postListsWrapper">
+                        <section class = "postList">
+                            {# このカテゴリの記事一覧 #}
+                            {% set startNum = posts.length * pagination.pageNumber %}
+                            {% set endNum = startNum + posts.length %}
+                            {# 新しい順で先頭に来るように処理したいので逆順にする #}
+                            {% set postList = collections[category] | dateLatest | reverse | slice(startNum, endNum)%}
+                            {% import "card.njk" as card %}
+                            {%- for post in postList  %}
+                                {{card.card(post)}}
+                            {%- endfor %}
+                        </section>
+                    </div>
+                    {% include "pagination.njk" %}
+                </section>
+                <hr>
+                <section class="categoryHeader">
+                    {% include "shareButtons.njk" %}
+                    {% include "categoryList.njk" %}
+                </section>
+            </category>
+        </div>
+        <div class = "sideRWrapper">
+            {% include "sideRInner.njk" %}
+        </div>
     </div>
 </main>

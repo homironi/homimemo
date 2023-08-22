@@ -1,7 +1,6 @@
 .contentWrapper {
 	-webkit-flex: 4;
 	flex: 6;
-	margin: 0 3%;
 
 	background-color: var(--color-main);
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
@@ -13,10 +12,12 @@
 	display: flex;
 	width: var(--content-width);
 	margin: 0 auto;
+	padding: 0 1em;
 }
 
 .containerRWrapper {
 	display: flex;
+	flex: 12;
 }
 
 .sideLWrapper {
@@ -27,6 +28,11 @@
 .sideRWrapper {
 	-webkit-flex: 2;
 	flex: 2;
+}
+
+.contentWrapper,
+.sideLWrapper {
+	margin-right: 2em;
 }
 
 /* 横幅が指定ピクセルまで、以下を適用 */
@@ -41,19 +47,13 @@
 	.containerRWrapper,
 	.sideLWrapper {
 		width: auto;
-		margin: 0 2%;
-	}
-	.sideLWrapper {
-		margin-right: 0;
 	}
 	.sideRWrapper {
 		display: block;
 		margin-top: 1em;
 	}
-	.contentWrapper,
-	.sideRWrapper {
+	.contentWrapper {
 		margin-right: 0;
-		margin-left: 1.4em;
 	}
 }
 
