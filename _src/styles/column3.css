@@ -39,6 +39,7 @@
 @media screen and (max-width: 1280px) {
 	.containerRWrapper {
 		display: block;
+		flex: 8;
 	}
 
 	.mainContainer {
