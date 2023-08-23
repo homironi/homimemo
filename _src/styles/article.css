@@ -48,6 +48,10 @@
 	color: var(--text-color-black);
 }
 
+.toc a:hover {
+	color: var(--text-color-black-pale);
+}
+
 .toc ol ol {
 	margin-left: 1em;
 }
