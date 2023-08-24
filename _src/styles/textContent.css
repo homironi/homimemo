@@ -36,3 +36,8 @@
 	border-color: var(--color-sub);
 	border-width: 0 0 0.1em 0;
 }
+
+.mainArticle h4 {
+	margin-top: 1em;
+	font-size: 1.2em;
+}
