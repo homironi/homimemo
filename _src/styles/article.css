@@ -39,6 +39,7 @@
 	border-radius: 6px;
 	border-top: solid 12px var(--color-sub);
 }
+
 .toc li::before {
 	content: "▷";
 }

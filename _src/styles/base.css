@@ -19,6 +19,19 @@ html {
 	width: 100%;
 }
 
-.material-symbols-outlined {
-	vertical-align: -4px;
+/* GoogleMaterial */
+.material-symbols-outlined::before {
+	vertical-align: -0.16em;
+}
+
+.material-symbols-outlined.tocTitle::before {
+	content: "\e8de";
+}
+
+.material-symbols-outlined.publicationDate::before {
+	content: "\e935";
+}
+
+.material-symbols-outlined.lastEdit::before {
+	content: "\f232";
 }
