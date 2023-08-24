@@ -10,13 +10,13 @@
                 <p class ="description">{{ post.data.description }}</p>
                 <div class = "date">
                     {# 公開日 #}
-                    <span class="material-symbols-outlined">calendar_today</span>
+                    <span class="publicationDate material-symbols-outlined"></span>
                     <time datetime={{post.date | dateFormat}}>
                         {{post.date | dateFormat | dateFormatJapanese}}
                     </time>
                     {% if post.data.lastEditDate%}
                     {# 更新日 #}
-                    <span class="material-symbols-outlined">published_with_changes</span>
+                    <span class="lastEdit material-symbols-outlined"></span>
                     <time datetime={{post.data.lastEditDate | dateFormat}}>
                         {{post.data.lastEditDate | dateFormat | dateFormatJapanese}}
                     </time>

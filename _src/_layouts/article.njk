@@ -13,7 +13,7 @@ headerImg: https://placehold.jp/896x504.png
         <div class="sideLInner">
             {% include "shareButtons.njk" %}
             <section class="tableOfContentInner">
-                <h3>目次</h3>
+                <h3><span class = "tocTitle material-symbols-outlined"></span>目次</h3>
                 {# 記事内容から自動で目次が作られます #}
                 {{content | toc | safe}}
             </section>
@@ -27,15 +27,15 @@ headerImg: https://placehold.jp/896x504.png
                     <h1 class = "title">{{ title }}</h1>
                     <div class = "articleDate">
                         {# 公開日 #}
-                        <time datetime={{page.date | dateFormat}}>
-                            <span class="material-symbols-outlined">calendar_today</span>
-                            {{page.date | dateFormat | dateFormatJapanese}}
+                        <time datetime={{page.date | dateFormat}} >
+                            <span class = "publicationDate material-symbols-outlined"></span>
+                            <span>{{page.date | dateFormat | dateFormatJapanese}}</span>
                         </time>
                         {% if lastEditDate%}
                         {# 更新日 #}
                         <time datetime={{lastEditDate | dateFormat}}>
-                            <span class="material-symbols-outlined">published_with_changes</span>
-                            {{lastEditDate | dateFormat | dateFormatJapanese}}
+                            <span class="lastEdit material-symbols-outlined"></span>
+                            <span>{{lastEditDate | dateFormat | dateFormatJapanese}}</span>
                         </time>
                         {% endif %}
                     </div>
