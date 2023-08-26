@@ -4,6 +4,7 @@ h3.categoryHeader {
 
 .categoryList li {
 	margin: 0.5em;
+	display: inline-block;
 }
 
 .categoryList li:first-child {
@@ -20,4 +21,14 @@ h3.categoryHeader {
 	background-color: var(--color-main-dark);
 	padding: 0.4em;
 	border-radius: 20%;
+}
+
+.categoryList a:hover {
+	color: var(--text-color-black-pale);
+}
+
+@media screen and (max-width: 1280px) {
+	.articleFooter .categoryListWrapper {
+		display: none;
+	}
 }
