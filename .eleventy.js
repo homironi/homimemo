@@ -9,7 +9,12 @@ const pluginTOC = require('eleventy-plugin-toc');
 // ナビゲーション+パンくずリスト
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 
+// 単独行URLを自動で埋め込み表示してくれる
+const embedEverything = require("eleventy-plugin-embed-everything");
+
 module.exports = function (eleventyConfig) {
+    // ----addFilter----
+
     // 記事の日付のフィルター：
     eleventyConfig.addFilter("dateFormat", function (value) {
         const Year = value.getFullYear();
@@ -57,6 +62,7 @@ module.exports = function (eleventyConfig) {
         return Array.from(tagSet);
     });
 
+    // ----setLibrary----
     // Markdown
     eleventyConfig.setLibrary
         (
@@ -73,6 +79,8 @@ module.exports = function (eleventyConfig) {
                 })
         );
 
+    // ----addPlugin----
+
     // 目次
     eleventyConfig.addPlugin(pluginTOC,
         {
@@ -83,7 +91,10 @@ module.exports = function (eleventyConfig) {
     // ナビゲーション+パンくずリスト
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
+    // 単独行URLを自動で埋め込み表示してくれる
+    eleventyConfig.addPlugin(embedEverything);
 
+    // ----addPassthroughCopy----
     // ファビコンのコピー
     eleventyConfig.addPassthroughCopy("_src/favicon.ico");
 
