@@ -14,7 +14,7 @@ pagination:
 雑記カテゴリの記事一覧です。  
 日々あったことや他のカテゴリに分類しにくいような内容です。
 
-```cpp
+```cpp {.line-numbers}
 int num = 0;
 ++num;
 ```
