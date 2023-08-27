@@ -90,10 +90,8 @@ module.exports = function (eleventyConfig) {
 
     // ナビゲーション+パンくずリスト
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
-
     // 単独行URLを自動で埋め込み表示してくれる
     eleventyConfig.addPlugin(embedEverything);
-
     // ----addPassthroughCopy----
     // ファビコンのコピー
     eleventyConfig.addPassthroughCopy("_src/favicon.ico");
@@ -104,6 +102,9 @@ module.exports = function (eleventyConfig) {
     // cssフォルダのコピー
     eleventyConfig.addPassthroughCopy("_src/styles");
     eleventyConfig.addPassthroughCopy("_src/images");
+
+    // スクリプトフォルダのコピー
+    eleventyConfig.addPassthroughCopy("_src/scripts");
 
     // robots.txtのコピー
     eleventyConfig.addPassthroughCopy("_src/robots.txt");
