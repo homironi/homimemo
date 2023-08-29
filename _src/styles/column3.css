@@ -10,7 +10,6 @@
 .mainContainer {
 	display: -webkit-flex;
 	display: flex;
-	width: var(--content-width);
 	margin: 0 auto;
 	padding: 0 1em;
 }
