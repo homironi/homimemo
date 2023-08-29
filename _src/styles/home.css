@@ -7,7 +7,7 @@
 }
 
 .contentInner {
-	margin: 1em 3em;
+	margin: 1em 2em;
 	padding: 1em;
 	background-color: var(--color-main);
 }
@@ -22,7 +22,7 @@
 }
 
 .updateInfo {
-	padding: 2em;
+	padding: 1em;
 }
 
 .updateInfo h2 {
