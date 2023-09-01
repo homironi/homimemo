@@ -3,4 +3,9 @@ layout: base.njk
 permalink: /404.html
 eleventyExcludeFromCollections: true
 ---
-404エラー
+<main class="mainContainer">
+    <h1>404 Not Found</h1>
+    <p>ページが削除された可能性があります。</p>
+    <h2>どんなページをお探しでしたか？</h2>
+    {% include "categoryList.njk" %}
+</main>

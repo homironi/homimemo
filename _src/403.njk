@@ -3,4 +3,10 @@ layout: base.njk
 permalink: /403.html
 eleventyExcludeFromCollections: true
 ---
-403エラー
+<main class="mainContainer">
+    <h1>403 Forbidden</h1>
+    <p>このページへのアクセス権がありません。</p>
+    <h2>どんなページをお探しでしたか？</h2>
+    {% include "categoryList.njk" %}
+    <p>間違いだと思われる場合は、管理者にURLを添えてご連絡ください。</p>
+</main>
