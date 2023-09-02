@@ -1,0 +1,15 @@
+---
+layout: base.njk
+permalink: /400.html
+eleventyExcludeFromCollections: true
+title: Error
+---
+
+<link rel="stylesheet" href="/styles/error.css" />
+
+<main class="mainContainer">
+	<div class = "errorContainer">
+		<h1>{{title}}</h1>
+		{{content | safe}}
+	</div>
+</main>
