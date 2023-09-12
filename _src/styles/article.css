@@ -38,6 +38,8 @@
 	box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
 	border-radius: 6px;
 	border-top: solid 12px var(--color-sub);
+
+	font-size: 0.8em;
 }
 
 .toc li::before {
