@@ -60,3 +60,24 @@
 	margin-top: 1em;
 	font-size: 1.2em;
 }
+
+/* リスト */
+.mainArticle li::before {
+	content: "●";
+	color: var(--color-sub);
+	font-size: 0.4em;
+	vertical-align: middle;
+	padding-right: 1em;
+}
+
+.mainArticle li li::before {
+	content: "○";
+}
+
+.mainArticle li li li::before {
+	content: "■";
+}
+
+.mainArticle ul ul {
+	margin-left: 1em;
+}
