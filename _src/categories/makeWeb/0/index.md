@@ -3,6 +3,7 @@ title: ホームページを作る！＃１〜動機と目次〜
 description: 当サイトの作成メモ第一弾。
 headerImg: /images/header/categories/makeWeb/0.png
 date: 2023-09-13
+lastEditDate: 2023-09-16
 eleventyNavigation:
     key: ホームページを作る！＃１〜動機と目次〜
     parent: Web制作
@@ -10,10 +11,7 @@ tags:
     - makeWeb
 ---
 
-ほみ「自分だけのサイトを作りたい！」  
-ろにぃ「急だねえ」  
-ほみ「自分だけの城がほしい……」  
-ろにぃ「よし、とりあえずやってみよう！」  
+自分だけのサイトを作りたい！  
 ということでこのサイトの制作についてメモしていきます。
 
 ## 制作開始前の知識の状態
