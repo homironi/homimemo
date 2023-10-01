@@ -65,14 +65,20 @@
 	.sideRWrapper {
 		display: block;
 	}
+
 	.contentWrapper,
 	.sideRWrapper {
 		margin: 0;
 	}
+
 	.containerRWrapper,
 	.sideLWrapper,
 	.sideRWrapper {
 		margin: 1em 0;
+	}
+
+	.mainContainer {
+		padding: 0;
 	}
 }
 

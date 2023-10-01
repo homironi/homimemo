@@ -36,3 +36,9 @@ html {
 .material-symbols-outlined.lastEdit::before {
 	content: "\f232";
 }
+
+@media screen and (max-width: 768px) {
+	html {
+		font-size: 0.8em;
+	}
+}
