@@ -66,20 +66,28 @@
 	padding: 1em 0;
 }
 
+.mainArticle li {
+	margin-bottom: 0.8em;
+	position: relative;
+	padding-left: 2em;
+}
+
 .mainArticle li::before {
-	content: "▶";
+	content: "●";
 	color: var(--color-sub);
-	font-size: 0.2em;
+	/* font-size: 0.2em; */
 	vertical-align: middle;
-	padding-right: 2em;
+
+	position: absolute;
+	left: 0;
 }
 
 .mainArticle li li::before {
-	content: "▷";
+	content: "○";
 }
 
 .mainArticle li li li::before {
-	content: "●";
+	content: "・";
 }
 
 .mainArticle ul ul {
