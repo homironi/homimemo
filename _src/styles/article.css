@@ -39,7 +39,7 @@
 	border-radius: 6px;
 	border-top: solid 12px var(--color-sub);
 
-	font-size: 0.8em;
+	font-size: 1em;
 }
 
 .toc li::before {
