@@ -17,6 +17,7 @@
 	--text-color-black: #111111;
 	--text-color-black-pale: #858585;
 	--shadow-color-common: #56389c31;
+	--color-block-info: #dcfcd3;
 
 	/* property */
 	--shadow-blur-radius: 8px;
@@ -27,4 +28,21 @@
 	--heder-notice-height: 80px;
 	--header-height: calc(var(--header-content-height) + var(--heder-notice-height));
 	--border-bottom-h2: 4px;
+}
+
+/* GoogleMaterial */
+.material-symbols-outlined::before {
+	vertical-align: -0.16em;
+}
+
+.material-symbols-outlined.tocTitle::before {
+	content: "\e8de";
+}
+
+.material-symbols-outlined.publicationDate::before {
+	content: "\e935";
+}
+
+.material-symbols-outlined.lastEdit::before {
+	content: "\f232";
 }

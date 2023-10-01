@@ -93,3 +93,13 @@
 .mainArticle ul ul {
 	margin-left: 1em;
 }
+
+/* ブロック系 */
+.infoBlock::before {
+	content: "";
+}
+.infoBlock {
+	background-color: var(--color-block-info);
+	padding: 1em;
+	margin: 1em 0;
+}

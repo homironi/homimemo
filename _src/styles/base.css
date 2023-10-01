@@ -20,23 +20,6 @@ html {
 	width: 100%;
 }
 
-/* GoogleMaterial */
-.material-symbols-outlined::before {
-	vertical-align: -0.16em;
-}
-
-.material-symbols-outlined.tocTitle::before {
-	content: "\e8de";
-}
-
-.material-symbols-outlined.publicationDate::before {
-	content: "\e935";
-}
-
-.material-symbols-outlined.lastEdit::before {
-	content: "\f232";
-}
-
 @media screen and (max-width: 768px) {
 	html {
 		font-size: 0.8em;
