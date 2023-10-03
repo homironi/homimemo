@@ -9,6 +9,8 @@
 	content: "";
 	width: 1.2em;
 	height: 1.2em;
+	position: absolute;
+	left: 0.2em;
 
 	background: url(/images/icon_chara_white.svg) no-repeat;
 	background-size: contain;
@@ -28,14 +30,15 @@
 }
 
 .mainArticle h2 {
+	font-size: 1.6em;
 	margin-top: 2em;
 	margin-bottom: 1em;
-	font-size: 1.6em;
+	padding: 0.4em;
+	padding-left: 1.5em;
 
 	background-color: var(--color-sub);
 	color: var(--text-color-white);
 	font-weight: normal;
-	padding: 0.4em;
 
 	/* 三角形のために設定 */
 	position: relative;
