@@ -22,7 +22,7 @@ pre[class*="language-"] {
 }
 pre[class*="language-"] {
 	position: relative;
-	margin: 0.5em 0;
+	margin: 1.4em 0;
 	overflow: visible;
 	padding: 1px;
 }
@@ -309,10 +309,9 @@ div.code-toolbar {
 div.code-toolbar > .toolbar {
 	position: absolute;
 	z-index: 10;
-	top: 0.3em;
+	top: -1.6em;
 	right: 0.2em;
 	transition: opacity 0.3s ease-in-out;
-	opacity: 0;
 }
 div.code-toolbar:hover > .toolbar {
 	opacity: 1;
