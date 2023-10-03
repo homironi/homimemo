@@ -50,9 +50,9 @@ HTML や CSS よりも、11ty というものについての内容が多くな�
 -   もしかしたらちょっと JavaScript
 -   Google Material
 -   静的サイトジェネレーター（SSG：Static Site Generator）
--   11ty/eleventy
+    -   11ty/eleventy
 -   レンタルサーバー
--   エックスサーバー
+    -   エックスサーバー
 -   マークダウン便利！
 
 ## このシリーズの目次
