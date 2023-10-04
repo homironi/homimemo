@@ -127,7 +127,7 @@
 /* infoBlock */
 .info.block::before {
 	content: "\e88e";
-	color: var(--text-color-info);
+	color: var(--icon-color-info);
 }
 .info.block {
 	background-color: var(--color-block-info);
@@ -135,8 +135,17 @@
 /* warningBlock */
 .warning.block::before {
 	content: "\e002";
-	color: var(--text-color-warning);
+	color: var(--icon-color-warning);
 }
 .warning.block {
 	background-color: var(--color-block-warning);
+}
+/* quoteBlock */
+blockquote.block::before {
+	content: "\e244";
+	color: var(--icon-color-quote);
+}
+blockquote.block {
+	background-color: var(--color-block-quote);
+	color: var(--text-color-quote);
 }

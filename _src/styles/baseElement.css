@@ -19,9 +19,12 @@
 	--shadow-color-common: #56389c31;
 	/* block color */
 	--color-block-info: #c8e5ff;
-	--text-color-info: #2875da;
+	--icon-color-info: #2875da;
 	--color-block-warning: #f7eec7;
-	--text-color-warning: #e2a22a;
+	--icon-color-warning: #e2a22a;
+	--color-block-quote: #ececec;
+	--icon-color-quote: #acacac;
+	--text-color-quote: #5a5a5a;
 
 	/* property */
 	--shadow-blur-radius: 8px;
