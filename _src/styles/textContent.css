@@ -78,7 +78,6 @@
 .mainArticle li::before {
 	content: "●";
 	color: var(--color-sub);
-	/* font-size: 0.2em; */
 	vertical-align: middle;
 
 	position: absolute;
@@ -99,10 +98,33 @@
 
 /* ブロック系 */
 .infoBlock::before {
-	content: "";
+	font-family: "Material Symbols Outlined";
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: "liga";
+	-webkit-font-smoothing: antialiased;
+
+	vertical-align: -0.16em;
+	content: "\e88e";
+	color: var(--text-color-info);
+
+	position: absolute;
+	left: 0.4em;
 }
 .infoBlock {
 	background-color: var(--color-block-info);
+	border-radius: 0.4em;
 	padding: 1em;
 	margin: 1em 0;
+
+	padding-left: 3.2em;
+	position: relative;
 }
