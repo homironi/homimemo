@@ -132,3 +132,11 @@
 .info.block {
 	background-color: var(--color-block-info);
 }
+/* warningBlock */
+.warning.block::before {
+	content: "\e002";
+	color: var(--text-color-warning);
+}
+.warning.block {
+	background-color: var(--color-block-warning);
+}

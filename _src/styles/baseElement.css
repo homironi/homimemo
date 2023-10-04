@@ -17,8 +17,11 @@
 	--text-color-black: #111111;
 	--text-color-black-pale: #858585;
 	--shadow-color-common: #56389c31;
+	/* block color */
 	--color-block-info: #c8e5ff;
 	--text-color-info: #2875da;
+	--color-block-warning: #f7eec7;
+	--text-color-warning: #e2a22a;
 
 	/* property */
 	--shadow-blur-radius: 8px;
