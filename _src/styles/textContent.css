@@ -97,11 +97,11 @@
 }
 
 /* ブロック系 */
-.infoBlock::before {
+.block::before {
 	font-family: "Material Symbols Outlined";
 	font-weight: normal;
 	font-style: normal;
-	font-size: 24px;
+	font-size: 2em;
 	line-height: 1;
 	letter-spacing: normal;
 	text-transform: none;
@@ -112,19 +112,23 @@
 	-webkit-font-feature-settings: "liga";
 	-webkit-font-smoothing: antialiased;
 
-	vertical-align: -0.16em;
-	content: "\e88e";
-	color: var(--text-color-info);
-
 	position: absolute;
 	left: 0.4em;
+	top: 0.4em;
 }
-.infoBlock {
-	background-color: var(--color-block-info);
+.block {
 	border-radius: 0.4em;
 	padding: 1em;
 	margin: 1em 0;
 
 	padding-left: 3.2em;
 	position: relative;
+}
+/* infoBlock */
+.info.block::before {
+	content: "\e88e";
+	color: var(--text-color-info);
+}
+.info.block {
+	background-color: var(--color-block-info);
 }
