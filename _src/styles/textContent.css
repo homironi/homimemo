@@ -64,6 +64,10 @@
 	font-size: 1.2em;
 }
 
+.mainArticle p {
+	margin: 1.8em 0;
+}
+
 /* リスト */
 .mainArticle > ul {
 	padding: 1em 0;
