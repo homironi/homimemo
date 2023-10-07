@@ -158,4 +158,5 @@ blockquote.block::before {
 blockquote.block {
 	background-color: var(--color-block-quote);
 	color: var(--text-color-quote);
+	border-left: 0.5em solid var(--icon-color-quote);
 }
