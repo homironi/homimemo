@@ -1,8 +1,8 @@
 ---
 title: ホームページを作る！＃２〜現在の制作環境とツール〜
-description: ホームページを作るシリーズ第二弾です。今回は実際に現在どんな感じで制作しているのか、流れや使っているツールなどを紹介していきます。それぞれの詳細は今回の記事で大枠を掴んでから、別の回で詳細にメモしていきます。
+description: ホームページを作るシリーズ第二弾では、Windows10を使用して、マークダウン形式で記事内容を作成し、11tyを用いてHTMLに変換する流れを紹介しています。マークダウンとeleventyの利点に加えて、使用しているツールやレンタルサーバーについても詳細に解説しています。SimplenoteやVisual Studio Codeなどの便利なツールを使用することで、効率的かつ柔軟なサイト構築が可能です。また、FileZillaを使ったファイルのアップロードやエックスサーバーを利用したサイトの公開方法についても触れています。さらに、次回はeleventyについて詳しく見ていく予定ですので、お楽しみに！
 headerImg: /images/header/categories/makeWeb/1.png
-date: 2023-10-08
+date: 2023-11-14
 eleventyNavigation:
     key: ホームページを作る！＃２〜現在の制作環境とツール〜
     parent: Web制作
@@ -35,7 +35,11 @@ Simplenoteというブラウザ版とスマホ版があるアプリでマーク�
 ### マークダウン
 ツールとはちょっと違いますが、めっちゃ便利なテキストの書き方です。  
 
-対応しているビューワーでは、自動で認識して見やすいように表示してくれたり、プレビュー用の表示を用意してくれていたりします！  
+マークダウンはシンプルで読みやすいテキスト形式の書き方です。
+HTMLよりも簡潔で、記述が容易です。
+
+さらに、ビューワーによっては自動的に整形され、プレビュー用の表示も提供されます。
+そのため、編集中も見やすく、出力されたHTMLファイルもきれいでみやすくなります！
 
 さらに、今回使用する11tyというツールではマークダウンファイルをHTMLに変換できます！  
 
@@ -52,7 +56,7 @@ PC（ブラウザ版）とスマホアプリ両方で使用しているメモア
 家以外でもスマホから記事内容をかけるように、記事内容のマークダウンだけはこのアプリで編集しています。  
 
 Simplenoteはマークダウンに対応しており、編集画面とプレビュー画面にわかれています。  
-![Simplenoteのマークダウン画面](images/articleImages/categories/makeWeb/1/SimplenoteDisplay.jpg)  
+![Simplenoteのマークダウン画面](/images/articleImages/categories/makeWeb/1/SimplenoteDisplay.jpg)  
 
 ### Visual Studio Code
 PCで使用しているコードエディタ。無料で利用することができる。  
@@ -67,7 +71,12 @@ PCで使用しているコードエディタ。無料で利用することがで
 ### 11ty/eleventy
 PCで使用しているSSG（静的サイトジェネレーター）。  
 
-Visual Studio Codeで編集したファイルを、えいやーっとこのツールにかけてHTMLを出力します。  
+Visual Studio Codeで編集したファイルを、えいやーっとこのツールにかけてHTMLを出力します。
+
+  eleventyは静的サイトジェネレーターであり、マークダウンファイルをHTMLに変換するツールです。
+これによって、手動でHTMLを作成する必要がなくなり、簡潔かつ効率的なサイト構築が可能となります。
+
+また、eleventyは柔軟性が高く、さまざまなカスタマイズができるため、ニーズに合わせたサイトを作成することができます！
 
 ### FileZilla
 FTPソフト。  
@@ -92,9 +101,6 @@ FTPソフトを使用すると、フォルダでファイルを操作してい�
 筆者はこのエックスサーバーというレンタルサーバーを使用しています。
 
 ## 流れを再確認
-さて、流れを図でもう一度確認してみます。
-![記事作成の流れの図](images/articleImages/categories/makeWeb/1/makeArticleFlow.png)
-
 すこぶるざっくり文章にすると、
 
 マークダウン→HTML→公開
@@ -108,9 +114,9 @@ FTPソフトを使用すると、フォルダでファイルを操作してい�
 マークダウンについては別でメモしていく予定なので、そちらがメモできたら紹介するかたちにします。
 
 ## 参考リンク
-[Simplenote公式サイト]()  
-[Visual Studio Code公式サイト]()  
-[11ty/eleventy公式サイト]()  
-[FileZilla公式サイト]()  
-[エックスサーバー公式サイト]()  
-[GitHub公式サイト]()  
+[Simplenote公式サイト](https://simplenote.com/)  
+[Visual Studio Code公式サイト](https://code.visualstudio.com/)  
+[11ty/eleventy公式サイト](https://www.11ty.dev/)  
+[FileZilla公式サイト](https://filezilla-project.org/index.php)  
+[エックスサーバー公式サイト](https://www.xserver.ne.jp/)  
+[GitHub公式サイト](https://github.com/)  
