@@ -30,7 +30,7 @@
 	--shadow-blur-radius: 8px;
 	--shadow-spread-radius: 1px;
 
-	--content-width: 1280px;
+	--content-width: 1920px;
 	--header-content-height: 80px;
 	--heder-notice-height: 80px;
 	--header-height: calc(var(--header-content-height) + var(--heder-notice-height));
