@@ -35,7 +35,19 @@
 }
 
 /* 横幅が指定ピクセルまで、以下を適用 */
+@media screen and (min-width: 1940px) {
+	/* 横幅1920固定にしたいので、↑を1940からにして横にはみ出さないようにする */
+	.container {
+		width: var(--content-width);
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
 @media screen and (max-width: 1280px) {
+	.container {
+		width: unset;
+	}
 	.containerRWrapper {
 		display: block;
 		flex: 8;
