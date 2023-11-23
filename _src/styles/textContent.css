@@ -105,8 +105,45 @@
 	color: var(--text-color-quote);
 	padding: 0.1em 0.4em;
 }
+/* テーブル */
+/* 基本のテーブルスタイル */
+.mainArticle table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-align: center;
+}
 
-/* ブロック系 */
+/* テーブルヘッダー */
+.mainArticle th {
+	background-color: var(--color-table-header);
+	font-weight: normal;
+	font-size: 1.2em;
+	padding: 0.4em;
+	color: var(--text-color-table-header);
+}
+
+/* テーブルセル */
+.mainArticle td {
+	padding: 0.5em;
+}
+
+/* テーブルの奇数行の背景色を変更する */
+.mainArticle tr:nth-child(odd) {
+	background-color: var(--color-table-background-odd);
+}
+
+/* テーブルの偶数行の背景色を変更する */
+.mainArticle tr:nth-child(even) {
+	background-color: var(--color-table-background-even);
+}
+
+/* マウスホバー時の色変更 */
+.mainArticle tbody > tr:hover {
+	background-color: var(--color-table-background-hover);
+}
+
+/* ブロック系：記事内に限定しなくてよい */
 .block::before {
 	font-family: "Material Symbols Outlined";
 	font-weight: normal;
