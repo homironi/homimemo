@@ -25,6 +25,13 @@
 	--color-block-quote: #ececec;
 	--icon-color-quote: #acacac;
 	--text-color-quote: #5a5a5a;
+	/* table color */
+	--color-table-header: var(--color-sub);
+	--text-color-table-header: var(--text-color-white);
+	--text-color-table-border: var(--color-main);
+	--color-table-background-odd: var(--color-main);
+	--color-table-background-even: #e8f2fa;
+	--color-table-background-hover: #d3e3ee;
 
 	/* property */
 	--shadow-blur-radius: 8px;
