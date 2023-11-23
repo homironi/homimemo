@@ -13,8 +13,13 @@ const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const embedEverything = require("eleventy-plugin-embed-everything");
 
 module.exports = function (eleventyConfig) {
-    // ----addFilter----
+    // ----eleventyの設定変更----
+    // Eleventyのポート番号を変更する
+    eleventyConfig.setServerOptions({
+        port: 49100 // 8080はかぶるので新しいポート番号に変更
+    });
 
+    // ----addFilter----
     // 記事の日付のフィルター：
     eleventyConfig.addFilter("dateFormat", function (value) {
         const Year = value.getFullYear();
@@ -45,7 +50,6 @@ module.exports = function (eleventyConfig) {
         // Perform array slicing
         return posts.slice(start, end);
     });
-
 
     eleventyConfig.addFilter('markdownWithClasses', function (content) {
         const md = markdownIt({ html: true }).use(markdownItAttrs);
@@ -80,7 +84,6 @@ module.exports = function (eleventyConfig) {
         );
 
     // ----addPlugin----
-
     // 目次
     eleventyConfig.addPlugin(pluginTOC,
         {
@@ -92,6 +95,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
     // 単独行URLを自動で埋め込み表示してくれる
     eleventyConfig.addPlugin(embedEverything);
+
     // ----addPassthroughCopy----
     // ファビコンのコピー
     eleventyConfig.addPassthroughCopy("_src/favicon.ico");
