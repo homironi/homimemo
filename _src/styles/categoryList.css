@@ -24,7 +24,7 @@ h3.categoryHeader {
 }
 
 .categoryList a:hover {
-	color: var(--text-color-black-pale);
+	color: var(--text-color-black-hover);
 }
 
 @media screen and (max-width: 1280px) {
