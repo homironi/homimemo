@@ -44,6 +44,12 @@
 	position: relative;
 }
 
+@media (prefers-color-scheme: dark) {
+	.mainArticle h2 {
+		color: var(--text-color-black);
+	}
+}
+
 .mainArticle h3::after {
 	display: block;
 	content: "";
