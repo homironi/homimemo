@@ -3,7 +3,7 @@
 	--color-main: #fcf9f7;
 	--color-main-dark: #ebe6e3;
 	--shadow-color-main: #f3e8e4;
-	--shadow-color-main-pale: #ebddd8d5;
+	--shadow-color-main-pale: #ebddd8;
 	--color-sub: #79cdee;
 	--color-sub-pale: #a9dcf0;
 	--color-sub-light: #dcf5ff;
@@ -13,11 +13,12 @@
 	--color-black-area: #333333;
 	--color-black-area-hover: #555555;
 	--text-color-white: #ffffff;
-	--text-color-white-dark: #dbd9d9;
+	--text-color-white-hover: #dbd9d9;
 	--text-color-black: #111111;
-	--text-color-black-pale: #858585;
+	--text-color-black-hover: #858585;
 	--shadow-color-common: #56389c31;
 	/* block color */
+	--text-color-block: #111111;
 	--color-block-info: #c8e5ff;
 	--icon-color-info: #2875da;
 	--color-block-warning: #f7eec7;

@@ -4,12 +4,9 @@
 	color: var(--text-color-white);
 	background-color: var(--color-sub);
 }
+
 .homeImg img {
 	width: 16em;
-}
-
-.headerNotice {
-	background-color: var(--color-accent);
 }
 
 @media screen and (max-width: 768px) {

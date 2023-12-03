@@ -74,5 +74,5 @@
 }
 
 .navigationBar ul li a:hover {
-	color: var(--text-color-white-dark);
+	color: var(--text-color-white-hover);
 }

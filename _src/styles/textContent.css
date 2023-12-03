@@ -1,5 +1,5 @@
 .articleDate {
-	color: var(--text-color-black-pale);
+	color: var(--text-color-black-hover);
 	font-size: 0.8em;
 	text-align: right;
 }
@@ -169,6 +169,8 @@
 
 	padding-left: 3.2em;
 	position: relative;
+
+	color: var(--text-color-block);
 }
 /* infoBlock */
 .info.block::before {

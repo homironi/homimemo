@@ -89,7 +89,7 @@
 }
 
 .siteNavigation li a:hover {
-	color: var(--text-color-white-dark);
+	color: var(--text-color-white-hover);
 }
 
 .siteNavigation .categories {
