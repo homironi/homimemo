@@ -52,7 +52,7 @@
 }
 
 .toc a:hover {
-	color: var(--text-color-black-pale);
+	color: var(--text-color-black-hover);
 }
 
 .toc ol ol {

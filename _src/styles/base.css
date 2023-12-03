@@ -8,6 +8,13 @@ html {
 	color: var(--text-color-black);
 }
 
+/* 背景画像だけ個別でダークテーマ設定 */
+@media (prefers-color-scheme: dark) {
+	html {
+		background-image: url(/images/background_dark.svg);
+	}
+}
+
 .container {
 	margin: 32px 0;
 }

@@ -5,6 +5,13 @@
 	font-size: 0.8em;
 }
 
+@media (prefers-color-scheme: dark) {
+	/* ダークテーマのときも白文字がいいので黒文字（ダークテーマのときは白になってる） */
+	.footerContainer {
+		color: var(--text-color-black);
+	}
+}
+
 .logoImg {
 	text-align: center;
 	width: 200px;
@@ -84,12 +91,26 @@
 	text-decoration: none;
 }
 
+@media (prefers-color-scheme: dark) {
+	/* ダークテーマのときも白文字がいいので黒文字（ダークテーマのときは白になってる） */
+	.siteNavigation li a {
+		color: var(--text-color-black);
+	}
+}
+
 .siteNavigation li a::before {
 	content: ">";
 }
 
 .siteNavigation li a:hover {
-	color: var(--text-color-white-dark);
+	color: var(--text-color-white-hover);
+}
+
+@media (prefers-color-scheme: dark) {
+	/* ダークテーマのときも白文字がいいので黒文字（ダークテーマのときは白になってる） */
+	.siteNavigation li a:hover {
+		color: var(--text-color-black-hover);
+	}
 }
 
 .siteNavigation .categories {

@@ -3,7 +3,7 @@
 	--color-main: #fcf9f7;
 	--color-main-dark: #ebe6e3;
 	--shadow-color-main: #f3e8e4;
-	--shadow-color-main-pale: #ebddd8d5;
+	--shadow-color-main-pale: #ebddd8;
 	--color-sub: #79cdee;
 	--color-sub-pale: #a9dcf0;
 	--color-sub-light: #dcf5ff;
@@ -13,11 +13,12 @@
 	--color-black-area: #333333;
 	--color-black-area-hover: #555555;
 	--text-color-white: #ffffff;
-	--text-color-white-dark: #dbd9d9;
+	--text-color-white-hover: #dbd9d9;
 	--text-color-black: #111111;
-	--text-color-black-pale: #858585;
+	--text-color-black-hover: #858585;
 	--shadow-color-common: #56389c31;
 	/* block color */
+	--text-color-block: #111111;
 	--color-block-info: #c8e5ff;
 	--icon-color-info: #2875da;
 	--color-block-warning: #f7eec7;
@@ -42,6 +43,27 @@
 	--heder-notice-height: 80px;
 	--header-height: calc(var(--header-content-height) + var(--heder-notice-height));
 	--border-bottom-h2: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		/* color */
+		--color-main: #333232;
+		--color-main-dark: #333231;
+		--shadow-color-main: #333130;
+		--shadow-color-main-pale: #33302f;
+		--text-color-white: #111111;
+		--text-color-white-hover: #858585;
+		--text-color-black: #e9e9e9;
+		--text-color-black-hover: #dbd9d9;
+		/* table color */
+		--color-table-background-even: #484b4d;
+		--color-table-background-hover: #767e83;
+		/* block color */
+		--color-block-info: #b2d0e9;
+		--color-block-warning: #e2dbbe;
+		--color-block-quote: #d8d8d8;
+	}
 }
 
 /* GoogleMaterial */

@@ -33,7 +33,7 @@
 }
 
 .card .date {
-	color: var(--text-color-black-pale);
+	color: var(--text-color-black-hover);
 	text-align: right;
 	margin-top: 2%;
 	font-size: 0.8em;
