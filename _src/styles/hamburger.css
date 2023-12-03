@@ -60,6 +60,14 @@ div.hamburgerMenuWrapper {
 	margin: auto;
 	background-color: var(--text-color-white);
 }
+@media (prefers-color-scheme: dark) {
+	/* ダークテーマもでも白になるように、ダークテーマでの白を指定 */
+	.menu-btn span,
+	.menu-btn:before,
+	.menu-btn:after {
+		background-color: var(--text-color-black);
+	}
+}
 
 /**
  * 真ん中の線
@@ -180,6 +188,12 @@ div.hamburgerMenuWrapper {
 	color: var(--text-color-white);
 }
 
+@media (prefers-color-scheme: dark) {
+	/* ダークテーマもでも白文字になるように、ダークテーマでの白文字を指定 */
+	.menuList ul li a {
+		color: var(--text-color-black);
+	}
+}
 .menuList ul ul {
 	display: none;
 }
