@@ -48,8 +48,8 @@
 @media (prefers-color-scheme: dark) {
 	:root {
 		/* color */
-		--color-main: #333232;
-		--color-main-dark: #333231;
+		--color-main: #444141;
+		--color-main-dark: #3b3939ff;
 		--shadow-color-main: #333130;
 		--shadow-color-main-pale: #33302f;
 		--text-color-white: #111111;
