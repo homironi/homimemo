@@ -74,31 +74,47 @@
 	margin: 1.8em 0;
 }
 
-/* リスト */
-.mainArticle > ul {
+/* リスト共通 */
+.mainArticle > ul,
+.mainArticle > ol {
 	padding: 1em 0;
 }
 
-.mainArticle li {
+.mainArticle ul li,
+.mainArticle ol li {
 	margin-bottom: 0.8em;
 	position: relative;
 	padding-left: 2em;
 }
 
-.mainArticle li::before {
-	content: "●";
-	color: var(--color-sub);
-	vertical-align: middle;
-
+.mainArticle ul li::before,
+.mainArticle ol li::before {
 	position: absolute;
 	left: 0;
+	color: var(--color-sub);
 }
 
-.mainArticle li li::before {
+/* 番号ありリスト */
+.mainArticle ol {
+	counter-reset: list-counter; /* カウンターをリセット */
+}
+
+.mainArticle ol li::before {
+	content: counter(list-counter) ". "; /* カウンターをリストアイテムの前に表示 */
+	counter-increment: list-counter; /* カウンターをインクリメント */
+}
+
+/* 番号なしリスト */
+.mainArticle ul li::before {
+	content: "●";
+	vertical-align: middle;
+}
+
+.mainArticle ul li li::before {
 	content: "○";
 }
 
-.mainArticle li li li::before {
+.mainArticle ul li li li::before {
 	content: "・";
 }
 
@@ -106,11 +122,13 @@
 	margin-left: 1em;
 }
 
+/* インラインコード */
 .mainArticle code {
 	background-color: var(--color-block-quote);
 	color: var(--text-color-quote);
 	padding: 0.1em 0.4em;
 }
+
 /* テーブル */
 /* 基本のテーブルスタイル */
 .mainArticle table {
