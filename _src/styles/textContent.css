@@ -122,6 +122,24 @@
 	margin-left: 1em;
 }
 
+/* カスタム番号なしリスト */
+.mainArticle ul.list li::before {
+	content: unset;
+}
+
+/* チェックリストっぽいリストにする */
+.mainArticle .list.check li::before {
+	content: "☐";
+}
+
+.mainArticle .list.check li.checked::after {
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: var(--color-sub);
+	content: "✔";
+}
+
 /* インラインコード */
 .mainArticle code {
 	background-color: var(--color-block-quote);
