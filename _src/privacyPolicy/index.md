@@ -25,7 +25,7 @@ eleventyNavigation:
 
 ## アクセス解析ツールについて
 
-当サイトでは、Google によるアクセス解析ツール「Google アナリティクス」を利用しています。  
+当サイトでは、Google によるアクセス解析ツール「[Google アナリティクス](https://marketingplatform.google.com/intl/ja/about/analytics/)」を利用しています。  
 
 この Google アナリティクスはトラフィックデータの収集のためにクッキー（Cookie）を使用しております。  
 
