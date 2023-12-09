@@ -1,11 +1,4 @@
 .headerNotice {
+	background-color: var(--color-accent);
 	height: var(--header-notice-height);
-}
-.paa {
-	background-color: var(--color-main);
-	padding: 0.5em 0;
-}
-.paa img {
-	width: 16em;
-	margin: 0 auto;
 }

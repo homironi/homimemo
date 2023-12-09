@@ -1,5 +1,5 @@
 .articleDate {
-	color: var(--text-color-black-pale);
+	color: var(--text-color-black-hover);
 	font-size: 0.8em;
 	text-align: right;
 }
@@ -44,6 +44,12 @@
 	position: relative;
 }
 
+@media (prefers-color-scheme: dark) {
+	.mainArticle h2 {
+		color: var(--text-color-black);
+	}
+}
+
 .mainArticle h3::after {
 	display: block;
 	content: "";
@@ -68,31 +74,47 @@
 	margin: 1.8em 0;
 }
 
-/* リスト */
-.mainArticle > ul {
+/* リスト共通 */
+.mainArticle > ul,
+.mainArticle > ol {
 	padding: 1em 0;
 }
 
-.mainArticle li {
+.mainArticle ul li,
+.mainArticle ol li {
 	margin-bottom: 0.8em;
 	position: relative;
 	padding-left: 2em;
 }
 
-.mainArticle li::before {
-	content: "●";
-	color: var(--color-sub);
-	vertical-align: middle;
-
+.mainArticle ul li::before,
+.mainArticle ol li::before {
 	position: absolute;
 	left: 0;
+	color: var(--color-sub);
 }
 
-.mainArticle li li::before {
+/* 番号ありリスト */
+.mainArticle ol {
+	counter-reset: list-counter; /* カウンターをリセット */
+}
+
+.mainArticle ol li::before {
+	content: counter(list-counter) ". "; /* カウンターをリストアイテムの前に表示 */
+	counter-increment: list-counter; /* カウンターをインクリメント */
+}
+
+/* 番号なしリスト */
+.mainArticle ul li::before {
+	content: "●";
+	vertical-align: middle;
+}
+
+.mainArticle ul li li::before {
 	content: "○";
 }
 
-.mainArticle li li li::before {
+.mainArticle ul li li li::before {
 	content: "・";
 }
 
@@ -100,13 +122,70 @@
 	margin-left: 1em;
 }
 
+/* カスタム番号なしリスト */
+.mainArticle ul.list li::before {
+	content: unset;
+}
+
+/* チェックリストっぽいリストにする */
+.mainArticle .list.check li::before {
+	content: "☐";
+}
+
+.mainArticle .list.check li.checked::after {
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: var(--color-sub);
+	content: "✔";
+}
+
+/* インラインコード */
 .mainArticle code {
 	background-color: var(--color-block-quote);
 	color: var(--text-color-quote);
 	padding: 0.1em 0.4em;
 }
 
-/* ブロック系 */
+/* テーブル */
+/* 基本のテーブルスタイル */
+.mainArticle table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-align: center;
+}
+
+/* テーブルヘッダー */
+.mainArticle th {
+	background-color: var(--color-table-header);
+	font-weight: normal;
+	font-size: 1.2em;
+	padding: 0.4em;
+	color: var(--text-color-table-header);
+}
+
+/* テーブルセル */
+.mainArticle td {
+	padding: 0.5em;
+}
+
+/* テーブルの奇数行の背景色を変更する */
+.mainArticle tr:nth-child(odd) {
+	background-color: var(--color-table-background-odd);
+}
+
+/* テーブルの偶数行の背景色を変更する */
+.mainArticle tr:nth-child(even) {
+	background-color: var(--color-table-background-even);
+}
+
+/* マウスホバー時の色変更 */
+.mainArticle tbody > tr:hover {
+	background-color: var(--color-table-background-hover);
+}
+
+/* ブロック系：記事内に限定しなくてよい */
 .block::before {
 	font-family: "Material Symbols Outlined";
 	font-weight: normal;
@@ -132,6 +211,8 @@
 
 	padding-left: 3.2em;
 	position: relative;
+
+	color: var(--text-color-block);
 }
 /* infoBlock */
 .info.block::before {
