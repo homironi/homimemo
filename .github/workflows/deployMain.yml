@@ -27,4 +27,4 @@ jobs:
 
       - name: Deploy via rsync
         run: |
-          rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022" --delete ./_public/ homironi@sv13025.xserver.jp:/homironi.com/public_html/
+          rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022" --delete ./_public/ homironi@sv13025.xserver.jp:/home/homironi/homironi.com/public_html/
