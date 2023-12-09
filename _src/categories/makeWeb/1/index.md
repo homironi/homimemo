@@ -18,7 +18,9 @@ tags:
 
 それぞれの詳細は今回の記事で大枠を掴んでから、別の回で詳細にメモしていきます。  
 
-記事執筆時に使用しているOSはWindows10です。記事内でWindows、もしくはPCという単語が出た場合に指すOSはWindows10です。{.warning .block}
+記事執筆時に使用しているOSはWindows10です。  
+記事内でWindows、もしくはPCという単語が出た場合に指すOSはWindows10です。
+{.warning .block}
 
 ## 流れ
 
