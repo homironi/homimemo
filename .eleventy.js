@@ -113,6 +113,10 @@ module.exports = function (eleventyConfig) {
     // robots.txtのコピー
     eleventyConfig.addPassthroughCopy("_src/robots.txt");
 
+    // サーバー関連ファイルのコピー
+    eleventyConfig.addPassthroughCopy("_src/.htaccess");
+    eleventyConfig.addPassthroughCopy("_src/.user.ini");
+
     return {
         // Control which files Eleventy will process
         templateFormats: [
