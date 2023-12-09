@@ -3,7 +3,7 @@ title: ホームページを作る！＃１〜動機と目次〜
 description: 当サイトの作成メモ第一弾。このサイトの制作についてメモしていきます。このサイトを作った動機やシリーズ記事の目次を公開しています。
 headerImg: /images/header/categories/makeWeb/0.png
 date: 2023-09-13
-lastEditDate: 2023-10-03
+lastEditDate: 2023-12-09
 eleventyNavigation:
     key: ホームページを作る！＃１〜動機と目次〜
     parent: Web制作
@@ -52,4 +52,5 @@ HTMLやCSSよりも、11tyというものについての内容が多くなるか
 - マークダウン便利！
 
 ## このシリーズの目次
-- [【今回】第一弾：動機と目次](/categories/makeWeb/0/)  
+1. 【今回】第一弾：動機と目次 
+2. [第二弾：現在の制作環境とツール](/categories/makeWeb/1/)  
