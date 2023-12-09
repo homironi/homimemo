@@ -1,0 +1,27 @@
+name: deploy to remote
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate SSH key
+        run: |
+          echo "$SSH_PRIVATE_KEY" > key
+          chmod 600 key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Build site with Eleventy
+        run: npx @11ty/eleventy
+
+      - name: Deploy via rsync
+        run: |
+          rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022" --delete ./_public/ homironi@sv13025.xserver.jp:/home/homironi.com/public_html/
