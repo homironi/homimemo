@@ -102,6 +102,9 @@
 .mainArticle ol li::before {
 	content: counter(list-counter) ". "; /* カウンターをリストアイテムの前に表示 */
 	counter-increment: list-counter; /* カウンターをインクリメント */
+	font-size: 1.5em;
+	position: absolute;
+	top: -0.22em;
 }
 
 /* 番号なしリスト */
