@@ -1,30 +1,30 @@
 name: deploy to remote
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@main
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@main
 
-      - name: Generate SSH key
-        run: |
-          echo "$SSH_PRIVATE_KEY" > key
-          chmod 600 key
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      
-      - name: Install Eleventy
-        run: npm install -g @11ty/eleventy
+            - name: Generate SSH key
+              run: |
+                  echo "$SSH_PRIVATE_KEY" > key
+                  chmod 600 key
+              env:
+                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Build site with Eleventy
-        run: npx @11ty/eleventy
+            - name: Install Eleventy
+              run: npm install -g @11ty/eleventy
 
-      - name: Deploy via rsync
-        run: |
-          rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022" --delete ./_public/ homironi@sv13025.xserver.jp:/home/homironi/homironi.com/public_html/
+            - name: Build site with Eleventy
+              run: npx @11ty/eleventy
+
+            - name: Deploy via rsync
+              run: |
+                  rsync -auzrv --update -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022" ./_public/ homironi@sv13025.xserver.jp:/home/homironi/homironi.com/public_html/
