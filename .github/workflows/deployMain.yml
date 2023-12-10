@@ -10,7 +10,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
             - name: Generate SSH key
               run: |
@@ -20,7 +20,7 @@ jobs:
                   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
             - name: Cache node modules
-              uses: actions/cache@v2
+              uses: actions/cache@v4
               with:
                   path: ~/.npm
                   key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -28,9 +28,9 @@ jobs:
                       ${{ runner.os }}-node-
 
             - name: Install Eleventy
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v4
               with:
-                  node-version: "14" # Specify your desired Node.js version here
+                  node-version: "16" # Specify your desired Node.js version here
                   cache: "npm" # Enable caching for npm packages
 
             - name: Build site with Eleventy
