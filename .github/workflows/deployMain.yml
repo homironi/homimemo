@@ -19,19 +19,9 @@ jobs:
               env:
                   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-            - name: Cache node modules
-              uses: actions/cache@v3
-              with:
-                  path: ~/.npm
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-node-
-
             - name: Install Eleventy
               uses: actions/setup-node@v4
-              with:
-                  node-version: "16" # Specify your desired Node.js version here
-                  cache: "npm" # Enable caching for npm packages
+              run: npm install -g @11ty/eleventy
 
             - name: Build site with Eleventy
               run: npx @11ty/eleventy
