@@ -12,11 +12,7 @@ headerImg: https://placehold.jp/896x504.png
     <div class="sideLWrapper">
         <div class="sideLInner">
             {% include "shareButtons.njk" %}
-            <section class="tableOfContentInner">
-                <h3><span class = "tocTitle material-symbols-outlined"></span>目次</h3>
-                {# 記事内容から自動で目次が作られます #}
-                {{content | toc | safe}}
-            </section>
+            {% include "toc.njk" %}
         </div>
     </div>
     <div class = "containerRWrapper">
@@ -46,6 +42,7 @@ headerImg: https://placehold.jp/896x504.png
                     </div>
                     {%endif%}
                 </section>
+                {% include "toc.njk" %}
                 <section class="content">
                     <article class="mainArticle">
                         {# 記事内容が入ります #}
