@@ -20,7 +20,6 @@ jobs:
                   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
             - name: Install Eleventy
-              uses: actions/setup-node@v4
               run: npm install -g @11ty/eleventy
 
             - name: Build site with Eleventy
