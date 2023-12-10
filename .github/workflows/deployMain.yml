@@ -10,7 +10,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@main
+              uses: actions/checkout@v4
 
             - name: Generate SSH key
               run: |
@@ -19,12 +19,23 @@ jobs:
               env:
                   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+            - name: Cache node modules
+              uses: actions/cache@v4
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
             - name: Install Eleventy
-              run: npm install -g @11ty/eleventy
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "14" # Specify your desired Node.js version here
+                  cache: "npm" # Enable caching for npm packages
 
             - name: Build site with Eleventy
               run: npx @11ty/eleventy
 
             - name: Deploy via rsync
               run: |
-                  rsync -auzrv --update -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022" ./_public/ homironi@sv13025.xserver.jp:/home/homironi/homironi.com/public_html/
+                  rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022" --delete ./_public/ homironi@sv13025.xserver.jp:/home/homironi/homironi.com/public_html/
