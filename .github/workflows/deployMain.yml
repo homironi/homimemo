@@ -33,6 +33,9 @@ jobs:
                   node-version: "16" # Specify your desired Node.js version here
                   cache: "npm" # Enable caching for npm packages
 
+            - name: Clean npm cache
+              run: npm cache clean --force
+
             - name: Build site with Eleventy
               run: npx @11ty/eleventy
 
