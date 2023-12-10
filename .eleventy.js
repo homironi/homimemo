@@ -12,6 +12,11 @@ const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 // 単独行URLを自動で埋め込み表示してくれる
 const embedEverything = require("eleventy-plugin-embed-everything");
 
+// directory-output
+// https://www.11ty.dev/docs/plugins/directory-output/
+// https://www.npmjs.com/package/@11ty/eleventy-plugin-directory-output
+const directoryOutputPlugin = require("@11ty/eleventy-plugin-directory-output");
+
 module.exports = function (eleventyConfig) {
     // ----eleventyの設定変更----
     // Eleventyのポート番号を変更する
@@ -95,6 +100,16 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
     // 単独行URLを自動で埋め込み表示してくれる
     eleventyConfig.addPlugin(embedEverything);
+
+    // ビルド時のディレクトリの詳細出力
+    eleventyConfig.setQuietMode(false);
+    eleventyConfig.addPlugin(directoryOutputPlugin, {
+        // Customize columns
+        columns: {
+            filesize: true, // Use `false` to disable
+            benchmark: true, // Use `false` to disable
+        }
+    });
 
     // ----addPassthroughCopy----
     // ファビコンのコピー
