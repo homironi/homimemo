@@ -3,7 +3,7 @@
 }
 
 .articleInner .tableOfContentInner {
-	margin: 32px;
+	margin: 1em 0;
 
 	background-color: var(--color-main);
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
