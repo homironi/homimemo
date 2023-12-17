@@ -1,6 +1,8 @@
 .contentWrapper {
 	-webkit-flex: 4;
 	flex: 6;
+	/* 調整 */
+	width: 1em;
 
 	background-color: var(--color-main);
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
@@ -51,21 +53,27 @@
 	.containerRWrapper {
 		display: block;
 		flex: 8;
+		/* 調整 */
+		width: 1em;
 	}
 
 	.mainContainer {
 		width: unset;
 	}
-	.containerRWrapper,
+
+	/* .containerRWrapper,
 	.sideLWrapper {
 		width: auto;
-	}
+	} */
 	.sideRWrapper {
 		display: block;
 		margin-top: 1em;
 	}
+
 	.contentWrapper {
 		margin-right: 0;
+		/* 調整戻し */
+		width: unset;
 	}
 }
 
@@ -91,6 +99,11 @@
 
 	.mainContainer {
 		padding: 0;
+	}
+
+	.containerRWrapper {
+		/* 調整戻し */
+		width: unset;
 	}
 }
 
