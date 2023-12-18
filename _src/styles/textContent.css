@@ -164,7 +164,7 @@
 }
 
 /* インラインコード */
-.mainArticle code {
+.mainArticle :not(pre) > code {
 	background-color: var(--color-block-quote);
 	color: var(--text-color-quote);
 	padding: 0.1em 0.4em;
@@ -176,7 +176,6 @@
 	width: 100%;
 	border-collapse: collapse;
 	border-spacing: 0;
-	text-align: center;
 }
 
 /* テーブルヘッダー */
