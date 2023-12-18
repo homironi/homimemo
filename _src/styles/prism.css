@@ -1,6 +1,6 @@
 @media (prefers-color-scheme: light) {
 	/* PrismJS 1.29.0
-https://prismjs.com/download.html#themes=prism-coy&languages=markup+css+clike+javascript+c+csharp+cpp+css-extras+diff+git+hlsl+ignore+java+markdown+mel+mermaid+plant-uml+python&plugins=line-highlight+line-numbers+show-invisibles+autolinker+file-highlight+show-language+inline-color+toolbar+copy-to-clipboard+diff-highlight+treeview */
+https://prismjs.com/download.html#themes=prism-coy&languages=markup+css+clike+javascript+c+csharp+cpp+css-extras+diff+docker+git+hlsl+ignore+java+markdown+mel+mermaid+plant-uml+python+sql+yaml&plugins=line-highlight+line-numbers+show-invisibles+autolinker+file-highlight+show-language+inline-color+command-line+toolbar+copy-to-clipboard+diff-highlight+treeview */
 	code[class*="language-"],
 	pre[class*="language-"] {
 		color: #000;
@@ -376,6 +376,41 @@ https://prismjs.com/download.html#themes=prism-coy&languages=markup+css+clike+ja
 		height: 120%;
 		width: 120%;
 	}
+	.command-line-prompt {
+		border-right: 1px solid #999;
+		display: block;
+		float: left;
+		font-size: 100%;
+		letter-spacing: -1px;
+		margin-right: 1em;
+		pointer-events: none;
+		text-align: right;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+	.command-line-prompt > span:before {
+		opacity: 0.7;
+		content: " ";
+		display: block;
+		padding-right: 0.8em;
+	}
+	.command-line-prompt > span[data-user]:before {
+		content: "[" attr(data-user) "@" attr(data-host) "] $";
+	}
+	.command-line-prompt > span[data-user="root"]:before {
+		content: "[" attr(data-user) "@" attr(data-host) "] #";
+	}
+	.command-line-prompt > span[data-prompt]:before {
+		content: attr(data-prompt);
+	}
+	.command-line-prompt > span[data-continuation-prompt]:before {
+		content: attr(data-continuation-prompt);
+	}
+	.command-line span.token.output {
+		opacity: 0.7;
+	}
 	pre.diff-highlight > code .token.deleted:not(.prefix),
 	pre > code.diff-highlight .token.deleted:not(.prefix) {
 		background-color: rgba(255, 0, 0, 0.1);
@@ -538,13 +573,7 @@ https://prismjs.com/download.html#themes=prism-coy&languages=markup+css+clike+ja
 /* ダークテーマのコードブロック */
 @media (prefers-color-scheme: dark) {
 	/* PrismJS 1.29.0
-https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript+c+csharp+cpp+css-extras+diff+git+hlsl+ignore+java+markdown+mel+mermaid+plant-uml+python&plugins=line-highlight+line-numbers+show-invisibles+autolinker+file-highlight+show-language+inline-color+toolbar+copy-to-clipboard+diff-highlight+treeview */
-	/* インラインコード用に設定しているcssをunset */
-	pre[class*="language-"] > code {
-		background-color: unset;
-		color: unset;
-		padding: unset;
-	}
+https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript+c+csharp+cpp+css-extras+diff+docker+git+hlsl+ignore+java+markdown+mel+mermaid+plant-uml+python+sql+yaml&plugins=line-highlight+line-numbers+show-invisibles+autolinker+file-highlight+show-language+inline-color+command-line+toolbar+copy-to-clipboard+diff-highlight+treeview */
 	pre[class*="language-"].line-numbers.line-numbers {
 		padding-top: 0.5em;
 		padding-bottom: 0.5em;
@@ -839,6 +868,41 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+cli
 		display: block;
 		height: 120%;
 		width: 120%;
+	}
+	.command-line-prompt {
+		border-right: 1px solid #999;
+		display: block;
+		float: left;
+		font-size: 100%;
+		letter-spacing: -1px;
+		margin-right: 1em;
+		pointer-events: none;
+		text-align: right;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+	.command-line-prompt > span:before {
+		opacity: 0.7;
+		content: " ";
+		display: block;
+		padding-right: 0.8em;
+	}
+	.command-line-prompt > span[data-user]:before {
+		content: "[" attr(data-user) "@" attr(data-host) "] $";
+	}
+	.command-line-prompt > span[data-user="root"]:before {
+		content: "[" attr(data-user) "@" attr(data-host) "] #";
+	}
+	.command-line-prompt > span[data-prompt]:before {
+		content: attr(data-prompt);
+	}
+	.command-line-prompt > span[data-continuation-prompt]:before {
+		content: attr(data-continuation-prompt);
+	}
+	.command-line span.token.output {
+		opacity: 0.7;
 	}
 	pre.diff-highlight > code .token.deleted:not(.prefix),
 	pre > code.diff-highlight .token.deleted:not(.prefix) {
