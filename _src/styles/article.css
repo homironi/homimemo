@@ -42,8 +42,14 @@
 	font-size: 1em;
 }
 
+.toc li {
+	line-height: 1.8;
+}
+
 .toc li::before {
-	content: "▷";
+	content: ">";
+
+	margin-right: 0.4em;
 }
 
 .toc a {
