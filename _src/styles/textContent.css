@@ -263,3 +263,8 @@ blockquote.block {
 	color: var(--text-color-quote);
 	border-left: 0.5em solid var(--icon-color-quote);
 }
+
+blockquote.block blockquote {
+	padding-left: 0.4em;
+	border-left: 0.4em solid var(--icon-color-quote);
+}
