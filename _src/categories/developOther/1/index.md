@@ -1,6 +1,6 @@
 ---
 title: マークダウンの書き方めも
-description: 
+description: この記事では、マークダウンの基本的な書き方についてメモしています。見出しやリスト、コードブロック、リンク、画像などの記法を具体的な例と共に紹介し、よく使用するマークダウンを紹介しています。
 headerImg: /images/header/categories/developOther/1.png
 date: 2023-12-21
 eleventyNavigation:
