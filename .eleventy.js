@@ -112,9 +112,6 @@ module.exports = function (eleventyConfig) {
     });
 
     // ----addPassthroughCopy----
-    // ファビコンのコピー
-    eleventyConfig.addPassthroughCopy("_src/favicon.ico");
-
     // 画像フォルダのコピー
     eleventyConfig.addPassthroughCopy("_src/images");
 
