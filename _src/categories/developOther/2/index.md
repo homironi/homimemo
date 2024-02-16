@@ -39,7 +39,7 @@ Visual Studio を使用する場合は C++ などの C# 以外の言語を使っ
 > Visual Studio のコード エディターで `///` 区切り記号を入力すると、`<summary>` および `</summary>` タグが自動的に挿入され、これらのタグ内にカーソルが配置されます。
 {.block}
 
-引用元：https://learn.microsoft.com/ja-jp/dotnet/csharp/language-reference/xmldoc/#xml-comment-formats
+引用元：[XML のコメントの書式](https://learn.microsoft.com/ja-jp/dotnet/csharp/language-reference/xmldoc/#xml-comment-formats)
 
 引用した通り、変数名やメソッド名の上の行で`///` とスラッシュ3つを入力するだけで  
 summary コメントが自動で挿入されます。
@@ -59,7 +59,7 @@ Visual Studio では、XML ドキュメントコメントを使用する際に�
 
 {.block}
 
-引用元：https://learn.microsoft.com/ja-jp/dotnet/csharp/language-reference/xmldoc/#create-xml-documentation-output
+引用元：[XML ドキュメント出力の作成](https://learn.microsoft.com/ja-jp/dotnet/csharp/language-reference/xmldoc/#create-xml-documentation-output)
 
 ## C# の場合は DocFX
 C# の場合は、DocFX というドキュメント生成ツールが用意されています。
