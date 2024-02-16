@@ -135,9 +135,9 @@ FTPソフトを使用すると、フォルダでファイルを操作してい�
 マークダウンについては別でメモしていく予定なので、そちらがメモできたら紹介するかたちにします。
 
 ## 参考リンク
-[Simplenote公式サイト](https://simplenote.com/){target=blank}  
-[Visual Studio Code公式サイト](https://code.visualstudio.com/){target=blank}  
-[11ty/eleventy公式サイト](https://www.11ty.dev/){target=blank}  
-[FileZilla公式サイト](https://filezilla-project.org/index.php){target=blank}  
-[エックスサーバー公式サイト](https://www.xserver.ne.jp/){target=blank}  
-[GitHub公式サイト](https://github.com/){target=blank}  
+- [Simplenote公式サイト](https://simplenote.com/){target=blank .externalLink} 
+- [Visual Studio Code公式サイト](https://code.visualstudio.com/){target=blank .externalLink} 
+- [11ty/eleventy公式サイト](https://www.11ty.dev/){target=blank .externalLink} 
+- [FileZilla公式サイト](https://filezilla-project.org/index.php){target=blank .externalLink} 
+- [エックスサーバー公式サイト](https://www.xserver.ne.jp/){target=blank .externalLink} 
+- [GitHub公式サイト](https://github.com/){target=blank .externalLink} 
