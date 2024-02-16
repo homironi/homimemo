@@ -17,7 +17,7 @@ tags:
 
 {.check .list}
 
-[XML ドキュメントコメント（Microsoft 公式）](https://learn.microsoft.com/ja-jp/dotnet/csharp/language-reference/xmldoc/){.target=blank}
+[XML ドキュメントコメント（Microsoft 公式）](https://learn.microsoft.com/ja-jp/dotnet/csharp/language-reference/xmldoc/){target=blank}
 
 ## 結論
 
