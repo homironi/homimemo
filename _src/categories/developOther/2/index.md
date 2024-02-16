@@ -17,15 +17,15 @@ tags:
 
 {.check .list}
 
-[XML ドキュメントコメント（Microsoft 公式）](https://learn.microsoft.com/ja-jp/dotnet/csharp/language-reference/xmldoc/){target=blank}
+[XML ドキュメントコメント（Microsoft 公式）](https://learn.microsoft.com/ja-jp/dotnet/csharp/language-reference/xmldoc/){target=blank .externalLink}
 
 ## 結論
 
 以下のリファレンスサイトで確認することができます。
 
-- [Doxygen の XML ドキュメントコメントに関係するコマンド対応状況](https://cercopes-z.com/Doxygen/list-xmldoc-dxy.html){target=blank}  
+- [Doxygen の XML ドキュメントコメントに関係するコマンド対応状況](https://cercopes-z.com/Doxygen/list-xmldoc-dxy.html){target=blank .externalLink} 
 →文字通り XML ドキュメントコメントと関係しているコマンドの対応度合いを表にしてあるページです。
-- [XML ドキュメントコメントタグ対応表](https://cercopes-z.com/XMLDoc/index.html){target=blank}  
+- [XML ドキュメントコメントタグ対応表](https://cercopes-z.com/XMLDoc/index.html){target=blank .externalLink} 
 こちらも上記と似ていますが、より詳細にDoxygen で対応されているかどうかが表にまとめられています。  
 こちらは Doxygen だけでなく、他のドキュメント生成ツールで対応されているかどうかも含めて表にまとめられています。  
 Doxygen で対応されているかどうかは、Doxygen の項目を確認してみましょう。
