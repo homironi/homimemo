@@ -1,0 +1,35 @@
+/* 目次 */
+.tableOfContentInner {
+	padding: 1em;
+
+	background-color: var(--color-main);
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
+	border-radius: 6px;
+	border-top: solid 12px var(--color-sub);
+
+	font-size: 1em;
+}
+
+.toc li {
+	line-height: 1.6;
+}
+
+.toc li::before {
+	content: ">";
+
+	margin-right: 0.4em;
+}
+
+.toc a {
+	text-decoration: none;
+	color: var(--text-color-black);
+}
+
+.toc a:hover {
+	color: var(--text-color-black-hover);
+}
+
+.toc ol ol {
+	margin-left: 1em;
+}
