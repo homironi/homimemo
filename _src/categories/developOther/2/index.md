@@ -56,7 +56,6 @@ Visual Studio では、XML ドキュメントコメントを使用する際に�
 この設定をしておくと、「コメントを後でつけようと思っていて忘れた！」ということを防ぐことができる可能性があがるでしょう。
 
 > GenerateDocumentationFile または DocumentationFile オプションのいずれかを設定すると、コンパイラでソース コード内の XML タグを含むすべてのコメント フィールドが検索され、それらのコメントから XML ドキュメント ファイルが作成されます。 このオプションが有効になっている場合、プロジェクトに宣言されていて公開される、XML ドキュメント コメントのないメンバーに対して、CS1591 警告がコンパイラで生成されます。
-
 {.block}
 
 引用元：[XML ドキュメント出力の作成](https://learn.microsoft.com/ja-jp/dotnet/csharp/language-reference/xmldoc/#create-xml-documentation-output)
