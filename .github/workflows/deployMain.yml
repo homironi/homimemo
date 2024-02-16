@@ -6,12 +6,16 @@ on:
             - main
 
 jobs:
-    deploy:
+    checkout:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
 
+    ssh-key-setup:
+        runs-on: ubuntu-latest
+        needs: checkout
+        steps:
             - name: Generate SSH key
               run: |
                   echo "$SSH_PRIVATE_KEY" > key
@@ -19,12 +23,24 @@ jobs:
               env:
                   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+    install-eleventy:
+        runs-on: ubuntu-latest
+        needs: [checkout, ssh-key-setup]
+        steps:
             - name: Install Eleventy
               run: npm install -g @11ty/eleventy
 
+    build-site:
+        runs-on: ubuntu-latest
+        needs: install-eleventy
+        steps:
             - name: Build site with Eleventy
               run: npx @11ty/eleventy
 
+    deploy:
+        runs-on: ubuntu-latest
+        needs: build-site
+        steps:
             - name: Deploy via rsync
               run: |
                   rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022" --delete ./_public/ homironi@sv13025.xserver.jp:/home/homironi/homironi.com/public_html/
