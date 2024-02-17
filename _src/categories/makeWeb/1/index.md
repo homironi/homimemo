@@ -11,7 +11,7 @@ tags:
     - makeWeb
 ---
 ホームページを作るシリーズ第二弾です。  
-[第一弾（シリーズ目次付き）はこちら](/categories/makeWeb/0/)  
+[第一弾（シリーズ目次付き）はこちら](/categories/makeWeb/0/){target=blank .externalLink}  
 
 【次回】第三弾
 
@@ -30,7 +30,7 @@ tags:
 
 その部分のやり方などは別記事で紹介しているので、そちらをごらんください！  
 ↓  
-[GitHubActionsでビルドからアップロードまでしてみるめも](/categories/developOther/0/)
+[GitHubActionsでビルドからアップロードまでしてみるめも](/categories/developOther/0/){target=blank .externalLink}
 
 ## 流れ
 
@@ -50,7 +50,7 @@ Simplenoteというブラウザ版とスマホ版があるアプリでマーク�
 
 の部分は現在は自動化しています。  
 ↓  
-[GitHubActionsでビルドからアップロードまでしてみるめも](/categories/developOther/0/)
+[GitHubActionsでビルドからアップロードまでしてみるめも](/categories/developOther/0/){target=blank .externalLink}
 
 ## 使用ツールなどのざっくりめも
 ### マークダウン
