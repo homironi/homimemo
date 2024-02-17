@@ -4,61 +4,61 @@ headerImg: https://placehold.jp/896x504.png
 ---
 {# css #}
 {% block css -%}
-<link rel="stylesheet" href="/styles/column3.css" />
-<link rel="stylesheet" href="/styles/article.css" />
-<link rel="stylesheet" href="/styles/textContent.css" />
-<link rel="stylesheet" href="/styles/tableOfContent.css" />
-{%- endblock%}
-<main class="mainContainer">
-    <div class="sideLWrapper">
-        <div class="sideLInner">
-            {% include "shareButtons.njk" %}
-            {% include "toc.njk" %}
-        </div>
-    </div>
-    <div class = "containerRWrapper">
-        <div class="contentWrapper">
-            <div class="articleInner">
-                <section class="articleHeader">
-                    {% include "breadcrumb.njk" %}
-                    <h1 class = "title">{{ title }}</h1>
-                    <div class = "articleDate">
-                        {# 公開日 #}
-                        <time datetime={{page.date | dateFormat}} >
-                            <span class = "publicationDate material-symbols-outlined"></span>
-                            <span>{{page.date | dateFormat | dateFormatJapanese}}</span>
-                        </time>
-                        {% if lastEditDate%}
-                        {# 更新日 #}
-                        <time datetime={{lastEditDate | dateFormat}}>
-                            <span class="lastEdit material-symbols-outlined"></span>
-                            <span>{{lastEditDate | dateFormat | dateFormatJapanese}}</span>
-                        </time>
-                        {% endif %}
-                    </div>
-                    {%if headerImg%}
-                    {# 記事のヘッダー画像 #}
-                    <div class="resizeImg">
-                        <img src= {{headerImg}} />
-                    </div>
-                    {%endif%}
-                </section>
+    <link rel="stylesheet" href="/styles/column3.css"/>
+    <link rel="stylesheet" href="/styles/article.css"/>
+    <link rel="stylesheet" href="/styles/textContent.css"/>
+    <link rel="stylesheet" href="/styles/tableOfContent.css"/>
+    {%- endblock%}
+    <main class="mainContainer">
+        <div class="sideLWrapper">
+            <div class="sideLInner">
+                {% include "shareButtons.njk" %}
                 {% include "toc.njk" %}
-                <section class="content">
-                    <article class="mainArticle">
-                        {# 記事内容が入ります #}
-                        {{content | safe}}
-                    </article>
-                </section>
-                <hr>
-                <section class="articleFooter">
-                    {% include "shareButtons.njk" %}
-                    {% include "categoryList.njk" %}
-                </section>
             </div>
         </div>
-        <div class="sideRWrapper">
-            {% include "sideRInner.njk" %}
-        </div>
-    </div>
-</main>
+        <div class = "containerRWrapper">
+            <div class="contentWrapper">
+                <div class="articleInner">
+                    <section class="articleHeader">
+                        {% include "breadcrumb.njk" %}
+                        <h1 class = "title">{{ title }}</h1>
+                        <div class = "articleDate">
+                            {# 公開日 #}
+                            <time datetime={{page.date | dateFormat}} >
+                                <span class = "publicationDate material-symbols-outlined"></span>
+                                <span>{{page.date | dateFormat | dateFormatJapanese}}</span>
+                            </time>
+                            {% if lastEditDate%}
+                                {# 更新日 #}
+                                <time datetime={{lastEditDate | dateFormat}}>
+                                    <span class="lastEdit material-symbols-outlined"></span>
+                                    <span>{{lastEditDate | dateFormat | dateFormatJapanese}}</span>
+                                </time>
+                            {% endif %}
+                        </div>
+                        {%if headerImg%}
+                            {# 記事のヘッダー画像 #}
+                            <div class="resizeImg">
+                                <img src= {{headerImg}}/>
+                            </div>
+                            {%endif%}
+                        </section>
+                        {% include "toc.njk" %}
+                        <section class="content">
+                            <article class="mainArticle">
+                                {# 記事内容が入ります #}
+                                {{content | safe}}
+                            </article>
+                        </section>
+                        <hr>
+                        <section class="articleFooter">
+                            {% include "shareButtons.njk" %}
+                            {% include "categoryList.njk" %}
+                        </section>
+                    </div>
+                </div>
+                <div class="sideRWrapper">
+                    {% include "sideRInner.njk" %}
+                </div>
+            </div>
+        </main>

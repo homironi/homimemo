@@ -1,18 +1,18 @@
 {# css #}
 {% block css -%}
-<link rel="stylesheet" href="/styles/sideRInner.css" />
-<link rel="stylesheet" href="/styles/categoryList.css" />
-<link rel="stylesheet" href="/styles/board.css" />
-<link rel="stylesheet" href="/styles/profile.css" />
-{%- endblock%}
-<div class="sideRInner">
-    <div class="profileWrapper">
-        {% include "profile.njk" %}
-    </div>
-    <div class = "board contentBlock">
-        <div class="pin">
-            <img src = "/images/items/pin.svg" />
+    <link rel="stylesheet" href="/styles/sideRInner.css"/>
+    <link rel="stylesheet" href="/styles/categoryList.css"/>
+    <link rel="stylesheet" href="/styles/board.css"/>
+    <link rel="stylesheet" href="/styles/profile.css"/>
+    {%- endblock%}
+    <div class="sideRInner">
+        <div class="profileWrapper">
+            {% include "profile.njk" %}
         </div>
-        {% include "categoryList.njk" %}
+        <div class = "board contentBlock">
+            <div class="pin">
+                <img src = "/images/items/pin.svg"/>
+            </div>
+            {% include "categoryList.njk" %}
+        </div>
     </div>
-</div>

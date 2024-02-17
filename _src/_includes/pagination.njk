@@ -2,42 +2,44 @@
 <nav class = "pagiNav">
     {# 最初のページ #}
     {% if page.url != pagination.href.first %}
-    <li>
-        <a href={{ pagination.href.first }}>1</a>
-    </li>
+        <li>
+            <a href={{ pagination.href.first }}>1</a>
+        </li>
     {% endif %}
     {# 前のリンクと最初のページの数の差が2位上なら表示 #}
     {% set preNum = pagination.pageNumber - 1 + 1 %}
     {% if preNum - 1 > 1 %}
-    <li class = "between">…</li>
+        <li class = "between">…</li>
     {% endif %}
     {# 一つ前のページ #}
     {% if pagination.href.previous != pagination.href.first %}
-    {% if (pagination.href.previous) %}
-    <li>
-        <a href={{ pagination.href.previous }}>{{ preNum }}</a>
-    </li>
-    {% endif %}
+        {% if (pagination.href.previous) %}
+            <li>
+                <a href={{ pagination.href.previous }}>{{ preNum }}</a>
+            </li>
+        {% endif %}
     {% endif %}
     {# このページのリンク #}
-    <li class = "current"><a href={{ pagination.hrefs[ pagination.pageNumber ] }}>{{ pagination.pageNumber + 1 }}</a></li>
+    <li class = "current">
+        <a href={{ pagination.hrefs[ pagination.pageNumber ] }}>{{ pagination.pageNumber + 1 }}</a>
+    </li>
     {# 一つ次のページ #}
     {% if pagination.href.next != pagination.href.last %}
-    {% set nextNum = pagination.pageNumber + 1 + 1 %}
-    {% if pagination.href.next %}
-    <li>
-        <a href={{ pagination.href.next }}>{{ nextNum }}</a>
-    </li>
-    {% endif %}
+        {% set nextNum = pagination.pageNumber + 1 + 1 %}
+        {% if pagination.href.next %}
+            <li>
+                <a href={{ pagination.href.next }}>{{ nextNum }}</a>
+            </li>
+        {% endif %}
     {% endif %}
     {# 次のリンクと最後のページの数の差が2位上なら表示 #}
     {% if pagination.hrefs.length - nextNum > 1 %}
-    <li class = "between">…</li>
+        <li class = "between">…</li>
     {% endif %}
     {# 最後のページ #}
     {% if page.url != pagination.href.last %}
-    <li>
-        <a href={{ pagination.href.last }}>{{pagination.hrefs.length}}</a>
-    </li>
+        <li>
+            <a href={{ pagination.href.last }}>{{pagination.hrefs.length}}</a>
+        </li>
     {% endif %}
 </nav>

@@ -8,13 +8,13 @@ headerImgAlt: ほみろにのロゴ画像
 
 <!DOCTYPE html>
 <html lang="ja">
-{% include "head.njk" %}
-{% include "header.njk" %}
-{% include "navigation.njk" %}
-{% include "headerNotice.njk" %}
-{% include "paa.njk" %}
-<div class="container line-numbers">
-	{{content | safe}}
-</div>
-{% include "footer.njk" %}
+	{% include "head.njk" %}
+	{% include "header.njk" %}
+	{% include "navigation.njk" %}
+	{% include "headerNotice.njk" %}
+	{% include "paa.njk" %}
+	<div class="container line-numbers">
+		{{content | safe}}
+	</div>
+	{% include "footer.njk" %}
 </html>
