@@ -7,45 +7,52 @@ eleventyNavigation:
 
 {# homeのcss #}
 {% block css -%}
-<link rel="stylesheet" href="/styles/home.css" />
-<link rel="stylesheet" href="/styles/board.css" />
-<link rel="stylesheet" href="/styles/categoryList.css" />
-{%- endblock%}
+    <link rel="stylesheet" href="/styles/home.css"/>
+    <link rel="stylesheet" href="/styles/board.css"/>
+    <link rel="stylesheet" href="/styles/categoryList.css"/>
+    {%- endblock%}
 
-<div class="container">
-    <main class="mainContainer">
-        <div class="contentWrapper">
-            <div class = "contentInner board contentBlock">
-                {# 更新情報 #}
-                <div class = "updateInfo">
-                    <div class="resizeImg pin">
-                        <img src = "/images/items/pin.svg" />
-                    </div>
-                    <h2>更新お知らせ</h2>
-                    <h3><time datatime = "2024-02-16">2024/02/16</time>
-                        <a href = "/categories/developOther/2/">Doxygen で XML ドキュメントコメントを使うめも</a>
-                    </h3>
-                    <h3><time datatime = "2023-12-21">2023/12/21</time>
-                        <a href = "/categories/developOther/1/">マークダウンの書き方めも</a>
-                    </h3>
-                    <h3><time datatime = "2023-12-19">2023/12/19</time>
-                        <a href = "/categories/developOther/0/">GitHubActionsでビルドからアップロードまでしてみるめも</a>
-                    </h3>
-                    <h3><time datatime = "2023-12-04">2023/12/04</time>
+    <div class="container">
+        <main class="mainContainer">
+            <div class="contentWrapper">
+                <div class = "contentInner board contentBlock">
+                    {# 更新情報 #}
+                    <div class = "updateInfo">
+                        <div class="resizeImg pin">
+                            <img src = "/images/items/pin.svg"/>
+                        </div>
+                        <h2>更新お知らせ</h2>
+                        <h3>
+                            <time datatime = "2024-02-16">2024/02/16</time>
+                            <a href = "/categories/developOther/2/">Doxygen で XML ドキュメントコメントを使うめも</a>
+                        </h3>
+                        <h3>
+                            <time datatime = "2023-12-21">2023/12/21</time>
+                            <a href = "/categories/developOther/1/">マークダウンの書き方めも</a>
+                        </h3>
+                        <h3>
+                            <time datatime = "2023-12-19">2023/12/19</time>
+                            <a href = "/categories/developOther/0/">GitHubActionsでビルドからアップロードまでしてみるめも</a>
+                        </h3>
+                        <h3>
+                            <time datatime = "2023-12-04">2023/12/04</time>
                         ダークテーマに対応してみました
                     </h3>
-                    <h3><time datatime = "2023-11-14">2023/11/14</time>
-                        <a href = "/categories/makeWeb/1/">ホームページを作る！＃２〜現在の制作環境とツール〜</a>
-                    </h3>
-                    <h3><time datatime = "2023-09-13">2023/09/13</time>
-                        <a href = "/categories/makeWeb/0/">ホームページを作る！＃１〜動機と目次〜</a>
-                    </h3>
-                    <h3><time datatime = "2023-07-01">2023/07/01</time>
-                        <a href = "/categories/memo/0/">サイト開設</a>
-                    </h3>
+                        <h3>
+                            <time datatime = "2023-11-14">2023/11/14</time>
+                            <a href = "/categories/makeWeb/1/">ホームページを作る！＃２〜現在の制作環境とツール〜</a>
+                        </h3>
+                        <h3>
+                            <time datatime = "2023-09-13">2023/09/13</time>
+                            <a href = "/categories/makeWeb/0/">ホームページを作る！＃１〜動機と目次〜</a>
+                        </h3>
+                        <h3>
+                            <time datatime = "2023-07-01">2023/07/01</time>
+                            <a href = "/categories/memo/0/">サイト開設</a>
+                        </h3>
+                    </div>
+                    {% include "categoryList.njk" %}
                 </div>
-                {% include "categoryList.njk" %}
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>

@@ -1,26 +1,26 @@
 {# フッターのcss #}
 {% block css -%}
-<link rel="stylesheet" href="/styles/footer.css" />
-{%- endblock%}
+    <link rel="stylesheet" href="/styles/footer.css"/>
+    {%- endblock%}
 
-<footer class="footerContainer">
-    <div class = "footer-inner">
-        {# サイト内リンク #}
-        <ul class = "siteNavigation">
-        {% include "siteNavigation.njk" %}
-        </ul>
-        <hr class ="hr">
-    	<p>外部リンク</p>
-        <div class ="links">
-            {% include "myLink.njk" %}
+    <footer class="footerContainer">
+        <div class = "footer-inner">
+            {# サイト内リンク #}
+            <ul class = "siteNavigation">
+                {% include "siteNavigation.njk" %}
+            </ul>
+            <hr class ="hr">
+            <p>外部リンク</p>
+            <div class ="links">
+                {% include "myLink.njk" %}
+            </div>
+            {# フッターロゴ #}
+            <div class="logoImg">
+                <a class ="logoLink" href  = "/">
+                    <img class = "footerLogo resizeImg" src="/images/logo.svg"/>
+                </a>
+            </div>
+            {# copyright #}
+            <p class = "copyright" translate="no">© 2023- ほみ</p>
         </div>
-        {# フッターロゴ #}
-        <div class="logoImg">
-            <a class ="logoLink" href  = "/">
-                <img class = "footerLogo resizeImg" src="/images/logo.svg" />
-            </a>
-        </div>
-        {# copyright #}
-        <p class = "copyright" translate="no">© 2023- ほみ</p>
-    </div>
-</footer>
+    </footer>
