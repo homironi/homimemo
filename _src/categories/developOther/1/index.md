@@ -136,14 +136,14 @@ int i = 0;
 ## リンク
 
 ```md 
-[表示する文字列](url)
+[表示する文字列](url){target=blank .externalLink}
 ```
 
 例えば当サイトのトップページへのリンクを貼ってみます。  
-[当サイトのトップページへのリンク](https://homironi.com/)
+[当サイトのトップページへのリンク](https://homironi.com/){target=blank .externalLink}
 
 ```md 
-[当サイトのトップページへのリンク](https://homironi.com/)
+[当サイトのトップページへのリンク](https://homironi.com/){target=blank .externalLink}
 ```
 このようなかたちで表示したい文字列を半角角括弧でくくり、その隣にurlを半角括弧でくくることでリンクを表示できます。
 

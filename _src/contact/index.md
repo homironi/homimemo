@@ -13,7 +13,7 @@ eleventyNavigation:
 
 ## X（旧：Twitter）
 
-[@homironi](https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fhomironi.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5EhomiRoni&screen_name=homiRoni)  
+[@homironi](https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fhomironi.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5EhomiRoni&screen_name=homiRoni){target=blank .externalLink}  
 ダイレクトメッセージなど。
 
 ## メール
