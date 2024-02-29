@@ -1,0 +1,31 @@
+name: Prettier Commit
+
+on:
+    pull_request:
+        branches: ["*"]
+
+jobs:
+    prettier:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.ACCESS_TOKEN_AUTO_COMMIT }}
+                  ref: ${{ github.head_ref }}
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "14"
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Run Prettier
+              run: npx prettier --write . --config .prettierrc
+
+            - name: Git Auto Commit
+              uses: stefanzweifel/git-auto-commit-action@v5.0.0
+              with:
+                  commit_message: Apply Prettier formatting

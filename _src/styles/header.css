@@ -1,16 +1,16 @@
 .header-inner {
-	width: 100%;
+    width: 100%;
 
-	color: var(--text-color-white);
-	background-color: var(--color-sub);
+    color: var(--text-color-white);
+    background-color: var(--color-sub);
 }
 
 .homeImg img {
-	width: 16em;
+    width: 16em;
 }
 
 @media screen and (max-width: 768px) {
-	.homeImg img {
-		width: 33%;
-	}
+    .homeImg img {
+        width: 33%;
+    }
 }
