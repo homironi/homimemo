@@ -11,6 +11,7 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
               with:
+                  token: ${{ secrets.ACCESS_TOKEN_AUTO_COMMIT }}
                   ref: ${{ github.head_ref }}
 
             - name: Setup Node.js
