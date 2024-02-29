@@ -1,288 +1,288 @@
 .articleDate {
-	color: var(--text-color-black-hover);
-	font-size: 0.8em;
-	text-align: right;
+    color: var(--text-color-black-hover);
+    font-size: 0.8em;
+    text-align: right;
 }
 
 .mainArticle h2::before {
-	display: inline-block;
-	content: "";
-	width: 1.2em;
-	height: 1.2em;
-	position: absolute;
-	left: 0.2em;
+    display: inline-block;
+    content: "";
+    width: 1.2em;
+    height: 1.2em;
+    position: absolute;
+    left: 0.2em;
 
-	background: url(/images/icon_chara_white.svg) no-repeat;
-	background-size: contain;
-	margin-right: 0.2em;
-	vertical-align: middle;
+    background: url(/images/icon_chara_white.svg) no-repeat;
+    background-size: contain;
+    margin-right: 0.2em;
+    vertical-align: middle;
 }
 
 .mainArticle h2::after {
-	position: absolute;
-	content: "";
-	top: 100%;
-	left: 1em;
+    position: absolute;
+    content: "";
+    top: 100%;
+    left: 1em;
 
-	/* 三角形部分 */
-	border: 0.5em solid transparent;
-	border-top: 0.5em solid var(--color-sub);
+    /* 三角形部分 */
+    border: 0.5em solid transparent;
+    border-top: 0.5em solid var(--color-sub);
 }
 
 .mainArticle h2 {
-	font-size: 1.6em;
-	margin-top: 2em;
-	margin-bottom: 1em;
-	padding: 0.4em;
-	padding-left: 1.5em;
+    font-size: 1.6em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    padding: 0.4em;
+    padding-left: 1.5em;
 
-	background-color: var(--color-sub);
-	color: var(--text-color-white);
-	font-weight: normal;
+    background-color: var(--color-sub);
+    color: var(--text-color-white);
+    font-weight: normal;
 
-	/* 三角形のために設定 */
-	position: relative;
+    /* 三角形のために設定 */
+    position: relative;
 }
 
 @media (prefers-color-scheme: dark) {
-	.mainArticle h2 {
-		color: var(--text-color-black);
-	}
+    .mainArticle h2 {
+        color: var(--text-color-black);
+    }
 }
 
 .mainArticle h3::after {
-	display: block;
-	content: "";
-	width: 100%;
-	height: 0.12em;
-	background-color: var(--color-sub);
-	border-radius: 0.1em;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 0.12em;
+    background-color: var(--color-sub);
+    border-radius: 0.1em;
 }
 
 .mainArticle h3 {
-	margin-top: 1em;
-	margin-bottom: 0.5em;
-	font-size: 1.4em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-size: 1.4em;
 }
 
 .mainArticle h4 {
-	margin-top: 1em;
-	font-size: 1.2em;
+    margin-top: 1em;
+    font-size: 1.2em;
 }
 
 .mainArticle p {
-	margin: 1.5em 0;
-	line-height: 1.6;
+    margin: 1.5em 0;
+    line-height: 1.6;
 }
 
 /* リスト共通 */
 .mainArticle > ul,
 .mainArticle > ol {
-	padding: 1em 0;
+    padding: 1em 0;
 }
 
 .mainArticle ul li,
 .mainArticle ol li {
-	margin-bottom: 0.8em;
-	position: relative;
-	padding-left: 2em;
+    margin-bottom: 0.8em;
+    position: relative;
+    padding-left: 2em;
 }
 
 .mainArticle ul li::before,
 .mainArticle ol li::before {
-	position: absolute;
-	left: 0;
-	color: var(--color-sub);
+    position: absolute;
+    left: 0;
+    color: var(--color-sub);
 }
 
 /* 番号ありリスト */
 .mainArticle ol {
-	counter-reset: list-counter; /* カウンターをリセット */
+    counter-reset: list-counter; /* カウンターをリセット */
 }
 
 .mainArticle ol li::before {
-	content: counter(list-counter) ". "; /* カウンターをリストアイテムの前に表示 */
-	counter-increment: list-counter; /* カウンターをインクリメント */
-	font-size: 1.5em;
-	position: absolute;
-	top: -0.22em;
+    content: counter(list-counter) ". "; /* カウンターをリストアイテムの前に表示 */
+    counter-increment: list-counter; /* カウンターをインクリメント */
+    font-size: 1.5em;
+    position: absolute;
+    top: -0.22em;
 }
 
 /* 番号なしリスト */
 .mainArticle ul li::before {
-	content: "●";
-	vertical-align: middle;
+    content: "●";
+    vertical-align: middle;
 }
 
 .mainArticle ul li li::before {
-	content: "○";
+    content: "○";
 }
 
 .mainArticle ul li li li::before {
-	content: "・";
+    content: "・";
 }
 
 .mainArticle ul ul {
-	margin-left: 1em;
+    margin-left: 1em;
 }
 
 /* カスタム番号なしリスト */
 .mainArticle ul.list li {
-	padding-left: 2.5em;
+    padding-left: 2.5em;
 }
 
 .mainArticle ul.list li::before {
-	content: unset;
+    content: unset;
 
-	font-family: "Material Symbols Outlined";
-	font-weight: normal;
-	font-style: normal;
-	font-size: 2em;
-	line-height: 1;
-	letter-spacing: normal;
-	text-transform: none;
-	display: inline-block;
-	white-space: nowrap;
-	word-wrap: normal;
-	direction: ltr;
-	-webkit-font-smoothing: antialiased;
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
 
-	position: absolute;
-	top: -0.1em;
+    position: absolute;
+    top: -0.1em;
 }
 
 /* チェックリストっぽいリストにする */
 .mainArticle .list.checkBox li::before {
-	content: "\f1fe";
+    content: "\f1fe";
 }
 
 .mainArticle .list.checkBox li.unchecked::before {
-	content: "\e835";
+    content: "\e835";
 }
 
 .mainArticle .list.check li::before {
-	content: "\e5ca";
+    content: "\e5ca";
 }
 
 /* インラインコード */
 .mainArticle :not(pre) > code {
-	background-color: var(--color-block-quote);
-	color: var(--text-color-quote);
-	padding: 0.1em 0.4em;
+    background-color: var(--color-block-quote);
+    color: var(--text-color-quote);
+    padding: 0.1em 0.4em;
 }
 
 /* テーブル */
 /* 基本のテーブルスタイル */
 .mainArticle table {
-	width: 100%;
-	border-collapse: collapse;
-	border-spacing: 0;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 /* テーブルヘッダー */
 .mainArticle th {
-	background-color: var(--color-table-header);
-	font-weight: normal;
-	font-size: 1.2em;
-	padding: 0.4em;
-	color: var(--text-color-table-header);
+    background-color: var(--color-table-header);
+    font-weight: normal;
+    font-size: 1.2em;
+    padding: 0.4em;
+    color: var(--text-color-table-header);
 }
 
 /* テーブルセル */
 .mainArticle td {
-	padding: 0.5em;
+    padding: 0.5em;
 }
 
 /* テーブルの奇数行の背景色を変更する */
 .mainArticle tr:nth-child(odd) {
-	background-color: var(--color-table-background-odd);
+    background-color: var(--color-table-background-odd);
 }
 
 /* テーブルの偶数行の背景色を変更する */
 .mainArticle tr:nth-child(even) {
-	background-color: var(--color-table-background-even);
+    background-color: var(--color-table-background-even);
 }
 
 /* マウスホバー時の色変更 */
 .mainArticle tbody > tr:hover {
-	background-color: var(--color-table-background-hover);
+    background-color: var(--color-table-background-hover);
 }
 
 /* ブロック系：記事内に限定しなくてよい */
 .block::before {
-	font-family: "Material Symbols Outlined";
-	font-weight: normal;
-	font-style: normal;
-	font-size: 2em;
-	line-height: 1;
-	letter-spacing: normal;
-	text-transform: none;
-	display: inline-block;
-	white-space: nowrap;
-	word-wrap: normal;
-	direction: ltr;
-	-webkit-font-smoothing: antialiased;
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
 
-	position: absolute;
-	left: 0.4em;
-	top: 0.4em;
+    position: absolute;
+    left: 0.4em;
+    top: 0.4em;
 }
 .block {
-	border-radius: 0.4em;
-	padding: 1em;
-	margin: 1em 0;
+    border-radius: 0.4em;
+    padding: 1em;
+    margin: 1em 0;
 
-	padding-left: 3.2em;
-	position: relative;
+    padding-left: 3.2em;
+    position: relative;
 
-	color: var(--text-color-block);
+    color: var(--text-color-block);
 }
 /* infoBlock */
 .info.block::before {
-	content: "\e88e";
-	color: var(--icon-color-info);
+    content: "\e88e";
+    color: var(--icon-color-info);
 }
 .info.block {
-	background-color: var(--color-block-info);
+    background-color: var(--color-block-info);
 }
 /* warningBlock */
 .warning.block::before {
-	content: "\e002";
-	color: var(--icon-color-warning);
+    content: "\e002";
+    color: var(--icon-color-warning);
 }
 .warning.block {
-	background-color: var(--color-block-warning);
+    background-color: var(--color-block-warning);
 }
 /* quoteBlock */
 blockquote.block::before {
-	content: "\e244";
-	color: var(--icon-color-quote);
+    content: "\e244";
+    color: var(--icon-color-quote);
 }
 blockquote.block {
-	background-color: var(--color-block-quote);
-	color: var(--text-color-quote);
-	border-left: 0.5em solid var(--icon-color-quote);
+    background-color: var(--color-block-quote);
+    color: var(--text-color-quote);
+    border-left: 0.5em solid var(--icon-color-quote);
 }
 
 blockquote.block blockquote {
-	padding-left: 0.4em;
-	border-left: 0.4em solid var(--icon-color-quote);
+    padding-left: 0.4em;
+    border-left: 0.4em solid var(--icon-color-quote);
 }
 
 /* 外部リンクのアイコン */
 .externalLink::before {
-	content: "\e89e";
-	vertical-align: -0.2em;
+    content: "\e89e";
+    vertical-align: -0.2em;
 
-	font-family: "Material Symbols Outlined";
-	font-weight: normal;
-	font-style: normal;
-	line-height: 1;
-	letter-spacing: normal;
-	text-transform: none;
-	display: inline-block;
-	white-space: nowrap;
-	word-wrap: normal;
-	direction: ltr;
-	-webkit-font-smoothing: antialiased;
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
 }

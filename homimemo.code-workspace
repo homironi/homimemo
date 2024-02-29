@@ -1,10 +1,10 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"prettier.configPath": ".prettierrc"
-	}
+    "folders": [
+        {
+            "path": ".",
+        },
+    ],
+    "settings": {
+        "prettier.configPath": ".prettierrc",
+    },
 }

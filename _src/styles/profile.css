@@ -1,21 +1,21 @@
 .profile {
-	padding: 1em;
-	text-align: center;
+    padding: 1em;
+    text-align: center;
 }
 
 .profile > .name {
-	margin: 1em 0;
+    margin: 1em 0;
 }
 
 .profile .resizeImg.icon {
-	width: 12em;
-	margin: 1.5em auto;
+    width: 12em;
+    margin: 1.5em auto;
 }
 
 .profile .myLink {
-	margin: 1em 0;
+    margin: 1em 0;
 }
 
 .profile > .aboutLink > p {
-	margin: 1.2em 0;
+    margin: 1.2em 0;
 }
