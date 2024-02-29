@@ -1,40 +1,40 @@
 .container {
-	margin: 0;
+    margin: 0;
 }
 
 .contentWrapper {
-	padding: 0;
+    padding: 0;
 }
 
 .contentInner {
-	margin: 1em 2em;
-	padding: 1em;
-	background-color: var(--color-main);
+    margin: 1em 2em;
+    padding: 1em;
+    background-color: var(--color-main);
 }
 
 .logo {
-	background-color: var(--color-sub);
+    background-color: var(--color-sub);
 }
 
 .logo img {
-	width: 32em;
-	margin: 0 auto;
+    width: 32em;
+    margin: 0 auto;
 }
 
 .updateInfo {
-	padding: 1em;
+    padding: 1em;
 }
 
 .updateInfo h2 {
-	font-size: 2em;
-	margin-bottom: 1.6em;
-	text-align: center;
+    font-size: 2em;
+    margin-bottom: 1.6em;
+    text-align: center;
 }
 
 .updateInfo h3 {
-	border-bottom: 0.2em dotted var(--color-main-dark);
+    border-bottom: 0.2em dotted var(--color-main-dark);
 }
 
 .pin {
-	width: 3em;
+    width: 3em;
 }
