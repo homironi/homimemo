@@ -1,57 +1,59 @@
 .card img {
-	width: 100%;
+    width: 100%;
 }
 .card .cardContent {
-	margin: 2%;
-	font-size: 0.8em;
+    margin: 2%;
+    font-size: 0.8em;
 }
 .card .cardTitle {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 1; /* Number of lines to display */
-	-webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Number of lines to display */
+    -webkit-box-orient: vertical;
 }
 .card .description {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 3; /* Number of lines to display */
-	-webkit-box-orient: vertical;
-	height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines to display */
+    -webkit-box-orient: vertical;
+    height: 60px;
 }
 
 @media screen and (max-width: 768px) {
-	.card .cardContent {
-		margin: 2%;
-		font-size: 1em;
-	}
+    .card .cardContent {
+        margin: 2%;
+        font-size: 1em;
+    }
 }
 .card a {
-	color: var(--text-color-black);
-	text-decoration: none;
+    color: var(--text-color-black);
+    text-decoration: none;
 }
 
 .card .date {
-	color: var(--text-color-black-hover);
-	text-align: right;
-	margin-top: 2%;
-	font-size: 0.8em;
+    color: var(--text-color-black-hover);
+    text-align: right;
+    margin-top: 2%;
+    font-size: 0.8em;
 }
 
 .card .material-symbols-outlined {
-	font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 .card {
-	background-color: var(--color-main);
-	/* offset-x | offset-y | blur-radius | spread-radius | color */
-	box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
-	transition: transform 0.3s;
+    background-color: var(--color-main);
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius)
+        var(--shadow-color-main);
+    transition: transform 0.3s;
 }
 
 .card:hover {
-	/* offset-x | offset-y | blur-radius | spread-radius | color */
-	box-shadow: 0px 0px calc(var(--shadow-blur-radius) * 0.5) var(--shadow-spread-radius) var(--shadow-color-main-pale);
-	transform: scale(1.02);
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: 0px 0px calc(var(--shadow-blur-radius) * 0.5)
+        var(--shadow-spread-radius) var(--shadow-color-main-pale);
+    transform: scale(1.02);
 }

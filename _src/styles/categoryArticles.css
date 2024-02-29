@@ -1,33 +1,33 @@
 .postListsWrapper {
-	margin: 1em 0;
+    margin: 1em 0;
 }
 
 .postList li {
-	list-style: none;
+    list-style: none;
 }
 
 .postList {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .card {
-	width: calc(50% - 10px);
-	height: 30%;
-	margin-bottom: 4%;
+    width: calc(50% - 10px);
+    height: 30%;
+    margin-bottom: 4%;
 }
 
 /* 横幅が指定ピクセルまで、以下を適用 */
 @media screen and (max-width: 768px) {
-	.postList {
-		display: block;
-	}
+    .postList {
+        display: block;
+    }
 
-	.card {
-		width: 100%;
-		height: 60%;
-		margin: 0;
-	}
+    .card {
+        width: 100%;
+        height: 60%;
+        margin: 0;
+    }
 }

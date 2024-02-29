@@ -1,117 +1,118 @@
 .contentWrapper {
-	-webkit-flex: 4;
-	flex: 6;
-	/* 調整 */
-	width: 1em;
+    -webkit-flex: 4;
+    flex: 6;
+    /* 調整 */
+    width: 1em;
 
-	background-color: var(--color-main);
-	/* offset-x | offset-y | blur-radius | spread-radius | color */
-	box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
+    background-color: var(--color-main);
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius)
+        var(--shadow-color-main);
 }
 
 .mainContainer {
-	display: -webkit-flex;
-	display: flex;
-	margin: 0 auto;
-	padding: 0 1em;
+    display: -webkit-flex;
+    display: flex;
+    margin: 0 auto;
+    padding: 0 1em;
 }
 
 .containerRWrapper {
-	display: flex;
-	flex: 12;
+    display: flex;
+    flex: 12;
 }
 
 .sideLWrapper {
-	-webkit-flex: 2;
-	flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
 }
 
 .sideRWrapper {
-	-webkit-flex: 2;
-	flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
 }
 
 .contentWrapper,
 .sideLWrapper {
-	margin-right: 2em;
+    margin-right: 2em;
 }
 
 /* 横幅が指定ピクセルまで、以下を適用 */
 @media screen and (min-width: 1940px) {
-	/* 横幅1920固定にしたいので、↑を1940からにして横にはみ出さないようにする */
-	.container {
-		width: var(--content-width);
-		margin-left: auto;
-		margin-right: auto;
-	}
+    /* 横幅1920固定にしたいので、↑を1940からにして横にはみ出さないようにする */
+    .container {
+        width: var(--content-width);
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 @media screen and (max-width: 1280px) {
-	.container {
-		width: unset;
-	}
-	.containerRWrapper {
-		display: block;
-		flex: 8;
-		/* 調整 */
-		width: 1em;
-	}
+    .container {
+        width: unset;
+    }
+    .containerRWrapper {
+        display: block;
+        flex: 8;
+        /* 調整 */
+        width: 1em;
+    }
 
-	.mainContainer {
-		width: unset;
-	}
+    .mainContainer {
+        width: unset;
+    }
 
-	/* .containerRWrapper,
+    /* .containerRWrapper,
 	.sideLWrapper {
 		width: auto;
 	} */
-	.sideRWrapper {
-		display: block;
-		margin-top: 1em;
-	}
+    .sideRWrapper {
+        display: block;
+        margin-top: 1em;
+    }
 
-	.contentWrapper {
-		margin-right: 0;
-		/* 調整戻し */
-		width: unset;
-	}
+    .contentWrapper {
+        margin-right: 0;
+        /* 調整戻し */
+        width: unset;
+    }
 }
 
 @media screen and (max-width: 768px) {
-	.mainContainer,
-	.containerRWrapper,
-	.contentWrapper,
-	.sideLWrapper,
-	.sideRWrapper {
-		display: block;
-	}
+    .mainContainer,
+    .containerRWrapper,
+    .contentWrapper,
+    .sideLWrapper,
+    .sideRWrapper {
+        display: block;
+    }
 
-	.contentWrapper,
-	.sideRWrapper {
-		margin: 0;
-	}
+    .contentWrapper,
+    .sideRWrapper {
+        margin: 0;
+    }
 
-	.containerRWrapper,
-	.sideLWrapper,
-	.sideRWrapper {
-		margin: 1em 0;
-	}
+    .containerRWrapper,
+    .sideLWrapper,
+    .sideRWrapper {
+        margin: 1em 0;
+    }
 
-	.mainContainer {
-		padding: 0;
-	}
+    .mainContainer {
+        padding: 0;
+    }
 
-	.containerRWrapper {
-		/* 調整戻し */
-		width: unset;
-	}
+    .containerRWrapper {
+        /* 調整戻し */
+        width: unset;
+    }
 }
 
 .title {
-	margin: 1em 0 0.5em 0;
-	font-size: 1.8em;
+    margin: 1em 0 0.5em 0;
+    font-size: 1.8em;
 }
 
 .content hr {
-	margin: 1em 0;
+    margin: 1em 0;
 }
