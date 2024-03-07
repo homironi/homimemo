@@ -3,5 +3,8 @@
     "tabWidth": 4,
     "semi": true,
     "singleQuote": false,
-    "endOfLine": "crlf"
+    "endOfLine": "crlf",
+    "bracketSameLine": true,
+    "printWidth": 80,
+    "htmlWhitespaceSensitivity": "css"
 }
