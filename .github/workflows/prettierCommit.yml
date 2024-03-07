@@ -1,4 +1,4 @@
-name: Prettier Commit
+name: Prettier PR
 
 on:
     pull_request:
@@ -25,7 +25,17 @@ jobs:
             - name: Run Prettier
               run: npx prettier --write . --config .prettierrc
 
-            - name: Git Auto Commit
-              uses: stefanzweifel/git-auto-commit-action@v5.0.0
+            - name: Create branch
+              run: git checkout -b prettier-format-${{ github.sha }}
+
+            - name: Commit changes
+              run: |
+                  git add .
+                  git commit -m "Apply Prettier formatting"
+                  git push origin HEAD
+
+            - name: Create Pull Request
+              uses: peter-evans/create-pull-request@v3
               with:
-                  commit_message: Apply Prettier formatting
+                  title: Apply Prettier formatting
+                  body: This pull request contains formatting changes applied by Prettier.
