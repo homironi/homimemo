@@ -1,12 +1,100 @@
 ---
-title: ホームページを作る！＃２〜現在の制作環境とツール〜
-description: ホームページを作るシリーズ第二弾では、Windows10を使用して、マークダウン形式で記事内容を作成し、11tyを用いてHTMLに変換する流れを紹介しています。マークダウンとeleventyの利点に加えて、使用しているツールやレンタルサーバーについても詳細に解説しています。SimplenoteやVisual Studio Codeなどの便利なツールを使用することで、効率的かつ柔軟なサイト構築が可能です。また、FileZillaを使ったファイルのアップロードやエックスサーバーを利用したサイトの公開方法についても触れています。さらに、次回はeleventyについて詳しく見ていく予定ですので、お楽しみに！
-headerImg: /images/header/categories/makeWeb/1.png
-date: 2023-11-14
-lastEditDate: 2023-12-20
+title: 【CSS】色をまとめてダークテーマも対応！
+description: CSSにおいて、色の管理とダークテーマへの対応方法について解説しています。色を名前で管理することで、手間を省きながら見た目を統一させることができます。また、ダークモード対応についてもメモしています！
+headerImg: /images/header/categories/makeWeb/2.png
+date: 2024-03-08
 eleventyNavigation:
-    key: ホームページを作る！＃２〜現在の制作環境とツール〜
+    key: 【CSS】色をまとめてダークテーマも対応！
     parent: Web制作
 tags:
     - makeWeb
 ---
+
+cssでは主に見た目の部分を調整することができます。
+
+その中で色を設定することも多くあるでしょう。
+
+直に16進数などで色を指定することもできますが、  
+予め色を決めて名前をつけておいてその名前で呼び出すととても便利でしょう。
+
+例えば、同じ色を複数の場所で使用することがあるとします。
+
+その時に同じ色を使う所が100個もあったら？
+
+手作業ですべてを変更するのはとてもとてもとても大変です。
+
+そこで、色を名前で管理することで  
+1箇所だけ変更すればまとめて変更が反映されるようにしてみます！
+
+## カスタムプロパティで色を管理
+
+[CSS カスタムプロパティ（変数）の使用](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties){target=blank .externalLink}
+
+以下のように記述することで`--hoge`という名前で`#000000`という色を管理できます。
+
+```css
+--hoge-color : #000000
+```
+
+名前は`--【任意の名前】`の形式で指定する必要があります。
+
+そして、これをどこでも使用できるようにするために、`:root`という擬似的なクラス内に記述します。
+
+```css
+:root {
+    --hoge-color : #000000; 
+}
+```
+
+[:root 擬似クラスの使用](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties#root_%E6%93%AC%E4%BC%BC%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AE%E4%BD%BF%E7%94%A8){target=blank .externalLink}
+
+この名前を使って色を指定する際は、以下のように記述します。
+
+```css
+.nanika {
+    color: var(--hoge-color);
+}
+```
+
+`var(【プロパティ名】)`という形で指定できます。
+
+同じ色を使用するところで同じように`--hoge-color`を指定することで、`#000000`を別の色に変えるのも1箇所の変更でよくなります。
+
+
+## ダークテーマ対応
+
+上記のように色をカスタムプロパティで管理するようにすることができれば、あとは簡単です。
+
+ダークモードの時は、`--hoge-color`をダークモードの時に設定したい色に変えればいいのです。
+
+### ダークモードの判定
+[prefers-color-scheme](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme){target=blank .externalLink}というメディア特性を利用します。
+
+以下のように`@media (prefers-color-scheme: dark)`でくくった中に、ダークモードの時に使用したい色に変更します。
+
+```css
+@media (prefers-color-scheme: dark) {
+    .hoge {
+        --hoge-color : #ffffff
+    }
+}
+```
+
+これでダークモードの時は別の色が設定されるので、お手軽にダークモード対応ができます。
+
+### light-dark()
+まだ実験的な機能ですが、便利そうなものを見つけたのでメモしておきます。
+
+[light-dark()](https://developer.mozilla.org/ja/docs/Web/CSS/color_value/light-dark){target=blank .externalLink}という関数です。
+
+```css
+color: light-dark(var(--light), var(--dark));
+```
+こんな感じで使えるので、細かく指定したい部分に役立ちそうです！
+
+## 参考
+[CSS カスタムプロパティ（変数）の使用](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties){target=blank .externalLink}
+
+[prefers-color-scheme](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme){target=blank .externalLink}
+
+[light-dark()](https://developer.mozilla.org/ja/docs/Web/CSS/color_value/light-dark){target=blank .externalLink}
