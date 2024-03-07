@@ -33,7 +33,7 @@ cssでは主に見た目の部分を調整することができます。
 以下のように記述することで`--hoge`という名前で`#000000`という色を管理できます。
 
 ```css
---hoge-color : #000000
+--hoge-color: #000000;
 ```
 
 名前は`--【任意の名前】`の形式で指定する必要があります。
@@ -42,7 +42,7 @@ cssでは主に見た目の部分を調整することができます。
 
 ```css
 :root {
-    --hoge-color : #000000; 
+    --hoge-color: #000000;
 }
 ```
 
@@ -60,7 +60,6 @@ cssでは主に見た目の部分を調整することができます。
 
 同じ色を使用するところで同じように`--hoge-color`を指定することで、`#000000`を別の色に変えるのも1箇所の変更でよくなります。
 
-
 ## ダークテーマ対応
 
 上記のように色をカスタムプロパティで管理するようにすることができれば、あとは簡単です。
@@ -68,6 +67,7 @@ cssでは主に見た目の部分を調整することができます。
 ダークモードの時は、`--hoge-color`をダークモードの時に設定したい色に変えればいいのです。
 
 ### ダークモードの判定
+
 [prefers-color-scheme](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme){target=blank .externalLink}というメディア特性を利用します。
 
 以下のように`@media (prefers-color-scheme: dark)`でくくった中に、ダークモードの時に使用したい色に変更します。
@@ -75,7 +75,7 @@ cssでは主に見た目の部分を調整することができます。
 ```css
 @media (prefers-color-scheme: dark) {
     .hoge {
-        --hoge-color : #ffffff
+        --hoge-color: #ffffff;
     }
 }
 ```
@@ -83,6 +83,7 @@ cssでは主に見た目の部分を調整することができます。
 これでダークモードの時は別の色が設定されるので、お手軽にダークモード対応ができます。
 
 ### light-dark()
+
 まだ実験的な機能ですが、便利そうなものを見つけたのでメモしておきます。
 
 [light-dark()](https://developer.mozilla.org/ja/docs/Web/CSS/color_value/light-dark){target=blank .externalLink}という関数です。
@@ -90,9 +91,11 @@ cssでは主に見た目の部分を調整することができます。
 ```css
 color: light-dark(var(--light), var(--dark));
 ```
+
 こんな感じで使えるので、細かく指定したい部分に役立ちそうです！
 
 ## 参考
+
 [CSS カスタムプロパティ（変数）の使用](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties){target=blank .externalLink}
 
 [prefers-color-scheme](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme){target=blank .externalLink}
