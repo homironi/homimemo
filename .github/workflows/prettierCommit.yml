@@ -25,6 +25,9 @@ jobs:
             - name: Run Prettier
               run: npx prettier --write . --config .prettierrc
 
+            - name: Set git user
+              run: git config --local user.email "github-actions[bot]@users.noreply.github.com" && git config --local user.name "github-actions[bot]"
+
             - name: Create branch
               run: git checkout -b prettier-format-${{ github.sha }}
 
