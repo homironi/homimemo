@@ -25,19 +25,30 @@ jobs:
             - name: Run Prettier
               run: npx prettier --write . --config .prettierrc
 
+            - name: Check for changes
+              id: prettier_changes
+              run: |
+                  if ! git diff-files --quiet; then
+                    echo "::set-output name=has_changes::true"
+                  fi
+
             - name: Set git user
+              if: steps.prettier_changes.outputs.has_changes == 'true'
               run: git config --local user.email "github-actions[bot]@users.noreply.github.com" && git config --local user.name "github-actions[bot]"
 
             - name: Create branch
+              if: steps.prettier_changes.outputs.has_changes == 'true'
               run: git checkout -b prettier-format-${{ github.sha }}
 
             - name: Commit changes
+              if: steps.prettier_changes.outputs.has_changes == 'true'
               run: |
                   git add .
                   git commit -m "Apply Prettier formatting"
                   git push origin HEAD
 
             - name: Create Pull Request
+              if: steps.prettier_changes.outputs.has_changes == 'true'
               uses: peter-evans/create-pull-request@v3
               with:
                   title: Apply Prettier formatting
