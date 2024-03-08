@@ -11,8 +11,13 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
               with:
-                  token: ${{ secrets.ACCESS_TOKEN_AUTO_COMMIT }}
                   ref: ${{ github.head_ref }}
+
+            - name: Get base branch
+              id: base_branch
+              run: echo "::set-output name=branch::${HEAD_REF#refs/heads/}"
+              env:
+                  HEAD_REF: ${{ github.head_ref }}
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
@@ -39,7 +44,9 @@ jobs:
 
             - name: Set git user
               if: steps.prettier_changes.outputs.has_changes == 'true'
-              run: git config --local user.email "github-actions[bot]@users.noreply.github.com" && git config --local user.name "github-actions[bot]"
+              run: |
+                  git config --local user.email "github-actions[bot]@users.noreply.github.com"
+                  git config --local user.name "GitHub Actions"
 
             - name: Create branch
               if: steps.prettier_changes.outputs.has_changes == 'true'
@@ -54,7 +61,10 @@ jobs:
 
             - name: Create Pull Request
               if: steps.prettier_changes.outputs.has_changes == 'true'
-              uses: peter-evans/create-pull-request@v3
+              uses: peter-evans/create-pull-request@v4
               with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  branch: prettier-format-${{ steps.date.outputs.datetime }}
+                  base: ${{ steps.base_branch.outputs.branch }}
                   title: "Apply Prettier formatting ${{ steps.date.outputs.datetime }}"
                   body: This pull request contains formatting changes applied by Prettier.
