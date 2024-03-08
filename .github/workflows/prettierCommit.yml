@@ -58,7 +58,7 @@ jobs:
 
             - name: Create branch
               if: steps.prettier_changes.outputs.has_changes == 'true'
-              run: git checkout -b ${{ steps.formatted_branch_ref.outputs.branch }}
+              run: git checkout -b ${{ steps.formatted_branch_name.outputs.branch }}
 
             - name: Commit changes
               if: steps.prettier_changes.outputs.has_changes == 'true'
@@ -72,7 +72,7 @@ jobs:
               uses: peter-evans/create-pull-request@v4
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
-                  branch: ${{ steps.formatted_branch_ref.outputs.branch }}
+                  branch: ${{ steps.formatted_branch_name.outputs.branch }}
                   base: ${{ steps.base_branch_ref.outputs.branch }}
                   title: "Apply Prettier formatting ${{ steps.date.outputs.datetime }}"
                   body: This pull request contains formatting changes applied by Prettier.
