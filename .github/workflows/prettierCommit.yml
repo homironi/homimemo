@@ -65,6 +65,8 @@ jobs:
 
             - name: Commit changes
               if: steps.prettier_changes.outputs.has_changes == 'true'
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
                   git add .
                   git commit -m "Apply Prettier formatting ${{ steps.date.outputs.datetime }}"
