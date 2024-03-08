@@ -13,11 +13,6 @@ jobs:
               with:
                   ref: ${{ github.head_ref }}
 
-            - name: Get current date and time (JST)
-              if: steps.prettier_changes.outputs.has_changes == 'true'
-              id: date
-              run: echo "datetime=$(TZ=Asia/Tokyo date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_OUTPUT
-
             - name: Get base branch
               id: base_branch_ref
               run: echo "branch=${HEAD_REF#refs/heads/}" >> $GITHUB_OUTPUT
@@ -28,10 +23,6 @@ jobs:
               id: base_branch_name
               run: echo "branch=${{ github.base_ref }}" >> $GITHUB_OUTPUT
             
-            - name: Setup formatted branch name
-              id: formatted_branch_name
-              run: echo "branch=${{ steps.base_branch_ref.outputs.branch }}-prettier-format/${{ steps.date.outputs.datetime }}" >> $GITHUB_OUTPUT
-
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
@@ -55,6 +46,15 @@ jobs:
               run: |
                   git config user.email "github-actions[bot]@users.noreply.github.com"
                   git config user.name "GitHub Actions"
+
+            - name: Get current date and time (JST)
+              if: steps.prettier_changes.outputs.has_changes == 'true'
+              id: date
+              run: echo "datetime=$(TZ=Asia/Tokyo date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_OUTPUT
+
+            - name: Setup formatted branch name
+              id: formatted_branch_name
+              run: echo "branch=${{ steps.base_branch_ref.outputs.branch }}-prettier-format/${{ steps.date.outputs.datetime }}" >> $GITHUB_OUTPUT
 
             - name: Create branch
               if: steps.prettier_changes.outputs.has_changes == 'true'
