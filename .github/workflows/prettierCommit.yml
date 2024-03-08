@@ -22,6 +22,10 @@ jobs:
             - name: Get base branch name
               id: base_branch_name
               run: echo "branch=${{ github.base_ref }}" >> $GITHUB_OUTPUT
+            
+            - name: Setup formatted branch name
+              id: formatted_branch_name
+              run: echo "branch=${{ steps.base_branch_ref.outputs.branch }}-prettier-format/${{ steps.date.outputs.datetime }}" >> $GITHUB_OUTPUT
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
@@ -54,7 +58,7 @@ jobs:
 
             - name: Create branch
               if: steps.prettier_changes.outputs.has_changes == 'true'
-              run: git checkout -b ${{ steps.base_branch_ref.outputs.branch }}-prettier-format/${{ steps.date.outputs.datetime }}
+              run: git checkout -b ${{ steps.formatted_branch_ref.outputs.branch }}
 
             - name: Commit changes
               if: steps.prettier_changes.outputs.has_changes == 'true'
@@ -68,7 +72,7 @@ jobs:
               uses: peter-evans/create-pull-request@v4
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
-                  branch: ${{ steps.base_branch_ref.outputs.branch }}/prettier-format-${{ steps.date.outputs.datetime }}
+                  branch: ${{ steps.formatted_branch_ref.outputs.branch }}
                   base: ${{ steps.base_branch_ref.outputs.branch }}
                   title: "Apply Prettier formatting ${{ steps.date.outputs.datetime }}"
                   body: This pull request contains formatting changes applied by Prettier.
