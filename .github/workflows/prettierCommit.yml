@@ -21,7 +21,7 @@ jobs:
 
             - name: Get base branch name
               id: base_branch_name
-              run: echo "branch=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+              run: echo "branch=${{ github.base_ref }}" >> $GITHUB_OUTPUT
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
