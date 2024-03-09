@@ -4,9 +4,9 @@ var _self =
         "undefined" != typeof window
             ? window
             : "undefined" != typeof WorkerGlobalScope &&
-                self instanceof WorkerGlobalScope
-              ? self
-              : {},
+              self instanceof WorkerGlobalScope
+            ? self
+            : {},
     Prism = (function (e) {
         var n = /(?:^|\s)lang(?:uage)?-([\w-]+)(?=\s|$)/i,
             t = 0,
@@ -20,11 +20,11 @@ var _self =
                         return n instanceof i
                             ? new i(n.type, e(n.content), n.alias)
                             : Array.isArray(n)
-                              ? n.map(e)
-                              : n
-                                    .replace(/&/g, "&amp;")
-                                    .replace(/</g, "&lt;")
-                                    .replace(/\u00a0/g, " ");
+                            ? n.map(e)
+                            : n
+                                  .replace(/&/g, "&amp;")
+                                  .replace(/</g, "&lt;")
+                                  .replace(/\u00a0/g, " ");
                     },
                     type: function (e) {
                         return Object.prototype.toString.call(e).slice(8, -1);
@@ -451,8 +451,8 @@ var _self =
             "loading" === h || ("interactive" === h && g && g.defer)
                 ? document.addEventListener("DOMContentLoaded", f)
                 : window.requestAnimationFrame
-                  ? window.requestAnimationFrame(f)
-                  : window.setTimeout(f, 16);
+                ? window.requestAnimationFrame(f)
+                : window.setTimeout(f, 16);
         }
         return a;
     })(_self);
@@ -2644,15 +2644,15 @@ Prism.languages.mermaid = {
                                                       Prism.highlightElement(s);
                                               })(r.responseText)
                                             : r.status >= 400
-                                              ? a(
-                                                    "✖ Error " +
-                                                        r.status +
-                                                        " while fetching file: " +
-                                                        r.statusText
-                                                )
-                                              : a(
-                                                    "✖ Error: File does not exist or is empty"
-                                                ));
+                                            ? a(
+                                                  "✖ Error " +
+                                                      r.status +
+                                                      " while fetching file: " +
+                                                      r.statusText
+                                              )
+                                            : a(
+                                                  "✖ Error: File does not exist or is empty"
+                                              ));
                                 }),
                                 r.send(null);
                         })(r, 0, function (t) {
@@ -2707,11 +2707,10 @@ Prism.languages.mermaid = {
                                             }
                                         ))
                                       : "string" == typeof a.url
-                                        ? ((t =
-                                              document.createElement(
-                                                  "a"
-                                              )).href = a.url)
-                                        : (t = document.createElement("span")),
+                                      ? ((t =
+                                            document.createElement("a")).href =
+                                            a.url)
+                                      : (t = document.createElement("span")),
                                   a.className && t.classList.add(a.className),
                                   (t.textContent = a.text),
                                   t
