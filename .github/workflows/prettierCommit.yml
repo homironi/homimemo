@@ -13,7 +13,12 @@ jobs:
               with:
                   token: ${{ secrets.ACCESS_TOKEN_AUTO_COMMIT }}
                   ref: ${{ github.head_ref }}
-                  fetch-depth: 0 # 履歴全体を取得するため
+
+            - name: Checkout pull request base code
+              uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.ACCESS_TOKEN_AUTO_COMMIT }}
+                  ref: ${{ github.base_ref }}
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
@@ -26,8 +31,12 @@ jobs:
             - name: Get changed files
               id: changed-files
               run: |
-                  changed_files=$(git diff --name-only --diff-filter=d HEAD~1)
-                  echo "::set-output name=files::$changed_files"
+                  BASE_BRANCH=${{ github.base_ref }}
+                  HEAD_BRANCH=${{ github.head_ref }}
+                  changed_files=$(git diff --name-only --diff-filter=d $BASE_BRANCH...$HEAD_BRANCH)
+                  echo "files<<EOF" >> $GITHUB_OUTPUT
+                  echo "$changed_files" >> $GITHUB_OUTPUT
+                  echo "EOF" >> $GITHUB_OUTPUT
 
             - name: Run Prettier
               if: steps.changed-files.outputs.files
