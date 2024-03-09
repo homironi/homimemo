@@ -27,7 +27,7 @@ jobs:
               id: changed-files
               run: |
                   changed_files=$(git diff --name-only --diff-filter=d HEAD~1)
-                  echo "files=$changed_files" >> $GITHUB_ENV
+                  echo "files=$changed_files" >> $GITHUB_OUTPUT
 
             - name: Run Prettier
               if: steps.changed-files.outputs.files
