@@ -16,6 +16,6 @@
     "requirePragma": false,
     "proseWrap": "preserve",
     "useTabs": false,
-}
     "vueIndentScriptAndStyle": false,
     "singleAttributePerLine": false
+}
