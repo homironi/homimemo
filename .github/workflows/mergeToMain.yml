@@ -1,0 +1,20 @@
+name: Merge develop into main
+
+on:
+    workflow_dispatch: # 手動実行トリガー
+
+jobs:
+    merge:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Merge develop -> main
+              run: |
+                  git config --global user.name 'GitHub Actions Bot'
+                  git config --global user.email 'actions@github.com'
+                  git checkout main
+                  git pull origin main
+                  git merge origin/develop --no-ff --no-edit
+                  git push
