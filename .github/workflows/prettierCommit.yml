@@ -1,4 +1,4 @@
-name: Prettier Commit
+name: Prettier Check
 
 on:
     pull_request:
@@ -13,12 +13,7 @@ jobs:
               with:
                   token: ${{ secrets.ACCESS_TOKEN_AUTO_COMMIT }}
                   ref: ${{ github.head_ref }}
-
-            - name: Checkout pull request base code
-              uses: actions/checkout@v4
-              with:
-                  token: ${{ secrets.ACCESS_TOKEN_AUTO_COMMIT }}
-                  ref: ${{ github.base_ref }}
+                  fetch-depth: 0
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
@@ -38,15 +33,28 @@ jobs:
                   echo "$changed_files" >> $GITHUB_OUTPUT
                   echo "EOF" >> $GITHUB_OUTPUT
 
-            - name: Run Prettier
+            - name: Run Prettier check
+              id: prettier-check
               if: steps.changed-files.outputs.files
-              run: npx prettier --write ${{ steps.changed-files.outputs.files }} --config .prettierrc
+              run: |
+                  diff=$(npx prettier --list-different ${{ steps.changed-files.outputs.files }} --config .prettierrc)
+                  echo "diff<<EOF" >> $GITHUB_OUTPUT
+                  echo "$diff" >> $GITHUB_OUTPUT
+                  echo "EOF" >> $GITHUB_OUTPUT
 
-            - name: Git Auto Commit
-              if: steps.changed-files.outputs.files
-              uses: stefanzweifel/git-auto-commit-action@v5
+            - name: Comment on PR
+              if: steps.prettier-check.outputs.diff
+              uses: actions/github-script@v6
               with:
-                  commit_message: Apply Prettier formatting
-                  commit_user_name: GitHub Actions
-                  commit_user_email: github-actions[bot]@users.noreply.github.com
-                  commit_author: GitHub Actions <github-actions[bot]@users.noreply.github.com>
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  script: |
+                      const diff = `${{ steps.prettier-check.outputs.diff }}`;
+                      const diffLines = diff.split('\n').filter(line => line.trim() !== '');
+                      if (diffLines.length > 0) {
+                        github.rest.issues.createComment({
+                          issue_number: context.issue.number,
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          body: `Prettier suggests the following changes:\n\`\`\`diff\n${diff}\n\`\`\``
+                        });
+                      }
