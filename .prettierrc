@@ -3,10 +3,11 @@
     "tabWidth": 4,
     "semi": true,
     "singleQuote": false,
-    "endOfLine": "crlf",
+    "endOfLine": "auto",
     "printWidth": 80,
     "arrowParens": "always",
     "bracketSpacing": true,
+    "bracketSameLine": true,
     "embeddedLanguageFormatting": "auto",
     "htmlWhitespaceSensitivity": "strict",
     "insertPragma": false,
@@ -15,5 +16,6 @@
     "requirePragma": false,
     "proseWrap": "preserve",
     "useTabs": false,
-    "vueIndentScriptAndStyle": false
 }
+    "vueIndentScriptAndStyle": false,
+    "singleAttributePerLine": false
