@@ -13,6 +13,7 @@ jobs:
               with:
                   token: ${{ secrets.ACCESS_TOKEN_AUTO_COMMIT }}
                   ref: ${{ github.head_ref }}
+                  fetch-depth: 0 # 履歴全体を取得するため
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
@@ -22,10 +23,21 @@ jobs:
             - name: Install dependencies
               run: npm install
 
+            - name: Get changed files
+              id: changed-files
+              run: |
+                  changed_files=$(git diff --name-only --diff-filter=d HEAD~1)
+                  echo "files=$changed_files"
+
             - name: Run Prettier
-              run: npx prettier --write . --config .prettierrc
+              if: steps.changed-files.outputs.files
+              run: npx prettier --write ${{ steps.changed-files.outputs.files }} --config .prettierrc
 
             - name: Git Auto Commit
-              uses: stefanzweifel/git-auto-commit-action@v5.0.0
+              if: steps.changed-files.outputs.files
+              uses: stefanzweifel/git-auto-commit-action@v5
               with:
                   commit_message: Apply Prettier formatting
+                  commit_user_name: GitHub Actions
+                  commit_user_email: github-actions[bot]@users.noreply.github.com
+                  commit_author: GitHub Actions <github-actions[bot]@users.noreply.github.com>
