@@ -15,6 +15,5 @@
     "requirePragma": false,
     "proseWrap": "preserve",
     "useTabs": false,
-    "vueIndentScriptAndStyle": false,
-    "parser": "babel"
+    "vueIndentScriptAndStyle": false
 }
