@@ -42,7 +42,8 @@ div.hamburgerMenuWrapper {
     border: solid var(--color-sub-light) 0.1em;
 
     /* offset-x | offset-y | blur-radius | spread-radius | color */
-    box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius)
+    box-shadow:
+        0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius)
             var(--shadow-color-common),
         0 0 0 0.08em var(--color-sub-dark);
 }
