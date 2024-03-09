@@ -1,27 +1,25 @@
 {% macro card(post) %}
     <div class="card">
         <a href ="{{ post.url }}" class ="cardInner">
-            <img 
-            src="{{ post.data.headerImg }}" 
-            alt= "{{ post.data.headerImgAlt }}"
+            <img src="{{ post.data.headerImg }}" alt= "{{ post.data.headerImgAlt }}">
             <div class ="cardContent">
                 <h3 class = "cardTitle">{{ post.data.title }}</h3>
-            <p class ="description">{{ post.data.description }}</p>
-            <div class = "date">
-                {# 公開日 #}
-                <span class="publicationDate material-symbols-outlined"></span>
-                <time datetime={{post.date | dateFormat}}>
-                    {{post.date | dateFormat | dateFormatJapanese}}
-                </time>
-                {% if post.data.lastEditDate%}
-                    {# 更新日 #}
-                    <span class="lastEdit material-symbols-outlined"></span>
-                    <time datetime={{post.data.lastEditDate | dateFormat}}>
-                        {{post.data.lastEditDate | dateFormat | dateFormatJapanese}}
+                <p class ="description">{{ post.data.description }}</p>
+                <div class = "date">
+                    {# 公開日 #}
+                    <span class="publicationDate material-symbols-outlined"></span>
+                    <time datetime={{post.date | dateFormat}}>
+                        {{post.date | dateFormat | dateFormatJapanese}}
                     </time>
-                {% endif %}
+                    {% if post.data.lastEditDate%}
+                        {# 更新日 #}
+                        <span class="lastEdit material-symbols-outlined"></span>
+                        <time datetime={{post.data.lastEditDate | dateFormat}}>
+                            {{post.data.lastEditDate | dateFormat | dateFormatJapanese}}
+                        </time>
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    </a>
-</div>
+        </a>
+    </div>
 {% endmacro %}
