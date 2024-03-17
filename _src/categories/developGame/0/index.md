@@ -40,7 +40,7 @@ tags:
 -   設定した値：`ProjectDebugTitle`
 -   記事内では「デバッグタイトル情報」と呼びます
 
-![プロジェクト設定](/images/articleImages/categories/projectSetting.png)
+![プロジェクト設定](/images/articleImages/categories/developGame/0/projectSetting.png)
 
 ## 結果
 
@@ -55,7 +55,7 @@ tags:
 
 フルスクリーンだけに対応予定でも設定しておくとよいでしょう。
 
-![ウィンドウタイトルの比較](/images/articleImages/categories/windowTitle.png)
+![ウィンドウタイトルの比較](/images/articleImages/categories/developGame/0/windowTitle.png)
 
 #### develop
 
@@ -69,7 +69,7 @@ tags:
 
 上が develop 、下が shipping です。
 
-![タスクマネージャーの比較](/images/articleImages/categories/taskManager.png)
+![タスクマネージャーの比較](/images/articleImages/categories/developGame/0/taskManager.png)
 
 #### develop
 
@@ -85,7 +85,7 @@ tags:
 
 上が develop 、下が shipping です。
 
-![タスクバー右クリックの比較](/images/articleImages/categories/taskBar_RClick.png)
+![タスクバー右クリックの比較](/images/articleImages/categories/developGame/0/taskBar_RClick.png)
 
 #### develop
 
@@ -99,7 +99,7 @@ tags:
 
 上が develop 、下が shipping です。
 
-![タスクバーマウスオーバー時の比較](/images/articleImages/categories/taskBar_hover.png)
+![タスクバーマウスオーバー時の比較](/images/articleImages/categories/developGame/0/taskBar_hover.png)
 
 #### develop
 
