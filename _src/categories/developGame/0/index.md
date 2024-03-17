@@ -28,19 +28,25 @@ tags:
 
 それぞれの設定は以下の通りです。
 
+![プロジェクト設定](/images/articleImages/categories/developGame/0/projectSetting.png)
+
+### プロジェクト名
+
 -   設定箇所：`プロジェクト設定 ＞ 説明 ＞ Unreal Editorについて ＞ プロジェクト名`
 -   設定した値：`ProjectName`
 -   記事内では「プロジェクト名」と呼びます
+
+### プロジェクトタイトル
 
 -   設定箇所：`プロジェクト設定 ＞ 説明 ＞ 表示 ＞ プロジェクトが表示されたタイトル`
 -   設定した値：`ProjectViewTitle`
 -   記事内では「プロジェクトタイトル」と呼びます
 
+### デバッグタイトル情報
+
 -   設定した箇所：`プロジェクト設定 ＞ 説明 ＞ 表示 ＞ プロジェクトデバッグタイトル情報`
 -   設定した値：`ProjectDebugTitle`
 -   記事内では「デバッグタイトル情報」と呼びます
-
-![プロジェクト設定](/images/articleImages/categories/developGame/0/projectSetting.png)
 
 ## 結果
 
