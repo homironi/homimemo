@@ -49,6 +49,13 @@
         var(--shadow-color-main);
 }
 
+.mainArticle code:not(pre code) {
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
+
 @media (prefers-color-scheme: dark) {
     .mainArticle h2 {
         color: var(--text-color-black);
