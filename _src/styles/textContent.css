@@ -44,6 +44,11 @@
     position: relative;
 }
 
+.mainArticle img {
+    box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius)
+        var(--shadow-color-main);
+}
+
 @media (prefers-color-scheme: dark) {
     .mainArticle h2 {
         color: var(--text-color-black);
