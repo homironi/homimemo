@@ -1,4 +1,4 @@
-html {
+:root {
     font-family: "Kosugi Maru", sans-serif;
 
     background-color: var(--color-main);
@@ -10,25 +10,25 @@ html {
 
 /* 背景画像だけ個別でダークテーマ設定 */
 @media (prefers-color-scheme: dark) {
-    html {
+    :root {
         background-image: url(/images/background_dark.svg);
     }
 }
 
-.container {
+.container-wrapper {
     margin: 32px 0;
 }
 
-.contentWrapper {
+.content-wrapper {
     padding: 1.5em;
 }
 
-.resizeImg img {
+.resizable-img img {
     width: 100%;
 }
 
 @media screen and (max-width: 768px) {
-    html {
+    :root {
         font-size: 0.8em;
     }
 }

@@ -1,4 +1,4 @@
-div.navigationBar {
+div.navigation-bar {
     position: relative;
     z-index: 1;
 }
@@ -6,7 +6,7 @@ div.navigationBar {
 /**
 * ハンバーガーメニューのラッパー
 */
-div.hamburgerMenuWrapper {
+div.hamburger-menu-wrapper {
     /* ハンバーガーメニューを表示する */
     display: block;
     width: 60%;
@@ -129,7 +129,7 @@ div.hamburgerMenuWrapper {
 }
 
 /* メニューリスト */
-.menuList {
+.menu-list {
     /* 通常時は非表示 */
     display: none;
     background-color: var(--color-sub);
@@ -138,49 +138,49 @@ div.hamburgerMenuWrapper {
 }
 
 /* ナビゲーションボタンがクリックされた時のメニュー */
-#menu-toggle:checked ~ .menuList {
+#menu-toggle:checked ~ .menu-list {
     /* ナビゲーションメニューのボタンがクリックされたら表示 */
     display: block;
     opacity: 100%;
 }
 
 /* メニューのリスト */
-.hamburgerMenuInner {
+.hamburger-menu-inner {
     margin: 2%;
 }
 
-.hamburgerMenuInner ul {
+.hamburger-menu-inner ul {
     list-style: none;
     margin: 0;
 }
 
-.hamburgerMenuInner ul li a {
+.hamburger-menu-inner ul li a {
     padding: 10px;
 }
 
-.menuList ul li:hover > ul {
+.menu-list ul li:hover > ul {
     display: block;
     width: 100%;
 }
 
 /* リンクの装飾 */
-.menuList ul {
+.menu-list ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.menuList ul li {
+.menu-list ul li {
     position: relative;
 }
 
 /* ホバーされた子要素 */
-.menuList ul li:hover > ul {
+.menu-list ul li:hover > ul {
     display: none;
     width: 100%;
 }
 
-.menuList ul li a {
+.menu-list ul li a {
     display: block;
     position: relative;
     text-decoration: none;
@@ -191,28 +191,28 @@ div.hamburgerMenuWrapper {
 
 @media (prefers-color-scheme: dark) {
     /* ダークテーマもでも白文字になるように、ダークテーマでの白文字を指定 */
-    .menuList ul li a {
+    .menu-list ul li a {
         color: var(--text-color-black);
     }
 }
-.menuList ul ul {
+.menu-list ul ul {
     display: none;
 }
 
 /* カテゴリーだけカテゴリの中身を表示するように */
-.menuList .categories li {
+.menu-list .categories li {
     display: none;
 }
 
-.menuList .categories ul,
-.menuList .categories ul li {
+.menu-list .categories ul,
+.menu-list .categories ul li {
     display: block;
 }
 
-.menuList ul li a:hover {
+.menu-list ul li a:hover {
     background-color: var(--color-black-area-hover);
 }
 
-.menuList ul li a:hover::before {
+.menu-list ul li a:hover::before {
     content: "▼";
 }
