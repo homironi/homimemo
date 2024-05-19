@@ -95,6 +95,8 @@ module.exports = function (eleventyConfig) {
                 rightDelimiter: "}",
                 allowedAttributes: [], // empty array = all attributes are allowed
             })
+            // div をマークダウンでかけるように `:::` でコードブロックのように囲む
+            .use(require("markdown-it-div"))
     );
 
     // ----addPlugin----
