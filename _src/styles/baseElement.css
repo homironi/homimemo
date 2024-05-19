@@ -17,7 +17,7 @@
     --text-color-black: #111111;
     --text-color-black-hover: #858585;
     --shadow-color-common: #56389c31;
-    /* block color */
+    /* text-block color */
     --text-color-block: #111111;
     --color-block-info: #c8e5ff;
     --icon-color-info: #2875da;
@@ -61,7 +61,7 @@
         /* table color */
         --color-table-background-even: #484b4d;
         --color-table-background-hover: #767e83;
-        /* block color */
+        /* text-block color */
         --color-block-info: #b2d0e9;
         --color-block-warning: #e2dbbe;
         --color-block-quote: #d8d8d8;
