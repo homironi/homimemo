@@ -20,9 +20,10 @@ tags:
 
 それぞれの詳細は今回の記事で大枠を掴んでから、別の回で詳細にメモしていきます。
 
+::: text-block--type-warning text-block
 記事執筆時に使用している OS は Windows10 です。  
 記事内で Windows、もしくは PC という単語が出た場合に指す OS は Windows10 です。
-{.text-block--type-warning .text-block}
+:::
 
 ## 記事を読む前に：2023/12/20 追記
 
