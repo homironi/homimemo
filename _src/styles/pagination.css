@@ -1,12 +1,12 @@
 /* ページネーションナビゲーション */
-.pagiNav {
+.page-navigation {
     margin: 1em 0;
     text-align: center;
     display: flex;
     align-items: flex-end;
     justify-content: center;
 }
-.pagiNav li {
+.page-navigation li {
     list-style: none;
     display: inline-block;
     margin: 0 0.2em;
@@ -18,11 +18,11 @@
     transition: transform 0.3s;
 }
 
-.pagiNav li:hover {
+.page-navigation li:hover {
     transform: scale(1.1);
 }
 
-.pagiNav li a {
+.page-navigation li a {
     text-decoration: none;
     display: inline-block;
     width: 1.3em;
@@ -31,18 +31,18 @@
     color: var(--color-sub);
 }
 
-.pagiNav .current {
+.page-navigation .current {
     font-size: 1.8em;
 
     background-color: var(--color-sub);
 }
 
-.pagiNav .current a {
+.page-navigation .current a {
     color: var(--text-color-white);
 }
 
-.pagiNav .between,
-.pagiNav .between:hover {
+.page-navigation .between,
+.page-navigation .between:hover {
     background-color: unset;
     color: var(--color-sub);
     border: none;

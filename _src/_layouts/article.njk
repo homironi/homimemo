@@ -9,55 +9,55 @@ headerImg: https://placehold.jp/896x504.png
     <link rel="stylesheet" href="/styles/textContent.css" />
     <link rel="stylesheet" href="/styles/tableOfContent.css" />
     {%- endblock%}
-    <main class="mainContainer">
-        <div class="sideLWrapper">
-            <div class="sideLInner">
+    <main class="main-container">
+        <div class="side-l-wrapper">
+            <div class="side-l-inner">
                 {% include "shareButtons.njk" %}
                 {% include "toc.njk" %}
             </div>
         </div>
-        <div class = "containerRWrapper">
-            <div class="contentWrapper">
-                <div class="articleInner">
+        <div class = "container-r-wrapper">
+            <div class="content-wrapper">
+                <div class="article-inner">
                     <section class="articleHeader">
                         {% include "breadcrumb.njk" %}
-                        <h1 class = "title">{{ title }}</h1>
-                        <div class = "articleDate">
+                        <div class = "article-date-wrapper">
                             {# 公開日 #}
-                            <time datetime={{page.date | dateFormat}} >
-                                <span class = "publicationDate material-symbols-outlined"></span>
+                            <time datetime={{page.date | dateFormat}} class = "article-date">
+                                <span class = "publication-date material-symbols-outlined"></span>
                                 <span>{{page.date | dateFormat | dateFormatJapanese}}</span>
                             </time>
                             {% if lastEditDate%}
                                 {# 更新日 #}
-                                <time datetime={{lastEditDate | dateFormat}}>
-                                    <span class="lastEdit material-symbols-outlined"></span>
+                                <time datetime={{lastEditDate | dateFormat}} class = "article-date">
+                                    <span class="last-edit-date material-symbols-outlined"></span>
                                     <span>{{lastEditDate | dateFormat | dateFormatJapanese}}</span>
                                 </time>
                             {% endif %}
                         </div>
+                        <h1 class = "column-title">{{ title }}</h1>
                         {%if headerImg%}
                             {# 記事のヘッダー画像 #}
-                            <div class="resizeImg">
+                            <div class="resizable-img">
                                 <img src= {{headerImg}} />
                             </div>
                             {%endif%}
                         </section>
                         {% include "toc.njk" %}
-                        <section class="content">
-                            <article class="mainArticle">
+                        <section class="content-container">
+                            <article class="main-article">
                                 {# 記事内容が入ります #}
                                 {{content | safe}}
                             </article>
                         </section>
                         <hr>
-                        <section class="articleFooter">
+                        <section class="article-footer">
                             {% include "shareButtons.njk" %}
                             {% include "categoryList.njk" %}
                         </section>
                     </div>
                 </div>
-                <div class="sideRWrapper">
+                <div class="side-r-wrapper">
                     {% include "sideRInner.njk" %}
                 </div>
             </div>

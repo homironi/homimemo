@@ -1,4 +1,4 @@
-.postListsWrapper {
+.post-lists-wrapper {
     margin: 1em 0;
 }
 
@@ -6,7 +6,7 @@
     list-style: none;
 }
 
-.postList {
+.post-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -21,7 +21,7 @@
 
 /* 横幅が指定ピクセルまで、以下を適用 */
 @media screen and (max-width: 768px) {
-    .postList {
+    .post-list {
         display: block;
     }
 
