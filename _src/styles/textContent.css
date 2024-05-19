@@ -221,7 +221,7 @@
 }
 
 /* ブロック系：記事内に限定しなくてよい */
-.block::before {
+.text-block::before {
     font-family: "Material Symbols Outlined";
     font-weight: normal;
     font-style: normal;
@@ -239,7 +239,7 @@
     left: 0.4em;
     top: 0.4em;
 }
-.block {
+.text-block {
     border-radius: 0.4em;
     padding: 1em;
     margin: 1em 0;
@@ -249,34 +249,34 @@
 
     color: var(--text-color-block);
 }
-/* infoBlock */
-.info.block::before {
+/* text-block--infoBlock */
+.text-block--info.text-block::before {
     content: "\e88e";
     color: var(--icon-color-info);
 }
-.info.block {
+.text-block--info.text-block {
     background-color: var(--color-block-info);
 }
-/* warningBlock */
-.warning.block::before {
+/* text-block--type-warningBlock */
+.text-block--type-warning.text-block::before {
     content: "\e002";
     color: var(--icon-color-warning);
 }
-.warning.block {
+.text-block--type-warning.text-block {
     background-color: var(--color-block-warning);
 }
 /* quoteBlock */
-blockquote.block::before {
+blockquote.text-block::before {
     content: "\e244";
     color: var(--icon-color-quote);
 }
-blockquote.block {
+blockquote.text-block {
     background-color: var(--color-block-quote);
     color: var(--text-color-quote);
     border-left: 0.5em solid var(--icon-color-quote);
 }
 
-blockquote.block blockquote {
+blockquote.text-block blockquote {
     padding-left: 0.4em;
     border-left: 0.4em solid var(--icon-color-quote);
 }
