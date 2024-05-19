@@ -117,4 +117,4 @@ tags:
 
 ## 参考
 
--   [プロジェクト設定](https://docs.unrealengine.com/5.3/en-US/project-section-of-the-unreal-engine-project-settings/){target=blank .externalLink}
+-   [プロジェクト設定](https://docs.unrealengine.com/5.3/en-US/project-section-of-the-unreal-engine-project-settings/){target=blank .external-link}

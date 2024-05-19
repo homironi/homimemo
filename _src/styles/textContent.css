@@ -1,10 +1,10 @@
-.articleDate {
+.article-date {
     color: var(--text-color-black-hover);
     font-size: 0.8em;
     text-align: right;
 }
 
-.mainArticle h2::before {
+.main-article h2::before {
     display: inline-block;
     content: "";
     width: 1.2em;
@@ -18,7 +18,7 @@
     vertical-align: middle;
 }
 
-.mainArticle h2::after {
+.main-article h2::after {
     position: absolute;
     content: "";
     top: 100%;
@@ -29,7 +29,7 @@
     border-top: 0.5em solid var(--color-sub);
 }
 
-.mainArticle h2 {
+.main-article h2 {
     font-size: 1.6em;
     margin-top: 2em;
     margin-bottom: 1em;
@@ -44,12 +44,12 @@
     position: relative;
 }
 
-.mainArticle img {
+.main-article img {
     box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius)
         var(--shadow-color-main);
 }
 
-.mainArticle code:not(pre code) {
+.main-article code:not(pre code) {
     font-family: "Source Code Pro", monospace;
     font-optical-sizing: auto;
     font-weight: normal;
@@ -57,12 +57,12 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    .mainArticle h2 {
+    .main-article h2 {
         color: var(--text-color-black);
     }
 }
 
-.mainArticle h3::after {
+.main-article h3::after {
     display: block;
     content: "";
     width: 100%;
@@ -71,48 +71,48 @@
     border-radius: 0.1em;
 }
 
-.mainArticle h3 {
+.main-article h3 {
     margin-top: 1em;
     margin-bottom: 0.5em;
     font-size: 1.4em;
 }
 
-.mainArticle h4 {
+.main-article h4 {
     margin-top: 1em;
     font-size: 1.2em;
 }
 
-.mainArticle p {
+.main-article p {
     margin: 1.5em 0;
     line-height: 1.6;
 }
 
 /* リスト共通 */
-.mainArticle > ul,
-.mainArticle > ol {
+.main-article > ul,
+.main-article > ol {
     padding: 1em 0;
 }
 
-.mainArticle ul li,
-.mainArticle ol li {
+.main-article ul li,
+.main-article ol li {
     margin-bottom: 0.8em;
     position: relative;
     padding-left: 2em;
 }
 
-.mainArticle ul li::before,
-.mainArticle ol li::before {
+.main-article ul li::before,
+.main-article ol li::before {
     position: absolute;
     left: 0;
     color: var(--color-sub);
 }
 
 /* 番号ありリスト */
-.mainArticle ol {
+.main-article ol {
     counter-reset: list-counter; /* カウンターをリセット */
 }
 
-.mainArticle ol li::before {
+.main-article ol li::before {
     content: counter(list-counter) ". "; /* カウンターをリストアイテムの前に表示 */
     counter-increment: list-counter; /* カウンターをインクリメント */
     font-size: 1.5em;
@@ -121,29 +121,29 @@
 }
 
 /* 番号なしリスト */
-.mainArticle ul li::before {
+.main-article ul li::before {
     content: "●";
     vertical-align: middle;
 }
 
-.mainArticle ul li li::before {
+.main-article ul li li::before {
     content: "○";
 }
 
-.mainArticle ul li li li::before {
+.main-article ul li li li::before {
     content: "・";
 }
 
-.mainArticle ul ul {
+.main-article ul ul {
     margin-left: 1em;
 }
 
 /* カスタム番号なしリスト */
-.mainArticle ul.list li {
+.main-article ul.list li {
     padding-left: 2.5em;
 }
 
-.mainArticle ul.list li::before {
+.main-article ul.list li::before {
     content: unset;
 
     font-family: "Material Symbols Outlined";
@@ -164,20 +164,20 @@
 }
 
 /* チェックリストっぽいリストにする */
-.mainArticle .list.checkBox li::before {
+.main-article .list.checkBox li::before {
     content: "\f1fe";
 }
 
-.mainArticle .list.checkBox li.unchecked::before {
+.main-article .list.checkBox li.unchecked::before {
     content: "\e835";
 }
 
-.mainArticle .list.check li::before {
+.main-article .list.check li::before {
     content: "\e5ca";
 }
 
 /* インラインコード */
-.mainArticle :not(pre) > code {
+.main-article :not(pre) > code {
     background-color: var(--color-block-quote);
     color: var(--text-color-quote);
     padding: 0.1em 0.4em;
@@ -185,14 +185,14 @@
 
 /* テーブル */
 /* 基本のテーブルスタイル */
-.mainArticle table {
+.main-article table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
 }
 
 /* テーブルヘッダー */
-.mainArticle th {
+.main-article th {
     background-color: var(--color-table-header);
     font-weight: normal;
     font-size: 1.2em;
@@ -201,22 +201,22 @@
 }
 
 /* テーブルセル */
-.mainArticle td {
+.main-article td {
     padding: 0.5em;
 }
 
 /* テーブルの奇数行の背景色を変更する */
-.mainArticle tr:nth-child(odd) {
+.main-article tr:nth-child(odd) {
     background-color: var(--color-table-background-odd);
 }
 
 /* テーブルの偶数行の背景色を変更する */
-.mainArticle tr:nth-child(even) {
+.main-article tr:nth-child(even) {
     background-color: var(--color-table-background-even);
 }
 
 /* マウスホバー時の色変更 */
-.mainArticle tbody > tr:hover {
+.main-article tbody > tr:hover {
     background-color: var(--color-table-background-hover);
 }
 
@@ -282,7 +282,7 @@ blockquote.block blockquote {
 }
 
 /* 外部リンクのアイコン */
-.externalLink::before {
+.external-link::before {
     content: "\e89e";
     vertical-align: -0.2em;
 

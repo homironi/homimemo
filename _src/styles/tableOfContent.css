@@ -1,9 +1,9 @@
 /* 目次 */
-.tocTitle {
+.toc-title {
     color: var(--color-sub);
 }
 
-.tableOfContentInner {
+.table-of-content-inner {
     padding: 1em;
 
     background-color: var(--color-main);

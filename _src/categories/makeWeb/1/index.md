@@ -12,7 +12,7 @@ tags:
 ---
 
 ホームページを作るシリーズ第二弾です。  
-[第一弾（シリーズ目次付き）はこちら](/categories/makeWeb/0/){target=blank .externalLink}
+[第一弾（シリーズ目次付き）はこちら](/categories/makeWeb/0/){target=blank .external-link}
 
 【次回】第三弾
 
@@ -32,7 +32,7 @@ tags:
 
 その部分のやり方などは別記事で紹介しているので、そちらをごらんください！  
 ↓  
-[GitHubActions でビルドからアップロードまでしてみるめも](/categories/developOther/0/){target=blank .externalLink}
+[GitHubActions でビルドからアップロードまでしてみるめも](/categories/developOther/0/){target=blank .external-link}
 
 ## 流れ
 
@@ -52,7 +52,7 @@ tags:
 
 の部分は現在は自動化しています。  
 ↓  
-[GitHubActions でビルドからアップロードまでしてみるめも](/categories/developOther/0/){target=blank .externalLink}
+[GitHubActions でビルドからアップロードまでしてみるめも](/categories/developOther/0/){target=blank .external-link}
 
 ## 使用ツールなどのざっくりめも
 
@@ -146,9 +146,9 @@ FTP ソフトを使用すると、フォルダでファイルを操作してい�
 
 ## 参考リンク
 
--   [Simplenote 公式サイト](https://simplenote.com/){target=blank .externalLink}
--   [Visual Studio Code 公式サイト](https://code.visualstudio.com/){target=blank .externalLink}
--   [11ty/eleventy 公式サイト](https://www.11ty.dev/){target=blank .externalLink}
--   [FileZilla 公式サイト](https://filezilla-project.org/index.php){target=blank .externalLink}
--   [エックスサーバー公式サイト](https://www.xserver.ne.jp/){target=blank .externalLink}
--   [GitHub 公式サイト](https://github.com/){target=blank .externalLink}
+-   [Simplenote 公式サイト](https://simplenote.com/){target=blank .external-link}
+-   [Visual Studio Code 公式サイト](https://code.visualstudio.com/){target=blank .external-link}
+-   [11ty/eleventy 公式サイト](https://www.11ty.dev/){target=blank .external-link}
+-   [FileZilla 公式サイト](https://filezilla-project.org/index.php){target=blank .external-link}
+-   [エックスサーバー公式サイト](https://www.xserver.ne.jp/){target=blank .external-link}
+-   [GitHub 公式サイト](https://github.com/){target=blank .external-link}

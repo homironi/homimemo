@@ -7,15 +7,15 @@
     margin: 1em 0;
 }
 
-.profile .resizeImg.icon {
+.profile .resizable-img.icon {
     width: 12em;
     margin: 1.5em auto;
 }
 
-.profile .myLink {
+.profile .my-link {
     margin: 1em 0;
 }
 
-.profile > .aboutLink > p {
+.profile > .about-link > p {
     margin: 1.2em 0;
 }

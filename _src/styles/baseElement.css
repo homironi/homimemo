@@ -73,20 +73,20 @@
     vertical-align: -0.16em;
 }
 
-.material-symbols-outlined.tocTitle::before {
+.material-symbols-outlined.toc-title::before {
     content: "\e8de";
 }
 
-.material-symbols-outlined.publicationDate::before {
+.material-symbols-outlined.publication-date::before {
     content: "\e935";
 }
 
-.material-symbols-outlined.lastEdit::before {
+.material-symbols-outlined.last-edit-date::before {
     content: "\f232";
 }
 
 /* コンテンツブロック */
-.contentBlock {
+.content-block {
     background-color: var(--color-main);
     /* offset-x | offset-y | blur-radius | spread-radius | color */
     box-shadow: 0px 0px var(--shadow-blur-radius) var(--shadow-spread-radius)

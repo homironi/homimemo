@@ -30,7 +30,7 @@ Eleventy（11ty）を使用してウェブサイトをビルドし、ビルド�
 
 パスワードが設定されていると、GitHubActions の途中で止まってしまうとのことなので、パスはなし（入力しない）
 
-[公式の SSH 設定](https://www.xserver.ne.jp/manual/man_server_ssh.php){target=blank .externalLink}
+[公式の SSH 設定](https://www.xserver.ne.jp/manual/man_server_ssh.php){target=blank .external-link}
 
 こちらで取得した鍵の中身をあとで Github のシークレット変数に貼り付けます。
 
@@ -229,6 +229,6 @@ jobs:
 
 ## 参考リンク
 
--   [エックスサーバー公式の SSH 設定ページ](https://www.xserver.ne.jp/manual/man_server_ssh.php){target=blank .externalLink}
--   [エックスサーバーにローカル →github→ サーバーへ自動デプロイしたメモ](https://zenn.dev/ytksato/articles/e71bdcb894062c){target=blank .externalLink}
--   [GitHub に Push するだけで、レンタルサーバーにサイト公開してみた](https://www.to-r.net/media/github-actions/){target=blank .externalLink}
+-   [エックスサーバー公式の SSH 設定ページ](https://www.xserver.ne.jp/manual/man_server_ssh.php){target=blank .external-link}
+-   [エックスサーバーにローカル →github→ サーバーへ自動デプロイしたメモ](https://zenn.dev/ytksato/articles/e71bdcb894062c){target=blank .external-link}
+-   [GitHub に Push するだけで、レンタルサーバーにサイト公開してみた](https://www.to-r.net/media/github-actions/){target=blank .external-link}
