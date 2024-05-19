@@ -1,12 +1,12 @@
-.container {
+.container-wrapper {
     margin: 0;
 }
 
-.contentWrapper {
+.content-wrapper {
     padding: 0;
 }
 
-.contentInner {
+.content-inner {
     margin: 1em 2em;
     padding: 1em;
     background-color: var(--color-main);
@@ -35,6 +35,6 @@
     border-bottom: 0.2em dotted var(--color-main-dark);
 }
 
-.pin {
+.board-pin {
     width: 3em;
 }

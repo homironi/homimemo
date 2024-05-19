@@ -1,4 +1,4 @@
-.navigationBar {
+.navigation-bar {
     position: relative;
     z-index: 1;
     font-size: 0.9em;
@@ -6,7 +6,7 @@
     background-color: var(--color-black-area);
 }
 
-.navigationBar ul {
+.navigation-bar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -14,11 +14,11 @@
 }
 
 /* 最上位レベルの要素 */
-.navigationBar > ul > li {
+.navigation-bar > ul > li {
     display: inline-block;
 }
 
-.navigationBar ul li a {
+.navigation-bar ul li a {
     display: block;
     position: relative;
     text-decoration: none;
@@ -30,12 +30,12 @@
 
 @media (prefers-color-scheme: dark) {
     /* ダークテーマのときも白文字がいいので黒文字（ダークテーマのときは白になってる） */
-    .navigationBar ul li a {
+    .navigation-bar ul li a {
         color: var(--text-color-black);
     }
 }
 
-.navigationBar ul li a::after {
+.navigation-bar ul li a::after {
     content: "";
     position: absolute;
     left: 0;
@@ -48,45 +48,45 @@
     background-color: var(--color-main);
 }
 
-.navigationBar ul li a:hover::after {
+.navigation-bar ul li a:hover::after {
     transform: scaleX(1);
 }
 
 /* 1階層分だけ子要素を表示するので、それ以下は非表示 */
-.navigationBar ul ul ul {
+.navigation-bar ul ul ul {
     display: none;
 }
 
-.navigationBar ul ul ul li {
+.navigation-bar ul ul ul li {
     display: none;
 }
 @media screen and (max-width: 768px) {
-    .navigationBar {
+    .navigation-bar {
         display: none;
     }
 }
 
 /* カテゴリーだけカテゴリの中身を表示するように */
-.navigationBar .categories li {
+.navigation-bar .categories li {
     display: none;
 }
 
-.navigationBar .categories ul,
-.navigationBar .categories ul li {
+.navigation-bar .categories ul,
+.navigation-bar .categories ul li {
     display: inline-block;
 }
 
-.navigationBar .abouts ul {
+.navigation-bar .abouts ul {
     display: none;
 }
 
-.navigationBar ul li a:hover {
+.navigation-bar ul li a:hover {
     color: var(--text-color-white-hover);
 }
 
 @media (prefers-color-scheme: dark) {
     /* ダークテーマのときも白文字がいいので黒文字（ダークテーマのときは白になってる） */
-    .navigationBar ul li a:hover {
+    .navigation-bar ul li a:hover {
         color: var(--text-color-black-hover);
     }
 }

@@ -1,16 +1,16 @@
 {# css #}
 {% block css -%}
-  <link rel="stylesheet" href="/styles/hamburger.css" />
-  {%- endblock%}
+    <link rel="stylesheet" href="/styles/hamburger.css" />
+    {%- endblock%}
 
-  <div class = "hamburgerMenuWrapper">
-    <div class = "hamburgerMenuInner">
-      <input type="checkbox" id="menu-toggle" class ="menu-toggle">
-      <label for="menu-toggle" class="menu-btn" tabindex="0">
-        <span class="hamburger"></span>
-      </label>
-      <ul class="menuList">
-        {% include "siteNavigation.njk" %}
-      </ul>
+    <div class = "hamburger-menu-wrapper">
+        <div class = "hamburger-menu-inner">
+            <input type="checkbox" id="menu-toggle" class ="menu-toggle">
+            <label for="menu-toggle" class="menu-btn" tabindex="0">
+                <span class="hamburger"></span>
+            </label>
+            <ul class="menu-list">
+                {% include "siteNavigation.njk" %}
+            </ul>
+        </div>
     </div>
-  </div>

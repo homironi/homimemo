@@ -1,8 +1,8 @@
-.errorContainer h1 {
+.error-container h1 {
     font-size: 2.8em;
 }
 
-.errorContainer {
+.error-container {
     display: flex;
     margin: 0 auto;
     justify-content: center;

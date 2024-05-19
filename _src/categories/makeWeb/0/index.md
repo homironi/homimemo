@@ -57,4 +57,4 @@ HTML や CSS よりも、11ty というものについての内容が多くな�
 ## このシリーズの目次
 
 1. 【今回】第一弾：動機と目次
-2. [第二弾：現在の制作環境とツール](/categories/makeWeb/1/){target=blank .externalLink}
+2. [第二弾：現在の制作環境とツール](/categories/makeWeb/1/){target=blank .external-link}
