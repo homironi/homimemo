@@ -1,9 +1,9 @@
-.content {
+.content-container {
     margin: 3em 0;
 }
 
 /* 記事内の目次の見た目調整 */
-.articleInner .tableOfContentInner {
+.article-inner .table-of-content-inner {
     margin: 1em 0;
 
     background-color: var(--color-main);
@@ -12,21 +12,26 @@
         var(--shadow-color-main);
 }
 
-.sideLInner {
+.side-l-inner {
     position: sticky;
     position: -webkit-sticky;
     top: 0;
 }
 
+.article-date-wrapper {
+    margin: 1em 0 0.5em 0;
+    text-align: right;
+}
+
 @media screen and (max-width: 1280px) {
-    .articleFooter .categoryListWrapper {
+    .article-footer .category-list-wrapper {
         display: none;
     }
 }
 
 /* テキストの装飾に関するもの */
 @media screen and (max-width: 768px) {
-    .articleDate time {
+    .article-date {
         display: block;
     }
 }

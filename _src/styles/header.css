@@ -5,12 +5,12 @@
     background-color: var(--color-sub);
 }
 
-.homeImg img {
+.home-img img {
     width: 16em;
 }
 
 @media screen and (max-width: 768px) {
-    .homeImg img {
+    .home-img img {
         width: 33%;
     }
 }
