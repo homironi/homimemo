@@ -85,6 +85,10 @@
     content: "\f232";
 }
 
+.material-symbols-outlined.category-mark::before {
+    content: "\e2c7";
+}
+
 /* コンテンツブロック */
 .content-block {
     background-color: var(--color-main);
