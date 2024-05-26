@@ -3,6 +3,8 @@
         <a href ="{{ post.url }}" class ="cardInner">
             <img src="{{ post.data.headerImg }}" alt= "{{ post.data.headerImgAlt }}">
             <div class ="card-content">
+                {% import "categoryDisplay.njk" as categoryDisplay %}
+                {{categoryDisplay.categoryDisplay(post.data.category)}}
                 <h3 class = "card-title">{{ post.data.title }}</h3>
                 <p class ="card-description">{{ post.data.description }}</p>
                 <div class = "date">

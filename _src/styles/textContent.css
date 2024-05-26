@@ -1,7 +1,6 @@
 .article-date {
     color: var(--text-color-black-hover);
     font-size: 0.8em;
-    text-align: right;
 }
 
 .main-article h2::before {
