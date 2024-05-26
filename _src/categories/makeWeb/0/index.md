@@ -8,6 +8,7 @@ eleventyNavigation:
     key: ホームページを作る！＃１〜動機と目次〜
     parent: Web制作
 tags:
+    - article
     - makeWeb
 ---
 

@@ -8,6 +8,7 @@ headerImg: https://placehold.jp/896x504.png
     <link rel="stylesheet" href="/styles/article.css" />
     <link rel="stylesheet" href="/styles/textContent.css" />
     <link rel="stylesheet" href="/styles/tableOfContent.css" />
+    <link rel="stylesheet" href="/styles/categoryDisplay.css" />
     {%- endblock%}
     <main class="main-container">
         <div class="side-l-wrapper">
@@ -21,6 +22,8 @@ headerImg: https://placehold.jp/896x504.png
                 <div class="article-inner">
                     <section class="articleHeader">
                         {% include "breadcrumb.njk" %}
+                        {% import "categoryDisplay.njk" as categoryDisplay %}
+                        {{categoryDisplay.categoryDisplay(category)}}
                         <div class = "article-date-wrapper">
                             {# 公開日 #}
                             <time datetime={{page.date | dateFormat}} class = "article-date">

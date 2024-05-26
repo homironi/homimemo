@@ -4,7 +4,7 @@
         {# ナビゲーションを利用してフィルタリング #}
         {%- for category in collections.categories -%}
             <li>
-                <a href="{{ category.url }}">{{ category.data.title }}</a>
+                <a class="category-button" href="{{ category.url }}">{{ category.data.title }}</a>
             </li>
         {%- endfor -%}
     </ul>

@@ -8,6 +8,7 @@ eleventyNavigation:
     key: サイト開設しました！
     parent: 雑記
 tags:
+    - article
     - memo
 ---
 

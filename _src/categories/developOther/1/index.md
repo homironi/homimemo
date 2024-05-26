@@ -7,6 +7,7 @@ eleventyNavigation:
     key: マークダウンの書き方めも
     parent: 開発系その他
 tags:
+    - article
     - developOther
 ---
 

@@ -7,6 +7,7 @@ eleventyNavigation:
     key: GitHubActionsでビルドからアップロードまでしてみるめも
     parent: 開発系その他
 tags:
+    - article
     - developOther
 ---
 
