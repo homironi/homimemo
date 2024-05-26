@@ -7,6 +7,7 @@ eleventyNavigation:
     key: 【UE5】アプリの名前設定めも【Unreal Engine】
     parent: ゲーム開発
 tags:
+    - article
     - developGame
 ---
 

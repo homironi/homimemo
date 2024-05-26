@@ -7,6 +7,7 @@ eleventyNavigation:
     key: 【CSS】色をまとめてダークテーマも対応！
     parent: Web制作
 tags:
+    - article
     - makeWeb
 ---
 
