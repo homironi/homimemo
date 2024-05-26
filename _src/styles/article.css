@@ -18,11 +18,6 @@
     top: 0;
 }
 
-.article-date-wrapper {
-    margin: 1em 0 0.5em 0;
-    text-align: right;
-}
-
 @media screen and (max-width: 1280px) {
     .article-footer .category-list-wrapper {
         display: none;
