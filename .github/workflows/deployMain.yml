@@ -26,10 +26,6 @@ jobs:
             - name: Build site with Eleventy
               run: npx @11ty/eleventy
 
-            - name: Debug rsync command
+            - name: Deploy via rsync
               run: |
-                  echo "Source directory: ${{ secrets.SOURCE_DIR }}/"
-                  echo "Remote user: ${{ secrets.REMOTE_USER }}"
-                  echo "Remote host: ${{ secrets.REMOTE_HOST }}"
-                  echo "Remote directory: ${{ secrets.REMOTE_DIR }}/"
                   rsync -auzrvv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" --delete ${{ secrets.SOURCE_DIR }}/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_DIR }}/
