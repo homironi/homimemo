@@ -2,9 +2,9 @@ name: deploy to remote
 
 on:
     workflow_dispatch: # 手動実行トリガー
-    push:
-        branches:
-            - main
+    # push:
+    #     branches:
+    #         - main
 
 jobs:
     deploy:
