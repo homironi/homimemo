@@ -19,14 +19,23 @@ eleventyNavigation:
 
 ## 広告について
 
-当サイトでは、第三者配信の広告サービス（A8.net、もしもアフィリエイト）を利用しており、ユーザーの興味に応じた商品やサービスの広告を表示するため、クッキー（Cookie）を使用しております。
+当サイトでは、以下の第三者配信の広告サービスを利用しており、ユーザーの興味に応じた商品やサービスの広告を表示するため、Cookie を使用している場合があります。
 
-クッキーを使用することで当サイトはお客様のコンピュータを識別できるようになりますが、お客様個人を特定できるものではありません。
+-   [A8.net](https://www.a8.net/){target=blank .external-link}
+-   [もしもアフィリエイト](https://af.moshimo.com/){target=blank .external-link}
+-   [バリューコマース](https://www.valuecommerce.ne.jp/){target=blank .external-link}
+-   [楽天アフィリエイト](https://affiliate.rakuten.co.jp/){target=blank .external-link}
+
+Cookie を使用することで当サイトはお客様のコンピュータを識別できるようになりますが、  
+お客様個人を特定できるものではありません。
+
+また当サイトの広告において、広告収入を得ることだけを目的に人を騙したり、  
+いたずらに不安を煽るような記事を書かないことをここに誓います。
 
 ## アクセス解析ツールについて
 
 当サイトでは、Google によるアクセス解析ツール「[Google アナリティクス](https://marketingplatform.google.com/intl/ja/about/analytics/){target=blank .external-link}」を利用しています。
 
-この Google アナリティクスはトラフィックデータの収集のためにクッキー（Cookie）を使用しております。
+この Google アナリティクスはトラフィックデータの収集のために Cookie を使用しております。
 
 トラフィックデータは匿名で収集されており、個人を特定するものではありません。
