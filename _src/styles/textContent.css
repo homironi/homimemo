@@ -180,6 +180,7 @@
     background-color: var(--color-block-quote);
     color: var(--text-color-quote);
     padding: 0.1em 0.4em;
+    border-radius: var(--border-radius-default);
 }
 
 /* テーブル */
