@@ -3,6 +3,7 @@ title: マークダウンの書き方めも
 description: この記事では、マークダウンの基本的な書き方についてメモしています。見出しやリスト、コードブロック、リンク、画像などの記法を具体的な例と共に紹介し、よく使用するマークダウンを紹介しています。
 headerImg: /images/header/categories/developOther/1.png
 date: 2023-12-21
+lastEditDate: 2024-08-27
 eleventyNavigation:
     key: マークダウンの書き方めも
     parent: 開発系その他
@@ -48,7 +49,7 @@ tags:
 `#`を増やしていくと、見出しがどんどん小さくなっていきます。
 
 `#`の後と見出しの文字の間には半角スペースが入ります！
-{.text-block .text-block--type-warning}
+{.text-block .text-block--warning}
 
 ## リスト
 
@@ -193,6 +194,10 @@ int i = 0;
 >
 > > 引用もネストできる！
 ```
+
+> 引用です
+>
+> > 引用もネストできる！{.text-block}
 
 ## 文字装飾系
 

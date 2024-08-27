@@ -180,6 +180,7 @@
     background-color: var(--color-block-quote);
     color: var(--text-color-quote);
     padding: 0.1em 0.4em;
+    border-radius: var(--border-radius-default);
 }
 
 /* テーブル */
@@ -256,12 +257,12 @@
 .text-block--info.text-block {
     background-color: var(--color-block-info);
 }
-/* text-block--type-warningBlock */
-.text-block--type-warning.text-block::before {
+/* text-block--warningBlock */
+.text-block--warning.text-block::before {
     content: "\e002";
     color: var(--icon-color-warning);
 }
-.text-block--type-warning.text-block {
+.text-block--warning.text-block {
     background-color: var(--color-block-warning);
 }
 /* quoteBlock */

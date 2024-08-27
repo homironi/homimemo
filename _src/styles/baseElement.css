@@ -37,6 +37,7 @@
     /* property */
     --shadow-blur-radius: 8px;
     --shadow-spread-radius: 1px;
+    --border-radius-default: 2px;
 
     --content-width: 1920px;
     --header-content-height: 80px;
