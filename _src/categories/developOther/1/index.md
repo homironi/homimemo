@@ -48,7 +48,7 @@ tags:
 `#`を増やしていくと、見出しがどんどん小さくなっていきます。
 
 `#`の後と見出しの文字の間には半角スペースが入ります！
-{.text-block .text-block--type-warning}
+{.text-block .text-block--warning}
 
 ## リスト
 
