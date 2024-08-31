@@ -3,6 +3,7 @@ title: GitHubActionsでビルドからアップロードまでしてみるめも
 description: Eleventy（11ty）を利用し、GitHub Actionsを使ってWebサイトの自動ビルドからリモートサーバーへの自動デプロイ手順を解説。mainブランチへのプッシュでビルドし、Eleventyを使ったサイトファイルをエックスサーバーへアップロードするGitHubActionsの使い方を紹介します。
 headerImg: /images/header/categories/developOther/0.png
 date: 2023-12-19
+lastEditDate: 2024-08-31
 eleventyNavigation:
     key: GitHubActionsでビルドからアップロードまでしてみるめも
     parent: 開発系その他
@@ -16,8 +17,8 @@ tags:
 Eleventy（11ty）を使用してウェブサイトをビルドし、ビルドされたファイルをサーバーにデプロイする。
 
 1. 「main」ブランチにプッシュされたら
-1. サイトをビルドして（11ty）
-1. 出力されたサイトのファイル達をサーバー（エックスサーバー）にアップロード
+2. サイトをビルドして（11ty）
+3. 出力されたサイトのファイル達をサーバー（エックスサーバー）にアップロード
 
 以上を GitHubActions を使用して行ったので、そのメモです！
 
@@ -39,16 +40,16 @@ Eleventy（11ty）を使用してウェブサイトをビルドし、ビルド�
 
 1. GitHub リポジトリにアクセス
 1. リポジトリ内で、上部メニューの「Actions」をクリック  
-   ![GitHubのActions](/images/articleImages/categories/developOther/0/GitHub_Actions.png)
+   ![GitHubのActions](../../../images/articleImages/categories/developOther/0/GitHub_Actions.png)
 1. ワークフローがまだ設定されていない場合は、「Set up a workflow yourself」を選択。  
-   ![Set up a workflow yourself](/images/articleImages/categories/developOther/0/GitHub_Actions_setupWorkflow.png)  
+   ![Set up a workflow yourself](../../../images/articleImages/categories/developOther/0/GitHub_Actions_setupWorkflow.png)  
    既存のワークフローがある場合は、「New workflow」ボタンをクリック  
-   ![New workflow](/images/articleImages/categories/developOther/0/GitHub_Actions_newWorkflow.png)
+   ![New workflow](../../../images/articleImages/categories/developOther/0/GitHub_Actions_newWorkflow.png)
 1. エディタが開いたら、そこに後述する`deployMain.yaml`の内容を貼り付け
 1. エディタでコードを貼り付けたら、「Commit changes...」をクリック  
-   ![workFlowCode](/images/articleImages/categories/developOther/0/GitHub_workflowCode.png)
+   ![workFlowCode](../../../images/articleImages/categories/developOther/0/GitHub_workflowCode.png)
 1. 適切なコミットメッセージを入力し、「Commit changes」をクリック  
-   ![commit](/images/articleImages/categories/developOther/0/GitHub_Actions_commit.png)
+   ![commit](../../../images/articleImages/categories/developOther/0/GitHub_Actions_commit.png)
 
 これで、GitHub Actions に新しいワークフローが設定されました。
 
@@ -60,16 +61,16 @@ Eleventy（11ty）を使用してウェブサイトをビルドし、ビルド�
 
 1. GitHub リポジトリにアクセス
 1. リポジトリ内で、上部メニューの「Settings」をクリック  
-   ![Settings](/images/articleImages/categories/developOther/0/GitHub_repo.png)
+   ![Settings](../../../images/articleImages/categories/developOther/0/GitHub_repo.png)
 1. 「secrets and variables」＞「Actions」を選択  
-   ![secretsAndVariables](/images/articleImages/categories/developOther/0/GitHub_secret.png)
+   ![secretsAndVariables](../../../images/articleImages/categories/developOther/0/GitHub_secret.png)
 1. 「New repository secret」を選択  
-   ![newVariable](/images/articleImages/categories/developOther/0/GitHub_secret_newVariable.png)
+   ![newVariable](../../../images/articleImages/categories/developOther/0/GitHub_secret_newVariable.png)
 1. `Name`を`SSH_PRIVATE_KEY`と入力  
    後述するコードの変数名になります。任意の名前にしていただいても問題ありません。
 1. `Secret`に生成した秘密鍵の中身をコピペします
 1. 「Add secret」を選択してシークレット変数を追加  
-   ![add secret](/images/articleImages/categories/developOther/0/GitHub_secret_add.png)
+   ![add secret](../../../images/articleImages/categories/developOther/0/GitHub_secret_add.png)
 
 ## GitHubActions のコード
 
@@ -122,12 +123,12 @@ jobs:
 
 1. エックスサーバーでサーバーパネルにログイン
 2. **サーバー ID**が表示されていると思うので、それを確認  
-   コードを書くときに`hogeId`と書かれている部分をここで確認できるサーバー ID に置き換え
-   ![serverPane](/images/articleImages/categories/developOther/0/Xserver_panel.png)
+   コードを書くときに`hogeId`と書かれている部分をここで確認できるサーバー ID に置き換え  
+   ![serverPane](../../../images/articleImages/categories/developOther/0/Xserver_panel.png)
 3. 続いて「サーバー情報」をクリック
 4. サーバー情報のページで、**ホスト名**と**ホームディレクトリ**を確認  
-   それぞれコードの、`svhoge`→ ホスト名、`/home/hogegege`→ ホームディレクトリを置き換え
-   ![serverInfo](/images/articleImages/categories/developOther/0/Xserver_serverInfo.png)
+   それぞれコードの、`svhoge`→ ホスト名、`/home/hogegege`→ ホームディレクトリを置き換え  
+   ![serverInfo](../../../images/articleImages/categories/developOther/0/Xserver_serverInfo.png){width="50%"}
 
 ### 置き換え箇所まとめ
 
@@ -178,7 +179,7 @@ jobs:
    SSH 鍵 `key` を使用し、ポート番号 `10022` で接続します。
 
 以上のコードが実行されると、`main` ブランチにプッシュされた際に Eleventy を使用してサイトをビルドし、その後 rsync を介してビルドされたファイルを指定されたエックスサーバーにデプロイ、までを GitHubActions が行ってくれます。  
-![result](/images/articleImages/categories/developOther/0/GitHub_Actions_result.png)
+![result](../../../images/articleImages/categories/developOther/0/GitHub_Actions_result.png)
 
 ## あとがき
 
@@ -227,6 +228,35 @@ jobs:
 | `-r, --recursive`   | 再帰的にディレクトリを同期します。ディレクトリ内のファイルやサブディレクトリも含めて同期します。                                         |
 | `-z, --compress`    | データの転送時に圧縮します。転送する際にデータを圧縮し、帯域幅を節約します。                                                             |
 | `-n, --dry-run`     | 実際には実行せず、試行するモードです。実行されるコマンドや転送されるファイルを確認できますが、実際の転送は行いません。                   |
+
+### 【2024/08/31】エックスサーバーの設定変更が必要
+
+ふと、サイトを更新した際に本記事のワークフローが失敗するようになっていました。
+
+エラーログ：
+
+```
+Connection closed by 162.43.94.2 port ***
+rsync: connection unexpectedly closed (0 bytes received so far) [sender]
+rsync error: unexplained error (code 255) at io.c(231) [sender=3.2.7]
+Error: Process completed with exit code 255.
+```
+
+特にワークフローを変更していなかったので、エックスサーバー側の SSH 設定を確認してみました。  
+とはいえ、あんまり詳しくないので表示されていた項目を変更してみただけです。
+
+以下の SSH 設定を「`ON[すべてのアクセスを許可] ※非推奨`」に変更してみました。
+
+![SSH設定](../../../images/articleImages/categories/developOther/0/SSHSettings.png)
+
+そして再度ワークフローを実行してみると正常に更新されました！
+
+どうも同画面の以下の説明に該当する状態になってしまっていたようです。
+
+国外アクセス制限について  
+国内 IP アドレスからのアクセスの場合でも、  
+稀に国外 IP アドレスからの接続とシステム上誤認され、制限がされる場合がございます。  
+このような場合は「ON[すべてのアクセスを許可]」を選択のうえ設定をお願いいたします。{.text-block .text-block--info}
 
 ## 参考リンク
 
