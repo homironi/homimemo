@@ -28,4 +28,4 @@ jobs:
 
             - name: Deploy via rsync
               run: |
-                  rsync -auzrvv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" --delete ${{ secrets.SOURCE_DIR }}/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_DIR }}/
+                  rsync -auzrvv -e "ssh -p ${{ secrets.REMOTE_PORT }} -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" --delete ${{ secrets.SOURCE_DIR }}/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_DIR }}/
