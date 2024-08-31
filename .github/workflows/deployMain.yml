@@ -15,16 +15,14 @@ jobs:
 
             - name: Generate SSH key
               run: |
-                  mkdir -p ~/.ssh/
-                  echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-                  chmod 600 ~/.ssh/id_rsa
-
-            # - name: Install Eleventy
-            #   run: npm install -g @11ty/eleventy
+                  echo "$SSH_PRIVATE_KEY" > key
+                  chmod 600 key
+              env:
+                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
             - name: Build site with Eleventy
               run: npx @11ty/eleventy
 
             - name: Deploy via rsync
               run: |
-                  rsync -auzrv -v -e "ssh -vvv -i ~/.ssh/id_rsa -p ${{ secrets.REMOTE_PORT }} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" --delete "${{ secrets.SOURCE_DIR }}/" "${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_DIR }}"
+                  rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" --delete ${{ secrets.SOURCE_DIR }}/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_DIR }}
