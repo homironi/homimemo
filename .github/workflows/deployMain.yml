@@ -14,14 +14,14 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Generate SSH key
+              env:
+                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
               run: |
                   echo "$SSH_PRIVATE_KEY" > key
                   chmod 600 key
-              env:
-                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-            - name: Install Eleventy
-              run: npm install -g @11ty/eleventy
+            # - name: Install Eleventy
+            #   run: npm install -g @11ty/eleventy
 
             - name: Build site with Eleventy
               run: npx @11ty/eleventy
