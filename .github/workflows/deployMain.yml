@@ -2,9 +2,9 @@ name: deploy to remote
 
 on:
     workflow_dispatch: # 手動実行トリガー
-    # push:
-    #     branches:
-    #         - main
+    push:
+        branches:
+            - main
 
 jobs:
     deploy:
@@ -20,12 +20,9 @@ jobs:
               env:
                   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-            - name: Install Eleventy
-              run: npm install -g @11ty/eleventy
-
             - name: Build site with Eleventy
               run: npx @11ty/eleventy
 
             - name: Deploy via rsync
               run: |
-                  rsync -auzrvv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" --delete ${{ secrets.SOURCE_DIR }}/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_DIR }}/
+                  rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" --delete ${{ secrets.SOURCE_DIR }}/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_DIR }}
