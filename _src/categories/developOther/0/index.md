@@ -235,7 +235,7 @@ jobs:
 
 エラーログ：
 
-```
+```text
 Connection closed by 162.43.94.2 port ***
 rsync: connection unexpectedly closed (0 bytes received so far) [sender]
 rsync error: unexplained error (code 255) at io.c(231) [sender=3.2.7]
