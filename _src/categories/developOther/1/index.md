@@ -45,7 +45,8 @@ tags:
 #### 見出し４
 ```
 
-![見出しのスクリーンショット](/images/articleImages/categories/developOther/1/markdownMidasi.png)  
+![見出しのスクリーンショット](../../../images/articleImages/categories/developOther/1/markdownMidasi.png)
+
 `#`を増やしていくと、見出しがどんどん小さくなっていきます。
 
 `#`の後と見出しの文字の間には半角スペースが入ります！
@@ -63,7 +64,8 @@ tags:
             -   深い！
 ```
 
-![リストのスクリーンショット](/images/articleImages/categories/developOther/1/markdownList.png)  
+![リストのスクリーンショット](../../../images/articleImages/categories/developOther/1/markdownList.png)
+
 リストを深くしていく場合には半角スペースを４つ追加していきます。
 
 ## 番号付きリスト
@@ -77,7 +79,7 @@ tags:
         1. どんどこ！
 ```
 
-![番号付きリストのスクリーンショット](/images/articleImages/categories/developOther/1/markdownListWithNumber.png)
+![番号付きリストのスクリーンショット](../../../images/articleImages/categories/developOther/1/markdownListWithNumber.png)
 
 ## コードブロック
 
@@ -90,7 +92,8 @@ int i = 0;
 ```
 ````
 
-![コードブロックのスクリーンショット](/images/articleImages/categories/developOther/1/markdownCodeBlock.png)  
+![コードブロックのスクリーンショット](../../../images/articleImages/categories/developOther/1/markdownCodeBlock.png)
+
 各言語に合わせて構文などをハイライトしてくれます。
 
 ### バッククォートをコードブロックに表示させる
