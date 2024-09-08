@@ -1,9 +1,9 @@
 ---
 layout: categoryArticles.njk
-title: 全記事一覧
+title: 全記事
 description: すべての記事の一覧ページです。
 eleventyNavigation:
-    key: 全記事一覧
+    key: 全記事
     order: 0
 pagination:
     data: collections.article
