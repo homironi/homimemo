@@ -26,18 +26,22 @@ tags:
                 <category class="categoryInner">
                     <section class="category-list-header">
                         {% include "breadcrumb.njk" %}
-                        <h1 class = "column-title">{{title}}カテゴリ一覧</h1>
+                        <h1 class = "column-title">{{title}}</h1>
                         {# 説明などをここに #}
                         {{content | safe}}
                     </section>
                     <section class="content-container">
                         <div class ="post-lists-wrapper">
+                            {% set categoryPosts = collections.sortedCategorizedArticles %}
+                            {% if category != "articles" %}
+                                {% set categoryPosts = collections.sortedCategorizedArticles | filterByCategory(category) %}
+                            {% endif %}
+                            {% set startNum = pagination.size * pagination.pageNumber %}
+                            {% set endNum = startNum + posts.length %}
+                            {% set postList = categoryPosts | slice(startNum, endNum) %}
+                            <p>全{{categoryPosts.length}}件</p>
                             <section class = "post-list">
                                 {# このカテゴリの記事一覧 #}
-                                {% set startNum = posts.length * pagination.pageNumber %}
-                                {% set endNum = startNum + posts.length %}
-                                {# 新しい順で先頭に来るように処理したいので逆順にする #}
-                                {% set postList = collections[category] | dateLatest | reverse | slice(startNum, endNum)%}
                                 {% import "card.njk" as card %}
                                 {%- for post in postList  %}
                                     {{card.card(post)}}

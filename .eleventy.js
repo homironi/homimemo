@@ -1,3 +1,13 @@
+// 最終編集日、ないものは日付降順でソートする
+function sortByDateFromPageData(left, right) {
+    // 最終編集日、ないものは日付を取得するローカル関数
+    function CreatePostDate(post) {
+        return new Date(post.lastEditDate ? post.lastEditDate : post.date);
+    }
+
+    return CreatePostDate(right) - CreatePostDate(left);
+}
+
 // マークダウン
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
@@ -42,13 +52,9 @@ module.exports = function (eleventyConfig) {
         const Date = date[2];
         return `${Year}年${Month}月${Date}日`;
     });
-    // 日付が新しい順に並び替えたリストを返す
-    // Custom filter: dateLatest
-    eleventyConfig.addFilter("dateLatest", function (posts) {
-        // Sort the posts by date in descending order (newest to oldest)
-        return posts.sort(
-            (a, b) => new Date(b.lastEditDate) - new Date(a.lastEditDate)
-        );
+
+    eleventyConfig.addFilter("filterByCategory", function (posts, category) {
+        return posts.filter((post) => post.data.category == category);
     });
 
     eleventyConfig.addFilter("slice", function (posts, start, end) {
@@ -80,6 +86,19 @@ module.exports = function (eleventyConfig) {
         }
         return Array.from(tagSet);
     });
+
+    // ----addCollection----
+    // https://www.11ty.dev/docs/collections/
+    // inputPath（_src/） を含めて検索（変更しているせいもある？）
+    eleventyConfig.addCollection(
+        "sortedCategorizedArticles",
+        function (collectionApi) {
+            return collectionApi
+                .getFilteredByGlob("_src/categories/**/*[0-9]/*.md")
+                .filter((item) => item.data.category)
+                .sort((l, r) => sortByDateFromPageData(l.data, r.data));
+        }
+    );
 
     // ----setLibrary----
     // Markdown
