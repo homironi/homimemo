@@ -3,7 +3,7 @@ layout: article.njk
 title: サイトと運営者について
 description: このサイトと運営者についての説明です。
 date: 2023-07-01
-lastEditDate: 2024-09-07
+lastEditDate: 2024-09-13
 headerImg: /images/header/about.png
 eleventyNavigation:
     key: サイトと運営者について
@@ -25,10 +25,6 @@ eleventyNavigation:
 ## 扱う内容やすきなもの
 
 ### つくる
-
-#### 小説
-
-最近全く書いていませんが書きたいなあ。
 
 #### おえかき、モデリング、Live2D など
 
@@ -70,5 +66,3 @@ Develop blog なんか好きです。
 牧場物語やどうぶつの森、マイクラなどが好きです。
 
 他には GE シリーズなどの比較的軽めなアクションゲームや、ダンガンロンパなどのアドベンチャーゲームをします。
-
-最近は Steam か Nintendo Switch でゲームをすることが多いです。
