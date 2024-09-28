@@ -98,7 +98,7 @@ module.exports = function (eleventyConfig) {
         );
     });
 
-    // カテゴリでフィルタしたコレクション
+    // カテゴリを持っているコレクション
     eleventyConfig.addCollection(
         "sortedCategorizedArticles",
         function (collectionApi) {
