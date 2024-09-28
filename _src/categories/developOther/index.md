@@ -6,7 +6,7 @@ eleventyNavigation:
     key: 開発系その他
     order: 0
 pagination:
-    data: collections.makeWeb
+    data: collections.developOther
     size: 8
     alias: posts
 ---

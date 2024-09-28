@@ -6,7 +6,7 @@ eleventyNavigation:
     key: ゲーム開発
     order: 0
 pagination:
-    data: collections.memo
+    data: collections.developGame
     size: 8
     alias: posts
 ---
