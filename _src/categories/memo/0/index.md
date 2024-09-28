@@ -7,9 +7,6 @@ lastEditDate: 2023-08-27
 eleventyNavigation:
     key: サイト開設しました！
     parent: 雑記
-tags:
-    - article
-    - memo
 ---
 
 ## サイト開設！

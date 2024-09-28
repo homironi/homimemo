@@ -7,9 +7,6 @@ lastEditDate: 2023-12-20
 eleventyNavigation:
     key: ホームページを作る！＃２〜現在の制作環境とツール〜
     parent: Web制作
-tags:
-    - article
-    - makeWeb
 ---
 
 ホームページを作るシリーズ第二弾です。  
