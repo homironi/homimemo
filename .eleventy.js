@@ -90,6 +90,15 @@ module.exports = function (eleventyConfig) {
     // ----addCollection----
     // https://www.11ty.dev/docs/collections/
     // inputPath（_src/） を含めて検索（変更しているせいもある？）
+
+    // 全記事コレクション
+    eleventyConfig.addCollection("articles", function (collectionApi) {
+        return collectionApi.getFilteredByGlob(
+            "_src/categories/**/*[0-9]/*.md"
+        );
+    });
+
+    // カテゴリでフィルタしたコレクション
     eleventyConfig.addCollection(
         "sortedCategorizedArticles",
         function (collectionApi) {
@@ -99,6 +108,11 @@ module.exports = function (eleventyConfig) {
                 .sort((l, r) => sortByDateFromPageData(l.data, r.data));
         }
     );
+
+    // カテゴリ一覧ページコレクション
+    eleventyConfig.addCollection("categories", function (collectionApi) {
+        return collectionApi.getFilteredByGlob("_src/categories/*/index.md");
+    });
 
     // ----setLibrary----
     // Markdown
