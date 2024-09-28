@@ -100,6 +100,11 @@ module.exports = function (eleventyConfig) {
         }
     );
 
+    // カテゴリ一覧ページコレクション
+    eleventyConfig.addCollection("categories", function (collectionApi) {
+        return collectionApi.getFilteredByGlob("_src/categories/*/index.md");
+    });
+
     // ----setLibrary----
     // Markdown
     eleventyConfig.setLibrary(

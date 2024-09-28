@@ -1,7 +1,6 @@
 <div class = "category-list-wrapper">
     <h3 calss = "category-list-header">カテゴリ一覧</h3>
     <ul class = "category-list">
-        {# ナビゲーションを利用してフィルタリング #}
         {%- for category in collections.categories -%}
             <li>
                 <a class="category-button" href="{{ category.url }}">{{ category.data.title }}</a>
