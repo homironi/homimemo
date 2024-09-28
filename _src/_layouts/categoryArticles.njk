@@ -4,8 +4,6 @@ headerImg: https://placehold.jp/896x504.png
 eleventyNavigation:
     parent: home
     order: 0
-tags: 
-    - categories
 ---
 
 {# css #}
@@ -39,26 +37,26 @@ tags:
                             {% set startNum = pagination.size * pagination.pageNumber %}
                             {% set endNum = startNum + posts.length %}
                             {% set postList = categoryPosts | slice(startNum, endNum) %}
-                            <p>全{{categoryPosts.length}}件</p>
-                            <section class = "post-list">
-                                {# このカテゴリの記事一覧 #}
-                                {% import "card.njk" as card %}
-                                {%- for post in postList  %}
-                                    {{card.card(post)}}
-                                {%- endfor %}
-                            </section>
-                        </div>
-                        {% include "pagination.njk" %}
-                    </section>
-                    <hr>
-                    <section class="article-footer">
-                        {% include "shareButtons.njk" %}
-                        {% include "categoryList.njk" %}
-                    </section>
-                </category>
-            </div>
-            <div class = "side-r-wrapper">
-                {% include "sideRInner.njk" %}
-            </div>
+                            <p>全 {{categoryPosts.length}} 件 （{{startNum + 1}} 件目～ {{endNum}} 件目）</p>
+                        <section class = "post-list">
+                            {# このカテゴリの記事一覧 #}
+                            {% import "card.njk" as card %}
+                            {%- for post in postList  %}
+                                {{card.card(post)}}
+                            {%- endfor %}
+                        </section>
+                    </div>
+                    {% include "pagination.njk" %}
+                </section>
+                <hr>
+                <section class="article-footer">
+                    {% include "shareButtons.njk" %}
+                    {% include "categoryList.njk" %}
+                </section>
+            </category>
         </div>
-    </main>
+        <div class = "side-r-wrapper">
+            {% include "sideRInner.njk" %}
+        </div>
+    </div>
+</main>

@@ -6,9 +6,6 @@ date: 2024-03-08
 eleventyNavigation:
     key: 【CSS】色をまとめてダークテーマも対応！
     parent: Web制作
-tags:
-    - article
-    - makeWeb
 ---
 
 css では主に見た目の部分を調整することができます。
