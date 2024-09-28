@@ -6,7 +6,7 @@ eleventyNavigation:
     key: 全記事
     order: 0
 pagination:
-    data: collections.article
+    data: collections.articles
     size: 8
     alias: posts
 ---

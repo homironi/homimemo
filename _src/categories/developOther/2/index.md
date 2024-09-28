@@ -6,9 +6,6 @@ date: 2024-02-16
 eleventyNavigation:
     key: Doxygen で XML ドキュメントコメントを使うめも
     parent: 開発系その他
-tags:
-    - article
-    - developOther
 ---
 
 -   Doxygen でお手軽にドキュメントを生成したい！

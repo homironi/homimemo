@@ -7,9 +7,6 @@ lastEditDate: 2023-12-09
 eleventyNavigation:
     key: ホームページを作る！＃１〜動機と目次〜
     parent: Web制作
-tags:
-    - article
-    - makeWeb
 ---
 
 このサイトの制作についてメモしていきます。

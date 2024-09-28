@@ -7,9 +7,6 @@ lastEditDate: 2024-08-27
 eleventyNavigation:
     key: Google 日本語入力を使ってCapsLock で日本語英語切り替え！
     parent: 雑記
-tags:
-    - article
-    - memo
 ---
 
 ## できること
