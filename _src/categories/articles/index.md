@@ -7,8 +7,6 @@ eleventyNavigation:
     order: 0
 pagination:
     data: collections.articles
-    size: 8
-    alias: posts
 ---
 
 すべての記事の一覧ページです。

@@ -7,8 +7,6 @@ eleventyNavigation:
     order: 0
 pagination:
     data: collections.makeWeb
-    size: 8
-    alias: posts
 ---
 
 Web 制作カテゴリの記事一覧です。  

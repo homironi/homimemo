@@ -7,8 +7,6 @@ eleventyNavigation:
     order: 0
 pagination:
     data: collections.memo
-    size: 8
-    alias: posts
 ---
 
 雑記カテゴリの記事一覧です。  
