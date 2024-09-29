@@ -1,5 +1,5 @@
 ---
-layout: categoryArticles.njk
+layout: groupArticles.njk
 title: 開発系その他
 description: 開発系その他カテゴリの記事一覧です。当サイト作成時のメモなどを記事にして残しています。
 eleventyNavigation:
