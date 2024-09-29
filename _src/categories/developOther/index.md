@@ -7,8 +7,6 @@ eleventyNavigation:
     order: 0
 pagination:
     data: collections.developOther
-    size: 8
-    alias: posts
 ---
 
 開発系その他カテゴリの記事一覧です。  

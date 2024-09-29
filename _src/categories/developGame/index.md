@@ -7,8 +7,6 @@ eleventyNavigation:
     order: 0
 pagination:
     data: collections.developGame
-    size: 8
-    alias: posts
 ---
 
 ゲーム開発カテゴリの記事一覧です。  
