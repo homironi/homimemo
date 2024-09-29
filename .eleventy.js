@@ -109,17 +109,6 @@ module.exports = function (eleventyConfig) {
         );
     });
 
-    // カテゴリを持っているコレクション
-    eleventyConfig.addCollection(
-        "sortedCategorizedArticles",
-        function (collectionApi) {
-            return collectionApi
-                .getFilteredByGlob("_src/categories/**/*[0-9]/*.md")
-                .filter((item) => item.data.category)
-                .sort((l, r) => sortByDateFromPageData(l.data, r.data));
-        }
-    );
-
     // カテゴリ一覧ページコレクション
     eleventyConfig.addCollection("categories", function (collectionApi) {
         return collectionApi.getFilteredByGlob("_src/categories/*/index.md");
