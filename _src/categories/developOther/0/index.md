@@ -7,6 +7,9 @@ lastEditDate: 2024-08-31
 eleventyNavigation:
     key: GitHubActionsでビルドからアップロードまでしてみるめも
     parent: 開発系その他
+eleventyComputed:
+    tags:
+        - GitHubActions
 ---
 
 タイトル通りですが、本記事では以下の内容をメモしていきます。
