@@ -1,5 +1,5 @@
 ---
-layout: categoryArticles.njk
+layout: groupArticles.njk
 title: 全記事
 description: すべての記事の一覧ページです。
 eleventyNavigation:
@@ -7,8 +7,6 @@ eleventyNavigation:
     order: 0
 pagination:
     data: collections.articles
-    size: 8
-    alias: posts
 ---
 
 すべての記事の一覧ページです。
