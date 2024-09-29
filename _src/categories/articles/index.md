@@ -1,5 +1,5 @@
 ---
-layout: categoryArticles.njk
+layout: groupArticles.njk
 title: 全記事
 description: すべての記事の一覧ページです。
 eleventyNavigation:
