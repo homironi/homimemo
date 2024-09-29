@@ -1,8 +1,6 @@
 .content-wrapper {
     -webkit-flex: 4;
     flex: 6;
-    /* 調整 */
-    width: 1em;
 
     background-color: var(--color-main);
     /* offset-x | offset-y | blur-radius | spread-radius | color */
