@@ -114,6 +114,11 @@ module.exports = function (eleventyConfig) {
         return collectionApi.getFilteredByGlob("_src/categories/*/index.md");
     });
 
+    // タグ一覧ページコレクション
+    eleventyConfig.addCollection("tags", function (collectionApi) {
+        return collectionApi.getFilteredByGlob("_src/tags/*/index.md");
+    });
+
     // ----setLibrary----
     // Markdown
     eleventyConfig.setLibrary(
