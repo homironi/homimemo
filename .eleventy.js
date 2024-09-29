@@ -87,6 +87,17 @@ module.exports = function (eleventyConfig) {
         return Array.from(tagSet);
     });
 
+    // 最終編集日を考慮して、新しい順に並び替えた記事リストを返すフィルター
+    eleventyConfig.addFilter("sortByDateFromPageData", function (posts) {
+        if (!Array.isArray(posts)) {
+            throw new Error(
+                "Invalid input for array `sortByDateFromPageData`. Expected array."
+            );
+        }
+
+        return posts.sort((l, r) => sortByDateFromPageData(l.data, r.data));
+    });
+
     // ----addCollection----
     // https://www.11ty.dev/docs/collections/
     // inputPath（_src/） を含めて検索（変更しているせいもある？）
@@ -97,17 +108,6 @@ module.exports = function (eleventyConfig) {
             "_src/categories/**/*[0-9]/*.md"
         );
     });
-
-    // カテゴリを持っているコレクション
-    eleventyConfig.addCollection(
-        "sortedCategorizedArticles",
-        function (collectionApi) {
-            return collectionApi
-                .getFilteredByGlob("_src/categories/**/*[0-9]/*.md")
-                .filter((item) => item.data.category)
-                .sort((l, r) => sortByDateFromPageData(l.data, r.data));
-        }
-    );
 
     // カテゴリ一覧ページコレクション
     eleventyConfig.addCollection("categories", function (collectionApi) {
