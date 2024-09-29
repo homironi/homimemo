@@ -46,6 +46,7 @@
         var(--header-content-height) + var(--heder-notice-height)
     );
     --border-bottom-h2: 4px;
+    --article-header-image-max-width: 896px;
 }
 
 @media (prefers-color-scheme: dark) {
