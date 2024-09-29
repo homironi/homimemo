@@ -12,7 +12,7 @@ pagination:
 {# css #}
 {% block css -%}
     <link rel="stylesheet" href="/styles/column3.css" />
-    <link rel="stylesheet" href="/styles/categoryArticles.css" />
+    <link rel="stylesheet" href="/styles/groupArticles.css" />
     <link rel="stylesheet" href="/styles/textContent.css" />
     <link rel="stylesheet" href="/styles/categoryDisplay.css" />
     {# includeしてるもののcss #}
@@ -34,19 +34,19 @@ pagination:
                     <section class="content-container">
                         <div class ="post-lists-wrapper">
                             {# pagination で分割されていないコレクションにするために結合する #}
-                            {% set categoryPosts = [] %}
+                            {% set gropuPosts = [] %}
                             {% for pageItems in pagination.pages %}
-                                {% set categoryPosts = categoryPosts.concat(pageItems) %}
+                                {% set gropuPosts = gropuPosts.concat(pageItems) %}
                             {% endfor %}
                             {# 最終的に望む並びにするためにフィルターでソート #}
-                            {% set categoryPosts = categoryPosts | sortByDateFromPageData %}
+                            {% set gropuPosts = gropuPosts | sortByDateFromPageData %}
 
                             {% set startNum = pagination.size * pagination.pageNumber %}
                             {% set endNum = startNum + posts.length %}
-                            {% set postList = categoryPosts | slice(startNum, endNum) %}
-                            <p>全 {{categoryPosts.length}} 件 （{{startNum + 1}} 件目～ {{endNum}} 件目）</p>
+                            {% set postList = gropuPosts | slice(startNum, endNum) %}
+                            <p>全 {{gropuPosts.length}} 件 （{{startNum + 1}} 件目～ {{endNum}} 件目）</p>
                         <section class = "post-list">
-                            {# このカテゴリの記事一覧 #}
+                            {# このGroupの記事一覧 #}
                             {% import "card.njk" as card %}
                             {%- for post in postList  %}
                                 {{card.card(post)}}
