@@ -5,7 +5,10 @@ headerImg: /images/header/categories/developGame/0.png
 date: 2024-03-17
 eleventyNavigation:
     key: 【UE5】アプリの名前設定めも【Unreal Engine】
-    parent: ゲーム開発
+    parent:
+eleventyComputed:
+    tags:
+        - UnrealEngine
 ---
 
 ゲームをビルドした際の表示名などを変更する箇所を確認したかったので、  
