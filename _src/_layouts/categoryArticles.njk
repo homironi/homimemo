@@ -33,10 +33,14 @@ pagination:
                     </section>
                     <section class="content-container">
                         <div class ="post-lists-wrapper">
-                            {% set categoryPosts = collections.sortedCategorizedArticles %}
-                            {% if category != "articles" %}
-                                {% set categoryPosts = collections.sortedCategorizedArticles | filterByCategory(category) %}
-                            {% endif %}
+                            {# pagination で分割されていないコレクションにするために結合する #}
+                            {% set categoryPosts = [] %}
+                            {% for pageItems in pagination.pages %}
+                                {% set categoryPosts = categoryPosts.concat(pageItems) %}
+                            {% endfor %}
+                            {# 最終的に望む並びにするためにフィルターでソート #}
+                            {% set categoryPosts = categoryPosts | sortByDateFromPageData %}
+
                             {% set startNum = pagination.size * pagination.pageNumber %}
                             {% set endNum = startNum + posts.length %}
                             {% set postList = categoryPosts | slice(startNum, endNum) %}
