@@ -27,6 +27,9 @@ headerImg: https://placehold.jp/896x504.png
                         {% include "breadcrumb.njk" %}
                         {% import "categoryDisplay.njk" as categoryDisplay %}
                         {{categoryDisplay.categoryDisplay(categoryName)}}
+                        {% if tags %}
+                            {% include "tagsDisplay.njk" %}
+                        {% endif %}
                         <div class = "article-date-wrapper">
                             {# 公開日 #}
                             <time datetime={{page.date | dateFormat}} class = "article-date">
