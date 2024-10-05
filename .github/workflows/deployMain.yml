@@ -25,6 +25,9 @@ jobs:
             env:
                 SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+          - name: Install dependencies
+            run: npm install
+
           - name: Build site with Eleventy
             run: npx eleventy # npx @11ty/eleventy だとsh: 1: eleventy: not found というエラー出る
 
