@@ -10,19 +10,27 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+          - name: Set up Node.js
+            uses: actions/setup-node@v4
+            with:
+              node-version: '18'
+              
+          - name: Checkout code
+            uses: actions/checkout@v4
 
-            - name: Generate SSH key
-              run: |
-                  echo "$SSH_PRIVATE_KEY" > key
-                  chmod 600 key
-              env:
-                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          - name: Generate SSH key
+            run: |
+                echo "$SSH_PRIVATE_KEY" > key
+                chmod 600 key
+            env:
+                SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-            - name: Build site with Eleventy
-              run: npx @11ty/eleventy
+          - name: Install dependencies
+            run: npm install
 
-            - name: Deploy via rsync
-              run: |
-                  rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" --delete ${{ secrets.SOURCE_DIR }}/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_DIR }}
+          - name: Build site with Eleventy
+            run: npx eleventy # npx @11ty/eleventy だとsh: 1: eleventy: not found というエラー出る
+
+          - name: Deploy via rsync
+            run: |
+                rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" --delete ${{ secrets.SOURCE_DIR }}/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_DIR }}
