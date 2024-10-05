@@ -1,4 +1,4 @@
-<ul class="tags">
+<ul class="tags-display-list">
     {% for tag in tags %}
         {% set tagPage = null %}
         {% for page in collections.tags %}
@@ -8,12 +8,8 @@
         {% endfor %}
         {% if tagPage %}
             <li>
-                <a href="{{ tagPage.url }}">
-                    <div class="tags-display">
-                        <span class="material-symbols-outlined tag-mark"></span>
-                        {{ tag }}
-                    </div>
-                </a>
+                <a href="{{ tagPage.url }}" class="tags-display">
+                    <span class="material-symbols-outlined tag-mark"></span>{{ tag }}</a>
             </li>
         {% endif %}
     {% endfor %}
