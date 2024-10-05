@@ -26,7 +26,7 @@ jobs:
                 SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
           - name: Build site with Eleventy
-            run: npx /eleventy # npx @11ty/eleventy だとsh: 1: eleventy: not found というエラー出る
+            run: npx eleventy # npx @11ty/eleventy だとsh: 1: eleventy: not found というエラー出る
 
           - name: Deploy via rsync
             run: |
