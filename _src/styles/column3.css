@@ -1,6 +1,8 @@
 .content-wrapper {
     -webkit-flex: 4;
     flex: 6;
+    /* サイズが変わったときに不必要に横に伸びないようにする調整 */
+    width: 1em;
 
     background-color: var(--color-main);
     /* offset-x | offset-y | blur-radius | spread-radius | color */

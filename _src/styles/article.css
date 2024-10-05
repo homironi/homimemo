@@ -5,7 +5,6 @@
 /* 記事ヘッダー画像のサイズを上限設定する */
 .article-header-image {
     max-width: var(--article-header-image-max-width);
-    margin: 0 auto;
 }
 
 /* 記事内の目次の見た目調整 */
