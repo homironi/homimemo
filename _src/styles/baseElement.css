@@ -91,6 +91,10 @@
     content: "\e2c7";
 }
 
+.material-symbols-outlined.tag-mark::before {
+    content: "\e892";
+}
+
 /* コンテンツブロック */
 .content-block {
     background-color: var(--color-main);

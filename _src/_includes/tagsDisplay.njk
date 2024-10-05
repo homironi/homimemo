@@ -1,0 +1,16 @@
+<ul class="tags-display-list">
+    {% for tag in tags %}
+        {% set tagPage = null %}
+        {% for page in collections.tags %}
+            {% if page.data.eleventyNavigation.key == tag %}
+                {% set tagPage = page %}
+            {% endif %}
+        {% endfor %}
+        {% if tagPage %}
+            <li>
+                <a href="{{ tagPage.url }}" class="tags-display">
+                    <span class="material-symbols-outlined tag-mark"></span>{{ tag }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>
