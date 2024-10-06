@@ -92,6 +92,11 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18"
+
             - name: Checkout code
               uses: actions/checkout@v4
 
@@ -102,8 +107,8 @@ jobs:
               env:
                   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-            - name: Install Eleventy
-              run: npm install -g @11ty/eleventy
+            - name: Install dependencies
+              run: npm install
 
             - name: Build site with Eleventy
               run: npx @11ty/eleventy
