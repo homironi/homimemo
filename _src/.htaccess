@@ -23,3 +23,24 @@ ErrorDocument 510 /510.html
     RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
     RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
 </IfModule>
+
+# キャッシュ設定
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 week"
+    
+    # CSSファイルのキャッシュ設定
+    ExpiresByType text/css "access plus 1 month"
+    
+    # JavaScriptファイルのキャッシュ設定
+    ExpiresByType application/javascript "access plus 1 year"
+    
+    # 画像ファイルのキャッシュ設定
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    
+    # フォントファイルのキャッシュ設定
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
