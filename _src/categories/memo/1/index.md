@@ -1,7 +1,7 @@
 ---
 title: Google 日本語入力を使ってCapsLock で日本語英語切り替え！
 description: Google 日本語入力の設定を変更することで、CapsLock キーで日本語英語のトグル切り替えができるようにします。CapsLockキーを「半角 / 全角」キーと同じにしてしまいましょう！
-headerImg: /images/header/categories/memo/1.png
+headerImg: /images/header/categories/memo/1.webp
 date: 2024-08-24
 lastEditDate: 2024-08-27
 eleventyNavigation:

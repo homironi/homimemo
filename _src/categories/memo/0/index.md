@@ -1,7 +1,7 @@
 ---
 title: サイト開設しました！
 description: 改めてサイトを開設したことお知らせいたします。
-headerImg: /images/header/categories/memo/0.png
+headerImg: /images/header/categories/memo/0.webp
 date: 2023-08-23
 lastEditDate: 2023-08-27
 eleventyNavigation:
