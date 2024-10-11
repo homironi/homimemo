@@ -1,7 +1,7 @@
 {% macro card(post) %}
     <div class="card">
         <a href ="{{ post.url }}" class ="cardInner">
-            <img src="{{ post.data.headerImg }}" alt= "{{ post.data.headerImgAlt }}">
+            <img loading="lazy" src="{{ post.data.headerImg }}" alt= "{{ post.data.headerImgAlt }}">
             <div class ="card-content">
                 {% import "categoryDisplay.njk" as categoryDisplay %}
                 {{categoryDisplay.categoryDisplay(post.data.categoryName)}}
