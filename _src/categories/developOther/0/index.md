@@ -1,7 +1,7 @@
 ---
 title: GitHubActionsでビルドからアップロードまでしてみるめも
 description: Eleventy（11ty）を利用し、GitHub Actionsを使ってWebサイトの自動ビルドからリモートサーバーへの自動デプロイ手順を解説。mainブランチへのプッシュでビルドし、Eleventyを使ったサイトファイルをエックスサーバーへアップロードするGitHubActionsの使い方を紹介します。
-headerImg: /images/header/categories/developOther/0.png
+headerImg: /images/header/categories/developOther/0.webp
 date: 2023-12-19
 lastEditDate: 2024-08-31
 eleventyNavigation:

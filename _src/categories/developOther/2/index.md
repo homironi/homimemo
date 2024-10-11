@@ -1,7 +1,7 @@
 ---
 title: Doxygen で XML ドキュメントコメントを使うめも
 description: ドキュメント生成を手軽に行いたいけど、どうしたらいいかわからない？この記事では、Doxygenを使った簡単な方法や、Visual Studioでの便利なXMLドキュメントコメントの活用法を紹介しています。さらに、C#開発者には必見のドキュメント生成ツールであるDocFXについても紹介しています。XMLドキュメントの使い方やツールの選び方について知りたい方はぜひ読んでみてください！
-headerImg: /images/header/categories/developOther/2.png
+headerImg: /images/header/categories/developOther/2.webp
 date: 2024-02-16
 eleventyNavigation:
     key: Doxygen で XML ドキュメントコメントを使うめも
