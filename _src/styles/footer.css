@@ -2,7 +2,7 @@
     padding: 2% 4%;
     background-color: var(--color-black-area);
     color: var(--text-color-white);
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 @media (prefers-color-scheme: dark) {

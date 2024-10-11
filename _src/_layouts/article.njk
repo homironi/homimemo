@@ -54,26 +54,26 @@ headerImg: https://placehold.jp/896x504.png
                         {%if headerImg%}
                             {# 記事のヘッダー画像 #}
                             <div class="resizable-img article-header-image">
-                                <img loading="lazy" src= {{headerImg}} />
+                                <img loading="lazy" src= {{headerImg}} alt="記事のヘッダー画像/>
                             </div>
                             {%endif%}
                         </section>
                         {% include "toc.njk" %}
                         <section class="content-container">
-                            <article class="main-article">
-                                {# 記事内容が入ります #}
-                                {{content | safe}}
-                            </article>
-                        </section>
-                        <hr>
-                        <section class="article-footer">
-                            {% include "shareButtons.njk" %}
-                            {% include "categoryList.njk" %}
-                        </section>
+                                <article class="main-article">
+                                    {# 記事内容が入ります #}
+                                    {{content | safe}}
+                                </article>
+                            </section>
+                            <hr>
+                            <section class="article-footer">
+                                {% include "shareButtons.njk" %}
+                                {% include "categoryList.njk" %}
+                            </section>
+                        </div>
+                    </div>
+                    <div class="side-r-wrapper">
+                        {% include "sideRInner.njk" %}
                     </div>
                 </div>
-                <div class="side-r-wrapper">
-                    {% include "sideRInner.njk" %}
-                </div>
-            </div>
-        </main>
+            </main>
