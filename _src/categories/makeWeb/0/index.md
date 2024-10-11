@@ -1,7 +1,7 @@
 ---
 title: ホームページを作る！＃１〜動機と目次〜
 description: 当サイトの作成メモ第一弾。このサイトの制作についてメモしていきます。このサイトを作った動機やシリーズ記事の目次を公開しています。
-headerImg: /images/header/categories/makeWeb/0.png
+headerImg: /images/header/categories/makeWeb/0.webp
 date: 2023-09-13
 lastEditDate: 2023-12-09
 eleventyNavigation:
