@@ -1,7 +1,7 @@
 ---
 title: 【CSS】色をまとめてダークテーマも対応！
 description: CSSにおいて、色の管理とダークテーマへの対応方法について解説しています。色を名前で管理することで、手間を省きながら見た目を統一させることができます。また、ダークモード対応についてもメモしています！
-headerImg: /images/header/categories/makeWeb/2.png
+headerImg: /images/header/categories/makeWeb/2.webp
 date: 2024-03-08
 eleventyNavigation:
     key: 【CSS】色をまとめてダークテーマも対応！
