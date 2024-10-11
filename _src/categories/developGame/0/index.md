@@ -1,7 +1,7 @@
 ---
 title: 【UE5】アプリの名前設定めも【Unreal Engine】
 description: この記事では、Unreal Engine 5（UE5）でプロジェクト設定で変更される名前を確認しました。開発用とリリース用のビルドで表示内容に違いがあったので、スクリーンショットともに紹介しています！
-headerImg: /images/header/categories/developGame/0.png
+headerImg: /images/header/categories/developGame/0.webp
 date: 2024-03-17
 eleventyNavigation:
     key: 【UE5】アプリの名前設定めも【Unreal Engine】
