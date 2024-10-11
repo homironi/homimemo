@@ -39,6 +39,7 @@ ErrorDocument 510 /510.html
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
     ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg "access plus 1 year"
     
     # フォントファイルのキャッシュ設定
     ExpiresByType font/woff "access plus 1 year"
