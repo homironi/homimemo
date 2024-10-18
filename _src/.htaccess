@@ -11,18 +11,26 @@ ErrorDocument 510 /510.html
 
 # https://github.com/h5bp/html5-boilerplate/blob/7a22a33d4041c479d0962499e853501073811887/.htaccess
 
+# rewrite to https://example.com/
+
 <IfModule mod_rewrite.c>
     Options +FollowSymlinks
     RewriteEngine On
-</IfModule>
 
-# rewrite www.example.com → example.com
+    # HTTPSの強制リダイレクト
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-<IfModule mod_rewrite.c>
-    RewriteCond %{HTTPS} !=on
+    # wwwを除去してリダイレクト
     RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-    RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+    RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+    # ディレクトリへのアクセスを/ありに統一
+    RewriteCond %{REQUEST_URI} !/$
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^(.*[^/])$ https://%{HTTP_HOST}/$1/ [R=301,L]
 </IfModule>
+
 
 # キャッシュ設定
 <IfModule mod_expires.c>
