@@ -3,6 +3,7 @@ title: 【Unity ECS】CleanupComponent を使ってEntityが破棄された時�
 description: UnityのECSでクリーンアップコンポーネントを使ってEntityが破棄された時にEntityをクリーンアップしてみます！
 headerImg: /images/header/categories/developGame/1.webp
 date: 2024-10-21
+lastEditDate: 2024-10-21
 eleventyNavigation:
     key: 【Unity ECS】CleanupComponent を使ってEntityが破棄された時にクリーンアップ！
     parent:
@@ -74,7 +75,7 @@ Baker ではクリーンアップコンポーネントを追加することが�
 > Make sure to add it to entities at runtime, because cleanup components cannot be baked.  
 > （DeepL 翻訳：クリーンアップ・コンポーネントはベイクできないので、必ず実行時にエンティティに追加すること。）
 
-[引用元の公式マニュアル](https://docs.unity3d.com/Packages/com.unity.entities@1.3/manual/components-cleanup-create.html#:~:text=Make%20sure%20to%20add%20it%20to%20entities%20at%20runtime%2C%20because%20cleanup%20components%20cannot%20be%20baked.)
+[引用元の公式マニュアル](https://docs.unity3d.com/Packages/com.unity.entities@1.3/manual/components-cleanup-create.html#:~:text=Make%20sure%20to%20add%20it%20to%20entities%20at%20runtime%2C%20because%20cleanup%20components%20cannot%20be%20baked.){target=blank .external-link}
 
 ```cs
 using Unity.Entities;
@@ -124,7 +125,7 @@ public struct CleanupSampleComponent : ICleanupComponentData
 > Make sure to add it to entities at runtime, because cleanup components cannot be baked.  
 > （DeepL 翻訳：クリーンアップ・コンポーネントはベイクできないので、必ず実行時にエンティティに追加すること。）
 
-[引用元の公式マニュアル](https://docs.unity3d.com/Packages/com.unity.entities@1.3/manual/components-cleanup-create.html#:~:text=Make%20sure%20to%20add%20it%20to%20entities%20at%20runtime%2C%20because%20cleanup%20components%20cannot%20be%20baked.)
+[引用元の公式マニュアル](https://docs.unity3d.com/Packages/com.unity.entities@1.3/manual/components-cleanup-create.html#:~:text=Make%20sure%20to%20add%20it%20to%20entities%20at%20runtime%2C%20because%20cleanup%20components%20cannot%20be%20baked.){target=blank .external-link}
 
 ```cs
 using Unity.Entities;
@@ -301,5 +302,5 @@ internal なので残念ながら使用できません。
 
 ## 参考
 
--   [Introducing cleanup components](https://docs.unity3d.com/Packages/com.unity.entities@1.3/manual/components-cleanup-introducing.html)
--   [Create a cleanup component](https://docs.unity3d.com/Packages/com.unity.entities@1.3/manual/components-cleanup-create.html)
+-   [Introducing cleanup components](https://docs.unity3d.com/Packages/com.unity.entities@1.3/manual/components-cleanup-introducing.html){target=blank .external-link}
+-   [Create a cleanup component](https://docs.unity3d.com/Packages/com.unity.entities@1.3/manual/components-cleanup-create.html){target=blank .external-link}
