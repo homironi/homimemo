@@ -73,7 +73,7 @@ Baker ではクリーンアップコンポーネントを追加することが�
 クリーンアップコンポーネント追加後は不要なので Remove します。
 
 > Make sure to add it to entities at runtime, because cleanup components cannot be baked.  
-> （DeepL 翻訳：クリーンアップ・コンポーネントはベイクできないので、必ず実行時にエンティティに追加すること。）
+> （DeepL 翻訳：クリーンアップ・コンポーネントはベイクできないので、必ず実行時にエンティティに追加すること。）{.text-block}
 
 [引用元の公式マニュアル](https://docs.unity3d.com/Packages/com.unity.entities@1.3/manual/components-cleanup-create.html#:~:text=Make%20sure%20to%20add%20it%20to%20entities%20at%20runtime%2C%20because%20cleanup%20components%20cannot%20be%20baked.){target=blank .external-link}
 
@@ -123,7 +123,7 @@ public struct CleanupSampleComponent : ICleanupComponentData
 コンポーネントでも書きましたが、Baker ではクリーンアップコンポーネントを追加できないため、追加するためのマーク用コンポーネントだけ追加しておきます。
 
 > Make sure to add it to entities at runtime, because cleanup components cannot be baked.  
-> （DeepL 翻訳：クリーンアップ・コンポーネントはベイクできないので、必ず実行時にエンティティに追加すること。）
+> （DeepL 翻訳：クリーンアップ・コンポーネントはベイクできないので、必ず実行時にエンティティに追加すること。）{.text-block}
 
 [引用元の公式マニュアル](https://docs.unity3d.com/Packages/com.unity.entities@1.3/manual/components-cleanup-create.html#:~:text=Make%20sure%20to%20add%20it%20to%20entities%20at%20runtime%2C%20because%20cleanup%20components%20cannot%20be%20baked.){target=blank .external-link}
 
