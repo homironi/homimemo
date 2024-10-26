@@ -249,7 +249,7 @@
 
     color: var(--text-color-block);
 }
-/* text-block--infoBlock */
+/* text-block--info */
 .text-block--info.text-block::before {
     content: "\e88e";
     color: var(--icon-color-info);
@@ -257,13 +257,21 @@
 .text-block--info.text-block {
     background-color: var(--color-block-info);
 }
-/* text-block--warningBlock */
+/* text-block--warning */
 .text-block--warning.text-block::before {
     content: "\e002";
     color: var(--icon-color-warning);
 }
 .text-block--warning.text-block {
     background-color: var(--color-block-warning);
+}
+/* text-block--error */
+.text-block--error.text-block::before {
+    content: "\e000";
+    color: var(--icon-color-error);
+}
+.text-block--error.text-block {
+    background-color: var(--color-block-error);
 }
 /* quoteBlock */
 blockquote.text-block::before {
