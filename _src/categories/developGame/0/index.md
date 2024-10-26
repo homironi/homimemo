@@ -5,7 +5,7 @@ headerImg: /images/header/categories/developGame/0.webp
 date: 2024-03-17
 eleventyNavigation:
     key: 【UE5】アプリの名前設定めも【Unreal Engine】
-    parent:
+    parent: ゲーム開発
 eleventyComputed:
     tags:
         - UnrealEngine
