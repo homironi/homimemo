@@ -3,7 +3,7 @@ layout: article.njk
 title: 免責事項とその他権利について
 description: 当サイトの免責事項とその他権利についての説明です。
 date: 2023-07-23
-headerImg: /images/header/disclaimer.png
+headerImg: /images/header/disclaimer.webp
 eleventyNavigation:
     key: 免責事項とその他権利について
     parent: home
