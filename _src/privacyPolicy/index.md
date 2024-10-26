@@ -4,7 +4,7 @@ title: プライバシーポリシー
 description: 当サイトのプライバシーポリシーです。
 date: 2023-07-23
 lastEditDate: 2023-08-23
-headerImg: /images/header/privacyPolicy.png
+headerImg: /images/header/privacyPolicy.webp
 eleventyNavigation:
     key: プライバシーポリシー
     parent: home

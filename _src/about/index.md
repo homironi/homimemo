@@ -4,7 +4,7 @@ title: サイトと運営者について
 description: このサイトと運営者についての説明です。
 date: 2023-07-01
 lastEditDate: 2024-09-13
-headerImg: /images/header/about.png
+headerImg: /images/header/about.webp
 eleventyNavigation:
     key: サイトと運営者について
     parent: home
