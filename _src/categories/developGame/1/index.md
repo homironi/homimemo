@@ -6,7 +6,7 @@ date: 2024-10-21
 lastEditDate: 2024-10-21
 eleventyNavigation:
     key: 【Unity ECS】CleanupComponent を使ってEntityが破棄された時にクリーンアップ！
-    parent:
+    parent: ゲーム開発
 eleventyComputed:
     tags:
         - Unity
