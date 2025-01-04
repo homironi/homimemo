@@ -164,6 +164,9 @@ public class SampleAnalyzeRule : CheckBundleDupeDependencies
 
 他のルール同様、「Analyze Selected Rules」で分析の実行、「Fix Selected Rules」で修正の実行ができます。
 
+▼ 分析の実行イメージ  
+![分析の実行イメージ](../../../images/articleImages/categories/developGame/3/AnalyzeImage.png)
+
 今回はプレハブごとにまとまるようにしていますが、ある程度いくつかのプレハブをまとめたうえで、  
 複数のバンドルで重複しているアセットを登録する際にも同じようにできるかと思います。
 
