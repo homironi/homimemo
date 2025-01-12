@@ -189,4 +189,3 @@ public class SampleAnalyzeRule : CheckBundleDupeDependencies
 -   [BundleRuleBase](https://docs.unity3d.com/Packages/com.unity.addressables@2.3/api/UnityEditor.AddressableAssets.Build.AnalyzeRules.BundleRuleBase.html){target=blank .external-link}
 -   [CheckBundleDupeDependencies](https://docs.unity3d.com/Packages/com.unity.addressables@2.3/api/UnityEditor.AddressableAssets.Build.AnalyzeRules.CheckBundleDupeDependencies.html){target=blank .external-link}
 -   [Addressables-Sample/Advanced/CustomAnalyzeRule/Assets/Samples/Addressables/1.20.0/Custom Analyze Rules/Editor/](https://github.com/Unity-Technologies/Addressables-Sample/tree/master/Advanced/CustomAnalyzeRule/Assets/Samples/Addressables/1.20.0/Custom%20Analyze%20Rules/Editor){target=blank .external-link}
--   [](){target=blank .external-link}
