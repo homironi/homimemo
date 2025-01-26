@@ -21,6 +21,20 @@
 <meta name="twitter:description" content={{description}} />
 <meta name="twitter:image" content={% if headerImg %}{{headerImg}}{% else %}"/images/homeHeader"{% endif %} />
 <meta name="twitter:image:alt" content={{headerImgAlt}} />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V6P1VWVXYK"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-V6P1VWVXYK');
+</script>
+{# GoogleAdSense #}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7565570537846567"
+     crossorigin="anonymous"></script>
 {# ファビコン #}
 <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
 {# フォント #}
@@ -39,14 +53,3 @@
 <link rel="stylesheet" href="/styles/baseElement.css" />
 {# ベース以外のcss #}
 {% block css -%}{%- endblock%}
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V6P1VWVXYK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-V6P1VWVXYK');
-    </script>
