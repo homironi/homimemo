@@ -3,6 +3,7 @@ title: React+TypeScriptでお天気APIから情報を取得してみた！
 description: ReactとTypeScriptを使って、お天気APIから情報を取得するWebアプリを作成しました。APIの安全な管理、GitHub Actionsを活用したテストの自動化、Netlify Functionsを使ったバックエンド処理など、開発の過程で学んだことをまとめています。初学者が「どこでつまずくのか」「どの技術に触れるのか」の参考になればと思います！
 headerImg: /images/header/categories/makeWeb/3.webp
 date: 2025-02-07
+lastEditDate: 2025-02-07
 eleventyNavigation:
     key: React+TypeScriptでお天気APIから情報を取得してみた！
     parent: Web制作
@@ -16,9 +17,9 @@ tags:
 
 ## はじめに
 
-Web 開発をしてみたい！ ということで、React+TypeScript をやってみました。
-
-初学者が「どこで困るか？」「どこで〇〇に触れるだろうか？」という参考にしていただければと思います！
+Web 開発をしてみたい！ ということで、React+TypeScript をやってみました。  
+初学者が「どこで困るか？」「どこで〇〇に触れるだろうか？」という参考にしていただければと思います！  
+この記事は初学者の動きを観察する記事なので、読みにくい部分もあると思いますが、初学者の思考や躓きポイントの分析にご活用くだされば幸いです！
 
 現在は別のものを作りたくなったので、今回作ったものはチュートリアルとして考え、一区切りをつけています。
 
