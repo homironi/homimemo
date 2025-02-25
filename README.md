@@ -10,3 +10,48 @@
 -   `homimemo.code-workspace`：【VSCode】ワークスペースファイル
 -   `package-lock.json`：【11ty】npm 関係の依存関係等のファイル
 -   `package.json`：【11ty】ライブラリ等依存関係
+
+## prism.js
+
+https://prismjs.com/download.html#themes=prism-coy&languages=markup+css+clike+javascript+c+csharp+cpp+css-extras+csv+diff+docker+git+go+go-module+graphql+hlsl+ignore+java+json+markdown+mel+mermaid+plant-uml+python+ruby+rust+sass+scss+sql+t4-templating+t4-cs+toml+typescript+typoscript+uri+vim+xml-doc+yaml&plugins=line-highlight+line-numbers+show-invisibles+autolinker+file-highlight+show-language+inline-color+command-line+toolbar+copy-to-clipboard+diff-highlight+treeview
+
+### 対応言語
+
+-   markup
+-   css
+-   clike
+-   javascript
+-   c
+-   csharp
+-   cpp
+-   css-extras
+-   csv
+-   diff
+-   docker
+-   git
+-   go
+-   go-module
+-   graphql
+-   hlsl
+-   ignore
+-   java
+-   json
+-   markdown
+-   mel
+-   mermaid
+-   plant-uml
+-   python
+-   ruby
+-   rust
+-   sass
+-   scss
+-   sql
+-   t4-templating
+-   t4-cs
+-   toml
+-   typescript
+-   typoscript
+-   uri
+-   vim
+-   xml-doc
+-   yaml
