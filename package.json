@@ -1,4 +1,8 @@
 {
+    "scripts": {
+        "start": "npx @11ty/eleventy --serve",
+        "build": "npx @11ty/eleventy"
+    },
     "dependencies": {
         "@11ty/eleventy": "^3.0.0",
         "@11ty/eleventy-plugin-directory-output": "^1.0.1",
