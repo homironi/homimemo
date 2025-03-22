@@ -1,14 +1,15 @@
 ---
 title: ひよっこはnext/routerに枕を濡らす
-description:
+description: Next.js初心者がuseRouterで困った話を残しています。すぐに解決しましたが、忘れないためにメモしています。
 headerImg: /images/header/categories/makeWeb/7.webp
 date: 2025-03-06
+lastEditDate: 2025-03-22
 eleventyNavigation:
     key: ひよっこはnext/routerに枕を濡らす
     parent: Web制作
 eleventyComputed:
-tags:
-    - Nextjs
+    tags:
+        - Nextjs
 ---
 
 ## はじめに
@@ -21,7 +22,7 @@ tags:
 
 🐤「まずは試しにボタンを押したらページ遷移するようにするぞ！」
 
-🐤「なるほど、[`useRouter()`](https://nextjs.org/docs/app/api-reference/functions/use-router){target=blank .externak-link}ってやつで`push()`したらいいんだな！」
+🐤「なるほど、[`useRouter()`](https://nextjs.org/docs/app/api-reference/functions/use-router){target=blank .external-link}ってやつで`push()`したらいいんだな！」
 
 ```ts
 "use client";
