@@ -1,0 +1,221 @@
+---
+title: ひよっこと見るforwardRefとuseRef
+description: 今回はひよっこといっしょにforwardRefとuseRefを見ていきます。デジタル庁のStorybookを見ていて初めて見たforwardRefと名前しかわかっていなかったuseRefを調べました！
+headerImg: /images/header/categories/makeWeb/8.webp
+date: 2025-03-22
+eleventyNavigation:
+    key: ひよっこと見るforwardRefとuseRef
+    parent: Web制作
+eleventyComputed:
+    tags:
+        - Nextjs
+        - React
+---
+
+## 🐤 はじめに
+
+Component の定義のセオリーを知るために、最近[デジタル庁の Storybook のリポジトリ](https://github.com/digital-go-jp/design-system-example-components/tree/main){target=blank .external-link} を見ています。
+
+今回はその中で初めてみた`forwardRef`と、名前は知ってたけど使ったことがなかった`useRef`について調べました。
+
+見ていたのは[Button](https://github.com/digital-go-jp/design-system-example-components/blob/main/src/components/Button/Button.tsx){target=blank .external-link}です
+
+先に書いておきますが、`forwardRef`は React19 から非推奨です。  
+React19 以降は props で ref を使えるらしいので、そちらを使うのが良いでしょう。
+{.text-block .text-block--info}
+
+## ✅️ この記事でわかること
+
+-   `forwardRef`ってなに？
+-   `useRef`ってなに？
+-   React19 から`forwardRef`は非推奨らしいけど、Next.js では？
+
+{.list .checkBox}
+
+## 🔍️ forwardRef ってなに？
+
+React 公式ページ：[forwardRef](https://ja.react.dev/reference/react/forwardRef){target=blank .external-link}
+
+> React 19 では、`forwardRef` は不要となりました。代わりに props として `ref` を渡すようにしてください。
+
+React19 からは非推奨になっているみたいですね。
+
+🐤「知るのが遅かったか……」
+
+> `forwardRef` は、親コンポーネントに対して DOM ノードを [ref](https://ja.react.dev/learn/manipulating-the-dom-with-refs){target=blank .external-link} として公開できるようにします。
+
+🐤「そもそも`ref`があるとなにが嬉しいんだろう……？」
+
+## 🤔 そもそも `useRef` もあんまわかってない
+
+ということで一旦`useRef`を調べてみました。
+
+React 公式ページ：[useRef](https://ja.react.dev/reference/react/useRef){target=blank .external-link}
+
+### render に使用しない値の管理に使う？
+
+ボタンを押したらアラートで表示するクリック回数が例に出ていました。  
+▶ [useRef を用いて値を参照する使用例 ＞ 例 1/2: クリックカウンタ ](https://ja.react.dev/reference/react/useRef#click-counter){target=blank .external-link}
+
+### ref の値の変更で再 render が走らない
+
+`useRef`の値が変更されても再 render は走らないそうです。  
+そのため、表示に用いない値を保存することに使用されるみたいです。
+
+例えば[useRef を用いて値を参照する使用例 ＞ 例 1/2: クリックカウンタ ](https://ja.react.dev/reference/react/useRef#click-counter){target=blank .external-link}なら、button をクリックした時に`alert`でクリック回数を表示しています。
+
+これは render には使用されておらず、`alert`の文字列に渡す場合のみ使用されています。
+
+🐤「他で render に使わない場合は`useState`ではなく、`useRef`を使うと再 render が走らないので良い、ということみたいですね」
+
+逆に、値が変わっても再 render が走らないので、render に使用するなら `useState`を使う必要があります。  
+render で使用する値なのかどうかが`useState`と`useRef`どちらを使うかの判断基準になりそうです。
+
+### DOM 操作でよく使う？
+
+▶ [ref で DOM を操作する](https://ja.react.dev/learn/manipulating-the-dom-with-refs){target=blank .external-link}
+
+```tsx
+import { useRef } from "react";
+
+export default function Form() {
+    const inputRef = useRef(null);
+
+    function handleClick() {
+        inputRef.current.focus();
+    }
+
+    return (
+        <>
+            <input ref={inputRef} />
+            <button onClick={handleClick}>Focus the input</button>
+        </>
+    );
+}
+```
+
+上記のような`Form`Component では、`useRef`の`inputRef`オブジェクトに`input`の参照が入ります。  
+そして、`button`をクリックすると`inputRef.current.focus();`によって`inputRef`に入っている参照、すなわち`input`要素に focus される、ということみたいです。
+
+こういった使い方でよく使用されるのが、`useRef`と`ref`らしいですね。
+
+## 💡 改めて forwardRef ってなに？
+
+-   [React の forwardRef はなぜ必要で、いつ使うべきか](https://qiita.com/odendayoko/items/e1c5d3b2abdaa02cbea0){target=blank .external-link}
+-   [親コンポーネントに DOM ノードを公開する](https://ja.react.dev/reference/react/forwardRef#exposing-a-dom-node-to-the-parent-component){target=blank .external-link}
+
+「独自定義の Component には通常は `ref={hogeRefObject}`が渡せない ⇒ 親に独自定義 Component 内の要素を公開できない」  
+ということで`forwardRef`が登場するみたいです。
+
+▼ こういう感じで Component を定義（引用：[React の forwardRef はなぜ必要で、いつ使うべきか](https://qiita.com/odendayoko/items/e1c5d3b2abdaa02cbea0){target=blank .external-link}）
+
+```tsx
+import { forwardRef } from "react";
+
+const MyInput = forwardRef(function MyInput(props, ref) {
+    const { label, ...otherProps } = props;
+    return (
+        <label>
+            {label}
+            <input {...otherProps} ref={ref} />
+        </label>
+    );
+});
+```
+
+▼ のような感じで使用できるらしい
+
+```tsx
+function Form() {
+    const ref = useRef(null);
+
+    function handleClick() {
+        ref.current.focus();
+    }
+
+    return (
+        <form>
+            <MyInput label="Enter your name:" ref={ref} />
+            <button type="button" onClick={handleClick}>
+                Edit
+            </button>
+        </form>
+    );
+}
+```
+
+1. `Form`の`ref`オブジェクトに`MyInput`の`input`の参照が入る
+2. `Form`の`button`がクリックされると、`ref`に focus
+3. `ref`には「`MyInput`の`input`の参照」が入っているので、「`MyInput`の`input`の参照」に focus
+
+ということができるみたいです！
+
+## ⚠️ React19 から forwardRef は非推奨になるらしい
+
+▶ [`ref` が props に](https://ja.react.dev/blog/2024/12/05/react-19#ref-as-a-prop){target=blank .external-link}
+
+React19 からは関数 Component で ref に props としてアクセスできるようになるようです。
+
+今回`forwardRef`が登場する要因となっていた「独自定義の Component 内の要素にアクセスできる ref」というものが、  
+そもそも props でできるようになるので、不要になるということみたいですね。
+
+今後、DOM 操作などで独自定義 Component に`ref`を渡したくなったら、props に渡せば良いみたいです！
+
+▼ [`ref` が props に](https://ja.react.dev/blog/2024/12/05/react-19#ref-as-a-prop){target=blank .external-link}より
+
+```tsx
+function MyInput({ placeholder, ref }) {
+    return <input placeholder={placeholder} ref={ref} />;
+}
+
+//...
+<MyInput ref={ref} />;
+```
+
+## ⚛️ Next.js で React19 は使える？
+
+最近、Next.js を触っているので、気になって調べてみました。
+
+結論として、 Next.js 15.1 から使えるみたいです！  
+▶ [Next.js 15.1 ＞ React 19 (安定版)](https://nextjs.org/blog/next-15-1#react-19-stable){target=blank .external-link}
+
+Next.js で DOM 操作をしたい時も 15.1 以上であれば、 forwardRef を使わなくてよさそうですね！
+
+## 🐤 まとめ
+
+-   `forwardRef`ってなに？
+    -   独自定義 Component に`ref`を渡せるようにすることができるもの
+    -   ただ、React19 からは非推奨になる
+    -   React19 からは props で `ref`を渡せるようになるので、そちらの手段を使う！
+-   `useRef`ってなに？
+    -   この値が変更されても、再 render が走らない
+    -   ↑ を利用して、render に使用しない（再 render される必要がない）値の管理に使用される
+    -   特に、DOM 操作のために`ref`を使う場合によく使われる
+    -   `button`がクリックされたら、`ref`で参照できるようにした別の DOM（例えば`input`）に focus する、というようなことができる！
+-   React19 から`forwardRef`は非推奨らしいけど、Next.js では？
+    -   Next.js の 15.1 以上で React19 に対応済
+    -   Next.js15.1 以上を使用する場合は、`forwardRef`ではなく、props に渡せば良い！
+
+## 記事に関係ない話
+
+最近、ChatGPT に絵文字をたくさん使ってもらうのにハマっています。  
+かわいいな、と思って絵文字をたくさん使って賑やかにしてもらっています。
+
+今回はせっかくなので記事の見出しに絵文字をつけてみました。
+
+[Noto Color Emoji](https://fonts.google.com/noto/specimen/Noto+Color+Emoji){target=blank .external-link}を使うようにしたらもっとかわいくなるんでしょうか？  
+検討中です！
+
+## 📖 参考
+
+-   [デジタル庁の Storybook のリポジトリ](https://github.com/digital-go-jp/design-system-example-components/tree/main){target=blank .external-link}
+-   [リポジトリの Button](https://github.com/digital-go-jp/design-system-example-components/blob/main/src/components/Button/Button.tsx){target=blank .external-link}
+-   [forwardRef](https://ja.react.dev/reference/react/forwardRef){target=blank .external-link}
+-   [useRef](https://ja.react.dev/reference/react/useRef){target=blank .external-link}
+-   [useRef を用いて値を参照する使用例 ＞ 例 1/2: クリックカウンタ ](https://ja.react.dev/reference/react/useRef#click-counter){target=blank .external-link}
+-   [ref で DOM を操作する](https://ja.react.dev/learn/manipulating-the-dom-with-refs){target=blank .external-link}
+-   [React の forwardRef はなぜ必要で、いつ使うべきか](https://qiita.com/odendayoko/items/e1c5d3b2abdaa02cbea0){target=blank .external-link}
+-   [親コンポーネントに DOM ノードを公開する](https://ja.react.dev/reference/react/forwardRef#exposing-a-dom-node-to-the-parent-component){target=blank .external-link}
+-   [`ref` が props に](https://ja.react.dev/blog/2024/12/05/react-19#ref-as-a-prop){target=blank .external-link}
+-   [Next.js 15.1 ＞ React 19 (安定版)](https://nextjs.org/blog/next-15-1#react-19-stable){target=blank .external-link}
+

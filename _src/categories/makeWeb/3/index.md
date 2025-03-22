@@ -8,11 +8,11 @@ eleventyNavigation:
     key: React+TypeScriptでお天気APIから情報を取得してみた！
     parent: Web制作
 eleventyComputed:
-tags:
-    - React
-    - TypeScript
-    - test
-    - GitHubActions
+    tags:
+        - React
+        - TypeScript
+        - test
+        - GitHubActions
 ---
 
 ## はじめに
@@ -614,3 +614,4 @@ Authentication のテストのモックと戦ってちょうど勝利したと�
 -   [Current Weather data](https://openweathermap.org/current){target=blank .external-link}
 -   [デジタル庁アドレス・ベース・レジストリ](https://www.digital.go.jp/policies/base_registry_address){target=blank .external-link}
 -   [fetch API と axios について](https://qiita.com/manzoku_bukuro/items/3e5bb0a678ebe7a2d2c2){target=blank .external-link}
+

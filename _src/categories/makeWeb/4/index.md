@@ -7,10 +7,10 @@ eleventyNavigation:
     key: ひよっこはFirebase Authenticationの単体テストを書きたい！
     parent: Web制作
 eleventyComputed:
-tags:
-    - React
-    - TypeScript
-    - test
+    tags:
+        - React
+        - TypeScript
+        - test
 ---
 
 ## はじめに
@@ -164,3 +164,4 @@ fetch が createUserWithEmailAndPassword 内で呼ばれてるらしい、とい
 ## 参考
 
 -   [`whatwg-fetch`](https://www.npmjs.com/package/whatwg-fetch){target=blank .external-link}
+

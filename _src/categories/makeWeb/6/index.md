@@ -1,15 +1,15 @@
 ---
 title: Vercel FunctionsとFirebaseAuthentication（Emulator）の認証トークンで詰まった話
-description:
+description: ID token has no 'kid' header; see https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve a valid ID token というエラーを解決します！
 headerImg: /images/header/categories/makeWeb/6.webp
 date: 2025-03-02
 eleventyNavigation:
     key: Vercel FunctionsとFirebaseAuthentication（Emulator）の認証トークンで詰まった話
     parent: Web制作
 eleventyComputed:
-tags:
-    - Vercel
-    - FirebaseAuthentication
+    tags:
+        - Vercel
+        - FirebaseAuthentication
 ---
 
 ## はじめに
