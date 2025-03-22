@@ -41,6 +41,8 @@ https://prismjs.com/download.html#themes=prism-coy&languages=markup+css+clike+ja
 -   mermaid
 -   plant-uml
 -   python
+-   jsx
+-   tsx
 -   ruby
 -   rust
 -   sass
