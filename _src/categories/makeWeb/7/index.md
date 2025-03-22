@@ -8,8 +8,8 @@ eleventyNavigation:
     key: ひよっこはnext/routerに枕を濡らす
     parent: Web制作
 eleventyComputed:
-tags:
-    - Nextjs
+    tags:
+        - Nextjs
 ---
 
 ## はじめに
