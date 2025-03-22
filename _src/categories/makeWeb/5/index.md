@@ -1,6 +1,6 @@
 ---
 title: vercel devの際にローカルで環境変数を指定したい！
-description:
+description: Vercel Functions を使ってサーバーレス関数で DB 接続を行っています。その際に、ローカルでは localhost でたてた PostgreSQL に接続するようにしたい、ということがありました。その時にぶつかった問題の解決メモです。
 headerImg: /images/header/categories/makeWeb/5.webp
 date: 2025-03-02
 eleventyNavigation:
