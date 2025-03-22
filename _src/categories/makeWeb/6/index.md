@@ -7,9 +7,9 @@ eleventyNavigation:
     key: Vercel FunctionsとFirebaseAuthentication（Emulator）の認証トークンで詰まった話
     parent: Web制作
 eleventyComputed:
-tags:
-    - Vercel
-    - FirebaseAuthentication
+    tags:
+        - Vercel
+        - FirebaseAuthentication
 ---
 
 ## はじめに

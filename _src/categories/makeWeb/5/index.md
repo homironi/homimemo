@@ -7,8 +7,8 @@ eleventyNavigation:
     key: vercel devの際にローカルで環境変数を指定したい！
     parent: Web制作
 eleventyComputed:
-tags:
-    - Vercel
+    tags:
+        - Vercel
 ---
 
 ## はじめに
