@@ -1,4 +1,0 @@
-# Ignore test files
-.cache
-_public
-test/stubs-layout-cache/_includes/*.js
