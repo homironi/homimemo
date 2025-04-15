@@ -1,0 +1,34 @@
+:root {
+    font-family: "Kosugi Maru", sans-serif;
+
+    background-color: var(--color-main);
+    background-image: url(/images/background.svg);
+    background-size: 256px;
+    background-repeat: repeat;
+    color: var(--text-color-black);
+}
+
+/* 背景画像だけ個別でダークテーマ設定 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        background-image: url(/images/background_dark.svg);
+    }
+}
+
+.container-wrapper {
+    margin: 32px 0;
+}
+
+.content-wrapper {
+    padding: 1.5em;
+}
+
+.resizable-img img {
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        font-size: 0.8em;
+    }
+}

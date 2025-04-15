@@ -1,0 +1,21 @@
+.profile {
+    padding: 1em;
+    text-align: center;
+}
+
+.profile > .name {
+    margin: 1em 0;
+}
+
+.profile .resizable-img.icon {
+    width: 12em;
+    margin: 1.5em auto;
+}
+
+.profile .my-link {
+    margin: 1em 0;
+}
+
+.profile > .about-link > p {
+    margin: 1.2em 0;
+}

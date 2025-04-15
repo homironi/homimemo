@@ -1,0 +1,6 @@
+.category-display {
+    color: var(--text-color-black-hover);
+    text-decoration: none;
+    margin: 0.5em 0;
+    display: inline-block;
+}

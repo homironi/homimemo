@@ -1,0 +1,20 @@
+<div class = "category-list-wrapper">
+    <h3 calss = "category-list-header">カテゴリ一覧</h3>
+    <ul class = "category-list">
+        {%- for category in collections.categories -%}
+            <li>
+                <a class="category-button" href="{{ category.url }}">{{ category.data.title }}</a>
+            </li>
+        {%- endfor -%}
+    </ul>
+</div>
+<div class = "category-list-wrapper">
+    <h3 calss = "category-list-header">タグ一覧</h3>
+    <ul class = "category-list">
+        {%- for tag in collections.tags -%}
+            <li>
+                <a class="category-button" href="{{ tag.url }}">{{ tag.data.title }}</a>
+            </li>
+        {%- endfor -%}
+    </ul>
+</div>
