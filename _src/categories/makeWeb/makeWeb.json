@@ -1,9 +1,0 @@
-{
-    "category": "makeWeb",
-    "eleventyComputed": {
-        "tags": [
-            "makeWeb"
-        ]
-    },
-    "categoryName": "Web制作"
-}
