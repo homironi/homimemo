@@ -31,5 +31,3 @@ export async function handler(event) {
     };
   }
 }
-
-export const config = { path: "/auth" };
