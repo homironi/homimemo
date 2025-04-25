@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: mimimiRoni/homimemo
+  branch: develop
+  base_url: https://homimemo-cms-auth.vercel.app
+  auth_endpoint: api/auth/begin
+  site_domain: homironi.com
+  squash_merges: true
+  commit_messages:
+    create: "記事作成: {{slug}}"
+    update: "記事更新: {{slug}}"
+    delete: "記事削除: {{slug}}"
+    uploadMedia: "画像アップロード: {{path}}"
+    deleteMedia: "画像削除: {{path}}"
+
+media_folder: "public/images"
+public_folder: "/images"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "posts"
+    label: "記事"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string" }
+      - { label: "本文", name: "body", widget: "markdown" }
