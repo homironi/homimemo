@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Kosugi_Maru } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const kosugiMaru = Kosugi_Maru({
+  variable: "--font-kosugi-maru",
+  weight: "400",
+  display: "swap",
   subsets: ["latin"],
 });
 
@@ -23,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="ja">
+      <body className={`${kosugiMaru.className} ${kosugiMaru.variable}`}>
         {children}
       </body>
     </html>
