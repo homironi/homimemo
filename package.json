@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:style": "stylelint src/**/*.css",
+    "lint-fix:style": "stylelint src/**/*.css --fix"
   },
   "dependencies": {
     "next": "15.3.0",
@@ -21,6 +23,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.0",
+    "stylelint": "^16.19.1",
+    "stylelint-config-standard": "^38.0.0",
     "typescript": "^5"
   }
 }
