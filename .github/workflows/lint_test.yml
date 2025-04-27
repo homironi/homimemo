@@ -6,6 +6,8 @@ on:
         branches:
             - main
             - develop
+        paths:  
+          - "src/**.css"
 
 jobs:
     test:
