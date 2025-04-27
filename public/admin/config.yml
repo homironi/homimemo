@@ -7,9 +7,9 @@ backend:
   site_domain: homironi.com
   squash_merges: true
   commit_messages:
-    create: "記事作成: {{slug}}"
-    update: "記事更新: {{slug}}"
-    delete: "記事削除: {{slug}}"
+    create: "作成: {{slug}}"
+    update: "更新: {{slug}}"
+    delete: "削除: {{slug}}"
     uploadMedia: "画像アップロード: {{path}}"
     deleteMedia: "画像削除: {{path}}"
 
@@ -19,11 +19,35 @@ public_folder: "/images"
 publish_mode: editorial_workflow
 
 collections:
-  - name: "posts"
+  - name: "articles"
     label: "記事"
-    folder: "content/posts"
+    folder: "_contents/articles"
+    create: true
+    slug: "{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string", required: true }
+      - { label: "公開日時", name: "publishDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
+      - { label: "最終編集日時", name: "lastModDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
+      - { label: "カテゴリー", name: "category", widget: "relation", collection: "categories", search_fields: ["name", "description"], value_field: "name", required: true }
+      - { label: "タグ", name: "tags", widget: "relation", collection: "tags", search_fields: ["name", "description"], value_field: "name" }
+      - { label: "サムネイル", name: "thumbnail", widget: "image" }
+      - { label: "説明", name: "description", widget: "string" }
+      - { label: "本文", name: "body", widget: "markdown", required: true }
+
+  - name: "categories"
+    label: "カテゴリー"
+    folder: "_contents/categories"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "タイトル", name: "title", widget: "string" }
-      - { label: "本文", name: "body", widget: "markdown" }
+      - { label: "カテゴリー名", name: "name", widget: "string", required: true }
+      - { label: "説明", name: "description", widget: "string" }
+
+  - name: "tags"
+    label: "タグ"
+    folder: "_contents/tags"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "タグ名", name: "name", widget: "string", required: true }
+      - { label: "説明", name: "description", widget: "string" }
