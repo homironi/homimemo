@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:style": "stylelint src/**/*.css",
-    "lint-fix:style": "stylelint src/**/*.css --fix"
+    "lint:style": "stylelint \"src/**/*.css\"",
+    "lint-fix:style": "stylelint \"src/**/*.css --fix\"",
+    "lint:markup": "markuplint \"{src,public}/**/*.{tsx,html}\"",
+    "lint-fix:markup": "markuplint \"{src,public}/**/*.{tsx,html}\" --fix"
   },
   "dependencies": {
     "next": "15.3.0",
@@ -17,12 +19,15 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@markuplint/jsx-parser": "^4.7.19",
+    "@markuplint/react-spec": "^4.5.19",
     "@stylistic/eslint-plugin": "^4.2.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.0",
+    "markuplint": "^4.12.0",
     "stylelint": "^16.19.1",
     "stylelint-config-standard": "^38.0.0",
     "typescript": "^5"
