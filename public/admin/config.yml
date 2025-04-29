@@ -30,9 +30,9 @@ collections:
       - { label: "公開日時", name: "publishDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
       - { label: "最終編集日時", name: "lastModDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
       - { label: "カテゴリー", name: "category", widget: "relation", collection: "categories", search_fields: ["name", "description"], value_field: "name", required: true }
-      - { label: "タグ", name: "tags", widget: "relation", collection: "tags", search_fields: ["name", "description"], value_field: "name" }
-      - { label: "サムネイル", name: "thumbnail", widget: "image" }
-      - { label: "説明", name: "description", widget: "string" }
+      - { label: "タグ", name: "tags", widget: "relation", collection: "tags", search_fields: ["name", "description"], value_field: "name", required: false }
+      - { label: "サムネイル", name: "thumbnail", widget: "image", required: false }
+      - { label: "説明", name: "description", widget: "string", required: true }
       - { label: "本文", name: "body", widget: "markdown", required: true }
 
   - name: "categories"
@@ -43,7 +43,7 @@ collections:
     fields:
       - { label: "カテゴリー名", name: "name", widget: "string", required: true }
       - { label: "Slug", name: "slug", widget: "string", required: true, pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "1文字以上の英数字もしくはハイフンのみを使用します"] }
-      - { label: "説明", name: "description", widget: "string" }
+      - { label: "説明", name: "description", widget: "string", required: false }
 
   - name: "tags"
     label: "タグ"
@@ -53,4 +53,4 @@ collections:
     fields:
       - { label: "タグ名", name: "name", widget: "string", required: true }
       - { label: "Slug", name: "slug", widget: "string", required: true, pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "1文字以上の英数字もしくはハイフンのみを使用します"] }
-      - { label: "説明", name: "description", widget: "string" }
+      - { label: "説明", name: "description", widget: "string", required: false }
