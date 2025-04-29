@@ -26,6 +26,7 @@ collections:
     slug: "{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
     fields:
       - { label: "タイトル", name: "title", widget: "string", required: true }
+      - { label: "下書き", name: "draft", widget: "boolean", default: true, required: true }
       - { label: "公開日時", name: "publishDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
       - { label: "最終編集日時", name: "lastModDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
       - { label: "カテゴリー", name: "category", widget: "relation", collection: "categories", search_fields: ["name", "description"], value_field: "name", required: true }
@@ -38,16 +39,18 @@ collections:
     label: "カテゴリー"
     folder: "_contents/categories"
     create: true
-    slug: "{{slug}}"
+    slug: "{{fields.slug}}"
     fields:
       - { label: "カテゴリー名", name: "name", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: true, pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "1文字以上の英数字もしくはハイフンのみを使用します"] }
       - { label: "説明", name: "description", widget: "string" }
 
   - name: "tags"
     label: "タグ"
     folder: "_contents/tags"
     create: true
-    slug: "{{slug}}"
+    slug: "{{fields.slug}}"
     fields:
       - { label: "タグ名", name: "name", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: true, pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "1文字以上の英数字もしくはハイフンのみを使用します"] }
       - { label: "説明", name: "description", widget: "string" }
