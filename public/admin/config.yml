@@ -38,16 +38,18 @@ collections:
     label: "カテゴリー"
     folder: "_contents/categories"
     create: true
-    slug: "{{slug}}"
+    slug: "{{fields.slug}}"
     fields:
       - { label: "カテゴリー名", name: "name", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: true, pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "1文字以上の英数字もしくはハイフンのみを使用します"] }
       - { label: "説明", name: "description", widget: "string" }
 
   - name: "tags"
     label: "タグ"
     folder: "_contents/tags"
     create: true
-    slug: "{{slug}}"
+    slug: "{{fields.slug}}"
     fields:
       - { label: "タグ名", name: "name", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: true, pattern: ["^[a-z0-9]+(?:-[a-z0-9]+)*$", "1文字以上の英数字もしくはハイフンのみを使用します"] }
       - { label: "説明", name: "description", widget: "string" }
