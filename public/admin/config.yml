@@ -7,11 +7,11 @@ backend:
   site_domain: homironi.com
   squash_merges: true
   commit_messages:
-    create: "作成: {{slug}}"
-    update: "更新: {{slug}}"
-    delete: "削除: {{slug}}"
-    uploadMedia: "画像アップロード: {{path}}"
-    deleteMedia: "画像削除: {{path}}"
+    create: "[add] {{slug}}"
+    update: "[update] {{slug}}"
+    delete: "[delete] {{slug}}"
+    uploadMedia: "[add] img: {{path}}"
+    deleteMedia: "[delete] img: {{path}}"
 
 media_folder: "public/images"
 public_folder: "/images"
