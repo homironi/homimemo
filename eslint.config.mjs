@@ -19,6 +19,12 @@ const eslintConfig = [
   {
     rules: {
       "@stylistic/linebreak-style": ["error", "unix"],
+      "@stylistic/quote-props": ["error", "as-needed"],
+      "@stylistic/jsx-curly-spacing": [2, { when: "always" }],
+      "@stylistic/jsx-self-closing-comp": ["error", {
+        component: true,
+        html: true,
+      }],
     },
   },
 ];
