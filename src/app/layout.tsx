@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${kosugiMaru.className} ${kosugiMaru.variable}`}>
+      <body className={ `${kosugiMaru.className} ${kosugiMaru.variable}` }>
         {children}
       </body>
     </html>
