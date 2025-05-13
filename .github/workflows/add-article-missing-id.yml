@@ -36,6 +36,21 @@ jobs:
           echo "$OUTPUT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+      - name: Commit and push changes
+        if: github.event.pull_request != null
+        run: |
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+  
+            # 差分があればコミット
+            if [[ -n "$(git status --porcelain)" ]]; then
+              git add _contents/articles
+              git commit -m "Add missing article IDs"
+              git push
+            else
+              echo "No changes to commit."
+            fi
+  
       - name: Comment on PR
         if: github.event.pull_request != null
         env:
