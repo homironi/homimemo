@@ -25,6 +25,8 @@ const usedIds = new Set(
 );
 
 console.log("🚀 記事IDの付与を開始");
+
+let count = 0;
 for (const filePath of allArticlePaths) {
   const raw = fs.readFileSync(filePath, "utf-8");
   const parsed = matter(raw);
@@ -36,11 +38,18 @@ for (const filePath of allArticlePaths) {
       ...parsed.data,
     });
     fs.writeFileSync(filePath, updated);
-    console.log(`- ✅ 【ID付与】 ${filePath} ： ${newId}`);
+    console.log(`- ✅  ${filePath} ： ${newId}`);
+    ++count;
   }
 }
 
-console.log("🎉 記事IDの付与終了");
+if (count !== 0) {
+  console.log("---");
+  console.log(`📛 記事IDの付与終了：${count} 件`);
+}
+else {
+  console.log("🎉 すべての記事にIDが付与されています。");
+}
 
 /**
  * ユニークな記事IDの生成
