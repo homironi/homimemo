@@ -10,7 +10,8 @@
     "lint:style": "stylelint \"src/**/*.css\"",
     "lint-fix:style": "stylelint \"src/**/*.css --fix\"",
     "lint:markup": "markuplint \"{src,public}/**/*.{tsx,html}\"",
-    "lint-fix:markup": "markuplint \"{src,public}/**/*.{tsx,html}\" --fix"
+    "lint-fix:markup": "markuplint \"{src,public}/**/*.{tsx,html}\" --fix",
+    "add:article-id": "tsx scripts/addMissingArticleIds.ts"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
