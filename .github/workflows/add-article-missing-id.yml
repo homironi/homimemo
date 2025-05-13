@@ -46,7 +46,7 @@ jobs:
             if [[ -n "$(git status --porcelain)" ]]; then
               git add _contents/articles
               git commit -m "Add missing article IDs"
-              git push
+              git push origin HEAD:${{ github.head_ref }}
             else
               echo "No changes to commit."
             fi
