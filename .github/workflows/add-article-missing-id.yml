@@ -11,7 +11,7 @@ jobs:
   add-id-and-comment:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write # PRにコメントを追加する権限
 
     steps:
