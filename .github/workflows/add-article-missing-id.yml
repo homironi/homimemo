@@ -47,7 +47,7 @@ jobs:
             # 差分があればコミット
             if [[ -n "$(git status --porcelain)" ]]; then
               git add _contents/articles
-              git commit -m "Add missing article IDs
+              git commit -m "Add missing article IDs"
               git push
             else
               echo "No changes to commit."
