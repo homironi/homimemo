@@ -1,7 +1,7 @@
 import { ArticleMetaSchema } from "@/schemas/articleMeta";
 import fs from "fs";
 import matter from "gray-matter";
-import { is } from "valibot";
+import { safeParse } from "valibot";
 
 export async function generateStaticParams() {
   return [
@@ -11,14 +11,24 @@ export async function generateStaticParams() {
 export default function ArticlePage() {
   const raw = fs.readFileSync("_contents/articles/20250429021614.md", "utf-8");
   const { data, content } = matter(raw);
+  const safeParsed = safeParse(ArticleMetaSchema, data);
 
   return (
     <div>
       <h2>frontMatter</h2>
       <p>
-        {is(ArticleMetaSchema, data)
-          ? JSON.stringify(data)
-          : "frontmatter の パースに失敗しました"}
+        {safeParsed.success
+          ? JSON.stringify(safeParsed.output)
+          : safeParsed.issues.map((issue, index) => {
+              return (
+                <div key={ index }>
+                  <p>{issue.message}</p>
+                  <p>{issue.type}</p>
+                  <p>{issue.expected}</p>
+                </div>
+              );
+            },
+            )}
       </p>
       <h2>content</h2>
       <p>
