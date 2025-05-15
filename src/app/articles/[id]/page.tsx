@@ -1,6 +1,8 @@
 import { ArticleMetaSchema } from "@/schemas/articleMeta";
 import fs from "fs";
 import matter from "gray-matter";
+import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
 import { safeParse } from "valibot";
 
 export async function generateStaticParams() {
@@ -8,10 +10,11 @@ export async function generateStaticParams() {
     { id: "20250429021614" }];
 }
 
-export default function ArticlePage() {
+export default async function ArticlePage() {
   const raw = fs.readFileSync("_contents/articles/20250429021614.md", "utf-8");
   const { data, content } = matter(raw);
   const safeParsed = safeParse(ArticleMetaSchema, data);
+  const mdxSource = await serialize(content);
 
   return (
     <div>
@@ -31,9 +34,7 @@ export default function ArticlePage() {
             )}
       </p>
       <h2>content</h2>
-      <p>
-        { content}
-      </p>
+      <MDXRemote { ...mdxSource } />
     </div>
   );
 }
