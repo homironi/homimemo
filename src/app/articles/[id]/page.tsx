@@ -2,6 +2,7 @@ import { ArticleMetaSchema } from "@/schemas/articleMeta";
 import fs from "fs";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import { safeParse } from "valibot";
 
@@ -60,6 +61,7 @@ function ArticleMDX({ content }: { content: string }) {
         mdxOptions: {
           rehypePlugins: [
             rehypeSlug,
+            rehypeAutolinkHeadings,
           ],
         },
       } }
