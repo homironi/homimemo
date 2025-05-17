@@ -32,6 +32,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.0",
+    "eslint-plugin-jsdoc": "^50.6.17",
     "markuplint": "^4.12.0",
     "stylelint": "^16.19.1",
     "stylelint-config-standard": "^38.0.0",
