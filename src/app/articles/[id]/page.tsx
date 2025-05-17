@@ -4,11 +4,19 @@ import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { safeParse } from "valibot";
 
+/**
+ * Next.jsのページで使用する静的パラメータを生成する関数
+ * @returns 静的パラメータの配列
+ */
 export async function generateStaticParams() {
   return [
     { id: "20250429021614" }];
 }
 
+/**
+ * 記事ページのコンポーネント
+ * @returns 記事ページのJSX要素
+ */
 export default async function ArticlePage() {
   const raw = fs.readFileSync("_contents/articles/20250429021614.md", "utf-8");
   const { data, content } = matter(raw);
