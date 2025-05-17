@@ -2,6 +2,7 @@ import { ArticleMetaSchema } from "@/schemas/articleMeta";
 import fs from "fs";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import rehypeSlug from "rehype-slug";
 import { safeParse } from "valibot";
 
 /**
@@ -40,7 +41,28 @@ export default async function ArticlePage() {
             )}
       </p>
       <h2>content</h2>
-      <MDXRemote source={ content } />
+      <ArticleMDX content={ content } />
     </div>
+  );
+}
+
+/**
+ * 記事で使用するMDXRemoteコンポーネント
+ * @param root0 オブジェクト引数
+ * @param root0.content MDXコンテンツ
+ * @returns MDXRemoteコンポーネント
+ */
+function ArticleMDX({ content }: { content: string }) {
+  return (
+    <MDXRemote
+      source={ content }
+      options={ {
+        mdxOptions: {
+          rehypePlugins: [
+            rehypeSlug,
+          ],
+        },
+      } }
+    />
   );
 }
