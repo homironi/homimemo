@@ -1,5 +1,6 @@
 import { FlatCompat } from "@eslint/eslintrc";
 import stylistic from "@stylistic/eslint-plugin";
+import jsdoc from "eslint-plugin-jsdoc";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -11,12 +12,17 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  jsdoc.configs["flat/recommended-typescript"],
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   stylistic.configs.customize({
     semi: true,
     quotes: "double",
   }),
   {
+    plugins: {
+      "@stylistic": stylistic,
+      jsdoc,
+    },
     rules: {
       "@stylistic/linebreak-style": ["error", "unix"],
       "@stylistic/quote-props": ["error", "as-needed"],
