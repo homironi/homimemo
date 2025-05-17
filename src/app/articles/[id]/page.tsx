@@ -3,6 +3,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import { safeParse } from "valibot";
 
@@ -62,6 +63,7 @@ function ArticleMDX({ content }: { content: string }) {
           rehypePlugins: [
             rehypeSlug,
             rehypeAutolinkHeadings,
+            rehypePrism, // TODO：Prismの cssはまだoldから移動していないので、スタイルは適用されない
           ],
         },
       } }
