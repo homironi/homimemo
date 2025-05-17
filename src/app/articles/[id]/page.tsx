@@ -2,10 +2,14 @@ import { ArticleMetaSchema } from "@/schemas/articleMeta";
 import fs from "fs";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import dynamic from "next/dynamic";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import { safeParse } from "valibot";
+
+const DynamicToc = dynamic(() => import("@/components/TableOfContents"));
+const tocContentSourceIdName = "toc-source-content";
 
 /**
  * Next.jsのページで使用する静的パラメータを生成する関数
@@ -42,6 +46,7 @@ export default async function ArticlePage() {
             },
             )}
       </p>
+      <DynamicToc tocContentSourceIdName={ tocContentSourceIdName } />
       <h2>content</h2>
       <ArticleMDX content={ content } />
     </div>
@@ -56,17 +61,19 @@ export default async function ArticlePage() {
  */
 function ArticleMDX({ content }: { content: string }) {
   return (
-    <MDXRemote
-      source={ content }
-      options={ {
-        mdxOptions: {
-          rehypePlugins: [
-            rehypeSlug,
-            rehypeAutolinkHeadings,
-            rehypePrism, // TODO：Prismの cssはまだoldから移動していないので、スタイルは適用されない
-          ],
-        },
-      } }
-    />
+    <div id={ tocContentSourceIdName }>
+      <MDXRemote
+        source={ content }
+        options={ {
+          mdxOptions: {
+            rehypePlugins: [
+              rehypeSlug,
+              rehypeAutolinkHeadings,
+              rehypePrism, // TODO：Prismの cssはまだoldから移動していないので、スタイルは適用されない
+            ],
+          },
+        } }
+      />
+    </div>
   );
 }
