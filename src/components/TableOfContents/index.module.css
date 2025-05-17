@@ -1,0 +1,9 @@
+.toc {
+    /* 今はわかりやすくするためだけに設定 */
+    color: cadetblue; 
+}
+
+.toc-link-active {
+    /* 今はわかりやすくするためだけに設定 */
+    font-weight: bold;
+}
