@@ -44,10 +44,10 @@ export function rehypeCodeToolContainer() {
             codeToolContainerClassName,
             `${codeToolContainerClassName}--${lang}`],
         },
-        children: [pre],
+        children: [],
       };
 
-      parent.children.splice(index, 1, container);
+      pre.children.unshift(container);
     }
   };
 }
@@ -102,20 +102,29 @@ export function rehypeCopyButton() {
 
     visit(tree, "element", (node, _, parent) => {
       if (
-        node?.type === "element"
-        && node.tagName === "pre"
-        && parent?.type === "element"
-        && parent.tagName === "div"
-        && Array.isArray(parent.properties?.className)
-        && parent.properties.className.includes(codeToolContainerClassName)
+        parent?.type === "element"
+        && parent.tagName === "pre"
+        && node?.type === "element"
+        && node.tagName === "div"
+        && Array.isArray(node.properties?.className)
+        && node.properties.className.includes(codeToolContainerClassName)
       ) {
-        const targetId = `code-${uid++}`;
-        node.properties = { ...node.properties, id: targetId };
+        console.log("found code tool container");
+        const target = parent.children.find(child => child.type === "element"
+          && child.tagName === "code"
+          && Array.isArray(child.properties?.className),
+        );
 
-        inserts.push({
-          container: parent,
-          targetId: targetId,
-        });
+        if (target && target.type === "element") {
+          console.log("found code");
+          const targetId = `code-${uid++}`;
+          target.properties = { ...target.properties, id: targetId };
+
+          inserts.push({
+            container: node,
+            targetId: targetId,
+          });
+        }
       }
     });
 
