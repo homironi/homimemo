@@ -3,7 +3,7 @@
 
     --color-prism-main: #79cdee;
     --color-prism-background: #fdfdfd;
-    --color-prism-background-even: #79cdee15;
+    --color-prism-background-even: #f2f9fc;
     --color-prism-text-default: black;
     --color-prism-text-line-number: #7b9daa;
     --color-prism-border: #dfdfdf;
@@ -26,12 +26,8 @@ pre[class*="language-"] > code > span {
     display: block;
 }
 
-pre[class*="language-"] > code > span.line-number {
-    padding-left: 5em;
-}
-
 pre[class*="language-"] > code > span.line-number::before {
-    position: absolute;
+    position: sticky;
     left: 0;
     text-align: right;
     display: inline-block;
@@ -42,6 +38,16 @@ pre[class*="language-"] > code > span.line-number::before {
     width: 3em;
     border-right: 1px solid var(--color-prism-border);
     padding-right: 1em;
+}
+
+pre[class*="language-"] > code > span,
+pre[class*="language-"] > code > span.line-number:nth-child(odd)::before {
+    background-color: var(--color-prism-background);
+}
+
+pre[class*="language-"] > code > span:nth-child(even),
+pre[class*="language-"] > code > span.line-number:nth-child(even)::before {
+    background-color: var(--color-prism-background-even);
 }
 
 pre[class*="language-"] > code > span.line-number.highlight-line::before {
@@ -176,7 +182,7 @@ pre[class*="language-"] {
         /* 後でグローバルにまとめ直すかも */
 
         --color-prism-background: #2b2b2b;
-        --color-prism-background-even: #c7e4ff18;
+        --color-prism-background-even: #2e3235;
         --color-prism-text-default: #f8f8f2;
         --color-prism-text-line-number: #91b0bd;
         --color-prism-border: #505050;
