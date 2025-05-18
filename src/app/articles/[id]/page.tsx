@@ -7,6 +7,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import { safeParse } from "valibot";
+import "./prism.css"; // 記事内で使用するコードハイライトのPrismのスタイルを適用するためにインポート
 
 const DynamicToc = dynamic(() => import("@/components/TableOfContents"));
 const tocContentSourceIdName = "toc-source-content";
