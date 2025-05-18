@@ -24,6 +24,7 @@ const eslintConfig = [
       jsdoc,
     },
     rules: {
+      "no-console": "error",
       "@stylistic/linebreak-style": ["error", "unix"],
       "@stylistic/quote-props": ["error", "as-needed"],
       "@stylistic/jsx-curly-spacing": [2, { when: "always" }],
