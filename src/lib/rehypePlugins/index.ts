@@ -1,6 +1,7 @@
 import type { Element, Root } from "hast";
 import { visit } from "unist-util-visit";
 
+const codeContainerClassName = "code-container";
 const codeToolContainerClassName = "code-tools-container";
 
 /**
@@ -36,7 +37,7 @@ export function rehypeCodeToolContainer() {
     });
 
     for (const { pre, parent, index, lang } of targets) {
-      const container: Element = {
+      const toolContainer: Element = {
         type: "element",
         tagName: "div",
         properties: {
@@ -47,7 +48,18 @@ export function rehypeCodeToolContainer() {
         children: [],
       };
 
-      pre.children.unshift(container);
+      const codeContainer: Element = {
+        type: "element",
+        tagName: "div",
+        properties: {
+          className: [
+            codeContainerClassName,
+            `${codeContainerClassName}--${lang}`],
+        },
+        children: [toolContainer, pre],
+      };
+
+      parent.children.splice(index, 1, codeContainer);
     }
   };
 }
@@ -103,20 +115,20 @@ export function rehypeCopyButton() {
     visit(tree, "element", (node, _, parent) => {
       if (
         parent?.type === "element"
-        && parent.tagName === "pre"
+        && parent.tagName === "div"
+        && Array.isArray(parent.properties?.className)
+        && parent.properties.className.includes(codeContainerClassName)
         && node?.type === "element"
         && node.tagName === "div"
         && Array.isArray(node.properties?.className)
         && node.properties.className.includes(codeToolContainerClassName)
       ) {
-        console.log("found code tool container");
         const target = parent.children.find(child => child.type === "element"
-          && child.tagName === "code"
+          && child.tagName === "pre"
           && Array.isArray(child.properties?.className),
         );
 
         if (target && target.type === "element") {
-          console.log("found code");
           const targetId = `code-${uid++}`;
           target.properties = { ...target.properties, id: targetId };
 
