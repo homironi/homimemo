@@ -1,3 +1,4 @@
+import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/rehypePlugins";
 import { ArticleMetaSchema } from "@/schemas/articleMeta";
 import fs from "fs";
 import matter from "gray-matter";
@@ -10,6 +11,7 @@ import { safeParse } from "valibot";
 import "./prism.css"; // 記事内で使用するコードハイライトのPrismのスタイルを適用するためにインポート
 
 const DynamicToc = dynamic(() => import("@/components/TableOfContents"));
+const DynamicCodeCopyHandler = dynamic(() => import("@/components/CopyCodeHandler"));
 const tocContentSourceIdName = "toc-source-content";
 
 /**
@@ -47,6 +49,7 @@ export default async function ArticlePage() {
             },
             )}
       </p>
+      <DynamicCodeCopyHandler />
       <DynamicToc tocContentSourceIdName={ tocContentSourceIdName } />
       <h2>content</h2>
       <ArticleMDX content={ content } />
@@ -71,6 +74,9 @@ function ArticleMDX({ content }: { content: string }) {
               rehypeSlug,
               rehypeAutolinkHeadings,
               [rehypePrism, { showLineNumbers: true }],
+              rehypeCodeToolContainer,
+              rehypeCodeLangLabel, // rehypeCodeToolContainer でコンテナが追加されていればその中に言語ラベルが追加される
+              rehypeCopyButton, // rehypeCodeToolContainer でコンテナが追加されていればその中にコピーボタンが追加される
             ],
           },
         } }
