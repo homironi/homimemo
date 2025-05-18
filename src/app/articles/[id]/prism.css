@@ -5,6 +5,7 @@
     --color-prism-background: #fdfdfd;
     --color-prism-background-even: #79cdee15;
     --color-prism-text-default: black;
+    --color-prism-text-line-number: #7b9daa;
     --color-prism-border: #dfdfdf;
 }
 
@@ -35,13 +36,12 @@ pre[class*="language-"] > code > span.line-number::before {
     text-align: right;
     display: inline-block;
     content: attr(line);
-    color: #ffffff;
+    color: var(--color-prism-text-line-number);
     margin-right: 2em;
     border-left: 4px solid #00000000;
     width: 3em;
     border-right: 1px solid var(--color-prism-border);
     padding-right: 1em;
-    background-color: var(--color-prism-main);
 }
 
 pre[class*="language-"] > code > span.line-number.highlight-line::before {
@@ -178,6 +178,7 @@ pre[class*="language-"] {
         --color-prism-background: #2b2b2b;
         --color-prism-background-even: #c7e4ff18;
         --color-prism-text-default: #f8f8f2;
+        --color-prism-text-line-number: #91b0bd;
         --color-prism-border: #505050;
     }
      
