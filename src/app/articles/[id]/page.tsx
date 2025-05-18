@@ -70,7 +70,7 @@ function ArticleMDX({ content }: { content: string }) {
             rehypePlugins: [
               rehypeSlug,
               rehypeAutolinkHeadings,
-              rehypePrism,
+              [rehypePrism, { showLineNumbers: true }],
             ],
           },
         } }
