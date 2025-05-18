@@ -1,137 +1,149 @@
-@media (prefers-color-scheme: light) {
-    /* https://github.com/PrismJS/prism-themes/blob/master/themes/prism-coy-without-shadows.css */
+:root {
+    /* 後でグローバルにまとめ直すかも */
 
-    /**
-    * Coy without shadows
-    * Based on Tim Shedor's Coy theme for prism.js
-    * Author: RunDevelopment
-    */
+    --color-prism-main: #79cdee;
+    --color-prism-background: #fdfdfd;
+    --color-prism-background-even: #79cdee15;
+    --color-prism-text-default: black;
+    --color-prism-border: #dfdfdf;
+}
 
-    code[class*="language-"],
-    pre[class*="language-"] {
-        color: black;
-        background: none;
-        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-        font-size: 1em;
-        text-align: left;
-        white-space: pre;
-        word-spacing: normal;
-        word-break: normal;
-        word-wrap: normal;
-        line-height: 1.5;
-        tab-size: 4;
-        hyphens: none;
-    }
-    
-    /* Code blocks */
-    pre[class*="language-"] {
-        position: relative;
-        border-left: 10px solid #358ccb;
-        box-shadow: -1px 0 0 0 #358ccb, 0 0 0 1px #dfdfdf;
-        background-color: #fdfdfd;
-        background-image: linear-gradient(transparent 50%, rgba(69 142 209 / 4%) 50%);
-        background-size: 3em 3em;
-        background-origin: content-box;
-        background-attachment: local;
-        margin: .5em 0;
-        padding: 0 1em;
-    }
-    
-    pre[class*="language-"] > code {
-        display: block;
-    }
-    
-    /* Inline code */
-    :not(pre) > code[class*="language-"] {
-        position: relative;
-        padding: .2em;
-        border-radius: 0.3em;
-        color: #c92c2c;
-        border: 1px solid rgba(0 0 0 / 10%);
-        display: inline;
-        white-space: normal;
-        background-color: #fdfdfd;
-        box-sizing: border-box;
-    }
-    
-    .token.comment,
-    .token.block-comment,
-    .token.prolog,
-    .token.doctype,
-    .token.cdata {
-        color: #7D8B99;
-    }
-    
-    .token.punctuation {
-        color: #5F6364;
-    }
-    
-    .token.property,
-    .token.tag,
-    .token.boolean,
-    .token.number,
-    .token.function-name,
-    .token.constant,
-    .token.symbol,
-    .token.deleted {
-        color: #c92c2c;
-    }
-    
-    .token.selector,
-    .token.attr-name,
-    .token.string,
-    .token.char,
-    .token.function,
-    .token.builtin,
-    .token.inserted {
-        color: #2f9c0a;
-    }
-    
-    .token.operator,
-    .token.entity,
-    .token.url,
-    .token.variable {
-        color: #a67f59;
-        background: rgba(255 255 255 / 50%);
-    }
-    
-    .token.atrule,
-    .token.attr-value,
-    .token.keyword,
-    .token.class-name {
-        color: #1990b8;
-    }
-    
-    .token.regex,
-    .token.important {
-        color: #ee9900;
-    }
-    
-    .language-css .token.string,
-    .style .token.string {
-        color: #a67f59;
-        background: rgba(255 255 255 / 50%);
-    }
-    
-    .token.important {
-        font-weight: normal;
-    }
-    
-    .token.bold {
-        font-weight: bold;
-    }
-    
-    .token.italic {
-        font-style: italic;
-    }
-    
-    .token.entity {
-        cursor: help;
-    }
-    
-    .token.namespace {
-        opacity: .7;
-    }
+pre[class*="language-"] > code > span.line-number::before {
+    content: attr(line);
+    color: #999999;
+    margin-right: 2em;
+}
+
+/* https://github.com/PrismJS/prism-themes/blob/master/themes/prism-coy-without-shadows.css */
+
+/**
+* Coy without shadows
+* Based on Tim Shedor's Coy theme for prism.js
+* Author: RunDevelopment
+*/
+
+code[class*="language-"],
+pre[class*="language-"] {
+    color: var(--color-prism-text-default);
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    tab-size: 4;
+    hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+    position: relative;
+    border-left: 10px solid var(--color-prism-main);
+    box-shadow: -1px 0 0 0 var(--color-prism-main), 0 0 0 1px var(--color-prism-border);
+    background-color: var(--color-prism-background);
+    background-image: linear-gradient(transparent 50%, var(--color-prism-background-even) 50%);
+    background-size: 3em 3em;
+    background-origin: content-box;
+    background-attachment: local;
+    margin: .5em 0;
+    padding: 0 1em;
+}
+
+pre[class*="language-"] > code {
+    display: block;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+    position: relative;
+    padding: .2em;
+    border-radius: 0.3em;
+    color: #c92c2c;
+    border: 1px solid rgba(0 0 0 / 10%);
+    display: inline;
+    white-space: normal;
+    background-color: #fdfdfd;
+    box-sizing: border-box;
+}
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #7D8B99;
+}
+
+.token.punctuation {
+    color: #5F6364;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.function-name,
+.token.constant,
+.token.symbol,
+.token.deleted {
+    color: #c92c2c;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.function,
+.token.builtin,
+.token.inserted {
+    color: #2f9c0a;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.token.variable {
+    color: #a67f59;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword,
+.token.class-name {
+    color: #1990b8;
+}
+
+.token.regex,
+.token.important {
+    color: #ee9900;
+}
+
+.language-css .token.string,
+.style .token.string {
+    color: #a67f59;
+}
+
+.token.important {
+    font-weight: normal;
+}
+
+.token.bold {
+    font-weight: bold;
+}
+
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
+
+.token.namespace {
+    opacity: .7;
 }
 
 /* ダークテーマのコードブロック */
@@ -143,42 +155,16 @@
      * Based on the okaidia theme: https://github.com/PrismJS/prism/blob/gh-pages/themes/prism-okaidia.css
      * @author ericwbailey
      */
+     
+    :root {
+        /* 後でグローバルにまとめ直すかも */
 
-    code[class*="language-"],
-    pre[class*="language-"] {
-        color: #f8f8f2;
-        background: none;
-        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-        text-align: left;
-        white-space: pre;
-        word-spacing: normal;
-        word-break: normal;
-        word-wrap: normal;
-        line-height: 1.5;
-        tab-size: 4;
-        hyphens: none;
+        --color-prism-background: #2b2b2b;
+        --color-prism-background-even: #c7e4ff18;
+        --color-prism-text-default: #f8f8f2;
+        --color-prism-border: #444444;
     }
-
-    /* Code blocks */
-    pre[class*="language-"] {
-        padding: 1em;
-        margin: 0.5em 0;
-        overflow: auto;
-        border-radius: 0.3em;
-    }
-
-    :not(pre) > code[class*="language-"],
-    pre[class*="language-"] {
-        background: #2b2b2b;
-    }
-
-    /* Inline code */
-    :not(pre) > code[class*="language-"] {
-        padding: 0.1em;
-        border-radius: 0.3em;
-        white-space: normal;
-    }
-
+     
     .token.comment,
     .token.prolog,
     .token.doctype,
@@ -234,62 +220,5 @@
     .token.regex,
     .token.important {
         color: #ffd700;
-    }
-
-    .token.important,
-    .token.bold {
-        font-weight: bold;
-    }
-
-    .token.italic {
-        font-style: italic;
-    }
-
-    .token.entity {
-        cursor: help;
-    }
-
-    @media screen and (-ms-high-contrast: active) {
-        code[class*="language-"],
-        pre[class*="language-"] {
-            color: CanvasText;
-            background: Canvas;
-        }
-
-        :not(pre) > code[class*="language-"],
-        pre[class*="language-"] {
-            background: Canvas;
-        }
-
-        .token.important {
-            background: highlight;
-            color: canvas;
-            font-weight: normal;
-        }
-
-        .token.atrule,
-        .token.attr-value,
-        .token.function,
-        .token.keyword,
-        .token.operator,
-        .token.selector {
-            font-weight: bold;
-        }
-
-        .token.attr-value,
-        .token.comment,
-        .token.doctype,
-        .token.function,
-        .token.keyword,
-        .token.operator,
-        .token.property,
-        .token.string {
-            color: highlight;
-        }
-
-        .token.attr-value,
-        .token.url {
-            font-weight: normal;
-        }
     }
 }
