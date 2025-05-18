@@ -11,6 +11,14 @@
 pre[class*="language-"] > code {
     display: block;
     overflow: auto;
+    position: relative;
+    box-shadow: 0 0 0 1px var(--color-prism-border);
+    background-color: var(--color-prism-background);
+    background-image: linear-gradient(transparent 50%, var(--color-prism-background-even) 50%);
+    background-size: 3em 3em;
+    background-origin: content-box;
+    background-attachment: local;
+    margin: 1em 0;
 }
 
 pre[class*="language-"] > code > span {
@@ -62,18 +70,6 @@ pre[class*="language-"] {
     line-height: 1.5;
     tab-size: 4;
     hyphens: none;
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-    position: relative;
-    box-shadow: 0 0 0 1px var(--color-prism-border);
-    background-color: var(--color-prism-background);
-    background-image: linear-gradient(transparent 50%, var(--color-prism-background-even) 50%);
-    background-size: 3em 3em;
-    background-origin: content-box;
-    background-attachment: local;
-    margin: 1em 0;
 }
 
 /* Inline code */
