@@ -42,3 +42,5 @@ next-env.d.ts
 
 # SSGの出力先ディレクトリ
 _public
+
+*storybook.log

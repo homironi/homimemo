@@ -44,5 +44,12 @@
     "table-row-column-alignment": false,
     "use-list": false,
     "wai-aria": true
+  },
+  "overrides": {
+    "./src/stories/*": {
+      "rules": {
+        "any-rule": false
+      }
+    }
   }
 }
