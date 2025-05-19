@@ -1,0 +1,4 @@
+.task-list-item-checked {
+    /* TODO: module.css に置き換える。それまではわかりやすいようにだけしておく */
+    color: red;
+}
