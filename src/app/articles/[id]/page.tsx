@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
 import { safeParse } from "valibot";
 import "./prism.css"; // 記事内で使用するコードハイライトのPrismのスタイルを適用するためにインポート
 
@@ -70,6 +71,9 @@ function ArticleMDX({ content }: { content: string }) {
         source={ content }
         options={ {
           mdxOptions: {
+            remarkPlugins: [
+              remarkGfm,
+            ],
             rehypePlugins: [
               rehypeSlug,
               rehypeAutolinkHeadings,
