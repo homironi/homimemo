@@ -1,4 +1,5 @@
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/rehypePlugins/code";
+import { rehypeGfmTaskList } from "@/lib/rehypePlugins/gfmTaskList";
 import { ArticleMetaSchema } from "@/schemas/articleMeta";
 import fs from "fs";
 import matter from "gray-matter";
@@ -81,6 +82,7 @@ function ArticleMDX({ content }: { content: string }) {
               rehypeCodeToolContainer,
               rehypeCodeLangLabel, // rehypeCodeToolContainer でコンテナが追加されていればその中に言語ラベルが追加される
               rehypeCopyButton, // rehypeCodeToolContainer でコンテナが追加されていればその中にコピーボタンが追加される
+              rehypeGfmTaskList,
             ],
           },
         } }
