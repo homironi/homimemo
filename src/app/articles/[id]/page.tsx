@@ -12,7 +12,7 @@ import remarkGfm from "remark-gfm";
 import { safeParse } from "valibot";
 import "./prism.css"; // 記事内で使用するコードハイライトのPrismのスタイルを適用するためにインポート
 
-const DynamicToc = dynamic(() => import("@/components/TableOfContents"));
+const DynamicToc = dynamic(() => import("@/components/TableOfContents").then(mod => mod.default));
 const DynamicCodeCopyHandler = dynamic(() => import("@/components/CopyCodeHandler"));
 const tocContentSourceIdName = "toc-source-content";
 
