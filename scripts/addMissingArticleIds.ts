@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* ログで出力状況などを表示するために、このファイル内のみconsole.log を許可する */
 import fs from "fs";
 import matter from "gray-matter";
 import { customAlphabet } from "nanoid";
