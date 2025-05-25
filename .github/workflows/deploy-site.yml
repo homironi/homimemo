@@ -5,6 +5,9 @@ on:
     push:
         branches:
             - main
+    pull_request:
+        branches:
+            - develop # 今だけブランチでお試し動作させるために設定
 
 jobs:
     deploy:
