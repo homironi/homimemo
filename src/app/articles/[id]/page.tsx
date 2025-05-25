@@ -17,8 +17,8 @@ const DynamicToc = dynamic(() => import("@/components/TableOfContents").then(mod
 const DynamicCodeCopyHandler = dynamic(() => import("@/components/CopyCodeHandler").then(mod => mod.default));
 const tocContentSourceIdName = "toc-source-content";
 
-const articlesDirectory = "_contents/articles";
-const idToPathMapFile = ".temp/article/idToPathMap.json";
+const articlesDirectory = path.join("_contents", "articles");
+const idToPathMapFile = path.join(".temp", "article", "idToPathMap.json");
 
 type Params = {
   id: string;
@@ -56,21 +56,24 @@ const IdToPathMapSchema = array(IdToPathMapElementSchema);
 function createIdToPathMap(): IdToPathMapElement[] {
   return fs.readdirSync(articlesDirectory, "utf-8")
     .filter(file => file.endsWith(".md"))
-    .map<IdToPathMapElement>((file) => {
+    .map((file) => {
       const filePath = path.join(articlesDirectory, file); ;
       const raw = fs.readFileSync(filePath, "utf-8");
       const { data } = matter(raw);
-      if (data.id === undefined || data.id === null) {
-        throw new Error(`記事のIDが設定されていません: ${file}`);
-      }
-
-      if (typeof data.id !== "string" || data.id.trim() === "") {
-        throw new Error(`記事のIDは文字列である必要があります: ${file}`);
+      const safeParsed = safeParse(ArticleMetaSchema, data);
+      return { file, safeParsed };
+    })
+    .filter(({ safeParsed }) => safeParsed.success) // TODO: draft も除外するようにする
+    .map<IdToPathMapElement>(({ file, safeParsed }) => {
+      // すでに filter で成功したものだけを対象にしているので、パースに失敗することはありませんが
+      // success をチェックしないと型補完をが効かないので明示的にチェック
+      if (!safeParsed.success) {
+        throw new Error(`記事のメタデータのパースに失敗しました: ${file}`);
       }
 
       return {
-        id: data.id,
-        filePath: filePath,
+        id: safeParsed.output.id,
+        filePath: path.join(articlesDirectory, file),
       };
     });
 };
