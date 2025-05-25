@@ -45,3 +45,6 @@ _public
 
 *storybook.log
 storybook-static
+
+# ビルド時の一時ファイル用に自分で用意したフォルダ
+.temp/
