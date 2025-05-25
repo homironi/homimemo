@@ -22,7 +22,7 @@ const tocContentSourceIdName = "toc-source-content";
  */
 export async function generateStaticParams() {
   return [
-    { id: "20250429021614" }];
+    { id: "test" }];
 }
 
 /**
@@ -30,7 +30,7 @@ export async function generateStaticParams() {
  * @returns 記事ページのJSX要素
  */
 export default async function ArticlePage() {
-  const raw = fs.readFileSync("_contents/articles/20250429021614.md", "utf-8");
+  const raw = fs.readFileSync("_contents/articles/test.md", "utf-8");
   const { data, content } = matter(raw);
   const safeParsed = safeParse(ArticleMetaSchema, data);
 
