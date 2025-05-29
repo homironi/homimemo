@@ -30,9 +30,7 @@ Redirect 301 /categories/makeWeb/7/ /articles/6itk153mtrh1rdtek0dacqg8/
 Redirect 301 /categories/makeWeb/8/ /articles/93n1rqxpt801pqg3cdozcl2s/
 
 # URL 正規化のためのリダイレクト関係の設定
-
 # https://github.com/h5bp/html5-boilerplate/blob/7a22a33d4041c479d0962499e853501073811887/.htaccess
-
 # rewrite to https://example.com/
 
 <IfModule mod_rewrite.c>
@@ -75,3 +73,11 @@ Redirect 301 /categories/makeWeb/8/ /articles/93n1rqxpt801pqg3cdozcl2s/
     ExpiresByType font/woff "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
+
+# エックスサーバーのサーバーパネル上での設定
+SetEnvIf Request_URI ".*" Ngx_Cache_NoCacheMode=off
+SetEnvIf Request_URI ".*" Ngx_Cache_AllCacheMode
+RewriteCond %{HTTPS} !on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
