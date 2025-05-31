@@ -23,5 +23,9 @@ jobs:
             - name: Install dependencies
               run: npm install
 
+            # Module CSS の型ファイルを生成して後のビルドでエラーにならないか確認できるようにする
+            - name: module css type check
+              run: npm run tcm
+
             - name: Build
               run: npm run build
