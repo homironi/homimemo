@@ -48,3 +48,6 @@ storybook-static
 
 # ビルド時の一時ファイル用に自分で用意したフォルダ
 .temp/
+
+# CSS Moduleの型定義ファイルは自動生成するのでコミットしない
+src/**/*.module.css.d.ts

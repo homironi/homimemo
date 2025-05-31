@@ -12,6 +12,11 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  {
+    ignores: [
+      "**/*.css.d.ts", // CSSの型定義は自動生成なので無視
+    ],
+  },
   jsdoc.configs["flat/recommended-typescript"],
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   stylistic.configs.customize({
