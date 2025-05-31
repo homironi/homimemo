@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import styles from "./TextBlock.module.css";
 
 export type TextBlockType = "info" | "warning" | "error" | "success" | "note" | "tip" | "question";
 export type TextBlockTitleLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -35,7 +34,7 @@ export function TextBlock({ title, titleLevel = "h3", children }: Props) {
   const TitleTag = titleLevel;
   return (
     <div>
-      {title && <TitleTag className={ styles.title }>{title}</TitleTag>}
+      {title && <TitleTag>{title}</TitleTag>}
       {children}
     </div>
   );
