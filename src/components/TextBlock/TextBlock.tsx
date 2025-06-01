@@ -27,6 +27,10 @@ type Props = {
 
 /**
  * テキストブロックコンポーネント
+ * @param root0 引数オブジェクト
+ * @param root0.title テキストブロックのタイトル
+ * @param root0.titleLevel テキストブロックのタイトルレベル
+ * @param root0.children 子要素
  * @returns テキストブロックコンポーネント
  * @todo 後でちゃんと定義する。今はStorybookのサンプルをこれに置き換えておくために途中の状態。
  */

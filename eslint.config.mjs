@@ -37,7 +37,6 @@ const eslintConfig = [
         component: true,
         html: true,
       }],
-      "jsdoc/require-param": ["error", { checkDestructuredRoots: false }], // 分割している引数の時はエラーにしない
       "jsdoc/require-jsdoc": ["error", { publicOnly: true }],
     },
   },
