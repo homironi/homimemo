@@ -1,0 +1,20 @@
+.container{
+    background-color: var(--color-black-area);
+    padding: 24px;
+}
+
+.logo-container{
+    width: 30vw;
+    aspect-ratio: 3/1;
+    position: relative;
+    margin: 0 auto;
+}
+
+.logo {
+    object-fit: contain;
+}
+
+.copy-light {
+    color: var(--text-color-white);
+    text-align: center;
+}
