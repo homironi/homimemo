@@ -1,0 +1,13 @@
+.container{
+    background-color: var(--color-sub);
+}
+
+.logo-container{
+    width: 30vw;
+    aspect-ratio: 3/1;
+    position: relative;
+}
+
+.logo {
+    object-fit: contain;
+}
