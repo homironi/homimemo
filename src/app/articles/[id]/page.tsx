@@ -94,6 +94,8 @@ export async function generateStaticParams(): Promise<Params[]> {
 
 /**
  * 記事ページのコンポーネント
+ * @param root0 引数オブジェクト
+ * @param root0.params 記事のIDを含むパラメータ
  * @returns 記事ページのJSX要素
  */
 export default async function ArticlePage({ params }: { params: Promise<Params> }) {
