@@ -1,21 +1,9 @@
-import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/rehypePlugins/code";
-import { rehypeGfmTaskList } from "@/lib/rehypePlugins/gfmTaskList";
+import { Article } from "@/components/Article";
 import { ArticleMetaSchema } from "@/schemas/articleMeta";
 import fs from "fs";
 import matter from "gray-matter";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import dynamic from "next/dynamic";
 import path from "path";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrism from "rehype-prism-plus";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
 import { array, InferOutput, minLength, object, parse, pipe, safeParse, string } from "valibot";
-import "./prism.css"; // 記事内で使用するコードハイライトのPrismのスタイルを適用するためにインポート
-
-const DynamicToc = dynamic(() => import("@/components/TableOfContents").then(mod => mod.default));
-const DynamicCodeCopyHandler = dynamic(() => import("@/components/CopyCodeHandler").then(mod => mod.default));
-const tocContentSourceIdName = "toc-source-content";
 
 const articlesDirectory = path.join("_contents", "articles");
 const idToPathMapFile = path.join(".temp", "article", "idToPathMap.json");
@@ -106,63 +94,7 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
     throw new Error(`記事のファイルパスが見つかりません: ${id}`);
   }
 
-  const raw = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(raw);
-  const safeParsed = safeParse(ArticleMetaSchema, data);
-
   return (
-    <div>
-      <h2>frontMatter</h2>
-      <div>
-        {safeParsed.success
-          ? JSON.stringify(safeParsed.output)
-          : safeParsed.issues.map((issue, index) => {
-              return (
-                <div key={ index }>
-                  <p>{issue.message}</p>
-                  <p>{issue.type}</p>
-                  <p>{issue.expected}</p>
-                </div>
-              );
-            },
-            )}
-      </div>
-      <DynamicCodeCopyHandler />
-      <DynamicToc tocContentSourceIdName={ tocContentSourceIdName } />
-      <h2>content</h2>
-      <ArticleMDX content={ content } />
-    </div>
-  );
-}
-
-/**
- * 記事で使用するMDXRemoteコンポーネント
- * @param root0 オブジェクト引数
- * @param root0.content MDXコンテンツ
- * @returns MDXRemoteコンポーネント
- */
-function ArticleMDX({ content }: { content: string }) {
-  return (
-    <div id={ tocContentSourceIdName }>
-      <MDXRemote
-        source={ content }
-        options={ {
-          mdxOptions: {
-            remarkPlugins: [
-              remarkGfm,
-            ],
-            rehypePlugins: [
-              rehypeSlug,
-              rehypeAutolinkHeadings,
-              [rehypePrism, { showLineNumbers: true }],
-              rehypeCodeToolContainer,
-              rehypeCodeLangLabel, // rehypeCodeToolContainer でコンテナが追加されていればその中に言語ラベルが追加される
-              rehypeCopyButton, // rehypeCodeToolContainer でコンテナが追加されていればその中にコピーボタンが追加される
-              rehypeGfmTaskList,
-            ],
-          },
-        } }
-      />
-    </div>
+    <Article filePath={ filePath } />
   );
 }
