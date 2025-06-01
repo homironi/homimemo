@@ -71,7 +71,7 @@ function ArticleMdx({
   tocContentSourceIdName: string;
 }) {
   return (
-    <div id={ tocContentSourceIdName }>
+    <article id={ tocContentSourceIdName }>
       <MDXRemote
         source={ content }
         options={ {
@@ -91,6 +91,6 @@ function ArticleMdx({
           },
         } }
       />
-    </div>
+    </article>
   );
 }
