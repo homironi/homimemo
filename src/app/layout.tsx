@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Kosugi_Maru } from "next/font/google";
+import "./globalElement.css";
 import "./globals.css";
 
 const kosugiMaru = Kosugi_Maru({
