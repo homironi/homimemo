@@ -10,6 +10,14 @@ on:
           - "src/**.css"
           - "src/components/**"
           - "src/stories/**"
+    push:
+      branches:
+          - main
+          - develop
+      paths:
+          - "src/**.css"
+          - "src/components/**"
+          - "src/stories/**"
 
 jobs:
   chromatic:
