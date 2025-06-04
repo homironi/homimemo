@@ -1,4 +1,4 @@
-▼ developのStorybook（Private）  
+▼ developのStorybook  
 [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg)](https://develop--682bb6b6fbdc8489c7635afb.chromatic.com)
 
 [![Add Missing Article IDs](https://github.com/mimimiRoni/homimemo/actions/workflows/add-article-missing-id.yml/badge.svg)](https://github.com/mimimiRoni/homimemo/actions/workflows/add-article-missing-id.yml)
