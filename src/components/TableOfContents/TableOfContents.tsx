@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import tocbot from "tocbot";
 import styles from "./index.module.css";
 
-type Props = {
+export type TableOfContentsProps = {
+  className?: string;
   tocContentSourceIdName: string;
 };
 
@@ -12,9 +13,13 @@ type Props = {
  * 目次コンポーネント
  * @param root0 引数オブジェクト
  * @param root0.tocContentSourceIdName 目次を生成する対処についているコンテンツのID名
+ * @param root0.className 付与したいクラス名
  * @returns 目次のJSX要素
  */
-export function TableOfContents({ tocContentSourceIdName }: Props) {
+export function TableOfContents({
+  className,
+  tocContentSourceIdName,
+}: TableOfContentsProps) {
   useEffect(() => {
     tocbot.init({
       tocSelector: `.${styles.toc}`,
@@ -27,7 +32,7 @@ export function TableOfContents({ tocContentSourceIdName }: Props) {
   }, [tocContentSourceIdName]);
 
   return (
-    <nav>
+    <nav className={ className ?? "" }>
       <h2>自動生成目次</h2>
       <div className={ styles.toc } />
     </nav>
