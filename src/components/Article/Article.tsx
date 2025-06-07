@@ -33,6 +33,8 @@ export function Article({ filePath }: Props) {
 
   return (
     <div>
+      <DynamicCodeCopyHandler />
+      <DynamicToc tocContentSourceIdName={ tocContentSourceIdName } />
       <h2>frontMatter</h2>
       <div>
         {safeParsed.success
@@ -48,8 +50,6 @@ export function Article({ filePath }: Props) {
             },
             )}
       </div>
-      <DynamicCodeCopyHandler />
-      <DynamicToc tocContentSourceIdName={ tocContentSourceIdName } />
       <h2>content</h2>
       <ArticleMdx content={ content } tocContentSourceIdName={ tocContentSourceIdName } />
     </div>
