@@ -50,9 +50,15 @@
     --color-table-background-even: #e8f2fa;
     --color-table-background-hover: #d3e3ee;
     
-      /* background image */
+    /* background image */
   
     --path-background-image: url("/images/background.svg");
+
+    /* property */;
+
+    --grid-column: 12;
+    --shadow-blur-radius: 8px;
+    --shadow-spread-radius: 1px;
 }
 
 @media (prefers-color-scheme: dark) {
