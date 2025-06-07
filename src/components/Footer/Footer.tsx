@@ -19,7 +19,6 @@ export function Footer() {
               src="/images/logo.svg"
               alt="Logo"
               fill
-              className={ styles.logo }
             />
           </Link>
         </div>
