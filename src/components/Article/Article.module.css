@@ -3,23 +3,25 @@
     grid-template-columns: repeat(var(--grid-column), 1fr);
     gap: 32px;
     margin: 16px;
+    align-items: start;
 }
 
-.toc{
+.first-side{
     grid-column: span 3;
+    position: sticky;
+    top: 0;
 }
 
 .article{
     grid-column: span 6;
 }
 
-.other-info{
+.last-side{
     grid-column: span 3;
 }
 
-.toc,
 .article,
-.other-info {
+.last-side {
     padding: 24px;
     background-color: var(--color-main);
     box-shadow: 0 0 var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
@@ -30,7 +32,7 @@
         grid-column: span 9;
     }
 
-    .other-info{
+    .last-side{
         grid-column: 4 / span 9;
     }
 }
@@ -40,9 +42,9 @@
         gap: 16px;
     }
 
-    .toc,
+    .first-side,
     .article,
-    .other-info {
+    .last-side {
         grid-column: span 12;
     }
 }
