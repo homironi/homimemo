@@ -10,10 +10,6 @@
     margin: 0 auto;
 }
 
-.logo {
-    object-fit: contain;
-}
-
 .copy-light {
     color: var(--text-color-white);
     text-align: center;
