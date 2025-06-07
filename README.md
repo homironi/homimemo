@@ -15,6 +15,17 @@ https://homironi.com/
 - DecapCMS
 - markdown
 
+## 実行方法
+
+1. 依存関係の install  
+   ```cli
+   npm install
+   ```
+1. ローカルで起動  
+   ```cli
+   npm run dev
+   ```
+
 ## コード規約
 
 基本はLinterで設定する。
