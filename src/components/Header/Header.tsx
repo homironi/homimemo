@@ -15,7 +15,6 @@ export function Header() {
             src="/images/logo.svg"
             alt="Logo"
             fill
-            className={ styles.logo }
           />
         </Link>
       </div>

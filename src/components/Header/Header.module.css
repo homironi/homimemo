@@ -7,7 +7,3 @@
     aspect-ratio: 3/1;
     position: relative;
 }
-
-.logo {
-    object-fit: contain;
-}
