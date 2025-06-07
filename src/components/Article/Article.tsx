@@ -34,16 +34,17 @@ export function Article({ filePath }: ArticleProps) {
   return (
     <div className={ styles.container }>
       <DynamicCodeCopyHandler />
-      <DynamicToc
-        className={ styles.toc }
-        tocContentSourceIdName={ tocContentSourceIdName }
-      />
+      <div className={ styles["first-side"] }>
+        <DynamicToc
+          tocContentSourceIdName={ tocContentSourceIdName }
+        />
+      </div>
       <ArticleMdx
         className={ styles.article }
         content={ content }
         tocContentSourceIdName={ tocContentSourceIdName }
       />
-      <div className={ styles["other-info"] }>TODO:ここにその他情報をのせる</div>
+      <div className={ styles["last-side"] }>TODO:ここにその他情報をのせる</div>
     </div>
   );
 }

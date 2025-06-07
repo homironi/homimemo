@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import tocbot from "tocbot";
-import styles from "./index.module.css";
+import styles from "./TableOfContents.module.css";
 
 export type TableOfContentsProps = {
   className?: string;
@@ -32,8 +32,8 @@ export function TableOfContents({
   }, [tocContentSourceIdName]);
 
   return (
-    <nav className={ className ?? "" }>
-      <h2>自動生成目次</h2>
+    <nav className={ `${className} ${styles.container}` }>
+      <h2>目次</h2>
       <div className={ styles.toc } />
     </nav>
   );
