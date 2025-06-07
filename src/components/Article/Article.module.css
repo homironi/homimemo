@@ -1,0 +1,48 @@
+.container{
+    display: grid;
+    grid-template-columns: repeat(var(--grid-column), 1fr);
+    gap: 32px;
+    margin: 16px;
+}
+
+.toc{
+    grid-column: span 3;
+}
+
+.article{
+    grid-column: span 6;
+}
+
+.other-info{
+    grid-column: span 3;
+}
+
+.toc,
+.article,
+.other-info {
+    padding: 24px;
+    background-color: var(--color-main);
+    box-shadow: 0 0 var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
+}
+
+@media screen and (768px<= width < 1280px){
+    .article{
+        grid-column: span 9;
+    }
+
+    .other-info{
+        grid-column: 4 / span 9;
+    }
+}
+
+@media screen and (width < 768px){
+    .container{
+        gap: 16px;
+    }
+
+    .toc,
+    .article,
+    .other-info {
+        grid-column: span 12;
+    }
+}
