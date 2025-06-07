@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import tocbot from "tocbot";
-import styles from "./index.module.css";
+import styles from "./TableOfContents.module.css";
 
 export type TableOfContentsProps = {
   className?: string;
