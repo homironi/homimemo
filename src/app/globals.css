@@ -17,6 +17,14 @@ body {
   color: var(--text-color);
 }
 
+img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  vertical-align: bottom;
+  object-fit: contain;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
