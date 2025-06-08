@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 // tsx で使用するスクリプトなのでログ出力のために警告を無効化する
 
-import { ArticleIdToPathMapElement, articlesDirectory, getIdToPathMap, idToPathMapFile } from "@/lib/article";
+import { articlesDirectory, getIdToPathMap, idToPathMapFile } from "@/lib/article";
+import { ArticleIdToPathMapElement } from "@/schemas/articleIdToPathMap";
 import { ArticleMetaSchema } from "@/schemas/articleMeta";
 import fs from "fs";
 import matter from "gray-matter";

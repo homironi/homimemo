@@ -1,34 +1,15 @@
+import { ArticleIdToPathMapElement, ArticleIdToPathMapElementSchema } from "@/schemas/articleIdToPathMap";
 import fs from "fs";
 import path from "path";
-import { array, InferOutput, minLength, object, parse, pipe, string } from "valibot";
+import { array, parse } from "valibot";
 
 export const articlesDirectory = path.join("_contents", "articles");
 export const idToPathMapFile = path.join(".temp", "article", "idToPathMap.json");
 
 /**
- * 記事のIDとファイルパスのマップの要素のスキーマ
- */
-const IdToPathMapElementSchema = object({
-  /**
-   * 記事のID
-   */
-  id: pipe(string(), minLength(1, "記事のIDが設定されていません")),
-
-  /**
-   * 記事のファイルパス
-   */
-  filePath: pipe(string(), minLength(1, "記事のファイルパスが設定されていません")),
-});
-
-/**
- * 記事のIDとファイルパスのマップの要素の型
- */
-export type ArticleIdToPathMapElement = InferOutput<typeof IdToPathMapElementSchema>;
-
-/**
  * 記事のIDとファイルパスのマップのスキーマ
  */
-const IdToPathMapSchema = array(IdToPathMapElementSchema);
+const IdToPathMapSchema = array(ArticleIdToPathMapElementSchema);
 
 /**
  * 記事IDに対応するマークダウンのファイルパスを取得する
