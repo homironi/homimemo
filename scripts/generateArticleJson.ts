@@ -8,12 +8,12 @@ import matter from "gray-matter";
 import path from "path";
 import { safeParse } from "valibot";
 
-console.log("generating json...");
+console.log("generating article id to path json...");
 
 generateIdToPathMap();
 console.log(getIdToPathMap());
 
-console.log("end generate json");
+console.log("end generate article id to path json");
 
 /**
  * 記事IDとそれに対応するマークダウンファイルのパスのMapを生成して保存する
