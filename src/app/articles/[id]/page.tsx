@@ -2,6 +2,7 @@ import { Article } from "@/components/Article";
 import { ArticleMetaSchema } from "@/schemas/articleMeta";
 import fs from "fs";
 import matter from "gray-matter";
+import type { Metadata } from "next";
 import path from "path";
 import { array, InferOutput, minLength, object, parse, pipe, safeParse, string } from "valibot";
 
@@ -10,6 +11,11 @@ const idToPathMapFile = path.join(".temp", "article", "idToPathMap.json");
 
 type Params = {
   id: string;
+};
+
+type Props = {
+  params: Promise<Params>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 /**
@@ -81,6 +87,25 @@ export async function generateStaticParams(): Promise<Params[]> {
 }
 
 /**
+ * Next.jsのページで使用する静的Meta情報の生成
+ * @param props 引数オブジェクト
+ * @returns Meta情報
+ */
+export async function generateMetadata(
+  props: Props,
+): Promise<Metadata> {
+  const { id } = await props.params;
+  const raw = fs.readFileSync(getFilePath(id), "utf-8");
+  const { data } = matter(raw);
+  const validatedMeta = parse(ArticleMetaSchema, data);
+
+  return {
+    title: validatedMeta.title,
+    description: validatedMeta.description,
+  };
+}
+
+/**
  * 記事ページのコンポーネント
  * @param root0 引数オブジェクト
  * @param root0.params 記事のIDを含むパラメータ
@@ -88,13 +113,24 @@ export async function generateStaticParams(): Promise<Params[]> {
  */
 export default async function ArticlePage({ params }: { params: Promise<Params> }) {
   const { id } = await params;
+  const filePath = getFilePath(id);
+
+  return (
+    <Article filePath={ filePath } />
+  );
+}
+
+/**
+ * 記事IDに対応するマークダウンのファイルパスを取得する
+ * @param id 記事ID
+ * @returns 記事IDに対応するマークダウンファイルのパス
+ */
+function getFilePath(id: string): string {
   const parsedIdToPathMap = parse(IdToPathMapSchema, JSON.parse(fs.readFileSync(idToPathMapFile, "utf-8")));
   const filePath = parsedIdToPathMap.find(item => item.id === id)?.filePath;
   if (!filePath) {
     throw new Error(`記事のファイルパスが見つかりません: ${id}`);
   }
 
-  return (
-    <Article filePath={ filePath } />
-  );
+  return filePath;
 }
