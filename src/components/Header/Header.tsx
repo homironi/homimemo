@@ -14,7 +14,9 @@ export function Header() {
           <Image
             src="/images/logo.svg"
             alt="Logo"
-            fill
+            width={ 256 }
+            height={ 64 }
+            priority
           />
         </Link>
       </div>
