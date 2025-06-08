@@ -1,5 +1,5 @@
 import { Article } from "@/components/Article";
-import { createIdToPathMap, getFilePath, saveIdToPathMap } from "@/lib/article";
+import { getFilePath, getIdToPathMap } from "@/lib/article";
 import { ArticleMetaSchema } from "@/schemas/articleMeta";
 import fs from "fs";
 import matter from "gray-matter";
@@ -20,9 +20,7 @@ type Props = {
  * @returns 静的パラメータの配列
  */
 export async function generateStaticParams(): Promise<Params[]> {
-  const idToPathMap = createIdToPathMap();
-  saveIdToPathMap(idToPathMap);
-  return idToPathMap.map(({ id }) => ({ id }));
+  return getIdToPathMap().map(({ id }) => ({ id }));
 }
 
 /**
