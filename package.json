@@ -21,6 +21,7 @@
     "tcm-dev": "npm run tcm -- -w"
   },
   "dependencies": {
+    "chokidar-cli": "^3.0.0",
     "gray-matter": "^4.0.3",
     "nanoid": "^5.1.5",
     "next": "15.3.2",
