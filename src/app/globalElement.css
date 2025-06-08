@@ -22,8 +22,10 @@
     --text-color-white: #ffffff;
     --text-color-white-hover: #dbd9d9;
     --text-color-black: #111111;
+    --text-color-black-pale: #999999;
     --text-color-black-hover: #858585;
     --text-color:var(--text-color-black);
+    --text-color-pale:var(--text-color-black-pale);
     --text-color-hover:var(--text-color-black-hover);
     --text-color-reverse:var(--text-color-white);
     --text-color-reverse-hover:var(--text-color-white-hover);
@@ -73,6 +75,7 @@
     /* text color */
 
     --text-color:var(--text-color-white);
+    --text-color-pale:var(--text-color-black-pale);
     --text-color-hover:var(--text-color-white-hover);
     --text-color-reverse:var(--text-color-black);
     --text-color-reverse-hover:var(--text-color-black-hover);

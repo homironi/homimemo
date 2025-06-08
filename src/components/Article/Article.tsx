@@ -1,3 +1,4 @@
+import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/rehypePlugins/gfmTaskList";
 import { ArticleMeta, ArticleMetaSchema } from "@/schemas/articleMeta";
@@ -75,11 +76,28 @@ function ArticleMdx({
   tocContentSourceIdName,
   meta,
 }: ArticleMdxProps) {
+  const articlesHrefBase = "/articles";
+  const breadcrumbs: BreadcrumbElement[] = [
+    {
+      name: "記事一覧",
+      href: `/articles/list/`, // TODO: 全記事一覧ページのリンク
+    },
+    {
+      name: `${meta.category}記事一覧`,
+      href: `/categories/hoge/list/`, // TODO: カテゴリ記事一覧ページのリンク
+    },
+    {
+      name: meta.title,
+      href: `${articlesHrefBase}/${meta.id}`,
+      isCurrent: true,
+    },
+  ];
   return (
     <article
       id={ tocContentSourceIdName }
       className={ className ?? "" }
     >
+      <Breadcrumbs breadcrumbs={ breadcrumbs } />
       <h1>{ meta.title }</h1>
       <MDXRemote
         source={ content }
