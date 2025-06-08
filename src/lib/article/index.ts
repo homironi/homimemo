@@ -3,7 +3,15 @@ import fs from "fs";
 import path from "path";
 import { array, parse } from "valibot";
 
-export const idToPathMapFile = path.join(".temp", "article", "idToPathMap.json");
+/**
+ * 記事IDとそれに対応するマークダウンファイルのパスデータのファイルパス
+ */
+export const idToPathMapPath = path.join(".temp", "article", "idToPathMap.json");
+
+/**
+ * カテゴリの情報ファイルのパス
+ */
+export const categoriesMetaFilePath = path.join("public", "meta", "categories.json");
 
 /**
  * 記事のIDとファイルパスのマップのスキーマ
@@ -29,5 +37,5 @@ export function getFilePath(id: string): string {
  * @returns 記事IDと対応するマークダウンファイルのパスのMapデータ
  */
 export function getIdToPathMap(): ArticleIdToPathMapElement[] {
-  return parse(IdToPathMapSchema, JSON.parse(fs.readFileSync(idToPathMapFile, "utf-8")));
+  return parse(IdToPathMapSchema, JSON.parse(fs.readFileSync(idToPathMapPath, "utf-8")));
 }
