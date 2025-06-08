@@ -16,15 +16,15 @@
     "lint-fix:style": "stylelint \"src/**/*.css --fix\"",
     "lint:markup": "markuplint \"{src,public}/**/*.{tsx,html}\"",
     "lint-fix:markup": "markuplint \"{src,public}/**/*.{tsx,html}\" --fix",
-    "add:article-id": "tsx scripts/addMissingArticleIds.ts",
+    "add:article-id": "tsx scripts/article/addMissingIds.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "tcm": "tcm -p \"src/**/*.module.css\"",
     "tcm-dev": "npm run tcm -- -w",
-    "build-json:article-id-to-path": "tsx scripts/generateArticleJson.ts",
-    "dev:json-article-id-to-path": "chokidar \"_contents/articles/**/*.md\" \"scripts/generateArticleJson.ts\" -c \"npm run build-json:article-id-to-path\"",
-    "build-json:article-categories": "tsx scripts/generateCategoriesJson.ts",
-    "dev:json-article-categories": "chokidar \"_contents/categories/**/*.md\" \"scripts/generateCategoriesJson.ts\" -c \"npm run build-json:article-categories\""
+    "build-json:article-id-to-path": "tsx scripts/article/generateIdToPathJson.ts",
+    "dev:json-article-id-to-path": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateIdToPathJson.ts\" -c \"npm run build-json:article-id-to-path\"",
+    "build-json:article-categories": "tsx scripts/article/generateCategoriesJson.ts",
+    "dev:json-article-categories": "chokidar \"_contents/categories/**/*.md\" \"scripts/article/generateCategoriesJson.ts\" -c \"npm run build-json:article-categories\""
   },
   "dependencies": {
     "chokidar-cli": "^3.0.0",
