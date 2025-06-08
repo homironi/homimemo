@@ -3,7 +3,6 @@ import fs from "fs";
 import path from "path";
 import { array, parse } from "valibot";
 
-export const articlesDirectory = path.join("_contents", "articles");
 export const idToPathMapFile = path.join(".temp", "article", "idToPathMap.json");
 
 /**

@@ -1,13 +1,15 @@
 /* eslint-disable no-console */
 // tsx で使用するスクリプトなのでログ出力のために警告を無効化する
 
-import { articlesDirectory, getIdToPathMap, idToPathMapFile } from "@/lib/article";
+import { getIdToPathMap, idToPathMapFile } from "@/lib/article";
 import { ArticleIdToPathMapElement } from "@/schemas/article/idToPathMap";
 import { ArticleMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import { safeParse } from "valibot";
+
+const articlesDirectory = path.join("_contents", "articles");
 
 console.log("generating article id to path json...");
 
