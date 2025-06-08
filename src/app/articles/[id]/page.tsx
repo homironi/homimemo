@@ -1,6 +1,6 @@
 import { Article } from "@/components/Article";
 import { getFilePath, getIdToPathMap } from "@/lib/article";
-import { ArticleMetaSchema } from "@/schemas/articleMeta";
+import { ArticleMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import type { Metadata } from "next";

@@ -1,12 +1,15 @@
 /* eslint-disable no-console */
 // tsx で使用するスクリプトなのでログ出力のために警告を無効化する
 
-import { ArticleIdToPathMapElement, articlesDirectory, getIdToPathMap, idToPathMapFile } from "@/lib/article";
-import { ArticleMetaSchema } from "@/schemas/articleMeta";
+import { getIdToPathMap, idToPathMapPath } from "@/lib/article";
+import { ArticleIdToPathMapElement } from "@/schemas/article/idToPathMap";
+import { ArticleMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import { safeParse } from "valibot";
+
+const articlesDirectory = path.join("_contents", "articles");
 
 console.log("generating article id to path json...");
 
@@ -57,6 +60,6 @@ function createIdToPathMap(): ArticleIdToPathMapElement[] {
  * @description 後でページで記事ID→ファイルパスを参照するためのマップを保存
  */
 function saveIdToPathMap(idToPathMap: ArticleIdToPathMapElement[]) {
-  fs.mkdirSync(path.dirname(idToPathMapFile), { recursive: true });
-  fs.writeFileSync(idToPathMapFile, JSON.stringify(idToPathMap, null, 2), "utf-8");
+  fs.mkdirSync(path.dirname(idToPathMapPath), { recursive: true });
+  fs.writeFileSync(idToPathMapPath, JSON.stringify(idToPathMap, null, 2), "utf-8");
 }
