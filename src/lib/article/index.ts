@@ -1,3 +1,4 @@
+import { CategoriesMetaSchema, CategoryMeta } from "@/schemas/article/category";
 import { ArticleIdToPathMapElement, ArticleIdToPathMapElementSchema } from "@/schemas/article/idToPathMap";
 import fs from "fs";
 import path from "path";
@@ -38,4 +39,19 @@ export function getFilePath(id: string): string {
  */
 export function getIdToPathMap(): ArticleIdToPathMapElement[] {
   return parse(IdToPathMapSchema, JSON.parse(fs.readFileSync(idToPathMapPath, "utf-8")));
+}
+
+/**
+ * カテゴリ名でカテゴリ情報を取得する
+ * @param name 情報を取得したいカテゴリ名
+ * @returns カテゴリ情報
+ */
+export function getCategoryMeta(name: string): CategoryMeta {
+  const categories = parse(CategoriesMetaSchema, JSON.parse(fs.readFileSync(categoriesMetaFilePath, "utf-8")));
+  const find = categories.find(category => category.name == name);
+  if (!find) {
+    throw new Error(`存在しないカテゴリ名です：${name}`);
+  }
+
+  return find;
 }
