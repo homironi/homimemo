@@ -12,7 +12,7 @@ export const idToPathMapPath = path.join(".temp", "article", "idToPathMap.json")
 /**
  * カテゴリの情報ファイルのパス
  */
-export const categoriesMetaFilePath = path.join("public", "meta", "categories.json");
+export const categoriesMetaFilePath = path.join("public", "generated", "meta", "categories.json");
 
 /**
  * 記事のIDとファイルパスのマップのスキーマ
