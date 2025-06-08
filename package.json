@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:next": "next dev --turbopack",
+    "build": "npm run build:json && next build",
     "start": "next start",
     "lint-all": "npm-run-all --parallel lint lint:*",
     "lint-all-fix": "npm-run-all --parallel lint lint:* -- --fix",
@@ -18,9 +19,12 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "tcm": "tcm -p \"src/**/*.module.css\"",
-    "tcm-dev": "npm run tcm -- -w"
+    "tcm-dev": "npm run tcm -- -w",
+    "build:json": "tsx scripts/generateArticleJson.ts",
+    "dev:json": "chokidar \"_contents/**/*.md\" \"scripts/generateArticleJson.ts\" -c \"npm run build:json\""
   },
   "dependencies": {
+    "chokidar-cli": "^3.0.0",
     "gray-matter": "^4.0.3",
     "nanoid": "^5.1.5",
     "next": "15.3.2",
