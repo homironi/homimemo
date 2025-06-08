@@ -1,11 +1,9 @@
-import { ArticleMetaSchema } from "@/schemas/articleMeta";
 import fs from "fs";
-import matter from "gray-matter";
 import path from "path";
-import { array, InferOutput, minLength, object, parse, pipe, safeParse, string } from "valibot";
+import { array, InferOutput, minLength, object, parse, pipe, string } from "valibot";
 
-const articlesDirectory = path.join("_contents", "articles");
-const idToPathMapFile = path.join(".temp", "article", "idToPathMap.json");
+export const articlesDirectory = path.join("_contents", "articles");
+export const idToPathMapFile = path.join(".temp", "article", "idToPathMap.json");
 
 /**
  * 記事のIDとファイルパスのマップの要素のスキーマ
@@ -25,7 +23,7 @@ const IdToPathMapElementSchema = object({
 /**
  * 記事のIDとファイルパスのマップの要素の型
  */
-type IdToPathMapElement = InferOutput<typeof IdToPathMapElementSchema>;
+export type ArticleIdToPathMapElement = InferOutput<typeof IdToPathMapElementSchema>;
 
 /**
  * 記事のIDとファイルパスのマップのスキーマ
@@ -33,55 +31,23 @@ type IdToPathMapElement = InferOutput<typeof IdToPathMapElementSchema>;
 const IdToPathMapSchema = array(IdToPathMapElementSchema);
 
 /**
- * 記事のIDとファイルパスのマップ
- * @returns 記事IDとファイルパスのマップの配列
- */
-export function createIdToPathMap(): IdToPathMapElement[] {
-  return fs.readdirSync(articlesDirectory, "utf-8")
-    .filter(file => file.endsWith(".md"))
-    .map((file) => {
-      const filePath = path.join(articlesDirectory, file); ;
-      const raw = fs.readFileSync(filePath, "utf-8");
-      const { data } = matter(raw);
-      const safeParsed = safeParse(ArticleMetaSchema, data);
-      return { file, safeParsed };
-    })
-    .filter(({ safeParsed }) => safeParsed.success) // TODO: draft も除外するようにする
-    .map<IdToPathMapElement>(({ file, safeParsed }) => {
-      // すでに filter で成功したものだけを対象にしているので、パースに失敗することはありませんが
-      // success をチェックしないと型補完が効かないので明示的にチェック
-      if (!safeParsed.success) {
-        throw new Error(`記事のメタデータのパースに失敗しました: ${file}`);
-      }
-
-      return {
-        id: safeParsed.output.id,
-        filePath: path.join(articlesDirectory, file),
-      };
-    });
-};
-
-/**
- * 受け取ったデータを保存する
- * @param idToPathMap 記事IDにとそのファイルパスのデータMap
- * @description 後でページで記事ID→ファイルパスを参照するためのマップを保存
- */
-export function saveIdToPathMap(idToPathMap: IdToPathMapElement[]) {
-  fs.mkdirSync(path.dirname(idToPathMapFile), { recursive: true });
-  fs.writeFileSync(idToPathMapFile, JSON.stringify(idToPathMap, null, 2), "utf-8");
-}
-
-/**
  * 記事IDに対応するマークダウンのファイルパスを取得する
  * @param id 記事ID
  * @returns 記事IDに対応するマークダウンファイルのパス
  */
 export function getFilePath(id: string): string {
-  const parsedIdToPathMap = parse(IdToPathMapSchema, JSON.parse(fs.readFileSync(idToPathMapFile, "utf-8")));
-  const filePath = parsedIdToPathMap.find(item => item.id === id)?.filePath;
+  const filePath = getIdToPathMap().find(item => item.id === id)?.filePath;
   if (!filePath) {
     throw new Error(`記事のファイルパスが見つかりません: ${id}`);
   }
 
   return filePath;
+}
+
+/**
+ * 記事IDと対応するマークダウンファイルのパスのMapデータを取得
+ * @returns 記事IDと対応するマークダウンファイルのパスのMapデータ
+ */
+export function getIdToPathMap(): ArticleIdToPathMapElement[] {
+  return parse(IdToPathMapSchema, JSON.parse(fs.readFileSync(idToPathMapFile, "utf-8")));
 }
