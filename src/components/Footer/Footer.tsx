@@ -18,7 +18,8 @@ export function Footer() {
             <Image
               src="/images/logo.svg"
               alt="Logo"
-              fill
+              width={ 256 }
+              height={ 64 }
             />
           </Link>
         </div>
