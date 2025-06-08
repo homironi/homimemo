@@ -1,34 +1,23 @@
+import { CategoriesMetaSchema, CategoryMeta } from "@/schemas/article/category";
+import { ArticleIdToPathMapElement, ArticleIdToPathMapElementSchema } from "@/schemas/article/idToPathMap";
 import fs from "fs";
 import path from "path";
-import { array, InferOutput, minLength, object, parse, pipe, string } from "valibot";
-
-export const articlesDirectory = path.join("_contents", "articles");
-export const idToPathMapFile = path.join(".temp", "article", "idToPathMap.json");
+import { array, parse } from "valibot";
 
 /**
- * 記事のIDとファイルパスのマップの要素のスキーマ
+ * 記事IDとそれに対応するマークダウンファイルのパスデータのファイルパス
  */
-const IdToPathMapElementSchema = object({
-  /**
-   * 記事のID
-   */
-  id: pipe(string(), minLength(1, "記事のIDが設定されていません")),
-
-  /**
-   * 記事のファイルパス
-   */
-  filePath: pipe(string(), minLength(1, "記事のファイルパスが設定されていません")),
-});
+export const idToPathMapPath = path.join(".temp", "article", "idToPathMap.json");
 
 /**
- * 記事のIDとファイルパスのマップの要素の型
+ * カテゴリの情報ファイルのパス
  */
-export type ArticleIdToPathMapElement = InferOutput<typeof IdToPathMapElementSchema>;
+export const categoriesMetaFilePath = path.join("public", "generated", "meta", "categories.json");
 
 /**
  * 記事のIDとファイルパスのマップのスキーマ
  */
-const IdToPathMapSchema = array(IdToPathMapElementSchema);
+const IdToPathMapSchema = array(ArticleIdToPathMapElementSchema);
 
 /**
  * 記事IDに対応するマークダウンのファイルパスを取得する
@@ -49,5 +38,20 @@ export function getFilePath(id: string): string {
  * @returns 記事IDと対応するマークダウンファイルのパスのMapデータ
  */
 export function getIdToPathMap(): ArticleIdToPathMapElement[] {
-  return parse(IdToPathMapSchema, JSON.parse(fs.readFileSync(idToPathMapFile, "utf-8")));
+  return parse(IdToPathMapSchema, JSON.parse(fs.readFileSync(idToPathMapPath, "utf-8")));
+}
+
+/**
+ * カテゴリ名でカテゴリ情報を取得する
+ * @param name 情報を取得したいカテゴリ名
+ * @returns カテゴリ情報
+ */
+export function getCategoryMeta(name: string): CategoryMeta {
+  const categories = parse(CategoriesMetaSchema, JSON.parse(fs.readFileSync(categoriesMetaFilePath, "utf-8")));
+  const find = categories.find(category => category.name == name);
+  if (!find) {
+    throw new Error(`存在しないカテゴリ名です：${name}`);
+  }
+
+  return find;
 }

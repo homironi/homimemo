@@ -51,3 +51,6 @@ storybook-static
 
 # CSS Moduleの型定義ファイルは自動生成するのでコミットしない
 src/**/*.module.css.d.ts
+
+# 毎回ビルド時に出力されるのでコミットしない
+public/generated/
