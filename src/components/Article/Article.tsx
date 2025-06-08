@@ -1,7 +1,7 @@
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/rehypePlugins/gfmTaskList";
-import { ArticleMeta, ArticleMetaSchema } from "@/schemas/articleMeta";
+import { ArticleMeta, ArticleMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";

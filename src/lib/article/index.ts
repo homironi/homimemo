@@ -1,4 +1,4 @@
-import { ArticleIdToPathMapElement, ArticleIdToPathMapElementSchema } from "@/schemas/articleIdToPathMap";
+import { ArticleIdToPathMapElement, ArticleIdToPathMapElementSchema } from "@/schemas/article/idToPathMap";
 import fs from "fs";
 import path from "path";
 import { array, parse } from "valibot";
