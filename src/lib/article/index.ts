@@ -49,7 +49,7 @@ export function createIdToPathMap(): IdToPathMapElement[] {
     .filter(({ safeParsed }) => safeParsed.success) // TODO: draft も除外するようにする
     .map<IdToPathMapElement>(({ file, safeParsed }) => {
       // すでに filter で成功したものだけを対象にしているので、パースに失敗することはありませんが
-      // success をチェックしないと型補完をが効かないので明示的にチェック
+      // success をチェックしないと型補完が効かないので明示的にチェック
       if (!safeParsed.success) {
         throw new Error(`記事のメタデータのパースに失敗しました: ${file}`);
       }
