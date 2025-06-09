@@ -1,7 +1,7 @@
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/rehypePlugins/gfmTaskList";
-import { ArticleMeta, ArticleMetaSchema } from "@/schemas/article/meta";
+import { ArticleMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -34,6 +34,22 @@ export function Article({ filePath }: ArticleProps) {
   // TODO: FrontMatterをもとにmeta設定やタイトルなどを設定する
   const { data, content } = matter(raw);
   const validatedMeta = parse(ArticleMetaSchema, data);
+  const articlesHrefBase = "/articles";
+  const breadcrumbs: BreadcrumbElement[] = [
+    {
+      name: "記事一覧",
+      href: `/articles/list/`, // TODO: 全記事一覧ページのリンク
+    },
+    {
+      name: `${validatedMeta.category}記事一覧`,
+      href: `/categories/hoge/list/`, // TODO: カテゴリ記事一覧ページのリンク
+    },
+    {
+      name: validatedMeta.title,
+      href: `${articlesHrefBase}/${validatedMeta.id}`,
+      isCurrent: true,
+    },
+  ];
 
   return (
     <div className={ styles.container }>
@@ -43,12 +59,14 @@ export function Article({ filePath }: ArticleProps) {
           tocContentSourceIdName={ tocContentSourceIdName }
         />
       </div>
-      <ArticleMdx
-        className={ styles.article }
-        content={ content }
-        tocContentSourceIdName={ tocContentSourceIdName }
-        meta={ validatedMeta }
-      />
+      <main className={ styles.article }>
+        <Breadcrumbs breadcrumbs={ breadcrumbs } />
+        <h1>{ validatedMeta.title }</h1>
+        <ArticleMdx
+          content={ content }
+          tocContentSourceIdName={ tocContentSourceIdName }
+        />
+      </main>
       <div className={ styles["last-side"] }>TODO:ここにその他情報をのせる</div>
     </div>
   );
@@ -58,7 +76,6 @@ type ArticleMdxProps = {
   className?: string;
   content: string;
   tocContentSourceIdName: string;
-  meta: ArticleMeta;
 };
 
 /**
@@ -67,38 +84,18 @@ type ArticleMdxProps = {
  * @param root0.content 記事のMDXコンテンツ
  * @param root0.tocContentSourceIdName 目次のコンテンツソースとして扱う目印のID名
  * @param root0.className クラス名
- * @param root0.meta 記事Meta情報
  * @returns 記事ページのコンポーネント
  */
 function ArticleMdx({
   className,
   content,
   tocContentSourceIdName,
-  meta,
 }: ArticleMdxProps) {
-  const articlesHrefBase = "/articles";
-  const breadcrumbs: BreadcrumbElement[] = [
-    {
-      name: "記事一覧",
-      href: `/articles/list/`, // TODO: 全記事一覧ページのリンク
-    },
-    {
-      name: `${meta.category}記事一覧`,
-      href: `/categories/hoge/list/`, // TODO: カテゴリ記事一覧ページのリンク
-    },
-    {
-      name: meta.title,
-      href: `${articlesHrefBase}/${meta.id}`,
-      isCurrent: true,
-    },
-  ];
   return (
     <article
       id={ tocContentSourceIdName }
       className={ className ?? "" }
     >
-      <Breadcrumbs breadcrumbs={ breadcrumbs } />
-      <h1>{ meta.title }</h1>
       <MDXRemote
         source={ content }
         options={ {
