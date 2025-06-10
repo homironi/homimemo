@@ -1,4 +1,6 @@
+import { ArticleCategory } from "@/components/ArticleCategory";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
+import { getCategoryMeta } from "@/lib/article";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/rehypePlugins/gfmTaskList";
 import { ArticleMetaSchema } from "@/schemas/article/meta";
@@ -62,6 +64,7 @@ export function Article({ filePath }: ArticleProps) {
       <main className={ styles.article }>
         <Breadcrumbs breadcrumbs={ breadcrumbs } />
         <h1>{ validatedMeta.title }</h1>
+        <ArticleCategory meta={ getCategoryMeta(validatedMeta.category) } />
         <ArticleMdx
           content={ content }
           tocContentSourceIdName={ tocContentSourceIdName }
