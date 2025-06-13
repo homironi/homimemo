@@ -3,16 +3,13 @@ import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { getCategoryMeta } from "@/lib/article";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/rehypePlugins/gfmTaskList";
-import { ArticleMetaSchema } from "@/schemas/article/meta";
-import fs from "fs";
-import matter from "gray-matter";
+import { ArticleMeta } from "@/schemas/article/meta";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import dynamic from "next/dynamic";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
-import { parse } from "valibot";
 import styles from "./Article.module.css";
 import "./prism.css"; // 記事内で使用するコードハイライトのPrismのスタイルを適用するためにインポート
 
@@ -21,21 +18,19 @@ const DynamicCodeCopyHandler = dynamic(() => import("@/components/CopyCodeHandle
 const tocContentSourceIdName = "toc-source-content";
 
 export type ArticleProps = {
-  filePath: string;
+  meta: ArticleMeta;
+  content: string;
 };
 
 /**
  * 記事ページコンポーネント
  * @param root0 引数オブジェクト
- * @param root0.filePath 記事のファイルパス
+ * @param root0.meta 記事のMeta
+ * @param root0.content 記事内容
  * @returns 記事ページのコンポーネント
  */
-export function Article({ filePath }: ArticleProps) {
-  const raw = fs.readFileSync(filePath, "utf-8");
-
+export function Article({ meta, content }: ArticleProps) {
   // TODO: FrontMatterをもとにmeta設定やタイトルなどを設定する
-  const { data, content } = matter(raw);
-  const validatedMeta = parse(ArticleMetaSchema, data);
   const articlesHrefBase = "/articles";
   const breadcrumbs: BreadcrumbElement[] = [
     {
@@ -43,12 +38,12 @@ export function Article({ filePath }: ArticleProps) {
       href: `/articles/list/`, // TODO: 全記事一覧ページのリンク
     },
     {
-      name: `${validatedMeta.category}記事一覧`,
+      name: `${meta.category}記事一覧`,
       href: `/categories/hoge/list/`, // TODO: カテゴリ記事一覧ページのリンク
     },
     {
-      name: validatedMeta.title,
-      href: `${articlesHrefBase}/${validatedMeta.id}`,
+      name: meta.title,
+      href: `${articlesHrefBase}/${meta.id}`,
       isCurrent: true,
     },
   ];
@@ -63,8 +58,8 @@ export function Article({ filePath }: ArticleProps) {
       </div>
       <main className={ styles.article }>
         <Breadcrumbs breadcrumbs={ breadcrumbs } />
-        <h1>{ validatedMeta.title }</h1>
-        <ArticleCategory meta={ getCategoryMeta(validatedMeta.category) } />
+        <h1>{ meta.title }</h1>
+        <ArticleCategory meta={ getCategoryMeta(meta.category) } />
         <ArticleMdx
           content={ content }
           tocContentSourceIdName={ tocContentSourceIdName }

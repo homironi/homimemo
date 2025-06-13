@@ -51,8 +51,11 @@ export async function generateMetadata(
 export default async function ArticlePage({ params }: { params: Promise<Params> }) {
   const { id } = await params;
   const filePath = getFilePath(id);
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const { data, content } = matter(raw);
+  const meta = parse(ArticleMetaSchema, data);
 
   return (
-    <Article filePath={ filePath } />
+    <Article meta={ meta } content={ content } />
   );
 }
