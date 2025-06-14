@@ -1,6 +1,5 @@
 import { ArticleCategory } from "@/components/ArticleCategory";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
-import { getCategoryMeta } from "@/lib/article";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/rehypePlugins/gfmTaskList";
 import { ArticleMeta } from "@/schemas/article/meta";
@@ -38,7 +37,7 @@ export function Article({ meta, content }: ArticleProps) {
       href: `/articles/list/`, // TODO: 全記事一覧ページのリンク
     },
     {
-      name: `${meta.category}記事一覧`,
+      name: `${meta.category.name}記事一覧`,
       href: `/categories/hoge/list/`, // TODO: カテゴリ記事一覧ページのリンク
     },
     {
@@ -59,7 +58,7 @@ export function Article({ meta, content }: ArticleProps) {
       <main className={ styles.article }>
         <Breadcrumbs breadcrumbs={ breadcrumbs } />
         <h1>{ meta.title }</h1>
-        <ArticleCategory meta={ getCategoryMeta(meta.category) } />
+        <ArticleCategory meta={ meta.category } />
         <ArticleMdx
           content={ content }
           tocContentSourceIdName={ tocContentSourceIdName }
