@@ -21,6 +21,15 @@ export const CategoriesMetaSchema = array(CategoryMetaSchema);
 export type CategoryMeta = InferOutput<typeof CategoryMetaSchema>;
 export type CategoriesMeta = InferOutput<typeof CategoriesMetaSchema>;
 
+export const TagMetaSchema = object({
+  name: pipe(string(), minLength(1)),
+  slug: pipe(string(), minLength(1)),
+  description: optional(string()),
+});
+
+export const TagsMetaSchema = array(TagMetaSchema);
+export type TagMeta = InferOutput<typeof TagMetaSchema>;
+
 const metaSchemaBase = {
   id: pipe(string(), minLength(1)),
   title: pipe(string(), minLength(1)),
