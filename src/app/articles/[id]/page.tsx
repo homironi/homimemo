@@ -1,4 +1,4 @@
-import { Article } from "@/components/Article";
+import { Article } from "@/components/server/Article";
 import { convertMetaFromRaw, getFilePath, getIdToPathMap } from "@/lib/article";
 import { ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
