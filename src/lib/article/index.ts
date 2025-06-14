@@ -1,5 +1,5 @@
-import { CategoriesMetaSchema, CategoryMeta } from "@/schemas/article/category";
 import { ArticleIdToPathMapElement, ArticleIdToPathMapElementSchema } from "@/schemas/article/idToPathMap";
+import { ArticleMeta, ArticleRawMeta, CategoriesMetaSchema, CategoryMeta } from "@/schemas/article/meta";
 import fs from "fs";
 import path from "path";
 import { array, parse } from "valibot";
@@ -54,4 +54,16 @@ export function getCategoryMeta(name: string): CategoryMeta {
   }
 
   return find;
+}
+
+/**
+ * 生の記事Metaを記事Metaに変換
+ * @param raw 生Meta
+ * @returns 記事Meta
+ */
+export function convertMetaFromRaw(raw: ArticleRawMeta): ArticleMeta {
+  return {
+    ...raw,
+    category: getCategoryMeta(raw.category),
+  };
 }
