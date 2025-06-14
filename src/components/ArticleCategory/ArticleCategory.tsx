@@ -1,4 +1,4 @@
-import { CategoryMeta } from "@/schemas/article/category";
+import { CategoryMeta } from "@/schemas/article/meta";
 import Link from "next/link";
 
 export type ArticleCategoryProps = {
