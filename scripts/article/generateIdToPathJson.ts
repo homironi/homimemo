@@ -3,7 +3,7 @@
 
 import { getIdToPathMap, idToPathMapPath } from "@/lib/article";
 import { ArticleIdToPathMapElement } from "@/schemas/article/idToPathMap";
-import { ArticleMetaSchema } from "@/schemas/article/meta";
+import { ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
@@ -36,7 +36,7 @@ function createIdToPathMap(): ArticleIdToPathMapElement[] {
       const filePath = path.join(articlesDirectory, file); ;
       const raw = fs.readFileSync(filePath, "utf-8");
       const { data } = matter(raw);
-      const safeParsed = safeParse(ArticleMetaSchema, data);
+      const safeParsed = safeParse(ArticleRawMetaSchema, data);
       return { file, safeParsed };
     })
     .filter(({ safeParsed }) => safeParsed.success) // TODO: draft も除外するようにする
