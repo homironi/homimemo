@@ -14,7 +14,7 @@ const articlesDirectory = path.join("_contents", "articles");
 console.log("generating article id to path json...");
 
 generateIdToPathMap();
-console.log(getIdToPathMap());
+console.log({ articleIdToPathMap: (getIdToPathMap()) });
 
 console.log("end generate article id to path json");
 

@@ -17,9 +17,16 @@ export const CategoryMetaSchema = object({
 });
 
 export const CategoriesMetaSchema = array(CategoryMetaSchema);
-
 export type CategoryMeta = InferOutput<typeof CategoryMetaSchema>;
-export type CategoriesMeta = InferOutput<typeof CategoriesMetaSchema>;
+
+export const TagMetaSchema = object({
+  name: pipe(string(), minLength(1)),
+  slug: pipe(string(), minLength(1)),
+  description: optional(string()),
+});
+
+export const TagsMetaSchema = array(TagMetaSchema);
+export type TagMeta = InferOutput<typeof TagMetaSchema>;
 
 const metaSchemaBase = {
   id: pipe(string(), minLength(1)),
@@ -27,7 +34,6 @@ const metaSchemaBase = {
   draft: boolean(),
   publishDate: date(),
   lastModDate: date(),
-  tags: optional(array(string())),
   thumbnail: optional(string()),
   description: pipe(string(), minLength(1)),
 };
@@ -39,6 +45,7 @@ const metaSchemaBase = {
 export const ArticleRawMetaSchema = object({
   ...metaSchemaBase,
   category: pipe(string(), minLength(1)),
+  tags: optional(array(string())),
 });
 
 export type ArticleRawMeta = InferOutput<typeof ArticleRawMetaSchema>;
@@ -49,6 +56,7 @@ export type ArticleRawMeta = InferOutput<typeof ArticleRawMetaSchema>;
 export const ArticleMetaSchema = object({
   ...metaSchemaBase,
   category: CategoryMetaSchema,
+  tags: optional(TagsMetaSchema),
 });
 
 export type ArticleMeta = InferOutput<typeof ArticleMetaSchema>;
