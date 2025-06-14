@@ -17,6 +17,7 @@ on:
       paths:
           - "src/**.css"
           - "src/components/**"
+          - "!src/components/server/**"
           - "src/stories/**"
 
 jobs:

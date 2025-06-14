@@ -1,6 +1,6 @@
-import { Article } from "@/components/Article";
-import { getFilePath, getIdToPathMap } from "@/lib/article";
-import { ArticleMetaSchema } from "@/schemas/article/meta";
+import { Article } from "@/components/server/Article";
+import { convertMetaFromRaw, getFilePath, getIdToPathMap } from "@/lib/article";
+import { ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import type { Metadata } from "next";
@@ -34,7 +34,7 @@ export async function generateMetadata(
   const { id } = await props.params;
   const raw = fs.readFileSync(getFilePath(id), "utf-8");
   const { data } = matter(raw);
-  const validatedMeta = parse(ArticleMetaSchema, data);
+  const validatedMeta = parse(ArticleRawMetaSchema, data);
 
   return {
     title: validatedMeta.title,
@@ -51,8 +51,12 @@ export async function generateMetadata(
 export default async function ArticlePage({ params }: { params: Promise<Params> }) {
   const { id } = await params;
   const filePath = getFilePath(id);
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const { data, content } = matter(raw);
+  const rawMeta = parse(ArticleRawMetaSchema, data);
+  const meta = convertMetaFromRaw(rawMeta);
 
   return (
-    <Article filePath={ filePath } />
+    <Article meta={ meta } content={ content } />
   );
 }

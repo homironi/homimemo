@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 import { categoriesMetaFilePath } from "@/lib/article";
-import { CategoriesMeta, CategoryMetaSchema } from "@/schemas/article/category";
+import { CategoriesMeta, CategoryMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
