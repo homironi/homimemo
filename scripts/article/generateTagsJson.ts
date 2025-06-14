@@ -16,7 +16,7 @@ console.log("end generate tags json");
 function generateTagsJson() {
   fs.mkdirSync(path.dirname(tagsMetaFilePath), { recursive: true });
   const data = generateTags();
-  console.log(data);
+  console.log({ tags: data });
   fs.writeFileSync(tagsMetaFilePath, JSON.stringify(data, null, 2), "utf-8");
 }
 

@@ -16,7 +16,7 @@ console.log("end generate categories json");
 function generateCategoriesJson() {
   fs.mkdirSync(path.dirname(categoriesMetaFilePath), { recursive: true });
   const data = createCategories();
-  console.log(data);
+  console.log({ categories: data });
   fs.writeFileSync(categoriesMetaFilePath, JSON.stringify(data, null, 2), "utf-8");
 }
 
