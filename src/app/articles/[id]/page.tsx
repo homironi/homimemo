@@ -1,5 +1,5 @@
 import { Article } from "@/components/server/Article";
-import { convertMetaFromRaw, getFilePath, getIdToPathMap } from "@/lib/article";
+import { convertMetaFromRaw, getFilePath, getIdToPathMap } from "@/lib/server/article";
 import { ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";

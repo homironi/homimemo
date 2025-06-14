@@ -1,7 +1,7 @@
 import { ArticleCategory } from "@/components/ArticleCategory";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
-import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/rehypePlugins/code";
-import { rehypeGfmTaskList } from "@/lib/rehypePlugins/gfmTaskList";
+import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/server/rehypePlugins/code";
+import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
 import { ArticleMeta } from "@/schemas/article/meta";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import dynamic from "next/dynamic";
