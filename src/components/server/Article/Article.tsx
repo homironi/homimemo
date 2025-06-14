@@ -38,7 +38,7 @@ export function Article({ meta, content }: ArticleProps) {
       href: `/articles/list/`, // TODO: 全記事一覧ページのリンク
     },
     {
-      name: `${meta.category.name}記事一覧`,
+      name: `${meta.category.name}`,
       href: `/categories/hoge/list/`, // TODO: カテゴリ記事一覧ページのリンク
     },
     {
