@@ -24,6 +24,15 @@ img {
   object-fit: contain;
 }
 
+.icon {
+  fill: currentcolor;
+  stroke: currentcolor;
+}
+
+.icon-fill-none {
+  fill: none;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
