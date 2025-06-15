@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import svgoConfig from "./svgo.config";
 
 const nextConfig: NextConfig = {
   webpack: (config) => {
@@ -7,13 +8,11 @@ const nextConfig: NextConfig = {
       // src/app/icon.svg を @svgr/webpack の対象から除外する
       // これはNext.jsのメタデータローダーに処理させるため
       exclude: /src[\\/]app[\\/]icon\.svg$/, // Windows/Linux両対応のパス
-      use: [
-        {
-          loader: "@svgr/webpack",
-        },
-      ],
-    },
-    );
+      loader: "@svgr/webpack",
+      options: {
+        svgoConfig,
+      },
+    });
 
     return config;
   },
