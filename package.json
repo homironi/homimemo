@@ -54,6 +54,7 @@
     "@storybook/addon-vitest": "^9.0.6",
     "@storybook/nextjs-vite": "^9.0.6",
     "@stylistic/eslint-plugin": "^4.2.0",
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
