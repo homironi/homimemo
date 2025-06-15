@@ -1,7 +1,9 @@
-// https://github.com/svg/svgo
 // https://techshed.runbookdocs.com/docs/tips/2/optimize-svg
 
-function addClassToElement(node, classNames) {
+import type { Config } from "svgo";
+import { XastElement } from "svgo/lib/types";
+
+function addClassToElement(node: XastElement, classNames: string[]) {
   const classList = new Set(
     node.attributes.class == null ? null : node.attributes.class.split(" "),
   );
@@ -13,7 +15,7 @@ function addClassToElement(node, classNames) {
   node.attributes.class = Array.from(classList).join(" ");
 }
 
-module.exports = {
+const svgoConfig: Config = {
   plugins: [
     {
       name: "preset-default",
@@ -34,10 +36,8 @@ module.exports = {
       name: "removeScriptElement",
     },
     {
-      name: "removeDimensions",
-    },
-    {
       name: "addFillNoneCss",
+      // カスタムプラグインの fn の型は SVGO の PluginDefinition に従う
       fn: () => {
         return {
           element: {
@@ -60,8 +60,10 @@ module.exports = {
     {
       name: "removeAttrs",
       params: {
-        attrs: "(stroke)",
+        attrs: "stroke", // "()" は不要
       },
     },
   ],
 };
+
+export default svgoConfig;
