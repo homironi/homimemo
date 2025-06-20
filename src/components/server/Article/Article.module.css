@@ -47,4 +47,8 @@
     .last-side {
         grid-column: span 12;
     }
+
+    .first-side{
+        position: relative;
+    }
 }
