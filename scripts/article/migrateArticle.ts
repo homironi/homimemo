@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
-import { ArticleRawMeta, ArticleRawMetaSchema } from "@/schemas/article/meta";
+import { getCategoryMeta, getTag } from "@/lib/server/article";
+import { ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
@@ -32,46 +33,44 @@ migrate();
 console.log("end migrating article.");
 
 function migrate() {
-  fs.readdirSync(articleDirectoryPath, "utf-8")
+  const allMeta = fs.readdirSync(articleDirectoryPath, "utf-8")
     .filter(file => file.endsWith(".md"))
-    .forEach((file) => {
-      console.log(`Processing ${file}...`);
+    .map((file) => {
+      // console.log(`Processing ${file}...`);
       const filePath = path.join(articleDirectoryPath, file); ;
       const raw = fs.readFileSync(filePath, "utf-8");
-      const { data, content } = matter(raw);
-      if (safeParse(ArticleRawMetaSchema, data).success) {
-        // すでに新しい形式のメタデータが存在する場合はスキップ
-        console.log(`Skipping ${file}: already migrated.`);
-        return;
+      return safeParse(ArticleRawMetaSchema, matter(raw).data);
+    })
+    .filter(result => result.success)
+    .map(result => result.output);
+
+  const categories = new Set(allMeta
+    .map(meta => meta.category)
+    .filter((category) => {
+      try {
+        getCategoryMeta(category);
+      }
+      catch {
+        return true;
       }
 
-      const oldMeta = safeParse(OldMetaSchema, data);
-      if (!oldMeta.success) {
-        console.error(`Failed to parse old meta for ${file}:`, oldMeta.issues);
-        return;
+      return false;
+    }));
+  console.log(`Found categories: ${Array.from(categories).join(", ")}`);
+
+  const tags = new Set(allMeta
+    .map(meta => meta.tags)
+    .filter(tags => tags !== undefined && Array.isArray(tags))
+    .flat()
+    .filter((tag) => {
+      try {
+        getTag(tag);
+      }
+      catch {
+        return true;
       }
 
-      console.log(`Migrating ${file}...`);
-
-      const newMeta: ArticleRawMeta = {
-        id: oldMeta.output.id || path.basename(file, ".md"),
-        title: oldMeta.output.title,
-        description: oldMeta.output.description,
-        publishDate: oldMeta.output.date,
-        lastModDate: oldMeta.output.lastEditDate || oldMeta.output.date,
-        draft: false,
-        category: oldMeta.output.eleventyNavigation.parent,
-      };
-
-      if (oldMeta.output.eleventyComputed && oldMeta.output.eleventyComputed.tags) {
-        newMeta.tags = oldMeta.output.eleventyComputed.tags;
-      }
-
-      if (oldMeta.output.headerImg) {
-        newMeta.thumbnail = oldMeta.output.headerImg;
-      }
-
-      const updated = matter.stringify(content, newMeta);
-      fs.writeFileSync(filePath, updated, "utf-8");
-    });
+      return false;
+    }));
+  console.log(`Found tags: ${Array.from(tags).join(", ")}`);
 }

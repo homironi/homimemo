@@ -65,7 +65,7 @@ export function convertMetaFromRaw(raw: ArticleRawMeta): ArticleMeta {
  * @param name 情報を取得したいカテゴリ名
  * @returns カテゴリ情報
  */
-function getCategoryMeta(name: string): CategoryMeta {
+export function getCategoryMeta(name: string): CategoryMeta {
   const categories = parse(CategoriesMetaSchema, JSON.parse(fs.readFileSync(categoriesMetaFilePath, "utf-8")));
   const find = categories.find(category => category.name == name);
   if (!find) {
@@ -91,7 +91,7 @@ function getTags(tagNames: string[]): TagMeta[] {
  * @param name タグ名
  * @returns タグ情報
  */
-function getTag(name: string): TagMeta {
+export function getTag(name: string): TagMeta {
   const tags = parse(TagsMetaSchema, JSON.parse(fs.readFileSync(tagsMetaFilePath, "utf-8")));
   const find = tags.find(tag => tag.name == name);
   if (!find) {
