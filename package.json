@@ -21,6 +21,7 @@
     "build-storybook": "storybook build",
     "tcm": "tcm -p \"src/**/*.module.css\"",
     "dev:tcm": "npm run tcm -- -w",
+    "migrate": "tsx scripts/article/migrateArticle.ts",
     "build-json:article-id-to-path": "tsx scripts/article/generateIdToPathJson.ts",
     "dev:json-article-id-to-path": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateIdToPathJson.ts\" -c \"npm run build-json:article-id-to-path\"",
     "build-json:article-categories": "tsx scripts/article/generateCategoriesJson.ts",
