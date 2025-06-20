@@ -113,7 +113,7 @@ function ArticleMdx({
             rehypePlugins: [
               rehypeSlug,
               rehypeAutolinkHeadings,
-              [rehypePrism, { showLineNumbers: true }],
+              [rehypePrism],
               rehypeCodeToolContainer,
               rehypeCodeLangLabel, // rehypeCodeToolContainer でコンテナが追加されていればその中に言語ラベルが追加される
               rehypeCopyButton, // rehypeCodeToolContainer でコンテナが追加されていればその中にコピーボタンが追加される
