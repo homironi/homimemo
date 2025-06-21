@@ -30,16 +30,15 @@ export type ArticleProps = {
  * @returns 記事ページのコンポーネント
  */
 export function Article({ meta, content }: ArticleProps) {
-  // TODO: FrontMatterをもとにmeta設定やタイトルなどを設定する
   const articlesHrefBase = "/articles";
   const breadcrumbs: BreadcrumbElement[] = [
     {
       name: "記事一覧",
-      href: `/articles/list/`, // TODO: 全記事一覧ページのリンク
+      href: `${articlesHrefBase}/`,
     },
     {
       name: `${meta.category.name}`,
-      href: `/categories/hoge/list/`, // TODO: カテゴリ記事一覧ページのリンク
+      href: `/categories/${meta.category.slug}/`,
     },
     {
       name: meta.title,
