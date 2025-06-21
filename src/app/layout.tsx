@@ -1,5 +1,6 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { Navigation, NavigationLink } from "@/components/Navigation";
 import type { Metadata, Viewport } from "next";
 import { Kosugi_Maru } from "next/font/google";
 import "./globalElement.css";
@@ -37,6 +38,13 @@ export const viewport: Viewport = {
   colorScheme: "light dark",
 };
 
+const links: NavigationLink[] = [
+  { href: "/articles/", label: "記事一覧" },
+  // TODO: カテゴリを追加する
+  { href: "/about/", label: "このサイトについて" },
+  { href: "/contact/", label: "お問い合わせ" },
+];
+
 /**
  * Rootのレイアウト
  * @param root0 オブジェクト引数
@@ -52,6 +60,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className={ `${kosugiMaru.className} ${kosugiMaru.variable}` }>
         <Header />
+        <Navigation links={ links } />
         {children}
         <Footer />
       </body>
