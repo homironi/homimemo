@@ -6,6 +6,7 @@ import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
 import { ArticleMeta } from "@/schemas/article/meta";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
@@ -16,6 +17,8 @@ import "./prism.css"; // 記事内で使用するコードハイライトのPris
 const DynamicToc = dynamic(() => import("@/components/TableOfContents").then(mod => mod.TableOfContents));
 const DynamicCodeCopyHandler = dynamic(() => import("@/components/CopyCodeHandler").then(mod => mod.default));
 const tocContentSourceIdName = "toc-source-content";
+const defaultThumbnail = "/images/header/default.webp";
+const thumbnailSize = { width: 896, height: 504 };
 
 export type ArticleProps = {
   meta: ArticleMeta;
@@ -68,6 +71,12 @@ export function Article({ meta, content }: ArticleProps) {
             );
           })}
         </ul>
+        <Image
+          src={ meta.thumbnail ?? defaultThumbnail }
+          alt={ meta.title }
+          width={ thumbnailSize.width }
+          height={ thumbnailSize.height }
+        />
         <ArticleMdx
           content={ content }
           tocContentSourceIdName={ tocContentSourceIdName }
