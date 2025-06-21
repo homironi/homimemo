@@ -10,13 +10,14 @@ export function Header() {
   return (
     <header className={ styles.container }>
       <div className={ styles["logo-container"] }>
-        <Link href="/">
+        <Link href="/" className={ styles.link }>
           <Image
             src="/images/logo.svg"
             alt="Logo"
             width={ 256 }
             height={ 64 }
             priority
+            className={ styles.logo }
           />
         </Link>
       </div>
