@@ -61,6 +61,14 @@ export function convertMetaFromRaw(raw: ArticleRawMeta): ArticleMeta {
 }
 
 /**
+ * すべての記事Metaを取得する
+ * @returns 記事Metaの配列
+ */
+export function getAllCategories(): CategoryMeta[] {
+  return parse(CategoriesMetaSchema, JSON.parse(fs.readFileSync(categoriesMetaFilePath, "utf-8")));
+}
+
+/**
  * カテゴリ名でカテゴリ情報を取得する
  * @param name 情報を取得したいカテゴリ名
  * @returns カテゴリ情報
