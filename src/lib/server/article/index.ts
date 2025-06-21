@@ -61,12 +61,20 @@ export function convertMetaFromRaw(raw: ArticleRawMeta): ArticleMeta {
 }
 
 /**
+ * すべての記事Metaを取得する
+ * @returns 記事Metaの配列
+ */
+export function getAllCategories(): CategoryMeta[] {
+  return parse(CategoriesMetaSchema, JSON.parse(fs.readFileSync(categoriesMetaFilePath, "utf-8")));
+}
+
+/**
  * カテゴリ名でカテゴリ情報を取得する
  * @param name 情報を取得したいカテゴリ名
  * @returns カテゴリ情報
  */
 function getCategoryMeta(name: string): CategoryMeta {
-  const categories = parse(CategoriesMetaSchema, JSON.parse(fs.readFileSync(categoriesMetaFilePath, "utf-8")));
+  const categories = getAllCategories();
   const find = categories.find(category => category.name == name);
   if (!find) {
     throw new Error(`存在しないカテゴリ名です：${name}`);

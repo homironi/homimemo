@@ -1,6 +1,8 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Navigation, NavigationLink } from "@/components/Navigation";
+import { articlesPath, createCategoriesPath } from "@/lib/article";
+import { getAllCategories } from "@/lib/server/article";
 import type { Metadata, Viewport } from "next";
 import { Kosugi_Maru } from "next/font/google";
 import "./globalElement.css";
@@ -38,9 +40,15 @@ export const viewport: Viewport = {
   colorScheme: "light dark",
 };
 
+const categoriesLinks: NavigationLink[] = getAllCategories()
+  .map(category => ({
+    href: createCategoriesPath(category),
+    label: category.name,
+  }));
+
 const links: NavigationLink[] = [
-  { href: "/articles/", label: "記事一覧" },
-  // TODO: カテゴリを追加する
+  { href: articlesPath, label: "記事一覧" },
+  ...categoriesLinks,
   { href: "/about/", label: "このサイトについて" },
   { href: "/contact/", label: "お問い合わせ" },
 ];
