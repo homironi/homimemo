@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
   },
   images: {
     disableStaticImages: true,
+    unoptimized: true,
   },
   output: "export",
   distDir: "_public",
