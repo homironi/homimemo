@@ -1,3 +1,4 @@
+import { createCategoriesPath } from "@/lib/article";
 import { CategoryMeta } from "@/schemas/article/meta";
 import Link from "next/link";
 
@@ -15,7 +16,7 @@ export type ArticleCategoryProps = {
 export function ArticleCategory({ meta }: ArticleCategoryProps) {
   return (
     <div>
-      <Link href={ `/categories/${meta.slug}` }>{ meta.name}</Link>
+      <Link href={ createCategoriesPath(meta) }>{ meta.name}</Link>
     </div>
   );
 }

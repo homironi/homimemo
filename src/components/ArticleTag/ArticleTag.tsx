@@ -1,3 +1,4 @@
+import { createTagsPath } from "@/lib/article";
 import { TagMeta } from "@/schemas/article/meta";
 import Link from "next/link";
 
@@ -14,7 +15,7 @@ export type ArticleTagProps = {
 export function ArticleTag({ meta }: ArticleTagProps) {
   return (
     <div>
-      <Link href={ `/tags/${meta.slug}/` }>
+      <Link href={ createTagsPath(meta) }>
         { meta.name }
       </Link>
     </div>
