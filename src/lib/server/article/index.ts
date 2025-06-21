@@ -74,7 +74,7 @@ export function getAllCategories(): CategoryMeta[] {
  * @returns カテゴリ情報
  */
 function getCategoryMeta(name: string): CategoryMeta {
-  const categories = parse(CategoriesMetaSchema, JSON.parse(fs.readFileSync(categoriesMetaFilePath, "utf-8")));
+  const categories = getAllCategories();
   const find = categories.find(category => category.name == name);
   if (!find) {
     throw new Error(`存在しないカテゴリ名です：${name}`);
