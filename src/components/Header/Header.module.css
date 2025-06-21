@@ -3,7 +3,16 @@
 }
 
 .logo-container{
-    height: 80px;
-    aspect-ratio: 3/1;
     position: relative;
+}
+
+.link {
+    display: inline-block;
+}
+
+.logo{
+    height: 48px;
+    width: auto;
+    object-fit: cover;
+    padding: 4px;
 }
