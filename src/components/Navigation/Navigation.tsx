@@ -1,10 +1,6 @@
+import { NavigationLink } from "@/schemas/navigationLink";
 import Link from "next/link";
 import styles from "./Navigation.module.css";
-
-export type NavigationLink = {
-  href: string;
-  label: string;
-};
 
 export type NavigationProps = {
   links: NavigationLink[];
