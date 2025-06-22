@@ -1,8 +1,9 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { Navigation, NavigationLink } from "@/components/Navigation";
+import { Navigation } from "@/components/Navigation";
 import { articlesPath, createCategoriesPath } from "@/lib/article";
 import { getAllCategories } from "@/lib/server/article";
+import { NavigationLink } from "@/schemas/navigationLink";
 import type { Metadata, Viewport } from "next";
 import { Kosugi_Maru } from "next/font/google";
 import "./globalElement.css";
@@ -46,11 +47,20 @@ const categoriesLinks: NavigationLink[] = getAllCategories()
     label: category.name,
   }));
 
-const links: NavigationLink[] = [
-  { href: articlesPath, label: "記事一覧" },
-  ...categoriesLinks,
+const commonLinks: { [key: string]: NavigationLink } = {
+  articles: { href: articlesPath, label: "記事一覧" },
+};
+
+const footerLinks: NavigationLink[] = [
+  ...Object.values(commonLinks),
   { href: "/about/", label: "このサイトについて" },
   { href: "/contact/", label: "お問い合わせ" },
+  { href: "/privacy/", label: "プライバシーポリシー" },
+];
+
+const headerLinks: NavigationLink[] = [
+  commonLinks.articles,
+  ...categoriesLinks,
 ];
 
 /**
@@ -68,9 +78,9 @@ export default function RootLayout({
     <html lang="ja">
       <body className={ `${kosugiMaru.className} ${kosugiMaru.variable}` }>
         <Header />
-        <Navigation links={ links } />
+        <Navigation links={ headerLinks } />
         {children}
-        <Footer />
+        <Footer links={ footerLinks } />
       </body>
     </html>
   );
