@@ -1,6 +1,6 @@
 import { CategoryMeta, TagMeta } from "@/schemas/article/meta";
 
-export const articlesPath = "/articles/";
+export const articlesListPath = "/articles/page/";
 
 /**
  * 記事詳細ページのパスを作成する
@@ -8,7 +8,7 @@ export const articlesPath = "/articles/";
  * @returns 記事詳細ページのパス
  */
 export function createArticleDetailPath(id: string): string {
-  return `${articlesPath}${id}/`;
+  return `/articles/${id}/`;
 }
 
 /**
