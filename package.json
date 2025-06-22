@@ -23,6 +23,8 @@
     "dev:tcm": "npm run tcm -- -w",
     "build-json:article-id-to-path": "tsx scripts/article/generateIdToPathJson.ts",
     "dev:json-article-id-to-path": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateIdToPathJson.ts\" -c \"npm run build-json:article-id-to-path\"",
+    "build-json:articles-meta": "tsx scripts/article/generateArticlesJson.ts",
+    "dev:json-articles-meta": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateArticlesJson.ts\" -c \"npm run build-json:articles-meta\"",
     "build-json:article-categories": "tsx scripts/article/generateCategoriesJson.ts",
     "dev:json-article-categories": "chokidar \"_contents/categories/**/*.md\" \"scripts/article/generateCategoriesJson.ts\" -c \"npm run build-json:article-categories\"",
     "build-json:article-tags": "tsx scripts/article/generateTagsJson.ts",

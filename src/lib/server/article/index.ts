@@ -10,6 +10,11 @@ import { array, parse } from "valibot";
 export const idToPathMapPath = path.join(".temp", "article", "idToPathMap.json");
 
 /**
+ * 記事情報ファイルのパス
+ */
+export const articlesMetaFilePath = path.join("public", "generated", "meta", "articles.json");
+
+/**
  * カテゴリの情報ファイルのパス
  */
 export const categoriesMetaFilePath = path.join("public", "generated", "meta", "categories.json");
@@ -61,8 +66,8 @@ export function convertMetaFromRaw(raw: ArticleRawMeta): ArticleMeta {
 }
 
 /**
- * すべての記事Metaを取得する
- * @returns 記事Metaの配列
+ * すべてのカテゴリMetaを取得する
+ * @returns カテゴリMetaの配列
  */
 export function getAllCategories(): CategoryMeta[] {
   return parse(CategoriesMetaSchema, JSON.parse(fs.readFileSync(categoriesMetaFilePath, "utf-8")));
