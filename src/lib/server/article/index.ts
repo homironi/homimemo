@@ -1,5 +1,5 @@
 import { ArticleIdToPathMapElement, ArticleIdToPathMapElementSchema } from "@/schemas/article/idToPathMap";
-import { ArticleMeta, ArticleRawMeta, CategoriesMetaSchema, CategoryMeta, TagMeta, TagsMetaSchema } from "@/schemas/article/meta";
+import { ArticleMeta, ArticleMetaFromJsonSchema, ArticleRawMeta, CategoriesMetaSchema, CategoryMeta, TagMeta, TagsMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import path from "path";
 import { array, parse } from "valibot";
@@ -8,6 +8,11 @@ import { array, parse } from "valibot";
  * 記事IDとそれに対応するマークダウンファイルのパスデータのファイルパス
  */
 export const idToPathMapPath = path.join(".temp", "article", "idToPathMap.json");
+
+/**
+ * 記事情報ファイルのパス
+ */
+export const articlesMetaFilePath = path.join("public", "generated", "meta", "articles.json");
 
 /**
  * カテゴリの情報ファイルのパス
@@ -47,6 +52,14 @@ export function getIdToPathMap(): ArticleIdToPathMapElement[] {
 }
 
 /**
+ * すべての記事Metaを取得する
+ * @returns 記事Metaの配列
+ */
+export function getAllArticlesMeta(): ArticleMeta[] {
+  return parse(array(ArticleMetaFromJsonSchema), JSON.parse(fs.readFileSync(articlesMetaFilePath, "utf-8")));
+}
+
+/**
  * 生の記事Metaを記事Metaに変換
  * @param raw 生Meta
  * @returns 記事Meta
@@ -61,8 +74,8 @@ export function convertMetaFromRaw(raw: ArticleRawMeta): ArticleMeta {
 }
 
 /**
- * すべての記事Metaを取得する
- * @returns 記事Metaの配列
+ * すべてのカテゴリMetaを取得する
+ * @returns カテゴリMetaの配列
  */
 export function getAllCategories(): CategoryMeta[] {
   return parse(CategoriesMetaSchema, JSON.parse(fs.readFileSync(categoriesMetaFilePath, "utf-8")));

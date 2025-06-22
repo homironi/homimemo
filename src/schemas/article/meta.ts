@@ -8,6 +8,7 @@ import {
   optional,
   pipe,
   string,
+  transform,
 } from "valibot";
 
 export const CategoryMetaSchema = object({
@@ -49,6 +50,17 @@ export const ArticleRawMetaSchema = object({
 });
 
 export type ArticleRawMeta = InferOutput<typeof ArticleRawMetaSchema>;
+
+/**
+ * 記事のメタデータJSONからのスキーマ
+ */
+export const ArticleMetaFromJsonSchema = object({
+  ...metaSchemaBase,
+  publishDate: pipe(string(), transform(date => new Date(date))),
+  lastModDate: pipe(string(), transform(date => new Date(date))),
+  category: CategoryMetaSchema,
+  tags: optional(TagsMetaSchema),
+});
 
 /**
  * 記事のメタデータのスキーマ

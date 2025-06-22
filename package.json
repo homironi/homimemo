@@ -7,6 +7,8 @@
     "dev:next": "next dev",
     "build": "npm run build-json && next build",
     "build-json": "npm-run-all --parallel build-json:*",
+    "build-json:article-meta": "npm-run-all --sequential build-json-pre-article build-json-article",
+    "build-json-pre-article": "npm-run-all --parallel build-json-pre-article:*",
     "start": "next start",
     "lint-all": "npm-run-all --parallel lint lint:*",
     "lint-all-fix": "npm-run-all --parallel lint lint:* -- --fix",
@@ -23,10 +25,12 @@
     "dev:tcm": "npm run tcm -- -w",
     "build-json:article-id-to-path": "tsx scripts/article/generateIdToPathJson.ts",
     "dev:json-article-id-to-path": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateIdToPathJson.ts\" -c \"npm run build-json:article-id-to-path\"",
-    "build-json:article-categories": "tsx scripts/article/generateCategoriesJson.ts",
-    "dev:json-article-categories": "chokidar \"_contents/categories/**/*.md\" \"scripts/article/generateCategoriesJson.ts\" -c \"npm run build-json:article-categories\"",
-    "build-json:article-tags": "tsx scripts/article/generateTagsJson.ts",
-    "dev:json-article-tags": "chokidar \"_contents/tags/**/*.md\" \"scripts/article/generateTagsJson.ts\" -c \"npm run build-json:article-tags\""
+    "build-json-pre-article:categories": "tsx scripts/article/generateCategoriesJson.ts",
+    "dev:json-article-categories": "chokidar \"_contents/categories/**/*.md\" \"scripts/article/generateCategoriesJson.ts\" -c \"npm run build-json-pre-article:categories\"",
+    "build-json-pre-article:tags": "tsx scripts/article/generateTagsJson.ts",
+    "dev:json-article-tags": "chokidar \"_contents/tags/**/*.md\" \"scripts/article/generateTagsJson.ts\" -c \"npm run build-json-pre-article:tags\"",
+    "build-json-article": "tsx scripts/article/generateArticlesJson.ts",
+    "dev:json-articles-meta": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateArticlesJson.ts\" \"public/generated/meta/categories.json\" \"public/generated/meta/tags.json\" -c \"npm run build-json-article\""
   },
   "dependencies": {
     "chokidar-cli": "^3.0.0",
