@@ -24,13 +24,13 @@
     "tcm": "tcm -p \"src/**/*.module.css\"",
     "dev:tcm": "npm run tcm -- -w",
     "build-json:article-id-to-path": "tsx scripts/article/generateIdToPathJson.ts",
-    "dev:json-article-id-to-path": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateIdToPathJson.ts\" -c \"npm run build-json-pre:article-id-to-path\"",
+    "dev:json-article-id-to-path": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateIdToPathJson.ts\" -c \"npm run build-json:article-id-to-path\"",
     "build-json-pre-article:categories": "tsx scripts/article/generateCategoriesJson.ts",
-    "dev:json-article-categories": "chokidar \"_contents/categories/**/*.md\" \"scripts/article/generateCategoriesJson.ts\" -c \"npm run build-json-pre:article-categories\"",
+    "dev:json-article-categories": "chokidar \"_contents/categories/**/*.md\" \"scripts/article/generateCategoriesJson.ts\" -c \"npm run build-json-pre-article:categories\"",
     "build-json-pre-article:tags": "tsx scripts/article/generateTagsJson.ts",
-    "dev:json-article-tags": "chokidar \"_contents/tags/**/*.md\" \"scripts/article/generateTagsJson.ts\" -c \"npm run build-json-pre:article-tags\"",
+    "dev:json-article-tags": "chokidar \"_contents/tags/**/*.md\" \"scripts/article/generateTagsJson.ts\" -c \"npm run build-json-pre-article:tags\"",
     "build-json-article": "tsx scripts/article/generateArticlesJson.ts",
-    "dev:json-articles-meta": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateArticlesJson.ts\" \"public/generated/meta/categories.json\" \"public/generated/meta/tags.json\" -c \"npm run build-json:articles-meta\""
+    "dev:json-articles-meta": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateArticlesJson.ts\" \"public/generated/meta/categories.json\" \"public/generated/meta/tags.json\" -c \"npm run build-json-article\""
   },
   "dependencies": {
     "chokidar-cli": "^3.0.0",
