@@ -1,5 +1,5 @@
 import { ArticleIdToPathMapElement, ArticleIdToPathMapElementSchema } from "@/schemas/article/idToPathMap";
-import { ArticleMeta, ArticleRawMeta, CategoriesMetaSchema, CategoryMeta, TagMeta, TagsMetaSchema } from "@/schemas/article/meta";
+import { ArticleMeta, ArticleMetaFromJsonSchema, ArticleRawMeta, CategoriesMetaSchema, CategoryMeta, TagMeta, TagsMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import path from "path";
 import { array, parse } from "valibot";
@@ -49,6 +49,14 @@ export function getFilePath(id: string): string {
  */
 export function getIdToPathMap(): ArticleIdToPathMapElement[] {
   return parse(IdToPathMapSchema, JSON.parse(fs.readFileSync(idToPathMapPath, "utf-8")));
+}
+
+/**
+ * すべての記事Metaを取得する
+ * @returns 記事Metaの配列
+ */
+export function getAllArticlesMeta(): ArticleMeta[] {
+  return parse(array(ArticleMetaFromJsonSchema), JSON.parse(fs.readFileSync(articlesMetaFilePath, "utf-8")));
 }
 
 /**
