@@ -3,7 +3,36 @@
     padding: 24px;
 }
 
-.logo-container{
+.container,
+.navigation-link {
+    color: var(--text-color-white);
+}
+
+.navigation {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0;
+    gap : 1rem;
+}
+
+.navigation-item {
+    list-style: none;
+}
+
+.navigation-item::before {
+    content: ">";
+    margin-right: 2px;
+}
+
+.navigation-link {
+    text-decoration: none;
+}
+
+.navigation-link:hover {
+    color: var(--text-color-white-hover);
+}
+
+.logo-container {
     width: 200px;
     aspect-ratio: 3/1;
     position: relative;
@@ -11,6 +40,11 @@
 }
 
 .copy-light {
-    color: var(--text-color-white);
     text-align: center;
+}
+
+@media screen and (width < 768px) {
+    .navigation {
+        flex-direction: column;
+    }
 }

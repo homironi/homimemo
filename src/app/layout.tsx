@@ -47,11 +47,20 @@ const categoriesLinks: NavigationLink[] = getAllCategories()
     label: category.name,
   }));
 
-const links: NavigationLink[] = [
-  { href: articlesPath, label: "記事一覧" },
-  ...categoriesLinks,
+const commonLinks: { [key: string]: NavigationLink } = {
+  articles: { href: articlesPath, label: "記事一覧" },
+};
+
+const footerLinks: NavigationLink[] = [
+  ...Object.values(commonLinks),
   { href: "/about/", label: "このサイトについて" },
   { href: "/contact/", label: "お問い合わせ" },
+  { href: "/privacy/", label: "プライバシーポリシー" },
+];
+
+const headerLinks: NavigationLink[] = [
+  commonLinks.articles,
+  ...categoriesLinks,
 ];
 
 /**
@@ -69,9 +78,9 @@ export default function RootLayout({
     <html lang="ja">
       <body className={ `${kosugiMaru.className} ${kosugiMaru.variable}` }>
         <Header />
-        <Navigation links={ links } />
+        <Navigation links={ headerLinks } />
         {children}
-        <Footer />
+        <Footer links={ footerLinks } />
       </body>
     </html>
   );
