@@ -1,8 +1,9 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { Navigation, NavigationLink } from "@/components/Navigation";
+import { Navigation } from "@/components/Navigation";
 import { articlesPath, createCategoriesPath } from "@/lib/article";
 import { getAllCategories } from "@/lib/server/article";
+import { NavigationLink } from "@/schemas/navigationLink";
 import type { Metadata, Viewport } from "next";
 import { Kosugi_Maru } from "next/font/google";
 import "./globalElement.css";
