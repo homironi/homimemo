@@ -1,9 +1,9 @@
 ▼ developのStorybook  
 [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg)](https://develop--682bb6b6fbdc8489c7635afb.chromatic.com)
 
-[![Add Missing Article IDs](https://github.com/mimimiRoni/homimemo/actions/workflows/add-article-missing-id.yml/badge.svg)](https://github.com/mimimiRoni/homimemo/actions/workflows/add-article-missing-id.yml)
-[![Build test](https://github.com/mimimiRoni/homimemo/actions/workflows/build-test.yml/badge.svg)](https://github.com/mimimiRoni/homimemo/actions/workflows/build-test.yml)
-[![Lint test](https://github.com/mimimiRoni/homimemo/actions/workflows/lint-test.yml/badge.svg)](https://github.com/mimimiRoni/homimemo/actions/workflows/lint-test.yml)
+[![Add Missing Article IDs](https://github.com/homironi/homimemo/actions/workflows/add-article-missing-id.yml/badge.svg)](https://github.com/homironi/homimemo/actions/workflows/add-article-missing-id.yml)
+[![Build test](https://github.com/homironi/homimemo/actions/workflows/build-test.yml/badge.svg)](https://github.com/homironi/homimemo/actions/workflows/build-test.yml)
+[![Lint test](https://github.com/homironi/homimemo/actions/workflows/lint-test.yml/badge.svg)](https://github.com/homironi/homimemo/actions/workflows/lint-test.yml)
 
 ほみの個人サイトのリポジトリです。  
 https://homironi.com/
