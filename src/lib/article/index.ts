@@ -1,6 +1,7 @@
 import { CategoryMeta, TagMeta } from "@/schemas/article/meta";
 
-export const articlesListPath = "/articles/page/";
+// 記事一覧ページの最初のページのパス
+export const articlesListPagePath = createFirstListPagePath("/articles/page/");
 
 /**
  * 記事詳細ページのパスを作成する
@@ -27,4 +28,13 @@ export function createCategoriesPath(category: CategoryMeta): string {
  */
 export function createTagsPath(tag: TagMeta): string {
   return `/tags/${tag.slug}/`;
+}
+
+/**
+ * 記事一覧ページの最初のページのパスを作成する
+ * @param basePath 記事一覧ページのベースパス
+ * @returns 記事一覧ページの最初のページのパス
+ */
+function createFirstListPagePath(basePath: string): string {
+  return `${basePath}1/`;
 }
