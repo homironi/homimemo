@@ -1,7 +1,7 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Navigation } from "@/components/Navigation";
-import { articlesListPath, createCategoriesPath } from "@/lib/article";
+import { articlesListPagePath, createCategoriesPath } from "@/lib/article";
 import { getAllCategories } from "@/lib/server/article";
 import { NavigationLink } from "@/schemas/navigationLink";
 import type { Metadata, Viewport } from "next";
@@ -48,7 +48,7 @@ const categoriesLinks: NavigationLink[] = getAllCategories()
   }));
 
 const commonLinks: { [key: string]: NavigationLink } = {
-  articles: { href: articlesListPath, label: "記事一覧" },
+  articles: { href: articlesListPagePath, label: "記事一覧" },
 };
 
 const footerLinks: NavigationLink[] = [
