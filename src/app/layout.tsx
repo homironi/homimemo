@@ -55,7 +55,8 @@ const footerLinks: NavigationLink[] = [
   ...Object.values(commonLinks),
   { href: "/about/", label: "このサイトについて" },
   { href: "/contact/", label: "お問い合わせ" },
-  { href: "/privacy/", label: "プライバシーポリシー" },
+  { href: "/privacy-policy/", label: "プライバシーポリシー" },
+  { href: "/disclaimer/", label: "免責事項" },
 ];
 
 const headerLinks: NavigationLink[] = [
