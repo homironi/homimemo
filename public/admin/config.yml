@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: mimimiRoni/homimemo
+  repo: homironi/homimemo
   branch: develop
   base_url: https://homimemo-cms-auth.vercel.app
   auth_endpoint: api/auth/begin
