@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import styles from "./page.module.css";
 
 // 記事一覧の1ページあたりの表示件数
-const perPage = 8;
+const perPage = 12;
 const listPagePathBase = "/articles/page/";
 
 type Params = {
