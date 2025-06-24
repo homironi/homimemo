@@ -8,6 +8,7 @@ on:
             - develop
         paths:
           - "src/**.css"
+          - "!src/**/page.module.css"
           - "src/components/**"
           - "!src/components/server/**"
           - "src/stories/**"
@@ -17,6 +18,7 @@ on:
           - develop
       paths:
           - "src/**.css"
+          - "!src/**/page.module.css"
           - "src/components/**"
           - "!src/components/server/**"
           - "src/stories/**"
