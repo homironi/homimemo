@@ -19,7 +19,7 @@ https://homironi.com/
 
 1. 依存関係の install  
    ```cli
-   npm install
+   npm ci
    ```
 1. ローカルで起動  
    ```cli
