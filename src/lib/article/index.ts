@@ -1,5 +1,8 @@
 import { CategoryMeta, TagMeta } from "@/schemas/article/meta";
 
+export const articleThumbnailNativeSize = { width: 896, height: 504 };
+export const defaultArticleThumbnail = "/images/header/default.webp";
+
 // 記事一覧ページの最初のページのパス
 export const articlesListPagePath = createFirstListPagePath("/articles/page/");
 
