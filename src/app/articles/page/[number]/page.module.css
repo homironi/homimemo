@@ -26,10 +26,10 @@
 
 @media screen and (width < 768px) {
     .container{
-    margin: 0;
-    padding: 4px;
-    background-color: var(--color-main);
-}
+        margin: 0;
+        padding: 4px;
+        background-color: var(--color-main);
+    }
 
     .list{
         gap: 0;
