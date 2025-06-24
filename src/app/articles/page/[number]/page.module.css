@@ -1,9 +1,15 @@
+.container{
+    margin: 16px;
+    padding: 4px;
+    background-color: var(--color-main);
+}
+
 .list {
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap);
     list-style: none;
-    padding: 16px;
+    padding: 0;
 
     --gap:8px;
 }
@@ -19,9 +25,15 @@
 }
 
 @media screen and (width < 768px) {
+    .container{
+        margin: 0;
+        padding: 4px;
+        background-color: var(--color-main);
+    }
+
     .list{
         gap: 0;
-        padding: 4px;
+        padding: 0;
     }
 
     .item {
