@@ -61,6 +61,7 @@
     --grid-column: 12;
     --shadow-blur-radius: 8px;
     --shadow-spread-radius: 1px;
+    --article-thumbnail-width: 896px;
 }
 
 @media (prefers-color-scheme: dark) {
