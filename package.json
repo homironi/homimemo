@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm-run-all --parallel dev:*",
+    "dev": "npm run build-json && npm-run-all --parallel dev:*",
     "dev:next": "next dev",
     "build": "npm run build-json && next build",
     "build-json": "npm-run-all --parallel build-json:*",
