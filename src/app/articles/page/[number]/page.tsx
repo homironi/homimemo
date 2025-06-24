@@ -1,6 +1,7 @@
-import { createArticleDetailPath } from "@/lib/article";
+import { ArticleCard } from "@/components/ArticleCard";
 import { getAllArticlesMeta } from "@/lib/server/article";
 import type { Metadata } from "next";
+import styles from "./page.module.css";
 
 // 記事一覧の1ページあたりの表示件数
 const perPage = 8;
@@ -51,10 +52,10 @@ export default async function ArticlesPage({ params }: { params: Promise<Params>
     <>
       <h1>記事一覧</h1>
       <p>{`全 ${articles.length} 件（${startNum + 1} 件目 ～ ${Math.min(endNum, articles.length)} 件目）`}</p>
-      <ol>
+      <ol className={ styles.list }>
         {pageArticles.map(article => (
-          <li key={ article.id }>
-            <a href={ createArticleDetailPath(article.id) }>{article.title}</a>
+          <li key={ article.id } className={ styles.item }>
+            <ArticleCard meta={ article } />
           </li>
         ))}
       </ol>

@@ -1,6 +1,7 @@
 import { ArticleCategory } from "@/components/ArticleCategory";
 import { ArticleTag } from "@/components/ArticleTag";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
+import { articleThumbnailNativeSize, defaultArticleThumbnail } from "@/lib/article";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/server/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
 import { ArticleMeta } from "@/schemas/article/meta";
@@ -17,8 +18,6 @@ import "./prism.css"; // 記事内で使用するコードハイライトのPris
 const DynamicToc = dynamic(() => import("@/components/TableOfContents").then(mod => mod.TableOfContents));
 const DynamicCodeCopyHandler = dynamic(() => import("@/components/CopyCodeHandler").then(mod => mod.default));
 const tocContentSourceIdName = "toc-source-content";
-const defaultThumbnail = "/images/header/default.webp";
-const thumbnailSize = { width: 896, height: 504 };
 
 export type ArticleProps = {
   meta: ArticleMeta;
@@ -72,10 +71,10 @@ export function Article({ meta, content }: ArticleProps) {
           })}
         </ul>
         <Image
-          src={ meta.thumbnail ?? defaultThumbnail }
+          src={ meta.thumbnail ?? defaultArticleThumbnail }
           alt={ meta.title }
-          width={ thumbnailSize.width }
-          height={ thumbnailSize.height }
+          width={ articleThumbnailNativeSize.width }
+          height={ articleThumbnailNativeSize.height }
         />
         <ArticleMdx
           content={ content }
