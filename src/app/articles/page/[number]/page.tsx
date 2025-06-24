@@ -49,7 +49,7 @@ export default async function ArticlesPage({ params }: { params: Promise<Params>
   const pageNumbers = getPageLength(articles.length);
 
   return (
-    <>
+    <div className={ styles.container }>
       <h1>記事一覧</h1>
       <p>{`全 ${articles.length} 件（${startNum + 1} 件目 ～ ${Math.min(endNum, articles.length)} 件目）`}</p>
       <ol className={ styles.list }>
@@ -66,7 +66,7 @@ export default async function ArticlesPage({ params }: { params: Promise<Params>
           </li>
         ))}
       </ol>
-    </>
+    </div>
   );
 }
 
