@@ -24,11 +24,6 @@ img {
   object-fit: contain;
 }
 
-.icon {
-  fill: currentcolor;
-  stroke: currentcolor;
-}
-
 .icon-fill-none {
   fill: none;
 }
