@@ -1,0 +1,72 @@
+name: optimize svg
+
+on:
+    workflow_dispatch:
+    pull_request:
+        paths:
+            - "public/**.svg"
+            - "src/assets/**.svg"
+        types: [opened, synchronize]
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write # PRにコメントを追加する権限
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run script and save output
+        id: run_script
+        run: |
+          echo "Running script..."
+          OUTPUT=$(npm run svg)
+          echo "$OUTPUT"
+          echo "output<<EOF" >> $GITHUB_OUTPUT
+          echo "$OUTPUT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Commit and push changes
+        id: commit_changes # IDを追加して、後でこのステップの出力を参照できるようにします
+        if: github.event.pull_request != null
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+ 
+          # 差分があるか確認
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "Changes detected! Committing..."
+            git add public/**.svg src/assets/**.svg
+            git commit -m "[update] optimize svg"
+            git push
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "No changes to commit."
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+ 
+      - name: Comment on PR
+        if: github.event.pull_request != null && steps.commit_changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          gh pr comment "$PR_URL" --body "## SVG最適化ログ 📊 
+
+          ✨ SVGファイルが最適化され、コミットされました！
+          
+          ${{ steps.run_script.outputs.output }}
+          "
