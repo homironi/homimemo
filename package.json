@@ -32,8 +32,8 @@
     "build-json-article": "tsx scripts/article/generateArticlesJson.ts",
     "dev:json-articles-meta": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateArticlesJson.ts\" \"public/generated/meta/categories.json\" \"public/generated/meta/tags.json\" -c \"npm run build-json-article\"",
     "svg": "npm-run-all --parallel svg:*",
-    "svg:assets": "svgo --folder ./src/assets --recursive",
-    "svg:public": "svgo --folder ./public --recursive"
+    "svg:assets": "svgo --folder ./src/assets --recursive --no-color ",
+    "svg:public": "svgo --folder ./public --recursive --no-color "
   },
   "dependencies": {
     "chokidar-cli": "^3.0.0",
