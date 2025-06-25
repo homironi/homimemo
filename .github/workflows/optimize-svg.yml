@@ -33,20 +33,43 @@ jobs:
         id: run_script
         run: |
           echo "Running script..."
-          OUTPUT=$(npm run svg)
-          echo "$OUTPUT"
+          # npm run svg の出力を変数に格納
+          FULL_OUTPUT=$(npm run svg)
+          echo "$FULL_OUTPUT" # デバッグ用にフル出力を表示
+
+          # 最適化結果の行のみを抽出し、コメント用に整形
+          # .svg: で始まり、Done in ... で終わる行、または容量情報が含まれる行を抽出
+          # 例: hoge.svg:
+          # Done in 11 ms!
+          # 0.359 KiB - 0% = 0.359 KiB
+          # というブロックを抽出し、ファイル名と最後の行だけをまとめる
+          FORMATTED_OUTPUT=""
+          CURRENT_FILE=""
+          
+          echo "$FULL_OUTPUT" | while IFS= read -r line; do
+            # ファイル名が書かれている行を検出
+            if [[ "$line" =~ \.svg:$ ]]; then
+              CURRENT_FILE="${line%:}" # 末尾の':'を削除してファイル名のみ取得
+            # 容量情報が書かれている行を検出
+            elif [[ "$line" =~ ^[0-9]+\.[0-9]+\ KiB\ - ]]; then
+              if [[ -n "$CURRENT_FILE" ]]; then
+                FORMATTED_OUTPUT+="- \`${CURRENT_FILE}\`: \`$line\`\n"
+                CURRENT_FILE="" # 次のファイルのためにリセット
+              fi
+            fi
+          done
+          
           echo "output<<EOF" >> $GITHUB_OUTPUT
-          echo "$OUTPUT" >> $GITHUB_OUTPUT
+          echo "$FORMATTED_OUTPUT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes
-        id: commit_changes # IDを追加して、後でこのステップの出力を参照できるようにします
+        id: commit_changes
         if: github.event.pull_request != null
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
  
-          # 差分があるか確認
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "Changes detected! Committing..."
             git add public/**.svg src/assets/**.svg
@@ -59,14 +82,14 @@ jobs:
           fi
  
       - name: Comment on PR
-        if: github.event.pull_request != null && steps.commit_changes.outputs.has_changes == 'true'
+        if: github.event.pull_request != null && steps.commit_changes.outputs.has_changes == 'true' && steps.run_script.outputs.output != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
         run: |
-          gh pr comment "$PR_URL" --body "## SVG最適化ログ 📊 
-
-          ✨ SVGファイルが最適化され、コミットされました！
-          
-          ${{ steps.run_script.outputs.output }}
-          "
+          gh pr comment "$PR_URL" --body "## SVG最適化結果 📊
+            
+            以下のSVGファイルが最適化されました！✨
+            
+            ${{ steps.run_script.outputs.output }}
+            "
