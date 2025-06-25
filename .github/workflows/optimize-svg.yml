@@ -40,7 +40,6 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes
-        id: commit_changes # IDを追加して、後でこのステップの出力を参照できるようにします
         if: github.event.pull_request != null
         run: |
           git config user.name "github-actions[bot]"
@@ -52,21 +51,6 @@ jobs:
             git add public/**.svg src/assets/**.svg
             git commit -m "[update] optimize svg"
             git push
-            echo "has_changes=true" >> $GITHUB_OUTPUT
           else
             echo "No changes to commit."
-            echo "has_changes=false" >> $GITHUB_OUTPUT
           fi
- 
-      - name: Comment on PR
-        if: github.event.pull_request != null && steps.commit_changes.outputs.has_changes == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
-        run: |
-          gh pr comment "$PR_URL" --body "## SVG最適化ログ 📊 
-
-          ✨ SVGファイルが最適化され、コミットされました！
-          
-          ${{ steps.run_script.outputs.output }}
-          "
