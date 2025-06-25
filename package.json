@@ -30,7 +30,10 @@
     "build-json-pre-article:tags": "tsx scripts/article/generateTagsJson.ts",
     "dev:json-article-tags": "chokidar \"_contents/tags/**/*.md\" \"scripts/article/generateTagsJson.ts\" -c \"npm run build-json-pre-article:tags\"",
     "build-json-article": "tsx scripts/article/generateArticlesJson.ts",
-    "dev:json-articles-meta": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateArticlesJson.ts\" \"public/generated/meta/categories.json\" \"public/generated/meta/tags.json\" -c \"npm run build-json-article\""
+    "dev:json-articles-meta": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateArticlesJson.ts\" \"public/generated/meta/categories.json\" \"public/generated/meta/tags.json\" -c \"npm run build-json-article\"",
+    "svg": "npm-run-all --parallel svg:*",
+    "svg:assets": "svgo --folder ./src/assets --recursive",
+    "svg:public": "svgo --folder ./public --recursive"
   },
   "dependencies": {
     "chokidar-cli": "^3.0.0",
