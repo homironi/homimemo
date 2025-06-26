@@ -1,6 +1,6 @@
+import { ArticleCard } from "@/components/ArticleCard";
 import { articlePagePerNum } from "@/lib/article/listPage";
 import { ArticleMeta } from "@/schemas/article/meta";
-import { ArticleCard } from "../ArticleCard";
 import styles from "./ArticleListPageLayout.module.css";
 import { ArticleListPageNumbers } from "./ArticleListPageNumbers";
 
