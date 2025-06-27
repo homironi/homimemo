@@ -27,7 +27,7 @@
     box-shadow: 0 0 var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
 }
 
-@media screen and (768px<= width < 1280px){
+@media screen and (width <= 1280px){
     .article{
         grid-column: span 9;
     }
@@ -37,7 +37,7 @@
     }
 }
 
-@media screen and (width < 768px){
+@media screen and (width <= 500px){
     .container{
         gap: 16px;
     }
