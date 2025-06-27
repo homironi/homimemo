@@ -75,6 +75,8 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 ### BEGIN XPageSpeed - Do not edit the contents of this block! ###
+# これをなくすとXPageSpeedがJavaScriptの最適化を行うが、表示が崩れ文字化けするため、無効化
+XPagespeedDisableFilters xoptimize_javascript
 XPagespeedDisableFilters lazyload_javascript
 XPagespeed on
 <IfFile /var/xpagespeed/xpagespeed_ctl>
