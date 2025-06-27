@@ -1,4 +1,6 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
+import { BreadcrumbElement } from "@/components/BreadCrumbs";
+import { articlesListPagePath } from "@/lib/article";
 import { getPageLength } from "@/lib/article/listPage";
 import { getAllArticlesMeta } from "@/lib/server/article";
 import type { Metadata } from "next";
@@ -42,13 +44,22 @@ export default async function ArticlesPage({ params }: { params: Promise<Params>
   const number = parseInt((await params).number);
   const articles = getAllArticlesMeta()
     .sort((a, b) => b.lastModDate.getTime() - a.lastModDate.getTime());
+  const breadcrumbs: BreadcrumbElement[] = [
+    {
+      name: title,
+      href: articlesListPagePath,
+    },
+  ];
 
   return (
-    <ArticleListPageLayout
-      title={ title }
-      articles={ articles }
-      listPagePathBase={ listPagePathBase }
-      currentPageNumber={ number }
-    />
+    <>
+      <ArticleListPageLayout
+        breadcrumbs={ breadcrumbs }
+        title={ title }
+        articles={ articles }
+        listPagePathBase={ listPagePathBase }
+        currentPageNumber={ number }
+      />
+    </>
   );
 }
