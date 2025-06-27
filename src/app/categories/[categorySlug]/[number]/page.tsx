@@ -1,5 +1,5 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
-import { createCategoriesPath } from "@/lib/article";
+import { createCategoryListFirstPagePath } from "@/lib/article";
 import { getPageLength } from "@/lib/article/listPage";
 import { getAllArticlesMeta, getAllCategories, getCategoryMetaFromSlug } from "@/lib/server/article";
 import { ArticleMeta, CategoryMeta } from "@/schemas/article/meta";
@@ -60,7 +60,7 @@ export default async function CategoriesArticlesPage({ params }: { params: Promi
     <ArticleListPageLayout
       title={ `${categoryMeta.name}の記事一覧` }
       articles={ articles }
-      listPagePathBase={ createCategoriesPath(categoryMeta) }
+      listPagePathBase={ createCategoryListFirstPagePath(categoryMeta) }
       currentPageNumber={ number }
     />
   );
