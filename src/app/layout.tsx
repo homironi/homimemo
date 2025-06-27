@@ -1,7 +1,7 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Navigation } from "@/components/Navigation";
-import { articlesListPagePath, createCategoriesPath } from "@/lib/article";
+import { articlesListPagePath, createCategoryListFirstPagePath } from "@/lib/article";
 import { getAllCategories } from "@/lib/server/article";
 import { NavigationLink } from "@/schemas/navigationLink";
 import type { Metadata, Viewport } from "next";
@@ -43,7 +43,7 @@ export const viewport: Viewport = {
 
 const categoriesLinks: NavigationLink[] = getAllCategories()
   .map(category => ({
-    href: createCategoriesPath(category),
+    href: createCategoryListFirstPagePath(category),
     label: category.name,
   }));
 

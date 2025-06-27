@@ -86,11 +86,26 @@ export function getAllCategories(): CategoryMeta[] {
  * @param name 情報を取得したいカテゴリ名
  * @returns カテゴリ情報
  */
-function getCategoryMeta(name: string): CategoryMeta {
+export function getCategoryMeta(name: string): CategoryMeta {
   const categories = getAllCategories();
   const find = categories.find(category => category.name === name);
   if (!find) {
     throw new Error(`存在しないカテゴリ名です：${name}`);
+  }
+
+  return find;
+}
+
+/**
+ * カテゴリSlugでカテゴリ情報を取得する
+ * @param slug 情報を取得したいカテゴリの slug
+ * @returns カテゴリ情報
+ */
+export function getCategoryMetaFromSlug(slug: string): CategoryMeta {
+  const categories = getAllCategories();
+  const find = categories.find(category => category.slug === slug);
+  if (!find) {
+    throw new Error(`存在しないカテゴリSlugです：${slug}`);
   }
 
   return find;
