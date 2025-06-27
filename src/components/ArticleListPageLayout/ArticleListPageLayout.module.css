@@ -1,7 +1,6 @@
 .container{
     margin: 16px;
     padding: 4px;
-    background-color: var(--color-main);
 }
 
 .list {
