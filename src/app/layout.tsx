@@ -43,7 +43,7 @@ export const viewport: Viewport = {
 
 const categoriesLinks: NavigationLink[] = getAllCategories()
   .map(category => ({
-    href: createCategoriesPath(category),
+    href: `${createCategoriesPath(category)}1/`,
     label: category.name,
   }));
 
