@@ -88,7 +88,7 @@ export function getAllCategories(): CategoryMeta[] {
  */
 function getCategoryMeta(name: string): CategoryMeta {
   const categories = getAllCategories();
-  const find = categories.find(category => category.name == name);
+  const find = categories.find(category => category.name === name);
   if (!find) {
     throw new Error(`存在しないカテゴリ名です：${name}`);
   }
