@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 import { ArticleMeta } from "@/schemas/article/meta";
-import { ArticleListPageLayout } from "./index";
+import { ArticleListLayoutProps, ArticleListPageLayout } from "./index";
 
 const meta = {
   component: ArticleListPageLayout,
@@ -28,7 +28,8 @@ const sampleMetaList: ArticleMeta[] = Array.from({ length: Math.ceil(16) }, (_, 
   };
 });
 
-const sampleProps = {
+const sampleProps: ArticleListLayoutProps = {
+  breadcrumbs: [],
   title: "サンプル記事一覧",
   articles: [
     sampleMetaList[0],

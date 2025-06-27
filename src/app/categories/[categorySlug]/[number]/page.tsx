@@ -1,4 +1,5 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
+import { BreadcrumbElement } from "@/components/BreadCrumbs";
 import { createCategoryListFirstPagePath } from "@/lib/article";
 import { getPageLength } from "@/lib/article/listPage";
 import { getAllArticlesMeta, getAllCategories, getCategoryMetaFromSlug } from "@/lib/server/article";
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const meta = getCategoryMetaFromSlug(categorySlug);
 
   return {
-    title: `${meta.name}の記事一覧`,
+    title: createTitle(meta),
     description: `${meta.name}の記事の一覧ページです。${meta.description}`,
   };
 }
@@ -55,10 +56,17 @@ export default async function CategoriesArticlesPage({ params }: { params: Promi
   const categoryMeta = getCategoryMetaFromSlug(rawParams.categorySlug);
   const articles = filterArticlesCategory(getAllArticlesMeta(), categoryMeta)
     .sort((a, b) => b.lastModDate.getTime() - a.lastModDate.getTime());
+  const breadcrumbs: BreadcrumbElement[] = [
+    {
+      name: categoryMeta.name,
+      href: createCategoryListFirstPagePath(categoryMeta),
+    },
+  ];
 
   return (
     <ArticleListPageLayout
-      title={ `${categoryMeta.name}の記事一覧` }
+      breadcrumbs={ breadcrumbs }
+      title={ createTitle(categoryMeta) }
       articles={ articles }
       listPagePathBase={ createCategoryListFirstPagePath(categoryMeta) }
       currentPageNumber={ number }
@@ -75,4 +83,8 @@ export default async function CategoriesArticlesPage({ params }: { params: Promi
  */
 function filterArticlesCategory(articles: ArticleMeta[], category: CategoryMeta): ArticleMeta[] {
   return articles.filter(meta => meta.category.slug === category.slug);
+}
+
+function createTitle(categoryMeta: CategoryMeta) {
+  return `${categoryMeta.name}の記事一覧`;
 }
