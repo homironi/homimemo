@@ -16,12 +16,12 @@ export function createArticleDetailPath(id: string): string {
 }
 
 /**
- * カテゴリページのパスを作成する
+ * カテゴリごとの記事一覧ページの最初のページのパスを作成する
  * @param category カテゴリ情報
- * @returns カテゴリページのパス
+ * @returns カテゴリページの最初のページのパス
  */
-export function createCategoriesPath(category: CategoryMeta): string {
-  return `/categories/${category.slug}/`;
+export function createCategoryListFirstPagePath(category: CategoryMeta): string {
+  return createFirstListPagePath(`/categories/${category.slug}/`);
 }
 
 /**
