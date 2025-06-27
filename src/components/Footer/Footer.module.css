@@ -43,7 +43,7 @@
     text-align: center;
 }
 
-@media screen and (width < 768px) {
+@media screen and (width <= 500px) {
     .navigation {
         flex-direction: column;
     }
