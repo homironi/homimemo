@@ -52,14 +52,12 @@ export default async function ArticlesPage({ params }: { params: Promise<Params>
   ];
 
   return (
-    <>
-      <ArticleListPageLayout
-        breadcrumbs={ breadcrumbs }
-        title={ title }
-        articles={ articles }
-        listPagePathBase={ listPagePathBase }
-        currentPageNumber={ number }
-      />
-    </>
+    <ArticleListPageLayout
+      breadcrumbs={ breadcrumbs }
+      title={ title }
+      articles={ articles }
+      listPagePathBase={ listPagePathBase }
+      currentPageNumber={ number }
+    />
   );
 }
