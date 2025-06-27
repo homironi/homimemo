@@ -32,13 +32,9 @@ export function ArticleListPageLayout({
 
   return (
     <div className={ styles.container }>
+      <h1>{ title }</h1>
       {articles.length === 0
-        ? (
-            <>
-              <h1>{ title}</h1>
-              <p>記事は見つかりませんでした。</p>
-            </>
-          )
+        ? <p>記事は見つかりませんでした。</p>
         : (
             <>
               <p>{`全 ${articles.length} 件（${startNum + 1} 件目 ～ ${Math.min(endNum, articles.length)} 件目）`}</p>
