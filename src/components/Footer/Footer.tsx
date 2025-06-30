@@ -9,8 +9,8 @@ export type FooterProps = {
 
 /**
  * フッター
- * @param root0
- * @param root0.links
+ * @param root0 引数オブジェクト
+ * @param root0.links フッターに表示するリンクの配列
  * @returns フッターコンポーネントのJSX要素
  */
 export function Footer({ links }: FooterProps) {
