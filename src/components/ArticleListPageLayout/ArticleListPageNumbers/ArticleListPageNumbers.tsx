@@ -26,16 +26,18 @@ export function ArticleListPageNumbers({
   }
 
   return (
-    <ol>
+    <ol className={ styles.list }>
       {pageNumbers.map((pageNumber) => {
         const linkPathBase = listPagePathBase.endsWith("/") ? listPagePathBase : `${listPagePathBase}/`;
         const linkPath = `${linkPathBase}${pageNumber}`;
+        const isCurrent = pageNumber == currentPageNumber;
+
         return (
           <li
             key={ pageNumber }
-            className={ pageNumber == currentPageNumber ? styles["items-current"] : "" }
+            className={ isCurrent ? styles["items-current"] : styles.items }
           >
-            <a href={ linkPath }>{pageNumber}</a>
+            <a href={ linkPath } className={ isCurrent ? styles["link-current"] : styles.link }>{pageNumber}</a>
           </li>
         );
       })}
