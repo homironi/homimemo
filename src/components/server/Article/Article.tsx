@@ -79,7 +79,7 @@ export function Article({ meta, content }: ArticleProps) {
       <div className={ styles["last-side"] }>
         <Profile />
         <ArticleCategoryList categories={ getAllCategories() } />
-        <ArticleTagList categories={ getAllTags() } />
+        <ArticleTagList tags={ getAllTags() } />
       </div>
     </div>
   );
