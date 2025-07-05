@@ -45,7 +45,7 @@ export function createCategoryListPagePath(category: CategoryMeta, page: number)
  * @returns タグ一覧ページのパス
  */
 export function createTagsPath(tag: TagMeta, page?: number): string {
-  return `/tags/${tag.slug}/page/${page ? page : 1}/`;
+  return `/tags/${tag.slug}/${page ? page : 1}/`;
 }
 
 /**
