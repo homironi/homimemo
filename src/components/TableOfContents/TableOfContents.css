@@ -1,0 +1,22 @@
+.toc-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-list .toc-list{
+    padding-left: 0.5rem;
+}
+
+.toc-link{
+    color: var(--text-color-pale);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    display: block;
+}
+
+.toc-link-active {
+    font-weight: bold;
+    color: var(--text-color);
+}

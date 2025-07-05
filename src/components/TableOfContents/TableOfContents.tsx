@@ -2,12 +2,15 @@
 
 import { useEffect } from "react";
 import tocbot from "tocbot";
+import "./TableOfContents.css";
 import styles from "./TableOfContents.module.css";
 
 export type TableOfContentsProps = {
   className?: string;
   tocContentSourceIdName: string;
 };
+
+const tocSelectorName = "article-toc";
 
 /**
  * 目次コンポーネント
@@ -22,10 +25,10 @@ export function TableOfContents({
 }: TableOfContentsProps) {
   useEffect(() => {
     tocbot.init({
-      tocSelector: `.${styles.toc}`,
+      tocSelector: `.${tocSelectorName}`,
       contentSelector: `#${tocContentSourceIdName}`,
       headingSelector: "h2, h3",
-      activeLinkClass: styles["toc-link-active"],
+      activeLinkClass: "toc-link-active",
     });
 
     return () => tocbot.destroy();
@@ -33,8 +36,8 @@ export function TableOfContents({
 
   return (
     <nav className={ `${className} ${styles.container}` }>
-      <h2>目次</h2>
-      <div className={ styles.toc } />
+      <p className={ styles.title }>目次</p>
+      <div className={ tocSelectorName } />
     </nav>
   );
 }
