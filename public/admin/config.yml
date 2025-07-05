@@ -37,10 +37,11 @@ collections:
 
   - name: "static-articles"
     label: "固定記事"
-    folder: "_contents/static"
+    folder: "_contents/static-articles"
     create: true
-    slug: "{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
+    slug: "{{fields.slug}}"
     fields:
+      - { label: "Slug", name: "slug", widget: "string", required: true }
       - { label: "タイトル", name: "title", widget: "string", required: true }
       - { label: "下書き", name: "draft", widget: "boolean", default: true, required: true }
       - { label: "公開日時", name: "publishDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
