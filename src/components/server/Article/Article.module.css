@@ -23,6 +23,14 @@
     grid-column: span 3;
 }
 
+.last-side > div{
+    margin-bottom: 16px;
+}
+
+.last-side > div:last-child{
+    margin-bottom: 0;
+}
+
 @media screen and (width <= 1280px){
     .article{
         grid-column: span 9;

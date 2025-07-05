@@ -1,8 +1,10 @@
 import { ArticleCategory } from "@/components/ArticleCategory";
+import { ArticleCategoryList } from "@/components/ArticleCategoryList";
 import { ArticleTag } from "@/components/ArticleTag";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { Profile } from "@/components/Profile";
 import { articleThumbnailNativeSize, defaultArticleThumbnail } from "@/lib/article";
+import { getAllCategories } from "@/lib/server/article";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/server/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
 import { ArticleMeta, StaticArticleMeta } from "@/schemas/article/meta";
@@ -75,6 +77,7 @@ export function Article({ meta, content }: ArticleProps) {
       </main>
       <div className={ styles["last-side"] }>
         <Profile />
+        <ArticleCategoryList categories={ getAllCategories() } />
       </div>
     </div>
   );
