@@ -1,0 +1,25 @@
+.container{
+    padding: 24px;
+    background-color: var(--color-main);
+    box-shadow: 0 0 var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
+}
+
+.list{
+    list-style: flex;
+    padding: 0;
+    margin: 0;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.item{
+    display: inline-block;
+}
+
+.link{
+    display: inline-block;
+    padding: 1rem;
+    background-color: var(--color-main-dark);
+    border-radius: 2rem;
+}
