@@ -1,4 +1,4 @@
-import { getPageLength as getPageNumbers } from "@/lib/article/listPage";
+import { getPageLength as getPageNumbers } from "@/lib/article";
 import styles from "./ArticleListPageNumbers.module.css";
 
 export type ArticleListPageNumbersProps = {

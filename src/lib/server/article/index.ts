@@ -97,6 +97,14 @@ export function getCategoryMeta(name: string): CategoryMeta {
 }
 
 /**
+ * すべてのタグMetaを取得する
+ * @returns タグMetaの配列
+ */
+export function getAllTags(): TagMeta[] {
+  return parse(TagsMetaSchema, JSON.parse(fs.readFileSync(tagsMetaFilePath, "utf-8")));
+}
+
+/**
  * カテゴリSlugでカテゴリ情報を取得する
  * @param slug 情報を取得したいカテゴリの slug
  * @returns カテゴリ情報
