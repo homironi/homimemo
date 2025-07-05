@@ -4,7 +4,7 @@ import { ArticleTag } from "@/components/ArticleTag";
 import { ArticleTagList } from "@/components/ArticleTagList/ArticleTagList";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { Profile } from "@/components/Profile";
-import { articlesListPagePath, articleThumbnailNativeSize, defaultArticleThumbnail } from "@/lib/article";
+import { articlesListPagePath, articleThumbnailNativeSize, createCategoryListFirstPagePath, defaultArticleThumbnail } from "@/lib/article";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/server/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
@@ -22,8 +22,6 @@ import "./prism.css"; // 記事内で使用するコードハイライトのPris
 const DynamicToc = dynamic(() => import("@/components/TableOfContents").then(mod => mod.TableOfContents));
 const DynamicCodeCopyHandler = dynamic(() => import("@/components/CopyCodeHandler").then(mod => mod.default));
 const tocContentSourceIdName = "toc-source-content";
-
-const articlesHrefBase = "/articles";
 
 type ArticleComponentMeta = ArticleMeta | StaticArticleMeta;
 
@@ -146,11 +144,11 @@ function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
       },
       {
         name: `${meta.category.name}`,
-        href: `/categories/${meta.category.slug}/`,
+        href: createCategoryListFirstPagePath(meta.category),
       },
       {
         name: meta.title,
-        href: `${articlesHrefBase}/${meta.id}`,
+        href: `/articles/${meta.id}`,
         isCurrent: true,
       },
     ];
