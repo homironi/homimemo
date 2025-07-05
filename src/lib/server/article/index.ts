@@ -132,6 +132,21 @@ function getTags(tagNames: string[]): TagMeta[] {
 }
 
 /**
+ * タグSlugでタグ情報を取得する
+ * @param slug 情報を取得したいタグの slug
+ * @returns タグ情報
+ */
+export function getTagMetaFromSlug(slug: string): TagMeta {
+  const tags = getAllTags();
+  const find = tags.find(tag => tag.slug === slug);
+  if (!find) {
+    throw new Error(`存在しないタグSlugです：${slug}`);
+  }
+
+  return find;
+}
+
+/**
  * タグ名でタグ情報を取得する
  * @param name タグ名
  * @returns タグ情報
