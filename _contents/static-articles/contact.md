@@ -5,6 +5,7 @@ draft: false
 publishDate: 2023-07-23T00:00:00
 lastModDate: 2023-08-23T00:00:00
 description: 当サイトのお問い合わせです。
+thumbnail: /images/header/contact.webp
 ---
 ## X（旧：Twitter）
 

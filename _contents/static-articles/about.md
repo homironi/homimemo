@@ -5,6 +5,7 @@ draft: false
 publishDate: 2023-07-01T00:00:00
 lastModDate: 2025-07-05T17:00:00
 description: このサイトと運営者についての説明です。
+thumbnail: /images/header/about.webp
 ---
 ## サイト立ち上げ理由（ざっくり）
 

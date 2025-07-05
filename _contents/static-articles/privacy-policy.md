@@ -5,6 +5,7 @@ draft: false
 publishDate: 2023-07-23T00:00:00
 lastModDate: 2023-08-23T00:00:00
 description: 当サイトのプライバシーポリシーです。
+thumbnail: /images/header/privacyPolicy.webp
 ---
 ## 個人情報の利用目的
 
