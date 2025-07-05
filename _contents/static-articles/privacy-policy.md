@@ -1,7 +1,7 @@
 ---
 slug: privacy-policy
 title: プライバシーポリシー
-draft: true
+draft: false
 publishDate: 2023-07-23T00:00:00
 lastModDate: 2023-08-23T00:00:00
 description: 当サイトのプライバシーポリシーです。
