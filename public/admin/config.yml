@@ -35,6 +35,20 @@ collections:
       - { label: "説明", name: "description", widget: "string", required: true }
       - { label: "本文", name: "body", widget: "markdown", required: true }
 
+  - name: "static-articles"
+    label: "固定記事"
+    folder: "_contents/static"
+    create: true
+    slug: "{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string", required: true }
+      - { label: "下書き", name: "draft", widget: "boolean", default: true, required: true }
+      - { label: "公開日時", name: "publishDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
+      - { label: "最終編集日時", name: "lastModDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
+      - { label: "サムネイル", name: "thumbnail", widget: "image", required: false }
+      - { label: "説明", name: "description", widget: "string", required: true }
+      - { label: "本文", name: "body", widget: "markdown", required: true }
+
   - name: "categories"
     label: "カテゴリー"
     folder: "_contents/categories"
