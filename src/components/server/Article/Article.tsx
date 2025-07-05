@@ -4,7 +4,7 @@ import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { articleThumbnailNativeSize, defaultArticleThumbnail } from "@/lib/article";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/server/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
-import { ArticleMeta } from "@/schemas/article/meta";
+import { ArticleMeta, StaticArticleMeta } from "@/schemas/article/meta";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -19,8 +19,12 @@ const DynamicToc = dynamic(() => import("@/components/TableOfContents").then(mod
 const DynamicCodeCopyHandler = dynamic(() => import("@/components/CopyCodeHandler").then(mod => mod.default));
 const tocContentSourceIdName = "toc-source-content";
 
+const articlesHrefBase = "/articles";
+
+type ArticleComponentMeta = ArticleMeta | StaticArticleMeta;
+
 export type ArticleProps = {
-  meta: ArticleMeta;
+  meta: ArticleComponentMeta;
   content: string;
 };
 
@@ -32,22 +36,7 @@ export type ArticleProps = {
  * @returns 記事ページのコンポーネント
  */
 export function Article({ meta, content }: ArticleProps) {
-  const articlesHrefBase = "/articles";
-  const breadcrumbs: BreadcrumbElement[] = [
-    {
-      name: "記事一覧",
-      href: `${articlesHrefBase}/`,
-    },
-    {
-      name: `${meta.category.name}`,
-      href: `/categories/${meta.category.slug}/`,
-    },
-    {
-      name: meta.title,
-      href: `${articlesHrefBase}/${meta.id}`,
-      isCurrent: true,
-    },
-  ];
+  const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
 
   return (
     <div className={ styles.container }>
@@ -60,16 +49,18 @@ export function Article({ meta, content }: ArticleProps) {
       <main className={ styles.article }>
         <Breadcrumbs breadcrumbs={ breadcrumbs } />
         <h1>{ meta.title }</h1>
-        <ArticleCategory meta={ meta.category } />
-        <ul>
-          {meta.tags && meta.tags.map((meta) => {
-            return (
-              <li key={ meta.slug }>
-                <ArticleTag meta={ meta } />
-              </li>
-            );
-          })}
-        </ul>
+        { isArticleMeta(meta) && <ArticleCategory meta={ meta.category } />}
+        { isArticleMeta(meta) && (
+          <ul>
+            {meta.tags && meta.tags.map((meta) => {
+              return (
+                <li key={ meta.slug }>
+                  <ArticleTag meta={ meta } />
+                </li>
+              );
+            })}
+          </ul>
+        )}
         <Image
           src={ meta.thumbnail ?? defaultArticleThumbnail }
           alt={ meta.title }
@@ -131,4 +122,47 @@ function ArticleMdx({
       />
     </article>
   );
+}
+
+/**
+ * 記事のMeta情報からパンくずリストを作成する関数
+ * @param meta 記事のMeta情報
+ * @returns パンくずリストの要素の配列
+ */
+function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
+  if (isArticleMeta(meta)) {
+    return [
+      {
+        name: "記事一覧",
+        href: `${articlesHrefBase}/`,
+      },
+      {
+        name: `${meta.category.name}`,
+        href: `/categories/${meta.category.slug}/`,
+      },
+      {
+        name: meta.title,
+        href: `${articlesHrefBase}/${meta.id}`,
+        isCurrent: true,
+      },
+    ];
+  }
+  else {
+    return [
+      {
+        name: meta.title,
+        href: `/${meta.slug}/`,
+        isCurrent: true,
+      },
+    ];
+  }
+}
+
+/**
+ * 記事のMeta情報がArticleMeta型であるかどうかを判定する関数
+ * @param meta 記事のMeta情報
+ * @returns 記事のMeta情報がArticleMeta型であるかどうか
+ */
+function isArticleMeta(meta: ArticleComponentMeta): meta is ArticleMeta {
+  return "category" in meta && "tags" in meta;
 }
