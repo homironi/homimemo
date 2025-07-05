@@ -4,7 +4,7 @@ import { ArticleTag } from "@/components/ArticleTag";
 import { ArticleTagList } from "@/components/ArticleTagList/ArticleTagList";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { Profile } from "@/components/Profile";
-import { articleThumbnailNativeSize, defaultArticleThumbnail } from "@/lib/article";
+import { articlesListPagePath, articleThumbnailNativeSize, defaultArticleThumbnail } from "@/lib/article";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/server/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
@@ -142,7 +142,7 @@ function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
     return [
       {
         name: "記事一覧",
-        href: `${articlesHrefBase}/`,
+        href: articlesListPagePath,
       },
       {
         name: `${meta.category.name}`,
