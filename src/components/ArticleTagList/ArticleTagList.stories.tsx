@@ -18,7 +18,7 @@ const sampleCategory: TagMeta = {
 
 export const Sample: Story = {
   args: {
-    categories: Array.from({ length: 10 }, (_, i) => ({
+    tags: Array.from({ length: 10 }, (_, i) => ({
       ...sampleCategory,
       name: (`${i + 1}-サンプルタグ`).slice(0, i + 1),
       slug: `sample-${i + 1}`,

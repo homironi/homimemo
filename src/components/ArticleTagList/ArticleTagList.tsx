@@ -6,10 +6,10 @@ import styles from "./ArticleTagList.module.css";
 /**
  * タグの一覧を表示するコンポーネント
  * @param root0 引数オブジェクト
- * @param root0.categories タグのメタ情報の配列
+ * @param root0.tags タグのメタ情報の配列
  * @returns タグの一覧を表示するコンポーネント
  */
-export function ArticleTagList({ categories: tags }: { categories: TagMeta[] }) {
+export function ArticleTagList({ tags }: { tags: TagMeta[] }) {
   return (
     <div className={ styles.container }>
       <p>タグ一覧</p>
