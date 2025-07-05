@@ -1,6 +1,7 @@
 import { ArticleCategory } from "@/components/ArticleCategory";
 import { ArticleTag } from "@/components/ArticleTag";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
+import { Profile } from "@/components/Profile";
 import { articleThumbnailNativeSize, defaultArticleThumbnail } from "@/lib/article";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/server/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
@@ -72,7 +73,9 @@ export function Article({ meta, content }: ArticleProps) {
           tocContentSourceIdName={ tocContentSourceIdName }
         />
       </main>
-      <div className={ styles["last-side"] }>TODO:ここにその他情報をのせる</div>
+      <div className={ styles["last-side"] }>
+        <Profile />
+      </div>
     </div>
   );
 }
