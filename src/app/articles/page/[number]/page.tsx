@@ -1,7 +1,6 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
 import { BreadcrumbElement } from "@/components/BreadCrumbs";
-import { articlesListPagePath } from "@/lib/article";
-import { getPageLength } from "@/lib/article/listPage";
+import { articlesListPagePath, getPageLength } from "@/lib/article";
 import { getAllArticlesMeta } from "@/lib/server/article";
 import type { Metadata } from "next";
 

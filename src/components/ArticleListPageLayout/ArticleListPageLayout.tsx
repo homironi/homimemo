@@ -1,6 +1,6 @@
 import { ArticleCard } from "@/components/ArticleCard";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
-import { articlePagePerNum } from "@/lib/article/listPage";
+import { articlePagePerNum } from "@/lib/article";
 import { ArticleMeta } from "@/schemas/article/meta";
 import styles from "./ArticleListPageLayout.module.css";
 import { ArticleListPageNumbers } from "./ArticleListPageNumbers";

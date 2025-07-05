@@ -1,9 +1,8 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
 import { BreadcrumbElement } from "@/components/BreadCrumbs";
-import { createCategoryListFirstPagePath } from "@/lib/article";
-import { getPageLength } from "@/lib/article/listPage";
+import { createCategoryListFirstPagePath, filterArticlesCategory, getPageLength } from "@/lib/article";
 import { getAllArticlesMeta, getAllCategories, getCategoryMetaFromSlug } from "@/lib/server/article";
-import { ArticleMeta, CategoryMeta } from "@/schemas/article/meta";
+import { CategoryMeta } from "@/schemas/article/meta";
 import type { Metadata } from "next";
 
 type Params = {
@@ -72,17 +71,6 @@ export default async function CategoriesArticlesPage({ params }: { params: Promi
       currentPageNumber={ number }
     />
   );
-}
-
-/**
- * 指定カテゴリで記事をフィルターする
- * @param articles フォルター前の記事リスト
- * @param category フィルターしたいカテゴリ
- * @returns カテゴリでフィルターした記事リスト
- * @description ほかで使用することがあれば定義を移動する
- */
-function filterArticlesCategory(articles: ArticleMeta[], category: CategoryMeta): ArticleMeta[] {
-  return articles.filter(meta => meta.category.slug === category.slug);
 }
 
 function createTitle(categoryMeta: CategoryMeta) {
