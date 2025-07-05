@@ -151,7 +151,7 @@ function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
     return [
       {
         name: meta.title,
-        href: `/${meta.slug}`,
+        href: `/${meta.slug}/`,
         isCurrent: true,
       },
     ];
