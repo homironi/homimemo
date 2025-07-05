@@ -1,10 +1,7 @@
 import { Article } from "@/components/server/Article";
-import { StaticArticleMeta, StaticArticleMetaSchema } from "@/schemas/article/meta";
-import fs from "fs";
-import matter from "gray-matter";
+import { readStaticArticleContent } from "@/lib/server/article";
 import { Metadata } from "next";
 import path from "path";
-import { parse } from "valibot";
 
 const filePath = path.join("_contents", "static-articles", "privacy-policy.md");
 
@@ -13,7 +10,7 @@ const filePath = path.join("_contents", "static-articles", "privacy-policy.md");
  * @returns プライバシーポリシーページのメタデータ
  */
 export async function generateMetadata(): Promise<Metadata> {
-  const { meta } = readArticleContent(filePath);
+  const { meta } = readStaticArticleContent(filePath);
 
   return {
     title: meta.title,
@@ -26,15 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
  * @returns プライバシーポリシーの内容を表示するページ
  */
 export default function PrivacyPolicyPage() {
-  const { meta, content } = readArticleContent(filePath);
+  const { meta, content } = readStaticArticleContent(filePath);
   return (
     <Article meta={ meta } content={ content } />
   );
-}
-
-function readArticleContent(filePath: string): { meta: StaticArticleMeta; content: string } {
-  const raw = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(raw);
-  const meta = parse(StaticArticleMetaSchema, data);
-  return { meta, content };
 }
