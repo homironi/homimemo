@@ -1,6 +1,7 @@
 import { ArticleIdToPathMapElement, ArticleIdToPathMapElementSchema } from "@/schemas/article/idToPathMap";
-import { ArticleMeta, ArticleMetaFromJsonSchema, ArticleRawMeta, CategoriesMetaSchema, CategoryMeta, TagMeta, TagsMetaSchema } from "@/schemas/article/meta";
+import { ArticleMeta, ArticleMetaFromJsonSchema, ArticleRawMeta, CategoriesMetaSchema, CategoryMeta, StaticArticleMeta, StaticArticleMetaSchema, TagMeta, TagsMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
+import matter from "gray-matter";
 import path from "path";
 import { array, parse } from "valibot";
 
@@ -143,4 +144,16 @@ function getTag(name: string): TagMeta {
   }
 
   return find;
+}
+
+/**
+ * 記事のマークダウンファイルを読み込み、Meta情報とコンテンツを取得する
+ * @param filePath 記事のマークダウンファイルのパス
+ * @returns 記事のMeta情報とコンテンツ
+ */
+export function readStaticArticleContent(filePath: string): { meta: StaticArticleMeta; content: string } {
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const { data, content } = matter(raw);
+  const meta = parse(StaticArticleMetaSchema, data);
+  return { meta, content };
 }

@@ -5,6 +5,7 @@ draft: false
 publishDate: 2023-07-23T00:00:00
 lastModDate: 2023-07-23T00:00:00
 description: 当サイトの免責事項とその他権利についての説明です。
+thumbnail: /images/header/disclaimer.webp
 ---
 
 ## 免責事項
