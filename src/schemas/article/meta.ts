@@ -30,7 +30,6 @@ export const TagsMetaSchema = array(TagMetaSchema);
 export type TagMeta = InferOutput<typeof TagMetaSchema>;
 
 const metaSchemaBase = {
-  id: pipe(string(), minLength(1)),
   title: pipe(string(), minLength(1)),
   draft: boolean(),
   publishDate: date(),
@@ -39,12 +38,17 @@ const metaSchemaBase = {
   description: pipe(string(), minLength(1)),
 };
 
+const articleMetaSchemaBase = {
+  ...metaSchemaBase,
+  id: pipe(string(), minLength(1)),
+};
+
 /**
  * 記事の生メタデータのスキーマ
  * @description まだ直接読み取っただけの状態
  */
 export const ArticleRawMetaSchema = object({
-  ...metaSchemaBase,
+  ...articleMetaSchemaBase,
   category: pipe(string(), minLength(1)),
   tags: optional(array(string())),
 });
@@ -55,7 +59,7 @@ export type ArticleRawMeta = InferOutput<typeof ArticleRawMetaSchema>;
  * 記事のメタデータJSONからのスキーマ
  */
 export const ArticleMetaFromJsonSchema = object({
-  ...metaSchemaBase,
+  ...articleMetaSchemaBase,
   publishDate: pipe(string(), transform(date => new Date(date))),
   lastModDate: pipe(string(), transform(date => new Date(date))),
   category: CategoryMetaSchema,
@@ -66,9 +70,21 @@ export const ArticleMetaFromJsonSchema = object({
  * 記事のメタデータのスキーマ
  */
 export const ArticleMetaSchema = object({
-  ...metaSchemaBase,
+  ...articleMetaSchemaBase,
   category: CategoryMetaSchema,
   tags: optional(TagsMetaSchema),
 });
 
+// 記事のメタデータの型
 export type ArticleMeta = InferOutput<typeof ArticleMetaSchema>;
+
+/**
+ * 固定記事のメタデータのスキーマ
+ */
+export const StaticArticleMetaSchema = object({
+  ...metaSchemaBase,
+  slug: pipe(string(), minLength(1)),
+});
+
+// 固定の記事のメタデータの型
+export type StaticArticleMeta = InferOutput<typeof StaticArticleMetaSchema>;
