@@ -1,4 +1,4 @@
-import { CategoryIcon, LastModeDateIcon, PublishDateIcon } from "@/assets/google-materials";
+import { CategoryIcon, LastModeDateIcon, PublishDateIcon } from "@/assets/icons";
 import { articleThumbnailNativeSize, createArticleDetailPath, defaultArticleThumbnail } from "@/lib/article";
 import { ArticleMeta } from "@/schemas/article/meta";
 import Image from "next/image";
