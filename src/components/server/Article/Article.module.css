@@ -31,6 +31,20 @@
     margin-bottom: 0;
 }
 
+.date-container{
+    color: var(--text-color-pale);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.icon{
+    fill: var(--text-color-pale);
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: -0.2em;
+}
+
 @media screen and (width <= 1280px){
     .article{
         grid-column: span 9;

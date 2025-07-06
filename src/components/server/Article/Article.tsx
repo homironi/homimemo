@@ -1,3 +1,4 @@
+import { LastModeDateIcon, PublishDateIcon } from "@/assets/icons";
 import { ArticleCategory } from "@/components/ArticleCategory";
 import { ArticleCategoryList } from "@/components/ArticleCategoryList";
 import { ArticleTag } from "@/components/ArticleTag";
@@ -39,6 +40,16 @@ export type ArticleProps = {
  */
 export function Article({ meta, content }: ArticleProps) {
   const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
+  const publishDate = meta.publishDate.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+  const lastModDate = meta.lastModDate.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
 
   return (
     <div className={ styles.container }>
@@ -50,7 +61,19 @@ export function Article({ meta, content }: ArticleProps) {
       </div>
       <main className={ styles.article }>
         <Breadcrumbs breadcrumbs={ breadcrumbs } />
-        <h1>{ meta.title }</h1>
+        <h1>{meta.title}</h1>
+        <div className={ styles["date-container"] }>
+          <span>
+            <PublishDateIcon className={ styles.icon } />
+            <time dateTime={ publishDate }>{publishDate}</time>
+          </span>
+          {publishDate !== lastModDate && (
+            <span>
+              <LastModeDateIcon className={ styles.icon } />
+              <time dateTime={ lastModDate }>{lastModDate}</time>
+            </span>
+          )}
+        </div>
         { isArticleMeta(meta) && <ArticleCategory meta={ meta.category } />}
         { isArticleMeta(meta) && (
           <ul>
