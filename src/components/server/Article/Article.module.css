@@ -45,6 +45,10 @@
     vertical-align: -0.2em;
 }
 
+.meta-container{
+    margin-bottom: 16px;
+}
+
 @media screen and (width <= 1280px){
     .article{
         grid-column: span 9;

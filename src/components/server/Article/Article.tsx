@@ -1,8 +1,8 @@
 import { LastModeDateIcon, PublishDateIcon } from "@/assets/icons";
 import { ArticleCategory } from "@/components/ArticleCategory";
 import { ArticleCategoryList } from "@/components/ArticleCategoryList";
-import { ArticleTag } from "@/components/ArticleTag";
 import { ArticleTagList } from "@/components/ArticleTagList/ArticleTagList";
+import { ArticleTags } from "@/components/ArticleTags";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { Profile } from "@/components/Profile";
 import { articlesListPagePath, articleThumbnailNativeSize, createArticleDetailPath, createCategoryListFirstPagePath, defaultArticleThumbnail } from "@/lib/article";
@@ -62,30 +62,22 @@ export function Article({ meta, content }: ArticleProps) {
       <main className={ styles.article }>
         <Breadcrumbs breadcrumbs={ breadcrumbs } />
         <h1>{meta.title}</h1>
-        <div className={ styles["date-container"] }>
-          <span>
-            <PublishDateIcon className={ styles.icon } />
-            <time dateTime={ publishDate }>{publishDate}</time>
-          </span>
-          {publishDate !== lastModDate && (
+        <div className={ styles["meta-container"] }>
+          <div className={ styles["date-container"] }>
             <span>
-              <LastModeDateIcon className={ styles.icon } />
-              <time dateTime={ lastModDate }>{lastModDate}</time>
+              <PublishDateIcon className={ styles.icon } />
+              <time dateTime={ publishDate }>{publishDate}</time>
             </span>
-          )}
+            {publishDate !== lastModDate && (
+              <span>
+                <LastModeDateIcon className={ styles.icon } />
+                <time dateTime={ lastModDate }>{lastModDate}</time>
+              </span>
+            )}
+          </div>
+          { isArticleMeta(meta) && <ArticleCategory meta={ meta.category } />}
+          {isArticleMeta(meta) && meta.tags && <ArticleTags tags={ meta.tags } />}
         </div>
-        { isArticleMeta(meta) && <ArticleCategory meta={ meta.category } />}
-        { isArticleMeta(meta) && (
-          <ul>
-            {meta.tags && meta.tags.map((meta) => {
-              return (
-                <li key={ meta.slug }>
-                  <ArticleTag meta={ meta } />
-                </li>
-              );
-            })}
-          </ul>
-        )}
         <Image
           src={ meta.thumbnail ?? defaultArticleThumbnail }
           alt={ meta.title }
