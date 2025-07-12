@@ -6,6 +6,7 @@ import { ArticleTags } from "@/components/ArticleTags";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { ExternalLink } from "@/components/ExternalLink";
 import { H2 } from "@/components/H2";
+import { H3 } from "@/components/H3";
 import { Profile } from "@/components/Profile";
 import { articlesListPagePath, articleThumbnailNativeSize, createArticleDetailPath, createCategoryListFirstPagePath, defaultArticleThumbnail } from "@/lib/article";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
@@ -112,7 +113,7 @@ type ArticleMdxProps = {
  * @param Tag 見出しタグ名
  * @returns 見出しコンポーネント
  */
-const createHeadingComponent = (Tag: "h1" | "h3" | "h4" | "h5" | "h6") => {
+const createHeadingComponent = (Tag: "h1" | "h4" | "h5" | "h6") => {
   return function HeadingComponent({ children, ...props }: PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>>) {
     const processedChildren = React.Children.map(children, (child) => {
       if (React.isValidElement(child) && child.type === ExternalLink) {
@@ -150,7 +151,7 @@ function ArticleMdx({
           a: ExternalLink,
           h1: createHeadingComponent("h1"),
           h2: H2,
-          h3: createHeadingComponent("h3"),
+          h3: H3,
           h4: createHeadingComponent("h4"),
           h5: createHeadingComponent("h5"),
           h6: createHeadingComponent("h6"),
