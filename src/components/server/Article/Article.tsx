@@ -5,6 +5,7 @@ import { ArticleTagList } from "@/components/ArticleTagList/ArticleTagList";
 import { ArticleTags } from "@/components/ArticleTags";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { ExternalLink } from "@/components/ExternalLink";
+import { H2 } from "@/components/H2";
 import { Profile } from "@/components/Profile";
 import { articlesListPagePath, articleThumbnailNativeSize, createArticleDetailPath, createCategoryListFirstPagePath, defaultArticleThumbnail } from "@/lib/article";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
@@ -110,9 +111,8 @@ type ArticleMdxProps = {
  * 見出しコンポーネントのファクトリー関数
  * @param Tag 見出しタグ名
  * @returns 見出しコンポーネント
- * @todo 見出しのカスタムをするときに分割する。今はリンクのカスタムが一緒に適用されてしまうのを戻す役割のみ。
  */
-const createHeadingComponent = (Tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") => {
+const createHeadingComponent = (Tag: "h1" | "h3" | "h4" | "h5" | "h6") => {
   return function HeadingComponent({ children, ...props }: PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>>) {
     const processedChildren = React.Children.map(children, (child) => {
       if (React.isValidElement(child) && child.type === ExternalLink) {
@@ -149,7 +149,7 @@ function ArticleMdx({
         components={ {
           a: ExternalLink,
           h1: createHeadingComponent("h1"),
-          h2: createHeadingComponent("h2"),
+          h2: H2,
           h3: createHeadingComponent("h3"),
           h4: createHeadingComponent("h4"),
           h5: createHeadingComponent("h5"),
