@@ -4,6 +4,7 @@ import { ArticleCategoryList } from "@/components/ArticleCategoryList";
 import { ArticleTagList } from "@/components/ArticleTagList/ArticleTagList";
 import { ArticleTags } from "@/components/ArticleTags";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
+import { ExternalLink } from "@/components/ExternalLink";
 import { Profile } from "@/components/Profile";
 import { articlesListPagePath, articleThumbnailNativeSize, createArticleDetailPath, createCategoryListFirstPagePath, defaultArticleThumbnail } from "@/lib/article";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
@@ -13,6 +14,7 @@ import { ArticleMeta, StaticArticleMeta } from "@/schemas/article/meta";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import React, { PropsWithChildren } from "react";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
@@ -105,6 +107,26 @@ type ArticleMdxProps = {
 };
 
 /**
+ * 見出しコンポーネントのファクトリー関数
+ * @param Tag 見出しタグ名
+ * @returns 見出しコンポーネント
+ * @todo 見出しのカスタムをするときに分割する。今はリンクのカスタムが一緒に適用されてしまうのを戻す役割のみ。
+ */
+const createHeadingComponent = (Tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") => {
+  return function HeadingComponent({ children, ...props }: PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>>) {
+    const processedChildren = React.Children.map(children, (child) => {
+      if (React.isValidElement(child) && child.type === ExternalLink) {
+        const { href, children: childChildren, ...anchorProps } = child.props as React.AnchorHTMLAttributes<HTMLAnchorElement> & { children?: React.ReactNode };
+        return <a href={ href } { ...anchorProps }>{ childChildren }</a>;
+      }
+      return child;
+    });
+
+    return <Tag { ...props }>{ processedChildren }</Tag>;
+  };
+};
+
+/**
  * 記事ページコンポーネント
  * @param root0 引数オブジェクト
  * @param root0.content 記事のMDXコンテンツ
@@ -124,6 +146,15 @@ function ArticleMdx({
     >
       <MDXRemote
         source={ content }
+        components={ {
+          a: ExternalLink,
+          h1: createHeadingComponent("h1"),
+          h2: createHeadingComponent("h2"),
+          h3: createHeadingComponent("h3"),
+          h4: createHeadingComponent("h4"),
+          h5: createHeadingComponent("h5"),
+          h6: createHeadingComponent("h6"),
+        } }
         options={ {
           mdxOptions: {
             remarkPlugins: [
