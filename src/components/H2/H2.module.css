@@ -4,9 +4,9 @@
   color: var(--text-color-white);
   padding: 1rem 0.5rem;
   border-radius: 4px;
-  margin: 2rem 0 1rem 0;
+  margin: 2rem 0 1rem;
   font-size: 1.6rem;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .h2::before {
