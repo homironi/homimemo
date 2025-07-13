@@ -51,13 +51,13 @@
 /* ネストしたリスト - 2レベル目 */
 .article-contents-container ul li ul li::before {
     content: "○";
-    font-size: 1.1em;
+    font-size: 0.8rem;
 }
 
 /* ネストしたリスト - 3レベル目 */
 .article-contents-container ul li ul li ul li::before {
     content: "・";
-    font-size: 1.3em;
+    font-size: 1.3rem;
 }
 
 /* ネストしたリストのマージン調整 */
