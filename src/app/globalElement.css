@@ -69,7 +69,7 @@
     --color-code-tool-background: #f8f9fa;
     --color-inline-code-background: #f1f3f4;
     --color-inline-code-text: #c7254e;
-    --color-inline-code-border: rgba(0, 0, 0, 0.1);
+    --color-inline-code-border: rgba(0 0 0 / 10%);
     
     /* background image */
   
@@ -133,7 +133,7 @@
     --color-code-tool-background: #21262d;
     --color-inline-code-background: #3c4043;
     --color-inline-code-text: #ff6b6b;
-    --color-inline-code-border: rgba(255, 255, 255, 0.15);
+    --color-inline-code-border: rgba(255 255 255 / 15%);
 
     /* background image */
     
