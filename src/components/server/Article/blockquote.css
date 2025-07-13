@@ -1,0 +1,51 @@
+/* 引用（blockquote）のスタイル - article-contents-container内でのみ適用 */
+.article-contents-container blockquote {
+  position: relative;
+  margin: 1.5em 0;
+  padding: 1em 1em 1em 3em;
+  background-color: var(--color-block-quote);
+  border-left: 4px solid var(--icon-color-quote);
+  color: var(--text-color-quote);
+  font-style: italic;
+}
+
+/* 引用アイコン（引用符）を擬似要素で表示 */
+.article-contents-container blockquote::before {
+  content: '"';
+  position: absolute;
+  left: 0.5em;
+  top: 0.25em;
+  font-size: 3em;
+  font-weight: bold;
+  color: var(--icon-color-quote);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* 引用内の段落の間隔調整 */
+.article-contents-container blockquote p {
+  margin: 0;
+}
+
+.article-contents-container blockquote p + p {
+  margin-top: 0.5em;
+}
+
+/* ネストされた引用 */
+.article-contents-container blockquote blockquote {
+  margin: 0.5em 0;
+  font-size: 0.95em;
+}
+
+/* 引用内のコード */
+.article-contents-container blockquote code {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: inherit;
+}
+
+/* ダークモードでの引用内コード */
+@media (prefers-color-scheme: dark) {
+  .article-contents-container blockquote code {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
