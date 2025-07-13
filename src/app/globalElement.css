@@ -122,7 +122,9 @@
     --icon-color-tip: #ffb74d;
     --color-block-question: #2e2548;
     --icon-color-question: #b39ddb;
-    --color-block-quote: #d8d8d8;
+    --color-block-quote: #3a3a3a;
+    --icon-color-quote: #6b6b6b;
+    --text-color-quote: #d0d0d0;
 
     /* code color */
 
