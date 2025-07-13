@@ -24,3 +24,7 @@ export const Sample: Story = {
     })),
   },
 };
+
+export const Empty: Story = {
+  args: { tags: [] },
+};
