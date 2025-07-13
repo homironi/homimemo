@@ -9,10 +9,10 @@
   display: flex;
   justify-content: flex-end;
   padding: 8px 12px;
-  background-color: #f8f9fa;
+  background-color:  var(--color-code-tool-background);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  border: 1px solid #e1e4e8;
+  border: 1px solid var(--color-code-border);
   border-bottom: none;
   margin: 0;
   margin-bottom: 0;
@@ -23,12 +23,4 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-top: none;
-}
-
-/* ダークモード対応 */
-@media (prefers-color-scheme: dark) {
-  .code-tools-container {
-    background-color: #21262d;
-    border-color: #30363d;
-  }
 }
