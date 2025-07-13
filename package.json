@@ -35,6 +35,7 @@
     "svg:public": "svgo --folder ./public --recursive --no-color"
   },
   "dependencies": {
+    "@next/third-parties": "^15.3.5",
     "chokidar-cli": "^3.0.0",
     "gray-matter": "^4.0.3",
     "nanoid": "^5.1.5",

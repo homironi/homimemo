@@ -4,6 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { articlesListPagePath, createCategoryListFirstPagePath } from "@/lib/article";
 import { getAllCategories } from "@/lib/server/article";
 import { NavigationLink } from "@/schemas/navigationLink";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 import { Kosugi_Maru } from "next/font/google";
 import "./globalElement.css";
@@ -82,6 +83,7 @@ export default function RootLayout({
         <Navigation links={ headerLinks } />
         {children}
         <Footer links={ footerLinks } />
+        <GoogleAnalytics gaId="G-V6P1VWVXYK" />
       </body>
     </html>
   );
