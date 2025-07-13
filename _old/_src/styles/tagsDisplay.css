@@ -1,8 +1,0 @@
-.tags-display {
-    color: var(--text-color-black-hover);
-    margin: 0.5em 0;
-}
-
-.tags-display-list li {
-    display: inline-block;
-}
