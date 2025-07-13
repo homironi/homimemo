@@ -1,4 +1,25 @@
+/* タスクリストのスタイル */
+.contains-task-list {
+  padding: 0;
+}
+
+.task-list-item {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.task-list-item-checked .task-list-checkbox-checked,
+.task-list-item-unchecked .task-list-checkbox-unchecked {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  fill: var(--text-color);
+}
+
 .task-list-item-checked {
-    /* TODO: module.css に置き換える。それまではわかりやすいようにだけしておく */
-    color: red;
+  color: var(--text-color);
 }
