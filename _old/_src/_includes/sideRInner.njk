@@ -1,0 +1,19 @@
+{# css #}
+{% block css -%}
+    <link rel="stylesheet" href="/styles/sideRInner.css" />
+    <link rel="stylesheet" href="/styles/categoryList.css" />
+    <link rel="stylesheet" href="/styles/board.css" />
+    <link rel="stylesheet" href="/styles/profile.css" />
+    {%- endblock%}
+    <div class="side-r-inner">
+        <div class="profileWrapper">
+            {% include "profile.njk" %}
+        </div>
+        <div class = "board content-block">
+            <div class=board-pin>
+                <img loading="lazy" src = "/images/items/pin.svg" alt="ピンの画像" />
+            </div>
+            {% include "categoryList.njk" %}
+        </div>
+        {% include "sideRPR.njk" %}
+    </div>

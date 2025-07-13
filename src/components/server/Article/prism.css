@@ -1,0 +1,207 @@
+pre[class*="language-"] > code {
+    display: block;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0 0 0 1px var(--color-code-border);
+    background-color: var(--color-code-background);
+    background-image: linear-gradient(transparent 50%, var(--color-code-background-even) 50%);
+    background-size: 3em 3em;
+    background-origin: content-box;
+    background-attachment: local;
+    margin: 1em 0;
+}
+
+/* コードツールコンテナがある場合はマージンを削除 */
+.code-container pre[class*="language-"] > code {
+    margin: 0;
+}
+
+pre[class*="language-"] > code > span {
+    display: block;
+    margin: 0 0.5em;
+}
+
+pre[class*="language-"] > code > span,
+pre[class*="language-"] > code > span.line-number:nth-child(odd)::before {
+    background-color: var(--color-code-background);
+}
+
+pre[class*="language-"] > code > span:nth-child(even),
+pre[class*="language-"] > code > span.line-number:nth-child(even)::before {
+    background-color: var(--color-code-background-even);
+}
+
+pre[class*="language-"] > code > span.line-number.highlight-line::before {
+    border-left: 4px solid var(--color-code-main);
+}
+
+/* https://github.com/PrismJS/prism-themes/blob/master/themes/prism-coy-without-shadows.css */
+
+/**
+* Coy without shadows
+* Based on Tim Shedor's Coy theme for prism.js
+* Author: RunDevelopment
+*/
+
+code[class*="language-"],
+pre[class*="language-"] {
+    color: var(--color-code-text-default);
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    tab-size: 4;
+    hyphens: none;
+}
+
+/* Inline code - このスタイルは inlineCode.css に移動しました */
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #7D8B99;
+}
+
+.token.punctuation {
+    color: #5F6364;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.function-name,
+.token.constant,
+.token.symbol,
+.token.deleted {
+    color: #c92c2c;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.function,
+.token.builtin,
+.token.inserted {
+    color: #2f9c0a;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.token.variable {
+    color: #a67f59;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword,
+.token.class-name {
+    color: #1990b8;
+}
+
+.token.regex,
+.token.important {
+    color: #ee9900;
+}
+
+.language-css .token.string,
+.style .token.string {
+    color: #a67f59;
+}
+
+.token.important {
+    font-weight: normal;
+}
+
+.token.bold {
+    font-weight: bold;
+}
+
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
+
+.token.namespace {
+    opacity: .7;
+}
+
+/* ダークテーマのコードブロック */
+@media (prefers-color-scheme: dark) {
+    /* https://github.com/PrismJS/prism-themes/blob/master/themes/prism-a11y-dark.css */
+
+    /**
+     * a11y-dark theme for JavaScript, CSS, and HTML
+     * Based on the okaidia theme: https://github.com/PrismJS/prism/blob/gh-pages/themes/prism-okaidia.css
+     * @author ericwbailey
+     */
+    
+    .token.comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
+        color: #d4d0ab;
+    }
+
+    .token.punctuation {
+        color: #fefefe;
+    }
+
+    .token.property,
+    .token.tag,
+    .token.constant,
+    .token.symbol,
+    .token.deleted {
+        color: #ffa07a;
+    }
+
+    .token.boolean,
+    .token.number {
+        color: #00e0e0;
+    }
+
+    .token.selector,
+    .token.attr-name,
+    .token.string,
+    .token.char,
+    .token.builtin,
+    .token.inserted {
+        color: #abe338;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string,
+    .token.variable {
+        color: #00e0e0;
+    }
+
+    .token.atrule,
+    .token.attr-value,
+    .token.function {
+        color: #ffd700;
+    }
+
+    .token.keyword {
+        color: #00e0e0;
+    }
+
+    .token.regex,
+    .token.important {
+        color: #ffd700;
+    }
+}

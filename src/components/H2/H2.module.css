@@ -1,0 +1,46 @@
+.h2 {
+  position: relative;
+  background: var(--color-sub);
+  color: var(--text-color-white);
+  padding: 1rem 0.5rem;
+  border-radius: 4px;
+  margin: 2rem 0 1rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.h2::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 2rem;
+  border: 8px solid transparent;
+  border-top-color: var(--color-sub);
+}
+
+.h2::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 2.25rem;
+  border: 6px solid transparent;
+  border-top-color: var(--color-sub);
+  margin-top: -2px;
+}
+
+.h2 a {
+  color: var(--text-color-white);
+  text-decoration: none;
+}
+
+.h2 a:hover {
+  color: var(--text-color-white-hover);
+  text-decoration: underline;
+}
+
+.icon {
+  fill: var(--text-color-white);
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: middle;
+}

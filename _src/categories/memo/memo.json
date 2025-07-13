@@ -1,9 +1,0 @@
-{
-    "category": "memo",
-    "eleventyComputed": {
-        "tags": [
-            "memo"
-        ]
-    },
-    "categoryName": "雑記"
-}

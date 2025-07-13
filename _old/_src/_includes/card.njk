@@ -1,0 +1,27 @@
+{% macro card(post) %}
+    <div class="card">
+        <a href ="{{ post.url }}" class ="cardInner">
+            <img loading="lazy" src="{{ post.data.headerImg }}" alt= "{{ post.data.headerImgAlt }}">
+            <div class ="card-content">
+                {% import "categoryDisplay.njk" as categoryDisplay %}
+                {{categoryDisplay.categoryDisplay(post.data.categoryName)}}
+                <h3 class = "card-title">{{ post.data.title }}</h3>
+                <p class ="card-description">{{ post.data.description }}</p>
+                <div class = "date">
+                    {# 公開日 #}
+                    <span class="publication-date material-symbols-outlined"></span>
+                    <time datetime={{post.date | dateFormat}}>
+                        {{post.date | dateFormat | dateFormatJapanese}}
+                    </time>
+                    {% if post.data.lastEditDate%}
+                        {# 更新日 #}
+                        <span class="last-edit-date material-symbols-outlined"></span>
+                        <time datetime={{post.data.lastEditDate | dateFormat}}>
+                            {{post.data.lastEditDate | dateFormat | dateFormatJapanese}}
+                        </time>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+    </div>
+{% endmacro %}

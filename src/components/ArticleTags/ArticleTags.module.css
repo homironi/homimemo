@@ -1,0 +1,21 @@
+.link,
+.empty{
+    color: var(--text-color-pale);
+}
+
+.icon{
+    fill: var(--text-color-pale);
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: -0.2em;
+    padding-right: 0.2rem;
+}
+
+.list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+};

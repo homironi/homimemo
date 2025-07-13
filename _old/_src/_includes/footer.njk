@@ -1,0 +1,26 @@
+{# フッターのcss #}
+{% block css -%}
+    <link rel="stylesheet" href="/styles/footer.css" />
+    {%- endblock%}
+
+    <footer class="footer-container">
+        <div class = "footer-inner">
+            {# サイト内リンク #}
+            <ul class = "site-navigation">
+                {% include "siteNavigation.njk" %}
+            </ul>
+            <hr class ="hr">
+            <p>外部リンク</p>
+            <div class ="links">
+                {% include "myLink.njk" %}
+            </div>
+            {# フッターロゴ #}
+            <div class="logo-img">
+                <a class ="logoLink" href  = "/">
+                    <img loading="lazy" class = "footer-logo resizable-img" src="/images/logo.svg" alt="サイトロゴ" />
+                </a>
+            </div>
+            {# copyright #}
+            <p class = "copyright" translate="no">© 2023-2025 homironi</p>
+        </div>
+    </footer>

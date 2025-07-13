@@ -1,0 +1,28 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  color: #0066cc;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.link:hover {
+  border-bottom-color: #0066cc;
+}
+
+.link:visited {
+  color: #551a8b;
+}
+
+.link:visited:hover {
+  border-bottom-color: #551a8b;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  vertical-align: middle;
+}

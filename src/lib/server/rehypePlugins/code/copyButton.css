@@ -1,0 +1,29 @@
+/* コピーボタンのスタイル */
+.copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background-color: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+}
+
+.copy-btn:hover {
+  background-color: #f3f4f6;
+  color:  var(--text-color);
+}
+
+.copy-btn:active {
+  background-color: #e1e4e8;
+  transform: translateY(1px);
+}
+
+.copy-btn-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  fill: var(--text-color);
+}

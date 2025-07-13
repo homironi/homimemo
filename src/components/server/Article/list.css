@@ -1,0 +1,79 @@
+
+
+/* リスト共通スタイル */
+.article-contents-container ul, 
+.article-contents-container ol {
+    padding: 1em 0;
+    margin: 0;
+}
+
+.article-contents-container ul li,
+.article-contents-container ol li {
+    margin-bottom: 0.8em;
+    position: relative;
+    padding-left: 2em;
+}
+
+.article-contents-container ul li::before,
+.article-contents-container ol li::before {
+    position: absolute;
+    left: 0;
+    color: var(--text-color-black-pale);
+}
+
+/* 番号ありリスト（ol） */
+.article-contents-container ol {
+    counter-reset: list-counter;
+    list-style: none;
+}
+
+.article-contents-container ol li::before {
+    content: counter(list-counter) ". ";
+    counter-increment: list-counter;
+    font-size: 1.2em;
+    font-weight: bold;
+    position: absolute;
+    top: -0.22em;
+}
+
+/* 番号なしリスト（ul） */
+.article-contents-container ul {
+    list-style: none;
+}
+
+.article-contents-container ul li::before {
+    content: "●";
+    vertical-align: middle;
+    font-size: 0.8rem;
+    top: 0.1em;
+}
+
+/* ネストしたリスト - 2レベル目 */
+.article-contents-container ul li ul li::before {
+    content: "○";
+    font-size: 0.8rem;
+}
+
+/* ネストしたリスト - 3レベル目 */
+.article-contents-container ul li ul li ul li::before {
+    content: "・";
+    font-size: 1.3rem;
+}
+
+/* ネストしたリストのマージン調整 */
+.article-contents-container ul ul,
+.article-contents-container ol ol,
+.article-contents-container ul ol,
+.article-contents-container ol ul {
+    margin-left: 1em;
+    padding: 0.5em 0;
+}
+
+/* タスクリストは除外 */
+.article-contents-container .task-list-item {
+    padding-left: 0 !important;
+}
+
+.article-contents-container .task-list-item::before {
+    display: none !important;
+}

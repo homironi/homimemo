@@ -1,0 +1,19 @@
+/* インラインコードのスタイル - article-contents-container内でのみ適用 */
+.article-contents-container :not(pre) > code {
+  position: relative;
+  padding: 0.2em 0.4em;
+  border-radius: 0.3em;
+  color: var(--color-inline-code-text);
+  border: 1px solid var(--color-inline-code-border);
+  background-color: var(--color-inline-code-background);
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+/* インラインコードが長い場合の処理 */
+.article-contents-container :not(pre) > code.long-code {
+  white-space: normal;
+  word-break: break-all;
+}

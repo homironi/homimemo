@@ -1,0 +1,6 @@
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile /home/homironi/homironi.com/htpasswd/.htpasswd
+Require valid-user
+
+AddType text/yaml .yml
