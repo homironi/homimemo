@@ -51,6 +51,15 @@
     --color-table-background-odd: var(--color-main);
     --color-table-background-even: #e8f2fa;
     --color-table-background-hover: #d3e3ee;
+
+    /* code color */
+
+    --color-code-main: var(--color-sub);
+    --color-code-background: #fdfdfd;
+    --color-code-background-even: #f2f9fc;
+    --color-code-text-default: black;
+    --color-code-border: #dfdfdf;
+    --color-code-tool-background: #f8f9fa;
     
     /* background image */
   
@@ -93,6 +102,14 @@
     --color-block-warning: #e2dbbe;
     --color-block-error: #ec9898;
     --color-block-quote: #d8d8d8;
+
+    /* code color */
+
+    --color-code-background: #2b2b2b;
+    --color-code-background-even: #2e3235;
+    --color-code-text-default: #f8f8f2;
+    --color-code-border: #505050;
+    --color-code-tool-background: #21262d;
 
     /* background image */
     
