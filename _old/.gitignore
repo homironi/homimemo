@@ -1,5 +1,0 @@
-
-# 誤動作が嫌なのでバックアップ完了までコメントアウト（その後ファイルごと削除）
-#.cache
-#_public
-#test/stubs-layout-cache/_includes/*.js
