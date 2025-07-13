@@ -39,7 +39,7 @@ function createIdToPathMap(): ArticleIdToPathMapElement[] {
       const safeParsed = safeParse(ArticleRawMetaSchema, data);
       return { file, safeParsed };
     })
-    .filter(({ safeParsed }) => safeParsed.success) // TODO: draft も除外するようにする
+    .filter(({ safeParsed }) => safeParsed.success && !safeParsed.output.draft) // TODO: draft も除外するようにする
     .map<ArticleIdToPathMapElement>(({ file, safeParsed }) => {
       // すでに filter で成功したものだけを対象にしているので、パースに失敗することはありませんが
       // success をチェックしないと型補完が効かないので明示的にチェック

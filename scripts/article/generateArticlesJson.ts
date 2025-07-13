@@ -28,5 +28,8 @@ function createArticlesData(): ArticleMeta[] {
       const raw = fs.readFileSync(filePath, "utf-8");
       const { data } = matter(raw);
       return convertMetaFromRaw(parse(ArticleRawMetaSchema, data));
+    })
+    .filter((meta): meta is ArticleMeta => {
+      return meta.id !== undefined && !meta.draft;
     });
 }
