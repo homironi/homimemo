@@ -1,5 +1,8 @@
 import type { Element, Root } from "hast";
 import { visit } from "unist-util-visit";
+import "./codeBlock.css";
+import "./copyButton.css";
+import { loadSvgAsElement } from "./svgLoader";
 
 const codeContainerClassName = "code-container";
 const codeToolContainerClassName = "code-tools-container";
@@ -141,6 +144,12 @@ export function rehypeCopyButton() {
     });
 
     for (const { container, targetId } of inserts) {
+      // SVGアイコンを読み込み
+      const iconElement = loadSvgAsElement(
+        "src/assets/icons/google-materials/content_copy_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg",
+        "copy-btn-icon",
+      );
+
       const buttonNode: Element = {
         type: "element",
         tagName: "button",
@@ -149,7 +158,7 @@ export function rehypeCopyButton() {
           type: "button",
           "data-copy-target": `#${targetId}`,
         },
-        children: [{ type: "text", value: "Copy" }],
+        children: [iconElement],
       };
 
       container.children.unshift(buttonNode);
