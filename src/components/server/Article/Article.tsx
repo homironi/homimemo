@@ -26,6 +26,7 @@ import styles from "./Article.module.css";
 import "./list.css";
 import "./prism.css"; // 記事内で使用するコードハイライトのPrismのスタイルを適用するためにインポート
 import "./inlineCode.css"; // インラインコードのスタイルを適用するためにインポート
+import "./blockquote.css"; // 引用のスタイルを適用するためにインポート
 
 const DynamicToc = dynamic(() => import("@/components/TableOfContents").then(mod => mod.TableOfContents));
 const DynamicCodeCopyHandler = dynamic(() => import("@/components/CopyCodeHandler").then(mod => mod.default));
