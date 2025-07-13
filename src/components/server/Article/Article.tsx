@@ -22,6 +22,7 @@ import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import styles from "./Article.module.css";
+import "./list.css";
 import "./prism.css"; // 記事内で使用するコードハイライトのPrismのスタイルを適用するためにインポート
 
 const DynamicToc = dynamic(() => import("@/components/TableOfContents").then(mod => mod.TableOfContents));
@@ -91,6 +92,7 @@ export function Article({ meta, content }: ArticleProps) {
         <ArticleMdx
           content={ content }
           tocContentSourceIdName={ tocContentSourceIdName }
+          className="article-contents-container"
         />
       </main>
       <div className={ styles["last-side"] }>
