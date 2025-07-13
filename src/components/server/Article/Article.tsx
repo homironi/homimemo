@@ -7,6 +7,7 @@ import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { ExternalLink } from "@/components/ExternalLink";
 import { H2 } from "@/components/H2";
 import { H3 } from "@/components/H3";
+import { TextBlock } from "@/components/TextBlock";
 import { Profile } from "@/components/Profile";
 import { articlesListPagePath, articleThumbnailNativeSize, createArticleDetailPath, createCategoryListFirstPagePath, defaultArticleThumbnail } from "@/lib/article";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
@@ -157,6 +158,7 @@ function ArticleMdx({
           h4: createHeadingComponent("h4"),
           h5: createHeadingComponent("h5"),
           h6: createHeadingComponent("h6"),
+          TextBlock,
         } }
         options={ {
           mdxOptions: {
