@@ -1,20 +1,94 @@
 {
-    "scripts": {
-        "start": "npx @11ty/eleventy --serve",
-        "build": "npx @11ty/eleventy"
-    },
-    "dependencies": {
-        "@11ty/eleventy": "^3.0.0",
-        "@11ty/eleventy-plugin-directory-output": "^1.0.1",
-        "eleventy-plugin-embed-everything": "^1.16.0",
-        "eleventy-plugin-toc": "^1.1.5",
-        "kleur": "^4.1.5",
-        "markdown-it": "^13.0.1",
-        "markdown-it-anchor": "^8.6.7",
-        "markdown-it-attrs": "^4.1.6",
-        "markdown-it-div": "^1.1.0"
-    },
-    "devDependencies": {
-        "@11ty/eleventy-navigation": "^0.3.5"
-    }
+  "name": "homimemo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run build:json && run-p dev:*",
+    "dev:next": "next dev",
+    "build": "run-s build:*",
+    "build:tcm": "tcm -p \"src/**/*.module.css\"",
+    "build:json": "run-p build-json:*",
+    "build:next": "next build",
+    "build-json:article-meta": "run-s build-json-pre-article build-json-article",
+    "build-json-pre-article": "run-p build-json-pre-article:*",
+    "start": "next start",
+    "lint-all": "run-p lint lint:*",
+    "lint-all-fix": "run-p lint-fix lint-fix:*",
+    "lint": "next lint",
+    "lint-fix": "next lint --fix",
+    "lint:style": "stylelint \"src/**/*.css\"",
+    "lint-fix:style": "stylelint \"src/**/*.css --fix\"",
+    "add:article-id": "tsx scripts/article/addMissingIds.ts",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "dev:tcm": "npm run build:tcm -- -w",
+    "build-json:article-id-to-path": "tsx scripts/article/generateIdToPathJson.ts",
+    "dev:json-article-id-to-path": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateIdToPathJson.ts\" -c \"npm run build-json:article-id-to-path\"",
+    "build-json-pre-article:categories": "tsx scripts/article/generateCategoriesJson.ts",
+    "dev:json-article-categories": "chokidar \"_contents/categories/**/*.md\" \"scripts/article/generateCategoriesJson.ts\" -c \"npm run build-json-pre-article:categories\"",
+    "build-json-pre-article:tags": "tsx scripts/article/generateTagsJson.ts",
+    "dev:json-article-tags": "chokidar \"_contents/tags/**/*.md\" \"scripts/article/generateTagsJson.ts\" -c \"npm run build-json-pre-article:tags\"",
+    "build-json-article": "tsx scripts/article/generateArticlesJson.ts",
+    "dev:json-articles-meta": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateArticlesJson.ts\" \"public/generated/meta/categories.json\" \"public/generated/meta/tags.json\" -c \"npm run build-json-article\"",
+    "svg": "run-p svg:*",
+    "svg:assets": "svgo --folder ./src/assets --recursive --no-color",
+    "svg:public": "svgo --folder ./public --recursive --no-color"
+  },
+  "dependencies": {
+    "@next/third-parties": "^15.3.5",
+    "chokidar-cli": "^3.0.0",
+    "gray-matter": "^4.0.3",
+    "nanoid": "^5.1.5",
+    "next": "^15.3.5",
+    "next-mdx-remote": "^5.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-prism-plus": "^2.0.1",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
+    "tocbot": "^4.36.3",
+    "typed-css-modules": "^0.9.1",
+    "valibot": "^1.1.0"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^4.0.0",
+    "@eslint/eslintrc": "^3",
+    "@markuplint/jsx-parser": "^4.7.19",
+    "@markuplint/react-spec": "^4.5.19",
+    "@storybook/addon-docs": "^9.0.6",
+    "@storybook/addon-onboarding": "^9.0.6",
+    "@storybook/addon-vitest": "^9.0.6",
+    "@storybook/nextjs-vite": "^9.0.6",
+    "@stylistic/eslint-plugin": "^4.2.0",
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitest/browser": "^3.1.4",
+    "@vitest/coverage-v8": "^3.1.4",
+    "chromatic": "^11.28.2",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.0",
+    "eslint-plugin-jsdoc": "^50.6.17",
+    "eslint-plugin-storybook": "^9.0.6",
+    "markuplint": "^4.12.0",
+    "npm-run-all": "^4.1.5",
+    "playwright": "^1.52.0",
+    "storybook": "^9.0.6",
+    "stylelint": "^16.19.1",
+    "stylelint-config-standard": "^38.0.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5",
+    "vite-plugin-svgr": "^4.3.0",
+    "vitest": "^3.1.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  },
+  "overrides": {
+    "storybook": "$storybook"
+  }
 }

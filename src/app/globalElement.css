@@ -1,0 +1,144 @@
+:root {
+    --font-kosugi-maru: "Kosugi Maru";
+
+    /* color */
+  
+    --color-main: #fcf9f7;
+    --color-main-dark: #ebe6e3;
+    --shadow-color-main: #f3e8e4;
+    --shadow-color-main-pale: #ebddd8;
+    --color-sub: #79cdee;
+    --color-sub-pale: #a9dcf0;
+    --color-sub-light: #dcf5ff;
+    --color-sub-dark: #79bcd6;
+    --color-sub-alpha: #79cdeee3;
+    --color-accent: #fdb515;
+    --color-black-area: #333333;
+    --color-black-area-hover: #555555;
+    --shadow-color-common: #56389c31;
+
+    /* text color */
+
+    --text-color-white: #ffffff;
+    --text-color-white-hover: #dbd9d9;
+    --text-color-black: #111111;
+    --text-color-black-pale: #999999;
+    --text-color-black-hover: #858585;
+    --text-color:var(--text-color-black);
+    --text-color-pale:var(--text-color-black-pale);
+    --text-color-hover:var(--text-color-black-hover);
+    --text-color-reverse:var(--text-color-white);
+    --text-color-reverse-hover:var(--text-color-white-hover);
+
+    /* text-block color */
+  
+    --color-block-info: #c8e5ff;
+    --icon-color-info: #2875da;
+    --color-block-warning: #f7eec7;
+    --icon-color-warning: #e2a22a;
+    --color-block-error: #f7c7c7;
+    --icon-color-error: #e22a2a;
+    --color-block-success: #d4edda;
+    --icon-color-success: #28a745;
+    --color-block-note: #f8f9fa;
+    --icon-color-note: #6c757d;
+    --color-block-tip: #f7eec7;
+    --icon-color-tip: #e2a22a;
+    --color-block-question: #e7e8fc;
+    --icon-color-question: #6f42c1;
+    --color-block-quote: #ececec;
+    --icon-color-quote: #acacac;
+    --text-color-quote: #5a5a5a;
+  
+    /* table color */
+  
+    --color-table-header: var(--color-sub);
+    --text-color-table-header: var(--text-color-white);
+    --text-color-table-border: var(--color-main);
+    --color-table-background-odd: var(--color-main);
+    --color-table-background-even: #e8f2fa;
+    --color-table-background-hover: #d3e3ee;
+
+    /* code color */
+
+    --color-code-main: var(--color-sub);
+    --color-code-background: #fdfdfd;
+    --color-code-background-even: #f2f9fc;
+    --color-code-text-default: black;
+    --color-code-border: #dfdfdf;
+    --color-code-tool-background: #f8f9fa;
+    --color-inline-code-background: #f1f3f4;
+    --color-inline-code-text: #c7254e;
+    --color-inline-code-border: rgba(0 0 0 / 10%);
+    
+    /* background image */
+  
+    --path-background-image: url("/images/background.svg");
+
+    /* property */;
+
+    --grid-column: 12;
+    --shadow-blur-radius: 8px;
+    --shadow-spread-radius: 1px;
+    --article-thumbnail-width: 896px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* color */
+
+    --color-main: #444141;
+    --color-main-dark: #525252;
+    --shadow-color-main: #333130;
+    --shadow-color-main-pale: #33302f;
+    
+    /* text color */
+
+    --text-color:var(--text-color-white);
+    --text-color-pale:var(--text-color-black-pale);
+    --text-color-hover:var(--text-color-white-hover);
+    --text-color-reverse:var(--text-color-black);
+    --text-color-reverse-hover:var(--text-color-black-hover);
+
+
+    /* table color */
+
+    --color-table-background-even: #484b4d;
+    --color-table-background-hover: #767e83;
+
+    /* text-block color */
+
+    --color-block-info: #1a3b4a;
+    --icon-color-info: #64b5f6;
+    --color-block-warning: #3d3318;
+    --icon-color-warning: #ffb74d;
+    --color-block-error: #4a1a1a;
+    --icon-color-error: #f48fb1;
+    --color-block-success: #1e3a2a;
+    --icon-color-success: #81c784;
+    --color-block-note: #2d2d2d;
+    --icon-color-note: #b0bec5;
+    --color-block-tip: #3d3318;
+    --icon-color-tip: #ffb74d;
+    --color-block-question: #2e2548;
+    --icon-color-question: #b39ddb;
+    --color-block-quote: #3a3a3a;
+    --icon-color-quote: #6b6b6b;
+    --text-color-quote: #d0d0d0;
+
+    /* code color */
+
+    --color-code-background: #2b2b2b;
+    --color-code-background-even: #2e3235;
+    --color-code-text-default: #f8f8f2;
+    --color-code-border: #505050;
+    --color-code-tool-background: #21262d;
+    --color-inline-code-background: #3c4043;
+    --color-inline-code-text: #ff6b6b;
+    --color-inline-code-border: rgba(255 255 255 / 15%);
+
+    /* background image */
+    
+    --path-background-image: url("/images/background_dark.svg");
+  }
+}

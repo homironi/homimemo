@@ -1,0 +1,119 @@
+/* TextBlockコンポーネントのスタイル */
+.text-block {
+  position: relative;
+  border-radius: 8px;
+  padding: 16px 16px 16px 48px;
+  margin: 16px 0;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+/* アイコンのベーススタイル */
+.icon {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 24px;
+  height: 24px;
+  fill: currentcolor;
+}
+
+/* タイトルスタイル */
+.title {
+  margin: 0 0 8px;
+  font-weight: bold;
+  font-size: 1.1em;
+  line-height: 1.4;
+}
+
+/* コンテンツスタイル */
+.content {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* TextBlockType別のスタイル */
+
+/* Info */
+.text-block-info {
+  background-color: var(--color-block-info);
+  border-color: var(--icon-color-info);
+  color: var(--text-color);
+}
+
+.text-block-info .icon {
+  color: var(--icon-color-info);
+}
+
+/* Warning */
+.text-block-warning {
+  background-color: var(--color-block-warning);
+  border-color: var(--icon-color-warning);
+  color: var(--text-color);
+}
+
+.text-block-warning .icon {
+  color: var(--icon-color-warning);
+}
+
+/* Error */
+.text-block-error {
+  background-color: var(--color-block-error);
+  border-color: var(--icon-color-error);
+  color: var(--text-color);
+}
+
+.text-block-error .icon {
+  color: var(--icon-color-error);
+}
+
+/* Success */
+.text-block-success {
+  background-color: var(--color-block-success);
+  border-color: var(--icon-color-success);
+  color: var(--text-color);
+}
+
+.text-block-success .icon {
+  color: var(--icon-color-success);
+}
+
+/* Note */
+.text-block-note {
+  background-color: var(--color-block-note);
+  border-color: var(--icon-color-note);
+  color: var(--text-color);
+}
+
+.text-block-note .icon {
+  color: var(--icon-color-note);
+}
+
+/* Tip */
+.text-block-tip {
+  background-color: var(--color-block-tip);
+  border-color: var(--icon-color-tip);
+  color: var(--text-color);
+}
+
+.text-block-tip .icon {
+  color: var(--icon-color-tip);
+}
+
+/* Question */
+.text-block-question {
+  background-color: var(--color-block-question);
+  border-color: var(--icon-color-question);
+  color: var(--text-color);
+}
+
+.text-block-question .icon {
+  color: var(--icon-color-question);
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  /* Info, Warning, Error, Success, Note, Tip, Questionは
+     globalElement.cssで定義されたダークモード用の変数が
+     自動的に適用されるため、追加のスタイルは不要 */
+}

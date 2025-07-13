@@ -1,0 +1,92 @@
+.navigation-bar {
+    position: relative;
+    z-index: 1;
+    font-size: 0.9em;
+
+    background-color: var(--color-black-area);
+}
+
+.navigation-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+/* 最上位レベルの要素 */
+.navigation-bar > ul > li {
+    display: inline-block;
+}
+
+.navigation-bar ul li a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    padding: 0.8em;
+
+    color: var(--text-color-white);
+    text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    /* ダークテーマのときも白文字がいいので黒文字（ダークテーマのときは白になってる） */
+    .navigation-bar ul li a {
+        color: var(--text-color-black);
+    }
+}
+
+.navigation-bar ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+
+    background-color: var(--color-main);
+}
+
+.navigation-bar ul li a:hover::after {
+    transform: scaleX(1);
+}
+
+/* 1階層分だけ子要素を表示するので、それ以下は非表示 */
+.navigation-bar ul ul ul {
+    display: none;
+}
+
+.navigation-bar ul ul ul li {
+    display: none;
+}
+@media screen and (max-width: 768px) {
+    .navigation-bar {
+        display: none;
+    }
+}
+
+/* カテゴリーだけカテゴリの中身を表示するように */
+.navigation-bar .categories li {
+    display: none;
+}
+
+.navigation-bar .categories ul,
+.navigation-bar .categories ul li {
+    display: inline-block;
+}
+
+.navigation-bar .abouts ul {
+    display: none;
+}
+
+.navigation-bar ul li a:hover {
+    color: var(--text-color-white-hover);
+}
+
+@media (prefers-color-scheme: dark) {
+    /* ダークテーマのときも白文字がいいので黒文字（ダークテーマのときは白になってる） */
+    .navigation-bar ul li a:hover {
+        color: var(--text-color-black-hover);
+    }
+}

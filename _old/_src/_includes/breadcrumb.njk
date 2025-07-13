@@ -1,0 +1,7 @@
+{% block css -%}
+    <link rel="stylesheet" href="/styles/breadcrumb.css" />
+    {%- endblock%}
+
+    <div class = "breadcrumb">
+        {{ collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.key, { includeSelf: true }) | eleventyNavigationToHtml | safe }}
+    </div>

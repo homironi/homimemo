@@ -1,0 +1,20 @@
+---
+title: ほみろに
+description: ゲームやお絵かきなどいろんなことを書く、ほみの個人サイトです。
+date: 2023-07-01
+headerImg: /images/logo.svg
+headerImgAlt: ほみろにのロゴ画像
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+	{% include "head.njk" %}
+	{% include "header.njk" %}
+	{% include "navigation.njk" %}
+	{% include "headerNotice.njk" %}
+	{% include "paa.njk" %}
+	<div class="container-wrapper line-numbers">
+		{{content | safe}}
+	</div>
+	{% include "footer.njk" %}
+</html>

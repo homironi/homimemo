@@ -1,0 +1,36 @@
+name: deploy site
+
+on:
+    workflow_dispatch: # 手動実行トリガー
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Set up Node.js
+            uses: actions/setup-node@v4
+              
+          - name: Checkout code
+            uses: actions/checkout@v4
+            with:
+                fetch-depth: 0
+
+          - name: Generate SSH key
+            run: |
+                echo "$SSH_PRIVATE_KEY" > key
+                chmod 600 key
+            env:
+                SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+          - name: Install dependencies
+            run: npm install
+
+          - name: Build
+            run: npm run build
+
+          - name: Deploy via rsync
+            run: |
+                rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" --delete ${{ vars.SOURCE_DIR }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_HOME_DIR }}/${{ vars.REMOTE_DEPLOY_DIR }} --exclude-from=.deploy-ignore

@@ -1,0 +1,18 @@
+.container{
+    background-color: var(--color-sub);
+}
+
+.logo-container{
+    position: relative;
+}
+
+.link {
+    display: inline-block;
+}
+
+.logo{
+    height: 48px;
+    width: auto;
+    object-fit: cover;
+    padding: 4px;
+}

@@ -1,0 +1,25 @@
+.title{
+  text-align: center;
+}
+
+.list{
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+}
+
+.item{
+  display: flex;
+  padding: 0.5rem;
+  border-bottom: 0.2em dotted var(--color-main-dark);
+}
+
+.time{
+  padding-right: 0.8rem;
+}
+
+.more{
+  display: block;
+  text-align: center;
+  padding: 1rem;
+}
