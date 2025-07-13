@@ -1,6 +1,6 @@
+import type { Element } from "hast";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import type { Element } from "hast";
 
 /**
  * SVGファイルを読み込んでHAST Element形式に変換する
@@ -12,18 +12,18 @@ export function loadSvgAsElement(svgPath: string, className?: string): Element {
   try {
     const fullPath = path.resolve(process.cwd(), svgPath);
     const svgContent = readFileSync(fullPath, "utf8");
-    
+
     // 簡単なSVGパーサー（viewBox、path、fillを抽出）
     const viewBoxMatch = svgContent.match(/viewBox="([^"]+)"/);
     const pathMatch = svgContent.match(/<path[^>]*d="([^"]+)"[^>]*>/);
     const widthMatch = svgContent.match(/width="([^"]+)"/);
     const heightMatch = svgContent.match(/height="([^"]+)"/);
-    
+
     const viewBox = viewBoxMatch?.[1] || "0 0 24 24";
     const pathData = pathMatch?.[1] || "";
     const width = widthMatch?.[1] || "16px";
     const height = heightMatch?.[1] || "16px";
-    
+
     const svgElement: Element = {
       type: "element",
       tagName: "svg",
@@ -46,11 +46,10 @@ export function loadSvgAsElement(svgPath: string, className?: string): Element {
         },
       ],
     };
-    
+
     return svgElement;
-  } catch (error) {
-    console.warn(`SVGファイルの読み込みに失敗しました: ${svgPath}`, error);
-    
+  }
+  catch {
     // フォールバック: シンプルなテキストアイコン
     return {
       type: "element",
@@ -58,7 +57,7 @@ export function loadSvgAsElement(svgPath: string, className?: string): Element {
       properties: {
         ...(className && { className: [className] }),
       },
-      children: [{ type: "text", value: "📋" }],
+      children: [{ type: "text", value: "icon" }],
     };
   }
 }
