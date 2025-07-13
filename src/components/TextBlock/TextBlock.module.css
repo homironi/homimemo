@@ -38,7 +38,7 @@
 .text-block-info {
   background-color: var(--color-block-info);
   border-color: var(--icon-color-info);
-  color: var(--text-color-block);
+  color: var(--text-color);
 }
 
 .text-block-info .icon {
@@ -49,7 +49,7 @@
 .text-block-warning {
   background-color: var(--color-block-warning);
   border-color: var(--icon-color-warning);
-  color: var(--text-color-block);
+  color: var(--text-color);
 }
 
 .text-block-warning .icon {
@@ -60,7 +60,7 @@
 .text-block-error {
   background-color: var(--color-block-error);
   border-color: var(--icon-color-error);
-  color: var(--text-color-block);
+  color: var(--text-color);
 }
 
 .text-block-error .icon {
@@ -71,7 +71,7 @@
 .text-block-success {
   background-color: var(--color-block-success);
   border-color: var(--icon-color-success);
-  color: var(--text-color-block);
+  color: var(--text-color);
 }
 
 .text-block-success .icon {
@@ -82,7 +82,7 @@
 .text-block-note {
   background-color: var(--color-block-note);
   border-color: var(--icon-color-note);
-  color: var(--text-color-block);
+  color: var(--text-color);
 }
 
 .text-block-note .icon {
@@ -93,7 +93,7 @@
 .text-block-tip {
   background-color: var(--color-block-tip);
   border-color: var(--icon-color-tip);
-  color: var(--text-color-block);
+  color: var(--text-color);
 }
 
 .text-block-tip .icon {
@@ -104,7 +104,7 @@
 .text-block-question {
   background-color: var(--color-block-question);
   border-color: var(--icon-color-question);
-  color: var(--text-color-block);
+  color: var(--text-color);
 }
 
 .text-block-question .icon {
