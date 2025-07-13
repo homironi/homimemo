@@ -107,6 +107,10 @@ export const LongContent: Story = {
 };
 
 export const AllTypes: Story = {
+  args: {
+    blockType: "info",
+    children: "This will be overridden by the render function",
+  },
   render: () => (
     <div style={ { display: "flex", flexDirection: "column", gap: "16px" } }>
       <TextBlock blockType="info" title="Info">
