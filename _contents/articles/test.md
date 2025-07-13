@@ -12,6 +12,8 @@ description: お試しページデータ。後で消す。
 ---
 ## 見出し2
 
+`inline code`です。
+
 https://www.google.com/
 
 [https://www.google.com/](https://www.google.com/)
