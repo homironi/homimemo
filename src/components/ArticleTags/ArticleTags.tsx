@@ -15,27 +15,26 @@ export type ArticleTagsProps = {
  * @returns 記事のタグ表示要素
  */
 export function ArticleTags({ tags }: ArticleTagsProps) {
-  if (tags.length <= 0) {
-    return <>TODO:タグなし</>;
-  }
-  else {
-    return (
-      <>
-        <LabelIcon className={ styles.icon } />
-        <ul className={ styles.list }>
-          {tags.map(tag => (
-            <li key={ tag.slug }>
-              <Link
-                href={ createTagsPath(tag) }
-                key={ tag.slug }
-                className={ styles.link }
-              >
-                {tag.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </>
-    );
-  }
+  return (
+    <>
+      <LabelIcon className={ styles.icon } />
+      { tags.length > 0
+        ? (
+            <ul className={ styles.list }>
+              {tags.map(tag => (
+                <li key={ tag.slug }>
+                  <Link
+                    href={ createTagsPath(tag) }
+                    key={ tag.slug }
+                    className={ styles.link }
+                  >
+                    {tag.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )
+        : (<span className={ styles.empty }>no tag</span>) }
+    </>
+  );
 }
