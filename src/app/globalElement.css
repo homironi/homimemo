@@ -32,13 +32,20 @@
 
     /* text-block color */
   
-    --text-color-block: #111111;
     --color-block-info: #c8e5ff;
     --icon-color-info: #2875da;
     --color-block-warning: #f7eec7;
     --icon-color-warning: #e2a22a;
     --color-block-error: #f7c7c7;
     --icon-color-error: #e22a2a;
+    --color-block-success: #d4edda;
+    --icon-color-success: #28a745;
+    --color-block-note: #f8f9fa;
+    --icon-color-note: #6c757d;
+    --color-block-tip: #f7eec7;
+    --icon-color-tip: #e2a22a;
+    --color-block-question: #e7e8fc;
+    --icon-color-question: #6f42c1;
     --color-block-quote: #ececec;
     --icon-color-quote: #acacac;
     --text-color-quote: #5a5a5a;
@@ -98,9 +105,20 @@
 
     /* text-block color */
 
-    --color-block-info: #b2d0e9;
-    --color-block-warning: #e2dbbe;
-    --color-block-error: #ec9898;
+    --color-block-info: #1a3b4a;
+    --icon-color-info: #64b5f6;
+    --color-block-warning: #3d3318;
+    --icon-color-warning: #ffb74d;
+    --color-block-error: #4a1a1a;
+    --icon-color-error: #f48fb1;
+    --color-block-success: #1e3a2a;
+    --icon-color-success: #81c784;
+    --color-block-note: #2d2d2d;
+    --icon-color-note: #b0bec5;
+    --color-block-tip: #3d3318;
+    --icon-color-tip: #ffb74d;
+    --color-block-question: #2e2548;
+    --icon-color-question: #b39ddb;
     --color-block-quote: #d8d8d8;
 
     /* code color */
