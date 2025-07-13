@@ -59,18 +59,7 @@ pre[class*="language-"] {
     hyphens: none;
 }
 
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-    position: relative;
-    padding: .2em;
-    border-radius: 0.3em;
-    color: #c92c2c;
-    border: 1px solid rgba(0 0 0 / 10%);
-    display: inline;
-    white-space: normal;
-    background-color: #fdfdfd;
-    box-sizing: border-box;
-}
+/* Inline code - このスタイルは inlineCode.css に移動しました */
 
 .token.comment,
 .token.block-comment,
