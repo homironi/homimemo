@@ -31,6 +31,6 @@ jobs:
           - name: Build
             run: npm run build
 
-          - name: Deploy via rsync # まだ実際には動作させず動作確認がしたいので、--dry-run オプションを使用
+          - name: Deploy via rsync
             run: |
-                rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" --delete ${{ vars.SOURCE_DIR }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_HOME_DIR }}/${{ vars.REMOTE_DEPLOY_DIR }} --exclude-from=.deploy-ignore --dry-run
+                rsync -auzrv -e "ssh -i key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" --delete ${{ vars.SOURCE_DIR }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_HOME_DIR }}/${{ vars.REMOTE_DEPLOY_DIR }} --exclude-from=.deploy-ignore
