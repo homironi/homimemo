@@ -1,17 +1,19 @@
+"use client";
+
 import { ErrorPage } from "@/components/ErrorPage";
 
 /**
  * 500 Internal Server Errorページ
  * @returns 500エラーページ
  */
-export default function InternalServerError() {
+export default function Error() {
   return (
     <ErrorPage
       errorCode="500"
       errorTitle="Internal Server Error"
-      errorMessage={ (
+      errorMessage={
         <p>サーバー側に問題が発生しています！</p>
-      ) }
+      }
     />
   );
 }
