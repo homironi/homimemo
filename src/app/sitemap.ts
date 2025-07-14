@@ -22,14 +22,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const allArticles = getAllArticlesMeta();
   const articlePages: MetadataRoute.Sitemap = allArticles
     .map(article => ({
-      url: createArticleDetailPath(article.id),
+      url: `${siteUrl}${createArticleDetailPath(article.id)}`,
       lastModified: article.lastModDate,
       changeFrequency: "weekly",
     }));
 
   const articleListPages: MetadataRoute.Sitemap = getPageLength(allArticles.length)
     .map(i => ({
-      url: createArticleListPagePath(i + 1),
+      url: `${siteUrl}${createArticleListPagePath(i + 1)}`,
       lastModified: new Date(),
       changeFrequency: "weekly",
     }));
@@ -38,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .map<MetadataRoute.Sitemap>((category) => {
       return getPageLength(filterArticlesCategory(allArticles, category).length)
         .map(i => ({
-          url: createCategoryListPagePath(category, i),
+          url: `${siteUrl}${createCategoryListPagePath(category, i)}`,
           lastModified: new Date(),
           changeFrequency: "weekly",
         }));
@@ -49,7 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .map<MetadataRoute.Sitemap>((tag) => {
       return getPageLength(filterArticlesTag(allArticles, tag).length)
         .map(i => ({
-          url: createTagsPath(tag, i),
+          url: `${siteUrl}${createTagsPath(tag, i)}`,
           lastModified: new Date(),
           changeFrequency: "weekly",
         }));
