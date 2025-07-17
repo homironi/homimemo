@@ -1,11 +1,13 @@
 .link {
-  display: inline-flex;
+  /* display: inline-flex; */
   align-items: center;
   gap: 0.125rem;
   color: #0066cc;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .link:hover {

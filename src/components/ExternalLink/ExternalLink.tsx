@@ -9,16 +9,15 @@ export type ExternalLinkProps = PropsWithChildren<React.AnchorHTMLAttributes<HTM
  * @param props リンクのプロパティ
  * @param props.href リンク先のURL
  * @param props.children リンクの子要素
- * @param props.className CSSクラス名
  * @returns 外部リンクコンポーネント
  */
-export function ExternalLink({ href, children, className, ...rest }: ExternalLinkProps) {
+export function ExternalLink({ href, children, ...rest }: ExternalLinkProps) {
   return (
     <a
       href={ href }
       target="_blank"
       rel="noopener noreferrer"
-      className={ `${styles.link} ${className ?? ""}` }
+      className={ `${styles.link}` }
       { ...rest }
     >
       { children }
