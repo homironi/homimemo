@@ -4,7 +4,7 @@ import { CategoryMeta, TagMeta } from "@/schemas/article/meta";
 export const articlePagePerNum = 12;
 
 // 記事一覧ページの最初のページのパス
-export const articlesListPagePath = createFirstListPagePath("/articles/page/");
+export const articlesListPagePath = createArticleListPagePath(1);
 
 const categoryListPagePath = "/categories/";
 
@@ -25,7 +25,7 @@ export function getPageLength(length: number): number[] {
  * @returns カテゴリページの最初のページのパス
  */
 export function createCategoryListFirstPagePath(category: CategoryMeta): string {
-  return createFirstListPagePath(`${categoryListPagePath}${category.slug}/`);
+  return createCategoryListPagePath(category, 1);
 }
 
 /**
@@ -35,7 +35,7 @@ export function createCategoryListFirstPagePath(category: CategoryMeta): string 
  * @returns カテゴリページの最初のページのパス
  */
 export function createCategoryListPagePath(category: CategoryMeta, page: number): string {
-  return `${categoryListPagePath}${category.slug}/${page}/`;
+  return `${categoryListPagePath}${category.slug}/page/${page}/`;
 }
 
 /**
@@ -45,7 +45,7 @@ export function createCategoryListPagePath(category: CategoryMeta, page: number)
  * @returns タグ一覧ページのパス
  */
 export function createTagsPath(tag: TagMeta, page?: number): string {
-  return `/tags/${tag.slug}/${page ? page : 1}/`;
+  return `/tags/${tag.slug}/page/${page ? page : 1}/`;
 }
 
 /**
@@ -54,14 +54,5 @@ export function createTagsPath(tag: TagMeta, page?: number): string {
  * @returns 全記事一覧ページのパス
  */
 export function createArticleListPagePath(page: number): string {
-  return `${articlesListPagePath}${page}/`;
-}
-
-/**
- * 記事一覧ページの最初のページのパスを作成する
- * @param basePath 記事一覧ページのベースパス
- * @returns 記事一覧ページの最初のページのパス
- */
-function createFirstListPagePath(basePath: string): string {
-  return `${basePath}1/`;
+  return `/articles/page/${page}/`;
 }
