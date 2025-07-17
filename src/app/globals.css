@@ -24,8 +24,8 @@ img {
   object-fit: contain;
 }
 
-.icon-fill-none {
-  fill: none;
+p {
+  line-height: 1.5em;
 }
 
 @media (prefers-color-scheme: dark) {
