@@ -16,11 +16,9 @@ const tocSelectorName = "article-toc";
  * 目次コンポーネント
  * @param root0 引数オブジェクト
  * @param root0.tocContentSourceIdName 目次を生成する対処についているコンテンツのID名
- * @param root0.className 付与したいクラス名
  * @returns 目次のJSX要素
  */
 export function TableOfContents({
-  className,
   tocContentSourceIdName,
 }: TableOfContentsProps) {
   useEffect(() => {
@@ -35,9 +33,9 @@ export function TableOfContents({
   }, [tocContentSourceIdName]);
 
   return (
-    <nav className={ `${className} ${styles.container}` }>
+    <div className={ styles.container }>
       <p className={ styles.title }>目次</p>
       <div className={ tocSelectorName } />
-    </nav>
+    </div>
   );
 }

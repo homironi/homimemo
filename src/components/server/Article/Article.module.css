@@ -9,7 +9,7 @@
 .first-side{
     grid-column: span 3;
     position: sticky;
-    top: 0;
+    top: 16px;
 }
 
 .article{
