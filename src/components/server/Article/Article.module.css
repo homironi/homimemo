@@ -21,14 +21,19 @@
 
 .last-side{
     grid-column: span 3;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
 }
 
-.last-side > div{
-    margin-bottom: 16px;
+.ads-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.last-side > div:last-child{
-    margin-bottom: 0;
+.ads-container::before{
+    content: "PR";
 }
 
 .date-container{
