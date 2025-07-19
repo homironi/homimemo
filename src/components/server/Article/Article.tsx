@@ -7,8 +7,8 @@ import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { ExternalLink } from "@/components/ExternalLink";
 import { H2 } from "@/components/H2";
 import { H3 } from "@/components/H3";
-import { TextBlock } from "@/components/TextBlock";
 import { Profile } from "@/components/Profile";
+import { TextBlock } from "@/components/TextBlock";
 import { articlesListPagePath, articleThumbnailNativeSize, createArticleDetailPath, createCategoryListFirstPagePath, defaultArticleThumbnail } from "@/lib/article";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/server/rehypePlugins/code";
@@ -23,10 +23,10 @@ import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import styles from "./Article.module.css";
+import "./blockquote.css"; // 引用のスタイルを適用するためにインポート
+import "./inlineCode.css"; // インラインコードのスタイルを適用するためにインポート
 import "./list.css";
 import "./prism.css"; // 記事内で使用するコードハイライトのPrismのスタイルを適用するためにインポート
-import "./inlineCode.css"; // インラインコードのスタイルを適用するためにインポート
-import "./blockquote.css"; // 引用のスタイルを適用するためにインポート
 
 const DynamicToc = dynamic(() => import("@/components/TableOfContents").then(mod => mod.TableOfContents));
 const DynamicCodeCopyHandler = dynamic(() => import("@/components/CopyCodeHandler").then(mod => mod.default));
@@ -84,7 +84,7 @@ export function Article({ meta, content }: ArticleProps) {
             )}
           </div>
           { isArticleMeta(meta) && <ArticleCategory meta={ meta.category } />}
-          {isArticleMeta(meta) && meta.tags && <ArticleTags tags={ meta.tags } />}
+          { isArticleMeta(meta) && meta.tags && <ArticleTags tags={ meta.tags } />}
         </div>
         <Image
           src={ meta.thumbnail ?? defaultArticleThumbnail }
@@ -100,6 +100,15 @@ export function Article({ meta, content }: ArticleProps) {
       </main>
       <div className={ styles["last-side"] }>
         <Profile />
+        <div
+          className={ styles["ads-container"] }
+          dangerouslySetInnerHTML={ {
+            __html:
+          `<a href="https://px.a8.net/svt/ejp?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" rel="nofollow">
+          <img border="0" width="300" height="250" alt="" src="https://www28.a8.net/svt/bgt?aid=240906818962&wid=001&eno=01&mid=s00000001642001130000&mc=1"></a>
+          <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" alt="">`,
+          } }
+        />
         <ArticleCategoryList categories={ getAllCategories() } />
         <ArticleTagList tags={ getAllTags() } />
       </div>

@@ -124,3 +124,16 @@ Articles require YAML frontmatter with:
 ## Build Output
 
 The build process creates a static site in `_public/` directory suitable for deployment to static hosting platforms like Vercel or Netlify.
+
+## 応答について
+
+- 日本語で応答してください
+
+## コーディングについて
+
+- TypeScriptではanyを使用しないでください
+
+## 命名について
+
+- `check`という単語は可能な限り避けてください
+  - `check`という単語は非常に意味の広い単語のため、「何をcheckするのか」を考慮した命名にしてください
