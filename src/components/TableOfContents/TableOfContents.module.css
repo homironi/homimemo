@@ -4,10 +4,12 @@
 }
 
 .container{
+    --padding-toc: 16px;
+
     background-color: var(--color-main);
     box-shadow: 0 0 var(--shadow-blur-radius) var(--shadow-spread-radius) var(--shadow-color-main);
-    padding: 16px;
-    margin: 16px 0;
-    max-height: calc(100vh - 64px);
+    margin: 0;
+    padding: var(--padding-toc);
+    max-height: calc(100vh - var(--padding-toc) * 4);
     overflow: auto;
 }
