@@ -1,25 +1,29 @@
 /* タスクリストのスタイル */
-.contains-task-list {
-  padding: 0;
-}
-
 .task-list-item {
   list-style: none;
+  margin: 4px 0;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  margin: 4px 0;
+  flex-wrap: wrap;
+}
+
+.task-list-item > .contains-task-list {
+  padding-left: 2em;
+  width: 100%;
+  display: block;
 }
 
 .task-list-item-checked .task-list-checkbox-checked,
 .task-list-item-unchecked .task-list-checkbox-unchecked {
-  width: 18px;
-  height: 18px;
+  width: 1.4em;
+  height: 1.4em;
+  fill: var(--text-color-pale);
   flex-shrink: 0;
-  margin-top: 2px;
-  fill: var(--text-color);
+  margin-right: 0.5em;
+  margin-top: 0.1em;
 }
 
+/* 
 .task-list-item-checked {
   color: var(--text-color);
-}
+} */
