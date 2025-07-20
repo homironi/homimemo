@@ -1,17 +1,11 @@
 
 
 /* リスト共通スタイル */
-.article-contents-container ul, 
-.article-contents-container ol {
-    padding: 1em 0;
-    margin: 0;
-}
-
 .article-contents-container ul li,
 .article-contents-container ol li {
-    margin-bottom: 0.8em;
     position: relative;
     padding-left: 2em;
+    line-height: 1.5em;
 }
 
 .article-contents-container ul li::before,
@@ -31,9 +25,7 @@
     content: counter(list-counter) ". ";
     counter-increment: list-counter;
     font-size: 1.2em;
-    font-weight: bold;
     position: absolute;
-    top: -0.22em;
 }
 
 /* 番号なしリスト（ul） */
@@ -60,20 +52,11 @@
     font-size: 1.3rem;
 }
 
-/* ネストしたリストのマージン調整 */
-.article-contents-container ul ul,
-.article-contents-container ol ol,
-.article-contents-container ul ol,
-.article-contents-container ol ul {
-    margin-left: 1em;
-    padding: 0.5em 0;
-}
-
 /* タスクリストは除外 */
 .article-contents-container .task-list-item {
-    padding-left: 0 !important;
+    padding-left: 0;
 }
 
 .article-contents-container .task-list-item::before {
-    display: none !important;
+    display: none;
 }
