@@ -1,4 +1,5 @@
 import { articlesListPagePath, createArticleDetailPath } from "@/lib/article";
+import { formatDate } from "@/lib/date";
 import { getAllArticlesMeta } from "@/lib/server/article";
 import Link from "next/link";
 import styles from "./page.module.css";
@@ -20,19 +21,17 @@ export default function Home() {
       <h2 className={ styles.title }>新着記事</h2>
       <ol className={ styles.list }>
         {newArticles.map((article) => {
-          const publishDate = article.publishDate.toLocaleDateString(
-            "ja-JP",
-            {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            });
           return (
             <li
               key={ article.id }
               className={ styles.item }
             >
-              <time dateTime={ publishDate } className={ styles.time }>{publishDate}</time>
+              <time
+                dateTime={ formatDate(article.publishDate, "YYYY-MM-DD") }
+                className={ styles.time }
+              >
+                {formatDate(article.publishDate, "YYYY/MM/DD")}
+              </time>
               <a href={ createArticleDetailPath(article.id) }>{article.title}</a>
             </li>
           );

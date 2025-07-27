@@ -10,6 +10,7 @@ import { H3 } from "@/components/H3";
 import { Profile } from "@/components/Profile";
 import { TextBlock } from "@/components/TextBlock";
 import { articlesListPagePath, articleThumbnailNativeSize, createArticleDetailPath, createCategoryListFirstPagePath, defaultArticleThumbnail } from "@/lib/article";
+import { formatDate } from "@/lib/date";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
 import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/server/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
@@ -49,16 +50,9 @@ export type ArticleProps = {
  */
 export function Article({ meta, content }: ArticleProps) {
   const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
-  const publishDate = meta.publishDate.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
-  const lastModDate = meta.lastModDate.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
+
+  const publishDateText = formatDate(meta.publishDate, "YYYY/MM/DD");
+  const lastModDateText = formatDate(meta.lastModDate, "YYYY/MM/DD");
 
   return (
     <div className={ styles.container }>
@@ -75,12 +69,13 @@ export function Article({ meta, content }: ArticleProps) {
           <div className={ styles["date-container"] }>
             <span>
               <PublishDateIcon className={ styles.icon } />
-              <time dateTime={ publishDate }>{publishDate}</time>
+              <time dateTime={ formatDate(meta.publishDate, "YYYY-MM-DD") }>{publishDateText}</time>
             </span>
-            {publishDate !== lastModDate && (
+            {/* 日付が違う時だけ更新があったとして更新日時を表示する。同じ日の場合は表示しない */}
+            {publishDateText !== lastModDateText && (
               <span>
                 <LastModeDateIcon className={ styles.icon } />
-                <time dateTime={ lastModDate }>{lastModDate}</time>
+                <time dateTime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>{lastModDateText}</time>
               </span>
             )}
           </div>
