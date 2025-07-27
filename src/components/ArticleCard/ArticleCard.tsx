@@ -1,5 +1,6 @@
 import { CategoryIcon, LastModeDateIcon, PublishDateIcon } from "@/assets/icons";
 import { articleThumbnailNativeSize, createArticleDetailPath, defaultArticleThumbnail } from "@/lib/article";
+import { formatDate } from "@/lib/date";
 import { ArticleMeta } from "@/schemas/article/meta";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,8 +17,8 @@ export type ArticleCardProps = {
  * @returns 記事カードのJSX要素
  */
 export function ArticleCard({ meta }: ArticleCardProps) {
-  const publishDate = meta.publishDate.toLocaleDateString();
-  const lastModDate = meta.lastModDate.toLocaleDateString();
+  const publishDate = formatDate(meta.publishDate, "YYYY/MM/DD");
+  const lastModDate = formatDate(meta.lastModDate, "YYYY/MM/DD");
   return (
     <div className={ styles.container }>
       <Link
@@ -40,12 +41,12 @@ export function ArticleCard({ meta }: ArticleCardProps) {
             {lastModDate !== publishDate && (
               <span className={ styles["last-mod-date"] }>
                 <LastModeDateIcon className={ styles.icon } />
-                <time dateTime={ meta.lastModDate.toLocaleDateString() }>{ lastModDate }</time>
+                <time dateTime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>{ lastModDate }</time>
               </span>
             )}
             <span>
               <PublishDateIcon className={ styles.icon } />
-              <time dateTime={ meta.publishDate.toLocaleDateString() }>{ publishDate }</time>
+              <time dateTime={ formatDate(meta.publishDate, "YYYY-MM-DD") }>{ publishDate }</time>
             </span>
           </div>
         </div>
