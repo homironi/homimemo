@@ -11,7 +11,7 @@ export function Profile() {
       <h2>運営者</h2>
       <p>ほみ</p>
       <Image
-        src="/images/profile.png"
+        src="/images/profile.webp"
         alt="ほみのプロフィール画像"
         width={ 128 }
         height={ 128 }
