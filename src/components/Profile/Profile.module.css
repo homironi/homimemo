@@ -1,7 +1,7 @@
 .container{
     padding: 24px;
     background-color: var(--color-main);
-    border:1px solid var(--shadow-color-main);
+    border:1px solid var(--border-color-main);
     text-align: center;
 }
 
