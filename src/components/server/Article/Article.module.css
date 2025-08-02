@@ -66,6 +66,7 @@
 
 @media screen and (width <= 500px){
     .container{
+        margin: 16px 0;
         gap: 16px;
     }
 
@@ -77,5 +78,10 @@
 
     .first-side{
         position: relative;
+        top: initial;
+    }
+    
+    .article{
+        padding: 16px;
     }
 }
