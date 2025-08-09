@@ -1,8 +1,8 @@
 import type { Element, Root } from "hast";
 import { visit } from "unist-util-visit";
+import { loadSvgAsElement } from "../shared/svgLoader";
 import "./codeBlock.css";
 import "./copyButton.css";
-import { loadSvgAsElement } from "../shared/svgLoader";
 
 const codeContainerClassName = "code-container";
 const codeToolContainerClassName = "code-tools-container";
