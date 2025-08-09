@@ -1,6 +1,6 @@
 ---
 slug: about
-title: サイトと運営者について
+title: このサイトについて
 draft: false
 publishDate: 2023-07-01T00:00:00
 lastModDate: 2025-08-09T14:32:00
