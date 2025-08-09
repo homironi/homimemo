@@ -2,6 +2,7 @@
   "name": "homimemo",
   "version": "2.0.0",
   "private": true,
+  "packageManager": "pnpm@10.13.1",
   "scripts": {
     "dev": "pnpm run build:json && run-p dev:*",
     "dev:next": "next dev",
