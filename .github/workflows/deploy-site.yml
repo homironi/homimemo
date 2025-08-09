@@ -10,13 +10,18 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
-          - name: Set up Node.js
-            uses: actions/setup-node@v4
-              
           - name: Checkout code
             uses: actions/checkout@v4
             with:
                 fetch-depth: 0
+
+          - name: Install pnpm
+            uses: pnpm/action-setup@v4
+
+          - name: Set up Node.js
+            uses: actions/setup-node@v4
+            with:
+              cache: "pnpm"
 
           - name: Generate SSH key
             run: |
@@ -26,10 +31,10 @@ jobs:
                 SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
           - name: Install dependencies
-            run: npm ci
+            run: pnpm install --frozen-lockfile
 
           - name: Build
-            run: npm run build
+            run: pnpm run build
 
           - name: Deploy via rsync
             run: |
