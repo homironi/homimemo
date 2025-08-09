@@ -49,6 +49,7 @@
     "remark-gfm": "^4.0.1",
     "tocbot": "^4.36.3",
     "typed-css-modules": "^0.9.1",
+    "unist-util-visit": "^5.0.0",
     "valibot": "^1.1.0"
   },
   "devDependencies": {
@@ -62,9 +63,11 @@
     "@storybook/nextjs-vite": "^9.0.6",
     "@stylistic/eslint-plugin": "^4.2.0",
     "@svgr/webpack": "^8.1.0",
+    "@types/hast": "^3.0.4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/unist": "^3.0.3",
     "@vitest/browser": "^3.1.4",
     "@vitest/coverage-v8": "^3.1.4",
     "chromatic": "^11.28.2",
