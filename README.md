@@ -19,11 +19,11 @@ https://homironi.com/
 
 1. 依存関係の install  
    ```cli
-   npm ci
+   pnpm install --frozen-lockfile
    ```
 1. ローカルで起動  
    ```cli
-   npm run dev
+   pnpm run dev
    ```
 
 ## コード規約

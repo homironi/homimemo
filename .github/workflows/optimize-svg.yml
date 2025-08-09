@@ -27,13 +27,13 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run script and save output
         id: run_script
         run: |
           echo "Running script..."
-          OUTPUT=$(npm run svg)
+          OUTPUT=$(pnpm run svg)
           echo "$OUTPUT"
           echo "output<<EOF" >> $GITHUB_OUTPUT
           echo "$OUTPUT" >> $GITHUB_OUTPUT

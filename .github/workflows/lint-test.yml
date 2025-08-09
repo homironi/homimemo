@@ -23,7 +23,7 @@ jobs:
               uses: actions/setup-node@v4
 
             - name: Install dependencies
-              run: npm ci
+              run: pnpm install --frozen-lockfile
 
             - name: Build
-              run: npm run lint:style
+              run: pnpm run lint:style
