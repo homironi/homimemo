@@ -20,19 +20,23 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Run script and save output
         id: run_script
         run: |
           echo "Running script..."
-          OUTPUT=$(npm run add:article-id)
+          OUTPUT=$(pnpm run add:article-id)
           echo "$OUTPUT"
           echo "output<<EOF" >> $GITHUB_OUTPUT
           echo "$OUTPUT" >> $GITHUB_OUTPUT

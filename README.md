@@ -19,11 +19,11 @@ https://homironi.com/
 
 1. 依存関係の install  
    ```cli
-   npm ci
+   pnpm install --frozen-lockfile
    ```
 1. ローカルで起動  
    ```cli
-   npm run dev
+   pnpm run dev
    ```
 
 ## コード規約
@@ -59,7 +59,7 @@ https://nextjs-ja-translation-docs.vercel.app/docs/advanced-features/dynamic-imp
 │
 ├─ _public                              ← Next.js のビルド先フォルダ：これを公開する
 ├─ public                               ← Next.jsの静的アセットフォルダ
-├─ scripts                              ← GitHubActions や npm run などで使用するスクリプト
+├─ scripts                              ← GitHubActions や pnpm run などで使用するスクリプト
 └─ src                                  
    ├─ components                        ← すべてのコンポーネントのフォルダ
    │  └─ HogeComponet                   ← 各コンポーネントフォルダ
