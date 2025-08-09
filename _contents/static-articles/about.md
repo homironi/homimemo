@@ -3,7 +3,7 @@ slug: about
 title: サイトと運営者について
 draft: false
 publishDate: 2023-07-01T00:00:00
-lastModDate: 2025-07-05T17:00:00
+lastModDate: 2025-08-09T14:32:00
 thumbnail: /images/header/about.webp
 description: このサイトと運営者についての説明です。
 ---
@@ -47,7 +47,7 @@ Develop blog なんか好きです。
 |version|主なフレームワーク等|時期|
 |--|--|--|
 |1.0|11ty|2023/08/23〜2025/04/15|
-|2.0|Next.js|2025/07/〜現在|
+|2.0|Next.js|2025/07/13〜現在|
 
 ### たのしむ
 
