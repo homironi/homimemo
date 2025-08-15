@@ -1,5 +1,6 @@
 import { CopyUrlButton } from "./CopyUrlButton";
 import { WebShareButton } from "./WebShareButton";
+import { XShareButton } from "./XShareButton";
 
 export type ShareButtonsProps = {
   slug: string;
@@ -12,6 +13,7 @@ export function ShareButtons({ slug, title }: ShareButtonsProps) {
     <div>
       <CopyUrlButton url={shareUrl} />
       <WebShareButton url={shareUrl} title={title} />
+      <XShareButton url={shareUrl} title={title} />
     </div>
   );
 }
