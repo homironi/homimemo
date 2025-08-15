@@ -111,7 +111,9 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
           width={articleThumbnailNativeSize.width}
           height={articleThumbnailNativeSize.height}
         />
-        <DynamicShareButtons slug={shareUrl} />
+        <div className={styles["share-buttons-container"]}>
+          <DynamicShareButtons slug={shareUrl} />
+        </div>
         <ArticleMdx
           content={content}
           tocContentSourceIdName={tocContentSourceIdName}
