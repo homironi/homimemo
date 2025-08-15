@@ -31,7 +31,7 @@ export function Profile() {
         <Link href="https://x.com/homironi" target="_blank">
           <XLogo />
         </Link>
-        <Link href="https://x.com/homironi" target="_blank">
+        <Link href="https://github.com/homironi" target="_blank">
           <GitHubLogo />
         </Link>
       </div>
