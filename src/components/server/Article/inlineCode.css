@@ -9,10 +9,5 @@
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 0.9em;
   box-sizing: border-box;
-}
-
-/* インラインコードが長い場合の処理 */
-.article-contents-container :not(pre) > code.long-code {
-  white-space: normal;
   word-break: break-all;
 }

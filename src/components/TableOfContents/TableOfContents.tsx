@@ -6,7 +6,6 @@ import "./TableOfContents.css";
 import styles from "./TableOfContents.module.css";
 
 export type TableOfContentsProps = {
-  className?: string;
   tocContentSourceIdName: string;
 };
 
