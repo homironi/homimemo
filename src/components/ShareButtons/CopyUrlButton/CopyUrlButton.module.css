@@ -1,0 +1,7 @@
+.icon{
+  fill: var(--text-color);
+}
+
+.copied-icon {
+  fill: var(--icon-color-success);
+}

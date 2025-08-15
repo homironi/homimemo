@@ -9,10 +9,20 @@ import { H2 } from "@/components/H2";
 import { H3 } from "@/components/H3";
 import { Profile } from "@/components/Profile";
 import { TextBlock } from "@/components/TextBlock";
-import { articlesListPagePath, articleThumbnailNativeSize, createArticleDetailPath, createCategoryListFirstPagePath, defaultArticleThumbnail } from "@/lib/article";
+import {
+  articlesListPagePath,
+  articleThumbnailNativeSize,
+  createArticleDetailPath,
+  createCategoryListFirstPagePath,
+  defaultArticleThumbnail,
+} from "@/lib/article";
 import { formatDate } from "@/lib/date";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
-import { rehypeCodeLangLabel, rehypeCodeToolContainer, rehypeCopyButton } from "@/lib/server/rehypePlugins/code";
+import {
+  rehypeCodeLangLabel,
+  rehypeCodeToolContainer,
+  rehypeCopyButton,
+} from "@/lib/server/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
 import { ArticleMeta, StaticArticleMeta } from "@/schemas/article/meta";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -30,8 +40,16 @@ import "./list.css";
 import "./prism.css"; // 記事内で使用するコードハイライトのPrismのスタイルを適用するためにインポート
 import "./table.css";
 
-const DynamicToc = dynamic(() => import("@/components/TableOfContents").then(mod => mod.TableOfContents));
-const DynamicCodeCopyHandler = dynamic(() => import("@/components/CopyCodeHandler").then(mod => mod.default));
+const DynamicToc = dynamic(() =>
+  import("@/components/TableOfContents").then((mod) => mod.TableOfContents)
+);
+const DynamicCodeCopyHandler = dynamic(() =>
+  import("@/components/CopyCodeHandler").then((mod) => mod.default)
+);
+const DynamicShareButtons = dynamic(() =>
+  import("@/components/ShareButtons").then((mod) => mod.ShareButtons)
+);
+
 const tocContentSourceIdName = "toc-source-content";
 
 type ArticleComponentMeta = ArticleMeta | StaticArticleMeta;
@@ -39,6 +57,7 @@ type ArticleComponentMeta = ArticleMeta | StaticArticleMeta;
 export type ArticleProps = {
   meta: ArticleComponentMeta;
   content: string;
+  shareSlug: string;
 };
 
 /**
@@ -48,67 +67,77 @@ export type ArticleProps = {
  * @param root0.content 記事内容
  * @returns 記事ページのコンポーネント
  */
-export function Article({ meta, content }: ArticleProps) {
+export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
   const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
 
   const publishDateText = formatDate(meta.publishDate, "YYYY/MM/DD");
   const lastModDateText = formatDate(meta.lastModDate, "YYYY/MM/DD");
 
+  const WrappedShareButtons = (
+    <div className={styles["share-buttons-container"]}>
+      <DynamicShareButtons slug={shareUrl} title={meta.title} />
+    </div>
+  );
+
   return (
-    <div className={ styles.container }>
+    <div className={styles.container}>
       <DynamicCodeCopyHandler />
       <div className={styles["first-side"]}>
         <div className={styles["toc-container"]}>
-          <DynamicToc
-            tocContentSourceIdName={tocContentSourceIdName}
-          />
+          <DynamicToc tocContentSourceIdName={tocContentSourceIdName} />
         </div>
       </div>
-      <main className={ styles.article }>
-        <Breadcrumbs breadcrumbs={ breadcrumbs } />
+      <main className={styles.article}>
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
         <h1>{meta.title}</h1>
-        <div className={ styles["meta-container"] }>
-          <div className={ styles["date-container"] }>
+        <div className={styles["meta-container"]}>
+          <div className={styles["date-container"]}>
             <span>
-              <PublishDateIcon className={ styles.icon } />
-              <time dateTime={ formatDate(meta.publishDate, "YYYY-MM-DD") }>{publishDateText}</time>
+              <PublishDateIcon className={styles.icon} />
+              <time dateTime={formatDate(meta.publishDate, "YYYY-MM-DD")}>
+                {publishDateText}
+              </time>
             </span>
             {/* 日付が違う時だけ更新があったとして更新日時を表示する。同じ日の場合は表示しない */}
             {publishDateText !== lastModDateText && (
               <span>
-                <LastModeDateIcon className={ styles.icon } />
-                <time dateTime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>{lastModDateText}</time>
+                <LastModeDateIcon className={styles.icon} />
+                <time dateTime={formatDate(meta.lastModDate, "YYYY-MM-DD")}>
+                  {lastModDateText}
+                </time>
               </span>
             )}
           </div>
-          { isArticleMeta(meta) && <ArticleCategory meta={ meta.category } />}
-          { isArticleMeta(meta) && meta.tags && <ArticleTags tags={ meta.tags } />}
+          {isArticleMeta(meta) && <ArticleCategory meta={meta.category} />}
+          {isArticleMeta(meta) && meta.tags && <ArticleTags tags={meta.tags} />}
         </div>
         <Image
-          src={ meta.thumbnail ?? defaultArticleThumbnail }
-          alt={ meta.title }
-          width={ articleThumbnailNativeSize.width }
-          height={ articleThumbnailNativeSize.height }
+          src={meta.thumbnail ?? defaultArticleThumbnail}
+          alt={meta.title}
+          width={articleThumbnailNativeSize.width}
+          height={articleThumbnailNativeSize.height}
         />
+        {WrappedShareButtons}
         <ArticleMdx
-          content={ content }
-          tocContentSourceIdName={ tocContentSourceIdName }
+          content={content}
+          tocContentSourceIdName={tocContentSourceIdName}
           className="article-contents-container"
         />
+        <hr />
+        {WrappedShareButtons}
       </main>
-      <div className={ styles["last-side"] }>
+      <div className={styles["last-side"]}>
         <Profile />
         <div
-          className={ styles["ads-container"] }
-          dangerouslySetInnerHTML={ {
-            __html:
-          `<a href="https://px.a8.net/svt/ejp?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" rel="nofollow">
+          className={styles["ads-container"]}
+          dangerouslySetInnerHTML={{
+            __html: `<a href="https://px.a8.net/svt/ejp?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" rel="nofollow">
           <img border="0" width="300" height="250" alt="" src="https://www28.a8.net/svt/bgt?aid=240906818962&wid=001&eno=01&mid=s00000001642001130000&mc=1"></a>
           <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" alt="">`,
-          } }
+          }}
         />
-        <ArticleCategoryList categories={ getAllCategories() } />
-        <ArticleTagList tags={ getAllTags() } />
+        <ArticleCategoryList categories={getAllCategories()} />
+        <ArticleTagList tags={getAllTags()} />
       </div>
     </div>
   );
@@ -126,16 +155,29 @@ type ArticleMdxProps = {
  * @returns 見出しコンポーネント
  */
 const createHeadingComponent = (Tag: "h1" | "h4" | "h5" | "h6") => {
-  return function HeadingComponent({ children, ...props }: PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>>) {
+  return function HeadingComponent({
+    children,
+    ...props
+  }: PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>>) {
     const processedChildren = React.Children.map(children, (child) => {
       if (React.isValidElement(child) && child.type === ExternalLink) {
-        const { href, children: childChildren, ...anchorProps } = child.props as React.AnchorHTMLAttributes<HTMLAnchorElement> & { children?: React.ReactNode };
-        return <a href={ href } { ...anchorProps }>{ childChildren }</a>;
+        const {
+          href,
+          children: childChildren,
+          ...anchorProps
+        } = child.props as React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+          children?: React.ReactNode;
+        };
+        return (
+          <a href={href} {...anchorProps}>
+            {childChildren}
+          </a>
+        );
       }
       return child;
     });
 
-    return <Tag { ...props }>{ processedChildren }</Tag>;
+    return <Tag {...props}>{processedChildren}</Tag>;
   };
 };
 
@@ -153,13 +195,10 @@ function ArticleMdx({
   tocContentSourceIdName,
 }: ArticleMdxProps) {
   return (
-    <article
-      id={ tocContentSourceIdName }
-      className={ className ?? "" }
-    >
+    <article id={tocContentSourceIdName} className={className ?? ""}>
       <MDXRemote
-        source={ content }
-        components={ {
+        source={content}
+        components={{
           a: ExternalLink,
           h1: createHeadingComponent("h1"),
           h2: H2,
@@ -168,12 +207,10 @@ function ArticleMdx({
           h5: createHeadingComponent("h5"),
           h6: createHeadingComponent("h6"),
           TextBlock,
-        } }
-        options={ {
+        }}
+        options={{
           mdxOptions: {
-            remarkPlugins: [
-              remarkGfm,
-            ],
+            remarkPlugins: [remarkGfm],
             rehypePlugins: [
               rehypeSlug,
               rehypeAutolinkHeadings,
@@ -184,7 +221,7 @@ function ArticleMdx({
               rehypeGfmTaskList,
             ],
           },
-        } }
+        }}
       />
     </article>
   );
@@ -212,8 +249,7 @@ function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
         isCurrent: true,
       },
     ];
-  }
-  else {
+  } else {
     return [
       {
         name: meta.title,

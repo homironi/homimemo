@@ -17,6 +17,10 @@
     border:1px solid var(--border-color-main);
 }
 
+.share-buttons-container {
+    margin: 1rem 0;
+}
+
 .article{
     grid-column: span 6;
     padding: 24px;
