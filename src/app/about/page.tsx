@@ -24,6 +24,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function AboutPage() {
   const { meta, content } = readStaticArticleContent(filePath);
   return (
-    <Article meta={ meta } content={ content } />
+    <Article
+      meta={meta}
+      content={content}
+      shareSlug={`/${path.basename(__dirname)}/`}
+    />
   );
 }
