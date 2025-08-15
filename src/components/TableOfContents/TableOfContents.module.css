@@ -6,10 +6,15 @@
 .container{
     --padding-toc: 16px;
 
-    background-color: var(--color-main);
-    border:1px solid var(--border-color-main);
     margin: 0;
     padding: var(--padding-toc);
     max-height: calc(100vh - var(--padding-toc) * 4);
     overflow: auto;
+}
+
+
+@media screen and (width <= 500px){
+    .container{
+        max-height: calc(40vh - var(--padding-toc) * 4);
+    }
 }

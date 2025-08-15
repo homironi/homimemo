@@ -1,0 +1,12 @@
+.icon{
+  margin: 4px;
+  fill: #000000;
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .icon {
+  fill: #ffffff;
+  }
+}

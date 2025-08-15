@@ -1,5 +1,10 @@
 import { Article } from "@/components/server/Article";
-import { convertMetaFromRaw, getFilePath, getIdToPathMap } from "@/lib/server/article";
+import { createArticleDetailPath } from "@/lib/article";
+import {
+  convertMetaFromRaw,
+  getFilePath,
+  getIdToPathMap,
+} from "@/lib/server/article";
 import { ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
@@ -28,9 +33,7 @@ export async function generateStaticParams(): Promise<Params[]> {
  * @param props 引数オブジェクト
  * @returns Meta情報
  */
-export async function generateMetadata(
-  props: Props,
-): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
   const { id } = await props.params;
   const raw = fs.readFileSync(getFilePath(id), "utf-8");
   const { data } = matter(raw);
@@ -48,7 +51,11 @@ export async function generateMetadata(
  * @param root0.params 記事のIDを含むパラメータ
  * @returns 記事ページのJSX要素
  */
-export default async function ArticlePage({ params }: { params: Promise<Params> }) {
+export default async function ArticlePage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
   const { id } = await params;
   const filePath = getFilePath(id);
   const raw = fs.readFileSync(filePath, "utf-8");
@@ -57,6 +64,10 @@ export default async function ArticlePage({ params }: { params: Promise<Params> 
   const meta = convertMetaFromRaw(rawMeta);
 
   return (
-    <Article meta={ meta } content={ content } />
+    <Article
+      meta={meta}
+      content={content}
+      shareSlug={createArticleDetailPath(id)}
+    />
   );
 }
