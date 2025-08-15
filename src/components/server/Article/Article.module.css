@@ -12,6 +12,11 @@
     top: 16px;
 }
 
+.toc-container{
+    background-color: var(--color-main);
+    border:1px solid var(--border-color-main);
+}
+
 .article{
     grid-column: span 6;
     padding: 24px;
@@ -55,6 +60,10 @@
 }
 
 @media screen and (width <= 1280px){
+    .container{
+        gap: 16px;
+    }
+
     .article{
         grid-column: span 9;
     }
@@ -67,7 +76,6 @@
 @media screen and (width <= 500px){
     .container{
         margin: 16px 0;
-        gap: 16px;
     }
 
     .first-side,

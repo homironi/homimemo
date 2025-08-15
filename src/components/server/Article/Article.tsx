@@ -57,10 +57,12 @@ export function Article({ meta, content }: ArticleProps) {
   return (
     <div className={ styles.container }>
       <DynamicCodeCopyHandler />
-      <div className={ styles["first-side"] }>
-        <DynamicToc
-          tocContentSourceIdName={ tocContentSourceIdName }
-        />
+      <div className={styles["first-side"]}>
+        <div className={styles["toc-container"]}>
+          <DynamicToc
+            tocContentSourceIdName={tocContentSourceIdName}
+          />
+        </div>
       </div>
       <main className={ styles.article }>
         <Breadcrumbs breadcrumbs={ breadcrumbs } />
