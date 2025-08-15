@@ -1,8 +1,8 @@
 .icon{
   margin: 4px;
   fill: #000000;
-  width: 1rem;
-  height: 1rem;
+  width: 1em;
+  height: 1em;
 }
 
 @media (prefers-color-scheme: dark) {

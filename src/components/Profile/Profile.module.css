@@ -9,3 +9,12 @@
     height:128px;
     border-radius: 50%;
 }
+
+.account-links-container{
+    display: inline-flex;
+    gap: 16px;
+}
+
+.account-link{
+    font-size: 1.6rem;
+}
