@@ -7,7 +7,7 @@ export function XShareButton({ url, title }: { url: string; title: string }) {
   const handleShare = () => {
     const tweetText = encodeURIComponent(`${title}\n${url}`);
     const twitterUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
-    window.open(twitterUrl, "_blank", "width=550,height=420");
+    window.open(twitterUrl, "_blank");
   };
 
   return (
