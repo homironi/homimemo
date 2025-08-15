@@ -27,11 +27,19 @@ export function Profile() {
         <br />
         いろいろするのがすき
       </p>
-      <div>
-        <Link href="https://x.com/homironi" target="_blank">
+      <div className={styles["account-links-container"]}>
+        <Link
+          href="https://x.com/homironi"
+          target="_blank"
+          className={styles["account-link"]}
+        >
           <XLogo />
         </Link>
-        <Link href="https://github.com/homironi" target="_blank">
+        <Link
+          href="https://github.com/homironi"
+          target="_blank"
+          className={styles["account-link"]}
+        >
           <GitHubLogo />
         </Link>
       </div>
