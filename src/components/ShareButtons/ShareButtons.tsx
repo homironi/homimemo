@@ -7,7 +7,7 @@ export type ShareButtonsProps = {
 };
 
 export function ShareButtons({ slug, title }: ShareButtonsProps) {
-  const shareUrl = `https://homironi.com/${slug}`;
+  const shareUrl = `https://homironi.com${slug}`;
   return (
     <div>
       <CopyUrlButton url={shareUrl} />
