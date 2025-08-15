@@ -73,6 +73,12 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
   const publishDateText = formatDate(meta.publishDate, "YYYY/MM/DD");
   const lastModDateText = formatDate(meta.lastModDate, "YYYY/MM/DD");
 
+  const WrappedShareButtons = (
+    <div className={styles["share-buttons-container"]}>
+      <DynamicShareButtons slug={shareUrl} title={meta.title} />
+    </div>
+  );
+
   return (
     <div className={styles.container}>
       <DynamicCodeCopyHandler />
@@ -111,18 +117,14 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
           width={articleThumbnailNativeSize.width}
           height={articleThumbnailNativeSize.height}
         />
-        <div className={styles["share-buttons-container"]}>
-          <DynamicShareButtons slug={shareUrl} title={meta.title} />
-        </div>
+        {WrappedShareButtons}
         <ArticleMdx
           content={content}
           tocContentSourceIdName={tocContentSourceIdName}
           className="article-contents-container"
         />
         <hr />
-        <div className={styles["share-buttons-container"]}>
-          <DynamicShareButtons slug={shareUrl} title={meta.title} />
-        </div>
+        {WrappedShareButtons}
       </main>
       <div className={styles["last-side"]}>
         <Profile />
