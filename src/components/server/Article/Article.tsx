@@ -46,6 +46,10 @@ const DynamicToc = dynamic(() =>
 const DynamicCodeCopyHandler = dynamic(() =>
   import("@/components/CopyCodeHandler").then((mod) => mod.default)
 );
+const DynamicShareButtons = dynamic(() =>
+  import("@/components/ShareButtons").then((mod) => mod.ShareButtons)
+);
+
 const tocContentSourceIdName = "toc-source-content";
 
 type ArticleComponentMeta = ArticleMeta | StaticArticleMeta;
@@ -53,6 +57,7 @@ type ArticleComponentMeta = ArticleMeta | StaticArticleMeta;
 export type ArticleProps = {
   meta: ArticleComponentMeta;
   content: string;
+  shareSlug: string;
 };
 
 /**
@@ -62,7 +67,7 @@ export type ArticleProps = {
  * @param root0.content 記事内容
  * @returns 記事ページのコンポーネント
  */
-export function Article({ meta, content }: ArticleProps) {
+export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
   const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
 
   const publishDateText = formatDate(meta.publishDate, "YYYY/MM/DD");
@@ -106,6 +111,7 @@ export function Article({ meta, content }: ArticleProps) {
           width={articleThumbnailNativeSize.width}
           height={articleThumbnailNativeSize.height}
         />
+        <DynamicShareButtons slug={shareUrl} />
         <ArticleMdx
           content={content}
           tocContentSourceIdName={tocContentSourceIdName}
