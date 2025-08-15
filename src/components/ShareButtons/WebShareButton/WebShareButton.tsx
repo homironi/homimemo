@@ -6,7 +6,7 @@ import styles from "./WebShareButton.module.css";
 
 type WebShareButtonProps = {
   url: string;
-  title?: string;
+  title: string;
   text?: string;
 };
 

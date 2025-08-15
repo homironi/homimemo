@@ -11,6 +11,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Sample: Story = {
   args: {
-    url: "https://example.com",
+    slug: "test-slug",
+    title: "お試しタイトル",
   },
 };
