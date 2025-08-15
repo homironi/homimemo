@@ -1,8 +1,12 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Navigation } from "@/components/Navigation";
-import { articlesListPagePath, createCategoryListFirstPagePath } from "@/lib/article";
+import {
+  articlesListPagePath,
+  createCategoryListFirstPagePath,
+} from "@/lib/article";
 import { getAllCategories } from "@/lib/server/article";
+import { siteName } from "@/lib/utils";
 import { NavigationLink } from "@/schemas/navigationLink";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
@@ -16,8 +20,6 @@ const kosugiMaru = Kosugi_Maru({
   display: "swap",
   subsets: ["latin"],
 });
-
-const siteName = "ほみろに";
 
 export const metadata: Metadata = {
   title: {
@@ -42,11 +44,12 @@ export const viewport: Viewport = {
   colorScheme: "light dark",
 };
 
-const categoriesLinks: NavigationLink[] = getAllCategories()
-  .map(category => ({
+const categoriesLinks: NavigationLink[] = getAllCategories().map(
+  (category) => ({
     href: createCategoryListFirstPagePath(category),
     label: category.name,
-  }));
+  })
+);
 
 const commonLinks: { [key: string]: NavigationLink } = {
   articles: { href: articlesListPagePath, label: "記事一覧" },
@@ -78,11 +81,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={ `${kosugiMaru.className} ${kosugiMaru.variable}` }>
+      <body className={`${kosugiMaru.className} ${kosugiMaru.variable}`}>
         <Header />
-        <Navigation links={ headerLinks } />
+        <Navigation links={headerLinks} />
         {children}
-        <Footer links={ footerLinks } />
+        <Footer links={footerLinks} />
         <GoogleAnalytics gaId="G-V6P1VWVXYK" />
       </body>
     </html>
