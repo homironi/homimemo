@@ -1,7 +1,17 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
 import { BreadcrumbElement } from "@/components/BreadCrumbs";
-import { createCategoryListFirstPagePath, filterArticlesCategory, getPageLength } from "@/lib/article";
-import { getAllArticlesMeta, getAllCategories, getCategoryMetaFromSlug } from "@/lib/server/article";
+import {
+  createCategoryListFirstPagePath,
+  createCategoryListPagePath,
+  filterArticlesCategory,
+  getPageLength,
+} from "@/lib/article";
+import {
+  getAllArticlesMeta,
+  getAllCategories,
+  getCategoryMetaFromSlug,
+} from "@/lib/server/article";
+import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import { CategoryMeta } from "@/schemas/article/meta";
 import type { Metadata } from "next";
 
@@ -18,11 +28,12 @@ export async function generateStaticParams(): Promise<Params[]> {
   const allArticles = getAllArticlesMeta();
   return getAllCategories()
     .map((category) => {
-      return getPageLength(filterArticlesCategory(allArticles, category).length)
-        .map(i => ({
-          categorySlug: category.slug,
-          number: i.toString(),
-        }));
+      return getPageLength(
+        filterArticlesCategory(allArticles, category).length
+      ).map((i) => ({
+        categorySlug: category.slug,
+        number: i.toString(),
+      }));
     })
     .flat();
 }
@@ -33,13 +44,29 @@ export async function generateStaticParams(): Promise<Params[]> {
  * @param root0.params パスを含むパラメータ
  * @returns Meta情報
  */
-export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
-  const categorySlug = (await params).categorySlug;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>;
+}): Promise<Metadata> {
+  const rawParams = await params;
+  const categorySlug = rawParams.categorySlug;
+  const number = parseInt(rawParams.number);
   const meta = getCategoryMetaFromSlug(categorySlug);
+  const title = createTitle(meta);
+  const description = `${meta.name}の記事の一覧ページです。${
+    meta.description ?? ""
+  }`;
 
   return {
-    title: createTitle(meta),
-    description: `${meta.name}の記事の一覧ページです。${meta.description}`,
+    title,
+    description,
+    openGraph: createDefaultOG(
+      title,
+      description,
+      createCategoryListPagePath(meta, number)
+    ),
+    twitter: createDefaultTwitter(title, description),
   };
 }
 
@@ -49,12 +76,18 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
  * @param root0.params パスを含むパラメータ
  * @returns 記事ページのJSX要素
  */
-export default async function CategoriesArticlesPage({ params }: { params: Promise<Params> }) {
+export default async function CategoriesArticlesPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
   const rawParams = await params;
   const number = parseInt(rawParams.number);
   const categoryMeta = getCategoryMetaFromSlug(rawParams.categorySlug);
-  const articles = filterArticlesCategory(getAllArticlesMeta(), categoryMeta)
-    .sort((a, b) => b.lastModDate.getTime() - a.lastModDate.getTime());
+  const articles = filterArticlesCategory(
+    getAllArticlesMeta(),
+    categoryMeta
+  ).sort((a, b) => b.lastModDate.getTime() - a.lastModDate.getTime());
   const breadcrumbs: BreadcrumbElement[] = [
     {
       name: categoryMeta.name,
@@ -64,11 +97,11 @@ export default async function CategoriesArticlesPage({ params }: { params: Promi
 
   return (
     <ArticleListPageLayout
-      breadcrumbs={ breadcrumbs }
-      title={ createTitle(categoryMeta) }
-      articles={ articles }
-      listPagePathBase={ createCategoryListFirstPagePath(categoryMeta) }
-      currentPageNumber={ number }
+      breadcrumbs={breadcrumbs}
+      title={createTitle(categoryMeta)}
+      articles={articles}
+      listPagePathBase={createCategoryListFirstPagePath(categoryMeta)}
+      currentPageNumber={number}
     />
   );
 }

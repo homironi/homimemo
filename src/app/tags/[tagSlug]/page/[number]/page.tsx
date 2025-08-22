@@ -1,7 +1,20 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
 import { BreadcrumbElement } from "@/components/BreadCrumbs";
-import { createTagsPath, filterArticlesTag, getPageLength } from "@/lib/article";
-import { getAllArticlesMeta, getAllTags, getTagMetaFromSlug } from "@/lib/server/article";
+import {
+  createTagsPath,
+  filterArticlesTag,
+  getPageLength,
+} from "@/lib/article";
+import {
+  getAllArticlesMeta,
+  getAllTags,
+  getTagMetaFromSlug,
+} from "@/lib/server/article";
+import {
+  createDefaultOG,
+  createDefaultTwitter,
+  createTitleFromTemplate,
+} from "@/lib/utils";
 import { TagMeta } from "@/schemas/article/meta";
 import type { Metadata } from "next";
 
@@ -18,11 +31,12 @@ export async function generateStaticParams(): Promise<Params[]> {
   const allArticles = getAllArticlesMeta();
   return getAllTags()
     .map((tag) => {
-      return getPageLength(filterArticlesTag(allArticles, tag).length)
-        .map(i => ({
+      return getPageLength(filterArticlesTag(allArticles, tag).length).map(
+        (i) => ({
           tagSlug: tag.slug,
           number: i.toString(),
-        }));
+        })
+      );
     })
     .flat();
 }
@@ -33,13 +47,24 @@ export async function generateStaticParams(): Promise<Params[]> {
  * @param root0.params パスを含むパラメータ
  * @returns Meta情報
  */
-export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>;
+}): Promise<Metadata> {
   const tagSlug = (await params).tagSlug;
   const meta = getTagMetaFromSlug(tagSlug);
+  const title = createTitle(meta);
+  const description = `${meta.name}の記事の一覧ページです。${
+    meta.description ?? ""
+  }`;
+  const slug = createTagsPath(meta);
 
   return {
-    title: createTitle(meta),
-    description: `${meta.name}の記事の一覧ページです。${meta.description}`,
+    title,
+    description,
+    openGraph: createDefaultOG(title, description, slug),
+    twitter: createDefaultTwitter(title, description),
   };
 }
 
@@ -49,12 +74,17 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
  * @param root0.params パスを含むパラメータ
  * @returns 記事ページのJSX要素
  */
-export default async function TagsArticlesPage({ params }: { params: Promise<Params> }) {
+export default async function TagsArticlesPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
   const rawParams = await params;
   const number = parseInt(rawParams.number);
   const tagMeta = getTagMetaFromSlug(rawParams.tagSlug);
-  const articles = filterArticlesTag(getAllArticlesMeta(), tagMeta)
-    .sort((a, b) => b.lastModDate.getTime() - a.lastModDate.getTime());
+  const articles = filterArticlesTag(getAllArticlesMeta(), tagMeta).sort(
+    (a, b) => b.lastModDate.getTime() - a.lastModDate.getTime()
+  );
   const breadcrumbs: BreadcrumbElement[] = [
     {
       name: tagMeta.name,
@@ -64,15 +94,15 @@ export default async function TagsArticlesPage({ params }: { params: Promise<Par
 
   return (
     <ArticleListPageLayout
-      breadcrumbs={ breadcrumbs }
-      title={ createTitle(tagMeta) }
-      articles={ articles }
-      listPagePathBase={ createTagsPath(tagMeta) }
-      currentPageNumber={ number }
+      breadcrumbs={breadcrumbs}
+      title={createTitle(tagMeta)}
+      articles={articles}
+      listPagePathBase={createTagsPath(tagMeta)}
+      currentPageNumber={number}
     />
   );
 }
 
 function createTitle(tagMeta: TagMeta) {
-  return `${tagMeta.name}の記事一覧`;
+  return createTitleFromTemplate(`${tagMeta.name}の記事一覧`);
 }
