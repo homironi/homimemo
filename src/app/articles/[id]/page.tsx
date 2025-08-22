@@ -5,6 +5,7 @@ import {
   getFilePath,
   getIdToPathMap,
 } from "@/lib/server/article";
+import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import { ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
@@ -42,6 +43,20 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: validatedMeta.title,
     description: validatedMeta.description,
+    openGraph: {
+      ...createDefaultOG(
+        validatedMeta.title,
+        validatedMeta.description,
+        createArticleDetailPath(id),
+        validatedMeta.thumbnail
+      ),
+      type: "article",
+    },
+    twitter: createDefaultTwitter(
+      validatedMeta.title,
+      validatedMeta.description,
+      validatedMeta.thumbnail
+    ),
   };
 }
 
