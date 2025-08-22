@@ -2,6 +2,7 @@
 
 import { XLogo } from "@/assets/logos";
 import { Button } from "@/components/Button";
+import styles from "./XShareButton.module.css";
 
 export function XShareButton({ url, title }: { url: string; title: string }) {
   const handleShare = () => {
@@ -11,8 +12,8 @@ export function XShareButton({ url, title }: { url: string; title: string }) {
   };
 
   return (
-    <Button onClick={handleShare} className="" title="Xでシェア">
-      <XLogo />
+    <Button onClick={handleShare} title="Xでシェア">
+      <XLogo className={styles.icon} />
     </Button>
   );
 }
