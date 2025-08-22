@@ -1,7 +1,12 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
 import { BreadcrumbElement } from "@/components/BreadCrumbs";
-import { articlesListPagePath, getPageLength } from "@/lib/article";
+import {
+  articlesListPagePath,
+  createArticleListPagePath,
+  getPageLength,
+} from "@/lib/article";
 import { getAllArticlesMeta } from "@/lib/server/article";
+import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import type { Metadata } from "next";
 
 const title = "記事一覧";
@@ -17,7 +22,7 @@ type Params = {
  */
 export async function generateStaticParams(): Promise<Params[]> {
   const numbers = getPageLength(getAllArticlesMeta().length);
-  return numbers.map(i => ({
+  return numbers.map((i) => ({
     number: i.toString(),
   }));
 }
@@ -26,10 +31,22 @@ export async function generateStaticParams(): Promise<Params[]> {
  * Next.jsのページで使用する静的Meta情報の生成
  * @returns Meta情報
  */
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>;
+}): Promise<Metadata> {
+  const number = parseInt((await params).number);
+  const description = "すべての記事の一覧ページです。";
   return {
-    title: title,
-    description: "すべての記事の一覧ページです。",
+    title,
+    description,
+    openGraph: createDefaultOG(
+      title,
+      description,
+      createArticleListPagePath(number)
+    ),
+    twitter: createDefaultTwitter(title, description),
   };
 }
 
@@ -39,10 +56,15 @@ export async function generateMetadata(): Promise<Metadata> {
  * @param root0.params 記事のIDを含むパラメータ
  * @returns 記事ページのJSX要素
  */
-export default async function ArticlesPage({ params }: { params: Promise<Params> }) {
+export default async function ArticlesPage({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
   const number = parseInt((await params).number);
-  const articles = getAllArticlesMeta()
-    .sort((a, b) => b.lastModDate.getTime() - a.lastModDate.getTime());
+  const articles = getAllArticlesMeta().sort(
+    (a, b) => b.lastModDate.getTime() - a.lastModDate.getTime()
+  );
   const breadcrumbs: BreadcrumbElement[] = [
     {
       name: title,
@@ -52,11 +74,11 @@ export default async function ArticlesPage({ params }: { params: Promise<Params>
 
   return (
     <ArticleListPageLayout
-      breadcrumbs={ breadcrumbs }
-      title={ title }
-      articles={ articles }
-      listPagePathBase={ listPagePathBase }
-      currentPageNumber={ number }
+      breadcrumbs={breadcrumbs}
+      title={title}
+      articles={articles}
+      listPagePathBase={listPagePathBase}
+      currentPageNumber={number}
     />
   );
 }
