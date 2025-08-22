@@ -31,9 +31,9 @@ export function CopyUrlButton({ url }: CopyUrlButtonProps) {
   return (
     <Button onClick={handleCopy} disabled={copied} title="URLをコピー">
       {copied ? (
-        <CheckIcon className={styles["copied-icon"]} />
+        <CheckIcon className={`${styles.icon} ${styles["copied-icon"]}`} />
       ) : (
-        <LinkIcon className={styles.icon} />
+        <LinkIcon className={`${styles.icon} ${styles["link-icon"]}`} />
       )}
     </Button>
   );
