@@ -6,7 +6,13 @@ import {
   createCategoryListFirstPagePath,
 } from "@/lib/article";
 import { getAllCategories } from "@/lib/server/article";
-import { siteName } from "@/lib/utils";
+import {
+  createDefaultOG,
+  createDefaultTwitter,
+  createTitleFromTemplate,
+  defaultDescription,
+  siteName,
+} from "@/lib/utils";
 import { NavigationLink } from "@/schemas/navigationLink";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
@@ -23,10 +29,10 @@ const kosugiMaru = Kosugi_Maru({
 
 export const metadata: Metadata = {
   title: {
-    template: `%s | ${siteName}`,
+    template: createTitleFromTemplate("%s"),
     default: siteName,
   },
-  description: "ゲームやお絵かきなどいろんなことを書く、ほみの個人サイトです。",
+  description: defaultDescription,
   generator: "Next.js",
   referrer: "origin-when-cross-origin",
   creator: "homironi",
@@ -37,6 +43,8 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  openGraph: createDefaultOG(),
+  twitter: createDefaultTwitter(),
 };
 
 export const viewport: Viewport = {
