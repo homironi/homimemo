@@ -1,5 +1,21 @@
-import { ArticleIdToPathMapElement, ArticleIdToPathMapElementSchema } from "@/schemas/article/idToPathMap";
-import { ArticleMeta, ArticleMetaFromJsonSchema, ArticleRawMeta, CategoriesMetaSchema, CategoryMeta, StaticArticleMeta, StaticArticleMetaSchema, TagMeta, TagsMetaSchema } from "@/schemas/article/meta";
+import {
+  ArticleIdToPathMapElement,
+  ArticleIdToPathMapElementSchema,
+} from "@/schemas/article/idToPathMap";
+import {
+  ArticleMeta,
+  ArticleMetaFromJsonSchema,
+  ArticleRawMeta,
+  CategoriesMetaSchema,
+  CategoryMeta,
+  StaticArticleMeta,
+  StaticArticleMetaSchema,
+  TagMeta,
+  TagsMetaSchema,
+} from "@/schemas/article/meta";
+import articlesMetaJson from "@public/generated/meta/articles.json";
+import categoriesMetaJson from "@public/generated/meta/categories.json";
+import tagsMetaJson from "@public/generated/meta/tags.json";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
@@ -8,22 +24,11 @@ import { array, parse } from "valibot";
 /**
  * 記事IDとそれに対応するマークダウンファイルのパスデータのファイルパス
  */
-export const idToPathMapPath = path.join(".temp", "article", "idToPathMap.json");
-
-/**
- * 記事情報ファイルのパス
- */
-export const articlesMetaFilePath = path.join("public", "generated", "meta", "articles.json");
-
-/**
- * カテゴリの情報ファイルのパス
- */
-export const categoriesMetaFilePath = path.join("public", "generated", "meta", "categories.json");
-
-/**
- * タグの情報ファイルのパス
- */
-export const tagsMetaFilePath = path.join("public", "generated", "meta", "tags.json");
+export const idToPathMapPath = path.join(
+  ".temp",
+  "article",
+  "idToPathMap.json"
+);
 
 /**
  * 記事のIDとファイルパスのマップのスキーマ
@@ -36,7 +41,7 @@ const IdToPathMapSchema = array(ArticleIdToPathMapElementSchema);
  * @returns 記事IDに対応するマークダウンファイルのパス
  */
 export function getFilePath(id: string): string {
-  const filePath = getIdToPathMap().find(item => item.id === id)?.filePath;
+  const filePath = getIdToPathMap().find((item) => item.id === id)?.filePath;
   if (!filePath) {
     throw new Error(`記事のファイルパスが見つかりません: ${id}`);
   }
@@ -49,7 +54,10 @@ export function getFilePath(id: string): string {
  * @returns 記事IDと対応するマークダウンファイルのパスのMapデータ
  */
 export function getIdToPathMap(): ArticleIdToPathMapElement[] {
-  return parse(IdToPathMapSchema, JSON.parse(fs.readFileSync(idToPathMapPath, "utf-8")));
+  return parse(
+    IdToPathMapSchema,
+    JSON.parse(fs.readFileSync(idToPathMapPath, "utf-8"))
+  );
 }
 
 /**
@@ -57,7 +65,7 @@ export function getIdToPathMap(): ArticleIdToPathMapElement[] {
  * @returns 記事Metaの配列
  */
 export function getAllArticlesMeta(): ArticleMeta[] {
-  return parse(array(ArticleMetaFromJsonSchema), JSON.parse(fs.readFileSync(articlesMetaFilePath, "utf-8")));
+  return parse(array(ArticleMetaFromJsonSchema), articlesMetaJson);
 }
 
 /**
@@ -79,7 +87,7 @@ export function convertMetaFromRaw(raw: ArticleRawMeta): ArticleMeta {
  * @returns カテゴリMetaの配列
  */
 export function getAllCategories(): CategoryMeta[] {
-  return parse(CategoriesMetaSchema, JSON.parse(fs.readFileSync(categoriesMetaFilePath, "utf-8")));
+  return parse(CategoriesMetaSchema, categoriesMetaJson);
 }
 
 /**
@@ -89,7 +97,7 @@ export function getAllCategories(): CategoryMeta[] {
  */
 export function getCategoryMeta(name: string): CategoryMeta {
   const categories = getAllCategories();
-  const find = categories.find(category => category.name === name);
+  const find = categories.find((category) => category.name === name);
   if (!find) {
     throw new Error(`存在しないカテゴリ名です：${name}`);
   }
@@ -102,7 +110,7 @@ export function getCategoryMeta(name: string): CategoryMeta {
  * @returns タグMetaの配列
  */
 export function getAllTags(): TagMeta[] {
-  return parse(TagsMetaSchema, JSON.parse(fs.readFileSync(tagsMetaFilePath, "utf-8")));
+  return parse(TagsMetaSchema, tagsMetaJson);
 }
 
 /**
@@ -112,7 +120,7 @@ export function getAllTags(): TagMeta[] {
  */
 export function getCategoryMetaFromSlug(slug: string): CategoryMeta {
   const categories = getAllCategories();
-  const find = categories.find(category => category.slug === slug);
+  const find = categories.find((category) => category.slug === slug);
   if (!find) {
     throw new Error(`存在しないカテゴリSlugです：${slug}`);
   }
@@ -138,7 +146,7 @@ function getTags(tagNames: string[]): TagMeta[] {
  */
 export function getTagMetaFromSlug(slug: string): TagMeta {
   const tags = getAllTags();
-  const find = tags.find(tag => tag.slug === slug);
+  const find = tags.find((tag) => tag.slug === slug);
   if (!find) {
     throw new Error(`存在しないタグSlugです：${slug}`);
   }
@@ -152,8 +160,8 @@ export function getTagMetaFromSlug(slug: string): TagMeta {
  * @returns タグ情報
  */
 function getTag(name: string): TagMeta {
-  const tags = parse(TagsMetaSchema, JSON.parse(fs.readFileSync(tagsMetaFilePath, "utf-8")));
-  const find = tags.find(tag => tag.name == name);
+  const tags = parse(TagsMetaSchema, tagsMetaJson);
+  const find = tags.find((tag) => tag.name == name);
   if (!find) {
     throw new Error(`存在しないタグ名です：${name}`);
   }
@@ -166,7 +174,10 @@ function getTag(name: string): TagMeta {
  * @param filePath 記事のマークダウンファイルのパス
  * @returns 記事のMeta情報とコンテンツ
  */
-export function readStaticArticleContent(filePath: string): { meta: StaticArticleMeta; content: string } {
+export function readStaticArticleContent(filePath: string): {
+  meta: StaticArticleMeta;
+  content: string;
+} {
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
   const meta = parse(StaticArticleMetaSchema, data);
