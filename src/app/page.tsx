@@ -1,4 +1,5 @@
-import { articlesListPagePath, createArticleDetailPath } from "@/lib/article";
+import { ArticleLink } from "@/components/ArticleLink";
+import { articlesListPagePath } from "@/lib/article";
 import { formatDate } from "@/lib/date";
 import { getAllArticlesMeta } from "@/lib/server/article";
 import { createDefaultOG } from "@/lib/utils";
@@ -26,16 +27,16 @@ export async function generateMetadata(): Promise<Metadata> {
  * @returns HomeページのJSX要素
  */
 export default function Home() {
-  const newArticles = getAllArticlesMeta()
+  const latestArticles = getAllArticlesMeta()
     .sort((a, b) => {
       return b.publishDate.getTime() - a.publishDate.getTime();
     })
     .slice(0, newArticlesCount);
   return (
-    <div>
+    <div className={styles.container}>
       <h2 className={styles.title}>新着記事</h2>
       <ol className={styles.list}>
-        {newArticles.map((article) => {
+        {latestArticles.map((article) => {
           return (
             <li key={article.id} className={styles.item}>
               <time
@@ -44,7 +45,7 @@ export default function Home() {
               >
                 {formatDate(article.publishDate, "YYYY/MM/DD")}
               </time>
-              <a href={createArticleDetailPath(article.id)}>{article.title}</a>
+              <ArticleLink meta={article} />
             </li>
           );
         })}

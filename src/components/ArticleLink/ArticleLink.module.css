@@ -1,7 +1,13 @@
 .container{
+    transition: transform 0.3s;
     max-width: 100%;
+    width: 100%;
     height: auto;
     margin: 0.5em 0;
+}
+
+.container:hover{
+    transform: scale(1.02);
 }
 
 .link{
@@ -10,6 +16,7 @@
     color: inherit;
     display: flex;
     min-width: 0;
+    background-color: var(--color-main);
     border: 1px solid var(--border-color-main);
     border-radius: var(--border-radius);
 }
@@ -32,16 +39,18 @@
     border-radius: var(--border-radius) 0 0 var(--border-radius);
 }
 
-.texts{
+.text-container{
     flex: 5 1 180px;
-    display: block;
-    font-size: 0.9rem;
-    overflow: hidden;
-    padding: 1rem;
+    padding: 0.5rem;
+    max-width: 100%;
+    min-width: 0;
 }
 
 .title{
     font-size: 0.9rem;
+    line-height: 1.5em;
+    height: 3em;
+    font-weight: normal;
 }
 
 .description{
@@ -51,19 +60,30 @@
     height: 3em;
 }
 
-.url{
+.title,
+.description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0.5em 0;
+}
+
+.date-container{
+    text-align: right;
+}
+
+.category,
+.date-container{
+    color: var(--text-color-pale);
     font-size: 0.8rem;
 }
 
-.title,
-.url{
-    line-height: 1.5em;
-    height: 1.5em;
+.icon{
+    fill: var(--text-color-pale);
+    width: 1rem;
+    height: 1rem;
+    vertical-align: -0.2em;
 }
 
-.title,
-.description,
-.url{
-    overflow: hidden;
-    text-overflow: ellipsis;
+.last-mod-date{
+    margin-right: 0.5rem;
 }
