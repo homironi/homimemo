@@ -1,6 +1,7 @@
 .container{
     transition: transform 0.3s;
     max-width: 100%;
+    width: 100%;
     height: auto;
     margin: 0.5em 0;
 }
@@ -41,12 +42,14 @@
 .text-container{
     flex: 5 1 180px;
     padding: 0.5rem;
+    max-width: 100%;
+    min-width: 0;
 }
 
 .title{
     font-size: 0.9rem;
     line-height: 1.5em;
-    height: 1.5em;
+    height: 3em;
     font-weight: normal;
 }
 
