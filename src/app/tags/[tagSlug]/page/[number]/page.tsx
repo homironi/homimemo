@@ -3,13 +3,11 @@ import { BreadcrumbElement } from "@/components/BreadCrumbs";
 import {
   createTagsPath,
   filterArticlesTag,
-  getPageLength,
-} from "@/lib/article";
-import {
   getAllArticlesMeta,
   getAllTags,
+  getPageLength,
   getTagMetaFromSlug,
-} from "@/lib/server/article";
+} from "@/lib/article";
 import {
   createDefaultOG,
   createDefaultTwitter,

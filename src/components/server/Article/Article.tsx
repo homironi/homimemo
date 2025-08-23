@@ -16,9 +16,10 @@ import {
   createArticleDetailPath,
   createCategoryListFirstPagePath,
   defaultArticleThumbnail,
+  getAllCategories,
+  getAllTags,
 } from "@/lib/article";
 import { formatDate } from "@/lib/date";
-import { getAllCategories, getAllTags } from "@/lib/server/article";
 import {
   rehypeCodeLangLabel,
   rehypeCodeToolContainer,

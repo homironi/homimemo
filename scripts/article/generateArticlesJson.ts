@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { convertMetaFromRaw } from "@/lib/server/article";
+import { convertMetaFromRaw } from "@/lib/article";
 import { ArticleMeta, ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";

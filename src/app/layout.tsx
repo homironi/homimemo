@@ -4,8 +4,8 @@ import { Navigation } from "@/components/Navigation";
 import {
   articlesListPagePath,
   createCategoryListFirstPagePath,
+  getAllCategories,
 } from "@/lib/article";
-import { getAllCategories } from "@/lib/server/article";
 import {
   createDefaultOG,
   createDefaultTwitter,

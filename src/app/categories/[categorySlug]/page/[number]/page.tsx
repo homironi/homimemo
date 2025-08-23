@@ -4,13 +4,11 @@ import {
   createCategoryListFirstPagePath,
   createCategoryListPagePath,
   filterArticlesCategory,
-  getPageLength,
-} from "@/lib/article";
-import {
   getAllArticlesMeta,
   getAllCategories,
   getCategoryMetaFromSlug,
-} from "@/lib/server/article";
+  getPageLength,
+} from "@/lib/article";
 import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import { CategoryMeta } from "@/schemas/article/meta";
 import type { Metadata } from "next";

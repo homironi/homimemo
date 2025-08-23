@@ -1,6 +1,9 @@
-import { articlesListPagePath, createArticleDetailPath } from "@/lib/article";
+import {
+  articlesListPagePath,
+  createArticleDetailPath,
+  getAllArticlesMeta,
+} from "@/lib/article";
 import { formatDate } from "@/lib/date";
-import { getAllArticlesMeta } from "@/lib/server/article";
 import { createDefaultOG } from "@/lib/utils";
 import { Metadata } from "next";
 import Link from "next/link";

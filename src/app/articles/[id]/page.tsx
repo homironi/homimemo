@@ -1,10 +1,6 @@
 import { Article } from "@/components/server/Article";
-import { createArticleDetailPath } from "@/lib/article";
-import {
-  convertMetaFromRaw,
-  getFilePath,
-  getIdToPathMap,
-} from "@/lib/server/article";
+import { convertMetaFromRaw, createArticleDetailPath } from "@/lib/article";
+import { getFilePath, getIdToPathMap } from "@/lib/server/article";
 import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import { ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";

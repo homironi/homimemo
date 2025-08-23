@@ -3,9 +3,9 @@ import { BreadcrumbElement } from "@/components/BreadCrumbs";
 import {
   articlesListPagePath,
   createArticleListPagePath,
+  getAllArticlesMeta,
   getPageLength,
 } from "@/lib/article";
-import { getAllArticlesMeta } from "@/lib/server/article";
 import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import type { Metadata } from "next";
 
