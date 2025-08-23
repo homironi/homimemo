@@ -1,3 +1,9 @@
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 1rem;
+}
+
 .title{
   text-align: center;
 }
@@ -9,7 +15,7 @@
 }
 
 .item{
-  display: flex;
+  display: block;
   padding: 0.5rem;
   border-bottom: 0.2em dotted var(--color-main-dark);
 }
@@ -22,4 +28,14 @@
   display: block;
   text-align: center;
   padding: 1rem;
+}
+
+@media screen and (width <= 500px) {
+  .container {
+    padding: 0;
+  }
+
+  .list{
+    padding: 0;
+  }
 }
