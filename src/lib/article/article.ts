@@ -19,8 +19,11 @@ export function createArticleDetailPath(id: string): string {
  * @returns カテゴリでフィルターした記事リスト
  * @description ほかで使用することがあれば定義を移動する
  */
-export function filterArticlesCategory(articles: ArticleMeta[], category: CategoryMeta): ArticleMeta[] {
-  return articles.filter(meta => meta.category.slug === category.slug);
+export function filterArticlesCategory(
+  articles: ArticleMeta[],
+  category: CategoryMeta
+): ArticleMeta[] {
+  return articles.filter((meta) => meta.category.slug === category.slug);
 }
 
 /**
@@ -30,6 +33,11 @@ export function filterArticlesCategory(articles: ArticleMeta[], category: Catego
  * @returns カテゴリでフィルターした記事リスト
  * @description ほかで使用することがあれば定義を移動する
  */
-export function filterArticlesTag(articles: ArticleMeta[], filterTag: TagMeta): ArticleMeta[] {
-  return articles.filter(meta => meta.tags?.find(tag => tag.slug === filterTag.slug));
+export function filterArticlesTag(
+  articles: ArticleMeta[],
+  filterTag: TagMeta
+): ArticleMeta[] {
+  return articles.filter((meta) =>
+    meta.tags?.find((tag) => tag.slug === filterTag.slug)
+  );
 }
