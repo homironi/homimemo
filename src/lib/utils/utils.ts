@@ -16,6 +16,7 @@ export function createDefaultOG(
 ): OpenGraph {
   const url = createUrlFromSlug(slug || "/");
   const titleText = title ? createTitleFromTemplate(title) : siteName;
+  const imageUrl = thumbnail || defaultArticleThumbnail;
   return {
     siteName: siteName,
     title: titleText,
@@ -23,7 +24,9 @@ export function createDefaultOG(
     url,
     images: [
       {
-        url: thumbnail || defaultArticleThumbnail,
+        url: imageUrl.startsWith("http")
+          ? imageUrl
+          : createUrlFromSlug(imageUrl), // 自身のサイトの場合はフルURLに変換
         alt: titleText,
       },
     ],
@@ -35,12 +38,15 @@ export function createDefaultTwitter(
   description?: string,
   thumbnail?: string
 ): Twitter {
+  const imageUrl = thumbnail || defaultArticleThumbnail;
   return {
     card: "summary_large_image",
     site: siteName,
     title: title ? createTitleFromTemplate(title) : siteName,
     description: description || defaultDescription,
-    images: [thumbnail || defaultArticleThumbnail],
+    images: [
+      imageUrl.startsWith("http") ? imageUrl : createUrlFromSlug(imageUrl), // 自身のサイトの場合はフルURLに変換
+    ],
   };
 }
 
