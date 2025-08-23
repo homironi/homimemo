@@ -8,6 +8,7 @@ import { ExternalLink } from "@/components/ExternalLink";
 import { H2 } from "@/components/H2";
 import { H3 } from "@/components/H3";
 import { Profile } from "@/components/Profile";
+import { CardPreviewUrl } from "@/components/server/CardPreviewUrl";
 import { TextBlock } from "@/components/TextBlock";
 import {
   articlesListPagePath,
@@ -33,6 +34,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import { object, pipe, safeParse, string, url } from "valibot";
 import styles from "./Article.module.css";
 import "./blockquote.css"; // 引用のスタイルを適用するためにインポート
 import "./inlineCode.css"; // インラインコードのスタイルを適用するためにインポート
@@ -199,6 +201,7 @@ function ArticleMdx({
       <MDXRemote
         source={content}
         components={{
+          p: CustomParagraph,
           a: ExternalLink,
           h1: createHeadingComponent("h1"),
           h2: H2,
@@ -268,3 +271,33 @@ function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
 function isArticleMeta(meta: ArticleComponentMeta): meta is ArticleMeta {
   return "category" in meta && "tags" in meta;
 }
+
+const childrenAnchorPropsSchema = object({
+  children: pipe(string(), url()),
+  href: pipe(string(), url()),
+});
+
+export const CustomParagraph = async ({
+  children,
+  ...props
+}: PropsWithChildren<React.HTMLAttributes<HTMLParagraphElement>>) => {
+  // 子要素が1つのテキストノードで、それがURLの場合はカード表示する
+  if (
+    children &&
+    React.Children.count(children) === 1 &&
+    typeof children === "object" &&
+    React.isValidElement(children)
+  ) {
+    const validatedChildrenProps = safeParse(
+      childrenAnchorPropsSchema,
+      children.props
+    );
+    if (validatedChildrenProps.success) {
+      const { href } = validatedChildrenProps.output;
+      const trimmedHref = href.trim();
+      return <CardPreviewUrl url={trimmedHref} />;
+    }
+  }
+
+  return <p {...props}>{children}</p>;
+};

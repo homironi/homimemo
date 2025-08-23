@@ -6,6 +6,8 @@ export const siteName = "ほみろに";
 export const defaultDescription =
   "ゲームやお絵かきなどいろんなことを書く、ほみの個人サイトです。";
 
+export const noImageUrl = "/images/no-image.webp";
+
 export function createDefaultOG(
   title?: string,
   description?: string,
