@@ -38,12 +38,15 @@ export function createDefaultTwitter(
   description?: string,
   thumbnail?: string
 ): Twitter {
+  const imageUrl = thumbnail || defaultArticleThumbnail;
   return {
     card: "summary_large_image",
     site: siteName,
     title: title ? createTitleFromTemplate(title) : siteName,
     description: description || defaultDescription,
-    images: [thumbnail || defaultArticleThumbnail],
+    images: [
+      imageUrl.startsWith("http") ? imageUrl : createUrlFromSlug(imageUrl), // 自身のサイトの場合はフルURLに変換
+    ],
   };
 }
 
