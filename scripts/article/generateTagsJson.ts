@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { TagMeta, TagMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
