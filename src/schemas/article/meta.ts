@@ -4,6 +4,7 @@ import {
   date,
   InferOutput,
   minLength,
+  nonEmpty,
   object,
   optional,
   pipe,
@@ -34,7 +35,7 @@ const metaSchemaBase = {
   draft: boolean(),
   publishDate: date(),
   lastModDate: date(),
-  thumbnail: optional(string()),
+  thumbnail: optional(pipe(string(), nonEmpty())),
   description: pipe(string(), minLength(1)),
 };
 
@@ -60,8 +61,14 @@ export type ArticleRawMeta = InferOutput<typeof ArticleRawMetaSchema>;
  */
 export const ArticleMetaFromJsonSchema = object({
   ...articleMetaSchemaBase,
-  publishDate: pipe(string(), transform(date => new Date(date))),
-  lastModDate: pipe(string(), transform(date => new Date(date))),
+  publishDate: pipe(
+    string(),
+    transform((date) => new Date(date))
+  ),
+  lastModDate: pipe(
+    string(),
+    transform((date) => new Date(date))
+  ),
   category: CategoryMetaSchema,
   tags: optional(TagsMetaSchema),
 });
