@@ -16,16 +16,8 @@ import {
 import { NavigationLink } from "@/schemas/navigationLink";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
-import { Kosugi_Maru } from "next/font/google";
 import "./globalElement.css";
 import "./globals.css";
-
-const kosugiMaru = Kosugi_Maru({
-  variable: "--font-kosugi-maru",
-  weight: "400",
-  display: "swap",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -89,7 +81,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${kosugiMaru.className} ${kosugiMaru.variable}`}>
+      <body>
         <Header />
         <Navigation links={headerLinks} />
         {children}
