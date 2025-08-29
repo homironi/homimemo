@@ -5,11 +5,16 @@
 .list{
     margin: 0;
     padding: 0;
+    width: 100%;
+    overflow-x: scroll;
+    display: flex;
+    scrollbar-width: none;
 }
 
 .item {
     list-style: none;
     display: inline-block;
+    white-space: nowrap;
 }
 
 .item::after {
