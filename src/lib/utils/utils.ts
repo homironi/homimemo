@@ -58,3 +58,26 @@ export function createTitleFromTemplate(title: string) {
 export function createUrlFromSlug(slug: string) {
   return `${siteOrigin}${slug}`;
 }
+
+export function getSiteArticleUrl(url: URL): string | null {
+  if (!isSiteOrigin(url)) {
+    return null;
+  }
+
+  const articlePathPattern = /^\/articles\/([a-zA-Z0-9]{24})\/?$/;
+  const match = articlePathPattern.exec(url.pathname);
+  if (match === null || match.length < 2) {
+    return null;
+  }
+
+  return match[1];
+}
+
+function isSiteOrigin(url: URL): boolean {
+  if (process.env.NODE_ENV === "development") {
+    const localhostPattern = /http:\/\/localhost:[0-9]+/;
+    return localhostPattern.test(url.origin) || url.origin === siteOrigin;
+  }
+
+  return url.origin === siteOrigin;
+}
