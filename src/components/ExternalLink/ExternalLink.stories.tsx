@@ -40,6 +40,7 @@ export const InternalLink: Story = {
 export const LongText: Story = {
   args: {
     href: "https://github.com/example/repository",
-    children: "これは非常に長いテキストを含むリンクで、アイコンの配置を確認するためのものです",
+    children:
+      "これは非常に長いテキストを含むリンクで、アイコンの配置を確認するためのものです",
   },
 };

@@ -9,18 +9,22 @@ import styles from "./ArticleCategoryList.module.css";
  * @param root0.categories カテゴリのメタ情報の配列
  * @returns カテゴリの一覧を表示するコンポーネント
  */
-export function ArticleCategoryList({ categories }: { categories: CategoryMeta[] }) {
+export function ArticleCategoryList({
+  categories,
+}: {
+  categories: CategoryMeta[];
+}) {
   return (
-    <div className={ styles.container }>
+    <div className={styles.container}>
       <p>カテゴリ一覧</p>
-      <ul className={ styles.list }>
-        {categories.map(category => (
-          <li key={ category.slug } className={ styles.item }>
+      <ul className={styles.list}>
+        {categories.map((category) => (
+          <li key={category.slug} className={styles.item}>
             <Link
-              href={ createCategoryListFirstPagePath(category) }
-              className={ styles.link }
+              href={createCategoryListFirstPagePath(category)}
+              className={styles.link}
             >
-              { category.name }
+              {category.name}
             </Link>
           </li>
         ))}

@@ -2,10 +2,7 @@ import type { StorybookConfig } from "@storybook/nextjs-vite";
 import svgr from "vite-plugin-svgr";
 
 const config: StorybookConfig = {
-  stories: [
-    "../src/stories/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-  ],
+  stories: ["../src/stories/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
     "@storybook/addon-onboarding",
     "@chromatic-com/storybook",
@@ -16,21 +13,19 @@ const config: StorybookConfig = {
     name: "@storybook/nextjs-vite",
     options: {},
   },
-  staticDirs: [
-    "../public",
-  ],
+  staticDirs: ["../public"],
   viteFinal(config) {
     config.plugins?.push(
       svgr({
         include: /\.svg$/,
-      }),
+      })
     );
     config.plugins = config.plugins?.flat().map((plugin) => {
       if (
-        typeof plugin === "object"
-        && plugin !== null
-        && "name" in plugin
-        && plugin.name === "vite-plugin-storybook-nextjs-image"
+        typeof plugin === "object" &&
+        plugin !== null &&
+        "name" in plugin &&
+        plugin.name === "vite-plugin-storybook-nextjs-image"
       ) {
         return {
           ...plugin,

@@ -33,6 +33,7 @@ export const WithLink: Story = {
 
 export const LongText: Story = {
   args: {
-    children: "これは非常に長いテキストを含む見出しで、吹き出しデザインの表示を確認するためのものです",
+    children:
+      "これは非常に長いテキストを含む見出しで、吹き出しデザインの表示を確認するためのものです",
   },
 };

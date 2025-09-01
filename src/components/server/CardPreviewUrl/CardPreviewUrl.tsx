@@ -1,5 +1,7 @@
 import { CardPreview, CardPreviewProps } from "@/components/CardPreview";
 import { ExternalLink } from "@/components/ExternalLink";
+import { getArticleMeta } from "@/lib/article";
+import { createTitleFromTemplate, getSiteArticleUrl } from "@/lib/utils";
 import { array, nullable, object, optional, safeParse, string } from "valibot";
 
 export type CardPreviewUrlProps = {
@@ -19,6 +21,35 @@ const OGPScannerResponseSchema = object({
 });
 
 export async function CardPreviewUrl({ url }: CardPreviewUrlProps) {
+  const cardPreviewProps = await getCardPreviewProps(url);
+  if (cardPreviewProps) {
+    return <CardPreview {...cardPreviewProps} />;
+  }
+
+  return (
+    <p>
+      <ExternalLink href={url}>{url}</ExternalLink>
+    </p>
+  );
+}
+
+async function getCardPreviewProps(
+  url: string
+): Promise<CardPreviewProps | null> {
+  // 自サイト内の記事の場合は比較的簡単にMetaからとれるのでそちらを使う
+  const siteArticleId = getSiteArticleUrl(new URL(url));
+  if (siteArticleId) {
+    const meta = getArticleMeta(siteArticleId);
+    if (meta) {
+      return {
+        url,
+        title: createTitleFromTemplate(meta.title),
+        description: meta.description,
+        imageUrl: meta.thumbnail,
+      };
+    }
+  }
+
   const response = await fetch(
     `https://ogp-scanner.kunon.jp/v1/ogp_info?url=${url}`
   );
@@ -39,13 +70,9 @@ export async function CardPreviewUrl({ url }: CardPreviewUrlProps) {
         imageUrl: scanData.output.ogp?.["og:image"]?.[0],
       };
 
-      return <CardPreview {...cardData} />;
+      return cardData;
     }
   }
 
-  return (
-    <p>
-      <ExternalLink href={url}>{url}</ExternalLink>
-    </p>
-  );
+  return null;
 }

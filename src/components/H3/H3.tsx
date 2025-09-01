@@ -2,7 +2,9 @@ import { ExternalLink } from "@/components/ExternalLink";
 import React, { PropsWithChildren } from "react";
 import styles from "./H3.module.css";
 
-export type H3Props = PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>>;
+export type H3Props = PropsWithChildren<
+  React.HTMLAttributes<HTMLHeadingElement>
+>;
 
 /**
  * 下線スタイルのH3コンポーネント
@@ -14,15 +16,25 @@ export type H3Props = PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>
 export function H3({ children, className, ...props }: H3Props) {
   const processedChildren = React.Children.map(children, (child) => {
     if (React.isValidElement(child) && child.type === ExternalLink) {
-      const { href, children: childChildren, ...anchorProps } = child.props as React.AnchorHTMLAttributes<HTMLAnchorElement> & { children?: React.ReactNode };
-      return <a href={ href } { ...anchorProps }>{ childChildren }</a>;
+      const {
+        href,
+        children: childChildren,
+        ...anchorProps
+      } = child.props as React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+        children?: React.ReactNode;
+      };
+      return (
+        <a href={href} {...anchorProps}>
+          {childChildren}
+        </a>
+      );
     }
     return child;
   });
 
   return (
-    <h3 className={ `${styles.h3} ${className ?? ""}` } { ...props }>
-      { processedChildren }
+    <h3 className={`${styles.h3} ${className ?? ""}`} {...props}>
+      {processedChildren}
     </h3>
   );
 }
