@@ -1,7 +1,7 @@
 import { CardPreview, CardPreviewProps } from "@/components/CardPreview";
 import { ExternalLink } from "@/components/ExternalLink";
 import { getArticleMeta } from "@/lib/article";
-import { getSiteArticleUrl } from "@/lib/utils";
+import { createTitleFromTemplate, getSiteArticleUrl } from "@/lib/utils";
 import { array, nullable, object, optional, safeParse, string } from "valibot";
 
 export type CardPreviewUrlProps = {
@@ -45,7 +45,7 @@ async function getCardPreviewProps(
     if (meta) {
       return {
         url,
-        title: meta.title,
+        title: createTitleFromTemplate(meta.title),
         description: meta.description,
         imageUrl: meta.thumbnail,
       };
