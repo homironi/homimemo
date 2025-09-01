@@ -5,6 +5,7 @@ import { defaultArticleThumbnail } from "../article";
 export const siteName = "ほみろに";
 export const defaultDescription =
   "ゲームやお絵かきなどいろんなことを書く、ほみの個人サイトです。";
+export const siteOrigin = "https://homironi.com";
 
 export const noImageUrl = "/images/no-image.webp";
 
@@ -55,5 +56,5 @@ export function createTitleFromTemplate(title: string) {
 }
 
 export function createUrlFromSlug(slug: string) {
-  return `https://homironi.com${slug}`;
+  return `${siteOrigin}${slug}`;
 }
