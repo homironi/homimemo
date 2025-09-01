@@ -1,4 +1,11 @@
-import { ArticleMeta, CategoryMeta, TagMeta } from "@/schemas/article/meta";
+import {
+  ArticleMeta,
+  ArticleMetaFromJsonSchema,
+  CategoryMeta,
+  TagMeta,
+} from "@/schemas/article/meta";
+import ArticleMetaJson from "@public/generated/meta/articles.json";
+import { safeParse } from "valibot";
 
 export const articleThumbnailNativeSize = { width: 896, height: 504 };
 export const defaultArticleThumbnail = "/images/header/default.webp";
@@ -19,8 +26,11 @@ export function createArticleDetailPath(id: string): string {
  * @returns カテゴリでフィルターした記事リスト
  * @description ほかで使用することがあれば定義を移動する
  */
-export function filterArticlesCategory(articles: ArticleMeta[], category: CategoryMeta): ArticleMeta[] {
-  return articles.filter(meta => meta.category.slug === category.slug);
+export function filterArticlesCategory(
+  articles: ArticleMeta[],
+  category: CategoryMeta
+): ArticleMeta[] {
+  return articles.filter((meta) => meta.category.slug === category.slug);
 }
 
 /**
@@ -30,6 +40,26 @@ export function filterArticlesCategory(articles: ArticleMeta[], category: Catego
  * @returns カテゴリでフィルターした記事リスト
  * @description ほかで使用することがあれば定義を移動する
  */
-export function filterArticlesTag(articles: ArticleMeta[], filterTag: TagMeta): ArticleMeta[] {
-  return articles.filter(meta => meta.tags?.find(tag => tag.slug === filterTag.slug));
+export function filterArticlesTag(
+  articles: ArticleMeta[],
+  filterTag: TagMeta
+): ArticleMeta[] {
+  return articles.filter((meta) =>
+    meta.tags?.find((tag) => tag.slug === filterTag.slug)
+  );
+}
+
+/**
+ * 指定したIDの記事Meta情報を取得する
+ * @param id 記事ID
+ * @returns 指定したIDの記事Meta情報
+ */
+export function getArticleMeta(id: string): ArticleMeta | null {
+  const find = ArticleMetaJson.find((meta) => meta.id === id);
+  const parsed = safeParse(ArticleMetaFromJsonSchema, find);
+  if (parsed.success) {
+    return parsed.output;
+  }
+
+  return null;
 }
