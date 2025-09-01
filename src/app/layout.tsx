@@ -86,7 +86,9 @@ export default function RootLayout({
         <Navigation links={headerLinks} />
         {children}
         <Footer links={footerLinks} />
-        <GoogleAnalytics gaId="G-V6P1VWVXYK" />
+        {process.env.NODE_ENV === "production" && (
+          <GoogleAnalytics gaId="G-V6P1VWVXYK" />
+        )}
       </body>
     </html>
   );

@@ -20,6 +20,8 @@ jobs:
 
           - name: Set up Node.js
             uses: actions/setup-node@v4
+            env:
+              NODE_ENV: production #GoogleAnalyticsを有効にするため
             with:
               cache: "pnpm"
 
