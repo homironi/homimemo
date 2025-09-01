@@ -11,8 +11,7 @@ type Story = StoryObj<typeof meta>;
 
 export const HomeOnly: Story = {
   args: {
-    breadcrumbs: [
-    ],
+    breadcrumbs: [],
   },
 };
 

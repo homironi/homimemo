@@ -3,9 +3,7 @@ import "../src/app/globalElement.css";
 import "../src/app/globals.css";
 
 const preview: Preview = {
-  tags: [
-    "autodocs",
-  ],
+  tags: ["autodocs"],
   parameters: {
     controls: {
       matchers: {

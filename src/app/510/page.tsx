@@ -9,9 +9,7 @@ export default function NotExtended() {
     <ErrorPage
       errorCode="510"
       errorTitle="Not Extended"
-      errorMessage={ (
-        <p>サイトへのアクセスが集中しています。</p>
-      ) }
+      errorMessage={<p>サイトへのアクセスが集中しています。</p>}
     />
   );
 }

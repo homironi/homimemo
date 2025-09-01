@@ -20,7 +20,7 @@ export const Sample: Story = {
   args: {
     tags: Array.from({ length: 10 }, (_, i) => ({
       ...sampleCategory,
-      name: (`${i + 1}-サンプルタグ`).slice(0, i + 1),
+      name: `${i + 1}-サンプルタグ`.slice(0, i + 1),
       slug: `sample-${i + 1}`,
     })),
   },
