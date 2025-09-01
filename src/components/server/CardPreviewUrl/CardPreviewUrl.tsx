@@ -38,10 +38,8 @@ async function getCardPreviewProps(
 ): Promise<CardPreviewProps | null> {
   // 自サイト内の記事の場合は比較的簡単にMetaからとれるのでそちらを使う
   const siteArticleId = getSiteArticleUrl(new URL(url));
-  console.log("siteArticleId:", siteArticleId);
   if (siteArticleId) {
     const meta = getArticleMeta(siteArticleId);
-    console.log("homironi:", meta);
     if (meta) {
       return {
         url,
