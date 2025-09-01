@@ -39,6 +39,7 @@ export const WithLink: Story = {
 
 export const LongText: Story = {
   args: {
-    children: "これは非常に長いテキストを含む見出しで、下線スタイルの表示を確認するためのものです",
+    children:
+      "これは非常に長いテキストを含む見出しで、下線スタイルの表示を確認するためのものです",
   },
 };

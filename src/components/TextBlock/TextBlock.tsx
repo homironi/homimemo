@@ -10,7 +10,14 @@ import {
 import { ReactNode } from "react";
 import styles from "./TextBlock.module.css";
 
-export type TextBlockType = "info" | "warning" | "error" | "success" | "note" | "tip" | "question";
+export type TextBlockType =
+  | "info"
+  | "warning"
+  | "error"
+  | "success"
+  | "note"
+  | "tip"
+  | "question";
 export type TextBlockTitleLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 type Props = {
@@ -63,17 +70,22 @@ function getIconForBlockType(blockType: TextBlockType) {
  * @param root0.children 子要素
  * @returns テキストブロックコンポーネント
  */
-export function TextBlock({ blockType, title, titleLevel = "h3", children }: Props) {
+export function TextBlock({
+  blockType,
+  title,
+  titleLevel = "h3",
+  children,
+}: Props) {
   const TitleTag = titleLevel;
   const Icon = getIconForBlockType(blockType);
 
   return (
-    <div className={ `${styles["text-block"]} ${styles[`text-block-${blockType}`]}` }>
-      <Icon className={ styles.icon } />
-      { title && <TitleTag className={ styles.title }>{ title }</TitleTag> }
-      <div className={ styles.content }>
-        { children }
-      </div>
+    <div
+      className={`${styles["text-block"]} ${styles[`text-block-${blockType}`]}`}
+    >
+      <Icon className={styles.icon} />
+      {title && <TitleTag className={styles.title}>{title}</TitleTag>}
+      <div className={styles.content}>{children}</div>
     </div>
   );
 }
