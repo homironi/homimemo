@@ -35,23 +35,26 @@ export default function CopyCodeHandler() {
 
             const m = line.match(/^(\s+)/);
             const indent = m ? m[1].length : 0;
-            acc.indent = acc.lines.length ? Math.min(acc.indent, indent) : indent;
+            acc.indent = acc.lines.length
+              ? Math.min(acc.indent, indent)
+              : indent;
             acc.lines.push(line);
             return acc;
           },
-          { indent: Infinity, lines: [] },
+          { indent: Infinity, lines: [] }
         );
 
       const { indent, lines } = cleaned;
-      const finalCleaned = lines.map(l => l.slice(isFinite(indent) ? indent : 0)).join("\n");
+      const finalCleaned = lines
+        .map((l) => l.slice(isFinite(indent) ? indent : 0))
+        .join("\n");
 
       try {
         btn.textContent = "Copying...";
         await navigator.clipboard.writeText(finalCleaned);
         btn.textContent = "Copied!";
         setTimeout(() => (btn.textContent = "Copy"), 1500);
-      }
-      catch {
+      } catch {
         btn.textContent = "Failed";
       }
     }
