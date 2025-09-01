@@ -35,28 +35,31 @@ export function ArticleListPageLayout({
   const pageArticles = articles.slice(startNum, endNum);
 
   return (
-    <div className={ styles.container }>
-      <Breadcrumbs breadcrumbs={ breadcrumbs } />
-      <h1>{ title }</h1>
-      {articles.length === 0
-        ? <p>記事は見つかりませんでした。</p>
-        : (
-            <>
-              <p>{`全 ${articles.length} 件（${startNum + 1} 件目 ～ ${Math.min(endNum, articles.length)} 件目）`}</p>
-              <ol className={ styles.list }>
-                {pageArticles.map(article => (
-                  <li key={ article.id } className={ styles.item }>
-                    <ArticleCard meta={ article } />
-                  </li>
-                ))}
-              </ol>
-              <ArticleListPageNumbers
-                allArticlesLength={ articles.length }
-                listPagePathBase={ listPagePathBase }
-                currentPageNumber={ currentPageNumber }
-              />
-            </>
-          )}
+    <div className={styles.container}>
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
+      <h1>{title}</h1>
+      {articles.length === 0 ? (
+        <p>記事は見つかりませんでした。</p>
+      ) : (
+        <>
+          <p>{`全 ${articles.length} 件（${startNum + 1} 件目 ～ ${Math.min(
+            endNum,
+            articles.length
+          )} 件目）`}</p>
+          <ol className={styles.list}>
+            {pageArticles.map((article) => (
+              <li key={article.id} className={styles.item}>
+                <ArticleCard meta={article} />
+              </li>
+            ))}
+          </ol>
+          <ArticleListPageNumbers
+            allArticlesLength={articles.length}
+            listPagePathBase={listPagePathBase}
+            currentPageNumber={currentPageNumber}
+          />
+        </>
+      )}
     </div>
   );
 }

@@ -16,16 +16,20 @@ export type ErrorPageProps = {
  * @param props.errorMessage エラーメッセージ
  * @returns エラーページコンポーネント
  */
-export function ErrorPage({ errorCode, errorTitle, errorMessage }: ErrorPageProps) {
+export function ErrorPage({
+  errorCode,
+  errorTitle,
+  errorMessage,
+}: ErrorPageProps) {
   return (
-    <div className={ styles.container }>
-      <div className={ styles.content }>
-        <ErrorPageItem className={ styles.icon } />
-        <h1 className={ styles.title }>
-          <span className={ styles["error-code"] }>{errorCode}</span>
-          <span className={ styles["error-title"] }>{errorTitle}</span>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <ErrorPageItem className={styles.icon} />
+        <h1 className={styles.title}>
+          <span className={styles["error-code"]}>{errorCode}</span>
+          <span className={styles["error-title"]}>{errorTitle}</span>
         </h1>
-        <div className={ styles.message }>{errorMessage}</div>
+        <div className={styles.message}>{errorMessage}</div>
       </div>
     </div>
   );

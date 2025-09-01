@@ -2,7 +2,9 @@ import { OpenInNewIcon } from "@/assets/icons";
 import { PropsWithChildren } from "react";
 import styles from "./ExternalLink.module.css";
 
-export type ExternalLinkProps = PropsWithChildren<React.AnchorHTMLAttributes<HTMLAnchorElement>>;
+export type ExternalLinkProps = PropsWithChildren<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>
+>;
 
 /**
  * 外部リンクコンポーネント（すべて新しいタブで開く）
@@ -14,14 +16,14 @@ export type ExternalLinkProps = PropsWithChildren<React.AnchorHTMLAttributes<HTM
 export function ExternalLink({ href, children, ...rest }: ExternalLinkProps) {
   return (
     <a
-      href={ href }
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={ `${styles.link}` }
-      { ...rest }
+      className={`${styles.link}`}
+      {...rest}
     >
-      { children }
-      <OpenInNewIcon className={ styles.icon } />
+      {children}
+      <OpenInNewIcon className={styles.icon} />
     </a>
   );
 }
