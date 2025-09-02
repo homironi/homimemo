@@ -156,7 +156,7 @@ type ArticleMdxProps = {
  * @param Tag 見出しタグ名
  * @returns 見出しコンポーネント
  */
-const createHeadingComponent = (Tag: "h1" | "h4" | "h5" | "h6") => {
+function createHeadingComponent(Tag: "h1" | "h4" | "h5" | "h6") {
   return function HeadingComponent({
     children,
     ...props
@@ -181,7 +181,7 @@ const createHeadingComponent = (Tag: "h1" | "h4" | "h5" | "h6") => {
 
     return <Tag {...props}>{processedChildren}</Tag>;
   };
-};
+}
 
 /**
  * 記事ページコンポーネント
