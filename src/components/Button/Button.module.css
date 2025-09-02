@@ -1,10 +1,26 @@
 .button{
-  background-color: var(--color-main);
-  border: 1px solid var(--border-color-main);
-  border-radius: var(--border-radius);
   padding: 8px 12px;
+  border-radius: var(--border-radius);
 }
 
-.button:hover {
-    background-color: var(--color-main-hover);
+.filled{
+  background-color: var(--color-main);
+  border: none;
+  border-radius: var(--border-radius);
+}
+
+.outlined{
+  background-color: unset;
+  border: 2px solid var(--border-color-main);
+}
+
+.text{
+  border: none;
+  background: none;
+}
+
+.filled:hover,
+.outlined:hover,
+.text:hover {
+  background-color: var(--color-main-hover);
 }

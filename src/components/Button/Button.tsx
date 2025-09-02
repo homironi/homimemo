@@ -1,12 +1,25 @@
 import { ButtonHTMLAttributes } from "react";
 import styles from "./Button.module.css";
 
-export function Button({
-  children,
-  ...props
-}: ButtonHTMLAttributes<HTMLButtonElement>) {
+export type ButtonVariants = "outlined" | "filled" | "text";
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: ButtonVariants;
+};
+
+const buttonVariantClassName: { [key in ButtonVariants]: string } = {
+  outlined: styles.outlined,
+  filled: styles.filled,
+  text: styles.text,
+};
+
+export function Button({ children, variant, ...props }: ButtonProps) {
   return (
-    <button {...props} className={`${styles.button} ${props.className}`}>
+    <button
+      {...props}
+      className={`${styles.button} ${
+        buttonVariantClassName[variant || "filled"]
+      } ${props.className}`}
+    >
       {children}
     </button>
   );
