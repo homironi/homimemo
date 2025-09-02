@@ -41,9 +41,6 @@ import "./table.css";
 const DynamicToc = dynamic(() =>
   import("@/components/TableOfContents").then((mod) => mod.TableOfContents)
 );
-const DynamicCodeCopyHandler = dynamic(() =>
-  import("@/components/CopyCodeHandler").then((mod) => mod.default)
-);
 const DynamicShareButtons = dynamic(() =>
   import("@/components/ShareButtons").then((mod) => mod.ShareButtons)
 );
@@ -79,7 +76,6 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
 
   return (
     <div className={styles.container}>
-      <DynamicCodeCopyHandler />
       <div className={styles["first-side"]}>
         <div className={styles["toc-container"]}>
           <DynamicToc tocContentSourceIdName={tocContentSourceIdName} />
