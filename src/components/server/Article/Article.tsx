@@ -4,6 +4,7 @@ import { ArticleCategoryList } from "@/components/ArticleCategoryList";
 import { ArticleTagList } from "@/components/ArticleTagList/ArticleTagList";
 import { ArticleTags } from "@/components/ArticleTags";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
+import { CodeBlock } from "@/components/CodeBlock";
 import { ExternalLink } from "@/components/ExternalLink";
 import { H2 } from "@/components/H2";
 import { H3 } from "@/components/H3";
@@ -19,11 +20,6 @@ import {
 } from "@/lib/article";
 import { formatDate } from "@/lib/date";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
-import {
-  rehypeCodeLangLabel,
-  rehypeCodeToolContainer,
-  rehypeCopyButton,
-} from "@/lib/server/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
 import { ArticleMeta, StaticArticleMeta } from "@/schemas/article/meta";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -44,9 +40,6 @@ import "./table.css";
 
 const DynamicToc = dynamic(() =>
   import("@/components/TableOfContents").then((mod) => mod.TableOfContents)
-);
-const DynamicCodeCopyHandler = dynamic(() =>
-  import("@/components/CopyCodeHandler").then((mod) => mod.default)
 );
 const DynamicShareButtons = dynamic(() =>
   import("@/components/ShareButtons").then((mod) => mod.ShareButtons)
@@ -83,7 +76,6 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
 
   return (
     <div className={styles.container}>
-      <DynamicCodeCopyHandler />
       <div className={styles["first-side"]}>
         <div className={styles["toc-container"]}>
           <DynamicToc tocContentSourceIdName={tocContentSourceIdName} />
@@ -209,6 +201,7 @@ function ArticleMdx({
           h4: createHeadingComponent("h4"),
           h5: createHeadingComponent("h5"),
           h6: createHeadingComponent("h6"),
+          pre: CodeBlock,
           TextBlock,
         }}
         options={{
@@ -218,9 +211,6 @@ function ArticleMdx({
               rehypeSlug,
               rehypeAutolinkHeadings,
               [rehypePrism],
-              rehypeCodeToolContainer,
-              rehypeCodeLangLabel, // rehypeCodeToolContainer でコンテナが追加されていればその中に言語ラベルが追加される
-              rehypeCopyButton, // rehypeCodeToolContainer でコンテナが追加されていればその中にコピーボタンが追加される
               rehypeGfmTaskList,
             ],
           },
