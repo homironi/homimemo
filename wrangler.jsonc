@@ -5,7 +5,8 @@
   "main": "src/workers/index.ts",
   "assets": {
     "directory": "./_public/",
-    "not_found_handling": "404-page",
+    // 手動でリダイレクトしている場所があるのでnoneにすることでリダイレクトしたいものをASSETSが404を先に返してしまわないようにする
+    "not_found_handling": "none",
     "html_handling": "auto-trailing-slash"
   },
   "routes": [
