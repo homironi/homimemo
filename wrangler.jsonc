@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "homimemo",
+  "compatibility_date": "2025-09-03",
+  "main": "src/workers/index.ts",
+  "assets": {
+    "directory": "./_public/",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "routes": [
+    {
+      "pattern": "homironi.com",
+      "custom_domain": true
+    }
+  ]
+}

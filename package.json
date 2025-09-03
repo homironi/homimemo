@@ -13,6 +13,7 @@
     "build-json:article-meta": "run-s build-json-pre-article build-json-article",
     "build-json-pre-article": "run-p build-json-pre-article:*",
     "start": "next start",
+    "preview": "pnpm run build && wrangler dev",
     "lint-all": "run-p lint lint:*",
     "lint-all-fix": "run-p lint-fix lint-fix:*",
     "lint": "next lint",
@@ -86,7 +87,8 @@
     "tsx": "^4.20.4",
     "typescript": "^5.9.2",
     "vite-plugin-svgr": "^4.3.0",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "wrangler": "^4.33.2"
   },
   "eslintConfig": {
     "extends": [
