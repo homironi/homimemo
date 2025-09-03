@@ -7,7 +7,7 @@ import {
 import ArticleMetaJson from "@public/generated/meta/articles.json";
 import { safeParse } from "valibot";
 
-export const articleThumbnailNativeSize = { width: 896, height: 504 };
+export const articleThumbnailNativeSize = { width: 1200, height: 630 };
 export const defaultArticleThumbnail = "/images/header/default.webp";
 
 /**
