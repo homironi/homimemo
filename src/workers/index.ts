@@ -9,7 +9,7 @@ const redirects: Record<string, string> = {
   "/categories/developOther/0/": "/articles/teuoslm5qrtzhh4lqkqlm34a/",
   "/categories/developOther/1/": "/articles/sdky27mklh0qz2c4nput34n1/",
   "/categories/developOther/2/": "/articles/t4qf2vp9yl42yilfihryxee7/",
-  "/categories/developOther/3/": "/articless/6crtf6b55vez6cjwlkmcxmww/",
+  "/categories/developOther/3/": "/articles/6crtf6b55vez6cjwlkmcxmww/",
   "/categories/makeWeb/1/": "/articles/iaumv89u70tjyr7c7e0y0gyw/",
   "/categories/makeWeb/2/": "/articles/fdjs9rs2bn7ugq9rf8ysa28h/",
   "/categories/makeWeb/3/": "/articles/j9vw2byoxq9e0byuo0tgvnb3/",
@@ -35,10 +35,8 @@ export default {
 
     // リダイレクト判定
     if (redirects[url.pathname]) {
-      return Response.redirect(
-        `https://${url.hostname}${redirects[url.pathname]}`,
-        301
-      );
+      const redirect = `${url.origin}${redirects[url.pathname]}`;
+      return Response.redirect(redirect, 301);
     }
 
     // 静的ファイル返す（wrangler.jsoncのassetsのデータが返される）
@@ -46,7 +44,11 @@ export default {
 
     // エラーページ
     if (errorPages[response.status]) {
-      const errorResponse = await env.ASSETS.fetch(errorPages[response.status]);
+      const errorUrl = new URL(errorPages[response.status], url.origin);
+      const errorResponse = await env.ASSETS.fetch(
+        new Request(errorUrl.toString(), request)
+      );
+
       return new Response(errorResponse.body, {
         status: response.status,
         headers: { "Content-Type": "text/html" },
