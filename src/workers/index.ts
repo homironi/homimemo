@@ -33,9 +33,14 @@ export default {
   async fetch(request: Request, env: any): Promise<Response> {
     const url = new URL(request.url);
 
-    // リダイレクト判定
-    if (redirects[url.pathname]) {
-      const redirect = `${url.origin}${redirects[url.pathname]}`;
+    // リダイレクト判定：ここでは末尾の/がない状態でくることもあるのでそれも考慮しておく
+    if (
+      redirects[url.pathname] ||
+      (!url.pathname.endsWith("/") && redirects[`${url.pathname}/`])
+    ) {
+      const redirect = `${url.origin}${
+        redirects[url.pathname] || redirects[`${url.pathname}/`]
+      }`;
       return Response.redirect(redirect, 301);
     }
 
