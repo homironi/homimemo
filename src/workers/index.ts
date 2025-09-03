@@ -33,28 +33,33 @@ export default {
   async fetch(request: Request, env: any): Promise<Response> {
     const url = new URL(request.url);
 
-    // リダイレクト判定
-    if (redirects[url.pathname]) {
-      const redirect = `${url.origin}${redirects[url.pathname]}`;
+    // リダイレクト判定：ここでは末尾の/がない状態でくることもあるのでそれも考慮しておく
+    if (
+      redirects[url.pathname] ||
+      (!url.pathname.endsWith("/") && redirects[`${url.pathname}/`])
+    ) {
+      const redirect = `${url.origin}${
+        redirects[url.pathname] || redirects[`${url.pathname}/`]
+      }`;
       return Response.redirect(redirect, 301);
     }
 
-    // 静的ファイル返す（wrangler.jsoncのassetsのデータが返される）
-    const response = await env.ASSETS.fetch(request);
+    try {
+      const response = await env.ASSETS.fetch(request);
+      return response;
+    } catch (e) {
+      // fetch でエラーが出た場合は404とみなす
+      const errorUrl = new URL(errorPages[404], url.origin);
 
-    // エラーページ
-    if (errorPages[response.status]) {
-      const errorUrl = new URL(errorPages[response.status], url.origin);
-      const errorResponse = await env.ASSETS.fetch(
-        new Request(errorUrl.toString(), request)
+      // env.ASSETS.fetchでエラーが出た場合、ここで404ページをenv.ASSETS.fetchしてもエラーになるので通常fetchで取得する
+      const errorResponse = await fetch(new Request(errorUrl.toString())).catch(
+        () => new Response("Not Found", { status: 404 })
       );
 
       return new Response(errorResponse.body, {
-        status: response.status,
+        status: 404,
         headers: { "Content-Type": "text/html" },
       });
     }
-
-    return response;
   },
 };
