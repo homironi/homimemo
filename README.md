@@ -2,7 +2,6 @@
 [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg)](https://develop--682bb6b6fbdc8489c7635afb.chromatic.com)
 
 [![Add Missing Article IDs](https://github.com/homironi/homimemo/actions/workflows/add-article-missing-id.yml/badge.svg)](https://github.com/homironi/homimemo/actions/workflows/add-article-missing-id.yml)
-[![Build test](https://github.com/homironi/homimemo/actions/workflows/build-test.yml/badge.svg)](https://github.com/homironi/homimemo/actions/workflows/build-test.yml)
 [![Lint test](https://github.com/homironi/homimemo/actions/workflows/lint-test.yml/badge.svg)](https://github.com/homironi/homimemo/actions/workflows/lint-test.yml)
 
 ほみの個人サイトのリポジトリです。  
@@ -81,3 +80,4 @@ https://nextjs-ja-translation-docs.vercel.app/docs/advanced-features/dynamic-imp
 componentはこのフォルダの中にいれる。
 
 `/components/[componentフォルダ名]` の中に component の定義などをまとめる
+
