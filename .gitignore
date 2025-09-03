@@ -54,3 +54,5 @@ src/**/*.module.css.d.ts
 
 # 毎回ビルド時に出力されるのでコミットしない
 public/generated/
+
+.wrangler/
