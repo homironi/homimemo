@@ -13,6 +13,7 @@ export { default as LinkIcon } from "@/assets/icons/google-materials/link_24dp_1
 export { default as OpenInNewIcon } from "@/assets/icons/google-materials/open_in_new_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as LastModeDateIcon } from "@/assets/icons/google-materials/published_with_changes_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as ErrorIcon } from "@/assets/icons/google-materials/report_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
+export { default as RssIcon } from "@/assets/icons/google-materials/rss_feed_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as ShareIcon } from "@/assets/icons/google-materials/share_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as NoteIcon } from "@/assets/icons/google-materials/sticky_note_2_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as WarningIcon } from "@/assets/icons/google-materials/warning_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";

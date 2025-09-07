@@ -1,7 +1,5 @@
-import { XLogo } from "@/assets/logos";
-import { GitHubLogo } from "@/assets/logos/GitHub/GitHubLogo";
+import { Links } from "@/components/Links";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./Profile.module.css";
 
 /**
@@ -27,22 +25,7 @@ export function Profile() {
         <br />
         いろいろするのがすき
       </p>
-      <div className={styles["account-links-container"]}>
-        <Link
-          href="https://x.com/homironi"
-          target="_blank"
-          className={styles["account-link"]}
-        >
-          <XLogo />
-        </Link>
-        <Link
-          href="https://github.com/homironi"
-          target="_blank"
-          className={styles["account-link"]}
-        >
-          <GitHubLogo />
-        </Link>
-      </div>
+      <Links />
     </div>
   );
 }
