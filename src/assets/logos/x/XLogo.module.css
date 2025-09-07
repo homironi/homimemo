@@ -1,12 +1,34 @@
 .icon{
   margin: 4px;
-  fill: #000000;
   width: 1em;
   height: 1em;
+
+  --x-icon-color: #000000;
+  --x-icon-color-reverse: #ffffff;
+}
+
+.icon-color{
+  fill: var(--x-icon-color);
+}
+
+.icon-color-reverse{
+  fill: var(--x-icon-color-reverse);
+}
+
+.icon-color-white{
+  fill: var(--x-icon-color-reverse);
+}
+
+.icon-color-black{
+  fill: var(--x-icon-color);
 }
 
 @media (prefers-color-scheme: dark) {
-  .icon {
-  fill: #ffffff;
+  .icon-color {
+  fill: var(--x-icon-color-reverse);
+  }
+
+  .icon-color-reverse {
+  fill: var(--x-icon-color);
   }
 }

@@ -2,6 +2,28 @@ import X from "@/assets/logos/x/logo.svg";
 import styles from "@/assets/logos/x/XLogo.module.css";
 import { SVGProps } from "react";
 
-export function XLogo(props: SVGProps<SVGSVGElement>) {
-  return <X {...props} className={`${styles.icon} ${props.className}`} />;
+export type XLogoProps = SVGProps<SVGSVGElement> & {
+  color?: "default" | "reverse" | "white" | "black";
+};
+
+export function XLogo({ color = "default", ...props }: XLogoProps) {
+  let colorClassName;
+  switch (color) {
+    case "reverse":
+      colorClassName = styles["icon-color-reverse"];
+      break;
+    case "white":
+      colorClassName = styles["icon-color-white"];
+      break;
+    case "black":
+      colorClassName = styles["icon-color-black"];
+      break;
+    case "default":
+    default:
+      colorClassName = styles["icon-color"];
+      break;
+  }
+
+  props.className = `${props.className ?? ""} ${colorClassName}`;
+  return <X {...props} className={` ${props.className} ${styles.icon}`} />;
 }
