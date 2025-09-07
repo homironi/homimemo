@@ -1,7 +1,10 @@
 :root {
     /* color */
   
-    --color-main: #fcf9f7;
+    --color-main-white: #fcf9f7;
+    --color-main-black: #444141;
+    --color-main: var(--color-main-white);
+    --color-main-reverse: var(--color-main-black);
     --color-main-hover: #f7f4f2;
     --color-main-dark: #ebe6e3;
     --border-color-main: #f3e8e4;
@@ -83,7 +86,8 @@
   :root {
     /* color */
 
-    --color-main: #444141;
+    --color-main: var(--color-main-black);
+    --color-main-reverse: var(--color-main-white);
     --color-main-hover: #505050;
     --color-main-dark: #525252;
     --border-color-main: #333130;
