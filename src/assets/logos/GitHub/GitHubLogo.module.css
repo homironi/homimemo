@@ -1,12 +1,34 @@
 .icon{
   margin: 4px;
-  fill: #24292f;
   width: 1.1em;
   height: 1.1em;
+
+  --github-icon-color: #24292f;
+  --github-icon-color-reverse: #ffffff;
+}
+
+.icon-color{
+  fill: var(--github-icon-color);
+}
+
+.icon-color-reverse{
+  fill: var(--github-icon-color-reverse);
+}
+
+.icon-color-white{
+  fill: var(--github-icon-color-reverse);
+}
+
+.icon-color-black{
+  fill: var(--github-icon-color);
 }
 
 @media (prefers-color-scheme: dark) {
-  .icon {
-  fill: #ffffff;
+  .icon-color {
+  fill: var(--github-icon-color-reverse);
+  }
+
+  .icon-color-reverse {
+  fill: var(--github-icon-color);
   }
 }
