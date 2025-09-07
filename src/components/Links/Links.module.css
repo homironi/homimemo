@@ -1,0 +1,31 @@
+
+.container{
+    display: inline-flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.link{
+    font-size: 1.6rem;
+}
+
+.icon {
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.icon-color {
+    fill: var(--text-color);
+}
+
+.icon-color-reverse {
+    fill: var(--text-color-reverse);
+}
+
+.icon-color-white{
+  fill: var(--text-color-white);
+}
+
+.icon-color-black{
+  fill: var(--text-color-black);
+}

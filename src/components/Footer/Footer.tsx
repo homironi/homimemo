@@ -1,3 +1,4 @@
+import { Links } from "@/components/Links";
 import { NavigationLink } from "@/schemas/navigationLink";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,7 +30,7 @@ export function Footer({ links }: FooterProps) {
         </ul>
       </nav>
       <hr />
-      {/* TODO: 外部アカウントリンク */}
+      <Links color="white" />
       <div className={styles["logo-container"]}>
         <Link href="/">
           <Image src="/images/logo.svg" alt="Logo" width={256} height={64} />
