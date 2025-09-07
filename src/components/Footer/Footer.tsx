@@ -37,7 +37,7 @@ export function Footer({ links }: FooterProps) {
       </div>
       <p className={styles["copy-light"]} translate="no">
         © 2023-
-        {nowYear.toString()} homironi
+        {nowYear.toString()} homi
       </p>
     </footer>
   );
