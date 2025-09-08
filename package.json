@@ -21,7 +21,7 @@
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
     "lint:style": "stylelint \"src/**/*.css\"",
-    "lint-fix:style": "stylelint \"src/**/*.css --fix\"",
+    "lint-fix:style": "stylelint \"src/**/*.css\" --fix",
     "add:article-id": "tsx scripts/article/addMissingIds.ts",
     "storybook": "pnpm run build:json && storybook dev -p 6006",
     "build-storybook": "pnpm run build:json && storybook build",
