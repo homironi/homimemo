@@ -60,7 +60,6 @@ function getIconForBlockType(blockType: TextBlockType) {
  * @param root0 引数オブジェクト
  * @param root0.blockType テキストブロックの種類
  * @param root0.title テキストブロックのタイトル
- * @param root0.titleLevel テキストブロックのタイトルレベル
  * @param root0.children 子要素
  * @returns テキストブロックコンポーネント
  */
