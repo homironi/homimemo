@@ -58,5 +58,14 @@ export default defineConfig([
       "jsdoc/require-jsdoc": ["error", { publicOnly: true }],
     },
   },
+  {
+    // ビルド時やGitHubActionsなどで使用するので、ログ出力を使うためConsole.logなどは許可する
+    files: [
+      "scripts/**/*.{js,ts}",
+    ],
+    rules: {
+      "no-console": "off", // consoleを許可
+    },
+  },
   jsdoc.configs["flat/recommended-typescript"],
 ]);

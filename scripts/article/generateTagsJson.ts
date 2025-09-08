@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { tagsMetaFilePath } from "@/lib/server/article";
 import { TagMeta, TagMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
