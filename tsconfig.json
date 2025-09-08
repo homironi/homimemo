@@ -37,7 +37,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next-env.d.ts",
-    "_public/types/**/*.ts"
+    "_public/types/**/*.ts",
+    "./worker-configuration.d.ts",
   ],
   "exclude": [
     "node_modules"
