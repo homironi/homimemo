@@ -7,6 +7,12 @@ import styles from "./CodeBlock.module.css";
 
 const codeLanguageClassNamePattern = /language-(\w+)/;
 
+/**
+ *
+ * @param root0
+ * @param root0.children
+ * @param root0.className
+ */
 export function CodeBlock({
   children,
   className,
@@ -51,23 +57,23 @@ export function CodeBlock({
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles["tool-container"]}>
+    <div className={ styles.container }>
+      <div className={ styles["tool-container"] }>
         {language && (
-          <span className={styles["language-label"]}>{language}</span>
+          <span className={ styles["language-label"] }>{language}</span>
         )}
-        <Button variant="text" onClick={handleCopy}>
+        <Button variant="text" onClick={ handleCopy }>
           {copied ? (
-            <CheckIcon className={styles["check-icon"]} />
+            <CheckIcon className={ styles["check-icon"] } />
           ) : (
-            <ContentCopyIcon className={styles.icon} />
+            <ContentCopyIcon className={ styles.icon } />
           )}
         </Button>
       </div>
       <pre
-        {...props}
-        className={`${styles["code-container"]} ${className || ""}`}
-        data-code-id={codeId}
+        { ...props }
+        className={ `${styles["code-container"]} ${className || ""}` }
+        data-code-id={ codeId }
       >
         {children}
       </pre>

@@ -10,6 +10,13 @@ type WebShareButtonProps = {
   text?: string;
 };
 
+/**
+ *
+ * @param root0
+ * @param root0.url
+ * @param root0.title
+ * @param root0.text
+ */
 export function WebShareButton({ url, title, text }: WebShareButtonProps) {
   const handleShare = async () => {
     if (navigator.share) {
@@ -26,8 +33,8 @@ export function WebShareButton({ url, title, text }: WebShareButtonProps) {
   };
 
   return (
-    <Button onClick={handleShare} title="シェア">
-      <ShareIcon className={styles.icon} />
+    <Button onClick={ handleShare } title="シェア">
+      <ShareIcon className={ styles.icon } />
     </Button>
   );
 }

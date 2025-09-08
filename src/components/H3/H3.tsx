@@ -24,7 +24,7 @@ export function H3({ children, className, ...props }: H3Props) {
         children?: React.ReactNode;
       };
       return (
-        <a href={href} {...anchorProps}>
+        <a href={ href } { ...anchorProps }>
           {childChildren}
         </a>
       );
@@ -33,7 +33,7 @@ export function H3({ children, className, ...props }: H3Props) {
   });
 
   return (
-    <h3 className={`${styles.h3} ${className ?? ""}`} {...props}>
+    <h3 className={ `${styles.h3} ${className ?? ""}` } { ...props }>
       {processedChildren}
     </h3>
   );

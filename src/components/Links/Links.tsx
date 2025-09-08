@@ -13,6 +13,11 @@ export type LinksProps = {
   color?: "default" | "reverse" | "white" | "black";
 };
 
+/**
+ *
+ * @param root0
+ * @param root0.color
+ */
 export function Links({ color = "default" }: LinksProps) {
   let colorClassName;
   switch (color) {
@@ -33,23 +38,23 @@ export function Links({ color = "default" }: LinksProps) {
 
   const iconClassName = `${styles.icon} ${colorClassName}`;
   return (
-    <div className={styles.container}>
+    <div className={ styles.container }>
       <Link
         href="https://x.com/homironi"
         target="_blank"
-        className={styles.link}
+        className={ styles.link }
       >
-        <XLogo color={color} className={styles.icon} />
+        <XLogo color={ color } className={ styles.icon } />
       </Link>
       <Link
         href="https://github.com/homironi"
         target="_blank"
-        className={styles.link}
+        className={ styles.link }
       >
-        <GitHubLogo color={color} className={styles.icon} />
+        <GitHubLogo color={ color } className={ styles.icon } />
       </Link>
-      <Link href="/rss.xml" target="_blank" className={styles.link}>
-        <RssIcon className={iconClassName} />
+      <Link href="/rss.xml" target="_blank" className={ styles.link }>
+        <RssIcon className={ iconClassName } />
       </Link>
     </div>
   );

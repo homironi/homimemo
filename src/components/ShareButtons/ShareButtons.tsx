@@ -8,14 +8,20 @@ export type ShareButtonsProps = {
   title: string;
 };
 
+/**
+ *
+ * @param root0
+ * @param root0.slug
+ * @param root0.title
+ */
 export function ShareButtons({ slug, title }: ShareButtonsProps) {
   const shareUrl = createUrlFromSlug(slug);
   const shareTitle = createTitleFromTemplate(title);
   return (
     <div>
-      <CopyUrlButton url={shareUrl} />
-      <WebShareButton url={shareUrl} title={shareTitle} />
-      <XShareButton url={shareUrl} title={shareTitle} />
+      <CopyUrlButton url={ shareUrl } />
+      <WebShareButton url={ shareUrl } title={ shareTitle } />
+      <XShareButton url={ shareUrl } title={ shareTitle } />
     </div>
   );
 }

@@ -9,6 +9,11 @@ type CopyUrlButtonProps = {
   url: string;
 };
 
+/**
+ *
+ * @param root0
+ * @param root0.url
+ */
 export function CopyUrlButton({ url }: CopyUrlButtonProps) {
   const [copied, setCopied] = useState(false);
   const handleCopy = async () => {
@@ -29,11 +34,11 @@ export function CopyUrlButton({ url }: CopyUrlButtonProps) {
   };
 
   return (
-    <Button onClick={handleCopy} disabled={copied} title="URLをコピー">
+    <Button onClick={ handleCopy } disabled={ copied } title="URLをコピー">
       {copied ? (
-        <CheckIcon className={`${styles.icon} ${styles["copied-icon"]}`} />
+        <CheckIcon className={ `${styles.icon} ${styles["copied-icon"]}` } />
       ) : (
-        <LinkIcon className={`${styles.icon} ${styles["link-icon"]}`} />
+        <LinkIcon className={ `${styles.icon} ${styles["link-icon"]}` } />
       )}
     </Button>
   );

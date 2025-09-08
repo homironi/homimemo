@@ -9,6 +9,13 @@ export const siteOrigin = "https://homironi.com";
 
 export const noImageUrl = "/images/no-image.webp";
 
+/**
+ *
+ * @param title
+ * @param description
+ * @param slug
+ * @param thumbnail
+ */
 export function createDefaultOG(
   title?: string,
   description?: string,
@@ -34,6 +41,12 @@ export function createDefaultOG(
   };
 }
 
+/**
+ *
+ * @param title
+ * @param description
+ * @param thumbnail
+ */
 export function createDefaultTwitter(
   title?: string,
   description?: string,
@@ -51,14 +64,26 @@ export function createDefaultTwitter(
   };
 }
 
+/**
+ *
+ * @param title
+ */
 export function createTitleFromTemplate(title: string) {
   return `${title} | ${siteName}`;
 }
 
+/**
+ *
+ * @param slug
+ */
 export function createUrlFromSlug(slug: string) {
   return `${siteOrigin}${slug}`;
 }
 
+/**
+ *
+ * @param url
+ */
 export function getSiteArticleUrl(url: URL): string | null {
   if (!isSiteOrigin(url)) {
     return null;

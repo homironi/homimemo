@@ -60,6 +60,7 @@ export type ArticleProps = {
  * @param root0 引数オブジェクト
  * @param root0.meta 記事のMeta
  * @param root0.content 記事内容
+ * @param root0.shareSlug
  * @returns 記事ページのコンポーネント
  */
 export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
@@ -69,69 +70,69 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
   const lastModDateText = formatDate(meta.lastModDate, "YYYY/MM/DD");
 
   const WrappedShareButtons = (
-    <div className={styles["share-buttons-container"]}>
-      <DynamicShareButtons slug={shareUrl} title={meta.title} />
+    <div className={ styles["share-buttons-container"] }>
+      <DynamicShareButtons slug={ shareUrl } title={ meta.title } />
     </div>
   );
 
   return (
-    <div className={styles.container}>
-      <div className={styles["first-side"]}>
-        <div className={styles["toc-container"]}>
-          <DynamicToc tocContentSourceIdName={tocContentSourceIdName} />
+    <div className={ styles.container }>
+      <div className={ styles["first-side"] }>
+        <div className={ styles["toc-container"] }>
+          <DynamicToc tocContentSourceIdName={ tocContentSourceIdName } />
         </div>
       </div>
-      <main className={styles.article}>
-        <Breadcrumbs breadcrumbs={breadcrumbs} />
+      <main className={ styles.article }>
+        <Breadcrumbs breadcrumbs={ breadcrumbs } />
         <h1>{meta.title}</h1>
-        <div className={styles["meta-container"]}>
-          <div className={styles["date-container"]}>
+        <div className={ styles["meta-container"] }>
+          <div className={ styles["date-container"] }>
             <span>
-              <PublishDateIcon className={styles.icon} />
-              <time dateTime={formatDate(meta.publishDate, "YYYY-MM-DD")}>
+              <PublishDateIcon className={ styles.icon } />
+              <time dateTime={ formatDate(meta.publishDate, "YYYY-MM-DD") }>
                 {publishDateText}
               </time>
             </span>
             {/* 日付が違う時だけ更新があったとして更新日時を表示する。同じ日の場合は表示しない */}
             {publishDateText !== lastModDateText && (
               <span>
-                <LastModeDateIcon className={styles.icon} />
-                <time dateTime={formatDate(meta.lastModDate, "YYYY-MM-DD")}>
+                <LastModeDateIcon className={ styles.icon } />
+                <time dateTime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>
                   {lastModDateText}
                 </time>
               </span>
             )}
           </div>
-          {isArticleMeta(meta) && <ArticleCategory meta={meta.category} />}
-          {isArticleMeta(meta) && meta.tags && <ArticleTags tags={meta.tags} />}
+          {isArticleMeta(meta) && <ArticleCategory meta={ meta.category } />}
+          {isArticleMeta(meta) && meta.tags && <ArticleTags tags={ meta.tags } />}
         </div>
         <Image
-          src={meta.thumbnail ?? defaultArticleThumbnail}
-          alt={meta.title}
-          width={articleThumbnailNativeSize.width}
-          height={articleThumbnailNativeSize.height}
+          src={ meta.thumbnail ?? defaultArticleThumbnail }
+          alt={ meta.title }
+          width={ articleThumbnailNativeSize.width }
+          height={ articleThumbnailNativeSize.height }
         />
         {WrappedShareButtons}
         <ArticleMdx
-          content={content}
-          tocContentSourceIdName={tocContentSourceIdName}
+          content={ content }
+          tocContentSourceIdName={ tocContentSourceIdName }
           className="article-contents-container"
         />
         <hr />
         {WrappedShareButtons}
       </main>
-      <div className={styles["last-side"]}>
+      <div className={ styles["last-side"] }>
         <Profile />
         <div
-          className={styles["ads-container"]}
-          dangerouslySetInnerHTML={{
+          className={ styles["ads-container"] }
+          dangerouslySetInnerHTML={ {
             __html: `<a href="https://px.a8.net/svt/ejp?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" rel="nofollow">
           <img border="0" width="300" height="250" alt="" src="https://www28.a8.net/svt/bgt?aid=240906818962&wid=001&eno=01&mid=s00000001642001130000&mc=1"></a>
           <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" alt="">`,
-          }}
+          } }
         />
-        <ArticleCategoryList categories={getAllCategories()} />
-        <ArticleTagList tags={getAllTags()} />
+        <ArticleCategoryList categories={ getAllCategories() } />
+        <ArticleTagList tags={ getAllTags() } />
       </div>
     </div>
   );
@@ -163,7 +164,7 @@ function createHeadingComponent(Tag: "h1" | "h4" | "h5" | "h6") {
           children?: React.ReactNode;
         };
         return (
-          <a href={href} {...anchorProps}>
+          <a href={ href } { ...anchorProps }>
             {childChildren}
           </a>
         );
@@ -171,7 +172,7 @@ function createHeadingComponent(Tag: "h1" | "h4" | "h5" | "h6") {
       return child;
     });
 
-    return <Tag {...props}>{processedChildren}</Tag>;
+    return <Tag { ...props }>{processedChildren}</Tag>;
   };
 }
 
@@ -189,10 +190,10 @@ function ArticleMdx({
   tocContentSourceIdName,
 }: ArticleMdxProps) {
   return (
-    <article id={tocContentSourceIdName} className={className ?? ""}>
+    <article id={ tocContentSourceIdName } className={ className ?? "" }>
       <MDXRemote
-        source={content}
-        components={{
+        source={ content }
+        components={ {
           p: CustomParagraph,
           a: ExternalLink,
           h1: createHeadingComponent("h1"),
@@ -203,8 +204,8 @@ function ArticleMdx({
           h6: createHeadingComponent("h6"),
           pre: CodeBlock,
           TextBlock,
-        }}
-        options={{
+        } }
+        options={ {
           mdxOptions: {
             remarkPlugins: [remarkGfm],
             rehypePlugins: [
@@ -214,7 +215,7 @@ function ArticleMdx({
               rehypeGfmTaskList,
             ],
           },
-        }}
+        } }
       />
     </article>
   );
@@ -285,9 +286,9 @@ export const CustomParagraph = async ({
     if (validatedChildrenProps.success) {
       const { href } = validatedChildrenProps.output;
       const trimmedHref = href.trim();
-      return <CardPreviewUrl url={trimmedHref} />;
+      return <CardPreviewUrl url={ trimmedHref } />;
     }
   }
 
-  return <p {...props}>{children}</p>;
+  return <p { ...props }>{children}</p>;
 };

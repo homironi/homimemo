@@ -20,10 +20,10 @@ export const Sample: Story = {
   },
   render: () => (
     <>
-      <TableOfContents tocContentSourceIdName={tocContentSourceIdName} />
+      <TableOfContents tocContentSourceIdName={ tocContentSourceIdName } />
       <p>以下は目次の内容です</p>
       <hr />
-      <article id={tocContentSourceIdName}>
+      <article id={ tocContentSourceIdName }>
         <h2>見出し2です</h2>
         <h2>見出し2です</h2>
         <h2>見出し2です</h2>

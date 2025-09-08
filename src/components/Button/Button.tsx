@@ -12,13 +12,19 @@ const buttonVariantClassName: { [key in ButtonVariants]: string } = {
   text: styles.text,
 };
 
+/**
+ *
+ * @param root0
+ * @param root0.children
+ * @param root0.variant
+ */
 export function Button({ children, variant, ...props }: ButtonProps) {
   return (
     <button
-      {...props}
-      className={`${styles.button} ${
+      { ...props }
+      className={ `${styles.button} ${
         buttonVariantClassName[variant || "filled"]
-      } ${props.className}`}
+      } ${props.className}` }
     >
       {children}
     </button>

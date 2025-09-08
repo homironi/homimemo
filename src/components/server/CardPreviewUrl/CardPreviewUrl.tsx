@@ -20,15 +20,20 @@ const OGPScannerResponseSchema = object({
   }),
 });
 
+/**
+ *
+ * @param root0
+ * @param root0.url
+ */
 export async function CardPreviewUrl({ url }: CardPreviewUrlProps) {
   const cardPreviewProps = await getCardPreviewProps(url);
   if (cardPreviewProps) {
-    return <CardPreview {...cardPreviewProps} />;
+    return <CardPreview { ...cardPreviewProps } />;
   }
 
   return (
     <p>
-      <ExternalLink href={url}>{url}</ExternalLink>
+      <ExternalLink href={ url }>{url}</ExternalLink>
     </p>
   );
 }

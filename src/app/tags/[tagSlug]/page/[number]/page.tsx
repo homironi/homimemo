@@ -94,11 +94,11 @@ export default async function TagsArticlesPage({
 
   return (
     <ArticleListPageLayout
-      breadcrumbs={breadcrumbs}
-      title={createTitle(tagMeta)}
-      articles={articles}
-      listPagePathBase={createTagsPath(tagMeta)}
-      currentPageNumber={number}
+      breadcrumbs={ breadcrumbs }
+      title={ createTitle(tagMeta) }
+      articles={ articles }
+      listPagePathBase={ createTagsPath(tagMeta) }
+      currentPageNumber={ number }
     />
   );
 }
