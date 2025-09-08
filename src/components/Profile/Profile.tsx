@@ -8,15 +8,15 @@ import styles from "./Profile.module.css";
  */
 export function Profile() {
   return (
-    <div className={styles.container}>
+    <div className={ styles.container }>
       <h2>運営者</h2>
       <p>ほみ</p>
       <Image
         src="/images/profile.webp"
         alt="ほみのプロフィール画像"
-        width={128}
-        height={128}
-        className={styles.image}
+        width={ 128 }
+        height={ 128 }
+        className={ styles.image }
       />
       <p>
         プログラミングとか

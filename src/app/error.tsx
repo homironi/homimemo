@@ -11,7 +11,7 @@ export default function Error() {
     <ErrorPage
       errorCode="500"
       errorTitle="Internal Server Error"
-      errorMessage={<p>サーバー側に問題が発生しています！</p>}
+      errorMessage={ <p>サーバー側に問題が発生しています！</p> }
     />
   );
 }

@@ -18,10 +18,10 @@ export type ArticleCategoryProps = {
 export function ArticleCategory({ meta }: ArticleCategoryProps) {
   return (
     <div>
-      <CategoryIcon className={styles.icon} />
+      <CategoryIcon className={ styles.icon } />
       <Link
-        href={createCategoryListFirstPagePath(meta)}
-        className={styles.link}
+        href={ createCategoryListFirstPagePath(meta) }
+        className={ styles.link }
       >
         {meta.name}
       </Link>

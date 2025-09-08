@@ -81,11 +81,11 @@ export function TextBlock({
 
   return (
     <div
-      className={`${styles["text-block"]} ${styles[`text-block-${blockType}`]}`}
+      className={ `${styles["text-block"]} ${styles[`text-block-${blockType}`]}` }
     >
-      <Icon className={styles.icon} />
-      {title && <TitleTag className={styles.title}>{title}</TitleTag>}
-      <div className={styles.content}>{children}</div>
+      <Icon className={ styles.icon } />
+      {title && <TitleTag className={ styles.title }>{title}</TitleTag>}
+      <div className={ styles.content }>{children}</div>
     </div>
   );
 }

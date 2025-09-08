@@ -16,14 +16,14 @@ export type ExternalLinkProps = PropsWithChildren<
 export function ExternalLink({ href, children, ...rest }: ExternalLinkProps) {
   return (
     <a
-      href={href}
+      href={ href }
       target="_blank"
       rel="noopener noreferrer"
-      className={`${styles.link}`}
-      {...rest}
+      className={ `${styles.link}` }
+      { ...rest }
     >
       {children}
-      <OpenInNewIcon className={styles.icon} />
+      <OpenInNewIcon className={ styles.icon } />
     </a>
   );
 }

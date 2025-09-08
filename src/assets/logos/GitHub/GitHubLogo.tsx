@@ -7,6 +7,12 @@ export type GitHubLogoProps = SVGProps<SVGSVGElement> & {
   color?: "default" | "reverse" | "white" | "black";
 };
 
+/**
+ * GitHubロゴのJSX要素
+ * @param root0 引数オブジェクト
+ * @param root0.color ロゴの色タイプ指定
+ * @returns GitHubロゴのJSX要素
+ */
 export function GitHubLogo({ color = "default", ...props }: GitHubLogoProps) {
   let colorClassName;
   switch (color) {
@@ -26,5 +32,5 @@ export function GitHubLogo({ color = "default", ...props }: GitHubLogoProps) {
   }
 
   props.className = `${props.className ?? ""} ${colorClassName}`;
-  return <GitHub {...props} className={` ${props.className} ${styles.icon}`} />;
+  return <GitHub { ...props } className={ ` ${props.className} ${styles.icon}` } />;
 }

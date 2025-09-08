@@ -17,15 +17,15 @@ export type ArticleTagsProps = {
 export function ArticleTags({ tags }: ArticleTagsProps) {
   return (
     <>
-      <LabelIcon className={styles.icon} />
+      <LabelIcon className={ styles.icon } />
       {tags.length > 0 ? (
-        <ul className={styles.list}>
+        <ul className={ styles.list }>
           {tags.map((tag) => (
-            <li key={tag.slug}>
+            <li key={ tag.slug }>
               <Link
-                href={createTagsPath(tag)}
-                key={tag.slug}
-                className={styles.link}
+                href={ createTagsPath(tag) }
+                key={ tag.slug }
+                className={ styles.link }
               >
                 {tag.name}
               </Link>
@@ -33,7 +33,7 @@ export function ArticleTags({ tags }: ArticleTagsProps) {
           ))}
         </ul>
       ) : (
-        <span className={styles.empty}>no tag</span>
+        <span className={ styles.empty }>no tag</span>
       )}
     </>
   );
