@@ -6,6 +6,12 @@ export type XLogoProps = SVGProps<SVGSVGElement> & {
   color?: "default" | "reverse" | "white" | "black";
 };
 
+/**
+ * XロゴのJSX要素
+ * @param root0 引数オブジェクト
+ * @param root0.color ロゴの色タイプ指定
+ * @returns XロゴのJSX要素
+ */
 export function XLogo({ color = "default", ...props }: XLogoProps) {
   let colorClassName;
   switch (color) {
@@ -25,5 +31,5 @@ export function XLogo({ color = "default", ...props }: XLogoProps) {
   }
 
   props.className = `${props.className ?? ""} ${colorClassName}`;
-  return <X {...props} className={` ${props.className} ${styles.icon}`} />;
+  return <X { ...props } className={ ` ${props.className} ${styles.icon}` } />;
 }

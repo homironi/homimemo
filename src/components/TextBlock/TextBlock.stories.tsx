@@ -130,7 +130,7 @@ export const AllTypes: Story = {
     children: "This will be overridden by the render function",
   },
   render: () => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+    <div style={ { display: "flex", flexDirection: "column", gap: "16px" } }>
       <TextBlock blockType="info" title="Info">
         情報ブロックの例（タイトルあり）
       </TextBlock>

@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-// tsx で使用するスクリプトなのでログ出力のために警告を無効化する
-
 import { getIdToPathMap, idToPathMapPath } from "@/lib/server/article";
 import { ArticleIdToPathMapElement } from "@/schemas/article/idToPathMap";
 import { ArticleRawMetaSchema } from "@/schemas/article/meta";

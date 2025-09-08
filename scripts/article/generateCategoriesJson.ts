@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { categoriesMetaFilePath } from "@/lib/server/article";
 import { CategoryMeta, CategoryMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";

@@ -11,12 +11,12 @@ import styles from "./ArticleTagList.module.css";
  */
 export function ArticleTagList({ tags }: { tags: TagMeta[] }) {
   return (
-    <div className={styles.container}>
+    <div className={ styles.container }>
       <p>タグ一覧</p>
-      <ul className={styles.list}>
+      <ul className={ styles.list }>
         {tags.map((tag) => (
-          <li key={tag.slug} className={styles.item}>
-            <Link href={createTagsPath(tag)} className={styles.link}>
+          <li key={ tag.slug } className={ styles.item }>
+            <Link href={ createTagsPath(tag) } className={ styles.link }>
               {tag.name}
             </Link>
           </li>
