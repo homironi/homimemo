@@ -25,7 +25,7 @@ export function H2({ children, className, ...props }: H2Props) {
         children?: React.ReactNode;
       };
       return (
-        <a href={href} {...anchorProps}>
+        <a href={ href } { ...anchorProps }>
           {childChildren}
         </a>
       );
@@ -34,8 +34,8 @@ export function H2({ children, className, ...props }: H2Props) {
   });
 
   return (
-    <h2 className={`${styles.h2} ${className ?? ""}`} {...props}>
-      <CharaIcon className={styles.icon} />
+    <h2 className={ `${styles.h2} ${className ?? ""}` } { ...props }>
+      <CharaIcon className={ styles.icon } />
       {processedChildren}
     </h2>
   );

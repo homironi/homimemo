@@ -34,25 +34,25 @@ export default function Home() {
     })
     .slice(0, newArticlesCount);
   return (
-    <div className={styles.container}>
-      <Changelog viewNum={4} />
-      <h2 className={styles.title}>新着記事</h2>
-      <ol className={styles.list}>
+    <div className={ styles.container }>
+      <Changelog viewNum={ 4 } />
+      <h2 className={ styles.title }>新着記事</h2>
+      <ol className={ styles.list }>
         {latestArticles.map((article) => {
           return (
-            <li key={article.id} className={styles.item}>
+            <li key={ article.id } className={ styles.item }>
               <time
-                dateTime={formatDate(article.publishDate, "YYYY-MM-DD")}
-                className={styles.time}
+                dateTime={ formatDate(article.publishDate, "YYYY-MM-DD") }
+                className={ styles.time }
               >
                 {formatDate(article.publishDate, "YYYY/MM/DD")}
               </time>
-              <ArticleLink meta={article} />
+              <ArticleLink meta={ article } />
             </li>
           );
         })}
       </ol>
-      <Link href={articlesListPagePath} className={styles.more}>
+      <Link href={ articlesListPagePath } className={ styles.more }>
         全記事一覧へ
       </Link>
     </div>
@@ -77,14 +77,14 @@ function Changelog({ viewNum }: ChangelogProps) {
       // 公開日と更新日が同じ場合は更新履歴を出さない
       const isModified = publishedDate !== modifiedDate;
 
-      let data: ChangelogData[] = [
+      const data: ChangelogData[] = [
         {
           id: `${article.id}-published`,
           date: publishedDate,
           description: (
             <>
               【記事公開】
-              <a href={createArticleDetailPath(article.id)}>{article.title}</a>
+              <a href={ createArticleDetailPath(article.id) }>{article.title}</a>
             </>
           ),
         },
@@ -97,7 +97,7 @@ function Changelog({ viewNum }: ChangelogProps) {
           description: (
             <>
               【記事更新】
-              <a href={createArticleDetailPath(article.id)}>{article.title}</a>
+              <a href={ createArticleDetailPath(article.id) }>{article.title}</a>
             </>
           ),
         });
@@ -116,11 +116,11 @@ function Changelog({ viewNum }: ChangelogProps) {
 
   return (
     <div>
-      <h2 className={styles.title}>変更履歴</h2>
-      <ol className={styles.list}>
+      <h2 className={ styles.title }>変更履歴</h2>
+      <ol className={ styles.list }>
         {combinedChangelog.map((log) => (
-          <li key={log.id} className={styles.item}>
-            <time dateTime={log.date}>{log.date.replace(/-/g, "/")}</time>：
+          <li key={ log.id } className={ styles.item }>
+            <time dateTime={ log.date }>{log.date.replace(/-/g, "/")}</time>：
             {log.description}
           </li>
         ))}
@@ -148,6 +148,6 @@ const changelogData: Omit<ChangelogData, "id">[] = [
   },
   {
     date: "2023-08-23",
-    description: <a href="/articles/qnhckrrtrx8xv662s0ox840y/">サイト公開</a>,
+    description: <Link href="/articles/qnhckrrtrx8xv662s0ox840y/">サイト公開</Link>,
   },
 ];

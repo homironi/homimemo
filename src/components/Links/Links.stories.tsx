@@ -14,8 +14,8 @@ export const Default: Story = {
     color: "default",
   },
   render: (args) => (
-    <div style={{ backgroundColor: "var(--color-main)", padding: "16px" }}>
-      <Links {...args} />
+    <div style={ { backgroundColor: "var(--color-main)", padding: "16px" } }>
+      <Links { ...args } />
     </div>
   ),
 };
@@ -26,9 +26,9 @@ export const Reverse: Story = {
   },
   render: (args) => (
     <div
-      style={{ backgroundColor: "var(--color-main-reverse)", padding: "16px" }}
+      style={ { backgroundColor: "var(--color-main-reverse)", padding: "16px" } }
     >
-      <Links {...args} />
+      <Links { ...args } />
     </div>
   ),
 };
@@ -39,9 +39,9 @@ export const White: Story = {
   },
   render: (args) => (
     <div
-      style={{ backgroundColor: "var(--color-main-black)", padding: "16px" }}
+      style={ { backgroundColor: "var(--color-main-black)", padding: "16px" } }
     >
-      <Links {...args} />
+      <Links { ...args } />
     </div>
   ),
 };
@@ -52,9 +52,9 @@ export const Black: Story = {
   },
   render: (args) => (
     <div
-      style={{ backgroundColor: "var(--color-main-white)", padding: "16px" }}
+      style={ { backgroundColor: "var(--color-main-white)", padding: "16px" } }
     >
-      <Links {...args} />
+      <Links { ...args } />
     </div>
   ),
 };

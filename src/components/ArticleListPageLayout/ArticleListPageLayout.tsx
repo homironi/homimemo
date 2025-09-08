@@ -35,8 +35,8 @@ export function ArticleListPageLayout({
   const pageArticles = articles.slice(startNum, endNum);
 
   return (
-    <div className={styles.container}>
-      <Breadcrumbs breadcrumbs={breadcrumbs} />
+    <div className={ styles.container }>
+      <Breadcrumbs breadcrumbs={ breadcrumbs } />
       <h1>{title}</h1>
       {articles.length === 0 ? (
         <p>記事は見つかりませんでした。</p>
@@ -46,17 +46,17 @@ export function ArticleListPageLayout({
             endNum,
             articles.length
           )} 件目）`}</p>
-          <ol className={styles.list}>
+          <ol className={ styles.list }>
             {pageArticles.map((article) => (
-              <li key={article.id} className={styles.item}>
-                <ArticleCard meta={article} />
+              <li key={ article.id } className={ styles.item }>
+                <ArticleCard meta={ article } />
               </li>
             ))}
           </ol>
           <ArticleListPageNumbers
-            allArticlesLength={articles.length}
-            listPagePathBase={listPagePathBase}
-            currentPageNumber={currentPageNumber}
+            allArticlesLength={ articles.length }
+            listPagePathBase={ listPagePathBase }
+            currentPageNumber={ currentPageNumber }
           />
         </>
       )}

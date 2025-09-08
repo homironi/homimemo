@@ -12,13 +12,20 @@ const buttonVariantClassName: { [key in ButtonVariants]: string } = {
   text: styles.text,
 };
 
+/**
+ * ボタンコンポーネント
+ * @param root0 引数オブジェクト
+ * @param root0.children ボタンの子要素
+ * @param root0.variant ボタンのスタイル variant
+ * @returns ボタンのJSX要素
+ */
 export function Button({ children, variant, ...props }: ButtonProps) {
   return (
     <button
-      {...props}
-      className={`${styles.button} ${
+      { ...props }
+      className={ `${styles.button} ${
         buttonVariantClassName[variant || "filled"]
-      } ${props.className}`}
+      } ${props.className}` }
     >
       {children}
     </button>

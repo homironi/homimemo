@@ -38,5 +38,5 @@ export async function generateMetadata(): Promise<Metadata> {
  */
 export default function ContactPage() {
   const { meta, content } = readStaticArticleContent(filePath);
-  return <Article meta={meta} content={content} shareSlug={getSlug()} />;
+  return <Article meta={ meta } content={ content } shareSlug={ getSlug() } />;
 }

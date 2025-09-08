@@ -8,14 +8,21 @@ export type ShareButtonsProps = {
   title: string;
 };
 
+/**
+ * 共有ボタン群
+ * @param root0 引数オブジェクト
+ * @param root0.slug 記事のスラッグ
+ * @param root0.title 記事のタイトル
+ * @returns 共有ボタン群のコンポーネント
+ */
 export function ShareButtons({ slug, title }: ShareButtonsProps) {
   const shareUrl = createUrlFromSlug(slug);
   const shareTitle = createTitleFromTemplate(title);
   return (
     <div>
-      <CopyUrlButton url={shareUrl} />
-      <WebShareButton url={shareUrl} title={shareTitle} />
-      <XShareButton url={shareUrl} title={shareTitle} />
+      <CopyUrlButton url={ shareUrl } />
+      <WebShareButton url={ shareUrl } title={ shareTitle } />
+      <XShareButton url={ shareUrl } title={ shareTitle } />
     </div>
   );
 }

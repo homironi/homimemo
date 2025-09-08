@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { articlesMetaFilePath, convertMetaFromRaw } from "@/lib/server/article";
 import { ArticleMeta, ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";

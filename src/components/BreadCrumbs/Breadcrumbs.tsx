@@ -29,12 +29,12 @@ export function Breadcrumbs({ breadcrumbs }: BreadcrumbsProps) {
 
   return (
     <nav>
-      <ol className={styles.list}>
+      <ol className={ styles.list }>
         {items.map((item) => {
           const className = `${styles.li}`;
           return (
-            <li key={item.href} className={className}>
-              <Link href={item.href}>
+            <li key={ item.href } className={ className }>
+              <Link href={ item.href }>
                 <span>{item.name}</span>
               </Link>
             </li>

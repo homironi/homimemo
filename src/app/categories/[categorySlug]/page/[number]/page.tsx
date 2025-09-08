@@ -97,11 +97,11 @@ export default async function CategoriesArticlesPage({
 
   return (
     <ArticleListPageLayout
-      breadcrumbs={breadcrumbs}
-      title={createTitle(categoryMeta)}
-      articles={articles}
-      listPagePathBase={createCategoryListFirstPagePath(categoryMeta)}
-      currentPageNumber={number}
+      breadcrumbs={ breadcrumbs }
+      title={ createTitle(categoryMeta) }
+      articles={ articles }
+      listPagePathBase={ createCategoryListFirstPagePath(categoryMeta) }
+      currentPageNumber={ number }
     />
   );
 }
