@@ -5,6 +5,9 @@ import { TextBlock } from "./index";
 const meta = {
   title: "Components/TextBlock",
   component: TextBlock,
+  parameters: {
+    layout: "padded",
+  },
 } satisfies Meta<typeof TextBlock>;
 
 export default meta;
