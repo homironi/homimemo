@@ -25,6 +25,7 @@ export default defineConfig([
       "_public/**",
       "**/node_modules/**",
       "next-env.d.ts",
+      "worker-configuration.d.ts",
     ],
   },
   js.configs.recommended,

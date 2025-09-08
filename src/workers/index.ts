@@ -29,9 +29,8 @@ const errorPages: Record<number, string> = {
   510: "/510.html",
 };
 
-const worker = {
-  /* eslint-disable-next-line @typescript-eslint/no-explicit-any*//* 別コミットでanyではなく「pnpm wrangler types」で型を用意して置き換えるので今はこのまま */
-  async fetch(request: Request, env: any): Promise<Response> {
+export default {
+  async fetch(request, env): Promise<Response> {
     const url = new URL(request.url);
 
     // リダイレクト判定：ここでは末尾の/がない状態でくることもあるのでそれも考慮しておく
@@ -63,6 +62,5 @@ const worker = {
       });
     }
   },
-};
+} satisfies ExportedHandler<Env>;
 
-export default worker;
