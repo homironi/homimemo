@@ -5,27 +5,6 @@ import { TextBlock } from "./index";
 const meta = {
   title: "Components/TextBlock",
   component: TextBlock,
-  parameters: {
-    layout: "padded",
-  },
-  argTypes: {
-    blockType: {
-      control: { type: "select" },
-      options: [
-        "info",
-        "warning",
-        "error",
-        "success",
-        "note",
-        "tip",
-        "question",
-      ],
-    },
-    titleLevel: {
-      control: { type: "select" },
-      options: ["h1", "h2", "h3", "h4", "h5", "h6"],
-    },
-  },
 } satisfies Meta<typeof TextBlock>;
 
 export default meta;
