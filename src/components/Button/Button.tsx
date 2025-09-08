@@ -13,10 +13,11 @@ const buttonVariantClassName: { [key in ButtonVariants]: string } = {
 };
 
 /**
- *
- * @param root0
- * @param root0.children
- * @param root0.variant
+ * ボタンコンポーネント
+ * @param root0 引数オブジェクト
+ * @param root0.children ボタンの子要素
+ * @param root0.variant ボタンのスタイル variant
+ * @returns ボタンのJSX要素
  */
 export function Button({ children, variant, ...props }: ButtonProps) {
   return (

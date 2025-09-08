@@ -29,7 +29,8 @@ const errorPages: Record<number, string> = {
   510: "/510.html",
 };
 
-export default {
+const worker = {
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any*//* 別コミットでanyではなく「pnpm wrangler types」で型を用意して置き換えるので今はこのまま */
   async fetch(request: Request, env: any): Promise<Response> {
     const url = new URL(request.url);
 
@@ -47,7 +48,7 @@ export default {
     try {
       const response = await env.ASSETS.fetch(request);
       return response;
-    } catch (e) {
+    } catch {
       // fetch でエラーが出た場合は404とみなす
       const errorUrl = new URL(errorPages[404], url.origin);
 
@@ -63,3 +64,5 @@ export default {
     }
   },
 };
+
+export default worker;

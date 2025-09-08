@@ -9,10 +9,11 @@ export type ShareButtonsProps = {
 };
 
 /**
- *
- * @param root0
- * @param root0.slug
- * @param root0.title
+ * 共有ボタン群
+ * @param root0 引数オブジェクト
+ * @param root0.slug 記事のスラッグ
+ * @param root0.title 記事のタイトル
+ * @returns 共有ボタン群のコンポーネント
  */
 export function ShareButtons({ slug, title }: ShareButtonsProps) {
   const shareUrl = createUrlFromSlug(slug);

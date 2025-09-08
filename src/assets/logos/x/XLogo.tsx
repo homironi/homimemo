@@ -7,9 +7,10 @@ export type XLogoProps = SVGProps<SVGSVGElement> & {
 };
 
 /**
- *
- * @param root0
- * @param root0.color
+ * XロゴのJSX要素
+ * @param root0 引数オブジェクト
+ * @param root0.color ロゴの色タイプ指定
+ * @returns XロゴのJSX要素
  */
 export function XLogo({ color = "default", ...props }: XLogoProps) {
   let colorClassName;

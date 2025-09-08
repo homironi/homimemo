@@ -8,10 +8,11 @@ import styles from "./CodeBlock.module.css";
 const codeLanguageClassNamePattern = /language-(\w+)/;
 
 /**
- *
- * @param root0
- * @param root0.children
- * @param root0.className
+ * コードブロックコンポーネント
+ * @param root0 引数オブジェクト
+ * @param root0.children コードブロックの内容
+ * @param root0.className 追加のクラス名
+ * @returns コードブロックのJSX要素
  */
 export function CodeBlock({
   children,
@@ -25,35 +26,29 @@ export function CodeBlock({
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    try {
-      let text = "";
-
-      if (typeof children === "string") {
-        text = children;
-      } else if (React.isValidElement(children)) {
-        const codeElement = document.querySelector(
-          `[data-code-id="${codeId}"] code`
-        );
-        text = codeElement?.textContent || "";
-      } else if (Array.isArray(children)) {
-        text = children
-          .map((child) =>
-            typeof child === "string" ? child : child?.toString() || ""
-          )
-          .join("");
-      } else {
-        text = children?.toString() || "";
-      }
-
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-
-      setTimeout(() => {
-        setCopied(false);
-      }, 2000);
-    } catch (err) {
-      console.error("コピーに失敗しました:", err);
+    let text = "";
+    if (typeof children === "string") {
+      text = children;
+    } else if (React.isValidElement(children)) {
+      const codeElement = document.querySelector(
+        `[data-code-id="${codeId}"] code`
+      );
+      text = codeElement?.textContent || "";
+    } else if (Array.isArray(children)) {
+      text = children
+        .map((child) =>
+          typeof child === "string" ? child : child?.toString() || ""
+        )
+        .join("");
+    } else {
+      text = children?.toString() || "";
     }
+    
+    await navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
   };
 
   return (

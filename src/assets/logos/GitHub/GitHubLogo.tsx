@@ -8,9 +8,10 @@ export type GitHubLogoProps = SVGProps<SVGSVGElement> & {
 };
 
 /**
- *
- * @param root0
- * @param root0.color
+ * GitHubロゴのJSX要素
+ * @param root0 引数オブジェクト
+ * @param root0.color ロゴの色タイプ指定
+ * @returns GitHubロゴのJSX要素
  */
 export function GitHubLogo({ color = "default", ...props }: GitHubLogoProps) {
   let colorClassName;

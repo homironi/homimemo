@@ -10,9 +10,10 @@ type CopyUrlButtonProps = {
 };
 
 /**
- *
- * @param root0
- * @param root0.url
+ * URLをクリップボードにコピーするボタン
+ * @param root0 引数オブジェクト
+ * @param root0.url コピーするURL
+ * @returns コピー用ボタンのコンポーネント
  */
 export function CopyUrlButton({ url }: CopyUrlButtonProps) {
   const [copied, setCopied] = useState(false);
@@ -23,9 +24,7 @@ export function CopyUrlButton({ url }: CopyUrlButtonProps) {
       setTimeout(() => {
         setCopied(false);
       }, 2000);
-    } catch (error) {
-      console.error("URLのコピーに失敗しました:", error);
-
+    } catch {
       setCopied(true);
       setTimeout(() => {
         setCopied(false);

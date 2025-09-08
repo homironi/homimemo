@@ -1,4 +1,5 @@
 import { noImageUrl } from "@/lib/utils";
+import Image from "next/image";
 import Link from "next/link";
 import styles from "./CardPreview.module.css";
 
@@ -10,12 +11,13 @@ export type CardPreviewProps = {
 };
 
 /**
- *
- * @param root0
- * @param root0.url
- * @param root0.title
- * @param root0.description
- * @param root0.imageUrl
+ * カードプレビューコンポーネント
+ * @param root0 引数オブジェクト
+ * @param root0.url 記事のURL
+ * @param root0.title 記事のタイトル
+ * @param root0.description 記事の説明
+ * @param root0.imageUrl 記事の画像URL
+ * @returns 記事のカードプレビューのJSX要素
  */
 export function CardPreview({
   url,
@@ -30,7 +32,7 @@ export function CardPreview({
         <div className={ styles["image-container"] }>
           {/* テキストのサイズに合わせて画像を拡縮するためにラップ */}
           <div className={ styles["image-container-2"] }>
-            <img src={ validImageUrl } alt={ title } className={ styles.image } />
+            <Image src={ validImageUrl } fill alt={ title } className={ styles.image } />
           </div>
         </div>
         <div className={ styles.texts }>

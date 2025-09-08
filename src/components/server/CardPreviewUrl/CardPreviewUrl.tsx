@@ -21,9 +21,11 @@ const OGPScannerResponseSchema = object({
 });
 
 /**
- *
- * @param root0
- * @param root0.url
+ * URLのカードプレビュー表示コンポーネント
+ * @param root0 引数オブジェクト
+ * @param root0.url シェアするURL
+ * @returns カードプレビューコンポーネント
+ * @description 内部で取得している画像データなどを取得できる場合は、CardPreviewComponentを直接使うことを推奨
  */
 export async function CardPreviewUrl({ url }: CardPreviewUrlProps) {
   const cardPreviewProps = await getCardPreviewProps(url);

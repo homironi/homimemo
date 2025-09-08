@@ -148,6 +148,6 @@ const changelogData: Omit<ChangelogData, "id">[] = [
   },
   {
     date: "2023-08-23",
-    description: <a href="/articles/qnhckrrtrx8xv662s0ox840y/">サイト公開</a>,
+    description: <Link href="/articles/qnhckrrtrx8xv662s0ox840y/">サイト公開</Link>,
   },
 ];

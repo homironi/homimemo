@@ -29,8 +29,8 @@ export async function generateStaticParams(): Promise<Params[]> {
 
 /**
  * Next.jsのページで使用する静的Meta情報の生成
- * @param root0
- * @param root0.params
+ * @param root0 引数オブジェクト
+ * @param root0.params 静的パラメータ
  * @returns Meta情報
  */
 export async function generateMetadata({

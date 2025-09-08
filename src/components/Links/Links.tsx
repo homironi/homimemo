@@ -14,9 +14,10 @@ export type LinksProps = {
 };
 
 /**
- *
- * @param root0
- * @param root0.color
+ * SNSリンク集
+ * @param root0 引数オブジェクト
+ * @param root0.color アイコンの色タイプ
+ * @returns リンク集のコンポーネント
  */
 export function Links({ color = "default" }: LinksProps) {
   let colorClassName;

@@ -60,7 +60,7 @@ export type ArticleProps = {
  * @param root0 引数オブジェクト
  * @param root0.meta 記事のMeta
  * @param root0.content 記事内容
- * @param root0.shareSlug
+ * @param root0.shareSlug 共有に使う記事のスラッグ
  * @returns 記事ページのコンポーネント
  */
 export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {

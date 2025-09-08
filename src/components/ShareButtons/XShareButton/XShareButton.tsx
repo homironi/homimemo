@@ -5,10 +5,11 @@ import { Button } from "@/components/Button";
 import styles from "./XShareButton.module.css";
 
 /**
- *
- * @param root0
- * @param root0.url
- * @param root0.title
+ * Xでシェアするボタン
+ * @param root0 引数オブジェクト
+ * @param root0.url シェアするURL
+ * @param root0.title シェアするタイトル
+ * @returns 共有ボタンのコンポーネント
  */
 export function XShareButton({ url, title }: { url: string; title: string }) {
   const handleShare = () => {

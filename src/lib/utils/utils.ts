@@ -10,11 +10,12 @@ export const siteOrigin = "https://homironi.com";
 export const noImageUrl = "/images/no-image.webp";
 
 /**
- *
- * @param title
- * @param description
- * @param slug
- * @param thumbnail
+ * デフォルトのOGPデータ
+ * @param title タイトル
+ * @param description 説明
+ * @param slug スラッグ
+ * @param thumbnail サムネイル
+ * @returns OGPデータ
  */
 export function createDefaultOG(
   title?: string,
@@ -42,10 +43,11 @@ export function createDefaultOG(
 }
 
 /**
- *
- * @param title
- * @param description
- * @param thumbnail
+ * デフォルトのTwitterカードデータ
+ * @param title タイトル
+ * @param description 説明
+ * @param thumbnail サムネイル
+ * @returns Twitterカードデータ
  */
 export function createDefaultTwitter(
   title?: string,
@@ -65,24 +67,29 @@ export function createDefaultTwitter(
 }
 
 /**
- *
- * @param title
+ * タイトルをテンプレートから生成する
+ * @param title タイトル
+ * @returns テンプレートから生成されたタイトル
  */
 export function createTitleFromTemplate(title: string) {
   return `${title} | ${siteName}`;
 }
 
 /**
- *
- * @param slug
+ * URLをスラッグから生成する
+ * @param slug スラッグ
+ * @returns スラッグから生成されたURL
+ * @description スラッグは先頭に/をつけること
  */
 export function createUrlFromSlug(slug: string) {
   return `${siteOrigin}${slug}`;
 }
 
 /**
- *
- * @param url
+ * サイト内の記事URLから記事IDを取得する
+ * @param url 記事のURL
+ * @returns 記事ID、記事URLでない場合はnull
+ * @description 記事URLの形式は https://homironi.com/articles/{articleId} または http://localhost:{port}/articles/{articleId} (開発環境) を想定
  */
 export function getSiteArticleUrl(url: URL): string | null {
   if (!isSiteOrigin(url)) {
