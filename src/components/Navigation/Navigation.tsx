@@ -14,11 +14,11 @@ export type NavigationProps = {
  */
 export function Navigation({ links }: NavigationProps) {
   return (
-    <nav className={styles.container}>
-      <ul className={styles.list}>
+    <nav className={ styles.container }>
+      <ul className={ styles.list }>
         {links.map((link) => (
-          <li key={`${link.href}-${link.label}`} className={styles.item}>
-            <Link href={link.href} className={styles.link}>
+          <li key={ `${link.href}-${link.label}` } className={ styles.item }>
+            <Link href={ link.href } className={ styles.link }>
               {link.label}
             </Link>
           </li>

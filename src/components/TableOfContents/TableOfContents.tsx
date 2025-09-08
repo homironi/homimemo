@@ -32,9 +32,9 @@ export function TableOfContents({
   }, [tocContentSourceIdName]);
 
   return (
-    <div className={styles.container}>
-      <p className={styles.title}>目次</p>
-      <div className={tocSelectorName} />
+    <div className={ styles.container }>
+      <p className={ styles.title }>目次</p>
+      <div className={ tocSelectorName } />
     </div>
   );
 }

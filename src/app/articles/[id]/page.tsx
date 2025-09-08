@@ -80,9 +80,9 @@ export default async function ArticlePage({
 
   return (
     <Article
-      meta={meta}
-      content={content}
-      shareSlug={createArticleDetailPath(id)}
+      meta={ meta }
+      content={ content }
+      shareSlug={ createArticleDetailPath(id) }
     />
   );
 }

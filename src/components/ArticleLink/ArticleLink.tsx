@@ -28,38 +28,38 @@ export function ArticleLink({ meta }: ArticleLinkProps) {
   const publishDate = formatDate(meta.publishDate, "YYYY/MM/DD");
   const lastModDate = formatDate(meta.lastModDate, "YYYY/MM/DD");
   return (
-    <div className={styles.container}>
-      <Link href={createArticleDetailPath(meta.id)} className={styles.link}>
-        <div className={styles["image-container"]}>
-          <div className={styles["image-container-2"]}>
+    <div className={ styles.container }>
+      <Link href={ createArticleDetailPath(meta.id) } className={ styles.link }>
+        <div className={ styles["image-container"] }>
+          <div className={ styles["image-container-2"] }>
             <Image
-              src={meta.thumbnail ?? defaultArticleThumbnail}
-              alt={meta.title}
-              width={articleThumbnailNativeSize.width}
-              height={articleThumbnailNativeSize.height}
-              className={styles.image}
+              src={ meta.thumbnail ?? defaultArticleThumbnail }
+              alt={ meta.title }
+              width={ articleThumbnailNativeSize.width }
+              height={ articleThumbnailNativeSize.height }
+              className={ styles.image }
             />
           </div>
         </div>
-        <div className={styles["text-container"]}>
-          <span className={styles.category}>
-            <CategoryIcon className={styles.icon} />
+        <div className={ styles["text-container"] }>
+          <span className={ styles.category }>
+            <CategoryIcon className={ styles.icon } />
             {meta.category.name}
           </span>
-          <div className={styles.title}>{meta.title}</div>
-          <div className={styles.description}>{meta.description}</div>
-          <div className={styles["date-container"]}>
+          <div className={ styles.title }>{meta.title}</div>
+          <div className={ styles.description }>{meta.description}</div>
+          <div className={ styles["date-container"] }>
             {lastModDate !== publishDate && (
-              <span className={styles["last-mod-date"]}>
-                <LastModeDateIcon className={styles.icon} />
-                <time dateTime={formatDate(meta.lastModDate, "YYYY-MM-DD")}>
+              <span className={ styles["last-mod-date"] }>
+                <LastModeDateIcon className={ styles.icon } />
+                <time dateTime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>
                   {lastModDate}
                 </time>
               </span>
             )}
             <span>
-              <PublishDateIcon className={styles.icon} />
-              <time dateTime={formatDate(meta.publishDate, "YYYY-MM-DD")}>
+              <PublishDateIcon className={ styles.icon } />
+              <time dateTime={ formatDate(meta.publishDate, "YYYY-MM-DD") }>
                 {publishDate}
               </time>
             </span>

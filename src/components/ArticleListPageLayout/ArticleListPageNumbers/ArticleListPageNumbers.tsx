@@ -26,7 +26,7 @@ export function ArticleListPageNumbers({
   }
 
   return (
-    <ol className={styles.list}>
+    <ol className={ styles.list }>
       {pageNumbers.map((pageNumber) => {
         const linkPathBase = listPagePathBase.endsWith("/")
           ? listPagePathBase
@@ -36,12 +36,12 @@ export function ArticleListPageNumbers({
 
         return (
           <li
-            key={pageNumber}
-            className={isCurrent ? styles["items-current"] : styles.items}
+            key={ pageNumber }
+            className={ isCurrent ? styles["items-current"] : styles.items }
           >
             <a
-              href={linkPath}
-              className={isCurrent ? styles["link-current"] : styles.link}
+              href={ linkPath }
+              className={ isCurrent ? styles["link-current"] : styles.link }
             >
               {pageNumber}
             </a>
