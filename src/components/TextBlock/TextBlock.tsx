@@ -18,7 +18,6 @@ export type TextBlockType =
   | "note"
   | "tip"
   | "question";
-export type TextBlockTitleLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 type Props = {
   /**
@@ -30,11 +29,6 @@ type Props = {
    * テキストブロックのタイトル
    */
   title?: string;
-
-  /**
-   * テキストブロックのタイトルレベル
-   */
-  titleLevel?: TextBlockTitleLevel;
 
   /**
    * 子要素
@@ -73,10 +67,8 @@ function getIconForBlockType(blockType: TextBlockType) {
 export function TextBlock({
   blockType,
   title,
-  titleLevel = "h3",
   children,
 }: Props) {
-  const TitleTag = titleLevel;
   const Icon = getIconForBlockType(blockType);
 
   return (
@@ -84,7 +76,7 @@ export function TextBlock({
       className={ `${styles["text-block"]} ${styles[`text-block-${blockType}`]}` }
     >
       <Icon className={ styles.icon } />
-      {title && <TitleTag className={ styles.title }>{title}</TitleTag>}
+      {title && <p className={ styles.title }>{title}</p>}
       <div className={ styles.content }>{children}</div>
     </div>
   );
