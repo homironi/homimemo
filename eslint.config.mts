@@ -46,6 +46,8 @@ export default defineConfig([
       ...reactHooks.configs.recommended.rules,
       
       "no-console": "error",
+      "@stylistic/quotes": ["error", "double", { avoidEscape: true }],
+      "@stylistic/semi": ["error", "always"],
       "@stylistic/linebreak-style": ["error", "unix"],
       "@stylistic/quote-props": ["error", "as-needed"],
       "@stylistic/jsx-curly-spacing": [2, { when: "always" }],
