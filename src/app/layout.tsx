@@ -81,6 +81,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7565570537846567"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <Header />
         <Navigation links={ headerLinks } />
