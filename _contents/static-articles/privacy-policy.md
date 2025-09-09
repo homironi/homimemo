@@ -3,7 +3,7 @@ slug: privacy-policy
 title: プライバシーポリシー
 draft: false
 publishDate: 2023-07-23T00:00:00.000+09:00
-lastModDate: 2025-09-09T14:44:16.000+09:00
+lastModDate: 2025-09-09T15:28:33.000+09:00
 description: 当サイトのプライバシーポリシーです。
 thumbnail: /images/header/privacyPolicy.webp
 ---
@@ -55,12 +55,20 @@ Google アナリティクスによる情報収集を無効にしたい場合は�
 
 ## 6. 広告について
 
-本サイトでは、以下の第三者配信の広告サービスを利用しており、ユーザーの興味に応じた商品やサービスの広告を表示するため、Cookie を使用しています：
+このサイトはアフィリエイト広告（Amazonアソシエイト含む）を掲載しています。  
+Amazonのアソシエイトとして、「ほみろに」は適格販売により収入を得ています。  
+
+本サイトでは、以下の第三者配信の広告サービスを利用しています。
 
 - [A8.net](https://www.a8.net/)
 - [もしもアフィリエイト](https://af.moshimo.com/)
 - [バリューコマース](https://www.valuecommerce.ne.jp/)
 - [楽天アフィリエイト](https://affiliate.rakuten.co.jp/)
+- Amazonアソシエイト
+- Google AdSense
+
+また、ユーザーの興味に応じた商品やサービスの広告を表示するため、Cookie を使用しています。  
+ユーザーは[広告設定](https://www.google.com/settings/ads)でパーソナライズ広告を無効にできます。
 
 ### Cookieについて
 - Cookie を使用することで本サイトはお客様のコンピュータを識別できますが、個人を特定するものではありません
