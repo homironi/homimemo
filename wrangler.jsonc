@@ -3,6 +3,7 @@
   "name": "homimemo",
   "compatibility_date": "2025-09-03",
   "main": "src/workers/index.ts",
+  "preview_urls": true,
   "assets": {
     "directory": "./_public/",
     // 手動でリダイレクトしている場所があるのでnoneにすることでリダイレクトしたいものをASSETSが404を先に返してしまわないようにする
