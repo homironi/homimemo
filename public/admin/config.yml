@@ -27,8 +27,8 @@ collections:
     fields:
       - { label: "タイトル", name: "title", widget: "string", required: true }
       - { label: "下書き", name: "draft", widget: "boolean", default: true, required: true }
-      - { label: "公開日時", name: "publishDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
-      - { label: "最終編集日時", name: "lastModDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
+      - { label: "公開日時", name: "publishDate", widget: "datetime", required: true }
+      - { label: "最終編集日時", name: "lastModDate", widget: "datetime", required: true }
       - { label: "カテゴリー", name: "category", widget: "relation", collection: "categories", search_fields: ["name", "description"], value_field: "name", required: true }
       - { label: "タグ", name: "tags", widget: "relation", collection: "tags", search_fields: ["name", "description"], value_field: "name", multiple: true, required: false }
       - { label: "サムネイル", name: "thumbnail", widget: "image", required: false }
@@ -44,8 +44,8 @@ collections:
       - { label: "Slug", name: "slug", widget: "string", required: true }
       - { label: "タイトル", name: "title", widget: "string", required: true }
       - { label: "下書き", name: "draft", widget: "boolean", default: true, required: true }
-      - { label: "公開日時", name: "publishDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
-      - { label: "最終編集日時", name: "lastModDate", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss", required: true }
+      - { label: "公開日時", name: "publishDate", widget: "datetime", required: true }
+      - { label: "最終編集日時", name: "lastModDate", widget: "datetime", required: true }
       - { label: "サムネイル", name: "thumbnail", widget: "image", required: false }
       - { label: "説明", name: "description", widget: "string", required: true }
       - { label: "本文", name: "body", widget: "markdown", required: true }
