@@ -6,15 +6,25 @@
 .tool-container{
   position: relative;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  padding: 4px;
+  padding: 4px 8px 4px 16px;
   background-color:  var(--color-code-tool-background);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   border: 1px solid var(--color-code-border);
   border-bottom: none;
   margin: 0;
+}
+
+.tool-container-first{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.title{
+  font-size: 0.9rem;
 }
 
 .language-label{
