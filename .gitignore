@@ -56,4 +56,7 @@ src/**/*.module.css.d.ts
 public/generated/
 public/rss.xml
 
+# install時、もしくは `pnpm run gen:types` 時に生成される型定義ファイル
+worker-configuration.d.ts
+
 .wrangler/
