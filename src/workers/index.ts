@@ -21,12 +21,12 @@ const redirects: Record<string, string> = {
 };
 
 const errorPages: Record<number, string> = {
-  400: "/400.html",
-  401: "/401.html",
-  403: "/403.html",
-  404: "/404.html",
-  500: "/500.html",
-  510: "/510.html",
+  400: "/400/",
+  401: "/401/",
+  403: "/403/",
+  404: "/404/",
+  500: "/500/",
+  510: "/510/",
 };
 
 export default {
@@ -44,23 +44,27 @@ export default {
       return Response.redirect(redirect, 301);
     }
 
-    try {
-      const response = await env.ASSETS.fetch(request);
-      return response;
-    } catch {
-      // fetch でエラーが出た場合は404とみなす
-      const errorUrl = new URL(errorPages[404], url.origin);
-
-      // env.ASSETS.fetchでエラーが出た場合、ここで404ページをenv.ASSETS.fetchしてもエラーになるので通常fetchで取得する
-      const errorResponse = await fetch(new Request(errorUrl.toString())).catch(
-        () => new Response("Not Found", { status: 404 })
-      );
-
-      return new Response(errorResponse.body, {
-        status: 404,
-        headers: { "Content-Type": "text/html" },
-      });
+    const response = await env.ASSETS.fetch(request).catch(() => {
+      // ASSETSのfetchで失敗した場合は500エラーを返す
+      return handleErrorResponse(url.origin, 500, env);
+    });
+      
+    if(response.status !== 200){
+      return handleErrorResponse(url.origin, response.status, env);
     }
+
+    return response;
   },
 } satisfies ExportedHandler<Env>;
 
+/**
+ * エラーページを返す
+ * @param origin オリジンURL
+ * @param status ステータスコード
+ * @param env 環境変数
+ * @returns エラーページのResponse
+ */
+function handleErrorResponse(origin: string, status: number, env: Env): Promise<Response> {
+  const errorUrl = new URL(errorPages[status], origin);
+  return env.ASSETS.fetch(new Request(errorUrl.toString()));
+};
