@@ -14,7 +14,7 @@ import {
   siteName,
 } from "@/lib/utils";
 import { NavigationLink } from "@/schemas/navigationLink";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 import "./globalElement.css";
 import "./globals.css";
@@ -94,7 +94,7 @@ export default function RootLayout({
         {children}
         <Footer links={ footerLinks } />
         {process.env.NODE_ENV === "production" && (
-          <GoogleAnalytics gaId="G-V6P1VWVXYK" />
+          <GoogleTagManager gtmId="G-V6P1VWVXYK" />
         )}
       </body>
     </html>
