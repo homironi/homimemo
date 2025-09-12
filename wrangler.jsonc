@@ -9,7 +9,7 @@
     "binding": "ASSETS",
     // 手動でリダイレクトしている場所があるのでnoneにすることでリダイレクトしたいものをASSETSが404を先に返してしまわないようにする
     "not_found_handling": "none",
-    "html_handling": "auto-trailing-slash"
+    "html_handling": "force-trailing-slash"
   },
   "routes": [
     {
