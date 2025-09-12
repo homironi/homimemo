@@ -20,13 +20,15 @@ import {
 } from "@/lib/article";
 import { formatDate } from "@/lib/date";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
+import { codeContainerClassName, rehypeCodeContainer } from "@/lib/server/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
 import { ArticleMeta, StaticArticleMeta } from "@/schemas/article/meta";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import React, { PropsWithChildren } from "react";
+import React, { isValidElement, PropsWithChildren } from "react";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
@@ -202,7 +204,7 @@ function ArticleMdx({
           h4: createHeadingComponent("h4"),
           h5: createHeadingComponent("h5"),
           h6: createHeadingComponent("h6"),
-          pre: CodeBlock,
+          div: CustomDiv,
           TextBlock,
         } }
         options={ {
@@ -211,7 +213,9 @@ function ArticleMdx({
             rehypePlugins: [
               rehypeSlug,
               rehypeAutolinkHeadings,
+              rehypeCodeTitles,
               [rehypePrism],
+              rehypeCodeContainer,
               rehypeGfmTaskList,
             ],
           },
@@ -292,3 +296,41 @@ export const CustomParagraph = async ({
 
   return <p { ...props }>{children}</p>;
 };
+
+
+/**
+ * <div> 要素を処理するコンポーネント
+ * @param root0 引数オブジェクト
+ * @param root0.className クラス名
+ * @param root0.children 子要素
+ * @param root0.props その他のプロパティ
+ * @returns <div> 要素のJSX要素
+ */
+function CustomDiv({className, children,...props}: PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) {
+  // コードブロックコンテナの処理
+  if(className?.includes(codeContainerClassName)  && children){
+    // childrenが配列の時はタイトル付きコードブロック
+    if(Array.isArray(children) && children.length >= 2){
+      const childrenArray = children as React.ReactNode[];
+      const titleElement = childrenArray[0] as React.ReactHTMLElement<HTMLDivElement>;
+      const title = titleElement.props.children?.toString();
+      const preElement = childrenArray[1] as React.ReactHTMLElement<HTMLPreElement>;
+      return (
+        <div className={ className } { ...props }>
+          <CodeBlock title={ title } { ...preElement.props } />
+        </div>
+      );
+    }
+    else if(isValidElement(children) && children.type === "pre"){
+      // タイトルなしコードブロック
+      const childrenElement = children as React.ReactHTMLElement<HTMLPreElement>;
+      return (
+        <div className={ className } { ...props }>
+          <CodeBlock { ...childrenElement.props } />
+        </div>
+      );
+    }
+  }
+
+  return <div className={ className } { ...props } >{children}</div>;
+}

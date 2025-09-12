@@ -7,18 +7,24 @@ import styles from "./CodeBlock.module.css";
 
 const codeLanguageClassNamePattern = /language-(\w+)/;
 
+export type CodeBlockProps = PropsWithChildren<React.HTMLAttributes<HTMLPreElement>> & {
+  title?: string;
+};
+
 /**
  * コードブロックコンポーネント
  * @param root0 引数オブジェクト
  * @param root0.children コードブロックの内容
  * @param root0.className 追加のクラス名
+ * @param root0.title タイトル
  * @returns コードブロックのJSX要素
  */
 export function CodeBlock({
   children,
   className,
+  title,
   ...props
-}: PropsWithChildren<React.HTMLAttributes<HTMLPreElement>>) {
+}: CodeBlockProps) {
   const language =
     codeLanguageClassNamePattern.exec(className || "")?.[1] ?? null;
 
@@ -54,9 +60,12 @@ export function CodeBlock({
   return (
     <div className={ styles.container }>
       <div className={ styles["tool-container"] }>
-        {language && (
-          <span className={ styles["language-label"] }>{language}</span>
-        )}
+        <div className={ styles["tool-container-first"] }>
+          {title && (<span className={ styles.title }>{title}</span>)}
+          {language && (
+            <span className={ styles["language-label"] }>{language}</span>
+          )}
+        </div>
         <Button variant="text" onClick={ handleCopy }>
           {copied ? (
             <CheckIcon className={ styles["check-icon"] } />
