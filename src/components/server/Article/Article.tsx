@@ -1,4 +1,4 @@
-import { LastModeDateIcon, PublishDateIcon } from "@/assets/icons";
+import { ArticleIcon, LastModeDateIcon, MenuBookIcon, PublishDateIcon } from "@/assets/icons";
 import { ArticleCategory } from "@/components/ArticleCategory";
 import { ArticleCategoryList } from "@/components/ArticleCategoryList";
 import { ArticleTagList } from "@/components/ArticleTagList/ArticleTagList";
@@ -71,6 +71,10 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
   const publishDateText = formatDate(meta.publishDate, "YYYY/MM/DD");
   const lastModDateText = formatDate(meta.lastModDate, "YYYY/MM/DD");
 
+  const contentLength = countMarkdownCharacters(content);
+  const readPerMinutes = 400;
+  const readTime = Math.round(contentLength / readPerMinutes);
+
   const WrappedShareButtons = (
     <div className={ styles["share-buttons-container"] }>
       <DynamicShareButtons slug={ shareUrl } title={ meta.title } />
@@ -107,6 +111,8 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
           </div>
           {isArticleMeta(meta) && <ArticleCategory meta={ meta.category } />}
           {isArticleMeta(meta) && meta.tags && <ArticleTags tags={ meta.tags } />}
+          <p className={ styles["meta-text"] }><ArticleIcon className={ styles.icon }/>{contentLength} 文字</p>
+          <p className={ styles["meta-text"] }><MenuBookIcon className={ styles.icon }/>{` ${readTime} 分（${readPerMinutes} 文字 / 分）`}</p>
         </div>
         <Image
           src={ meta.thumbnail ?? defaultArticleThumbnail }
@@ -333,4 +339,88 @@ function CustomDiv({className, children,...props}: PropsWithChildren<React.HTMLA
   }
 
   return <div className={ className } { ...props } >{children}</div>;
+}
+
+/**
+ * マークダウンテキストから記法を除いた純粋な文字数をカウントする
+ * @param markdown マークダウン形式の文字列
+ * @returns 純粋な文字数
+ */
+export function countMarkdownCharacters(markdown: string): number {
+  let text = markdown;
+
+  // コードブロック（```で囲まれた部分）を先に処理
+  text = text.replace(/```[\s\S]*?```/g, (match) => {
+    // コードブロック内の改行以外の文字をカウント
+    const codeContent = match.replace(/```[^\n]*\n?/g, "").replace(/\n```$/g, "");
+    return codeContent;
+  });
+
+  // インラインコード（`で囲まれた部分）
+  text = text.replace(/`([^`]+)`/g, "$1");
+
+  // 見出し（# ## ### など）
+  text = text.replace(/^#+\s*/gm, "");
+
+  // 太字・斜体記法
+  text = text.replace(/\*\*\*(.+?)\*\*\*/g, "$1"); // 太字斜体
+  text = text.replace(/\*\*(.+?)\*\*/g, "$1");     // 太字
+  text = text.replace(/\*(.+?)\*/g, "$1");         // 斜体
+  text = text.replace(/___(.+?)___/g, "$1");       // 太字斜体
+  text = text.replace(/__(.+?)__/g, "$1");         // 太字
+  text = text.replace(/_(.+?)_/g, "$1");           // 斜体
+
+  // 取り消し線
+  text = text.replace(/~~(.+?)~~/g, "$1");
+
+  // リンク記法 [テキスト](URL)
+  text = text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+
+  // 画像記法 ![alt](URL)
+  text = text.replace(/!\[[^\]]*\]\([^)]+\)/g, "");
+  
+  // チェックリスト（- [ ] または - [x] で始まる行）
+  text = text.replace(/^[\s]*[-*+]\s*\[[\sx]\]\s*/gmi, "");
+
+  // リスト記法（- * + で始まる行）
+  text = text.replace(/^[\s]*[-*+]\s+/gm, "");
+
+  // 番号付きリスト（1. 2. など）
+  text = text.replace(/^[\s]*\d+\.\s+/gm, "");
+
+  // テーブル記法の処理
+  text = text.replace(/^\s*\|.*\|\s*$/gm, (match) => {
+    // テーブルの区切り行（|---|---|）を除外
+    if (/^\s*\|[\s\-|:]*\|\s*$/.test(match)) {
+      return "";
+    }
+    // テーブルのセル内容のみを抽出（|を除去してセルの内容を結合）
+    return match
+      .split("|")
+      .slice(1, -1) // 最初と最後の空文字を除去
+      .map(cell => cell.trim())
+      .join(" ") + "\n";
+  });
+
+  // 引用記法（> で始まる行）
+  text = text.replace(/^[\s]*>\s*/gm, "");
+
+  // 水平線（--- *** ___）
+  text = text.replace(/^[\s]*[-*_]{3,}[\s]*$/gm, "");
+
+  // HTMLタグ（マークダウン内のHTML）
+  text = text.replace(/<[^>]+>/g, "");
+
+  // 参照リンク記法 [text][ref] と [ref]: URL
+  text = text.replace(/\[([^\]]+)\]\[[^\]]*\]/g, "$1");
+  text = text.replace(/^[\s]*\[[^\]]+\]:\s*.+$/gm, "");
+
+  // エスケープ文字（\）
+  text = text.replace(/\\(.)/g, "$1");
+
+  // 余分な空白行を整理
+  text = text.replace(/\n\s*\n/g, "\n");
+  text = text.trim();
+  
+  return text.length;
 }
