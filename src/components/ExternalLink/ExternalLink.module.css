@@ -1,24 +1,10 @@
 .link {
-  align-items: center;
-  gap: 0.125rem;
-  color: #0066cc;
+  display: inline-flex;
+  align-items: baseline;
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
   max-width: 100%;
   overflow-wrap: break-word;
-}
-
-.link:hover {
-  border-bottom-color: #0066cc;
-}
-
-.link:visited {
-  color: #551a8b;
-}
-
-.link:visited:hover {
-  border-bottom-color: #551a8b;
 }
 
 .icon {
@@ -26,5 +12,5 @@
   height: 1em;
   flex-shrink: 0;
   vertical-align: middle;
-  fill: var(--text-color);
+  fill: -webkit-link;
 }
