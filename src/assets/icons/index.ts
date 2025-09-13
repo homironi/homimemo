@@ -1,3 +1,4 @@
+export { default as ArticleIcon } from "@/assets/icons/google-materials/article_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as PublishDateIcon } from "@/assets/icons/google-materials/calendar_today_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as CategoryIcon } from "@/assets/icons/google-materials/category_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as CheckIcon } from "@/assets/icons/google-materials/check_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
@@ -10,6 +11,7 @@ export { default as InfoIcon } from "@/assets/icons/google-materials/info_24dp_1
 export { default as LabelIcon } from "@/assets/icons/google-materials/label_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as TipsIcon } from "@/assets/icons/google-materials/lightbulb_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as LinkIcon } from "@/assets/icons/google-materials/link_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
+export { default as MenuBookIcon } from "@/assets/icons/google-materials/menu_book_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as OpenInNewIcon } from "@/assets/icons/google-materials/open_in_new_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as LastModeDateIcon } from "@/assets/icons/google-materials/published_with_changes_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as ErrorIcon } from "@/assets/icons/google-materials/report_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
@@ -17,3 +19,4 @@ export { default as RssIcon } from "@/assets/icons/google-materials/rss_feed_24d
 export { default as ShareIcon } from "@/assets/icons/google-materials/share_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as NoteIcon } from "@/assets/icons/google-materials/sticky_note_2_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as WarningIcon } from "@/assets/icons/google-materials/warning_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
+

@@ -1,5 +1,6 @@
 import { OpenInNewIcon } from "@/assets/icons";
 import { PropsWithChildren } from "react";
+import { Favicon } from "../Favicon/Favicon";
 import styles from "./ExternalLink.module.css";
 
 export type ExternalLinkProps = PropsWithChildren<
@@ -14,6 +15,8 @@ export type ExternalLinkProps = PropsWithChildren<
  * @returns 外部リンクコンポーネント
  */
 export function ExternalLink({ href, children, ...rest }: ExternalLinkProps) {
+  const text = children?.toString();
+  const faviconAlt = `${ text ? `「${text}」` : "リンク"}のfavicon`;
   return (
     <a
       href={ href }
@@ -22,6 +25,7 @@ export function ExternalLink({ href, children, ...rest }: ExternalLinkProps) {
       className={ `${styles.link}` }
       { ...rest }
     >
+      <Favicon href={ href } alt={ faviconAlt }/>
       {children}
       <OpenInNewIcon className={ styles.icon } />
     </a>
