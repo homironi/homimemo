@@ -14,7 +14,7 @@ export type ExternalLinkProps = PropsWithChildren<
  * @param props.children リンクの子要素
  * @returns 外部リンクコンポーネント
  */
-export async function ExternalLink({ href, children, ...rest }: ExternalLinkProps) {
+export function ExternalLink({ href, children, ...rest }: ExternalLinkProps) {
   const text = children?.toString();
   const faviconAlt = `${ text ? `「${text}」` : "リンク"}のfavicon`;
   return (
