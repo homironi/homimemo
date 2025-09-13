@@ -3,7 +3,7 @@ slug: about
 title: このサイトについて
 draft: false
 publishDate: 2023-07-01T00:00:00.000+09:00
-lastModDate: 2025-09-09T14:44:16.000+09:00
+lastModDate: 2025-09-13T14:44:55.000+09:00
 thumbnail: /images/header/about.webp
 description: このサイトと運営者についての説明です。
 ---
@@ -26,8 +26,22 @@ description: このサイトと運営者についての説明です。
 
 |Version|主なフレームワーク等|運用期間|
 |--|--|--|
-|1.0|11ty|2023/08/23〜2025/04/15|
-|2.0|Next.js|2025/07/13〜現在|
+|1.0|11ty：[紹介記事はこちら](/articles/iaumv89u70tjyr7c7e0y0gyw/)|2023/08/23〜2025/04/15|
+|2.0|Next.js：[紹介記事はこちら](/articles/u7ax9hdyzzu3zkp5grbjazmt/)|2025/07/13〜現在|
+
+### 現在のサイトの技術構成
+
+当サイトのリポジトリを公開しています。  
+デフォルトブランチが`develop`になっていますが、公開されているのは`main`ブランチの内容です。  
+開発時の利便性のためにデフォルトブランチを`develop`にしています。
+
+https://github.com/homironi/homimemo
+
+- フロントエンド：Next.js
+- ホスティング＆デプロイ＆バックエンド：Cloudflare Workers
+
+Next.jsで直接Cloudflare Workersで動かしているのではなく、Next.jsでSSGしたものをCloudflare Workersで静的アセットとして配信しています。  
+バックエンドと書きましたが、URLを変更した記事のリダイレクトを行っているだけです。
 
 ## 扱う内容について
 
