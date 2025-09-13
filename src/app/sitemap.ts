@@ -88,6 +88,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "yearly",
     },
+    {
+      url: `${siteOrigin}/profile/`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+    },
   ];
 
   return [
