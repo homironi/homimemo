@@ -61,6 +61,11 @@
 
 .meta-container{
     margin-bottom: 16px;
+    color: var(--text-color-pale);
+}
+
+.meta-text {
+    margin: 0;
 }
 
 @media screen and (width <= 1280px){
