@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const articleListPages: MetadataRoute.Sitemap = getPageLength(
     allArticles.length
   ).map((i) => ({
-    url: `${siteOrigin}${createArticleListPagePath(i + 1)}`,
+    url: `${siteOrigin}${createArticleListPagePath(i)}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
   }));
