@@ -41,25 +41,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const categoryListPages: MetadataRoute.Sitemap = getAllCategories()
     .map<MetadataRoute.Sitemap>((category) => {
       const filteredArticles = filterArticlesCategory(allArticles, category);
-      const sorted = filteredArticles
-        .toSorted((a, b)=> b.lastModDate.getTime() - a.lastModDate.getTime());
       return getPageLength(filteredArticles.length)
         .map((i) => ({
           url: `${siteOrigin}${createCategoryListPagePath(category, i)}`,
-          lastModified: sorted.length > 0 ? sorted[0].lastModDate : undefined,
         }));
     })
     .flat();
 
   const tagListPages: MetadataRoute.Sitemap = getAllTags()
     .map<MetadataRoute.Sitemap>((tag) => {
-      const filteredArticles = filterArticlesTag(allArticles, tag);
-      const sorted = filteredArticles
-        .toSorted((a, b)=> b.lastModDate.getTime() - a.lastModDate.getTime());
-      return getPageLength(filteredArticles.length).map(
+      return getPageLength(filterArticlesTag(allArticles, tag).length).map(
         (i) => ({
           url: `${siteOrigin}${createTagsPath(tag, i)}`,
-          lastModified: sorted.length > 0 ? sorted[0].lastModDate : undefined,
         })
       );
     })
