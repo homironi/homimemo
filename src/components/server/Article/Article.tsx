@@ -13,14 +13,13 @@ import { Profile } from "@/components/Profile";
 import { RelatedArticles } from "@/components/server/Article/RelatedArticles";
 import { CardPreviewUrl } from "@/components/server/CardPreviewUrl";
 import { TextBlock } from "@/components/TextBlock";
-import
-  {
-    articlesListPagePath,
-    articleThumbnailNativeSize,
-    createArticleDetailPath,
-    createCategoryListFirstPagePath,
-    defaultArticleThumbnail,
-  } from "@/lib/article";
+import {
+  articlesListPagePath,
+  articleThumbnailNativeSize,
+  createArticleDetailPath,
+  createCategoryListFirstPagePath,
+  defaultArticleThumbnail,
+} from "@/lib/article";
 import { formatDate } from "@/lib/date";
 import { author } from "@/lib/jsonLd/jsonLd";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
