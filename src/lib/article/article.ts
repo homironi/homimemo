@@ -56,9 +56,11 @@ export function filterArticlesTag(
  */
 export function getArticleMeta(id: string): ArticleMeta | null {
   const find = ArticleMetaJson.find((meta) => meta.id === id);
-  const parsed = safeParse(ArticleMetaFromJsonSchema, find);
-  if (parsed.success) {
-    return parsed.output;
+  if(find){
+    const parsed = safeParse(ArticleMetaFromJsonSchema, find);
+    if (parsed.success) {
+      return parsed.output;
+    }
   }
 
   return null;
