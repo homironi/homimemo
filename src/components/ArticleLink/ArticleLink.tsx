@@ -50,7 +50,7 @@ export function ArticleLink({ meta }: ArticleLinkProps) {
           <div className={ styles.description }>{meta.description}</div>
           <div className={ styles["date-container"] }>
             {lastModDate !== publishDate && (
-              <span className={ styles["last-mod-date"] }>
+              <span>
                 <LastModeDateIcon className={ styles.icon } />
                 <time dateTime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>
                   {lastModDate}
