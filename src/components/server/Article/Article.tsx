@@ -10,6 +10,7 @@ import { H2 } from "@/components/H2";
 import { H3 } from "@/components/H3";
 import { JsonLd } from "@/components/JsonLd";
 import { Profile } from "@/components/Profile";
+import { RelatedArticles } from "@/components/server/Article/RelatedArticles";
 import { CardPreviewUrl } from "@/components/server/CardPreviewUrl";
 import { TextBlock } from "@/components/TextBlock";
 import
@@ -86,6 +87,8 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
     </div>
   );
 
+  const isArticle = isArticleMeta(meta);
+
   return (
     <>
       <div className={ styles.container }>
@@ -115,8 +118,8 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
                 </span>
               )}
             </div>
-            {isArticleMeta(meta) && <ArticleCategory meta={ meta.category } />}
-            {isArticleMeta(meta) && meta.tags && <ArticleTags tags={ meta.tags } />}
+            {isArticle && <ArticleCategory meta={ meta.category } />}
+            {isArticle && meta.tags && <ArticleTags tags={ meta.tags } />}
             <p className={ styles["meta-text"] }><ArticleIcon className={ styles.icon }/>{contentLength} 文字</p>
             <p className={ styles["meta-text"] }><MenuBookIcon className={ styles.icon }/>{` ${readTime} 分（${readPerMinutes} 文字 / 分）`}</p>
           </div>
@@ -134,6 +137,11 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
           />
           <hr />
           {WrappedShareButtons}
+          {isArticle && 
+            <>
+              <hr />
+              <RelatedArticles articleMeta={ meta }/>
+            </>}
         </main>
         <div className={ styles["last-side"] }>
           <Profile />
@@ -149,7 +157,7 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
           <ArticleTagList tags={ getAllTags() } />
         </div>
       </div>
-      { isArticleMeta(meta) 
+      { isArticle
         ? <JsonLd schema={ createArticleJsonLd(meta) } />
         : <JsonLd schema={ createStaticArticleJsonLd(meta) } />
       }
