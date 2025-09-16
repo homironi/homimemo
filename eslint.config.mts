@@ -26,6 +26,7 @@ export default defineConfig([
       "**/node_modules/**",
       "next-env.d.ts",
       "worker-configuration.d.ts",
+      "storybook-static/**",
     ],
   },
   js.configs.recommended,
