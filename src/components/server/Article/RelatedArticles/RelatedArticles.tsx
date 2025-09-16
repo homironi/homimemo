@@ -1,7 +1,6 @@
-import { CardPreview } from "@/components/CardPreview";
-import { createArticleDetailPath, filterArticlesCategory } from "@/lib/article";
+import { ArticleLink } from "@/components/ArticleLink";
+import { filterArticlesCategory } from "@/lib/article";
 import { getAllArticlesMeta } from "@/lib/server/article";
-import { createTitleFromTemplate } from "@/lib/utils";
 import { ArticleMeta } from "@/schemas/article/meta";
 import styles from "./RelatedArticles.module.css";
 
@@ -65,12 +64,7 @@ export function RelatedArticles({ articleMeta } : RelatedArticlesProps){
         {relatedArticles.map(article=>{
           return (
             <li key={ article.id } className={ styles.item }>
-              <CardPreview
-                url={ createArticleDetailPath(article.id) } 
-                title={ createTitleFromTemplate(article.title) }
-                description={ article.description }
-                imageUrl={ article.thumbnail }
-              />
+              <ArticleLink meta={ article } />
             </li>
           );
         })}
