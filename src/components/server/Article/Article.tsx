@@ -137,8 +137,11 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
           />
           <hr />
           {WrappedShareButtons}
-          <hr />
-          {isArticle && <RelatedArticles articleMeta={ meta }/>}
+          {isArticle && 
+            <>
+              <hr />
+              <RelatedArticles articleMeta={ meta }/>
+            </>}
         </main>
         <div className={ styles["last-side"] }>
           <Profile />
