@@ -69,6 +69,10 @@
 
 .date-container{
     text-align: right;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0 0.5rem;
 }
 
 .category,
@@ -82,8 +86,4 @@
     width: 1rem;
     height: 1rem;
     vertical-align: -0.2em;
-}
-
-.last-mod-date{
-    margin-right: 0.5rem;
 }
