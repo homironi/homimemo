@@ -8,20 +8,24 @@ import { CodeBlock } from "@/components/CodeBlock";
 import { ExternalLink } from "@/components/ExternalLink";
 import { H2 } from "@/components/H2";
 import { H3 } from "@/components/H3";
+import { JsonLd } from "@/components/JsonLd";
 import { Profile } from "@/components/Profile";
 import { CardPreviewUrl } from "@/components/server/CardPreviewUrl";
 import { TextBlock } from "@/components/TextBlock";
-import {
-  articlesListPagePath,
-  articleThumbnailNativeSize,
-  createArticleDetailPath,
-  createCategoryListFirstPagePath,
-  defaultArticleThumbnail,
-} from "@/lib/article";
+import
+  {
+    articlesListPagePath,
+    articleThumbnailNativeSize,
+    createArticleDetailPath,
+    createCategoryListFirstPagePath,
+    defaultArticleThumbnail,
+  } from "@/lib/article";
 import { formatDate } from "@/lib/date";
+import { author } from "@/lib/jsonLd/jsonLd";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
 import { codeContainerClassName, rehypeCodeContainer } from "@/lib/server/rehypePlugins/code";
 import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
+import { siteOrigin } from "@/lib/utils";
 import { ArticleMeta, StaticArticleMeta } from "@/schemas/article/meta";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import dynamic from "next/dynamic";
@@ -32,6 +36,7 @@ import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import { TechArticle, WebPage, WithContext } from "schema-dts";
 import { object, pipe, safeParse, string, url } from "valibot";
 import styles from "./Article.module.css";
 import "./blockquote.css"; // 引用のスタイルを適用するためにインポート
@@ -82,68 +87,113 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
   );
 
   return (
-    <div className={ styles.container }>
-      <div className={ styles["first-side"] }>
-        <div className={ styles["toc-container"] }>
-          <DynamicToc tocContentSourceIdName={ tocContentSourceIdName } />
+    <>
+      <div className={ styles.container }>
+        <div className={ styles["first-side"] }>
+          <div className={ styles["toc-container"] }>
+            <DynamicToc tocContentSourceIdName={ tocContentSourceIdName } />
+          </div>
         </div>
-      </div>
-      <main className={ styles.article }>
-        <Breadcrumbs breadcrumbs={ breadcrumbs } />
-        <h1>{meta.title}</h1>
-        <div className={ styles["meta-container"] }>
-          <div className={ styles["date-container"] }>
-            <span>
-              <PublishDateIcon className={ styles.icon } />
-              <time dateTime={ formatDate(meta.publishDate, "YYYY-MM-DD") }>
-                {publishDateText}
-              </time>
-            </span>
-            {/* 日付が違う時だけ更新があったとして更新日時を表示する。同じ日の場合は表示しない */}
-            {publishDateText !== lastModDateText && (
+        <main className={ styles.article }>
+          <Breadcrumbs breadcrumbs={ breadcrumbs } />
+          <h1>{meta.title}</h1>
+          <div className={ styles["meta-container"] }>
+            <div className={ styles["date-container"] }>
               <span>
-                <LastModeDateIcon className={ styles.icon } />
-                <time dateTime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>
-                  {lastModDateText}
+                <PublishDateIcon className={ styles.icon } />
+                <time dateTime={ formatDate(meta.publishDate, "YYYY-MM-DD") }>
+                  {publishDateText}
                 </time>
               </span>
-            )}
+              {/* 日付が違う時だけ更新があったとして更新日時を表示する。同じ日の場合は表示しない */}
+              {publishDateText !== lastModDateText && (
+                <span>
+                  <LastModeDateIcon className={ styles.icon } />
+                  <time dateTime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>
+                    {lastModDateText}
+                  </time>
+                </span>
+              )}
+            </div>
+            {isArticleMeta(meta) && <ArticleCategory meta={ meta.category } />}
+            {isArticleMeta(meta) && meta.tags && <ArticleTags tags={ meta.tags } />}
+            <p className={ styles["meta-text"] }><ArticleIcon className={ styles.icon }/>{contentLength} 文字</p>
+            <p className={ styles["meta-text"] }><MenuBookIcon className={ styles.icon }/>{` ${readTime} 分（${readPerMinutes} 文字 / 分）`}</p>
           </div>
-          {isArticleMeta(meta) && <ArticleCategory meta={ meta.category } />}
-          {isArticleMeta(meta) && meta.tags && <ArticleTags tags={ meta.tags } />}
-          <p className={ styles["meta-text"] }><ArticleIcon className={ styles.icon }/>{contentLength} 文字</p>
-          <p className={ styles["meta-text"] }><MenuBookIcon className={ styles.icon }/>{` ${readTime} 分（${readPerMinutes} 文字 / 分）`}</p>
+          <Image
+            src={ meta.thumbnail ?? defaultArticleThumbnail }
+            alt={ meta.title }
+            width={ articleThumbnailNativeSize.width }
+            height={ articleThumbnailNativeSize.height }
+          />
+          {WrappedShareButtons}
+          <ArticleMdx
+            content={ content }
+            tocContentSourceIdName={ tocContentSourceIdName }
+            className="article-contents-container"
+          />
+          <hr />
+          {WrappedShareButtons}
+        </main>
+        <div className={ styles["last-side"] }>
+          <Profile />
+          <div
+            className={ styles["ads-container"] }
+            dangerouslySetInnerHTML={ {
+              __html: `<a href="https://px.a8.net/svt/ejp?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" rel="nofollow">
+            <img border="0" width="300" height="250" alt="" src="https://www28.a8.net/svt/bgt?aid=240906818962&wid=001&eno=01&mid=s00000001642001130000&mc=1"></a>
+            <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" alt="">`,
+            } }
+          />
+          <ArticleCategoryList categories={ getAllCategories() } />
+          <ArticleTagList tags={ getAllTags() } />
         </div>
-        <Image
-          src={ meta.thumbnail ?? defaultArticleThumbnail }
-          alt={ meta.title }
-          width={ articleThumbnailNativeSize.width }
-          height={ articleThumbnailNativeSize.height }
-        />
-        {WrappedShareButtons}
-        <ArticleMdx
-          content={ content }
-          tocContentSourceIdName={ tocContentSourceIdName }
-          className="article-contents-container"
-        />
-        <hr />
-        {WrappedShareButtons}
-      </main>
-      <div className={ styles["last-side"] }>
-        <Profile />
-        <div
-          className={ styles["ads-container"] }
-          dangerouslySetInnerHTML={ {
-            __html: `<a href="https://px.a8.net/svt/ejp?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" rel="nofollow">
-          <img border="0" width="300" height="250" alt="" src="https://www28.a8.net/svt/bgt?aid=240906818962&wid=001&eno=01&mid=s00000001642001130000&mc=1"></a>
-          <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" alt="">`,
-          } }
-        />
-        <ArticleCategoryList categories={ getAllCategories() } />
-        <ArticleTagList tags={ getAllTags() } />
       </div>
-    </div>
+      { isArticleMeta(meta) 
+        ? <JsonLd schema={ createArticleJsonLd(meta) } />
+        : <JsonLd schema={ createStaticArticleJsonLd(meta) } />
+      }
+    </>
   );
+}
+
+function createArticleJsonLd(meta:ArticleMeta):WithContext<TechArticle>{
+  return {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    author: author,
+    dateModified: meta.lastModDate.toISOString(),
+    datePublished: meta.publishDate.toISOString(),
+    headline: meta.title,
+    image: meta.thumbnail ? `${siteOrigin}${meta.thumbnail}` : undefined,
+  };
+}
+
+const staticArticleJsonLdMap = new Map<string, Omit<WithContext<WebPage>, "@context">>([
+  ["about", {
+    "@type": "AboutPage",
+  }],
+  ["profile", {
+    "@type": "ProfilePage",
+    mainEntity: author,
+  }],
+  ["contact", {
+    "@type": "ContactPage",
+  }],
+]);
+
+function createStaticArticleJsonLd(meta: StaticArticleMeta): WithContext<WebPage>{
+  const data:Omit<WithContext<WebPage>, "@context"> = staticArticleJsonLdMap.get(meta.slug)
+    ?? {
+    "@type": "WebPage",
+  };
+
+  return {
+    ...data,
+    "@context": "https://schema.org",
+    dateCreated: meta.publishDate.toISOString(),
+    dateModified: meta.lastModDate.toISOString(),
+  };
 }
 
 type ArticleMdxProps = {
