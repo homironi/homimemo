@@ -1,4 +1,8 @@
-export type AdSenseType = "display" | "multiplex";
+"use client";
+
+import { useEffect } from "react";
+
+export type AdSenseType = "display" | "multiplex" | "in-article";
 
 const adSenseData  = new Map<AdSenseType,Record<string,string>>([
   ["display", {
@@ -9,6 +13,11 @@ const adSenseData  = new Map<AdSenseType,Record<string,string>>([
   ["multiplex", {
     "data-ad-format": "autorelaxed",
     "data-ad-slot": "9245757321",
+  }],
+  ["in-article", {
+    "data-ad-layout": "in-article",
+    "data-ad-format": "fluid",
+    "data-ad-slot": "8424464392",
   }],
 ]);
 
@@ -24,6 +33,17 @@ export type AdSenseProps = {
  * @returns AdSenseの広告表示位置決定Component
  */
 export function AdSense({adSenseType}:AdSenseProps){
+  useEffect(()=>{
+    try{
+      if (typeof window !== "undefined") {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } 
+    }
+    catch{
+      return;
+    }
+  }, []);
+
   if(process.env.NODE_ENV !== "production"){
     return <p>productionビルドでは「{adSenseType}」の広告が表示されます。現在：{process.env.NODE_ENV}</p>;
   }
@@ -31,7 +51,7 @@ export function AdSense({adSenseType}:AdSenseProps){
   return (
     <ins
       className="adsbygoogle"
-      style={ {display:"block"} }
+      style={ {display:"block", textAlign: adSenseType === "in-article" ? "center" : "initial"} }
       data-ad-client="ca-pub-7565570537846567"
       { ...adSenseData.get(adSenseType) }
     />

@@ -9,7 +9,6 @@ import { ExternalLink } from "@/components/ExternalLink";
 import { H3 } from "@/components/H3";
 import { JsonLd } from "@/components/JsonLd";
 import { Profile } from "@/components/Profile";
-import { AdSense } from "@/components/server/Article/AdSense";
 import { ArticleH2 } from "@/components/server/Article/ArticleH2";
 import { RelatedArticles } from "@/components/server/Article/RelatedArticles";
 import { CardPreviewUrl } from "@/components/server/CardPreviewUrl";
@@ -52,8 +51,8 @@ const DynamicToc = dynamic(() =>
 const DynamicShareButtons = dynamic(() =>
   import("@/components/ShareButtons").then((mod) => mod.ShareButtons)
 );
-const DynamicAdSenseHandler = dynamic(() => 
-  import("@/components/server/Article/AdSenseHandler").then(mod => mod.AdSenseHandler)
+const DynamicAdSense = dynamic(() => 
+  import("@/components/server/Article/AdSense").then(mod => mod.AdSense)
 );
 
 const tocContentSourceIdName = "toc-source-content";
@@ -94,7 +93,6 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
 
   return (
     <>
-      <DynamicAdSenseHandler />
       <div className={ styles.container }>
         <div className={ styles["first-side"] }>
           <div className={ styles["toc-container"] }>
@@ -134,7 +132,7 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
             height={ articleThumbnailNativeSize.height }
           />
           {WrappedShareButtons}
-          {isArticle && <AdSense adSenseType="display" /> }
+          {isArticle && <DynamicAdSense adSenseType="display" /> }
           <ArticleMdx
             content={ content }
             tocContentSourceIdName={ tocContentSourceIdName }
@@ -148,7 +146,7 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
               <hr />
               <RelatedArticles articleMeta={ meta }/>
             </>}
-          {isArticle && <AdSense adSenseType="multiplex" /> }
+          {isArticle && <DynamicAdSense adSenseType="multiplex" /> }
         </main>
         <div className={ styles["last-side"] }>
           <Profile />
@@ -160,10 +158,10 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
             <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" alt="">`,
             } }
           />
-          {isArticle && <AdSense adSenseType="display" /> }
+          {isArticle && <DynamicAdSense adSenseType="display" /> }
           <ArticleCategoryList categories={ getAllCategories() } />
           <ArticleTagList tags={ getAllTags() } />
-          {isArticle && <AdSense adSenseType="display" /> }
+          {isArticle && <DynamicAdSense adSenseType="display" /> }
         </div>
       </div>
       { isArticle
@@ -259,7 +257,7 @@ function createHeadingComponent(Tag: "h1" | "h4" | "h5" | "h6") {
  * @param root0.content 記事のMDXコンテンツ
  * @param root0.tocContentSourceIdName 目次のコンテンツソースとして扱う目印のID名
  * @param root0.className クラス名
- * @param root0.isArticle
+ * @param root0.isArticle 通常の記事かどうか。固定記事なら false
  * @returns 記事ページのコンポーネント
  */
 function ArticleMdx({
