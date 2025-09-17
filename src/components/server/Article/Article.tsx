@@ -10,6 +10,7 @@ import { H2 } from "@/components/H2";
 import { H3 } from "@/components/H3";
 import { JsonLd } from "@/components/JsonLd";
 import { Profile } from "@/components/Profile";
+import { AdSense } from "@/components/server/Article/AdSense";
 import { RelatedArticles } from "@/components/server/Article/RelatedArticles";
 import { CardPreviewUrl } from "@/components/server/CardPreviewUrl";
 import { TextBlock } from "@/components/TextBlock";
@@ -51,6 +52,9 @@ const DynamicToc = dynamic(() =>
 const DynamicShareButtons = dynamic(() =>
   import("@/components/ShareButtons").then((mod) => mod.ShareButtons)
 );
+const DynamicAdSenseHandler = dynamic(() => 
+  import("@/components/server/Article/AdSenseHandler").then(mod => mod.AdSenseHandler)
+);
 
 const tocContentSourceIdName = "toc-source-content";
 
@@ -90,6 +94,7 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
 
   return (
     <>
+      <DynamicAdSenseHandler />
       <div className={ styles.container }>
         <div className={ styles["first-side"] }>
           <div className={ styles["toc-container"] }>
@@ -129,6 +134,7 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
             height={ articleThumbnailNativeSize.height }
           />
           {WrappedShareButtons}
+          {isArticle && <AdSense adSenseType="display" /> }
           <ArticleMdx
             content={ content }
             tocContentSourceIdName={ tocContentSourceIdName }
@@ -141,6 +147,7 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
               <hr />
               <RelatedArticles articleMeta={ meta }/>
             </>}
+          {isArticle && <AdSense adSenseType="multiplex" /> }
         </main>
         <div className={ styles["last-side"] }>
           <Profile />
@@ -152,8 +159,10 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
             <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" alt="">`,
             } }
           />
+          {isArticle && <AdSense adSenseType="display" /> }
           <ArticleCategoryList categories={ getAllCategories() } />
           <ArticleTagList tags={ getAllTags() } />
+          {isArticle && <AdSense adSenseType="display" /> }
         </div>
       </div>
       { isArticle
@@ -482,3 +491,4 @@ export function countMarkdownCharacters(markdown: string): number {
   
   return text.length;
 }
+
