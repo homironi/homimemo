@@ -1,11 +1,14 @@
 .link {
-  display: inline-flex;
   align-items: baseline;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   max-width: 100%;
   overflow-wrap: break-word;
   word-break: break-all;
+}
+
+.favicon {
+  vertical-align: baseline;
 }
 
 .icon {
