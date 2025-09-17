@@ -3,8 +3,10 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin: 1.5rem 0 1rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 2px;
   border-bottom: 2px solid var(--color-sub);
+  border-left: 8px solid var(--color-sub);
+  padding-left: 4px;
   position: relative;
 }
 

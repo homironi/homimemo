@@ -217,6 +217,7 @@ type ArticleMdxProps = {
 function createHeadingComponent(Tag: "h1" | "h4" | "h5" | "h6") {
   return function HeadingComponent({
     children,
+    className,
     ...props
   }: PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>>) {
     const processedChildren = React.Children.map(children, (child) => {
@@ -237,7 +238,7 @@ function createHeadingComponent(Tag: "h1" | "h4" | "h5" | "h6") {
       return child;
     });
 
-    return <Tag { ...props }>{processedChildren}</Tag>;
+    return <Tag { ...props } className={ `${className} ${styles.heading}` }>{processedChildren}</Tag>;
   };
 }
 
@@ -275,7 +276,7 @@ function ArticleMdx({
             remarkPlugins: [remarkGfm],
             rehypePlugins: [
               rehypeSlug,
-              rehypeAutolinkHeadings,
+              () => rehypeAutolinkHeadings({behavior: "wrap"}),
               rehypeCodeTitles,
               [rehypePrism],
               rehypeCodeContainer,
