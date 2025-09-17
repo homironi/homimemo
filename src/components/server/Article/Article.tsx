@@ -13,14 +13,13 @@ import { Profile } from "@/components/Profile";
 import { RelatedArticles } from "@/components/server/Article/RelatedArticles";
 import { CardPreviewUrl } from "@/components/server/CardPreviewUrl";
 import { TextBlock } from "@/components/TextBlock";
-import
-  {
-    articlesListPagePath,
-    articleThumbnailNativeSize,
-    createArticleDetailPath,
-    createCategoryListFirstPagePath,
-    defaultArticleThumbnail,
-  } from "@/lib/article";
+import {
+  articlesListPagePath,
+  articleThumbnailNativeSize,
+  createArticleDetailPath,
+  createCategoryListFirstPagePath,
+  defaultArticleThumbnail,
+} from "@/lib/article";
 import { formatDate } from "@/lib/date";
 import { author } from "@/lib/jsonLd/jsonLd";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
@@ -218,6 +217,7 @@ type ArticleMdxProps = {
 function createHeadingComponent(Tag: "h1" | "h4" | "h5" | "h6") {
   return function HeadingComponent({
     children,
+    className,
     ...props
   }: PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>>) {
     const processedChildren = React.Children.map(children, (child) => {
@@ -238,7 +238,7 @@ function createHeadingComponent(Tag: "h1" | "h4" | "h5" | "h6") {
       return child;
     });
 
-    return <Tag { ...props }>{processedChildren}</Tag>;
+    return <Tag { ...props } className={ `${className} ${styles.heading}` }>{processedChildren}</Tag>;
   };
 }
 
@@ -276,7 +276,7 @@ function ArticleMdx({
             remarkPlugins: [remarkGfm],
             rehypePlugins: [
               rehypeSlug,
-              rehypeAutolinkHeadings,
+              () => rehypeAutolinkHeadings({behavior: "wrap"}),
               rehypeCodeTitles,
               [rehypePrism],
               rehypeCodeContainer,

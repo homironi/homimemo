@@ -25,7 +25,7 @@ export function ExternalLink({ href, children, ...rest }: ExternalLinkProps) {
       className={ `${styles.link}` }
       { ...rest }
     >
-      <Favicon href={ href } alt={ faviconAlt }/>
+      <Favicon href={ href } alt={ faviconAlt } className={ styles.favicon } />
       {children}
       <OpenInNewIcon className={ styles.icon } />
     </a>

@@ -68,6 +68,13 @@
     margin: 0;
 }
 
+.heading > a {
+    color: var(--text-color);
+    text-decoration: none;
+    border-left: 4px solid var(--color-sub);
+    padding-left: 4px;
+}
+
 @media screen and (width <= 1280px){
     .container{
         gap: 16px;
