@@ -1,4 +1,3 @@
-
 export type AdSenseType = "display" | "multiplex";
 
 const adSenseData  = new Map<AdSenseType,Record<string,string>>([
