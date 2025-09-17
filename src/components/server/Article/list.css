@@ -4,8 +4,12 @@
 .article-contents-container ul li,
 .article-contents-container ol li {
     position: relative;
-    padding-left: 2em;
+    padding-left: 1em;
     line-height: 1.5em;
+}
+
+.article-contents-container ol li {
+    padding-left: 1.5em;
 }
 
 .article-contents-container ul li::before,
