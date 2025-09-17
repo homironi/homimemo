@@ -14,7 +14,7 @@ export type ArticleH2Props = H2Props & {
 export function ArticleH2({visibleAdSense, ...props}: ArticleH2Props){
   return (
     <>
-      {visibleAdSense && <AdSense adSenseType="display" />}
+      {visibleAdSense && <AdSense adSenseType="in-article" />}
       <H2 { ...props } />
     </>
   );
