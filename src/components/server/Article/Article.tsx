@@ -275,7 +275,7 @@ function ArticleMdx({
             remarkPlugins: [remarkGfm],
             rehypePlugins: [
               rehypeSlug,
-              rehypeAutolinkHeadings,
+              () => rehypeAutolinkHeadings({behavior: "wrap"}),
               rehypeCodeTitles,
               [rehypePrism],
               rehypeCodeContainer,
