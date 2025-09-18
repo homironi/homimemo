@@ -45,29 +45,6 @@
     content: "PR";
 }
 
-.date-container{
-    color: var(--text-color-pale);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.icon{
-    fill: var(--text-color-pale);
-    width: 1.5rem;
-    height: 1.5rem;
-    vertical-align: -0.2em;
-}
-
-.meta-container{
-    margin-bottom: 16px;
-    color: var(--text-color-pale);
-}
-
-.meta-text {
-    margin: 0;
-}
-
 @media screen and (width <= 1280px){
     .container{
         gap: 16px;

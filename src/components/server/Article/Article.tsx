@@ -1,12 +1,10 @@
-import { ArticleIcon, LastModeDateIcon, MenuBookIcon, PublishDateIcon } from "@/assets/icons";
-import { ArticleCategory } from "@/components/ArticleCategory";
 import { ArticleCategoryList } from "@/components/ArticleCategoryList";
 import { ArticleTagList } from "@/components/ArticleTagList/ArticleTagList";
-import { ArticleTags } from "@/components/ArticleTags";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { Profile } from "@/components/Profile";
 import { ArticleMdx } from "@/components/server/Article/ArticleMdx";
+import { ArticleMeta as ArticleMetaComponent } from "@/components/server/Article/ArticleMeta";
 import { RelatedArticles } from "@/components/server/Article/RelatedArticles";
 import {
   articlesListPagePath,
@@ -15,11 +13,10 @@ import {
   createCategoryListFirstPagePath,
   defaultArticleThumbnail,
 } from "@/lib/article";
-import { formatDate } from "@/lib/date";
 import { author } from "@/lib/jsonLd/jsonLd";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
 import { countMarkdownCharacters, siteOrigin } from "@/lib/utils";
-import { ArticleMeta, StaticArticleMeta } from "@/schemas/article/meta";
+import { ArticleMeta, isArticleMeta, StaticArticleMeta } from "@/schemas/article/meta";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { TechArticle, WebPage, WithContext } from "schema-dts";
@@ -37,7 +34,7 @@ const DynamicAdSense = dynamic(() =>
 
 const tocContentSourceIdName = "toc-source-content";
 
-type ArticleComponentMeta = ArticleMeta | StaticArticleMeta;
+export type ArticleComponentMeta = ArticleMeta | StaticArticleMeta;
 
 export type ArticleProps = {
   meta: ArticleComponentMeta;
@@ -58,19 +55,11 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
   const isArticle = isArticleMeta(meta);
   const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
 
-  const publishDateText = formatDate(meta.publishDate, "YYYY/MM/DD");
-  const lastModDateText = formatDate(meta.lastModDate, "YYYY/MM/DD");
-
-  const contentLength = countMarkdownCharacters(content);
-  const readPerMinutes = 400;
-  const readTime = Math.round(contentLength / readPerMinutes);
-
   const WrappedShareButtons = (
     <div className={ styles["share-buttons-container"] }>
       <DynamicShareButtons slug={ shareUrl } title={ meta.title } />
     </div>
   );
-
 
   return (
     <>
@@ -83,29 +72,7 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
         <main className={ styles.article }>
           <Breadcrumbs breadcrumbs={ breadcrumbs } />
           <h1>{meta.title}</h1>
-          <div className={ styles["meta-container"] }>
-            <div className={ styles["date-container"] }>
-              <span>
-                <PublishDateIcon className={ styles.icon } />
-                <time dateTime={ formatDate(meta.publishDate, "YYYY-MM-DD") }>
-                  {publishDateText}
-                </time>
-              </span>
-              {/* 日付が違う時だけ更新があったとして更新日時を表示する。同じ日の場合は表示しない */}
-              {publishDateText !== lastModDateText && (
-                <span>
-                  <LastModeDateIcon className={ styles.icon } />
-                  <time dateTime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>
-                    {lastModDateText}
-                  </time>
-                </span>
-              )}
-            </div>
-            {isArticle && <ArticleCategory meta={ meta.category } />}
-            {isArticle && meta.tags && <ArticleTags tags={ meta.tags } />}
-            <p className={ styles["meta-text"] }><ArticleIcon className={ styles.icon }/>{contentLength} 文字</p>
-            <p className={ styles["meta-text"] }><MenuBookIcon className={ styles.icon }/>{` ${readTime} 分（${readPerMinutes} 文字 / 分）`}</p>
-          </div>
+          <ArticleMetaComponent meta={ meta } contentLength={ countMarkdownCharacters(content) } />
           <Image
             src={ meta.thumbnail ?? defaultArticleThumbnail }
             alt={ meta.title }
@@ -223,13 +190,4 @@ function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
       },
     ];
   }
-}
-
-/**
- * 記事のMeta情報がArticleMeta型であるかどうかを判定する関数
- * @param meta 記事のMeta情報
- * @returns 記事のMeta情報がArticleMeta型であるかどうか
- */
-function isArticleMeta(meta: ArticleComponentMeta): meta is ArticleMeta {
-  return "category" in meta && "tags" in meta;
 }

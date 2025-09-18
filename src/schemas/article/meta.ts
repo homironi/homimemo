@@ -8,6 +8,7 @@ import {
   object,
   optional,
   pipe,
+  safeParse,
   string,
   transform,
 } from "valibot";
@@ -84,6 +85,15 @@ export const ArticleMetaSchema = object({
 
 // 記事のメタデータの型
 export type ArticleMeta = InferOutput<typeof ArticleMetaSchema>;
+
+/**
+ * @see ArticleMeta かどうかを確認する
+ * @param data 確認したいデータ
+ * @returns @see ArticleMeta かどうか
+ */
+export function isArticleMeta(data:unknown) : data is ArticleMeta{
+  return safeParse(ArticleMetaSchema, data).success;
+}
 
 /**
  * 固定記事のメタデータのスキーマ
