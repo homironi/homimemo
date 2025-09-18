@@ -4,15 +4,10 @@ import { ArticleCategoryList } from "@/components/ArticleCategoryList";
 import { ArticleTagList } from "@/components/ArticleTagList/ArticleTagList";
 import { ArticleTags } from "@/components/ArticleTags";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
-import { CodeBlock } from "@/components/CodeBlock";
-import { ExternalLink } from "@/components/ExternalLink";
-import { H3 } from "@/components/H3";
 import { JsonLd } from "@/components/JsonLd";
 import { Profile } from "@/components/Profile";
-import { ArticleH2 } from "@/components/server/Article/ArticleH2";
+import { ArticleMdx } from "@/components/server/Article/ArticleMdx";
 import { RelatedArticles } from "@/components/server/Article/RelatedArticles";
-import { CardPreviewUrl } from "@/components/server/CardPreviewUrl";
-import { TextBlock } from "@/components/TextBlock";
 import {
   articlesListPagePath,
   articleThumbnailNativeSize,
@@ -23,27 +18,12 @@ import {
 import { formatDate } from "@/lib/date";
 import { author } from "@/lib/jsonLd/jsonLd";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
-import { codeContainerClassName, rehypeCodeContainer } from "@/lib/server/rehypePlugins/code";
-import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
-import { siteOrigin } from "@/lib/utils";
+import { countMarkdownCharacters, siteOrigin } from "@/lib/utils";
 import { ArticleMeta, StaticArticleMeta } from "@/schemas/article/meta";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import React, { isValidElement, PropsWithChildren } from "react";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeCodeTitles from "rehype-code-titles";
-import rehypePrism from "rehype-prism-plus";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
 import { TechArticle, WebPage, WithContext } from "schema-dts";
-import { object, pipe, safeParse, string, url } from "valibot";
 import styles from "./Article.module.css";
-import "./blockquote.css"; // 引用のスタイルを適用するためにインポート
-import "./inlineCode.css"; // インラインコードのスタイルを適用するためにインポート
-import "./list.css";
-import "./prism.css"; // 記事内で使用するコードハイライトのPrismのスタイルを適用するためにインポート
-import "./table.css";
 
 const DynamicToc = dynamic(() =>
   import("@/components/TableOfContents").then((mod) => mod.TableOfContents)
@@ -74,6 +54,8 @@ export type ArticleProps = {
  * @returns 記事ページのコンポーネント
  */
 export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
+  // 通常の記事化どうか：falseなら固定記事（aboutやcontact）
+  const isArticle = isArticleMeta(meta);
   const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
 
   const publishDateText = formatDate(meta.publishDate, "YYYY/MM/DD");
@@ -89,7 +71,6 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
     </div>
   );
 
-  const isArticle = isArticleMeta(meta);
 
   return (
     <>
@@ -211,95 +192,6 @@ function createStaticArticleJsonLd(meta: StaticArticleMeta): WithContext<WebPage
   };
 }
 
-type ArticleMdxProps = {
-  isArticle : boolean;
-  className?: string;
-  content: string;
-  tocContentSourceIdName: string;
-};
-
-/**
- * 見出しコンポーネントのファクトリー関数
- * @param Tag 見出しタグ名
- * @returns 見出しコンポーネント
- */
-function createHeadingComponent(Tag: "h1" | "h4" | "h5" | "h6") {
-  return function HeadingComponent({
-    children,
-    className,
-    ...props
-  }: PropsWithChildren<React.HTMLAttributes<HTMLHeadingElement>>) {
-    const processedChildren = React.Children.map(children, (child) => {
-      if (React.isValidElement(child) && child.type === ExternalLink) {
-        const {
-          href,
-          children: childChildren,
-          ...anchorProps
-        } = child.props as React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-          children?: React.ReactNode;
-        };
-        return (
-          <a href={ href } { ...anchorProps }>
-            {childChildren}
-          </a>
-        );
-      }
-      return child;
-    });
-
-    return <Tag { ...props } className={ `${className} ${styles.heading}` }>{processedChildren}</Tag>;
-  };
-}
-
-/**
- * 記事ページコンポーネント
- * @param root0 引数オブジェクト
- * @param root0.content 記事のMDXコンテンツ
- * @param root0.tocContentSourceIdName 目次のコンテンツソースとして扱う目印のID名
- * @param root0.className クラス名
- * @param root0.isArticle 通常の記事かどうか。固定記事なら false
- * @returns 記事ページのコンポーネント
- */
-function ArticleMdx({
-  isArticle,
-  className,
-  content,
-  tocContentSourceIdName,
-}: ArticleMdxProps) {
-  return (
-    <article id={ tocContentSourceIdName } className={ className ?? "" }>
-      <MDXRemote
-        source={ content }
-        components={ {
-          p: CustomParagraph,
-          a: ExternalLink,
-          h1: createHeadingComponent("h1"),
-          h2: props => ArticleH2({visibleAdSense:isArticle, ...props}),
-          h3: H3,
-          h4: createHeadingComponent("h4"),
-          h5: createHeadingComponent("h5"),
-          h6: createHeadingComponent("h6"),
-          div: CustomDiv,
-          TextBlock,
-        } }
-        options={ {
-          mdxOptions: {
-            remarkPlugins: [remarkGfm],
-            rehypePlugins: [
-              rehypeSlug,
-              () => rehypeAutolinkHeadings({behavior: "wrap"}),
-              rehypeCodeTitles,
-              [rehypePrism],
-              rehypeCodeContainer,
-              rehypeGfmTaskList,
-            ],
-          },
-        } }
-      />
-    </article>
-  );
-}
-
 /**
  * 記事のMeta情報からパンくずリストを作成する関数
  * @param meta 記事のMeta情報
@@ -341,156 +233,3 @@ function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
 function isArticleMeta(meta: ArticleComponentMeta): meta is ArticleMeta {
   return "category" in meta && "tags" in meta;
 }
-
-const childrenAnchorPropsSchema = object({
-  children: pipe(string(), url()),
-  href: pipe(string(), url()),
-});
-
-export const CustomParagraph = async ({
-  children,
-  ...props
-}: PropsWithChildren<React.HTMLAttributes<HTMLParagraphElement>>) => {
-  // 子要素が1つのテキストノードで、それがURLの場合はカード表示する
-  if (
-    children &&
-    React.Children.count(children) === 1 &&
-    typeof children === "object" &&
-    React.isValidElement(children)
-  ) {
-    const validatedChildrenProps = safeParse(
-      childrenAnchorPropsSchema,
-      children.props
-    );
-    if (validatedChildrenProps.success) {
-      const { href } = validatedChildrenProps.output;
-      const trimmedHref = href.trim();
-      return <CardPreviewUrl url={ trimmedHref } />;
-    }
-  }
-
-  return <p { ...props }>{children}</p>;
-};
-
-
-/**
- * <div> 要素を処理するコンポーネント
- * @param root0 引数オブジェクト
- * @param root0.className クラス名
- * @param root0.children 子要素
- * @param root0.props その他のプロパティ
- * @returns <div> 要素のJSX要素
- */
-function CustomDiv({className, children,...props}: PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) {
-  // コードブロックコンテナの処理
-  if(className?.includes(codeContainerClassName)  && children){
-    // childrenが配列の時はタイトル付きコードブロック
-    if(Array.isArray(children) && children.length >= 2){
-      const childrenArray = children as React.ReactNode[];
-      const titleElement = childrenArray[0] as React.ReactHTMLElement<HTMLDivElement>;
-      const title = titleElement.props.children?.toString();
-      const preElement = childrenArray[1] as React.ReactHTMLElement<HTMLPreElement>;
-      return (
-        <div className={ className } { ...props }>
-          <CodeBlock title={ title } { ...preElement.props } />
-        </div>
-      );
-    }
-    else if(isValidElement(children) && children.type === "pre"){
-      // タイトルなしコードブロック
-      const childrenElement = children as React.ReactHTMLElement<HTMLPreElement>;
-      return (
-        <div className={ className } { ...props }>
-          <CodeBlock { ...childrenElement.props } />
-        </div>
-      );
-    }
-  }
-
-  return <div className={ className } { ...props } >{children}</div>;
-}
-
-/**
- * マークダウンテキストから記法を除いた純粋な文字数をカウントする
- * @param markdown マークダウン形式の文字列
- * @returns 純粋な文字数
- */
-export function countMarkdownCharacters(markdown: string): number {
-  let text = markdown;
-
-  // コードブロック（```で囲まれた部分）を先に処理
-  text = text.replace(/```[\s\S]*?```/g, (match) => {
-    // コードブロック内の改行以外の文字をカウント
-    const codeContent = match.replace(/```[^\n]*\n?/g, "").replace(/\n```$/g, "");
-    return codeContent;
-  });
-
-  // インラインコード（`で囲まれた部分）
-  text = text.replace(/`([^`]+)`/g, "$1");
-
-  // 見出し（# ## ### など）
-  text = text.replace(/^#+\s*/gm, "");
-
-  // 太字・斜体記法
-  text = text.replace(/\*\*\*(.+?)\*\*\*/g, "$1"); // 太字斜体
-  text = text.replace(/\*\*(.+?)\*\*/g, "$1");     // 太字
-  text = text.replace(/\*(.+?)\*/g, "$1");         // 斜体
-  text = text.replace(/___(.+?)___/g, "$1");       // 太字斜体
-  text = text.replace(/__(.+?)__/g, "$1");         // 太字
-  text = text.replace(/_(.+?)_/g, "$1");           // 斜体
-
-  // 取り消し線
-  text = text.replace(/~~(.+?)~~/g, "$1");
-
-  // リンク記法 [テキスト](URL)
-  text = text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
-
-  // 画像記法 ![alt](URL)
-  text = text.replace(/!\[[^\]]*\]\([^)]+\)/g, "");
-  
-  // チェックリスト（- [ ] または - [x] で始まる行）
-  text = text.replace(/^[\s]*[-*+]\s*\[[\sx]\]\s*/gmi, "");
-
-  // リスト記法（- * + で始まる行）
-  text = text.replace(/^[\s]*[-*+]\s+/gm, "");
-
-  // 番号付きリスト（1. 2. など）
-  text = text.replace(/^[\s]*\d+\.\s+/gm, "");
-
-  // テーブル記法の処理
-  text = text.replace(/^\s*\|.*\|\s*$/gm, (match) => {
-    // テーブルの区切り行（|---|---|）を除外
-    if (/^\s*\|[\s\-|:]*\|\s*$/.test(match)) {
-      return "";
-    }
-    // テーブルのセル内容のみを抽出（|を除去してセルの内容を結合）
-    return match
-      .split("|")
-      .slice(1, -1) // 最初と最後の空文字を除去
-      .map(cell => cell.trim())
-      .join(" ") + "\n";
-  });
-
-  // 引用記法（> で始まる行）
-  text = text.replace(/^[\s]*>\s*/gm, "");
-
-  // 水平線（--- *** ___）
-  text = text.replace(/^[\s]*[-*_]{3,}[\s]*$/gm, "");
-
-  // HTMLタグ（マークダウン内のHTML）
-  text = text.replace(/<[^>]+>/g, "");
-
-  // 参照リンク記法 [text][ref] と [ref]: URL
-  text = text.replace(/\[([^\]]+)\]\[[^\]]*\]/g, "$1");
-  text = text.replace(/^[\s]*\[[^\]]+\]:\s*.+$/gm, "");
-
-  // エスケープ文字（\）
-  text = text.replace(/\\(.)/g, "$1");
-
-  // 余分な空白行を整理
-  text = text.replace(/\n\s*\n/g, "\n");
-  text = text.trim();
-  
-  return text.length;
-}
-
