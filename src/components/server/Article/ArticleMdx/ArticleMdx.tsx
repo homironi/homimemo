@@ -1,3 +1,4 @@
+import { AffiliateLink } from "@/components/AffiliateLink";
 import { ExternalLink } from "@/components/ExternalLink";
 import { H3 } from "@/components/H3";
 import { ArticleDiv } from "@/components/server/Article/ArticleDiv";
@@ -90,6 +91,7 @@ export function ArticleMdx({
           h6: createHeadingComponent("h6"),
           div: ArticleDiv,
           TextBlock,
+          AffiliateLink,
         } }
         options={ {
           mdxOptions: {
