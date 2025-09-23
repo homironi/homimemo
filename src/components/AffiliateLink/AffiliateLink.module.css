@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+  background-color: var(--color-main);
+  border: 1px solid var(--border-color-main);
+  border-radius: var(--border-radius);
+}
+
+.image-container-2{
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  bottom: 0;
+}
+
+.image-container{
+  flex: 1 1 180px;
+  position: relative;
+  min-width: 120px;
+  min-height: 120px;
+}
+
+.info {
+  flex: 1 1 180px;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.links {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 4px;
+  text-align: center;
+}
+
+.link {
+  display: block;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  color: var(--text-color-white);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.amazon {
+  background-color: #FF9900;
+}
+
+.rakuten {
+  background-color: #BF0000;
+}
+
+.yahoo {
+  background-color: #FF0133;
+}
