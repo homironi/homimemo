@@ -1,0 +1,30 @@
+.icon{
+  --note-icon-color: #000000;
+  --note-icon-color-reverse: #ffffff;
+}
+
+.icon-color{
+  fill: var(--note-icon-color);
+}
+
+.icon-color-reverse{
+  fill: var(--note-icon-color-reverse);
+}
+
+.icon-color-white{
+  fill: var(--note-icon-color-reverse);
+}
+
+.icon-color-black{
+  fill: var(--note-icon-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  .icon-color {
+  fill: var(--note-icon-color-reverse);
+  }
+
+  .icon-color-reverse {
+  fill: var(--note-icon-color);
+  }
+}
