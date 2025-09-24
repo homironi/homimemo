@@ -1,6 +1,5 @@
 import { RssIcon } from "@/assets/icons";
-import { XLogo } from "@/assets/logos";
-import { GitHubLogo } from "@/assets/logos/GitHub/GitHubLogo";
+import { GitHubLogo, NoteLogo, XLogo } from "@/assets/logos";
 import Link from "next/link";
 import styles from "./Links.module.css";
 
@@ -53,6 +52,13 @@ export function Links({ color = "default" }: LinksProps) {
         className={ styles.link }
       >
         <GitHubLogo color={ color } className={ styles.icon } />
+      </Link>
+      <Link
+        href="https://note.com/homironi"
+        target="_blank"
+        className={ styles.link }
+      >
+        <NoteLogo color={ color } className={ styles.icon } />
       </Link>
       <Link href="/rss.xml" target="_blank" className={ styles.link }>
         <RssIcon className={ iconClassName } />
