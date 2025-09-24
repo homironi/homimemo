@@ -58,7 +58,7 @@ export function Links({ color = "default" }: LinksProps) {
         target="_blank"
         className={ styles.link }
       >
-        <NoteLogo color={ color } className={ styles.icon } />
+        <NoteLogo color={ color } className={ styles.note } />
       </Link>
       <Link href="/rss.xml" target="_blank" className={ styles.link }>
         <RssIcon className={ iconClassName } />
