@@ -1,6 +1,9 @@
+import { categoriesMetaFilePath } from "@/lib/server/article";
+import { CategoryMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
+import { parse } from "valibot";
 
 export const articleDirectoryName = path.join("_contents", "articles");
 export const categoriesDirectoryName = path.join("_contents", "categories");
@@ -29,4 +32,21 @@ export function getUseIdSet(){
       })
       .filter((id): id is string => typeof id === "string" && id.trim() !== ""),
   );
+}
+
+/**
+ * カテゴリデータのJSONファイルを作成する
+ */
+export function generateCategoriesJson() {
+  const data = fs.readdirSync(categoriesDirectoryName, "utf-8")
+    .filter(file => file.endsWith(".md"))
+    .map((file) => {
+      const filePath = path.join(categoriesDirectoryName, file); ;
+      const raw = fs.readFileSync(filePath, "utf-8");
+      const { data } = matter(raw);
+      return parse(CategoryMetaSchema, data);
+    });
+  
+  fs.mkdirSync(path.dirname(categoriesMetaFilePath), { recursive: true });
+  fs.writeFileSync(categoriesMetaFilePath, JSON.stringify(data, null, 2), "utf-8");
 }
