@@ -18,7 +18,7 @@ export const noticeData: Omit<NoticeData, "id">[] = [
   },
   {
     date: "2025-07-13",
-    description: <>サイトをNext.jsを中心としたSSGにリニューアルしました</>,
+    description: <Link href={ createArticleDetailPath("u7ax9hdyzzu3zkp5grbjazmt") }>サイトをNext.jsを中心としたSSGにリニューアルしました</Link>,
   },
   {
     date: "2023-12-04",
