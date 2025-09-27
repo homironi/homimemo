@@ -2,6 +2,7 @@
 .icon{
   fill: var(--text-color-pale);
   vertical-align: -0.2em;
+  width: 24px;
 }
 
 .link{
