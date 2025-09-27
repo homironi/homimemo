@@ -7,6 +7,7 @@ export { default as CheckBoxBlankIcon } from "@/assets/icons/google-materials/ch
 export { default as SuccessIcon } from "@/assets/icons/google-materials/check_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as ChevronLeftIcon } from "@/assets/icons/google-materials/chevron_left_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as ChevronRightIcon } from "@/assets/icons/google-materials/chevron_right_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
+export { default as CodeIcon } from "@/assets/icons/google-materials/code_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as ContentCopyIcon } from "@/assets/icons/google-materials/content_copy_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as FirstPageIcon } from "@/assets/icons/google-materials/first_page_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as QuestionIcon } from "@/assets/icons/google-materials/help_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
