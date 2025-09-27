@@ -1,14 +1,19 @@
 import { ArticleLink } from "@/components/ArticleLink";
+import { noticeData } from "@/data/notice";
+import { recommendedArticles } from "@/data/recommendedArticle";
 import { articlesListPagePath, createArticleDetailPath } from "@/lib/article";
 import { formatDate } from "@/lib/date";
 import { getAllArticlesMeta } from "@/lib/server/article";
 import { createDefaultOG } from "@/lib/utils";
+import { ArticleMeta } from "@/schemas/article/meta";
 import { Metadata } from "next";
 import Link from "next/link";
 import { JSX } from "react";
 import styles from "./page.module.css";
 
-const newArticlesCount = 10;
+const noticeMax = 2;
+const recommendedArticleMax = 4;
+const newArticlesMax = 10;
 
 /**
  * Next.jsのページで使用する静的Meta情報の生成
@@ -28,30 +33,12 @@ export async function generateMetadata(): Promise<Metadata> {
  * @returns HomeページのJSX要素
  */
 export default function Home() {
-  const latestArticles = getAllArticlesMeta()
-    .sort((a, b) => {
-      return b.publishDate.getTime() - a.publishDate.getTime();
-    })
-    .slice(0, newArticlesCount);
   return (
     <div className={ styles.container }>
-      <Changelog viewNum={ 4 } />
-      <h2 className={ styles.title }>新着記事</h2>
-      <ol className={ styles.list }>
-        {latestArticles.map((article) => {
-          return (
-            <li key={ article.id } className={ styles.item }>
-              <time
-                dateTime={ formatDate(article.publishDate, "YYYY-MM-DD") }
-                className={ styles.time }
-              >
-                {formatDate(article.publishDate, "YYYY/MM/DD")}
-              </time>
-              <ArticleLink meta={ article } />
-            </li>
-          );
-        })}
-      </ol>
+      <List title="お知らせ" data={ notices } />
+      <List title="更新履歴" data={ articlesChangelog } />
+      <List title="おすすめ" data={ recommendedArticlesList } />
+      <List title="新着記事" data={ latestArticles } />
       <Link href={ articlesListPagePath } className={ styles.more }>
         全記事一覧へ
       </Link>
@@ -59,95 +46,121 @@ export default function Home() {
   );
 }
 
-type ChangelogProps = {
-  viewNum: number;
+type ListElement = {
+  key:string,
+  item:JSX.Element
 };
 
-type ChangelogData = {
-  id: string;
-  date: string;
-  description: JSX.Element;
+type ListProps = {
+  title : string;
+  data : ListElement[]
 };
 
-function Changelog({ viewNum }: ChangelogProps) {
-  const allArticles: ChangelogData[] = getAllArticlesMeta()
-    .map((article) => {
-      const publishedDate = formatDate(article.publishDate, "YYYY-MM-DD");
-      const modifiedDate = formatDate(article.lastModDate, "YYYY-MM-DD");
-      // 公開日と更新日が同じ場合は更新履歴を出さない
-      const isModified = publishedDate !== modifiedDate;
+function List({title, data}:ListProps){
+  return(
+  <>
+    <h2 className={ styles.title }>{title}</h2>
+    <ol className={ styles.list }>
+      {data.map(({key, item})=> (
+        <li key={ key } className={ styles.item }>
+          {item}
+        </li>
+      ))}
+    </ol>
+  </>);
+}
 
-      const data: ChangelogData[] = [
-        {
-          id: `${article.id}-published`,
-          date: publishedDate,
-          description: (
-            <>
-              【記事公開】
-              <a href={ createArticleDetailPath(article.id) }>{article.title}</a>
-            </>
-          ),
-        },
-      ];
+const notices = noticeData
+  .sort((a, b) => (a.date < b.date ? 1 : -1))
+  .slice(0, noticeMax)
+  .map((item) => ({
+    key: crypto.randomUUID(),
+    item: (<>
+      <time dateTime={ item.date }>{item.date.replace(/-/g, "/")}</time>：
+      {item.description}
+    </>)
+  }));
 
-      if (isModified) {
-        data.push({
-          id: `${article.id}-modified`,
-          date: modifiedDate,
-          description: (
-            <>
-              【記事更新】
-              <a href={ createArticleDetailPath(article.id) }>{article.title}</a>
-            </>
-          ),
-        });
-      }
+const allArticles = getAllArticlesMeta();
 
-      return data;
-    })
-    .flat();
+type ArticleLinkItemProps = {
+  article: ArticleMeta,
+};
 
-  const combinedChangelog: ChangelogData[] = [
-    ...changelogData.map((item) => ({ ...item, id: crypto.randomUUID() })),
-    ...allArticles,
-  ]
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
-    .slice(0, viewNum);
-
+function ArticleLinkItem({article}:ArticleLinkItemProps){
   return (
-    <div>
-      <h2 className={ styles.title }>変更履歴</h2>
-      <ol className={ styles.list }>
-        {combinedChangelog.map((log) => (
-          <li key={ log.id } className={ styles.item }>
-            <time dateTime={ log.date }>{log.date.replace(/-/g, "/")}</time>：
-            {log.description}
-          </li>
-        ))}
-      </ol>
-    </div>
+    <>
+      <time
+        dateTime={ formatDate(article.publishDate, "YYYY-MM-DD") }
+        className={ styles.time }
+      >
+        {formatDate(article.publishDate, "YYYY/MM/DD")}
+      </time>
+      <ArticleLink meta={ article } />
+    </>
   );
 }
 
-const changelogData: Omit<ChangelogData, "id">[] = [
-  {
-    date: "2025-09-03",
-    description: <>サイトのホスティングをCloudflare Workersに変更しました</>,
-  },
-  {
-    date: "2025-07-13",
-    description: <>サイトをNext.jsを中心としたSSGにリニューアルしました</>,
-  },
-  {
-    date: "2023-12-04",
-    description: (
-      <>
-        ダークテーマ対応してみました。OSのテーマ設定に合わせて自動で切り替わります
-      </>
-    ),
-  },
-  {
-    date: "2023-08-23",
-    description: <Link href="/articles/qnhckrrtrx8xv662s0ox840y/">サイト公開</Link>,
-  },
-];
+const recommendedArticlesList : ListElement[] = recommendedArticles
+  .slice(0, recommendedArticleMax)
+  .map(article => ({
+    key:article.id,
+    item: <ArticleLinkItem article={ article } />
+  }
+));
+
+const latestArticles : ListElement[] = allArticles
+  .sort((a, b) => {
+    return b.publishDate.getTime() - a.publishDate.getTime();
+  })
+  .slice(0, newArticlesMax)
+  .map(article=>{
+    return {
+      key: article.id,
+      item: (<ArticleLinkItem article={ article } />),
+    };
+  });
+
+const articlesChangelog: ListElement[] = allArticles
+  .sort((a, b) => {
+    return b.lastModDate.getTime() - a.lastModDate.getTime();
+  })
+  .map((article) => {
+    const publishedDate = formatDate(article.publishDate, "YYYY-MM-DD");
+    const modifiedDate = formatDate(article.lastModDate, "YYYY-MM-DD");
+    // 公開日と更新日が同じ場合は更新していない扱い
+    const isModified = publishedDate !== modifiedDate;
+
+    const data = [
+      {
+        date: article.publishDate.getTime(),
+        key: `${article.id}-published`,
+        item: (
+          <>
+            <time dateTime={ publishedDate }>{formatDate(article.publishDate, "YYYY/MM/DD")}</time>：
+            【記事公開】
+            <a href={ createArticleDetailPath(article.id) }>{article.title}</a>
+          </>
+        ),
+      },
+    ];
+
+    if (isModified) {
+      data.push({
+        date: article.lastModDate.getTime(),
+        key: `${article.id}-modified`,
+        item: (
+          <>
+            <time dateTime={ modifiedDate }>{formatDate(article.lastModDate, "YYYY/MM/DD")}</time>：
+            【記事更新】
+            <a href={ createArticleDetailPath(article.id) }>{article.title}</a>
+          </>
+        ),
+      });
+    }
+
+    return data;
+  })
+  .flat()
+  .sort((a, b) => b.date - a.date)
+  .slice(0, 4);
