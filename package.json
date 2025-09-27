@@ -37,9 +37,7 @@
     "build-json-article": "tsx scripts/article/generateArticlesJson.ts",
     "dev:json-articles-meta": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateArticlesJson.ts\" \"public/generated/meta/categories.json\" \"public/generated/meta/tags.json\" -c \"pnpm run build-json-article\"",
     "new-article": "tsx scripts/article/createNewArticle.ts",
-    "svg": "run-p svg:*",
-    "svg:assets": "svgo --folder ./src/assets --recursive --no-color",
-    "svg:public": "svgo --folder ./public --recursive --no-color"
+    "svg": "svgo --folder ./src/assets --recursive "
   },
   "dependencies": {
     "@next/third-parties": "^15.5.2",
