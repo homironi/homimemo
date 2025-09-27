@@ -1,6 +1,6 @@
 .container{
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .tool-container{
@@ -28,8 +28,8 @@
 }
 
 .language-label{
-    padding: 4px;
-    color: var(--text-color-pale);
+  padding: 4px;
+  color: var(--text-color-pale);
 }
 
 .code-container{
@@ -40,9 +40,14 @@
 }
 
 .icon {
-    fill: var(--text-color-pale);
+  fill: var(--text-color-pale);
 }
 
 .check-icon {
-    fill: var(--icon-color-success);
+  fill: var(--icon-color-success);
+}
+
+.icon,
+.check-icon {
+  width: 24px;
 }
