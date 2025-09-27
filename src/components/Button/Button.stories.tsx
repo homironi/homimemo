@@ -39,7 +39,7 @@ export const TextButton: Story = {
 
 export const IconButton: Story = {
   args: {
-    children: <ContentCopyIcon />,
+    children: <ContentCopyIcon style={ {width: 24,} } />,
     variant: "text",
   },
 };

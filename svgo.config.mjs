@@ -3,6 +3,12 @@ const config = {
   plugins: [
     "preset-default",
     "convertStyleToAttrs",
+    {
+      name: "removeAttrs",
+      params: {
+        attrs: ["fill", "width", "height"],
+      }
+    },
   ],
 };
 

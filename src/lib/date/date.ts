@@ -1,4 +1,7 @@
-export type SupportedDateFormat = "YYYY/MM/DD" | "YYYY-MM-DD";
+export type SupportedDateFormat =
+  | "YYYY/MM/DD" 
+  | "YYYY-MM-DD"
+  | "YYYYMMDDHHmmss";
 
 /**
  * 日付オブジェクトを文字列に変換する関数
@@ -24,6 +27,17 @@ export function formatDate(date: Date, format: SupportedDateFormat): string {
         day: "2-digit",
       });
 
+    case "YYYYMMDDHHmmss":{
+      const yearStr = date.getFullYear().toString().padStart(4, "0");
+      const monthStr = (date.getMonth()+1).toString().padStart(2, "0");
+      const dateStr = date.getDate().toString().padStart(2, "0");
+      const hourStr = date.getHours().toString().padStart(2, "0");
+      const minutesStr =date.getMinutes().toString().padStart(2, "0");
+      const secondsStr = date.getSeconds().toString().padStart(2, "0");
+
+      return `${yearStr}${monthStr}${dateStr}${hourStr}${minutesStr}${secondsStr}`;
+    }
+      
     default:
       throw new Error(`Unsupported date format: ${format}`);
   }

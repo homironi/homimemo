@@ -1,6 +1,3 @@
-▼ developのStorybook  
-[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg)](https://develop--682bb6b6fbdc8489c7635afb.chromatic.com)
-
 [![Add Missing Article IDs](https://github.com/homironi/homimemo/actions/workflows/add-article-missing-id.yml/badge.svg)](https://github.com/homironi/homimemo/actions/workflows/add-article-missing-id.yml)
 [![Lint test](https://github.com/homironi/homimemo/actions/workflows/lint-test.yml/badge.svg)](https://github.com/homironi/homimemo/actions/workflows/lint-test.yml)
 
@@ -13,6 +10,11 @@ https://homironi.com/
 - TypeScript
 - DecapCMS
 - markdown
+
+[![Built with Cloudflare](https://workers.cloudflare.com/built-with-cloudflare.svg)](https://cloudflare.com)
+
+▼ developのStorybook  
+[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg)](https://develop--682bb6b6fbdc8489c7635afb.chromatic.com)
 
 ## 実行方法
 

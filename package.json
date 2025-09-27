@@ -36,9 +36,8 @@
     "dev:json-article-tags": "chokidar \"_contents/tags/**/*.md\" \"scripts/article/generateTagsJson.ts\" -c \"pnpm run build-json-pre-article:tags\"",
     "build-json-article": "tsx scripts/article/generateArticlesJson.ts",
     "dev:json-articles-meta": "chokidar \"_contents/articles/**/*.md\" \"scripts/article/generateArticlesJson.ts\" \"public/generated/meta/categories.json\" \"public/generated/meta/tags.json\" -c \"pnpm run build-json-article\"",
-    "svg": "run-p svg:*",
-    "svg:assets": "svgo --folder ./src/assets --recursive --no-color",
-    "svg:public": "svgo --folder ./public --recursive --no-color"
+    "new-article": "tsx scripts/article/createNewArticle.ts",
+    "svg": "svgo --folder ./src/assets --recursive "
   },
   "dependencies": {
     "@next/third-parties": "^15.5.2",
@@ -64,6 +63,7 @@
     "@chromatic-com/storybook": "^4.1.1",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.35.0",
+    "@inquirer/prompts": "^7.8.6",
     "@markuplint/jsx-parser": "^4.7.21",
     "@markuplint/react-spec": "^4.5.21",
     "@next/eslint-plugin-next": "^15.5.2",

@@ -13,7 +13,8 @@
 }
 
 .icon {
-  margin-bottom: 2rem;
+  fill: var(--color-sub);
+  width: 128px;
 }
 
 .title {
