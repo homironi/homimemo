@@ -1,6 +1,5 @@
 .link {
   align-items: baseline;
-  text-decoration: none;
   border-bottom: 1px solid transparent;
   max-width: 100%;
   overflow-wrap: break-word;
@@ -15,5 +14,5 @@
   width: 1em;
   flex-shrink: 0;
   vertical-align: middle;
-  fill: -webkit-link;
+  fill: var(--text-color);
 }
