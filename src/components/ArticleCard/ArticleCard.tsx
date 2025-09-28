@@ -16,15 +16,20 @@ import styles from "./ArticleCard.module.css";
 
 export type ArticleCardProps = {
   meta: ArticleMeta;
+  imgOption?: {
+    loading?: "eager" | "lazy" | undefined;
+    fetchpriority?: "high" | "low" | "auto" | undefined;
+  };
 };
 
 /**
  * 記事のカードコンポーネント
  * @param root0 引数オブジェクト
  * @param root0.meta 記事のメタデータ
+ * @param root0.imgOption 画像の読み込みオプション
  * @returns 記事カードのJSX要素
  */
-export function ArticleCard({ meta }: ArticleCardProps) {
+export function ArticleCard({ meta, imgOption }: ArticleCardProps) {
   const publishDate = formatDate(meta.publishDate, "YYYY/MM/DD");
   const lastModDate = formatDate(meta.lastModDate, "YYYY/MM/DD");
   return (
@@ -35,6 +40,8 @@ export function ArticleCard({ meta }: ArticleCardProps) {
           alt={ meta.title }
           width={ articleThumbnailNativeSize.width }
           height={ articleThumbnailNativeSize.height }
+          fetchPriority={ imgOption?.fetchpriority }
+          loading={ imgOption?.loading }
         />
         <div className={ styles["text-container"] }>
           <span className={ styles.category }>
