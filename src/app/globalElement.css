@@ -54,7 +54,7 @@
     /* table color */
   
     --color-table-header: var(--color-sub);
-    --text-color-table-header: var(--text-color-white);
+    --text-color-table-header: var(--text-color-black);
     --text-color-table-border: var(--color-main);
     --color-table-background-odd: var(--color-main);
     --color-table-background-even: #e8f2fa;
