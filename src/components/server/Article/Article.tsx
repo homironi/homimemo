@@ -78,8 +78,11 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
             alt={ meta.title }
             width={ articleThumbnailNativeSize.width }
             height={ articleThumbnailNativeSize.height }
+            fetchPriority="high"
+            loading="eager"
           />
           {WrappedShareButtons}
+          <hr />
           {isArticle && <DynamicAdSense adSenseType="display" /> }
           <ArticleMdx
             content={ content }
@@ -88,6 +91,7 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
             isArticle={ isArticle }
           />
           <hr />
+          <p>SNSやブログで記事をご紹介いただけたらうれしいです！</p>
           {WrappedShareButtons}
           {isArticle && 
             <>

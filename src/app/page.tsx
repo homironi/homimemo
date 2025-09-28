@@ -85,9 +85,13 @@ const allArticles = getAllArticlesMeta();
 
 type ArticleLinkItemProps = {
   article: ArticleMeta,
+  imgOption?: {
+    loading?: "eager" | "lazy" | undefined;
+    fetchpriority?: "high" | "low" | "auto" | undefined;
+  };
 };
 
-function ArticleLinkItem({article}:ArticleLinkItemProps){
+function ArticleLinkItem({article, imgOption}:ArticleLinkItemProps){
   return (
     <>
       <time
@@ -96,7 +100,7 @@ function ArticleLinkItem({article}:ArticleLinkItemProps){
       >
         {formatDate(article.publishDate, "YYYY/MM/DD")}
       </time>
-      <ArticleLink meta={ article } />
+      <ArticleLink meta={ article } imgOption={ imgOption } />
     </>
   );
 }
@@ -105,7 +109,7 @@ const recommendedArticlesList : ListElement[] = recommendedArticles
   .slice(0, recommendedArticleMax)
   .map(article => ({
     key:article.id,
-    item: <ArticleLinkItem article={ article } />
+    item: <ArticleLinkItem article={ article } imgOption={ {loading: "eager", fetchpriority: "high"} } />
   }
 ));
 
