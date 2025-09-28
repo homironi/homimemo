@@ -35,6 +35,10 @@ p {
   line-height: 2em;
 }
 
+a{
+  color: var(--text-color);
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
