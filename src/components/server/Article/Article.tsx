@@ -78,6 +78,8 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
             alt={ meta.title }
             width={ articleThumbnailNativeSize.width }
             height={ articleThumbnailNativeSize.height }
+            fetchPriority="high"
+            loading="eager"
           />
           {WrappedShareButtons}
           {isArticle && <DynamicAdSense adSenseType="display" /> }
