@@ -1,7 +1,6 @@
 .h2 {
   position: relative;
   background: var(--color-sub);
-  color: var(--text-color-white);
   padding: 1rem 0.5rem;
   border-radius: 4px;
   margin: 2rem 0 1rem;
@@ -29,18 +28,19 @@
 }
 
 .h2 a {
-  color: var(--text-color-white);
+  color: var(--text-color-black);
   text-decoration: none;
+  justify-self: center;
 }
 
 .h2 a:hover {
-  color: var(--text-color-white-hover);
+  color: var(--text-color-black-hover);
   text-decoration: underline;
 }
 
 .icon {
-  fill: var(--text-color-white);
-  width: 1.2em;
-  height: 1.2em;
-  vertical-align: middle;
+  fill: var(--text-color-black);
+  width: 32px;
+  height: 32px;
+  vertical-align: top;
 }

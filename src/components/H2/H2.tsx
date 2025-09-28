@@ -1,5 +1,5 @@
+import { CharaItem } from "@/assets/items";
 import { ExternalLink } from "@/components/ExternalLink";
-import CharaIcon from "@public/images/icon_chara_white.svg";
 import React, { PropsWithChildren } from "react";
 import styles from "./H2.module.css";
 
@@ -35,7 +35,7 @@ export function H2({ children, className, ...props }: H2Props) {
 
   return (
     <h2 className={ `${styles.h2} ${className ?? ""}` } { ...props }>
-      <CharaIcon className={ styles.icon } />
+      <CharaItem className={ styles.icon } />
       {processedChildren}
     </h2>
   );

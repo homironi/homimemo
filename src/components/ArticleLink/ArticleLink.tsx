@@ -16,15 +16,20 @@ import styles from "./ArticleLink.module.css";
 
 export type ArticleLinkProps = {
   meta: ArticleMeta;
+  imgOption?: {
+    loading?: "eager" | "lazy" | undefined;
+    fetchpriority?: "high" | "low" | "auto" | undefined;
+  };
 };
 
 /**
  * 記事のリンクコンポーネント
  * @param root0 引数オブジェクト
  * @param root0.meta 記事のメタデータ
+ * @param root0.imgOption
  * @returns 記事リンクのJSX要素
  */
-export function ArticleLink({ meta }: ArticleLinkProps) {
+export function ArticleLink({ meta, imgOption }: ArticleLinkProps) {
   const publishDate = formatDate(meta.publishDate, "YYYY/MM/DD");
   const lastModDate = formatDate(meta.lastModDate, "YYYY/MM/DD");
   return (
@@ -38,6 +43,8 @@ export function ArticleLink({ meta }: ArticleLinkProps) {
               width={ articleThumbnailNativeSize.width }
               height={ articleThumbnailNativeSize.height }
               className={ styles.image }
+              fetchPriority={ imgOption?.fetchpriority }
+              loading={ imgOption?.loading }
             />
           </div>
         </div>

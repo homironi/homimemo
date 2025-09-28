@@ -2,7 +2,7 @@
 
 import { CheckIcon, ContentCopyIcon } from "@/assets/icons";
 import React, { PropsWithChildren, useId, useState } from "react";
-import { Button } from "../Button";
+import { Button } from "../../../Button";
 import styles from "./CodeBlock.module.css";
 
 const codeLanguageClassNamePattern = /language-(\w+)/;

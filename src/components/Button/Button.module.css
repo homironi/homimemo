@@ -1,6 +1,9 @@
 .button{
   padding: 8px 12px;
   border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .filled{

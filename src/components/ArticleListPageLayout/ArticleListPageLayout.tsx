@@ -1,4 +1,4 @@
-import { ArticleCard } from "@/components/ArticleCard";
+import { ArticleCard, ArticleCardProps } from "@/components/ArticleCard";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { articlePagePerNum } from "@/lib/article";
 import { ArticleMeta } from "@/schemas/article/meta";
@@ -47,11 +47,17 @@ export function ArticleListPageLayout({
             articles.length
           )} 件目）`}</p>
           <ol className={ styles.list }>
-            {pageArticles.map((article) => (
-              <li key={ article.id } className={ styles.item }>
-                <ArticleCard meta={ article } />
-              </li>
-            ))}
+            {pageArticles.map((article, index) => {
+              const imgOption : ArticleCardProps["imgOption"] = index < 4 
+                ? {
+                  loading: "eager",
+                  fetchpriority: "high",
+                } 
+                : undefined;
+              return <li key={ article.id } className={ styles.item }>
+                <ArticleCard meta={ article } imgOption={ imgOption } />
+              </li>;
+            })}
           </ol>
           <ArticleListPageNumbers
             allArticlesLength={ articles.length }
