@@ -43,6 +43,7 @@ export function Links({ color = "default" }: LinksProps) {
         href="https://x.com/homironi"
         target="_blank"
         className={ styles.link }
+        title="ほみのXアカウント"
       >
         <XLogo color={ color } className={ styles.icon } />
       </Link>
@@ -50,6 +51,7 @@ export function Links({ color = "default" }: LinksProps) {
         href="https://github.com/homironi"
         target="_blank"
         className={ styles.link }
+        title="ほみのGitHubアカウント"
       >
         <GitHubLogo color={ color } className={ styles.icon } />
       </Link>
@@ -57,13 +59,24 @@ export function Links({ color = "default" }: LinksProps) {
         href="https://note.com/homironi"
         target="_blank"
         className={ styles.link }
+        title="ほみのnoteアカウント"
       >
         <NoteLogo color={ color } className={ styles.note } />
       </Link>
-      <Link href="/rss.xml" target="_blank" className={ styles.link }>
+      <Link
+        href="/rss.xml"
+        target="_blank"
+        className={ styles.link }
+        title="当サイト記事のrss.xml"
+        >
         <RssIcon className={ iconClassName } />
       </Link>
-      <Link href="https://github.com/homironi/homimemo" target="_blank" className={ styles.link }>
+      <Link
+        href="https://github.com/homironi/homimemo"
+        target="_blank"
+        className={ styles.link }
+        title="当サイトのリポジトリ"
+        >
         <CodeIcon className={ iconClassName } />
       </Link>
     </div>
