@@ -26,7 +26,7 @@ export type ArticleLinkProps = {
  * 記事のリンクコンポーネント
  * @param root0 引数オブジェクト
  * @param root0.meta 記事のメタデータ
- * @param root0.imgOption
+ * @param root0.imgOption 画像の読み込みオプション
  * @returns 記事リンクのJSX要素
  */
 export function ArticleLink({ meta, imgOption }: ArticleLinkProps) {

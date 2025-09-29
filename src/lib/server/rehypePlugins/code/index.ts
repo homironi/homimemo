@@ -15,7 +15,7 @@ export function rehypeCodeContainer() {
       parent: Element;
       index: number;
       pre: Element;
-      lang: string;
+      lang?: string;
       title?: Element;
     };
     const targets: Target[] = [];
@@ -23,36 +23,32 @@ export function rehypeCodeContainer() {
     visit(tree, "element", (node, index, parent) => {
       if (
         node.tagName === "pre"
-        && Array.isArray(node.properties.className)
         && index
         && parent
       ) {
-        const classNames = node.properties.className as string[];
-        const langClass = classNames.find(c => c.startsWith("language-"));
-        if (langClass) {
-
-          const target: Target = {
-            parent: parent as Element,
-            index: index,
-            pre: node,
-            lang: langClass.replace("language-", ""),
-          };
+        const classNames = Array.isArray(node.properties.className) ? node.properties.className as string[] : undefined;
+        const langClass = classNames?.find(c => c.startsWith("language-"));
+        const target: Target = {
+          parent: parent as Element,
+          index: index,
+          pre: node,
+          lang: langClass?.replace("language-", ""),
+        };
+        
+        // 直前のノードがタイトルならそれを取得する
+        if (index > 0) {
+          const prevNode = parent.children[index - 1];
           
-          // 直前のノードがタイトルならそれを取得する
-          if (index > 0) {
-            const prevNode = parent.children[index - 1];
-            
-            if (prevNode
-              && prevNode.type === "element"
-              && prevNode.tagName === "div"
-              && (prevNode.properties.className as string[]).includes("rehype-code-title")
-            ) {
-              target.title = prevNode;
-            }
+          if (prevNode
+            && prevNode.type === "element"
+            && prevNode.tagName === "div"
+            && (prevNode.properties.className as string[]).includes("rehype-code-title")
+          ) {
+            target.title = prevNode;
           }
-
-          targets.push(target);
         }
+
+        targets.push(target);
       }
     });
 
@@ -68,7 +64,7 @@ export function rehypeCodeContainer() {
         properties: {
           className: [
             codeContainerClassName,
-            `${codeContainerClassName}--${lang}`],
+            `${codeContainerClassName}--${lang ?? ""}`],
         },
         children,
       };

@@ -1,4 +1,4 @@
-pre[class*="language-"] > code {
+.code-highlight {
     display: block;
     overflow: auto;
     position: relative;
@@ -8,29 +8,25 @@ pre[class*="language-"] > code {
     background-size: 3em 3em;
     background-origin: content-box;
     background-attachment: local;
-}
-
-/* コードツールコンテナがある場合はマージンを削除 */
-.code-container pre[class*="language-"] > code {
     margin: 0;
 }
 
-pre[class*="language-"] > code > span {
+.code-highlight > span {
     display: block;
     margin: 0 0.5em;
 }
 
-pre[class*="language-"] > code > span,
-pre[class*="language-"] > code > span.line-number:nth-child(odd)::before {
+.code-highlight > span,
+.code-highlight > span.line-number:nth-child(odd)::before {
     background-color: var(--color-code-background);
 }
 
-pre[class*="language-"] > code > span:nth-child(even),
-pre[class*="language-"] > code > span.line-number:nth-child(even)::before {
+.code-highlight > span:nth-child(even),
+.code-highlight > span.line-number:nth-child(even)::before {
     background-color: var(--color-code-background-even);
 }
 
-pre[class*="language-"] > code > span.line-number.highlight-line::before {
+.code-highlight > span.line-number.highlight-line::before {
     border-left: 4px solid var(--color-code-main);
 }
 
