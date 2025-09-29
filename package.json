@@ -4,11 +4,9 @@
   "private": true,
   "packageManager": "pnpm@10.15.1",
   "scripts": {
-    "install": "pnpm run gen:types",
-    "gen:types": "pnpm wrangler types",
     "dev": "pnpm run build:json && run-p dev:*",
     "dev:next": "next dev",
-    "build": "pnpm run gen:types && run-s build:*",
+    "build": "run-s build:*",
     "build:tcm": "tcm -p \"src/**/*.module.css\"",
     "build:json": "run-p build-json:*",
     "build:rss": "tsx scripts/generateRss.ts",
