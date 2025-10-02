@@ -15,6 +15,6 @@
 
 @media screen and (width <= 500px){
     .container{
-        max-height: calc(40vh - var(--padding-toc) * 4);
+        height: calc(40vh - var(--padding-toc) * 4);
     }
 }
