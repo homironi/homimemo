@@ -66,9 +66,9 @@ export function CodeBlock({
             <span className={ styles["language-label"] }>{language}</span>
           )}
         </div>
-        <Button variant="text" onClick={ handleCopy }>
+        <Button variant="text" onClick={ handleCopy } title={ copied ? "copied code" : "copy code" }>
           {copied ? (
-            <CheckIcon className={ styles["check-icon"] } />
+            <CheckIcon className={ styles["check-icon"] }  />
           ) : (
             <ContentCopyIcon className={ styles.icon } />
           )}
