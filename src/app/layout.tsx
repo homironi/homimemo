@@ -16,6 +16,7 @@ import {
 import { NavigationLink } from "@/schemas/navigationLink";
 import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globalElement.css";
 import "./globals.css";
 
@@ -84,10 +85,11 @@ export default function RootLayout({
     <html lang="ja">
       <head>
         {process.env.NODE_ENV === "production" && (
-          <script
+          <Script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7565570537846567"
             crossOrigin="anonymous"
+            strategy="afterInteractive"
           />
         )}
       </head>
