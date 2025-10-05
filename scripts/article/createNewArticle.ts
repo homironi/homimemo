@@ -27,16 +27,18 @@ async function run(){
       }),
     });
 
+    const id = generateArticleId(getUseIdSet());
     const date = new Date();
 
     const meta :ArticleRawMeta = {
-      id: generateArticleId(getUseIdSet()),
+      id,
       draft,
       title,
       category,
       description: "ここにdescription",
       publishDate: date,
       lastModDate: date,
+      thumbnail: `/images/header/articles/${id}.webp`
     };
     
     const fileName = `${formatDate(date, "YYYYMMDDHHmmss")}.md`;
