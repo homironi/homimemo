@@ -1,5 +1,6 @@
 .container{
-    background-color: var(--color-black-area);
+    background-color: var(--color-main);
+    border-bottom: 1px solid var(--border-color-main);
 }
 
 .list{
@@ -22,7 +23,7 @@
     height: 4px;
     transform: scaleX(0);
     transition: transform 0.3s ease;
-    background-color: var(--text-color-white);
+    background-color: var(--color-sub);
 }
 
 .item:hover::after {
@@ -38,9 +39,9 @@
 
 .container,
 .link {
-    color: var(--text-color-white);
+    color: var(--text-color);
 }
 
 .link:hover {
-    color: var(--text-color-white-hover);
+    color: var(--text-color-hover);
 }
