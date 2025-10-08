@@ -3,6 +3,7 @@
     display: inline-flex;
     gap: 16px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .link{
@@ -33,4 +34,19 @@
 
 .icon-color-black{
   fill: var(--text-color-black);
+}
+
+.image-container-2{
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  bottom: 0;
+}
+
+.image-container{
+  flex: 1 1 180px;
+  position: relative;
+  min-width: 32px;
+  min-height: 32px;
+  margin-bottom: 8px;
 }

@@ -1,5 +1,6 @@
 import { CodeIcon, RssIcon } from "@/assets/icons";
 import { GitHubLogo, NoteLogo, XLogo } from "@/assets/logos";
+import Image from "next/image";
 import Link from "next/link";
 import styles from "./Links.module.css";
 
@@ -78,6 +79,18 @@ export function Links({ color = "default" }: LinksProps) {
         title="当サイトのリポジトリ"
         >
         <CodeIcon className={ iconClassName } />
+      </Link>
+      <Link
+        href="https://ko-fi.com/homironi"
+        target="_blank"
+        className={ styles.link }
+        title="Ko-fiというサイトを通じて運営者にココアを買えます"
+        >
+          <div className={ styles["image-container"] }>
+            <div className={ styles["image-container-2"] }>
+              <Image alt="Ko-fiのロゴ" src="/images/logos/ko-fi/kofi_symbol.svg" fill />
+            </div>
+        </div>
       </Link>
     </div>
   );
