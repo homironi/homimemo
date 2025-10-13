@@ -1,11 +1,10 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
 import { BreadcrumbElement } from "@/components/BreadCrumbs";
 import {
-  createCategoryListFirstPagePath,
   createCategoryListPagePath,
   createCategoryListPagePathBase,
   filterArticlesCategory,
-  getPageLength,
+  getPageLength
 } from "@/lib/article";
 import {
   getAllArticlesMeta,
@@ -93,7 +92,7 @@ export default async function CategoriesArticlesPage({
   const breadcrumbs: BreadcrumbElement[] = [
     {
       name: categoryMeta.name,
-      href: createCategoryListFirstPagePath(categoryMeta),
+      href: createCategoryListPagePath(categoryMeta),
     },
   ];
 

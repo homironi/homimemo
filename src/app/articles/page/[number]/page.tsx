@@ -1,6 +1,7 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
 import { BreadcrumbElement } from "@/components/BreadCrumbs";
 import {
+  articleListPagePathBase,
   articlesListPagePath,
   createArticleListPagePath,
   getPageLength,
@@ -10,7 +11,6 @@ import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import type { Metadata } from "next";
 
 const title = "記事一覧";
-const listPagePathBase = "/articles/page/";
 
 type Params = {
   number: string;
@@ -41,7 +41,7 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const number = parseInt((await params).number);
-  const description = "すべての記事の一覧ページです。";
+  const description = `すべての記事一覧の${number}ページ目です。`;
   return {
     title,
     description,
@@ -81,8 +81,9 @@ export default async function ArticlesPage({
       breadcrumbs={ breadcrumbs }
       title={ title }
       articles={ articles }
-      listPagePathBase={ listPagePathBase }
+      listPagePathBase={ articleListPagePathBase }
       currentPageNumber={ number }
+      firstPagePath={ articlesListPagePath }
     />
   );
 }
