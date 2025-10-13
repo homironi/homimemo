@@ -7,6 +7,7 @@ import {
   getAllCategories
 } from "@/lib/server/article";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { CategoryArticlesPage, generateCategoryArticlesPageMetadata } from "../../_components/CategoryArticlesPage";
 
 type Params = {
@@ -14,13 +15,15 @@ type Params = {
   number: string;
 };
 
+const dummy : Params = { categorySlug: "__dummy__", number: "1" };
+
 /**
  * Next.jsのページで使用する静的パラメータを生成する関数
  * @returns 静的パラメータの配列
  */
 export async function generateStaticParams(): Promise<Params[]> {
   const allArticles = getAllArticlesMeta();
-  return getAllCategories()
+  const all = getAllCategories()
     .map((category) => {
       // 1ページ目は「categories/[slug]/」にするのでここでは生成しない
       return getPageLength(
@@ -31,6 +34,15 @@ export async function generateStaticParams(): Promise<Params[]> {
       }));
     })
     .flat();
+  
+  // 一件もページがない場合でも、空配列を返さない
+  // 空配列になると、ビルド時に「missing "generateStaticParams()"」のエラーが出てしまうため
+  if (all.length === 0) {
+    // ダミーを1件返して、構造だけ維持
+    return [dummy];
+  }
+
+    return all;
 }
 
 /**
@@ -62,6 +74,10 @@ export default async function Page({
   params: Promise<Params>;
 }) {
   const { number,categorySlug } = await params;
+  if(categorySlug === dummy.categorySlug){
+    notFound();
+  }
+  
   const page = parseInt(number);
 
   return (
