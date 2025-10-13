@@ -78,7 +78,7 @@ export function createTagsPathBase(tag: TagMeta): string {
  * @param page ページ番号
  * @returns タグ一覧ページのパス
  */
-export function createTagsPath(tag: TagMeta, page?: number): string {
+export function createTagListPagePath(tag: TagMeta, page?: number): string {
   if(!page || page === 1){
     return createTagsPagePath(tag);
   }

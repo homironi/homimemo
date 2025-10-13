@@ -1,7 +1,7 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
 import { BreadcrumbElement } from "@/components/BreadCrumbs";
 import {
-  createTagsPath,
+  createTagListPagePath,
   createTagsPathBase,
   filterArticlesTag
 } from "@/lib/article";
@@ -29,7 +29,7 @@ export async function generateTagArticlesPageMetadata(page : number, tagSlug : s
   const description = `${meta.name}の記事の一覧ページです。${
     meta.description ?? ""
   }`;
-  const slug = createTagsPath(meta, page);
+  const slug = createTagListPagePath(meta, page);
 
   return {
     title,
@@ -59,7 +59,7 @@ export function TagArticlesPage({page, tagSlug} : TagArticlesPageProps) {
   const breadcrumbs: BreadcrumbElement[] = [
     {
       name: tagMeta.name,
-      href: createTagsPath(tagMeta),
+      href: createTagListPagePath(tagMeta),
     },
   ];
 
@@ -70,7 +70,7 @@ export function TagArticlesPage({page, tagSlug} : TagArticlesPageProps) {
       articles={ articles }
       listPagePathBase={ createTagsPathBase(tagMeta) }
       currentPageNumber={ page }
-      firstPagePath={ createTagsPath(tagMeta,1) }
+      firstPagePath={ createTagListPagePath(tagMeta,1) }
     />
   );
 }
