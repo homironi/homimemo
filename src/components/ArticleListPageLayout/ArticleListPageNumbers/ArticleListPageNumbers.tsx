@@ -7,6 +7,7 @@ export type ArticleListPageNumbersProps = {
   listPagePathBase: string;
   currentPageNumber: number;
   allArticlesLength: number;
+  firstPagePath?: string;
 };
 
 /**
@@ -15,6 +16,8 @@ export type ArticleListPageNumbersProps = {
  * @param root0.listPagePathBase リストページのパスのベース
  * @param root0.currentPageNumber 現在のページの番号
  * @param root0.allArticlesLength 対象の全記事件数
+ * @param root0.firstPagePath 最初のページを「listPagePathBase」の後にページ番号を渡すパス以外にする場合に指定。
+ * 例：listPagePathBaseは「/hoge/page/」、1ページ目は「/hoge/」にしたい場合に「/hoge/」を指定する
  * @returns ページ番号要素
  * @description 数字2桁くらいまでしか考慮してスタイリングしてないので、3桁以上が必要になったら調整が必要
  */
@@ -22,6 +25,7 @@ export function ArticleListPageNumbers({
   listPagePathBase,
   currentPageNumber,
   allArticlesLength,
+  firstPagePath,
 }: ArticleListPageNumbersProps) {
   const pageNumbers = getPageNumbers(allArticlesLength);
   if (pageNumbers.length === 0) {
@@ -32,34 +36,51 @@ export function ArticleListPageNumbers({
     ? listPagePathBase
     : `${listPagePathBase}/`;
 
-    const firstPageNumber = pageNumbers.at(0);
-    const lastPageNumber = pageNumbers.at(pageNumbers.length - 1);
+  function getPageHref(page : number) : string{
+    if(page === 1 && firstPagePath){
+      return firstPagePath.endsWith("/") ? firstPagePath : `${firstPagePath}/`;
+    }
 
-    const currentPageIndex = pageNumbers.findIndex(num => num===currentPageNumber);
+    return `${linkPathBase}${page}/`;
+  }
 
-    const prePageNumber = pageNumbers.at(currentPageIndex - 1 < 0 ? 0 : currentPageIndex - 1);
-    const nextNumber = pageNumbers.at(currentPageIndex + 1 >= pageNumbers.length
-      ? pageNumbers.length - 1 
-      : currentPageIndex + 1);
-    
-    const viewPageNumbers:number[] = getViewPageNumbers(pageNumbers, currentPageIndex, 3);
+  function getPageNumberAt(index : number): number{
+    const num = pageNumbers.at(index);
+    if(!num){
+      throw new Error(`page number at ${index} is undefined. ${pageNumbers}`);
+    }
+
+    return num;
+  }
+  const firstPageNumber = getPageNumberAt(0);
+  const lastPageNumber = getPageNumberAt(pageNumbers.length - 1);
+
+  const currentPageIndex = pageNumbers.findIndex(num => num === currentPageNumber);
+
+  const prePageNumber = getPageNumberAt(currentPageIndex - 1 < 0 ? 0 : currentPageIndex - 1);
+  const nextPageNumberIndex = currentPageIndex + 1 >= pageNumbers.length
+    ? pageNumbers.length - 1 
+    : currentPageIndex + 1;
+  const nextPageNumber = getPageNumberAt(nextPageNumberIndex);
+  
+  const viewPageNumbers:number[] = getViewPageNumbers(pageNumbers, currentPageIndex, 3);
 
   return (
     <div className={ styles.container }>
       <IconPageNation
         icon={ <FirstPageIcon/> }
         isActive={ currentPageNumber !== firstPageNumber }
-        href={ `${linkPathBase}${firstPageNumber}` }
+        href={ getPageHref(firstPageNumber) }
       />
       <IconPageNation
         icon={ <ChevronLeftIcon/> }
         isActive={ currentPageNumber !== prePageNumber }
-        href={ `${linkPathBase}${prePageNumber}` }
+        href={ getPageHref(prePageNumber) }
       />
       <ol className={ styles.list }>
         {viewPageNumbers.map((pageNumber) => {
-          const linkPath = `${linkPathBase}${pageNumber}`;
-          const isCurrent = pageNumber == currentPageNumber;
+          const linkPath = getPageHref(pageNumber);
+          const isCurrent = pageNumber === currentPageNumber;
 
           return (
             <li
@@ -78,13 +99,13 @@ export function ArticleListPageNumbers({
       </ol>
       <IconPageNation
         icon={ <ChevronRightIcon/> }
-        isActive={ currentPageNumber !== nextNumber }
-        href={ `${linkPathBase}${nextNumber}` }
+        isActive={ currentPageNumber !== nextPageNumber }
+        href={ getPageHref(nextPageNumber) }
       />
       <IconPageNation
         icon={ <LastPageIcon/> }
         isActive={ currentPageNumber !== lastPageNumber }
-        href={ `${linkPathBase}${lastPageNumber}` }
+        href={ getPageHref(lastPageNumber) }
       />
     </div>
   );

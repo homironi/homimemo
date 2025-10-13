@@ -2,7 +2,7 @@ import {
   createArticleDetailPath,
   createArticleListPagePath,
   createCategoryListPagePath,
-  createTagsPath,
+  createTagListPagePath,
   filterArticlesCategory,
   filterArticlesTag,
   getPageLength,
@@ -52,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .map<MetadataRoute.Sitemap>((tag) => {
       return getPageLength(filterArticlesTag(allArticles, tag).length).map(
         (i) => ({
-          url: `${siteOrigin}${createTagsPath(tag, i)}`,
+          url: `${siteOrigin}${createTagListPagePath(tag, i)}`,
         })
       );
     })

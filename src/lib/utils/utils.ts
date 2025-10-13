@@ -56,7 +56,7 @@ export function createDefaultTwitter(
 ): Twitter {
   const imageUrl = thumbnail || defaultArticleThumbnail;
   return {
-    card: "summary_large_image",
+    card: "summary",
     site: siteName,
     title: title ? createTitleFromTemplate(title) : siteName,
     description: description || defaultDescription,

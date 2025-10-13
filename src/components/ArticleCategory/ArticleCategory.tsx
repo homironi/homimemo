@@ -1,5 +1,5 @@
 import { CategoryIcon } from "@/assets/icons";
-import { createCategoryListFirstPagePath } from "@/lib/article";
+import { createCategoryListPagePath } from "@/lib/article";
 import { CategoryMeta } from "@/schemas/article/meta";
 import Link from "next/link";
 import styles from "./ArticleCategory.module.css";
@@ -20,7 +20,7 @@ export function ArticleCategory({ meta }: ArticleCategoryProps) {
     <div>
       <CategoryIcon className={ styles.icon } />
       <Link
-        href={ createCategoryListFirstPagePath(meta) }
+        href={ createCategoryListPagePath(meta) }
         className={ styles.link }
       >
         {meta.name}
