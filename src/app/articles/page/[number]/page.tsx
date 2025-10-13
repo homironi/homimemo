@@ -22,9 +22,11 @@ type Params = {
  */
 export async function generateStaticParams(): Promise<Params[]> {
   const numbers = getPageLength(getAllArticlesMeta().length);
-  return numbers.map((i) => ({
-    number: i.toString(),
-  }));
+  return numbers
+    .filter(num=> num !== 1) // 1ページ目は「/articles/」にするのでこちらではページを生成しない
+    .map((i) => ({
+      number: i.toString(),
+    }));
 }
 
 /**

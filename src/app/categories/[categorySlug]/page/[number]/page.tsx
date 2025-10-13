@@ -29,9 +29,10 @@ export async function generateStaticParams(): Promise<Params[]> {
   const allArticles = getAllArticlesMeta();
   return getAllCategories()
     .map((category) => {
+      // 1ページ目は「categories/[slug]/」にするのでここでは生成しない
       return getPageLength(
         filterArticlesCategory(allArticles, category).length
-      ).map((i) => ({
+      ).filter(i => i !== 1).map((i) => ({
         categorySlug: category.slug,
         number: i.toString(),
       }));

@@ -32,7 +32,8 @@ export async function generateStaticParams(): Promise<Params[]> {
   const allArticles = getAllArticlesMeta();
   return getAllTags()
     .map((tag) => {
-      return getPageLength(filterArticlesTag(allArticles, tag).length).map(
+      // 1ページ目は「tags/[slug]/にするのでここでは生成しない」
+      return getPageLength(filterArticlesTag(allArticles, tag).length).filter(i => i !== 1).map(
         (i) => ({
           tagSlug: tag.slug,
           number: i.toString(),
