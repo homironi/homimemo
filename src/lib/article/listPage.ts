@@ -6,17 +6,26 @@ export const articlePagePerNum = 12;
 // 記事一覧ページの最初のページのパス
 export const articlesListPagePath = createArticleListPagePath(1);
 
-const categoryListPagePath = "/categories/";
+export const categoryListPagePath = "/categories/";
 
 /**
  * 記事の総数からページ番号の配列を生成する関数
  * @param length 記事の総数
- * @returns ページ番号の配列
+ * @returns ページ番号の配列（1～）
  */
 export function getPageLength(length: number): number[] {
   const validLength = length <= 0 ? 1 : length;
   const pageLength = Math.ceil(validLength / articlePagePerNum);
   return Array.from({ length: Math.ceil(pageLength) }, (_, i) => i + 1);
+}
+
+/**
+ * カテゴリごとの記事一覧ページのベースパスを作成する
+ * @param category カテゴリ情報
+ * @returns カテゴリごとの記事一覧ページのベースパス
+ */
+export function createCategoryListPagePathBase(category: CategoryMeta): string {
+  return `${categoryListPagePath}${category.slug}/page/`;
 }
 
 /**
@@ -35,7 +44,16 @@ export function createCategoryListFirstPagePath(category: CategoryMeta): string 
  * @returns カテゴリページの最初のページのパス
  */
 export function createCategoryListPagePath(category: CategoryMeta, page: number): string {
-  return `${categoryListPagePath}${category.slug}/page/${page}/`;
+  return `${createCategoryListPagePathBase(category)}${page}/`;
+}
+
+/**
+ * タグごとの一覧ページのベースパスを作成する
+ * @param tag タグ情報
+ * @returns タグ一覧ページのベースパス
+ */
+export function createTagsPathBase(tag: TagMeta): string {
+  return `/tags/${tag.slug}/page/`;
 }
 
 /**
@@ -45,7 +63,7 @@ export function createCategoryListPagePath(category: CategoryMeta, page: number)
  * @returns タグ一覧ページのパス
  */
 export function createTagsPath(tag: TagMeta, page?: number): string {
-  return `/tags/${tag.slug}/page/${page ? page : 1}/`;
+  return `${createTagsPathBase(tag)}${page ? page : 1}/`;
 }
 
 /**
