@@ -1,4 +1,4 @@
-import { createCategoryListFirstPagePath } from "@/lib/article";
+import { createCategoryListPagePath } from "@/lib/article";
 import { CategoryMeta } from "@/schemas/article/meta";
 import Link from "next/link";
 import styles from "./ArticleCategoryList.module.css";
@@ -21,7 +21,7 @@ export function ArticleCategoryList({
         {categories.map((category) => (
           <li key={ category.slug } className={ styles.item }>
             <Link
-              href={ createCategoryListFirstPagePath(category) }
+              href={ createCategoryListPagePath(category) }
               className={ styles.link }
             >
               {category.name}

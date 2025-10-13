@@ -1,4 +1,4 @@
-import { createTagsPath } from "@/lib/article";
+import { createTagListPagePath } from "@/lib/article";
 import { TagMeta } from "@/schemas/article/meta";
 import Link from "next/link";
 import styles from "./ArticleTagList.module.css";
@@ -16,7 +16,7 @@ export function ArticleTagList({ tags }: { tags: TagMeta[] }) {
       <ul className={ styles.list }>
         {tags.map((tag) => (
           <li key={ tag.slug } className={ styles.item }>
-            <Link href={ createTagsPath(tag) } className={ styles.link }>
+            <Link href={ createTagListPagePath(tag) } className={ styles.link }>
               {tag.name}
             </Link>
           </li>
