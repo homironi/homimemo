@@ -1,16 +1,9 @@
-import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
-import { BreadcrumbElement } from "@/components/BreadCrumbs";
 import {
-  articleListPagePathBase,
-  articlesListPagePath,
-  createArticleListPagePath,
-  getPageLength,
+  getPageLength
 } from "@/lib/article";
 import { getAllArticlesMeta } from "@/lib/server/article";
-import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import type { Metadata } from "next";
-
-const title = "記事一覧";
+import { ArticlesPage, generateArticlesPageMetadata } from "../../_components/ArticlesPage";
 
 type Params = {
   number: string;
@@ -40,50 +33,24 @@ export async function generateMetadata({
 }: {
   params: Promise<Params>;
 }): Promise<Metadata> {
-  const number = parseInt((await params).number);
-  const description = `すべての記事一覧の${number}ページ目です。`;
-  return {
-    title,
-    description,
-    openGraph: createDefaultOG(
-      title,
-      description,
-      createArticleListPagePath(number)
-    ),
-    twitter: createDefaultTwitter(title, description),
-  };
+  const page = parseInt((await params).number);
+  return generateArticlesPageMetadata(page);
 }
 
 /**
  * 記事一覧ページのコンポーネント
  * @param root0 引数オブジェクト
- * @param root0.params 記事のIDを含むパラメータ
+ * @param root0.params パラメータ
  * @returns 記事ページのJSX要素
  */
-export default async function ArticlesPage({
+export default async function Page({
   params,
 }: {
   params: Promise<Params>;
 }) {
-  const number = parseInt((await params).number);
-  const articles = getAllArticlesMeta().sort(
-    (a, b) => b.lastModDate.getTime() - a.lastModDate.getTime()
-  );
-  const breadcrumbs: BreadcrumbElement[] = [
-    {
-      name: title,
-      href: articlesListPagePath,
-    },
-  ];
+  const page = parseInt((await params).number);
 
   return (
-    <ArticleListPageLayout
-      breadcrumbs={ breadcrumbs }
-      title={ title }
-      articles={ articles }
-      listPagePathBase={ articleListPagePathBase }
-      currentPageNumber={ number }
-      firstPagePath={ articlesListPagePath }
-    />
+    <ArticlesPage page={ page } />
   );
 }

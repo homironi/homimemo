@@ -1,17 +1,11 @@
 import {
-  filterArticlesTag,
-  getPageLength
-} from "@/lib/article";
-import {
-  getAllArticlesMeta,
   getAllTags
 } from "@/lib/server/article";
 import type { Metadata } from "next";
-import { generateTagArticlesPageMetadata, TagArticlesPage } from "../../_components/TagArticlesPage";
+import { generateTagArticlesPageMetadata, TagArticlesPage } from "./_components/TagArticlesPage";
 
 type Params = {
   tagSlug: string;
-  number: string;
 };
 
 /**
@@ -19,18 +13,12 @@ type Params = {
  * @returns 静的パラメータの配列
  */
 export async function generateStaticParams(): Promise<Params[]> {
-  const allArticles = getAllArticlesMeta();
   return getAllTags()
     .map((tag) => {
-      // 1ページ目は「tags/[slug]/にするのでここでは生成しない」
-      return getPageLength(filterArticlesTag(allArticles, tag).length).filter(i => i !== 1).map(
-        (i) => ({
-          tagSlug: tag.slug,
-          number: i.toString(),
-        })
-      );
-    })
-    .flat();
+      return {
+        tagSlug: tag.slug
+      };
+    });
 }
 
 /**
@@ -44,10 +32,10 @@ export async function generateMetadata({
 }: {
   params: Promise<Params>;
 }): Promise<Metadata> {
-  const { number, tagSlug} = (await params);
-  const page = parseInt(number);
+  const { tagSlug } = await params;
+  const page = 1;
 
-  return generateTagArticlesPageMetadata(page, tagSlug);
+  return generateTagArticlesPageMetadata(page,tagSlug);
 }
 
 /**
@@ -61,10 +49,10 @@ export default async function Page({
 }: {
   params: Promise<Params>;
 }) {
-  const {number, tagSlug} = await params;
-  const page = parseInt(number);
+  const {tagSlug} = await params;
+  const page = 1;
 
   return (
-    <TagArticlesPage page ={ page } tagSlug={ tagSlug } />
+    <TagArticlesPage page={ page } tagSlug={ tagSlug } />
   );
 }

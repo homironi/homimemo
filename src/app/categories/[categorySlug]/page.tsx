@@ -1,17 +1,11 @@
 import {
-  filterArticlesCategory,
-  getPageLength
-} from "@/lib/article";
-import {
-  getAllArticlesMeta,
   getAllCategories
 } from "@/lib/server/article";
 import type { Metadata } from "next";
-import { CategoryArticlesPage, generateCategoryArticlesPageMetadata } from "../../_components/CategoryArticlesPage";
+import { CategoryArticlesPage, generateCategoryArticlesPageMetadata } from "./_components/CategoryArticlesPage";
 
 type Params = {
   categorySlug: string;
-  number: string;
 };
 
 /**
@@ -19,18 +13,12 @@ type Params = {
  * @returns 静的パラメータの配列
  */
 export async function generateStaticParams(): Promise<Params[]> {
-  const allArticles = getAllArticlesMeta();
   return getAllCategories()
     .map((category) => {
-      // 1ページ目は「categories/[slug]/」にするのでここでは生成しない
-      return getPageLength(
-        filterArticlesCategory(allArticles, category).length
-      ).filter(i => i !== 1).map((i) => ({
+      return {
         categorySlug: category.slug,
-        number: i.toString(),
-      }));
-    })
-    .flat();
+      };
+    });
 }
 
 /**
@@ -44,8 +32,8 @@ export async function generateMetadata({
 }: {
   params: Promise<Params>;
 }): Promise<Metadata> {
-  const { number,categorySlug } = await params;
-  const page = parseInt(number);
+  const { categorySlug } = await params;
+  const page = 1;
 
   return generateCategoryArticlesPageMetadata(page, categorySlug);
 }
@@ -61,8 +49,8 @@ export default async function Page({
 }: {
   params: Promise<Params>;
 }) {
-  const { number,categorySlug } = await params;
-  const page = parseInt(number);
+  const { categorySlug } = await params;
+  const page = 1;
 
   return (
     <CategoryArticlesPage page={ page } categorySlug={ categorySlug } />
