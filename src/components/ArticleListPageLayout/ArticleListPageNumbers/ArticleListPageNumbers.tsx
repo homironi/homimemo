@@ -71,11 +71,13 @@ export function ArticleListPageNumbers({
         icon={ <FirstPageIcon/> }
         isActive={ currentPageNumber !== firstPageNumber }
         href={ getPageHref(firstPageNumber) }
+        title="最初の一覧ページのリンク"
       />
       <IconPageNation
         icon={ <ChevronLeftIcon/> }
         isActive={ currentPageNumber !== prePageNumber }
         href={ getPageHref(prePageNumber) }
+        title="一つ前の一覧ページのリンク"
       />
       <ol className={ styles.list }>
         {viewPageNumbers.map((pageNumber) => {
@@ -101,11 +103,13 @@ export function ArticleListPageNumbers({
         icon={ <ChevronRightIcon/> }
         isActive={ currentPageNumber !== nextPageNumber }
         href={ getPageHref(nextPageNumber) }
+        title="次の一覧ページのリンク"
       />
       <IconPageNation
         icon={ <LastPageIcon/> }
         isActive={ currentPageNumber !== lastPageNumber }
         href={ getPageHref(lastPageNumber) }
+        title="最後の一覧ページのリンク"
       />
     </div>
   );
@@ -134,14 +138,16 @@ type IconPageNationProps = {
   icon:React.ReactNode,
   href:string,
   isActive:boolean,
+  title: string,
 };
 
-function IconPageNation({icon, isActive, href}:IconPageNationProps):JSX.Element{
+function IconPageNation({icon, isActive, href,title}:IconPageNationProps):JSX.Element{
   if(isActive){
     return(
       <a
         href={ href }
         className={ styles.icon }
+        title={ title }
       >
         {icon}
       </a>
