@@ -9,21 +9,7 @@
     background-origin: content-box;
     background-attachment: local;
     margin: 0;
-}
-
-.code-highlight > span {
-    display: block;
     padding: 0 0.5em;
-}
-
-.code-highlight > span,
-.code-highlight > span.line-number:nth-child(odd)::before {
-    background-color: var(--color-code-background);
-}
-
-.code-highlight > span:nth-child(even),
-.code-highlight > span.line-number:nth-child(even)::before {
-    background-color: var(--color-code-background-even);
 }
 
 .code-highlight > span.line-number.highlight-line::before {
@@ -41,7 +27,6 @@
 code[class*="language-"],
 pre[class*="language-"] {
     color: var(--color-prism-no-token);
-    background: none;
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     font-size: 1em;
     text-align: left;
