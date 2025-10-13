@@ -55,6 +55,7 @@ src/**/*.module.css.d.ts
 # 毎回ビルド時に出力されるのでコミットしない
 public/generated/
 public/rss.xml
+public/_redirects
 
 # install時、もしくは `pnpm run gen:types` 時に生成される型定義ファイル
 worker-configuration.d.ts

@@ -1,28 +1,21 @@
-import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
-import { BreadcrumbElement } from "@/components/BreadCrumbs";
 import {
-  createTagsPath,
-  createTagsPathBase,
   filterArticlesTag,
-  getPageLength,
+  getPageLength
 } from "@/lib/article";
 import {
   getAllArticlesMeta,
-  getAllTags,
-  getTagMetaFromSlug,
+  getAllTags
 } from "@/lib/server/article";
-import {
-  createDefaultOG,
-  createDefaultTwitter,
-  createTitleFromTemplate,
-} from "@/lib/utils";
-import { TagMeta } from "@/schemas/article/meta";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { generateTagArticlesPageMetadata, TagArticlesPage } from "../../_components/TagArticlesPage";
 
 type Params = {
   tagSlug: string;
   number: string;
 };
+
+const dummy : Params = { tagSlug: "__dummy__", number: "1" };
 
 /**
  * Next.jsのページで使用する静的パラメータを生成する関数
@@ -30,9 +23,10 @@ type Params = {
  */
 export async function generateStaticParams(): Promise<Params[]> {
   const allArticles = getAllArticlesMeta();
-  return getAllTags()
+  const all = getAllTags()
     .map((tag) => {
-      return getPageLength(filterArticlesTag(allArticles, tag).length).map(
+      // 1ページ目は「tags/[slug]/にするのでここでは生成しない」
+      return getPageLength(filterArticlesTag(allArticles, tag).length).filter(i => i !== 1).map(
         (i) => ({
           tagSlug: tag.slug,
           number: i.toString(),
@@ -40,6 +34,15 @@ export async function generateStaticParams(): Promise<Params[]> {
       );
     })
     .flat();
+
+  // 一件もページがない場合でも、空配列を返さない
+  // 空配列になると、ビルド時に「missing "generateStaticParams()"」のエラーが出てしまうため
+  if (all.length === 0) {
+    // ダミーを1件返して、構造だけ維持
+    return [dummy];
+  }
+
+  return all;
 }
 
 /**
@@ -53,20 +56,10 @@ export async function generateMetadata({
 }: {
   params: Promise<Params>;
 }): Promise<Metadata> {
-  const tagSlug = (await params).tagSlug;
-  const meta = getTagMetaFromSlug(tagSlug);
-  const title = createTitle(meta);
-  const description = `${meta.name}の記事の一覧ページです。${
-    meta.description ?? ""
-  }`;
-  const slug = createTagsPath(meta);
+  const { number, tagSlug} = (await params);
+  const page = parseInt(number);
 
-  return {
-    title,
-    description,
-    openGraph: createDefaultOG(title, description, slug),
-    twitter: createDefaultTwitter(title, description),
-  };
+  return generateTagArticlesPageMetadata(page, tagSlug);
 }
 
 /**
@@ -75,35 +68,19 @@ export async function generateMetadata({
  * @param root0.params パスを含むパラメータ
  * @returns 記事ページのJSX要素
  */
-export default async function TagsArticlesPage({
+export default async function Page({
   params,
 }: {
   params: Promise<Params>;
 }) {
-  const rawParams = await params;
-  const number = parseInt(rawParams.number);
-  const tagMeta = getTagMetaFromSlug(rawParams.tagSlug);
-  const articles = filterArticlesTag(getAllArticlesMeta(), tagMeta).sort(
-    (a, b) => b.lastModDate.getTime() - a.lastModDate.getTime()
-  );
-  const breadcrumbs: BreadcrumbElement[] = [
-    {
-      name: tagMeta.name,
-      href: createTagsPath(tagMeta),
-    },
-  ];
+  const {number, tagSlug} = await params;
+  if(tagSlug === dummy.tagSlug){
+    notFound();
+  }
+  
+  const page = parseInt(number);
 
   return (
-    <ArticleListPageLayout
-      breadcrumbs={ breadcrumbs }
-      title={ createTitle(tagMeta) }
-      articles={ articles }
-      listPagePathBase={ createTagsPathBase(tagMeta) }
-      currentPageNumber={ number }
-    />
+    <TagArticlesPage page ={ page } tagSlug={ tagSlug } />
   );
-}
-
-function createTitle(tagMeta: TagMeta) {
-  return createTitleFromTemplate(`${tagMeta.name}の記事一覧`);
 }
