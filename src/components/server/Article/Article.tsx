@@ -10,8 +10,8 @@ import {
   articlesListPagePath,
   articleThumbnailNativeSize,
   createArticleDetailPath,
-  createCategoryListFirstPagePath,
-  defaultArticleThumbnail,
+  createCategoryListPagePath,
+  defaultArticleThumbnail
 } from "@/lib/article";
 import { author } from "@/lib/jsonLd/jsonLd";
 import { getAllCategories, getAllTags } from "@/lib/server/article";
@@ -177,7 +177,7 @@ function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
       },
       {
         name: `${meta.category.name}`,
-        href: createCategoryListFirstPagePath(meta.category),
+        href: createCategoryListPagePath(meta.category),
       },
       {
         name: meta.title,

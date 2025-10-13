@@ -1,5 +1,5 @@
 import { LabelIcon } from "@/assets/icons";
-import { createTagsPath } from "@/lib/article";
+import { createTagListPagePath } from "@/lib/article";
 import { TagMeta } from "@/schemas/article/meta";
 import Link from "next/link";
 import styles from "./ArticleTags.module.css";
@@ -23,7 +23,7 @@ export function ArticleTags({ tags }: ArticleTagsProps) {
           {tags.map((tag) => (
             <li key={ tag.slug }>
               <Link
-                href={ createTagsPath(tag) }
+                href={ createTagListPagePath(tag) }
                 key={ tag.slug }
                 className={ styles.link }
               >

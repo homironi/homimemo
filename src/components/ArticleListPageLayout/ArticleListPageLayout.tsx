@@ -11,6 +11,7 @@ export type ArticleListLayoutProps = {
   articles: ArticleMeta[];
   listPagePathBase: string;
   currentPageNumber: number;
+  firstPagePath?: string;
 };
 
 /**
@@ -21,6 +22,8 @@ export type ArticleListLayoutProps = {
  * @param root0.listPagePathBase リストページのパスのベース
  * @param root0.currentPageNumber 現在のページの番号
  * @param root0.articles 対象の全記事
+ * @param root0.firstPagePath 最初のページを「listPagePathBase」の後にページ番号を渡すパス以外にする場合に指定。
+ * 例：listPagePathBaseは「/hoge/page/」、1ページ目は「/hoge/」にしたい場合に「/hoge/」を指定する
  * @returns 記事リストのレイアウト付き要素
  */
 export function ArticleListPageLayout({
@@ -29,6 +32,7 @@ export function ArticleListPageLayout({
   articles,
   listPagePathBase,
   currentPageNumber,
+  firstPagePath,
 }: ArticleListLayoutProps) {
   const startNum = articlePagePerNum * (currentPageNumber - 1);
   const endNum = startNum + articlePagePerNum;
@@ -63,6 +67,7 @@ export function ArticleListPageLayout({
             allArticlesLength={ articles.length }
             listPagePathBase={ listPagePathBase }
             currentPageNumber={ currentPageNumber }
+            firstPagePath={ firstPagePath }
           />
         </>
       )}

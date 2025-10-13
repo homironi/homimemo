@@ -7,6 +7,7 @@ export type ArticleListPageNumbersProps = {
   listPagePathBase: string;
   currentPageNumber: number;
   allArticlesLength: number;
+  firstPagePath?: string;
 };
 
 /**
@@ -15,6 +16,8 @@ export type ArticleListPageNumbersProps = {
  * @param root0.listPagePathBase リストページのパスのベース
  * @param root0.currentPageNumber 現在のページの番号
  * @param root0.allArticlesLength 対象の全記事件数
+ * @param root0.firstPagePath 最初のページを「listPagePathBase」の後にページ番号を渡すパス以外にする場合に指定。
+ * 例：listPagePathBaseは「/hoge/page/」、1ページ目は「/hoge/」にしたい場合に「/hoge/」を指定する
  * @returns ページ番号要素
  * @description 数字2桁くらいまでしか考慮してスタイリングしてないので、3桁以上が必要になったら調整が必要
  */
@@ -22,6 +25,7 @@ export function ArticleListPageNumbers({
   listPagePathBase,
   currentPageNumber,
   allArticlesLength,
+  firstPagePath,
 }: ArticleListPageNumbersProps) {
   const pageNumbers = getPageNumbers(allArticlesLength);
   if (pageNumbers.length === 0) {
@@ -33,6 +37,10 @@ export function ArticleListPageNumbers({
     : `${listPagePathBase}/`;
 
   function getPageHref(page : number) : string{
+    if(page === 1 && firstPagePath){
+      return firstPagePath.endsWith("/") ? firstPagePath : `${firstPagePath}/`;
+    }
+
     return `${linkPathBase}${page}/`;
   }
 
