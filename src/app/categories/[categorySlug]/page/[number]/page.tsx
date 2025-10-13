@@ -3,6 +3,7 @@ import { BreadcrumbElement } from "@/components/BreadCrumbs";
 import {
   createCategoryListFirstPagePath,
   createCategoryListPagePath,
+  createCategoryListPagePathBase,
   filterArticlesCategory,
   getPageLength,
 } from "@/lib/article";
@@ -100,7 +101,7 @@ export default async function CategoriesArticlesPage({
       breadcrumbs={ breadcrumbs }
       title={ createTitle(categoryMeta) }
       articles={ articles }
-      listPagePathBase={ createCategoryListFirstPagePath(categoryMeta) }
+      listPagePathBase={ createCategoryListPagePathBase(categoryMeta) }
       currentPageNumber={ number }
     />
   );

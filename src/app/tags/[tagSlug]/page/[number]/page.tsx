@@ -2,6 +2,7 @@ import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
 import { BreadcrumbElement } from "@/components/BreadCrumbs";
 import {
   createTagsPath,
+  createTagsPathBase,
   filterArticlesTag,
   getPageLength,
 } from "@/lib/article";
@@ -97,7 +98,7 @@ export default async function TagsArticlesPage({
       breadcrumbs={ breadcrumbs }
       title={ createTitle(tagMeta) }
       articles={ articles }
-      listPagePathBase={ createTagsPath(tagMeta) }
+      listPagePathBase={ createTagsPathBase(tagMeta) }
       currentPageNumber={ number }
     />
   );
