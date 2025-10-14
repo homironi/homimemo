@@ -1,11 +1,6 @@
 .code-highlight {
   display: block;
   position: relative;
-  background-color: var(--color-code-background);
-  background-image: linear-gradient(transparent 50%, var(--color-code-background-even) 50%);
-  background-size: 3em 3em;
-  background-origin: content-box;
-  background-attachment: local;
   margin: 0;
   padding: 0 0.5em;
 }
