@@ -1,19 +1,29 @@
 .code-highlight {
-    display: block;
-    overflow: auto;
-    position: relative;
-    border: 1px solid var(--color-code-border);
-    background-color: var(--color-code-background);
-    background-image: linear-gradient(transparent 50%, var(--color-code-background-even) 50%);
-    background-size: 3em 3em;
-    background-origin: content-box;
-    background-attachment: local;
-    margin: 0;
-    padding: 0 0.5em;
+  display: block;
+  position: relative;
+  background-color: var(--color-code-background);
+  background-image: linear-gradient(transparent 50%, var(--color-code-background-even) 50%);
+  background-size: 3em 3em;
+  background-origin: content-box;
+  background-attachment: local;
+  margin: 0;
+  padding: 0 0.5em;
 }
 
 .code-highlight > span.line-number.highlight-line::before {
-    border-left: 4px solid var(--color-code-main);
+  border-left: 4px solid var(--color-code-main);
+}
+
+.code-highlight .code-line {
+  display: block;
+}
+
+.code-highlight .code-line.inserted {
+  background-color: #61ff8627;
+}
+
+.code-highlight .code-line.deleted {
+  background-color: #fd49491f;
 }
 
 /* https://github.com/PrismJS/prism-themes/blob/master/themes/prism-coy-without-shadows.css */
@@ -26,101 +36,100 @@
 
 code[class*="language-"],
 pre[class*="language-"] {
-    color: var(--color-prism-no-token);
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    font-size: 1em;
-    text-align: left;
-    white-space: pre;
-    word-spacing: normal;
-    word-break: normal;
-    word-wrap: normal;
-    line-height: 1.5;
-    tab-size: 4;
-    hyphens: none;
+  color: var(--color-prism-no-token);
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
 }
 
 /* Inline code - このスタイルは inlineCode.css に移動しました */
 
-:where(
-    .token.comment,
-    .token.prolog,
-    .token.doctype,
-    .token.cdata
-) {
-    color: var(--color-prism-comment);
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--color-prism-comment);
 }
 
 .token.punctuation {
-    color: var(--color-prism-gray);
+  color: var(--color-prism-gray);
 }
 
-:where(
-    .token.property,
-    .token.tag,
-    .token.constant,
-    .token.symbol,
-    .token.deleted
-) {
-    color: var(--color-prism-red);
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: var(--color-prism-red);
 }
 
-:where(
-    .token.operator,
-    .token.entity,
-    .token.url,
-    .language-css .token.string,
-    .style .token.string,
-    .token.variable,
-    .token.keyword
-) {
-    color: var(--color-prism-cyan);
+.token.operator,
+.token.entity,
+.token.url,
+.token.variable,
+.token.keyword {
+  color: var(--color-prism-cyan);
 }
 
-:where(
-    .token.selector,
-    .token.attr-name,
-    .token.string,
-    .token.char,
-    .token.builtin,
-    .token.inserted
-) {
-    color: var(--color-prism-green);
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted,
+.code-highlight .code-line.inserted > .token.operator:first-child {
+  color: var(--color-prism-green);
 }
 
-:where(
-    .token.atrule,
-    .token.attr-value,
-    .token.function,
-    .token.regex,
-    .token.important
-) {
-    color: var(--color-prism-yellow);
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.regex,
+.token.important {
+  color: var(--color-prism-yellow);
 }
 
-:where(
-    .token.boolean,
-    .token.number,
-    .token.keyword
-) {
-    color: var(--color-prism-purple);
+.token.boolean,
+.token.number,
+.token.keyword {
+  color: var(--color-prism-purple);
+}
+
+.language-css .token.string,
+.style .token.string {
+  color: var(--color-prism-cyan);
+}
+
+.code-highlight .code-line.deleted > .token.operator:first-child {
+  color: var(--color-prism-red);
 }
 
 .token.important {
-    font-weight: normal;
+  font-weight: normal;
 }
 
-.token.bold {
-    font-weight: bold;
+.token.bold,
+.code-highlight .code-line.deleted > .token.operator:first-child,
+.code-highlight .code-line.inserted > .token.operator:first-child,
+.token.prefix {
+  font-weight: bold;
 }
 
 .token.italic {
-    font-style: italic;
+  font-style: italic;
 }
 
 .token.entity {
-    cursor: help;
+  cursor: help;
 }
 
 .token.namespace {
-    opacity: .7;
+  opacity: .7;
 }
