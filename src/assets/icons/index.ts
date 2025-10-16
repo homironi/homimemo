@@ -24,4 +24,6 @@ export { default as RssIcon } from "@/assets/icons/google-materials/rss_feed_24d
 export { default as ShareIcon } from "@/assets/icons/google-materials/share_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as NoteIcon } from "@/assets/icons/google-materials/sticky_note_2_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
 export { default as WarningIcon } from "@/assets/icons/google-materials/warning_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg";
+export { default as HomironiRoundStarIcon } from "@/assets/icons/homironi/homironi_icons_round_star.svg";
+export { default as HomironiStampIcon } from "@/assets/icons/homironi/homironi_icons_stamp.svg";
 
