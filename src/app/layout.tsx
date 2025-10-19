@@ -60,6 +60,7 @@ const footerLinks: NavigationLink[] = [
   ...Object.values(commonLinks),
   { href: "/about/", label: "このサイトについて" },
   { href: "/profile/", label: "プロフィール" },
+  { href: "/stats/", label: "サイト統計" },
   { href: "/contact/", label: "お問い合わせ" },
   { href: "/privacy-policy/", label: "プライバシーポリシー" },
   { href: "/disclaimer/", label: "免責事項" },

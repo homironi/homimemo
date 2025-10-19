@@ -11,7 +11,7 @@
     "build:json": "run-p build-json:*",
     "build:rss": "tsx scripts/generateRss.ts",
     "dev:rss": "pnpm run build:rss && chokidar \"scripts/generateRss.ts\" \"public/generated/meta/articles.json\" -c \"pnpm run build:rss\"",
-    "build:redirects" : "tsx scripts/generateRedirects.ts",
+    "build:redirects": "tsx scripts/generateRedirects.ts",
     "build:next": "next build",
     "build-json:article-meta": "run-s build-json-pre-article build-json-article",
     "build-json-pre-article": "run-p build-json-pre-article:*",
