@@ -73,6 +73,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${siteOrigin}/`,
     },
+    {
+      url: `${siteOrigin}/stats/`,
+    },
   ];
 
   return [
