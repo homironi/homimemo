@@ -1,4 +1,10 @@
 import {
+  getAllArticlesMeta,
+  getAllCategories,
+  getAllTags,
+  readStaticArticleContent,
+} from "@/lib/_buildtime/article";
+import {
   createArticleDetailPath,
   createArticleListPagePath,
   createCategoryListPagePath,
@@ -7,12 +13,6 @@ import {
   filterArticlesTag,
   getPageLength,
 } from "@/lib/article";
-import {
-  getAllArticlesMeta,
-  getAllCategories,
-  getAllTags,
-  readStaticArticleContent,
-} from "@/lib/server/article";
 import { siteOrigin } from "@/lib/utils";
 import fs from "fs";
 import type { MetadataRoute } from "next";

@@ -7,24 +7,75 @@ on:
             - main
             - develop
         paths:
+          - "src/**.stories.tsx"
+          - "src/stories/**"
           - "src/**.css"
           - "!src/**/page.module.css"
           - "src/components/**"
-          - "!src/components/server/**"
-          - "src/stories/**"
+          - "!src/components/_buildtime/**"
+          - "src/app/**/_components/**"
+          - "!src/app/**/_components/_buildtime/**"
     push:
       branches:
           - main
           - develop
       paths:
+          - "src/**.stories.tsx"
+          - "src/stories/**"
           - "src/**.css"
           - "!src/**/page.module.css"
           - "src/components/**"
-          - "!src/components/server/**"
-          - "src/stories/**"
+          - "!src/components/_buildtime/**"
+          - "src/app/**/_components/**"
+          - "!src/app/**/_components/_buildtime/**"
 
 jobs:
+  check-storybook:
+    runs-on: ubuntu-latest
+    outputs:
+      should-run: ${{ steps.check.outputs.should-run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Check if changed folders contain stories
+        id: check
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+          else
+            BASE_SHA="${{ github.event.before }}"
+            HEAD_SHA="${{ github.sha }}"
+          fi
+          CHANGED_FILES=$(git diff --name-only $BASE_SHA $HEAD_SHA)
+          SHOULD_RUN=false
+
+          echo "Checking changes between $BASE_SHA and $HEAD_SHA"
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+          echo ""
+          
+          for file in $CHANGED_FILES; do
+            # src/components/ または src/app/*/_components/ 配下の変更をチェック
+            if [[ $file =~ ^src/components/([^/]+)/ ]] || [[ $file =~ ^src/app/.*/_components/([^/]+)/ ]]; then
+              COMPONENT_DIR=$(dirname "$file")
+              echo "Checking component directory: $COMPONENT_DIR"
+              # フォルダ内に .stories.tsx ファイルが存在するかチェック
+              if ls $COMPONENT_DIR/*.stories.tsx 1> /dev/null 2>&1; then
+                echo "Found stories in: $COMPONENT_DIR"
+                SHOULD_RUN=true
+                break
+              fi
+            fi
+          done
+          
+          echo "should-run=$SHOULD_RUN" >> $GITHUB_OUTPUT
+
   chromatic:
+    needs: check-storybook
+    if: needs.check-storybook.outputs.should-run == 'true'
     name: Run Chromatic
     runs-on: ubuntu-latest
     steps:

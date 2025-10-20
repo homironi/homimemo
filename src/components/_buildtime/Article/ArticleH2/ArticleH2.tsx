@@ -1,5 +1,5 @@
 import { H2, H2Props } from "@/components/H2";
-import { AdSense } from "@/components/server/Article/AdSense";
+import { AdSense } from "@/components/_buildtime/Article/AdSense";
 
 export type ArticleH2Props = H2Props & {
   visibleAdSense: boolean;

@@ -1,12 +1,12 @@
+import { ArticleDiv } from "@/components/_buildtime/Article/ArticleDiv";
+import { ArticleH2 } from "@/components/_buildtime/Article/ArticleH2";
+import { ArticleParagraph } from "@/components/_buildtime/Article/ArticleParagraph";
 import { AffiliateLink } from "@/components/AffiliateLink";
 import { ExternalLink } from "@/components/ExternalLink";
 import { H3 } from "@/components/H3";
-import { ArticleDiv } from "@/components/server/Article/ArticleDiv";
-import { ArticleH2 } from "@/components/server/Article/ArticleH2";
-import { ArticleParagraph } from "@/components/server/Article/ArticleParagraph";
 import { TextBlock } from "@/components/TextBlock";
-import { rehypeCodeContainer } from "@/lib/server/rehypePlugins/code";
-import { rehypeGfmTaskList } from "@/lib/server/rehypePlugins/gfmTaskList";
+import { rehypeCodeContainer } from "@/lib/_buildtime/rehypePlugins/code";
+import { rehypeGfmTaskList } from "@/lib/_buildtime/rehypePlugins/gfmTaskList";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import React, { PropsWithChildren } from "react";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";

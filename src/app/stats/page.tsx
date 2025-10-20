@@ -1,7 +1,7 @@
 import { HomironiStampIcon } from "@/assets/icons";
+import { getAllArticlesMeta, getAllCategories, getAllTags } from "@/lib/_buildtime/article";
 import { createCategoryListPagePath, createTagListPagePath, filterArticlesCategory, filterArticlesTag } from "@/lib/article";
 import { formatDate } from "@/lib/date";
-import { getAllArticlesMeta, getAllCategories, getAllTags } from "@/lib/server/article";
 import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import { Metadata } from "next";
 import { Archive, createArchiveByYear } from "./_components/Archive";
