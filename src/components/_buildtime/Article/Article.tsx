@@ -3,9 +3,10 @@ import { ArticleTagList } from "@/components/ArticleTagList/ArticleTagList";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { Profile } from "@/components/Profile";
-import { ArticleMdx } from "@/components/server/Article/ArticleMdx";
-import { ArticleMeta as ArticleMetaComponent } from "@/components/server/Article/ArticleMeta";
-import { RelatedArticles } from "@/components/server/Article/RelatedArticles";
+import { ArticleMdx } from "@/components/_buildtime/Article/ArticleMdx";
+import { ArticleMeta as ArticleMetaComponent } from "@/components/_buildtime/Article/ArticleMeta";
+import { RelatedArticles } from "@/components/_buildtime/Article/RelatedArticles";
+import { getAllCategories, getAllTags } from "@/lib/_buildtime/article";
 import {
   articlesListPagePath,
   articleThumbnailNativeSize,
@@ -14,7 +15,6 @@ import {
   defaultArticleThumbnail
 } from "@/lib/article";
 import { author } from "@/lib/jsonLd/jsonLd";
-import { getAllCategories, getAllTags } from "@/lib/server/article";
 import { countMarkdownCharacters, siteOrigin } from "@/lib/utils";
 import { ArticleMeta, isArticleMeta, StaticArticleMeta } from "@/schemas/article/meta";
 import dynamic from "next/dynamic";
@@ -29,7 +29,7 @@ const DynamicShareButtons = dynamic(() =>
   import("@/components/ShareButtons").then((mod) => mod.ShareButtons)
 );
 const DynamicAdSense = dynamic(() => 
-  import("@/components/server/Article/AdSense").then(mod => mod.AdSense)
+  import("@/components/_buildtime/Article/AdSense").then(mod => mod.AdSense)
 );
 
 const tocContentSourceIdName = "toc-source-content";

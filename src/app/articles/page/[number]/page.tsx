@@ -1,7 +1,7 @@
+import { getAllArticlesMeta } from "@/lib/_buildtime/article";
 import {
   getPageLength
 } from "@/lib/article";
-import { getAllArticlesMeta } from "@/lib/server/article";
 import type { Metadata } from "next";
 import { ArticlesPage, generateArticlesPageMetadata } from "../../_components/ArticlesPage";
 

@@ -1,6 +1,6 @@
 import { ArticleLink } from "@/components/ArticleLink";
+import { getAllArticlesMeta } from "@/lib/_buildtime/article";
 import { filterArticlesCategory } from "@/lib/article";
-import { getAllArticlesMeta } from "@/lib/server/article";
 import { ArticleMeta } from "@/schemas/article/meta";
 import styles from "./RelatedArticles.module.css";
 

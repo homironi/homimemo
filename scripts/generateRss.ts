@@ -1,8 +1,8 @@
+import { articlesMetaFilePath, getAllArticlesMeta } from "@/lib/_buildtime/article";
 import {
   createArticleDetailPath,
   defaultArticleThumbnail,
 } from "@/lib/article";
-import { articlesMetaFilePath, getAllArticlesMeta } from "@/lib/server/article";
 import { siteName, siteOrigin } from "@/lib/utils";
 import { Feed } from "feed";
 import fs from "fs";
