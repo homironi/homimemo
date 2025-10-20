@@ -1,5 +1,5 @@
+import { getAllCategories, getAllTags } from "@/lib/_buildtime/article";
 import { createCategoryListPagePath, createTagListPagePath } from "@/lib/article";
-import { getAllCategories, getAllTags } from "@/lib/server/article";
 import fs from "fs";
 import path from "path";
 

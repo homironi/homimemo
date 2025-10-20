@@ -27,6 +27,48 @@ https://homironi.com/
    pnpm run dev
    ```
 
+## フォルダ構成
+
+```txt
+/
+├─ _contents                            ← DecapCMSで作成するデータの保存フォルダ
+│  ├─ articles                          ← 記事マークダウンフォルダ
+│  ├─ categories                        ← 記事のカテゴリデータ
+│  └─ tags                              ← 記事のタグデータ
+│
+├─ _public                              ← Next.js のビルド先フォルダ：これを公開するがgitでは管理外に指定
+├─ public                               ← Next.jsの静的アセットフォルダ
+├─ scripts                              ← GitHubActions や pnpm run などで使用するスクリプト
+└─ src
+   ├─ app                               ← Next.js の AppRouter
+   │  ├─ page.tsx                       ← Next.js の AppRouter のページ
+   │  ├─ _components                    ← ./page.tsx 以下でのみ使用するComponentのフォルダ（以下共有Componentフォルダと同じ）
+   │  └─ hoge                           ← `/hoge/`のルーティングフォルダ
+   │     ├─ _components                 ← ./page.tsx 以下でのみ使用するComponentのフォルダ（以下共有Componentフォルダと同じ）
+   │     └─ page.tsx                    ← `/hoge/`のページ
+   │
+   ├─ components                        ← 複数画面で使用するComponentフォルダ
+   │  └─ HogeComponet                   ← 各Cpmponentフォルダ
+   │     ├─ index.ts                    ← `export * from "./HogeComponent"`
+   │     ├─ HogeComponet.tsx            ← `export function HogeComponent`
+   │     ├─ HogeComponent.module.css    ← HogeComponentのmodule.css
+   │     ├─ HogeComponent.stories.tsx   ← HogeComponentのStorybook
+   │     └─ HogeComponent.test.ts       ← HogeComponentのテスト
+   │
+   ├─ lib                               ← 複数画面で使用するts のみのロジックファイル
+   └─ schemas                           ← 複数画面で使用する型検証スキーマ＆型
+```
+
+### ビルド時限定フォルダ
+
+ビルド時のみ使用できるもののフォルダ名は`_buildtime`。  
+主に`fs`などランタイムで動作しないものを使用している場合に`_buildtime`以下に格納する。
+
+例：
+- `src/components/_buildtime/HogeComponent`
+- `src/app/hoge/_components/_buildtime/HogeComponent`
+- `src/lib/_buildtime/hoge`
+
 ## コード規約
 
 基本はLinterで設定する。
@@ -48,38 +90,3 @@ const DynamicToc = dynamic(() => import("@/components/TableOfContents"));
 ```
 
 https://nextjs-ja-translation-docs.vercel.app/docs/advanced-features/dynamic-import
-
-## フォルダ構成
-
-```txt
-/
-├─ _contents                            ← DecapCMSで作成するデータの保存フォルダ
-│  ├─ articles                          ← 記事マークダウンフォルダ
-│  ├─ categories                        ← 記事のカテゴリデータ
-│  └─ tags                              ← 記事のタグデータ
-│
-├─ _public                              ← Next.js のビルド先フォルダ：これを公開する
-├─ public                               ← Next.jsの静的アセットフォルダ
-├─ scripts                              ← GitHubActions や pnpm run などで使用するスクリプト
-└─ src                                  
-   ├─ components                        ← すべてのコンポーネントのフォルダ
-   │  └─ HogeComponet                   ← 各コンポーネントフォルダ
-   │     ├─ index.ts                    ← `export * from "./HogeComponent"`
-   │     ├─ HogeComponet.tsx            ← `export function HogeComponent`
-   │     ├─ HogeComponent.module.css    ← HogeComponentのmodule.css
-   │     ├─ HogeComponent.stories.tsx   ← HogeComponentのStorybook
-   │     └─ HogeComponent.test.ts       ← HogeComponentのテスト
-   │
-   ├─ app                               ← Next.js の AppRouter
-   │  └─ page.tsx                       ← Next.js の AppRouter のページ
-   │
-   ├─ lib                               ← ts のみのロジックファイル
-   └─ schemas                           ← 型検証スキーマ＆Valibotによる型
-```
-
-### `src/components`フォルダ
-
-componentはこのフォルダの中にいれる。
-
-`/components/[componentフォルダ名]` の中に component の定義などをまとめる
-

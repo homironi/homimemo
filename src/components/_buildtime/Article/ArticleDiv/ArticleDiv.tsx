@@ -1,5 +1,5 @@
-import { CodeBlock } from "@/components/server/Article/CodeBlock";
-import { codeContainerClassName } from "@/lib/server/rehypePlugins/code";
+import { CodeBlock } from "@/components/_buildtime/Article/CodeBlock";
+import { codeContainerClassName } from "@/lib/_buildtime/rehypePlugins/code";
 import { PropsWithChildren, isValidElement } from "react";
 
 /**

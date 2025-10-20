@@ -1,5 +1,5 @@
-import { Article } from "@/components/server/Article";
-import { readStaticArticleContent } from "@/lib/server/article";
+import { Article } from "@/components/_buildtime/Article";
+import { readStaticArticleContent } from "@/lib/_buildtime/article";
 import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import { Metadata } from "next";
 import path from "path";
