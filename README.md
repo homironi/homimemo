@@ -82,4 +82,3 @@ https://nextjs-ja-translation-docs.vercel.app/docs/advanced-features/dynamic-imp
 componentはこのフォルダの中にいれる。
 
 `/components/[componentフォルダ名]` の中に component の定義などをまとめる
-
