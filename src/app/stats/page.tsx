@@ -76,14 +76,16 @@ export default function Page(){
       };
     });
 
+    const now = new Date();
+
   return (
     <div className={ styles.container }>
       <h1>🎉サイト統計🎉</h1>
-      <p>{formatDate(new Date(), "YYYY/MM/DD")}現在</p>
+      <time dateTime={ formatDate(now, "YYYY-MM-DD") }>{formatDate(now, "YYYY/MM/DD")}現在</time>
       <h2>サイト公開日</h2>
       <div className={ styles["date-container"] }>
         <HomironiStampIcon className={ styles["date-icon"] }/>
-        <time dateTime="2023-08-23" className={ styles.date }>2023/08/23</time>
+        <p className={ styles.date }>2023/08/23</p>
       </div>
       <h2>全記事数</h2>
       <p>{articlesLength}件</p>
