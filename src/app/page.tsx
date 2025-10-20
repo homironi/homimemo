@@ -1,9 +1,9 @@
 import { ArticleLink } from "@/components/ArticleLink";
 import { noticeData } from "@/data/notice";
 import { recommendedArticles } from "@/data/recommendedArticle";
+import { getAllArticlesMeta } from "@/lib/_buildtime/article";
 import { articlesListPagePath, createArticleDetailPath } from "@/lib/article";
 import { formatDate } from "@/lib/date";
-import { getAllArticlesMeta } from "@/lib/server/article";
 import { createDefaultOG } from "@/lib/utils";
 import { ArticleMeta } from "@/schemas/article/meta";
 import { Metadata } from "next";

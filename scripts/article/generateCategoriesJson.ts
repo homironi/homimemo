@@ -1,4 +1,4 @@
-import { categoriesMetaFilePath } from "@/lib/server/article";
+import { categoriesMetaFilePath } from "@/lib/_buildtime/article";
 import fs from "fs";
 import { generateCategoriesJson } from "../lib/article";
 

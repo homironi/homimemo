@@ -1,4 +1,4 @@
-import { CardPreviewUrl } from "@/components/server/CardPreviewUrl";
+import { CardPreviewUrl } from "@/components/_buildtime/CardPreviewUrl";
 import React, { PropsWithChildren } from "react";
 import { object, pipe, safeParse, string, url } from "valibot";
 

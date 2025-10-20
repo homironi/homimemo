@@ -1,7 +1,7 @@
 import { ArticleIcon, LastModeDateIcon, MenuBookIcon, PublishDateIcon } from "@/assets/icons";
 import { ArticleCategory } from "@/components/ArticleCategory";
 import { ArticleTags } from "@/components/ArticleTags";
-import { ArticleComponentMeta } from "@/components/server/Article";
+import { ArticleComponentMeta } from "@/components/_buildtime/Article";
 import { formatDate } from "@/lib/date";
 import { isArticleMeta } from "@/schemas/article/meta";
 import styles from "./ArticleMeta.module.css";

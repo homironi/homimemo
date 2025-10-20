@@ -1,11 +1,11 @@
 import {
+  getAllArticlesMeta,
+  getAllTags
+} from "@/lib/_buildtime/article";
+import {
   filterArticlesTag,
   getPageLength
 } from "@/lib/article";
-import {
-  getAllArticlesMeta,
-  getAllTags
-} from "@/lib/server/article";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { generateTagArticlesPageMetadata, TagArticlesPage } from "../../_components/TagArticlesPage";

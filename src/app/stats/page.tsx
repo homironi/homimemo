@@ -1,7 +1,7 @@
 import { HomironiStampIcon } from "@/assets/icons";
+import { getAllArticlesMeta, getAllCategories, getAllTags } from "@/lib/_buildtime/article";
 import { createCategoryListPagePath, createTagListPagePath, filterArticlesCategory, filterArticlesTag } from "@/lib/article";
 import { formatDate } from "@/lib/date";
-import { getAllArticlesMeta, getAllCategories, getAllTags } from "@/lib/server/article";
 import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import { Metadata } from "next";
 import { Archive, createArchiveByYear } from "./_components/Archive";
@@ -76,14 +76,16 @@ export default function Page(){
       };
     });
 
+    const now = new Date();
+
   return (
     <div className={ styles.container }>
       <h1>🎉サイト統計🎉</h1>
-      <p>{formatDate(new Date(), "YYYY/MM/DD")}現在</p>
+      <time dateTime={ formatDate(now, "YYYY-MM-DD") }>{formatDate(now, "YYYY/MM/DD")}現在</time>
       <h2>サイト公開日</h2>
       <div className={ styles["date-container"] }>
         <HomironiStampIcon className={ styles["date-icon"] }/>
-        <time dateTime="2023-08-23" className={ styles.date }>2023/08/23</time>
+        <p className={ styles.date }>2023/08/23</p>
       </div>
       <h2>全記事数</h2>
       <p>{articlesLength}件</p>

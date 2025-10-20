@@ -1,14 +1,14 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
 import { BreadcrumbElement } from "@/components/BreadCrumbs";
 import {
+  getAllArticlesMeta,
+  getCategoryMetaFromSlug
+} from "@/lib/_buildtime/article";
+import {
   createCategoryListPagePath,
   createCategoryListPagePathBase,
   filterArticlesCategory
 } from "@/lib/article";
-import {
-  getAllArticlesMeta,
-  getCategoryMetaFromSlug
-} from "@/lib/server/article";
 import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import { CategoryMeta } from "@/schemas/article/meta";
 import type { Metadata } from "next";

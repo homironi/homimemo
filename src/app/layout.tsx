@@ -1,11 +1,11 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Navigation } from "@/components/Navigation";
+import { getAllCategories } from "@/lib/_buildtime/article";
 import {
   articlesListPagePath,
   createCategoryListPagePath
 } from "@/lib/article";
-import { getAllCategories } from "@/lib/server/article";
 import {
   createDefaultOG,
   createDefaultTwitter,

@@ -1,4 +1,4 @@
-import { categoriesMetaFilePath } from "@/lib/server/article";
+import { categoriesMetaFilePath } from "@/lib/_buildtime/article";
 import { CategoryMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";

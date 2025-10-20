@@ -1,6 +1,6 @@
 import {
   getAllTags
-} from "@/lib/server/article";
+} from "@/lib/_buildtime/article";
 import type { Metadata } from "next";
 import { generateTagArticlesPageMetadata, TagArticlesPage } from "./_components/TagArticlesPage";
 

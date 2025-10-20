@@ -1,4 +1,4 @@
-import { tagsMetaFilePath } from "@/lib/server/article";
+import { tagsMetaFilePath } from "@/lib/_buildtime/article";
 import { TagMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";

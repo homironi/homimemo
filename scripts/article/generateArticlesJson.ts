@@ -1,4 +1,4 @@
-import { articlesMetaFilePath, convertMetaFromRaw } from "@/lib/server/article";
+import { articlesMetaFilePath, convertMetaFromRaw } from "@/lib/_buildtime/article";
 import { ArticleMeta, ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
