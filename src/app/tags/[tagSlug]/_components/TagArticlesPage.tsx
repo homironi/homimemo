@@ -12,7 +12,6 @@ import {
 import {
   createDefaultOG,
   createDefaultTwitter,
-  createTitleFromTemplate,
 } from "@/lib/utils";
 import { TagMeta } from "@/schemas/article/meta";
 import type { Metadata } from "next";
@@ -76,5 +75,5 @@ export function TagArticlesPage({page, tagSlug} : TagArticlesPageProps) {
 }
 
 function createTitle(tagMeta: TagMeta) {
-  return createTitleFromTemplate(`${tagMeta.name}の記事一覧`);
+  return `${tagMeta.name}の記事一覧`;
 }
