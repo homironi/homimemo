@@ -1,4 +1,4 @@
-import { getIdToPathMap, idToPathMapPath } from "@/lib/server/article";
+import { getIdToPathMap, idToPathMapPath } from "@/lib/_buildtime/article";
 import { ArticleIdToPathMapElement } from "@/schemas/article/idToPathMap";
 import { ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";

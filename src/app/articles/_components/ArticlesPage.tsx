@@ -1,7 +1,7 @@
 import { ArticleListPageLayout } from "@/components/ArticleListPageLayout";
 import { BreadcrumbElement } from "@/components/BreadCrumbs";
+import { getAllArticlesMeta } from "@/lib/_buildtime/article";
 import { articleListPagePathBase, articlesListPagePath, createArticleListPagePath } from "@/lib/article";
-import { getAllArticlesMeta } from "@/lib/server/article";
 import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import { Metadata } from "next";
 

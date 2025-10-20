@@ -1,6 +1,6 @@
 import {
   getAllCategories
-} from "@/lib/server/article";
+} from "@/lib/_buildtime/article";
 import type { Metadata } from "next";
 import { CategoryArticlesPage, generateCategoryArticlesPageMetadata } from "./_components/CategoryArticlesPage";
 
