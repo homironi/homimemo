@@ -1,0 +1,23 @@
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 16px;
+}
+
+.title{
+  text-align: center;
+  margin: 2rem 0 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+}
+
+@media screen and (width <= 500px){
+  .container {
+    padding: 4px;
+  }
+}
