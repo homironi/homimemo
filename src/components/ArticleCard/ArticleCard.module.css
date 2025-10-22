@@ -31,10 +31,6 @@
 
 .date-container{
     text-align: right;
-}
-
-.category,
-.date-container{
     color: var(--text-color-pale);
     font-size: 0.8rem;
 }

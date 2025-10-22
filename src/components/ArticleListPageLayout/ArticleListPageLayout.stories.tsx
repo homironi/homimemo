@@ -21,10 +21,10 @@ const sampleMetaList: ArticleMeta[] = Array.from(
       title: `サンプル記事タイトル-${i + 1}`,
       description:
         "これはサンプル記事の説明です。記事の内容はここに記載されます。",
-      category: {
-        name: "サンプルカテゴリ",
-        slug: "sample-category",
-      },
+      tags: [{
+        name: "サンプルタグ",
+        slug: "sample-tag",
+      }],
       publishDate: new Date("2023-10-01"),
       lastModDate: new Date("2024-01-21"),
       draft: false,
