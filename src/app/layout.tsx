@@ -45,6 +45,7 @@ export const viewport: Viewport = {
 
 const links = {
   articles: { href: articlesListPagePath, label: "記事一覧" },
+  tags: { href: "/tags/", label: "タグ一覧" },
   about: { href: "/about/", label: "このサイトについて" },
   profile: { href: "/profile/", label: "プロフィール" },
   stats: { href: "/stats/", label: "サイト統計" },
@@ -59,6 +60,7 @@ const footerLinks: NavigationLink[] = [
 
 const headerLinks: NavigationLink[] = [
   links.articles,
+  links.tags,
   links.about,
   links.profile,
 ];
