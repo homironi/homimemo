@@ -1,4 +1,4 @@
 ---
 name: TypeScript
-slug: type-script
+slug: typescript
 ---

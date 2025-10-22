@@ -1,17 +1,14 @@
 import {
   getAllArticlesMeta,
-  getAllCategories,
   getAllTags,
-  readStaticArticleContent,
+  readStaticArticleContent
 } from "@/lib/_buildtime/article";
 import {
   createArticleDetailPath,
   createArticleListPagePath,
-  createCategoryListPagePath,
   createTagListPagePath,
-  filterArticlesCategory,
   filterArticlesTag,
-  getPageLength,
+  getPageLength
 } from "@/lib/article";
 import { siteOrigin } from "@/lib/utils";
 import fs from "fs";
@@ -37,16 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .map((i) => ({
       url: `${siteOrigin}${createArticleListPagePath(i)}`,
     }));
-
-  const categoryListPages: MetadataRoute.Sitemap = getAllCategories()
-    .map<MetadataRoute.Sitemap>((category) => {
-      const filteredArticles = filterArticlesCategory(allArticles, category);
-      return getPageLength(filteredArticles.length)
-        .map((i) => ({
-          url: `${siteOrigin}${createCategoryListPagePath(category, i)}`,
-        }));
-    })
-    .flat();
 
   const tagListPages: MetadataRoute.Sitemap = getAllTags()
     .map<MetadataRoute.Sitemap>((tag) => {
@@ -76,6 +63,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${siteOrigin}/stats/`,
     },
+    {
+      url: `${siteOrigin}/tags/`,
+    },
   ];
 
   return [
@@ -83,7 +73,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticArticles,
     ...articlePages,
     ...articleListPages,
-    ...categoryListPages,
     ...tagListPages,
   ];
 }

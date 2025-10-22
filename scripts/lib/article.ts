@@ -1,12 +1,12 @@
-import { categoriesMetaFilePath } from "@/lib/_buildtime/article";
-import { CategoryMetaSchema } from "@/schemas/article/meta";
+import { tagsMetaFilePath } from "@/lib/_buildtime/article";
+import { TagMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import { parse } from "valibot";
 
 export const articleDirectoryName = path.join("_contents", "articles");
-export const categoriesDirectoryName = path.join("_contents", "categories");
+const tagsSourceDirectoryName = path.join("_contents", "tags");
 
 /**
  * すべての記事のファイルパスを取得する
@@ -35,18 +35,20 @@ export function getUseIdSet(){
 }
 
 /**
- * カテゴリデータのJSONファイルを作成する
+ * タグのJSONファイルを生成する
  */
-export function generateCategoriesJson() {
-  const data = fs.readdirSync(categoriesDirectoryName, "utf-8")
+export function generateTagsJson() {
+  const data = fs.readdirSync(tagsSourceDirectoryName, "utf-8")
     .filter(file => file.endsWith(".md"))
     .map((file) => {
-      const filePath = path.join(categoriesDirectoryName, file); ;
+      const filePath = path.join(tagsSourceDirectoryName, file);
       const raw = fs.readFileSync(filePath, "utf-8");
       const { data } = matter(raw);
-      return parse(CategoryMetaSchema, data);
+      return parse(TagMetaSchema, data);
     });
-  
-  fs.mkdirSync(path.dirname(categoriesMetaFilePath), { recursive: true });
-  fs.writeFileSync(categoriesMetaFilePath, JSON.stringify(data, null, 2), "utf-8");
+
+  console.log({ tags: data });
+
+  fs.mkdirSync(path.dirname(tagsMetaFilePath), { recursive: true });
+  fs.writeFileSync(tagsMetaFilePath, JSON.stringify(data, null, 2), "utf-8");
 }

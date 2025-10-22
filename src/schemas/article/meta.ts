@@ -51,8 +51,7 @@ const articleMetaSchemaBase = {
  */
 export const ArticleRawMetaSchema = object({
   ...articleMetaSchemaBase,
-  category: pipe(string(), minLength(1)),
-  tags: optional(array(string())),
+  tags: pipe(array(string()), minLength(1)),
 });
 
 export type ArticleRawMeta = InferOutput<typeof ArticleRawMetaSchema>;
@@ -70,8 +69,7 @@ export const ArticleMetaFromJsonSchema = object({
     string(),
     transform((date) => new Date(date))
   ),
-  category: CategoryMetaSchema,
-  tags: optional(TagsMetaSchema),
+  tags: TagsMetaSchema,
 });
 
 /**
@@ -79,8 +77,7 @@ export const ArticleMetaFromJsonSchema = object({
  */
 export const ArticleMetaSchema = object({
   ...articleMetaSchemaBase,
-  category: CategoryMetaSchema,
-  tags: optional(TagsMetaSchema),
+  tags: TagsMetaSchema,
 });
 
 // 記事のメタデータの型

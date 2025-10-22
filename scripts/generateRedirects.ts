@@ -1,5 +1,5 @@
-import { getAllCategories, getAllTags } from "@/lib/_buildtime/article";
-import { createCategoryListPagePath, createTagListPagePath } from "@/lib/article";
+import { getAllTags } from "@/lib/_buildtime/article";
+import { createTagListPagePath } from "@/lib/article";
 import fs from "fs";
 import path from "path";
 
@@ -39,12 +39,6 @@ const manualRedirects: Redirect[] = [
   { from: "/categories/makeWeb/8/", to: "/articles/93n1rqxpt801pqg3cdozcl2s/", statusCode: 301 },
 ];
 
-const categoryArticlesFirstPageRedirects: Redirect[] = getAllCategories().map(category => ({
-  from: `/categories/${category.slug}/page/1/`,
-  to: createCategoryListPagePath(category),
-  statusCode: 301,
-}));
-
 const tagArticlesFirstPageRedirects: Redirect[] = getAllTags().map(tag => ({
   from: `/tags/${tag.slug}/page/1/`,
   to: createTagListPagePath(tag),
@@ -53,7 +47,6 @@ const tagArticlesFirstPageRedirects: Redirect[] = getAllTags().map(tag => ({
 
 const rawRedirects : Redirect[] = [
   ...manualRedirects,
-  ...categoryArticlesFirstPageRedirects,
   ...tagArticlesFirstPageRedirects
 ];
 

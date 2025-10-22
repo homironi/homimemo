@@ -1,7 +1,6 @@
 import {
-  CategoryIcon,
   LastModeDateIcon,
-  PublishDateIcon,
+  PublishDateIcon
 } from "@/assets/icons";
 import {
   articleThumbnailNativeSize,
@@ -49,10 +48,6 @@ export function ArticleLink({ meta, imgOption }: ArticleLinkProps) {
           </div>
         </div>
         <div className={ styles["text-container"] }>
-          <span className={ styles.category }>
-            <CategoryIcon className={ styles.icon } />
-            {meta.category.name}
-          </span>
           <div className={ styles.title }>{meta.title}</div>
           <div className={ styles.description }>{meta.description}</div>
           <div className={ styles["date-container"] }>

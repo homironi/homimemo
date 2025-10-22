@@ -1,10 +1,8 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Navigation } from "@/components/Navigation";
-import { getAllCategories } from "@/lib/_buildtime/article";
 import {
-  articlesListPagePath,
-  createCategoryListPagePath
+  articlesListPagePath
 } from "@/lib/article";
 import {
   createDefaultOG,
@@ -45,30 +43,26 @@ export const viewport: Viewport = {
   colorScheme: "light dark",
 };
 
-const categoriesLinks: NavigationLink[] = getAllCategories().map(
-  (category) => ({
-    href: createCategoryListPagePath(category),
-    label: category.name,
-  })
-);
-
-const commonLinks: { [key: string]: NavigationLink } = {
+const links = {
   articles: { href: articlesListPagePath, label: "記事一覧" },
+  tags: { href: "/tags/", label: "タグ一覧" },
+  about: { href: "/about/", label: "このサイトについて" },
+  profile: { href: "/profile/", label: "プロフィール" },
+  stats: { href: "/stats/", label: "サイト統計" },
+  contact: { href: "/contact/", label: "お問い合わせ" },
+  policy: { href: "/privacy-policy/", label: "プライバシーポリシー" },
+  disclaimer: { href: "/disclaimer/", label: "免責事項" },
 };
 
 const footerLinks: NavigationLink[] = [
-  ...Object.values(commonLinks),
-  { href: "/about/", label: "このサイトについて" },
-  { href: "/profile/", label: "プロフィール" },
-  { href: "/stats/", label: "サイト統計" },
-  { href: "/contact/", label: "お問い合わせ" },
-  { href: "/privacy-policy/", label: "プライバシーポリシー" },
-  { href: "/disclaimer/", label: "免責事項" },
+  ...Object.values(links),
 ];
 
 const headerLinks: NavigationLink[] = [
-  commonLinks.articles,
-  ...categoriesLinks,
+  links.articles,
+  links.tags,
+  links.about,
+  links.profile,
 ];
 
 /**
