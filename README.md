@@ -33,7 +33,6 @@ https://homironi.com/
 /
 ├─ _contents                            ← DecapCMSで作成するデータの保存フォルダ
 │  ├─ articles                          ← 記事マークダウンフォルダ
-│  ├─ categories                        ← 記事のカテゴリデータ
 │  └─ tags                              ← 記事のタグデータ
 │
 ├─ _public                              ← Next.js のビルド先フォルダ：これを公開するがgitでは管理外に指定

@@ -1,10 +1,8 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Navigation } from "@/components/Navigation";
-import { getAllCategories } from "@/lib/_buildtime/article";
 import {
-  articlesListPagePath,
-  createCategoryListPagePath
+  articlesListPagePath
 } from "@/lib/article";
 import {
   createDefaultOG,
@@ -45,13 +43,6 @@ export const viewport: Viewport = {
   colorScheme: "light dark",
 };
 
-const categoriesLinks: NavigationLink[] = getAllCategories().map(
-  (category) => ({
-    href: createCategoryListPagePath(category),
-    label: category.name,
-  })
-);
-
 const commonLinks: { [key: string]: NavigationLink } = {
   articles: { href: articlesListPagePath, label: "記事一覧" },
 };
@@ -68,7 +59,6 @@ const footerLinks: NavigationLink[] = [
 
 const headerLinks: NavigationLink[] = [
   commonLinks.articles,
-  ...categoriesLinks,
 ];
 
 /**
