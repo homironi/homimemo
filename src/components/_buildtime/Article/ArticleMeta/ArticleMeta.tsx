@@ -1,5 +1,4 @@
 import { ArticleIcon, LastModeDateIcon, MenuBookIcon, PublishDateIcon } from "@/assets/icons";
-import { ArticleCategory } from "@/components/ArticleCategory";
 import { ArticleTags } from "@/components/ArticleTags";
 import { ArticleComponentMeta } from "@/components/_buildtime/Article";
 import { formatDate } from "@/lib/date";
@@ -46,7 +45,6 @@ export function ArticleMeta({ meta, contentLength }:ArticleMetaProps){
           </span>
         )}
       </div>
-      {isArticle && <ArticleCategory meta={ meta.category } />}
       {isArticle && meta.tags && <ArticleTags tags={ meta.tags } />}
       <p className={ styles.text }><ArticleIcon className={ styles.icon }/>{contentLength} 文字</p>
       <p className={ styles.text }><MenuBookIcon className={ styles.icon }/>{` ${readTime} 分（${readPerMinutes} 文字 / 分）`}</p>
