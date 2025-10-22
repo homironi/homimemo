@@ -1,28 +1,28 @@
 import { formatDate } from "@/lib/date";
-import { ArticleRawMeta, CategoryMeta } from "@/schemas/article/meta";
-import { confirm, input, select } from "@inquirer/prompts";
-import categoriesJson from "@public/generated/meta/categories.json";
+import { ArticleRawMeta, TagMeta } from "@/schemas/article/meta";
+import { checkbox, confirm, input } from "@inquirer/prompts";
+import tagsJson from "@public/generated/meta/tags.json";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import { articleDirectoryName, generateCategoriesJson, getUseIdSet } from "../lib/article";
+import { articleDirectoryName, getUseIdSet } from "../lib/article";
 import { generateArticleId } from "../lib/articleId";
 
 run();
 
 async function run(){
-  generateCategoriesJson();
-  const categories = categoriesJson.map(raw => raw as CategoryMeta);
+  const tagData = tagsJson.map(raw => raw as TagMeta);
 
   try{
     const draft = await confirm({message: "記事を下書きにしますか？", default: false});
     const title = await input({message: "記事タイトルを入力してください：", default: "新規記事タイトル", required: true});
-    const category = await select({
-      message: "記事カテゴリを選択してください：",
-      choices: categories.map(category => {
+    const tags = await checkbox({
+      message: "記事タグを選択してください（1つ以上必要です）：",
+      required: true,
+      choices: tagData.map(tag => {
         return {
-          value: category.name,
-          description: category.description,
+          value: tag.name,
+          description: tag.description,
         };
       }),
     });
@@ -34,7 +34,7 @@ async function run(){
       id,
       draft,
       title,
-      category,
+      tags,
       description: "ここにdescription",
       publishDate: date,
       lastModDate: date,

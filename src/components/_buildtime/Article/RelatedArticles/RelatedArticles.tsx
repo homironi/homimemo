@@ -1,6 +1,5 @@
 import { ArticleLink } from "@/components/ArticleLink";
 import { getAllArticlesMeta } from "@/lib/_buildtime/article";
-import { filterArticlesCategory } from "@/lib/article";
 import { ArticleMeta } from "@/schemas/article/meta";
 import styles from "./RelatedArticles.module.css";
 
@@ -18,14 +17,12 @@ export type RelatedArticlesProps = {
  * @returns 関連記事リストComponent
  */
 export function RelatedArticles({ articleMeta } : RelatedArticlesProps){
-  const sameCategoryArticles:ArticleMeta[] = filterArticlesCategory(getAllArticlesMeta(), articleMeta.category);
-
   // 現在の記事以外に絞り込み
-  const otherCategoryArticles = sameCategoryArticles
+  const otherArticles = getAllArticlesMeta()
     .filter(article => article.id !== articleMeta.id);
 
   // 各記事に対してタグの一致数を計算し、優先度付けして選択
-  const relatedArticles: ArticleMeta[] = otherCategoryArticles
+  const relatedArticles: ArticleMeta[] = otherArticles
     .map(article => {
       // 現在の記事のタグと対象記事のタグの共通部分を計算
       const currentTags = articleMeta.tags ?? [];

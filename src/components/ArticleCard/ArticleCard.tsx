@@ -1,7 +1,6 @@
 import {
-  CategoryIcon,
   LastModeDateIcon,
-  PublishDateIcon,
+  PublishDateIcon
 } from "@/assets/icons";
 import {
   articleThumbnailNativeSize,
@@ -44,10 +43,6 @@ export function ArticleCard({ meta, imgOption }: ArticleCardProps) {
           loading={ imgOption?.loading }
         />
         <div className={ styles["text-container"] }>
-          <span className={ styles.category }>
-            <CategoryIcon className={ styles.icon } />
-            {meta.category.name}
-          </span>
           <h2 className={ styles.title }>{meta.title}</h2>
           <div className={ styles["date-container"] }>
             {lastModDate !== publishDate && (

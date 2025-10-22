@@ -1,4 +1,3 @@
-import { ArticleCategoryList } from "@/components/ArticleCategoryList";
 import { ArticleTagList } from "@/components/ArticleTagList/ArticleTagList";
 import { BreadcrumbElement, Breadcrumbs } from "@/components/BreadCrumbs";
 import { JsonLd } from "@/components/JsonLd";
@@ -6,12 +5,11 @@ import { Profile } from "@/components/Profile";
 import { ArticleMdx } from "@/components/_buildtime/Article/ArticleMdx";
 import { ArticleMeta as ArticleMetaComponent } from "@/components/_buildtime/Article/ArticleMeta";
 import { RelatedArticles } from "@/components/_buildtime/Article/RelatedArticles";
-import { getAllCategories, getAllTags } from "@/lib/_buildtime/article";
+import { getAllTags } from "@/lib/_buildtime/article";
 import {
   articlesListPagePath,
   articleThumbnailNativeSize,
   createArticleDetailPath,
-  createCategoryListPagePath,
   defaultArticleThumbnail
 } from "@/lib/article";
 import { author } from "@/lib/jsonLd/jsonLd";
@@ -111,7 +109,6 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
             } }
           />
           {isArticle && <DynamicAdSense adSenseType="display" /> }
-          <ArticleCategoryList categories={ getAllCategories() } />
           <ArticleTagList tags={ getAllTags() } />
           {isArticle && <DynamicAdSense adSenseType="display" /> }
         </div>
@@ -174,10 +171,6 @@ function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
       {
         name: "記事一覧",
         href: articlesListPagePath,
-      },
-      {
-        name: `${meta.category.name}`,
-        href: createCategoryListPagePath(meta.category),
       },
       {
         name: meta.title,

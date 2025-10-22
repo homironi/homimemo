@@ -1,8 +1,7 @@
 import {
   ArticleMeta,
   ArticleMetaFromJsonSchema,
-  CategoryMeta,
-  TagMeta,
+  TagMeta
 } from "@/schemas/article/meta";
 import ArticleMetaJson from "@public/generated/meta/articles.json";
 import { safeParse } from "valibot";
@@ -20,24 +19,10 @@ export function createArticleDetailPath(id: string): string {
 }
 
 /**
- * 指定カテゴリで記事をフィルターする
- * @param articles フォルター前の記事リスト
- * @param category フィルターしたいカテゴリ
- * @returns カテゴリでフィルターした記事リスト
- * @description ほかで使用することがあれば定義を移動する
- */
-export function filterArticlesCategory(
-  articles: ArticleMeta[],
-  category: CategoryMeta
-): ArticleMeta[] {
-  return articles.filter((meta) => meta.category.slug === category.slug);
-}
-
-/**
- * 指定カテゴリで記事をフィルターする
+ * 指定タグで記事をフィルターする
  * @param articles フォルター前の記事リスト
  * @param filterTag フィルターしたいタグ
- * @returns カテゴリでフィルターした記事リスト
+ * @returns タグでフィルターした記事リスト
  * @description ほかで使用することがあれば定義を移動する
  */
 export function filterArticlesTag(

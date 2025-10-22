@@ -1,5 +1,5 @@
 import { ArticleIdToPathMapElement, ArticleIdToPathMapElementSchema } from "@/schemas/article/idToPathMap";
-import { ArticleMeta, ArticleMetaFromJsonSchema, ArticleRawMeta, CategoriesMetaSchema, CategoryMeta, StaticArticleMeta, StaticArticleMetaSchema, TagMeta, TagsMetaSchema } from "@/schemas/article/meta";
+import { ArticleMeta, ArticleMetaFromJsonSchema, ArticleRawMeta, StaticArticleMeta, StaticArticleMetaSchema, TagMeta, TagsMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
@@ -14,11 +14,6 @@ export const idToPathMapPath = path.join(".temp", "article", "idToPathMap.json")
  * 記事情報ファイルのパス
  */
 export const articlesMetaFilePath = path.join("public", "generated", "meta", "articles.json");
-
-/**
- * カテゴリの情報ファイルのパス
- */
-export const categoriesMetaFilePath = path.join("public", "generated", "meta", "categories.json");
 
 /**
  * タグの情報ファイルのパス
@@ -69,32 +64,8 @@ export function convertMetaFromRaw(raw: ArticleRawMeta): ArticleMeta {
   const tags = getTags(raw.tags ?? []);
   return {
     ...raw,
-    category: getCategoryMeta(raw.category),
     tags: tags,
   };
-}
-
-/**
- * すべてのカテゴリMetaを取得する
- * @returns カテゴリMetaの配列
- */
-export function getAllCategories(): CategoryMeta[] {
-  return parse(CategoriesMetaSchema, JSON.parse(fs.readFileSync(categoriesMetaFilePath, "utf-8")));
-}
-
-/**
- * カテゴリ名でカテゴリ情報を取得する
- * @param name 情報を取得したいカテゴリ名
- * @returns カテゴリ情報
- */
-export function getCategoryMeta(name: string): CategoryMeta {
-  const categories = getAllCategories();
-  const find = categories.find(category => category.name === name);
-  if (!find) {
-    throw new Error(`存在しないカテゴリ名です：${name}`);
-  }
-
-  return find;
 }
 
 /**
@@ -103,21 +74,6 @@ export function getCategoryMeta(name: string): CategoryMeta {
  */
 export function getAllTags(): TagMeta[] {
   return parse(TagsMetaSchema, JSON.parse(fs.readFileSync(tagsMetaFilePath, "utf-8")));
-}
-
-/**
- * カテゴリSlugでカテゴリ情報を取得する
- * @param slug 情報を取得したいカテゴリの slug
- * @returns カテゴリ情報
- */
-export function getCategoryMetaFromSlug(slug: string): CategoryMeta {
-  const categories = getAllCategories();
-  const find = categories.find(category => category.slug === slug);
-  if (!find) {
-    throw new Error(`存在しないカテゴリSlugです：${slug}`);
-  }
-
-  return find;
 }
 
 /**

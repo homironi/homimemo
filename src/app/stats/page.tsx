@@ -1,6 +1,6 @@
 import { HomironiStampIcon } from "@/assets/icons";
-import { getAllArticlesMeta, getAllCategories, getAllTags } from "@/lib/_buildtime/article";
-import { createCategoryListPagePath, createTagListPagePath, filterArticlesCategory, filterArticlesTag } from "@/lib/article";
+import { getAllArticlesMeta, getAllTags } from "@/lib/_buildtime/article";
+import { createTagListPagePath, filterArticlesTag } from "@/lib/article";
 import { formatDate } from "@/lib/date";
 import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import { Metadata } from "next";
@@ -40,24 +40,6 @@ export default function Page(){
   const articlesLength = articles.length;
   const archive = createArchiveByYear(articles);
 
-  const categoriesRatioListData : ArticleRatioListProps["list"] = getAllCategories()
-    .map(category=>{
-      const filteredArticles = filterArticlesCategory(articles, category).length;
-      return {
-        category,
-        length: filteredArticles,
-      };})
-    .sort((a, b)=> b.length - a.length)
-    .map(({category, length})=>{
-      return {
-        key : category.slug,
-        allArticlesLength: articlesLength,
-        length: length,
-        href: createCategoryListPagePath(category),
-        name :  category.name,
-      };
-    });
-
   const tagsRatioListData : ArticleRatioListProps["list"] = getAllTags()
     .map(tag=>{
       const filteredArticles = filterArticlesTag(articles, tag).length;
@@ -91,8 +73,6 @@ export default function Page(){
       <p>{articlesLength}件</p>
       <h2>年ごとの記事数</h2>
       <Archive archive={ archive } />
-      <h2>カテゴリごとの記事数</h2>
-      <ArticleRatioList list={ categoriesRatioListData } />
       <h2>タグごとの記事数</h2>
       <ArticleRatioList list={ tagsRatioListData } />
     </div>

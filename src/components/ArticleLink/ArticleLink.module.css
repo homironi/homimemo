@@ -73,10 +73,6 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: 0 0.5rem;
-}
-
-.category,
-.date-container{
     color: var(--text-color-pale);
     font-size: 0.8rem;
 }
