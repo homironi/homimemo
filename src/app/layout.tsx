@@ -87,6 +87,15 @@ export default function RootLayout({
             strategy="afterInteractive"
           />
         )}
+        <Script
+          id="Wicle-tag"
+          dangerouslySetInnerHTML={ {__html: 
+            `<!-- Start KARTE Tag -->
+            <script>!function(n){if(!window[n]){var o=window[n]=function(){var n=[].slice.call(arguments);return o.x?o.x.apply(0,n):o.q.push(n)};o.q=[],o.i=Date.now(),o.allow=function(){o.o="allow"},o.deny=function(){o.o="deny"}}}("krt")</script>
+            <script async src="https://cdn-edge.karte.io/9ebaadba2008491aa31161898846a47d/edge.js"></script>
+            <!-- End KARTE Tag -->`} }
+          strategy="afterInteractive"
+        />
       </head>
       <body>
         <Header />
