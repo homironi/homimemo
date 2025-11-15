@@ -3,7 +3,7 @@ slug: contact
 title: お問い合わせ
 draft: false
 publishDate: 2023-07-23T00:00:00.000+09:00
-lastModDate: 2025-09-09T14:44:16.000+09:00
+lastModDate: 2025-11-15T08:35:46Z
 description: 当サイトのお問い合わせです。
 thumbnail: /images/header/contact.webp
 ---
