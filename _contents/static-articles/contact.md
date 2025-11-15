@@ -14,4 +14,4 @@ thumbnail: /images/header/contact.webp
 
 ## メール
 
-homimironi@gmail.com
+contact@homironi.com
