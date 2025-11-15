@@ -45,7 +45,7 @@ export function AdSense({adSenseType}:AdSenseProps){
   }, []);
 
   if(process.env.NODE_ENV !== "production"){
-    return <p>productionビルドでは「{adSenseType}」の広告が表示されます。現在：{process.env.NODE_ENV}</p>;
+    return <p style={ {width: "100%", height: 280, backgroundColor: "var(--color-main-reverse)", color: "var(--text-color-reverse)"} }>productionビルドでは「{adSenseType}」の広告が表示されます。現在：{process.env.NODE_ENV}</p>;
   }
 
   return (
