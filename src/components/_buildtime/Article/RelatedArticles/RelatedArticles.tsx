@@ -37,6 +37,7 @@ export function RelatedArticles({ articleMeta } : RelatedArticlesProps){
         matchingTagsCount
       };
     })
+    .filter(({matchingTagsCount})=> 0 < matchingTagsCount)
     .sort((a, b) => {
       if(b.matchingTagsCount !== a.matchingTagsCount)
       {
