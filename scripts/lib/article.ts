@@ -1,5 +1,5 @@
 import { tagsMetaFilePath } from "@/lib/_buildtime/article";
-import { TagMetaSchema } from "@/schemas/article/meta";
+import { TagMeta, TagMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
@@ -35,10 +35,11 @@ export function getUseIdSet(){
 }
 
 /**
- * タグのJSONファイルを生成する
+ * タグのデータを生成する
+ * @returns タグのデータ配列
  */
-export function generateTagsJson() {
-  const data = fs.readdirSync(tagsSourceDirectoryName, "utf-8")
+export function generateAllTagArray() : TagMeta[] {
+  return fs.readdirSync(tagsSourceDirectoryName, "utf-8")
     .filter(file => file.endsWith(".md"))
     .map((file) => {
       const filePath = path.join(tagsSourceDirectoryName, file);
@@ -46,6 +47,13 @@ export function generateTagsJson() {
       const { data } = matter(raw);
       return parse(TagMetaSchema, data);
     });
+}
+
+/**
+ * タグのJSONファイルを生成する
+ */
+export function generateTagsJson() {
+  const data = generateAllTagArray();
 
   console.log({ tags: data });
 

@@ -1,16 +1,14 @@
 import { Article } from "@/components/_buildtime/Article";
 import {
-  convertMetaFromRaw,
+  convertMetaFromFrontmatter,
   getFilePath,
-  getIdToPathMap,
+  getIdToPathMap
 } from "@/lib/_buildtime/article";
 import { createArticleDetailPath } from "@/lib/article";
 import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
-import { ArticleRawMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import type { Metadata } from "next";
-import { parse } from "valibot";
 
 type Params = {
   id: string;
@@ -38,7 +36,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { id } = await props.params;
   const raw = fs.readFileSync(getFilePath(id), "utf-8");
   const { data } = matter(raw);
-  const validatedMeta = parse(ArticleRawMetaSchema, data);
+  const validatedMeta = convertMetaFromFrontmatter(data);
 
   return {
     title: validatedMeta.title,
@@ -75,8 +73,7 @@ export default async function ArticlePage({
   const filePath = getFilePath(id);
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
-  const rawMeta = parse(ArticleRawMetaSchema, data);
-  const meta = convertMetaFromRaw(rawMeta);
+  const meta = convertMetaFromFrontmatter(data);
 
   return (
     <Article

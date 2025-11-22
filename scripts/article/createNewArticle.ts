@@ -1,5 +1,5 @@
 import { formatDate } from "@/lib/date";
-import { ArticleRawMeta, TagMeta } from "@/schemas/article/meta";
+import { TagMeta } from "@/schemas/article/meta";
 import { checkbox, confirm, input } from "@inquirer/prompts";
 import tagsJson from "@public/generated/meta/tags.json";
 import fs from "fs";
@@ -30,7 +30,7 @@ async function run(){
     const id = generateArticleId(getUseIdSet());
     const date = new Date();
 
-    const meta :ArticleRawMeta = {
+    const meta = {
       id,
       draft,
       title,

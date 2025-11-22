@@ -10,7 +10,7 @@ import {
   pipe,
   safeParse,
   string,
-  transform,
+  transform
 } from "valibot";
 
 export const CategoryMetaSchema = object({
@@ -40,24 +40,13 @@ const metaSchemaBase = {
   description: pipe(string(), minLength(1)),
 };
 
-const articleMetaSchemaBase = {
+export const articleMetaSchemaBase = {
   ...metaSchemaBase,
   id: pipe(string(), minLength(1)),
 };
 
 /**
- * 記事の生メタデータのスキーマ
- * @description まだ直接読み取っただけの状態
- */
-export const ArticleRawMetaSchema = object({
-  ...articleMetaSchemaBase,
-  tags: pipe(array(string()), minLength(1)),
-});
-
-export type ArticleRawMeta = InferOutput<typeof ArticleRawMetaSchema>;
-
-/**
- * 記事のメタデータJSONからのスキーマ
+ * 記事のメタデータJSONからArticleMetaに変換するスキーマ
  */
 export const ArticleMetaFromJsonSchema = object({
   ...articleMetaSchemaBase,
