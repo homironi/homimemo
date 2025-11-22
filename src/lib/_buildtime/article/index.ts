@@ -1,9 +1,9 @@
 import { ArticleIdToPathMapElement, ArticleIdToPathMapElementSchema } from "@/schemas/article/idToPathMap";
-import { ArticleMeta, ArticleMetaFromJsonSchema, ArticleRawMeta, StaticArticleMeta, StaticArticleMetaSchema, TagMeta, TagsMetaSchema } from "@/schemas/article/meta";
+import { ArticleMeta, ArticleMetaFromJsonSchema, articleMetaSchemaBase, StaticArticleMeta, StaticArticleMetaSchema, TagMeta, TagsMetaSchema } from "@/schemas/article/meta";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import { array, parse } from "valibot";
+import { array, minLength, object, parse, pipe, string, transform } from "valibot";
 
 /**
  * 記事IDとそれに対応するマークダウンファイルのパスデータのファイルパス
@@ -56,16 +56,21 @@ export function getAllArticlesMeta(): ArticleMeta[] {
 }
 
 /**
- * 生の記事Metaを記事Metaに変換
- * @param raw 生Meta
+ * 記事メタデータFrontmatterからのスキーマ
+ * @description Frontmatterから取得したデータをArticleMetaに変換するためのスキーマ
+ */
+const ArticleMetaFromFrontmatterSchema = object({
+  ...articleMetaSchemaBase,
+  tags: pipe(array(string()), minLength(1), transform(raw => raw.map((name) => getTagMetaFromName(name)))),
+});
+
+/**
+ * Frontmatterを記事Metaに変換
+ * @param raw Frontmatter生Meta
  * @returns 記事Meta
  */
-export function convertMetaFromRaw(raw: ArticleRawMeta): ArticleMeta {
-  const tags = getTags(raw.tags ?? []);
-  return {
-    ...raw,
-    tags: tags,
-  };
+export function convertMetaFromFrontmatter(raw: unknown): ArticleMeta {
+  return parse(ArticleMetaFromFrontmatterSchema, raw);
 }
 
 /**
@@ -74,17 +79,6 @@ export function convertMetaFromRaw(raw: ArticleRawMeta): ArticleMeta {
  */
 export function getAllTags(): TagMeta[] {
   return parse(TagsMetaSchema, JSON.parse(fs.readFileSync(tagsMetaFilePath, "utf-8")));
-}
-
-/**
- * 記事タグ情報の名前から対応する記事タグの情報配列を取得する
- * @param tagNames 記事タグ名のリスト
- * @returns 記事タグ情報の配列
- */
-function getTags(tagNames: string[]): TagMeta[] {
-  return tagNames.map((name) => {
-    return getTag(name);
-  });
 }
 
 /**
@@ -107,11 +101,11 @@ export function getTagMetaFromSlug(slug: string): TagMeta {
  * @param name タグ名
  * @returns タグ情報
  */
-function getTag(name: string): TagMeta {
+export function getTagMetaFromName(name: string): TagMeta {
   const tags = parse(TagsMetaSchema, JSON.parse(fs.readFileSync(tagsMetaFilePath, "utf-8")));
   const find = tags.find(tag => tag.name == name);
   if (!find) {
-    throw new Error(`存在しないタグ名です：${name}`);
+    throw new Error(`タグ名がみつかりませんでした：${name}`);
   }
 
   return find;
