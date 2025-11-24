@@ -86,7 +86,6 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
             content={ content }
             tocContentSourceIdName={ tocContentSourceIdName }
             className="article-contents-container"
-            isArticle={ isArticle }
           />
           <hr />
           <p>SNSやブログで記事をご紹介いただけたらうれしいです！</p>
@@ -100,14 +99,6 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
         </main>
         <div className={ styles["last-side"] }>
           <Profile />
-          <div
-            className={ styles["ads-container"] }
-            dangerouslySetInnerHTML={ {
-              __html: `<a href="https://px.a8.net/svt/ejp?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" rel="nofollow">
-            <img border="0" width="300" height="250" alt="XServerの広告" loading="lazy" src="https://www28.a8.net/svt/bgt?aid=240906818962&wid=001&eno=01&mid=s00000001642001130000&mc=1"></a>
-            <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=3ZFGW2+FWR0QA+CO4+6Q74X" alt="">`,
-            } }
-          />
           {isArticle && <DynamicAdSense adSenseType="display" /> }
           <ArticleTagList tags={ getAllTags() } />
           {isArticle && <DynamicAdSense adSenseType="display" /> }

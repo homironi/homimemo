@@ -1,8 +1,8 @@
 import { ArticleDiv } from "@/components/_buildtime/Article/ArticleDiv";
-import { ArticleH2 } from "@/components/_buildtime/Article/ArticleH2";
 import { ArticleParagraph } from "@/components/_buildtime/Article/ArticleParagraph";
 import { AffiliateLink } from "@/components/AffiliateLink";
 import { ExternalLink } from "@/components/ExternalLink";
+import { H2 } from "@/components/H2";
 import { H3 } from "@/components/H3";
 import { TextBlock } from "@/components/TextBlock";
 import { rehypeCodeContainer } from "@/lib/_buildtime/rehypePlugins/code";
@@ -22,7 +22,6 @@ import "../table.css";
 import styles from "./ArticleMdx.module.css";
 
 export type ArticleMdxProps = {
-  isArticle : boolean;
   className?: string;
   content: string;
   tocContentSourceIdName: string;
@@ -67,11 +66,9 @@ function createHeadingComponent(Tag: "h1" | "h4" | "h5" | "h6") {
  * @param root0.content 記事のMDXコンテンツ
  * @param root0.tocContentSourceIdName 目次のコンテンツソースとして扱う目印のID名
  * @param root0.className クラス名
- * @param root0.isArticle 通常の記事かどうか。固定記事なら false
  * @returns 記事ページのコンポーネント
  */
 export function ArticleMdx({
-  isArticle,
   className,
   content,
   tocContentSourceIdName,
@@ -84,7 +81,7 @@ export function ArticleMdx({
           p: ArticleParagraph,
           a: ExternalLink,
           h1: createHeadingComponent("h1"),
-          h2: props => ArticleH2({visibleAdSense:isArticle, ...props}),
+          h2: H2,
           h3: H3,
           h4: createHeadingComponent("h4"),
           h5: createHeadingComponent("h5"),
