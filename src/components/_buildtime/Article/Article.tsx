@@ -94,7 +94,7 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
               <hr />
               <RelatedArticles articleMeta={ meta }/>
             </>}
-          {isArticle && <DynamicAdSense adSenseType="multiplex" /> }
+          {isArticle && <DynamicAdSense adSenseType="display" /> }
         </main>
         <div className={ styles["last-side"] }>
           <Profile />
