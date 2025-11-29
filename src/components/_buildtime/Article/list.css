@@ -16,7 +16,7 @@
 .article-contents-container ol li::before {
     position: absolute;
     left: 0;
-    color: var(--text-color-black-pale);
+    color: var(--text-color-pale);
 }
 
 /* 番号ありリスト（ol） */
