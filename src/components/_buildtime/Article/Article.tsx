@@ -81,7 +81,6 @@ export function Article({ meta, content, shareSlug: shareUrl }: ArticleProps) {
           />
           {WrappedShareButtons}
           <hr />
-          {isArticle && <DynamicAdSense adSenseType="display" /> }
           <ArticleMdx
             content={ content }
             tocContentSourceIdName={ tocContentSourceIdName }
