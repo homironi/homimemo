@@ -5,15 +5,13 @@ import {
 import type { Metadata } from "next";
 import { ArticlesPage, generateArticlesPageMetadata } from "../../_components/ArticlesPage";
 
-type Params = {
-  number: string;
-};
+type Props = PageProps<"/articles/page/[number]">;
 
 /**
  * Next.jsのページで使用する静的パラメータを生成する関数
  * @returns 静的パラメータの配列
  */
-export async function generateStaticParams(): Promise<Params[]> {
+export async function generateStaticParams() {
   const numbers = getPageLength(getAllArticlesMeta().length);
   return numbers
     .filter(num=> num !== 1) // 1ページ目は「/articles/」にするのでこちらではページを生成しない
@@ -30,9 +28,7 @@ export async function generateStaticParams(): Promise<Params[]> {
  */
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
+}: Props): Promise<Metadata> {
   const page = parseInt((await params).number);
   return generateArticlesPageMetadata(page);
 }
@@ -45,9 +41,7 @@ export async function generateMetadata({
  */
 export default async function Page({
   params,
-}: {
-  params: Promise<Params>;
-}) {
+}: Props) {
   const page = parseInt((await params).number);
 
   return (

@@ -71,11 +71,7 @@ const headerLinks: NavigationLink[] = [
  * @param root0.children レイアウト内に表示する子要素
  * @returns ルートレイアウトのJSX要素
  */
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ja">
       <head>
