@@ -5,7 +5,6 @@ import { createDefaultOG, createDefaultTwitter } from "@/lib/utils";
 import { Metadata } from "next";
 import Link from "next/link";
 import { ArticleRatioList, ArticleRatioListProps } from "../_components/ArticleRatioList";
-import styles from "./page.module.css";
 
 type Props = PageProps<"/stats/[year]">;
 
@@ -76,7 +75,7 @@ export default async function Page(props: Props){
   const now = new Date();
 
   return (
-    <div className={ styles.container }>
+    <>
       <h1>🎉サイト統計 {year}年🎉</h1>
       <time dateTime={ formatDate(now, "YYYY-MM-DD") }>{formatDate(now, "YYYY/MM/DD")}現在</time>
       <h2>{year}年の記事数</h2>
@@ -99,6 +98,6 @@ export default async function Page(props: Props){
           );
         })}
       </div>
-    </div>
+    </>
   );
 }
