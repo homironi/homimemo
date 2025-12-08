@@ -7,13 +7,11 @@ import {
   getPageLength
 } from "@/lib/article";
 import type { Metadata } from "next";
+import { Params } from "next/dist/server/request/params";
 import { notFound } from "next/navigation";
 import { generateTagArticlesPageMetadata, TagArticlesPage } from "../../_components/TagArticlesPage";
 
-type Params = {
-  tagSlug: string;
-  number: string;
-};
+type Props = PageProps<"/tags/[tagSlug]/page/[number]">;
 
 const dummy : Params = { tagSlug: "__dummy__", number: "1" };
 
@@ -21,7 +19,7 @@ const dummy : Params = { tagSlug: "__dummy__", number: "1" };
  * Next.jsのページで使用する静的パラメータを生成する関数
  * @returns 静的パラメータの配列
  */
-export async function generateStaticParams(): Promise<Params[]> {
+export async function generateStaticParams() {
   const allArticles = getAllArticlesMeta();
   const all = getAllTags()
     .map((tag) => {
@@ -51,11 +49,7 @@ export async function generateStaticParams(): Promise<Params[]> {
  * @param root0.params パスを含むパラメータ
  * @returns Meta情報
  */
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { number, tagSlug} = (await params);
   const page = parseInt(number);
 
@@ -68,11 +62,7 @@ export async function generateMetadata({
  * @param root0.params パスを含むパラメータ
  * @returns 記事ページのJSX要素
  */
-export default async function Page({
-  params,
-}: {
-  params: Promise<Params>;
-}) {
+export default async function Page({ params }: Props) {
   const {number, tagSlug} = await params;
   if(tagSlug === dummy.tagSlug){
     notFound();
