@@ -10,20 +10,13 @@ import fs from "fs";
 import matter from "gray-matter";
 import type { Metadata } from "next";
 
-type Params = {
-  id: string;
-};
-
-type Props = {
-  params: Promise<Params>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-};
+type Props = PageProps<"/articles/[id]">;
 
 /**
  * Next.jsのページで使用する静的パラメータを生成する関数
  * @returns 静的パラメータの配列
  */
-export async function generateStaticParams(): Promise<Params[]> {
+export async function generateStaticParams() {
   return getIdToPathMap().map(({ id }) => ({ id }));
 }
 
@@ -64,11 +57,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
  * @param root0.params 記事のIDを含むパラメータ
  * @returns 記事ページのJSX要素
  */
-export default async function ArticlePage({
-  params,
-}: {
-  params: Promise<Params>;
-}) {
+export default async function ArticlePage({ params }: Props) {
   const { id } = await params;
   const filePath = getFilePath(id);
   const raw = fs.readFileSync(filePath, "utf-8");
