@@ -90,7 +90,7 @@ export default async function Page(props: Props){
           const articles = v[1];
           return (
             <details key={ month }>
-              <summary>{month}：{articles?.length}件</summary>
+              <summary>{month}月：{articles?.length}件</summary>
               <ul>
                 {articles?.map(meta => <li key={ meta.id }><Link href={ createArticleDetailPath(meta.id) }>{meta.title}</Link></li>)}
               </ul>
