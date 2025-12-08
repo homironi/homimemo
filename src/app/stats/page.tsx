@@ -61,7 +61,7 @@ export default function Page(){
     const now = new Date();
 
   return (
-    <div className={ styles.container }>
+    <>
       <h1>🎉サイト統計🎉</h1>
       <time dateTime={ formatDate(now, "YYYY-MM-DD") }>{formatDate(now, "YYYY/MM/DD")}現在</time>
       <h2>サイト公開日</h2>
@@ -75,6 +75,6 @@ export default function Page(){
       <Archive archive={ archive } />
       <h2>タグごとの記事数</h2>
       <ArticleRatioList list={ tagsRatioListData } />
-    </div>
+    </>
   );
 }
