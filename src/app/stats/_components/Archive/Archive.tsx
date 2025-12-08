@@ -1,5 +1,6 @@
 import { HomironiRoundStarIcon } from "@/assets/icons";
 import { ArticleMeta } from "@/schemas/article/meta";
+import Link from "next/link";
 import styles from "./Archive.module.css";
 
 type YearArchive = {
@@ -38,13 +39,13 @@ export function Archive({ archive }: ArchiveProps){
   return (
     <div className={ styles.container }>
       {archive.map(yearData => (
-        <div key={ yearData.year } className={ styles["year-container"] }>
+        <Link key={ yearData.year } className={ styles["year-container"] } href={ `/stats/${yearData.year}/` }>
           <HomironiRoundStarIcon className={ styles.icon } />
           <div className={ styles["text-container"] }>
             <p>{yearData.year}</p>
             <p>{yearData.count}</p>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
