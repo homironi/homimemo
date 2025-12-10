@@ -8,7 +8,6 @@ https://homironi.com/
 
 - Next.js
 - TypeScript
-- DecapCMS
 - markdown
 
 [![Built with Cloudflare](https://workers.cloudflare.com/built-with-cloudflare.svg)](https://cloudflare.com)
@@ -31,7 +30,7 @@ https://homironi.com/
 
 ```txt
 /
-├─ _contents                            ← DecapCMSで作成するデータの保存フォルダ
+├─ _contents                            ← 記事などのデータの保存フォルダ
 │  ├─ articles                          ← 記事マークダウンフォルダ
 │  └─ tags                              ← 記事のタグデータ
 │
