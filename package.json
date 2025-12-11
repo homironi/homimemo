@@ -1,0 +1,15 @@
+{
+  "name": "homimemo",
+  "type": "module",
+  "version": "3.0.0",
+  "packageManager": "pnpm@10.24.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.16.5"
+  }
+}
