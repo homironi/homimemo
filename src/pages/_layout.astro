@@ -1,13 +1,69 @@
 ---
+import { 
+  createOGData,
+  createTitleFromTemplate,
+  defaultDescription,
+  siteName,
+  type OpenGraphImage,
+  createTwitterCardData,
+} from "@/lib/util";
 import "./_globalElement.css";
 import "./_globals.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  thumbnail?: string;
+  ogType?: "website" | "article";
+}
+
+const { description, thumbnail, ogType, ...props } = Astro.props;
+
+const title = props.title ? createTitleFromTemplate(props.title) : siteName;
+
+const ogData = createOGData(title, description, Astro.url.pathname, thumbnail);
+const twitterCardData = createTwitterCardData(title, description, thumbnail);
 ---
 
 <!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="utf-8"/>
-    <!-- TODO：その他meta追加する -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content={Astro.generator}>
+    <meta name="theme-color" content="#79cdee">
+    <meta name="color-scheme" content="light dark">
+    <meta name="author" content="homi">
+    <meta name="publisher" content="homi">
+    <meta name="creator" content="homironi">
+    
+    <meta name="format-detection" content="telephone=no, address=no, email=no">
+
+    <title>{title}</title>
+    <meta name="description" content={defaultDescription}>
+
+    <meta property="og:site_name" content={Astro.site} />
+    <meta property="og:title" content={ogData.title} />
+    <meta property="og:description" content={ogData.description} />
+    <meta property="og:url" content={ogData.url} />
+    <meta property="og:type" content={ogType} />
+    {ogData.images && ogData.images.map((image: OpenGraphImage) => (
+      <meta property="og:image" content={image.url} />
+      <meta property="og:image:alt" content={image.alt} />
+    ))}
+
+    <meta name="twitter:card" content={twitterCardData.card} />
+    <meta name="twitter:title" content={twitterCardData.title} />
+    <meta name="twitter:description" content={twitterCardData.description} />
+    {twitterCardData.images && twitterCardData.images.map((image: string) => (
+      <meta name="twitter:image" content={image} />
+    ))}
+    <meta name="twitter:site" content={twitterCardData.site} />
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-icon.png" type="image/png" sizes="180x180">
+    
     <!-- {process.env.NODE_ENV === "production" && (
       <Script
         async
@@ -20,6 +76,7 @@ import "./_globals.css";
   <body>
     <p>todo{"<Header />"}</p>
     <p>todo{"<Navigation links={ headerLinks } />"}</p>
+    <p>ページタイトル：{title}</p>
     <slot/>
     <p>todo{"<Footer links={ footerLinks } />"}</p>
     <p>todo{`{process.env.NODE_ENV === "production" && (
