@@ -13,7 +13,8 @@
     "svg": "svgo --folder ./src/assets/icons --recursive "
   },
   "dependencies": {
-    "astro": "^5.16.5"
+    "astro": "^5.16.5",
+    "astro-icon": "^1.1.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
