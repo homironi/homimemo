@@ -1,4 +1,3 @@
-[![Add Missing Article IDs](https://github.com/homironi/homimemo/actions/workflows/add-article-missing-id.yml/badge.svg)](https://github.com/homironi/homimemo/actions/workflows/add-article-missing-id.yml)
 [![Lint test](https://github.com/homironi/homimemo/actions/workflows/lint-test.yml/badge.svg)](https://github.com/homironi/homimemo/actions/workflows/lint-test.yml)
 
 ほみの個人サイトのリポジトリです。  
