@@ -21,6 +21,7 @@ export default defineConfig([
       "**/*.css.d.ts", // CSSの型定義は自動生成なので無視
       "_public/**",
       "**/node_modules/**",
+      "_old", // 一時的に用意している古いコード置き場
     ],
   },
   js.configs.recommended,
