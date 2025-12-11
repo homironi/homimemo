@@ -25,7 +25,6 @@ export default defineConfig([
   },
   js.configs.recommended,
   tseslint.configs.recommended,
-  compat.extends("next/core-web-vitals"),
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     plugins: {
