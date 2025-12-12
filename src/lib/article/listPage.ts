@@ -1,4 +1,3 @@
-import { TagMeta } from "@/schemas/article/meta";
 
 // 記事一覧の1ページあたりの表示件数
 export const articlePagePerNum = 12;
@@ -22,34 +21,34 @@ export function getPageLength(length: number): number[] {
 
 /**
  * タグごとの一覧ページの「page」抜きのパスを作成する
- * @param tag タグ情報
+ * @param tagSlug タグのスラッグ
  * @returns タグごとの一覧ページの「page」抜きのパス
  */
-function createTagsPagePath(tag: TagMeta): string {
-  return `/tags/${tag.slug}/`;
+function createTagsPagePath(tagSlug: string): string {
+  return `/tags/${tagSlug}/`;
 }
 
 /**
  * タグごとの一覧ページのベースパスを作成する
- * @param tag タグ情報
+ * @param tagSlug タグのスラッグ
  * @returns タグ一覧ページのベースパス
  */
-export function createTagsPathBase(tag: TagMeta): string {
-  return `${createTagsPagePath(tag)}/page/`;
+export function createTagsPathBase(tagSlug: string): string {
+  return `${createTagsPagePath(tagSlug)}/page/`;
 }
 
 /**
  * タグごとの一覧ページのパスを作成する
- * @param tag タグ情報
+ * @param tagSlug タグのスラッグ
  * @param page ページ番号
  * @returns タグ一覧ページのパス
  */
-export function createTagListPagePath(tag: TagMeta, page?: number): string {
+export function createTagListPagePath(tagSlug: string, page?: number): string {
   if(!page || page === 1){
-    return createTagsPagePath(tag);
+    return createTagsPagePath(tagSlug);
   }
 
-  return `${createTagsPathBase(tag)}${page}/`;
+  return `${createTagsPathBase(tagSlug)}${page}/`;
 }
 
 /**
