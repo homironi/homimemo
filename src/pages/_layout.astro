@@ -9,6 +9,8 @@ import {
 } from "@/lib/util";
 import "./_globalElement.css";
 import "./_globals.css";
+import Header, { type NavigationLink } from "./_components/Header.astro";
+import { articlesListPagePath } from "@/lib/article/listPage";
 
 interface Props {
   title?: string;
@@ -17,12 +19,35 @@ interface Props {
   ogType?: "website" | "article";
 }
 
-const { description, thumbnail, ogType, ...props } = Astro.props;
+const { 
+  description,
+  thumbnail,
+  ogType,
+  ...props
+} = Astro.props;
 
 const title = props.title ? createTitleFromTemplate(props.title) : siteName;
 
 const ogData = createOGData(title, description, Astro.url.pathname, thumbnail);
 const twitterCardData = createTwitterCardData(title, description, thumbnail);
+
+const links = {
+  articles: { href: articlesListPagePath, label: "記事一覧" },
+  tags: { href: "/tags/", label: "タグ一覧" },
+  about: { href: "/about/", label: "このサイトについて" },
+  profile: { href: "/profile/", label: "プロフィール" },
+  stats: { href: "/stats/", label: "サイト統計" },
+  contact: { href: "/contact/", label: "お問い合わせ" },
+  policy: { href: "/privacy-policy/", label: "プライバシーポリシー" },
+  disclaimer: { href: "/disclaimer/", label: "免責事項" },
+};
+
+const headerLinks: NavigationLink[] = [
+  links.articles,
+  links.tags,
+  links.about,
+  links.profile,
+];
 ---
 
 <!DOCTYPE html>
@@ -74,8 +99,7 @@ const twitterCardData = createTwitterCardData(title, description, thumbnail);
     )} -->
   </head>
   <body>
-    <p>todo{"<Header />"}</p>
-    <p>todo{"<Navigation links={ headerLinks } />"}</p>
+    <Header links={headerLinks} />
     <p>ページタイトル：{title}</p>
     <slot/>
     <p>todo{"<Footer links={ footerLinks } />"}</p>
