@@ -1,4 +1,3 @@
 ---
 name: Unity
-slug: unity
 ---

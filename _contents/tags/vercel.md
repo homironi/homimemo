@@ -1,4 +1,3 @@
 ---
 name: Vercel
-slug: vercel
 ---

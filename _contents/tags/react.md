@@ -1,4 +1,3 @@
 ---
 name: React
-slug: react
 ---
