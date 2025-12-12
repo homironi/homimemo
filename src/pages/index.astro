@@ -1,6 +1,10 @@
 ---
 import Icon from "@/components/Icon.astro";
+import { getCollection } from "astro:content";
 import Layout from "./_layout.astro";
+
+const articles = await getCollection("articles");
+const tags = await getCollection("tags");
 ---
 
 <Layout>
@@ -8,4 +12,18 @@ import Layout from "./_layout.astro";
   <h2>アイコンの例</h2>
   <Icon name="article" size={32} />
   <Icon name="homironiRoundStar" size={64} />
+  <h2>ContentCollection取得例</h2>
+  <p>記事数：{articles.length}</p>
+  <h3>記事コレクション</h3>
+  <ul>
+    {articles.map(article=>{
+      return (<li>article.id：{article.id} article.data.id：{article.data.id} {JSON.stringify(article.data.tags)}</li>)
+    })}
+  </ul>
+  <h3>タグコレクション</h3>
+  <ul>
+    {tags.map(tag =>{
+      return(<li>tag.id：{tag.id} tag.data.slug：{tag.data.slug} tag.data.name：{tag.data.name}</li>);
+    })}
+  </ul>
 </Layout>
