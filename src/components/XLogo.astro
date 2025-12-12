@@ -1,0 +1,68 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  color?: "default" | "reverse" | "white" | "black";
+  class?: string;
+  size: number | string;
+};
+
+const {color = "default", class:className, size} = Astro.props;
+
+let colorClassName;
+
+switch (color) {
+  case "reverse":
+    colorClassName = "icon-color-reverse";
+    break;
+  case "white":
+    colorClassName = "icon-color-white";
+    break;
+  case "black":
+    colorClassName = "icon-color-black";
+    break;
+  case "default":
+  default:
+    colorClassName = "icon-color";
+    break;
+}
+
+const iconClassName = `${className ? className : ""} icon ${colorClassName}`;
+---
+
+<style>
+  .icon{
+    padding: 4px;
+
+    --x-icon-color: #000000;
+    --x-icon-color-reverse: #ffffff;
+  }
+
+  .icon-color{
+    color: var(--x-icon-color);
+  }
+
+  .icon-color-reverse{
+    color: var(--x-icon-color-reverse);
+  }
+
+  .icon-color-white{
+    color: var(--x-icon-color-reverse);
+  }
+
+  .icon-color-black{
+    color: var(--x-icon-color);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .icon-color {
+      color: var(--x-icon-color-reverse);
+    }
+
+    .icon-color-reverse {
+      color: var(--x-icon-color);
+    }
+  }
+</style>
+
+<span class={ iconClassName }><Icon name="xLogo" size={size} /></span>

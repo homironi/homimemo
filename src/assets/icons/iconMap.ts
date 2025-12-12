@@ -29,6 +29,11 @@ export const iconMap = {
   // homironi icons
   homironiRoundStar : "homironi/homironi_icons_round_star",
   homironiStamp : "homironi/homironi_icons_stamp",
+
+  // logo
+  xLogo : "logos/x/logo",
+  githubLogo : "logos/GitHub/github-mark",
+  noteLogo : "logos/note/icon",
 };
 
 export type IconName = keyof typeof iconMap;

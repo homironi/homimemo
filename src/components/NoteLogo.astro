@@ -1,0 +1,66 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  color?: "default" | "reverse" | "white" | "black";
+  class?: string;
+  size: number | string;
+};
+
+const {color = "default", class:className, size} = Astro.props;
+
+let colorClassName;
+
+switch (color) {
+  case "reverse":
+    colorClassName = "icon-color-reverse";
+    break;
+  case "white":
+    colorClassName = "icon-color-white";
+    break;
+  case "black":
+    colorClassName = "icon-color-black";
+    break;
+  case "default":
+  default:
+    colorClassName = "icon-color";
+    break;
+}
+
+const iconClassName = `${className ? className : ""} icon ${colorClassName}`;
+---
+
+<style>
+  .icon{
+    --note-icon-color: #000000;
+    --note-icon-color-reverse: #ffffff;
+  }
+
+  .icon-color{
+    color: var(--note-icon-color);
+  }
+
+  .icon-color-reverse{
+    color: var(--note-icon-color-reverse);
+  }
+
+  .icon-color-white{
+    color: var(--note-icon-color-reverse);
+  }
+
+  .icon-color-black{
+    color: var(--note-icon-color);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .icon-color {
+      color: var(--note-icon-color-reverse);
+    }
+
+    .icon-color-reverse {
+      color: var(--note-icon-color);
+    }
+  }
+</style>
+
+<span class={ iconClassName }><Icon name="noteLogo" class={ iconClassName } size={size} /></span>

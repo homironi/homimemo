@@ -1,0 +1,68 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  color?: "default" | "reverse" | "white" | "black";
+  class?: string;
+  size: number | string;
+};
+
+const {color = "default", class:className, size} = Astro.props;
+
+let colorClassName;
+
+switch (color) {
+  case "reverse":
+    colorClassName = "icon-color-reverse";
+    break;
+  case "white":
+    colorClassName = "icon-color-white";
+    break;
+  case "black":
+    colorClassName = "icon-color-black";
+    break;
+  case "default":
+  default:
+    colorClassName = "icon-color";
+    break;
+}
+
+const iconClassName = `${className ? className : ""} icon ${colorClassName}`;
+---
+
+<style>
+  .icon{
+    padding: 4px;
+
+    --github-icon-color: #24292f;
+    --github-icon-color-reverse: #ffffff;
+  }
+
+  .icon-color{
+    color: var(--github-icon-color);
+  }
+
+  .icon-color-reverse{
+    color: var(--github-icon-color-reverse);
+  }
+
+  .icon-color-white{
+    color: var(--github-icon-color-reverse);
+  }
+
+  .icon-color-black{
+    color: var(--github-icon-color);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .icon-color {
+      color: var(--github-icon-color-reverse);
+    }
+
+    .icon-color-reverse {
+      color: var(--github-icon-color);
+    }
+  }
+</style>
+
+<span class={ iconClassName }><Icon name="githubLogo" class={ iconClassName } size={size} /></span>
