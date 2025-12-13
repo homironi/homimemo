@@ -1,29 +1,114 @@
 ---
-import Icon from "@/components/Icon.astro";
-import { getCollection, getEntries } from "astro:content";
+import ArticleLink from "@/components/ArticleLink.astro";
+import type { ArticleMeta } from "@/content.config";
+import { noticeData } from "@/data/notice";
+import { recommendedArticles } from "@/data/recommendedArticle";
+import { createArticleDetailPath } from "@/lib/article";
+import { getAllArticles } from "@/lib/collection";
+import { formatDate } from "@/lib/date";
 import Layout from "./_layout.astro";
 
-const articles = await getCollection("articles");
-const tags = await getCollection("tags");
+const noticeMax = 2;
+const recommendedArticleMax = 4;
+const newArticlesMax = 10;
+const articleChangelogMax = 4;
+
+const allArticles= await getAllArticles();
+
+const articleChangelog : string[] =  allArticles
+.sort((a, b) => {
+  return b.data.lastModDate.getTime() - a.data.lastModDate.getTime();
+})
+.map((article) => {
+  const publishedDate = formatDate(article.data.publishDate, "YYYY-MM-DD");
+  const modifiedDate = formatDate(article.data.lastModDate, "YYYY-MM-DD");
+  // 公開日と更新日が同じ場合は更新していない扱い
+  const isModified = publishedDate !== modifiedDate;
+
+  const data = [
+    {
+      date: article.data.publishDate.getTime(),
+      html: `
+          <time dateTime="${ publishedDate }">${formatDate(article.data.publishDate, "YYYY/MM/DD")}</time>：
+          【記事公開】<a href="${ createArticleDetailPath(article.id) }">${article.data.title}</a>
+        `,
+    },
+  ];
+
+  if (isModified) {
+    data.push({
+      date: article.data.lastModDate.getTime(),
+      html: `
+          <time dateTime="${ modifiedDate }">${formatDate(article.data.lastModDate, "YYYY/MM/DD")}</time>：
+          【記事更新】<a href="${ createArticleDetailPath(article.id) }">${article.data.title}</a>
+        `,
+    });
+  }
+
+  return data;
+})
+.flat()
+.sort((a, b) => b.date - a.date)
+.slice(0, articleChangelogMax)
+.map(v => v.html);
+
+const recommendedArticlesList : ArticleMeta[] = (await recommendedArticles)
+  .slice(0, recommendedArticleMax);
+
+
+const latestArticles : ArticleMeta[] = allArticles
+.sort((a, b) => {
+  return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+})
+.slice(0, newArticlesMax)
+.map(article=> article.data );
 ---
 
 <Layout>
-  <h1>Astro</h1>
-  <h2>アイコンの例</h2>
-  <Icon name="article" size={32} />
-  <Icon name="homironiRoundStar" size={64} />
-  <h2>ContentCollection取得例</h2>
-  <p>記事数：{articles.length}</p>
-  <h3>記事コレクション</h3>
-  <ul>
-    {articles.map(async article=>{
-      return (<li>article.id：{article.id} article.data.id：{article.data.id} {JSON.stringify(((await getEntries(article.data.tags)).map(tag=>`tag.id：${tag.id} | tag.data.name：${tag.data.name}`)))}</li>)
-    })}
-  </ul>
-  <h3>タグコレクション</h3>
-  <ul>
-    {tags.map(tag =>{
-      return(<li>tag.id：{tag.id} tag.data.name：{tag.data.name}</li>);
-    })}
-  </ul>
+  <div class="container">
+    <h2 class="title">お知らせ</h2>
+    <ul class="list">
+      {noticeData.slice(0, noticeMax).map(({date, html}) => <li class="item">{date}：<Fragment set:html={html}/></li>)}
+    </ul>
+    <h2 class="title">更新履歴</h2>
+    <ul class="list">
+      {articleChangelog.map(v => <li class="item"><Fragment set:html={v}/></li>)}
+    </ul>
+    <h2 class="title">おすすめ</h2>
+    <ul class="list">
+      {recommendedArticlesList.map(v => <li class="item"><ArticleLink meta={v} /></li>)}
+    </ul>
+    </ul>
+    <h2 class="title">新着記事</h2>
+    <ul class="list">
+      {latestArticles.map(v => <li class="item"><ArticleLink meta={v} /></li>)}
+    </ul>
+  </div>
 </Layout>
+
+<style>
+  .container{
+    margin: 0 auto;
+    padding: 16px;
+    max-width: 1280px;
+  }
+
+  .title{
+    margin: 2rem 0 0;
+  }
+
+  .list{
+    list-style: none;
+  }
+
+  .item{
+    display: block;
+    border-bottom: 4px dotted var(--color-main-dark);
+    padding: 8px 0;
+  }
+
+  @media screen and (width <= 780px) {
+    .container {
+    }
+  }
+</style>
