@@ -114,6 +114,8 @@ const footerLinks: NavigationLink[] = [
         crossorigin="anonymous"
       />
     )}
+
+    <slot name="head"/>
   </head>
   <body>
     <Header links={headerLinks} />
