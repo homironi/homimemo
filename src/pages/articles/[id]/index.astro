@@ -1,0 +1,26 @@
+---
+import { getAllArticles } from "@/lib/collection";
+import Layout from "@/pages/_layout.astro";
+
+/**
+ * Astroの静的パラメータ生成
+ * https://docs.astro.build/ja/reference/routing-reference/#getstaticpaths
+ */
+export async function getStaticPaths(){
+  const articles = await getAllArticles();
+  return articles.map(({id, data})=>{
+    return {
+      params: { id },
+      props: { meta: data },
+    };
+  });
+}
+
+const {meta} = Astro.props;
+---
+
+<Layout>
+  <!-- TODO：記事レイアウト作る -->
+  <p>{meta.id}：{meta.title}</p>
+  <p>{meta.description}</p>
+</Layout>
