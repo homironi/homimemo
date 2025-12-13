@@ -23,7 +23,7 @@ interface Props {
 const { 
   description,
   thumbnail,
-  ogType,
+  ogType = "website",
   ...props
 } = Astro.props;
 
@@ -117,7 +117,6 @@ const footerLinks: NavigationLink[] = [
   </head>
   <body>
     <Header links={headerLinks} />
-    <p>ページタイトル：{title}</p>
     <slot/>
     <Footer links={ footerLinks } />
   </body>
