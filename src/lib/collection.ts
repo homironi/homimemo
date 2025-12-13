@@ -1,4 +1,4 @@
-import type { ArticleMeta } from "@/content.config";
+import type { ArticleMeta } from "@/schemas/article/meta";
 import { getCollection, getEntry } from "astro:content";
 
 /**

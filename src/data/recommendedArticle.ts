@@ -1,5 +1,5 @@
-import { type ArticleMeta } from "@/content.config";
 import { getArticle } from "@/lib/collection";
+import { type ArticleMeta } from "@/schemas/article/meta";
 
 /**
  * おすすめ記事の記事ID
