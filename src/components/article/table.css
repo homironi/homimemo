@@ -2,36 +2,37 @@
 
 /* 基本のテーブルスタイル */
 .article-contents-container table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 /* テーブルヘッダー */
 .article-contents-container th {
-    background-color: var(--color-table-header);
-    font-weight: normal;
-    font-size: 1.2em;
-    padding: 0.4em;
-    color: var(--text-color-table-header);
+  background-color: var(--color-table-header);
+  font-weight: normal;
+  font-size: 1.2em;
+  padding: 0.4em;
+  color: var(--text-color-table-header);
+  text-align: start;
 }
 
 /* テーブルセル */
 .article-contents-container td {
-    padding: 0.5em;
+  padding: 0.5em;
 }
 
 /* テーブルの奇数行の背景色を変更する */
 .article-contents-container tr:nth-child(odd) {
-    background-color: var(--color-table-background-odd);
+  background-color: var(--color-table-background-odd);
 }
 
 /* テーブルの偶数行の背景色を変更する */
 .article-contents-container tr:nth-child(even) {
-    background-color: var(--color-table-background-even);
+  background-color: var(--color-table-background-even);
 }
 
 /* マウスホバー時の色変更 */
 .article-contents-container tbody > tr:hover {
-    background-color: var(--color-table-background-hover);
+  background-color: var(--color-table-background-hover);
 }
