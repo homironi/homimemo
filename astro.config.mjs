@@ -1,4 +1,5 @@
 // @ts-check
+import mdx from "@astrojs/mdx";
 import partytown from "@astrojs/partytown";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
@@ -18,13 +19,16 @@ export default defineConfig({
     format: "directory",
   },
 
-  integrations: [icon({
-    iconDir: "src/assets/icons",
-  }), partytown({
-    config: {
-      forward: ["dataLayer.push"],
-    }
-  })],
+  integrations: [
+    icon({
+      iconDir: "src/assets/icons",
+    }), partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      }
+    }),
+    mdx(),
+  ],
 
   markdown: {
     syntaxHighlight: "prism",
