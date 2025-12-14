@@ -1,0 +1,27 @@
+---
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
+interface Props {
+  content: AstroComponentFactory;
+};
+
+const { content:Content } = Astro.props;
+---
+
+<article>
+  <Content
+    components={ {
+      // p: ArticleParagraph,
+      // a: ExternalLink,
+      // h1: createHeadingComponent("h1"),
+      // h2: H2,
+      // h3: H3,
+      // h4: createHeadingComponent("h4"),
+      // h5: createHeadingComponent("h5"),
+      // h6: createHeadingComponent("h6"),
+      // div: ArticleDiv,
+      // TextBlock,
+      // AffiliateLink,
+    } }
+  />
+</article>

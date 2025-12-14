@@ -3,6 +3,7 @@ import JsonLd from "@/components/JsonLd.astro";
 import { createArticleJsonLd, createStaticArticleJsonLd } from "@/lib/jsonLd";
 import { isArticleMeta, type ArticleMeta, type StaticPageMetaWithSlug } from "@/schemas/article/meta";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import ArticleContent from "./ArticleContent.astro";
 
 export type ArticleComponentMeta = ArticleMeta | StaticPageMetaWithSlug;
 
@@ -12,7 +13,7 @@ interface Props {
   shareSlug: string;
 };
 
-const { meta, content:Content } = Astro.props;
+const { meta, content } = Astro.props;
 
 // 通常の記事どうか：falseなら固定記事（aboutやcontact）
 const isArticle = isArticleMeta(meta);
@@ -28,4 +29,4 @@ const isArticle = isArticleMeta(meta);
 <p>{isArticle && meta.id}：{meta.title}</p>
 <p>{meta.description}</p>
 <hr>
-<Content components={{/* TODO：カスタムComponent追加する */}}/>
+<ArticleContent content={content} />
