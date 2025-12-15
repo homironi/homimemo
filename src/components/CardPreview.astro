@@ -1,0 +1,15 @@
+---
+import { Debug } from 'astro:components';
+
+export interface Props {
+  url: string;
+  title: string;
+  description?: string;
+  imageUrl?: string;
+};
+
+const {...props} = Astro.props;
+---
+
+<Debug props={props}/>
+<p>TODO：CardPreview</p>
