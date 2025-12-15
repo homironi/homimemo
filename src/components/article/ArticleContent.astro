@@ -2,6 +2,7 @@
 import AffiliateLink from "@/components/AffiliateLink.astro";
 import TextBlock from "@/components/TextBlock.astro";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import ArticleParagraph from "./ArticleParagraph.astro";
 import "./blockquote.css"; // 引用のスタイルを適用するためにインポート
 import "./inlineCode.css"; // インラインコードのスタイルを適用するためにインポート
 import "./list.css";
@@ -18,7 +19,7 @@ const { content:Content } = Astro.props;
 <article class="article-contents-container">
   <Content
     components={ {
-      // p: ArticleParagraph,
+      p: ArticleParagraph,
       // a: ExternalLink,
       // h1: createHeadingComponent("h1"),
       // h2: H2,

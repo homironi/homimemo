@@ -1,0 +1,37 @@
+---
+import CardPreviewUrl from "@/components/CardPreviewUrl.astro";
+import type { HTMLAttributes } from "astro/types";
+import { z } from "astro:content";
+
+interface Props extends HTMLAttributes<"p"> {}
+
+const { ...props } = Astro.props;
+
+const childSlotHtml = (await Astro.slots.render("default"))?.trim() ?? "";
+
+// <a href="url">url</a> の形をチェック
+const aTagRegex = /^<a\s+(?:[^>]*?\s+)?href=(["'])(.*?)\1(?:\s+[^>]*)?>\s*([^\s]+?)\s*<\/a>$/i;
+const match = childSlotHtml.match(aTagRegex);
+
+let isSingleUrlLink = false;
+let url = "";
+
+// pの中にaがあるだけのパターンかどうか確認する
+if(match){
+  const href = match[2];
+  const linkText = match[3];
+
+  const urlSchema = z.string().url();
+  const isUrl = urlSchema.safeParse(href).success && urlSchema.safeParse(linkText).success;
+  if(isUrl && href.trim() === linkText.trim()){
+    isSingleUrlLink = true;
+    url = href;
+  }
+}
+---
+
+{
+  isSingleUrlLink
+  ? <CardPreviewUrl url={url}/>
+  : <p {...props}><slot/></p>
+}
