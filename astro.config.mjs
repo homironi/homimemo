@@ -27,7 +27,10 @@ export default defineConfig({
         forward: ["dataLayer.push"],
       }
     }),
-    expressiveCode(),
+    expressiveCode({
+      // 指定はデフォルトのテーマですが、ビルド時にテーマが含まれるように必ず明示的にテーマを指定する
+      themes: ["github-dark", "github-light"],
+    }),
     mdx(),
 ],
 
