@@ -6,8 +6,8 @@ import { defineConfig } from "astro/config";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypeSlug from "rehype-slug";
-import { rehypeCodeContainer } from "./src/lib/rehypePlugins/code";
-import { rehypeGfmTaskList } from "./src/lib/rehypePlugins/gfmTaskList";
+import { rehypeCodeContainer } from "./src/lib/rehype/code";
+import { rehypeGfmTaskList } from "./src/lib/rehype/gfmTaskList";
 
 // https://astro.build/config
 export default defineConfig({
