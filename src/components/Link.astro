@@ -1,11 +1,15 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import { Debug } from "astro:components";
 
 interface Props extends HTMLAttributes<"a">{};
 
 if(!Astro.slots.has("default")){
   throw Error("子要素は必須です。子要素がありません");
 }
+
+const {...props} = Astro.props;
 ---
 
+<Debug props={props}/>
 <a>TODO：Link(<slot/>)</a>
