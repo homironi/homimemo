@@ -37,7 +37,7 @@ description: このサイトについての説明です。
 デフォルトブランチが`develop`になっていますが、公開されているのは`main`ブランチの内容です。  
 開発時の利便性のためにデフォルトブランチを`develop`にしています。
 
-https://github.com/homironi/homimemo
+<CardPreviewUrl url="https://github.com/homironi/homimemo" />
 
 - フロントエンド：Next.js
 - ホスティング＆デプロイ：Cloudflare Workers
