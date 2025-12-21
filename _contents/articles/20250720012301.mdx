@@ -216,8 +216,8 @@ Console.WriteLine(hoge + fuga);
 
 ````markdown
 ```diff
-+ var hoge = "hogehoge";
-- var hoge = "hoge";
++var hoge = "hogehoge";
+-var hoge = "hoge";
 var fuga = "fugafuga";
 Console.WriteLine(hoge + fuga);
 ```
@@ -225,8 +225,8 @@ Console.WriteLine(hoge + fuga);
 
 実際の表示：
 ```diff
-+ var hoge = "hogehoge";
-- var hoge = "hoge";
++var hoge = "hogehoge";
+-var hoge = "hoge";
 var fuga = "fugafuga";
 Console.WriteLine(hoge + fuga);
 ```
@@ -234,24 +234,24 @@ Console.WriteLine(hoge + fuga);
 ▼ C#のハイライトを適用したうえでのdiff
 
 ````markdown
-```diff-cs
-+ var sum = 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1;
-+ var sub = 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1;
-+ var hoge = "hogehoge";
-- var hoge = "hoge";
-- var piyo = "piyo";
+```diff lang="cs"
++var sum = 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1;
++var sub = 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1;
++var hoge = "hogehoge";
+-var hoge = "hoge";
+-var piyo = "piyo";
 var fuga = "fugafuga";
 Console.WriteLine(hoge + fuga);
 ```
 ````
 
 実際の表示：
-```diff-cs
-+ var sum = 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1;
-+ var sub = 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1;
-+ var hoge = "hogehoge";
-- var hoge = "hoge";
-- var piyo = "piyo";
+```diff lang="cs"
++var sum = 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1;
++var sub = 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1;
++var hoge = "hogehoge";
+-var hoge = "hoge";
+-var piyo = "piyo";
 var fuga = "fugafuga";
 Console.WriteLine(hoge + fuga);
 ```
