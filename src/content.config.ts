@@ -25,7 +25,7 @@ const articlesCollection = defineCollection({
 
 const pagesCollection = defineCollection({
   loader: glob({
-    pattern: "**/*.md",
+    pattern: "**/*.mdx",
     base: "./_contents/static-articles", // TODO：フォルダ名変更検討
   }),
   schema: pageSchema,
