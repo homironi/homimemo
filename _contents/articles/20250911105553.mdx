@@ -41,7 +41,7 @@ https://github.com/homironi/homimemo
 これは設定ファイル`wrangler.jsonc`で簡単に設定できます。  
 Next.jsで`/_public/`に出力されるように設定しているので、その場所に静的アセットがありますよー、と設定するだけです。
 
-```json:wrangler.jsonc
+```json title="wrangler.jsonc"
 {
   "name": "homimemo",
   "assets": {
@@ -61,7 +61,7 @@ https://developers.cloudflare.com/workers/static-assets/binding/#binding
 <TextBlock blockType="note">
 Next.js側では以下のように設定して、`_public`フォルダに出力されるようにしています。
 
-```ts:next.config.ts
+```ts title="next.config.ts"
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -80,7 +80,7 @@ export default nextConfig;
 `"assets"`の中で`"html_handling": "force-trailing-slash"`を設定するだけです。  
 これでローカルでプレビューをしてみてもリダイレクトされるようになります。
 
-```json:wrangler.jsonc
+```json title="wrangler.jsonc"
 {
   "name": "homimemo",
   "assets": {
@@ -142,7 +142,7 @@ https://developers.cloudflare.com/workers/static-assets/redirects/
 
 以下のような感じで`元のパス リダイレクト先 リダイレクトのコード`を1行ずつ設定することで可能です。
 
-```:public/_redirects
+```txt title="public/_redirects"
 /categories/memo/0/ /articles/qnhckrrtrx8xv662s0ox840y/ 301
 /categories/memo/1/ /articles/63wh6phn350glrerg3fq7u31/ 301
 ```
@@ -160,7 +160,7 @@ https://developers.cloudflare.com/workers/static-assets/binding/#ignoring-assets
 
 https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/#ignoring-assets
 
-```:public/.assetignore
+```txt title="public/.assetignore"
 _redirects
 ```
 
@@ -173,7 +173,7 @@ _redirects
 `wrangler.jsonc`で`main`も不要になったので削除しています。  
 逆にこれらを残していると以下のようなエラーが出てしまいます。
 
-```
+```shell
 X [ERROR] Cannot use assets with a binding in an assets-only Worker.
 
 Please remove the asset binding from your configuration file, or provide a Worker script in your
