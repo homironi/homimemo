@@ -1,7 +1,7 @@
 ---
 import type { Props as CardPreviewProps } from "@/components/CardPreview.astro";
 import CardPreview from "@/components/CardPreview.astro";
-import ExternalLink from "@/components/ExternalLink.astro";
+import Link from "@/components/Link.astro";
 import { getSiteArticleUrl } from "@/lib/article";
 import { getArticle } from "@/lib/collection";
 import { createTitleFromTemplate } from "@/lib/util";
@@ -75,5 +75,5 @@ const cardPreviewProps = await getCardPreviewProps(url);
 
 {cardPreviewProps 
   ? <CardPreview {...cardPreviewProps}/>
-  : <p><ExternalLink href={url}>{url}</ExternalLink></p>
+  : <p><Link href={url}>{url}</Link></p>
 }
