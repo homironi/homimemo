@@ -35,7 +35,6 @@ export default defineConfig({
 ],
 
   markdown: {
-    syntaxHighlight: "prism",
     rehypePlugins: [
       rehypeSlug,
       () => rehypeAutolinkHeadings({behavior: "wrap"}),
