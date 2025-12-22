@@ -1,6 +1,8 @@
 ---
 import JsonLd from "@/components/JsonLd.astro";
+import { articleThumbnailNativeSize } from "@/lib/article";
 import { createArticleJsonLd, createStaticArticleJsonLd } from "@/lib/jsonLd";
+import { defaultArticleThumbnail } from "@/lib/util";
 import { isArticleMeta, type ArticleMeta, type StaticPageMetaWithSlug } from "@/schemas/article/meta";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import ArticleContent from "./ArticleContent.astro";
@@ -25,8 +27,126 @@ const isArticle = isArticleMeta(meta);
       : <JsonLd schema={ createStaticArticleJsonLd(meta) } />
     }
 </Fragment>
-<!-- TODO：記事レイアウト作る -->
-<p>{isArticle && meta.id}：{meta.title}</p>
-<p>{meta.description}</p>
-<hr>
-<ArticleContent content={content} />
+<div class="container">
+  <div class="first-side">
+    <div class="toc-container">
+      <p>TODO：目次</p>
+    </div>
+  </div>
+  <main class="article">
+    <!-- <Breadcrumbs breadcrumbs={ breadcrumbs } /> -->
+     <p>TODO：Breadcrumbs</p>
+    <h1>{meta.title}</h1>
+    <p>TODO：{`<ArticleMetaComponent meta={ meta } contentLength={ countMarkdownCharacters(content) } />`}</p>
+    <img
+      src={ meta.thumbnail ?? defaultArticleThumbnail }
+      alt={ meta.title }
+      width={ articleThumbnailNativeSize.width }
+      height={ articleThumbnailNativeSize.height }
+      fetchpriority="high"
+      loading="eager"
+    />
+    <p>TODO：ShareButtons</p>
+    <hr />
+    <ArticleContent content={content} />
+    <hr />
+    <p>SNSやブログで記事をご紹介いただけたらうれしいです！</p>
+    <p>TODO：ShareButtons</p>
+    {isArticle && 
+      <>
+        <hr />
+        <p>TODO：{`<RelatedArticles articleMeta={ meta }/>`}</p>
+      </>}
+    {isArticle && <p>TODO：{`<DynamicAdSense adSenseType="display" />`}</p> }
+  </main>
+  <div class="last-side">
+    <p>TODO：{`<Profile />`}</p>
+    {isArticle && <p>TODO：{`<DynamicAdSense adSenseType="display" />`}</p> }
+    <p>TODO：{`<ArticleTagList tags={ getAllTags() } />`}</p>
+    {isArticle && <p>TODO：{`<DynamicAdSense adSenseType="display" />`}</p> }
+  </div>
+</div>
+
+<style>
+  .container{
+    display: grid;
+    grid-template-columns: repeat(var(--grid-column), 1fr);
+    gap: 32px;
+    margin: 16px;
+    align-items: start;
+  }
+
+  .first-side{
+    grid-column: span 3;
+    position: sticky;
+    top: 16px;
+  }
+
+  .toc-container{
+    background-color: var(--color-main);
+    border:1px solid var(--border-color-main);
+  }
+
+  .share-buttons-container {
+    margin: 1rem 0;
+  }
+
+  .article{
+    grid-column: span 6;
+    padding: 24px;
+    background-color: var(--color-main);
+    border:1px solid var(--border-color-main);
+  }
+
+  .last-side{
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ads-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ads-container::before{
+    content: "PR";
+  }
+
+  @media screen and (width <= 1280px){
+    .container{
+      gap: 16px;
+    }
+
+    .article{
+      grid-column: span 9;
+    }
+
+    .last-side{
+      grid-column: 4 / span 9;
+    }
+  }
+
+  @media screen and (width <= 500px){
+    .container{
+      margin: 16px 0;
+    }
+
+    .first-side,
+    .article,
+    .last-side {
+      grid-column: span 12;
+    }
+
+    .first-side{
+      position: relative;
+      top: initial;
+    }
+    
+    .article{
+      padding: 16px;
+    }
+  }
+</style>
