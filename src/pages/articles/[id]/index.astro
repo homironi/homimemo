@@ -1,6 +1,6 @@
 ---
 import Article, { type ArticleComponentMeta } from "@/components/article/Article.astro";
-import { createArticleDetailPath } from "@/lib/article";
+import { countMarkdownCharacters, createArticleDetailPath } from "@/lib/article";
 import { getAllArticles } from "@/lib/collection";
 import Layout from "@/pages/_layout.astro";
 import { getEntries, getEntry, render } from "astro:content";
@@ -34,6 +34,12 @@ if(!articleEntry)
 }
 
 const { Content, headings } = await render(articleEntry);
+
+if(!articleEntry.body){
+  throw Error("article body(=raw markdown content) is not found.");
+}
+
+const contentLength = countMarkdownCharacters(articleEntry.body);
 ---
 
 <Layout
@@ -45,6 +51,7 @@ const { Content, headings } = await render(articleEntry);
   <Article
     meta={meta}
     content={Content}
+    contentLength={contentLength}
     headings={headings}
     shareSlug={ createArticleDetailPath(id) }
   />

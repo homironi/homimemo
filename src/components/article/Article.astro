@@ -11,17 +11,19 @@ import { isArticleMeta, type ArticleMeta, type StaticPageMetaWithSlug } from "@/
 import type { MarkdownHeading } from "astro";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import ArticleContent from "./ArticleContent.astro";
+import ArticleMetaComponent from "./ArticleMetaComponent.astro";
 
 export type ArticleComponentMeta = ArticleMeta | StaticPageMetaWithSlug;
 
 interface Props {
   meta: ArticleComponentMeta;
   content: AstroComponentFactory;
+  contentLength: number;
   headings: MarkdownHeading[];
   shareSlug: string;
 };
 
-const { meta, content, headings } = Astro.props;
+const { meta, content, contentLength, headings } = Astro.props;
 
 // 通常の記事どうか：falseなら固定記事（aboutやcontact）
 const isArticle = isArticleMeta(meta);
@@ -68,7 +70,7 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
   <main class="article">
     <Breadcrumbs breadcrumbs={ breadcrumbs } />
     <h1>{meta.title}</h1>
-    <p>TODO：{`<ArticleMetaComponent meta={ meta } contentLength={ countMarkdownCharacters(content) } />`}</p>
+    <ArticleMetaComponent meta={ meta } contentLength={ contentLength } />
     <img
       src={ meta.thumbnail ?? defaultArticleThumbnail }
       alt={ meta.title }
