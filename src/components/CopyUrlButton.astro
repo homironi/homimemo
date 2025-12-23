@@ -1,0 +1,67 @@
+---
+import Button from "./Button.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+const iconSize = 28;
+---
+
+<Button 
+  id="copy-url-button" 
+  data-url={url}
+  title="URLをコピー"
+>
+  <span id="copy-icon-link" class="link-icon">
+    <Icon name="link" size={iconSize} />
+  </span>
+  <span id="copy-icon-check" class="hidden copied-icon">
+    <Icon name="checkMark" size={iconSize} />
+  </span>
+</Button>
+
+<style>
+  .link-icon{
+    color: var(--text-color);
+  }
+
+  .copied-icon {
+    color: var(--icon-color-success);
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  const button = document.getElementById("copy-url-button") as HTMLButtonElement;
+  const linkIcon = document.getElementById("copy-icon-link");
+  const checkIcon = document.getElementById("copy-icon-check");
+
+  if (button && linkIcon && checkIcon) {
+    button.addEventListener("click", async () => {
+      const url = button.dataset.url || "";
+
+      try {
+        await navigator.clipboard.writeText(url);
+        
+        button.disabled = true;
+        linkIcon.classList.add("hidden");
+        checkIcon.classList.remove("hidden");
+
+        // 2秒後に元に戻す
+        setTimeout(() => {
+          button.disabled = false;
+          linkIcon.classList.remove("hidden");
+          checkIcon.classList.add("hidden");
+        }, 2000);
+      } catch (err) {
+        console.error("コピーに失敗しました", err);
+      }
+    });
+  }
+</script>
