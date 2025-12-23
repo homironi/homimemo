@@ -1,0 +1,80 @@
+---
+import { getAllArticles } from "@/lib/collection";
+import type { ArticleMeta } from "@/schemas/article/meta";
+import { getEntries } from "astro:content";
+import ArticleLink from "./ArticleLink.astro";
+
+interface Props {
+  articleMeta : ArticleMeta;
+};
+
+const { articleMeta } = Astro.props;
+
+const relatedArticleMax = 4;
+
+
+// 現在の記事以外に絞り込み
+const otherArticles = (await getAllArticles())
+  .filter(article => article.id !== articleMeta.id);
+
+// 各記事に対してタグの一致数を計算し、優先度付けして選択
+const relatedArticles: ArticleMeta[] = (await Promise.all(otherArticles
+  .map(async article => {
+    // 現在の記事のタグと対象記事のタグの共通部分を計算
+    const currentTags = (await getEntries(articleMeta.tags)) ?? [];
+    const targetTags = (await getEntries(article.data.tags)) ?? [];
+    
+    const matchingTagsCount = currentTags.filter(tag => 
+      targetTags.some(targetTag=> targetTag.id === tag.id)
+    ).length;
+    
+    return {
+      article,
+      matchingTagsCount
+    };
+  })))
+  .filter(({matchingTagsCount})=> 0 < matchingTagsCount)
+  .sort((a, b) => {
+    if(b.matchingTagsCount !== a.matchingTagsCount)
+    {
+      // タグの一致度降順
+      return b.matchingTagsCount - a.matchingTagsCount;
+    }
+    
+    // タグの一致度が同じ時は最終更新日新しい順
+    return b.article.data.lastModDate.getTime() - a.article.data.lastModDate.getTime();
+  })
+  .slice(0, relatedArticleMax)
+  .map(item => item.article.data);
+
+if(relatedArticles.length <= 0){
+  return null;
+}
+---
+
+<div>
+  <p class="title">関連記事</p>
+  <ul class="list">
+    {relatedArticles.map(article=>{
+      return (
+        <li class="item">
+          <ArticleLink meta={ article } />
+        </li>
+      );
+    })}
+  </ul>
+</div>
+
+<style>
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .list{
+    list-style: none;
+  }
+
+  .item{
+    width: 100%;
+  }
+</style>
