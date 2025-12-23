@@ -64,3 +64,19 @@
 .article-contents-container .task-list-item::before {
   display: none;
 }
+
+/* タスクリストのスタイル */
+.task-list-item > .contains-task-list {
+  padding-left: 1.4em;
+}
+
+.task-list-item-checked .task-list-checkbox-checked,
+.task-list-item-unchecked .task-list-checkbox-unchecked {
+  width: 1.4em;
+  height: 1.4em;
+  color: var(--text-color-pale);
+  flex-shrink: 0;
+  margin-right: 4px;
+  margin-top: 0.1em;
+  vertical-align: middle;
+}
