@@ -1,0 +1,42 @@
+---
+import Links from "./Links.astro";
+
+const profileLink="/profile/";
+---
+
+<div class="container">
+  <h2>運営者</h2>
+  <p><a href={ profileLink }>ほみ</a></p>
+  <a href={ profileLink }>
+    <img
+      src="/images/profile.webp"
+      alt="ほみのプロフィール画像"
+      width={ 128 }
+      height={ 128 }
+      class="image"
+    />
+  </a>
+  <p>
+    プログラミングとか
+    <br />
+    おえかきとか
+    <br />
+    いろいろするのがすき
+  </p>
+  <Links />
+</div>
+
+<style>
+  .container{
+    padding: 24px;
+    background-color: var(--color-main);
+    border:1px solid var(--border-color-main);
+    text-align: center;
+  }
+
+  .image{
+    height:128px;
+    border-radius: 50%;
+  }
+
+</style>

@@ -3,6 +3,7 @@ import AdSense from "@/components/AdSense.astro";
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import JsonLd from "@/components/JsonLd.astro";
+import Profile from "@/components/Profile.astro";
 import RelatedArticles from "@/components/RelatedArticles.astro";
 import ShareButtons from "@/components/ShareButtons.astro";
 import TableOfContents from "@/components/toc/TableOfContents.astro";
@@ -96,7 +97,7 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
     {isArticle && <AdSense adSenseType="display" /> }
   </main>
   <div class="last-side">
-    <p>TODO：{`<Profile />`}</p>
+    <Profile />
     <p>TODO：{`<ArticleTagList tags={ getAllTags() } />`}</p>
     {isArticle && <AdSense adSenseType="display" /> }
   </div>
