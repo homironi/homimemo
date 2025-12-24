@@ -6,6 +6,7 @@ export const tagSchema = z.object({
 });
 
 export type TagMeta = z.infer<typeof tagSchema>;
+export type TagMetaWithSlug = TagMeta & { slug:string };
 
 const baseContentSchema = z.object({
   title: z.string(),
