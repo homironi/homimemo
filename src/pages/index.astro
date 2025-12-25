@@ -76,7 +76,7 @@ const latestArticles : ArticleMeta[] = allArticles
     </ul>
     <h2 class="title">おすすめ</h2>
     <ul class="list">
-      {recommendedArticlesList.map(v => <li class="item"><ArticleLink meta={v} /></li>)}
+      {recommendedArticlesList.map(v => <li class="item"><ArticleLink meta={v} imgOption={ {loading: "eager", fetchpriority: "high"} } /></li>)}
     </ul>
     </ul>
     <h2 class="title">新着記事</h2>
