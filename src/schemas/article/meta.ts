@@ -38,3 +38,4 @@ export const pageSchema = baseContentSchema.extend({
 });
 
 export type StaticPageMeta = z.infer<typeof pageSchema>;
+export type StaticPageMetaWithSlug = StaticPageMeta & { slug:string }; 

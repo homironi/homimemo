@@ -1,9 +1,13 @@
 ---
-import JsonLd from "@/components/JsonLd.astro";
+import Article, { type ArticleComponentMeta } from "@/components/article/Article.astro";
+import { createArticleDetailPath } from "@/lib/article";
 import { getAllArticles } from "@/lib/collection";
-import { createArticleJsonLd, createStaticArticleJsonLd } from "@/lib/jsonLd";
 import Layout from "@/pages/_layout.astro";
-import { isArticleMeta } from "@/schemas/article/meta";
+import { getEntries, getEntry, render } from "astro:content";
+
+interface Props {
+  meta: ArticleComponentMeta;
+};
 
 /**
  * Astroの静的パラメータ生成
@@ -11,28 +15,31 @@ import { isArticleMeta } from "@/schemas/article/meta";
  */
 export async function getStaticPaths(){
   const articles = await getAllArticles();
-  return articles.map(({id, data})=>{
+  return Promise.all(articles.map(async ({id, data})=>{
+    const tags = await getEntries(data.tags);
     return {
       params: { id },
-      props: { meta: data },
+      props: { meta: {...data, tags} },
     };
-  });
+  }));
 }
 
+const { id } = Astro.params;
 const { meta } = Astro.props;
 
-// 通常の記事どうか：falseなら固定記事（aboutやcontact）
-const isArticle = isArticleMeta(meta);
+const articleEntry = await getEntry("articles", id);
+if(!articleEntry)
+{
+  throw Error("article entry is not found.");
+}
+
+const { Content } = await render(articleEntry);
 ---
 
 <Layout>
-  <Fragment slot="head">
-  { isArticle
-      ? <JsonLd schema={ createArticleJsonLd(meta) } />
-      : <JsonLd schema={ createStaticArticleJsonLd(meta) } />
-    }
-</Fragment>
-<!-- TODO：記事レイアウト作る -->
-<p>{isArticle && meta.id}：{meta.title}</p>
-<p>{meta.description}</p>
+  <Article
+    meta={meta}
+    content={Content}
+    shareSlug={ createArticleDetailPath(id) }
+  />
 </Layout>
