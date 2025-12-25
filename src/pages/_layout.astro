@@ -106,14 +106,14 @@ const footerLinks: NavigationLink[] = [
     <link rel="icon" href="/icon.svg" type="image/svg+xml" sizes="any">
     <link rel="apple-touch-icon" href="/apple-icon.png" type="image/png" sizes="180x180">
     
-    <!-- {process.env.NODE_ENV === "production" && (
-      <Script
+    {import.meta.env.PROD && (
+      <script
+        is:inline
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7565570537846567"
-        crossOrigin="anonymous"
-        strategy="afterInteractive"
+        crossorigin="anonymous"
       />
-    )} -->
+    )}
   </head>
   <body>
     <Header links={headerLinks} />
