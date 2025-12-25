@@ -1,5 +1,5 @@
 ---
-import { Debug } from 'astro:components';
+import { noImageUrl } from '@/lib/util';
 
 export interface Props {
   url: string;
@@ -8,8 +8,96 @@ export interface Props {
   imageUrl?: string;
 };
 
-const {...props} = Astro.props;
+const { url, title, description, imageUrl } = Astro.props;
+const validImageUrl = imageUrl?.trim() ?? noImageUrl;
 ---
 
-<Debug props={props}/>
-<p>TODO：CardPreview</p>
+<div class="container">
+  <a href={ url } target="_blank" class="link" >
+    <div class="image-container">
+      {/* テキストのサイズに合わせて画像を拡縮するためにラップ */}
+      <div class="image-container-2">
+        <img src={ validImageUrl } alt={ title } class="image" />
+      </div>
+    </div>
+    <div class="texts">
+      <div class="title">{title}</div>
+      <div class="description">{description}</div>
+      <div class="url">{url}</div>
+    </div>
+  </a>
+</div>
+
+<style>
+  .container{
+    max-width: 100%;
+    height: auto;
+    margin: 0.5em 0;
+  }
+
+  .link{
+    max-width: 100%;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    min-width: 0;
+    border: 1px solid var(--border-color-main);
+    border-radius: var(--border-radius);
+    background-color: var(--color-main);
+  }
+
+  .image-container{
+    flex: 1 1 180px;
+    position: relative;
+  }
+
+  .image-container-2{
+    position: absolute;
+    top: 0;
+    inset-inline: 0;
+    bottom: 0;
+  }
+
+  .image{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+  }
+
+  .texts{
+    flex: 5 1 180px;
+    display: block;
+    font-size: 0.9rem;
+    overflow: hidden;
+    padding: 1rem;
+  }
+
+  .title{
+    font-size: 0.9rem;
+  }
+
+  .description{
+    font-size: 0.8rem;
+    color: var(--text-color-pale);
+    line-height: 1.5em;
+    height: 3em;
+  }
+
+  .url{
+    font-size: 0.8rem;
+  }
+
+  .title,
+  .url{
+    line-height: 1.5em;
+    height: 1.5em;
+  }
+
+  .title,
+  .description,
+  .url{
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
