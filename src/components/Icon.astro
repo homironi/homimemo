@@ -15,12 +15,18 @@ const { name, class: className, size, ...props } = Astro.props;
 const actualName = iconMap[name];
 ---
 
+{/* 同じページ内で複数回使う時に2回目以降が表示されなくならないようにis:inlineを設定 */}
 <AstroIcon
 {...props}
 name={actualName}
-class={className}
+class={`icon ${className}`}
 width={size}
 height={size}
-{/* 同じページ内で複数回使う時に2回目以降が表示されなくならないように */}
-is:inline 
+is:inline
 />
+
+<style>
+  .icon{
+    vertical-align: middle;
+  }
+</style>
