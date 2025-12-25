@@ -2,8 +2,7 @@ import { glob } from "astro/loaders";
 import { defineCollection, reference, z } from "astro:content";
 
 const tagSchema = z.object({
-  name: z.string().min(1, "タグ名が設定されていません"),
-  slug: z.string().min(1, "slug が設定されていません"),
+  name: z.string().min(1),
   description: z.string().optional(),
 });
 

@@ -1,4 +1,3 @@
 ---
 name: メール
-slug: mail
 ---

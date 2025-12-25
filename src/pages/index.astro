@@ -23,7 +23,7 @@ const tags = await getCollection("tags");
   <h3>タグコレクション</h3>
   <ul>
     {tags.map(tag =>{
-      return(<li>tag.id：{tag.id} tag.data.slug：{tag.data.slug} tag.data.name：{tag.data.name}</li>);
+      return(<li>tag.id：{tag.id} tag.data.name：{tag.data.name}</li>);
     })}
   </ul>
 </Layout>
