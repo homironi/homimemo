@@ -1,43 +1,67 @@
-# Astro Starter Kit: Minimal
+ほみの個人サイトのリポジトリです。  
+https://homironi.com/
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+## 技術スタック
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- Astro
+- TypeScript
+- markdown
 
-## 🚀 Project Structure
+[![Built with Cloudflare](https://workers.cloudflare.com/built-with-cloudflare.svg)](https://cloudflare.com)
 
-Inside of your Astro project, you'll see the following folders and files:
+## 実行方法
 
-```text
+1. 依存関係の install  
+   ```cli
+   pnpm install --frozen-lockfile
+   ```
+1. ローカルで起動  
+   ```cli
+   pnpm run dev
+   ```
+
+## scripts
+
+|scripts|内容|
+|--|--|
+|`pnpm dev`|ローカルで起動|
+|`pnpm build`|ビルド|
+|`pnpm preview`|本番環境に近めのプレビューとして起動|
+|`pnpm astro`|Astro|
+|`pnpm lint`|コードの整形ルール違反確認|
+|`pnpm lint-fix`|コードの整形ルール違反の自動修正可能なものを自動修正|
+|`pnpm svg`|`/src/assets/icons`以下のSVGを最適化する（色なしなどになるので注意）|
+
+## フォルダ構成
+
+```txt
 /
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+├─ _contents                            ← 記事などのデータの保存フォルダ
+│  ├─ articles                          ← 記事マークダウンフォルダ
+│  └─ tags                              ← 記事のタグデータ
+│
+├─ _public                              ← ビルドの出力フォルダ：これを公開するがgitでは管理外に指定
+├─ public                               ← 静的アセットフォルダ：このフォルダはそのままビルド時にルートに入る
+├─ scripts                              ← GitHubActions や pnpm run などで使用するスクリプト
+└─ src
+   ├─ pages                             ← Astroのルーティングフォルダ
+   │  ├─ index.astro                    ← Astroのページファイル
+   │  ├─ _layout.astro                  ← レイアウトのAstroファイル：./index.astro 以下ではこれを使う
+   │  ├─ _components                    ← ./index.astro 以下でのみ使用するComponentのフォルダ（以下共有Componentフォルダと同じ）
+   │  └─ hoge                           ← 「/hoge/」のルーティングフォルダ
+   │     ├─ _components                 ← ./index.astro 以下でのみ使用するComponentのフォルダ（以下共有Componentフォルダと同じ）
+   │     └─ index.astro                 ← 「/hoge/」のページ
+   │
+   ├─ assets                            ← astroファイルなどでのみ使用するSVGアイコンアセットなどのフォルダ
+   │  └─ icons                          ← 「astro-icon」のアイコンSVG用フォルダ：最適化の対象なので色などが変わるとまずいものはよそへ
+   │
+   ├─ components                        ← 複数画面で使用するComponentフォルダ
+   │  └─ HogeComponet.astro             ← 各Component
+   │
+   ├─ lib                               ← 複数画面で使用するts のみのロジックファイル
+   └─ schemas                           ← 複数画面で使用する型検証スキーマ＆型
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## コード規約
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+基本はLinterで設定する。
