@@ -1,5 +1,5 @@
-import { getArticleMeta } from "@/lib/article";
-import { ArticleMeta } from "@/schemas/article/meta";
+import { type ArticleMeta } from "@/content.config";
+import { getArticle } from "@/lib/collection";
 
 /**
  * おすすめ記事の記事ID
@@ -16,5 +16,6 @@ export const recommendedArticleIds : string[] = [
  * おすすめ記事の記事meta
  * @description 記事IDで取得できる前提で!で null回避しているのでエラーが出たら記事IDがおかしい可能性が高い
  */
-export const recommendedArticles : ArticleMeta[] = recommendedArticleIds
-  .map(id => getArticleMeta(id)!);
+export const recommendedArticles : Promise<ArticleMeta[]> = Promise.all(
+  recommendedArticleIds.map(id => getArticle(id)!)
+);
