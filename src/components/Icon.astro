@@ -18,4 +18,6 @@ const actualName = iconMap[name];
   class={className}
   width={size}
   height={size}
+  {/* 同じページ内で複数回使う時に2回目以降が表示されなくならないように */}
+  is:inline 
 />

@@ -9,7 +9,6 @@ export type SupportedDateFormat =
  * @param format 日付のフォーマットタイプ
  * @returns 日付を指定されたフォーマットの文字列に変換
  * @description 必要なフォーマットが増えたら、switch文に追加する
- * @throws UnsupportedDateFormat エラーが発生した場合、サポートされていないフォーマットが指定されたことを示す
  */
 export function formatDate(date: Date, format: SupportedDateFormat): string {
   switch (format) {

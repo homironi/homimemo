@@ -30,6 +30,8 @@ const articleSchema = baseContentSchema.extend({
   thumbnail: z.string().optional(),
 });
 
+export type ArticleMeta = z.infer<typeof articleSchema>;
+
 const articlesCollection = defineCollection({
   loader: glob({
     pattern: "**/*.md",

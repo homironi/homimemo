@@ -1,0 +1,145 @@
+---
+import type { ArticleMeta } from "@/content.config";
+import { articleThumbnailNativeSize, createArticleDetailPath } from "@/lib/article";
+import { formatDate } from "@/lib/date";
+import { defaultArticleThumbnail } from "@/lib/util";
+import Icon from "./Icon.astro";
+
+interface Props {
+  meta: ArticleMeta;
+  imgOption?: {
+    loading?: "eager" | "lazy" | undefined;
+    fetchpriority?: "high" | "low" | "auto" | undefined;
+  };
+};
+
+const { meta, imgOption } = Astro.props;
+
+const publishDate = formatDate(meta.publishDate, "YYYY/MM/DD");
+const lastModDate = formatDate(meta.lastModDate, "YYYY/MM/DD");
+---
+
+<div class="container">
+  <a href={ createArticleDetailPath(meta.id) } class="link">
+    <div class="image-container">
+      <div class="image-container-2" }>
+        <img
+          src={ meta.thumbnail ?? defaultArticleThumbnail }
+          alt={ meta.title }
+          width={ articleThumbnailNativeSize.width }
+          height={ articleThumbnailNativeSize.height }
+          class="image"
+          fetchpriority={ imgOption?.fetchpriority }
+          loading={ imgOption?.loading }
+        />
+      </div>
+    </div>
+    <div class="text-container">
+      <div class="title">{meta.title}</div>
+      <div class="description">{meta.description}</div>
+      <div class="date-container">
+        {lastModDate !== publishDate && (
+          <span>
+            <span class="icon"><Icon name="lastModeDate" size={16}/></span>
+            <time datetime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>
+              {lastModDate}
+            </time>
+          </span>
+        )}
+        <span>
+          <span class="icon"><Icon name="publishDate" size={16}/></span>
+          <time datetime={ formatDate(meta.publishDate, "YYYY-MM-DD") }>
+            {publishDate}
+          </time>
+        </span>
+      </div>
+    </div>
+  </a>
+</div>
+
+<style>
+  .container{
+    transition: transform 0.3s;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    margin: 0.5em 0;
+  }
+
+  .container:hover{
+    transform: scale(1.02);
+  }
+
+  .link{
+    max-width: 100%;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    min-width: 0;
+    background-color: var(--color-main);
+    border: 1px solid var(--border-color-main);
+    border-radius: var(--border-radius);
+  }
+
+  .image-container{
+    flex: 1 1 180px;
+    position: relative;
+  }
+
+  .image-container-2{
+    position: absolute;
+    top: 0;
+    inset-inline: 0;
+    bottom: 0;
+  }
+
+  .image{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+  }
+
+  .text-container{
+    flex: 5 1 180px;
+    padding: 0.5rem;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .title{
+    font-size: 0.9rem;
+    line-height: 1.5em;
+    height: 3em;
+    font-weight: normal;
+  }
+
+  .description{
+    font-size: 0.8rem;
+    color: var(--text-color-pale);
+    line-height: 1.5em;
+    height: 3em;
+  }
+
+  .title,
+  .description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0.5em 0;
+  }
+
+  .date-container{
+    text-align: right;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0 0.5rem;
+    color: var(--text-color-pale);
+    font-size: 0.8rem;
+  }
+
+  .icon{
+    fill: var(--text-color-pale);
+    vertical-align: -0.2em;
+  }
+</style>
