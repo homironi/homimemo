@@ -1,1 +1,22 @@
-<p>TODO：TextBlock</p>
+---
+import { Debug } from 'astro:components';
+
+export type TextBlockType =
+| "info"
+| "warning"
+| "error"
+| "success"
+| "note"
+| "tip"
+| "question";
+
+interface Props {
+  blockType: TextBlockType;
+  title?: string;
+};
+
+const {...props} = Astro.props;
+---
+
+<Debug props={props}/>
+<p>TODO：TextBlock(child:<slot/>)</p>
