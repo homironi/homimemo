@@ -18,21 +18,31 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
       "@/*": [
         "./src/*"
       ],
+      "@public/*": [
+        "./public/*"
+      ]
     }
   },
-  "extends": "astro/tsconfigs/strict",
   "include": [
-    ".astro/types.d.ts",
+    "svgr.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*",
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
+    "_public/types/**/*.ts",
+    "_public/dev/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "dist"
+    "node_modules"
   ]
 }

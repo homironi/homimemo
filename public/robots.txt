@@ -2,4 +2,3 @@ Sitemap: https://homironi.com/sitemap.xml
 
 User-agent: *
 Allow: /
-Disallow: /admin/
