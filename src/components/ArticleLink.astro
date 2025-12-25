@@ -40,14 +40,14 @@ const lastModDate = formatDate(meta.lastModDate, "YYYY/MM/DD");
       <div class="date-container">
         {lastModDate !== publishDate && (
           <span>
-            <span class="icon"><Icon name="lastModeDate" size={16}/></span>
+            <Icon name="lastModeDate" size={16}/>
             <time datetime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>
               {lastModDate}
             </time>
           </span>
         )}
         <span>
-          <span class="icon"><Icon name="publishDate" size={16}/></span>
+          <Icon name="publishDate" size={16}/>
           <time datetime={ formatDate(meta.publishDate, "YYYY-MM-DD") }>
             {publishDate}
           </time>
@@ -136,10 +136,5 @@ const lastModDate = formatDate(meta.lastModDate, "YYYY/MM/DD");
     gap: 0 0.5rem;
     color: var(--text-color-pale);
     font-size: 0.8rem;
-  }
-
-  .icon{
-    fill: var(--text-color-pale);
-    vertical-align: -0.2em;
   }
 </style>
