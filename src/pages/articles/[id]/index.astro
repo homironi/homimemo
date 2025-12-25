@@ -36,7 +36,12 @@ if(!articleEntry)
 const { Content } = await render(articleEntry);
 ---
 
-<Layout>
+<Layout
+  title={meta.title}
+  description={meta.description}
+  thumbnail={meta.thumbnail}
+  ogType="article"
+>
   <Article
     meta={meta}
     content={Content}
