@@ -41,7 +41,7 @@ Firebase Authentication のメソッド呼び出しを含むメソッドのテ�
 
 以下のエラーに悩まされました。
 
-```
+```shell
 @firebase/auth: Auth (11.2.0): INTERNAL ASSERTION FAILED: Could not find fetch implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill
 
       3 |
@@ -85,7 +85,7 @@ fetch のモックが必要です。
 
 ▼ [`whatwg-fetch`](https://www.npmjs.com/package/whatwg-fetch)をインストールします。
 
-```
+```shell
 npm install whatwg-fetch --save
 ```
 
@@ -147,9 +147,9 @@ describe("signUpWithEmail", () => {
 
 ## さいごに
 
-以下のエラー分で検索しても解決方法が出てこず、なかなか困りました。
+以下のエラー文で検索しても解決方法が出てこず、なかなか困りました。
 
-```
+```shell
 @firebase/auth: Auth (11.2.0): INTERNAL ASSERTION FAILED: Could not find fetch implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill
 ```
 

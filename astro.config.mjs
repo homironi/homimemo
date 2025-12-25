@@ -1,12 +1,11 @@
 // @ts-check
 import mdx from "@astrojs/mdx";
 import partytown from "@astrojs/partytown";
+import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeCodeTitles from "rehype-code-titles";
 import rehypeSlug from "rehype-slug";
-import { rehypeCodeContainer } from "./src/lib/rehype/code";
 import { rehypeGfmTaskList } from "./src/lib/rehype/gfmTaskList";
 
 // https://astro.build/config
@@ -22,21 +21,23 @@ export default defineConfig({
   integrations: [
     icon({
       iconDir: "src/assets/icons",
-    }), partytown({
+    }),
+    partytown({
       config: {
         forward: ["dataLayer.push"],
       }
     }),
+    expressiveCode({
+      // 指定はデフォルトのテーマですが、ビルド時にテーマが含まれるように必ず明示的にテーマを指定する
+      themes: ["github-dark", "github-light"],
+    }),
     mdx(),
-  ],
+],
 
   markdown: {
-    syntaxHighlight: "prism",
     rehypePlugins: [
       rehypeSlug,
       () => rehypeAutolinkHeadings({behavior: "wrap"}),
-      rehypeCodeTitles,
-      rehypeCodeContainer,
       rehypeGfmTaskList,
     ],
   }
