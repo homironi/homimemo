@@ -1,6 +1,6 @@
 ---
 import Icon from "@/components/Icon.astro";
-import { getCollection } from "astro:content";
+import { getCollection, getEntries } from "astro:content";
 import Layout from "./_layout.astro";
 
 const articles = await getCollection("articles");
@@ -16,8 +16,8 @@ const tags = await getCollection("tags");
   <p>記事数：{articles.length}</p>
   <h3>記事コレクション</h3>
   <ul>
-    {articles.map(article=>{
-      return (<li>article.id：{article.id} article.data.id：{article.data.id} {JSON.stringify(article.data.tags)}</li>)
+    {articles.map(async article=>{
+      return (<li>article.id：{article.id} article.data.id：{article.data.id} {JSON.stringify(((await getEntries(article.data.tags)).map(tag=>`tag.id：${tag.id} | tag.data.name：${tag.data.name}`)))}</li>)
     })}
   </ul>
   <h3>タグコレクション</h3>
