@@ -1,0 +1,33 @@
+---
+import ArticleRatio, { type Props as ArticleRatioProps } from "./ArticleRatio.astro";
+
+export interface Props {
+  list : ArticleRatioProps[];
+};
+
+const { list } = Astro.props;
+---
+
+<ul class="list">
+  {list.map(({ allArticlesLength, length, href, name })=>{
+    return (
+      <li class="li">
+        <ArticleRatio
+          allArticlesLength={ allArticlesLength }
+          length={ length }
+          href={ href }
+          name={ name }
+        />
+      </li>);
+  })}
+</ul>
+
+<style>
+  .list {
+    list-style: none;
+  }
+
+  .li {
+    margin-bottom: 1rem;
+  }
+</style>
