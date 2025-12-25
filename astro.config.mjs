@@ -1,4 +1,5 @@
 // @ts-check
+import partytown from "@astrojs/partytown";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
 
@@ -14,5 +15,9 @@ export default defineConfig({
 
   integrations: [icon({
     iconDir: "src/assets/icons",
+  }), partytown({
+    config: {
+      forward: ["dataLayer.push"],
+    }
   })]
 });
