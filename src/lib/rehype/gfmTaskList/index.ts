@@ -1,7 +1,6 @@
 import type { Root } from "hast";
 import { visit } from "unist-util-visit";
 import { loadSvgAsElement } from "../shared/svgLoader";
-import "./index.css";
 
 const taskListItemClassName = "task-list-item";
 
