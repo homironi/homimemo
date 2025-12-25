@@ -1,0 +1,29 @@
+---
+import "./_globalElement.css";
+import "./_globals.css";
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8"/>
+    <!-- TODO：その他meta追加する -->
+    <!-- {process.env.NODE_ENV === "production" && (
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7565570537846567"
+        crossOrigin="anonymous"
+        strategy="afterInteractive"
+      />
+    )} -->
+  </head>
+  <body>
+    <p>todo{"<Header />"}</p>
+    <p>todo{"<Navigation links={ headerLinks } />"}</p>
+    <slot/>
+    <p>todo{"<Footer links={ footerLinks } />"}</p>
+    <p>todo{`{process.env.NODE_ENV === "production" && (
+      <GoogleTagManager gtmId="G-V6P1VWVXYK" />
+    )}`}</p>
+  </body>
+</html>
