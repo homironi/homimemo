@@ -1,7 +1,10 @@
 ---
+import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import JsonLd from "@/components/JsonLd.astro";
 import TableOfContents from "@/components/toc/TableOfContents.astro";
-import { articleThumbnailNativeSize } from "@/lib/article";
+import { articleThumbnailNativeSize, createArticleDetailPath } from "@/lib/article";
+import { articlesListPagePath } from "@/lib/article/listPage";
 import { createArticleJsonLd, createStaticArticleJsonLd } from "@/lib/jsonLd";
 import { defaultArticleThumbnail } from "@/lib/util";
 import { isArticleMeta, type ArticleMeta, type StaticPageMetaWithSlug } from "@/schemas/article/meta";
@@ -22,6 +25,32 @@ const { meta, content, headings } = Astro.props;
 
 // 通常の記事どうか：falseなら固定記事（aboutやcontact）
 const isArticle = isArticleMeta(meta);
+
+function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
+  if (isArticleMeta(meta)) {
+    return [
+      {
+        name: "記事一覧",
+        href: articlesListPagePath,
+      },
+      {
+        name: meta.title,
+        href: createArticleDetailPath(meta.id),
+        isCurrent: true,
+      },
+    ];
+  } else {
+    return [
+      {
+        name: meta.title,
+        href: `/${meta.slug}/`,
+        isCurrent: true,
+      },
+    ];
+  }
+}
+
+const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
 ---
 
 <Fragment slot="head">
@@ -37,8 +66,7 @@ const isArticle = isArticleMeta(meta);
     </div>
   </div>
   <main class="article">
-    <!-- <Breadcrumbs breadcrumbs={ breadcrumbs } /> -->
-     <p>TODO：Breadcrumbs</p>
+    <Breadcrumbs breadcrumbs={ breadcrumbs } />
     <h1>{meta.title}</h1>
     <p>TODO：{`<ArticleMetaComponent meta={ meta } contentLength={ countMarkdownCharacters(content) } />`}</p>
     <img
