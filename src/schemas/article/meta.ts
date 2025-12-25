@@ -25,6 +25,15 @@ export const articleSchema = baseContentSchema.extend({
 
 export type ArticleMeta = z.infer<typeof articleSchema>;
 
+/**
+ * ArticleMeta かどうかを確認する
+ * @param data 確認したいデータ
+ * @returns ArticleMeta かどうか
+ */
+export function isArticleMeta(data:unknown) : data is ArticleMeta{
+  return articleSchema.safeParse(data).success;
+}
+
 export const pageSchema = baseContentSchema.extend({
 });
 
