@@ -1,0 +1,127 @@
+---
+import ArticleCard, { type Props as ArticleCardProps } from "@/components/ArticleCard.astro";
+import ArticleListPageNumbers from "@/components/ArticleListPageNumbers.astro";
+import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { articlePagePerNum } from "@/lib/article/listPage";
+import type { ArticleMeta } from "@/schemas/article/meta";
+import Layout from "../_layout.astro";
+
+interface Props{
+  title: string;
+  description: string;
+  articles: ArticleMeta[];
+  breadcrumbs: BreadcrumbElement[];
+  listPagePathBase: string;
+  currentPageNumber: number;
+  firstPagePath?: string;
+};
+
+const {
+  title,
+  description,
+  articles,
+  breadcrumbs,
+  listPagePathBase,
+  currentPageNumber,
+  firstPagePath,
+} = Astro.props;
+
+const startNum = articlePagePerNum * (currentPageNumber - 1);
+const endNum = startNum + articlePagePerNum;
+const pageArticles = articles.slice(startNum, endNum);
+---
+
+<Layout
+title={title}
+description={description}
+ogType="website"
+>
+  <div class="container">
+    <Breadcrumbs breadcrumbs={ breadcrumbs } />
+    <h1>{title}</h1>
+    {articles.length === 0 ? (
+      <p>記事は見つかりませんでした。</p>
+    ) : (
+      <>
+        <p>{`全 ${articles.length} 件（${startNum + 1} 件目 ～ ${Math.min(
+          endNum,
+          articles.length
+        )} 件目）`}</p>
+        <ol class="list">
+          {pageArticles.map((article, index) => {
+            const imgOption : ArticleCardProps["imgOption"] = index < 4 
+              ? {
+                loading: "eager",
+                fetchpriority: "high",
+              } 
+              : undefined;
+            return <li class="item">
+              <ArticleCard meta={ article } imgOption={ imgOption } />
+            </li>;
+          })}
+        </ol>
+        <ArticleListPageNumbers
+          allArticlesLength={ articles.length }
+          listPagePathBase={ listPagePathBase }
+          currentPageNumber={ currentPageNumber }
+          firstPagePath={ firstPagePath }
+        />
+      </>
+    )}
+  </div>
+</Layout>
+
+<style>
+  .container{
+    margin: 16px;
+    padding: 4px;
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
+    list-style: none;
+    padding: 0;
+
+    --gap:8px;
+  }
+
+  .item{
+    width: calc(calc(calc(1 / 4) * 100%) - var(--gap));
+  }
+
+  @media screen and (width <= 1280px) {
+    .item {
+      width: calc(calc(calc(1 / 3) * 100%) - var(--gap));
+    }
+  }
+
+  @media screen and (width <= 768px) {
+    .container{
+      margin: 8px;
+      padding: 4px;
+    }
+
+    .item {
+      width: calc(calc(calc(1 / 2) * 100%) - var(--gap));
+    }
+  }
+
+  @media screen and (width <= 500px) {
+    .container{
+      margin: 0;
+      padding: 4px;
+    }
+
+    .list{
+      gap: 0;
+      padding: 0;
+    }
+
+    .item {
+      width: 100%;
+    }
+  }
+</style>

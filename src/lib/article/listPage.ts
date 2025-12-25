@@ -2,7 +2,7 @@
 // 記事一覧の1ページあたりの表示件数
 export const articlePagePerNum = 12;
 
-const articleListPagePath = "/articles/";
+export const articleListPagePath = "/articles/";
 export const articleListPagePathBase = `${articleListPagePath}page/`;
 
 // 記事一覧ページの最初のページのパス

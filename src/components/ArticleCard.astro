@@ -1,0 +1,13 @@
+---
+import type { ArticleMeta } from "@/schemas/article/meta";
+
+export interface Props {
+  meta: ArticleMeta;
+  imgOption?: {
+    loading?: "eager" | "lazy" | undefined;
+    fetchpriority?: "high" | "low" | "auto" | undefined;
+  };
+};
+---
+
+<p>TODO：ArticleCard</p>
