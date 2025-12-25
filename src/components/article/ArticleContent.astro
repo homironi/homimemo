@@ -1,5 +1,6 @@
 ---
 import AffiliateLink from "@/components/AffiliateLink.astro";
+import Link from "@/components/Link.astro";
 import TextBlock from "@/components/TextBlock.astro";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import "./blockquote.css"; // 引用のスタイルを適用するためにインポート
@@ -23,6 +24,7 @@ const { content:Content } = Astro.props;
 <article class="article-contents-container">
   <Content
     components={ {
+      a: Link,
       h1: H1,
       h2: H2,
       h3: H3,
