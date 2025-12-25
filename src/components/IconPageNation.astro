@@ -1,0 +1,34 @@
+---
+interface Props {
+  href:string,
+  isActive:boolean,
+  title: string,
+};
+
+const { isActive, href,title } = Astro.props;
+---
+
+{isActive
+? (
+<a
+  href={ href }
+  class="icon"
+  title={ title }
+>
+  <slot/>
+</a>)
+: <span class={ "icon icon-disabled" } />
+}
+
+<style>
+  .icon {
+    color: var(--color-sub);
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+
+  .icon-disabled {
+    color: var(--text-color-pale);
+  }
+</style>
