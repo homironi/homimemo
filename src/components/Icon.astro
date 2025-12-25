@@ -1,23 +1,26 @@
 ---
 import { iconMap, type IconName } from "@/assets/icons/iconMap";
 import { Icon as AstroIcon } from "astro-icon/components";
+import type { HTMLAttributes } from "astro/types";
 
-interface Props {
+interface Props extends HTMLAttributes<"svg"> {
   name: IconName;
-  class?: string;
+  title?: string;
+  desc?: string;
   size?: number | string;
 }
 
-const { name, class: className, size } = Astro.props;
+const { name, class: className, size, ...props } = Astro.props;
 
 const actualName = iconMap[name];
 ---
 
-<AstroIcon 
-  name={actualName}
-  class={className}
-  width={size}
-  height={size}
-  {/* 同じページ内で複数回使う時に2回目以降が表示されなくならないように */}
-  is:inline 
+<AstroIcon
+{...props}
+name={actualName}
+class={className}
+width={size}
+height={size}
+{/* 同じページ内で複数回使う時に2回目以降が表示されなくならないように */}
+is:inline 
 />
