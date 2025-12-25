@@ -5,7 +5,7 @@ import { Icon as AstroIcon } from "astro-icon/components";
 interface Props {
   name: IconName;
   class?: string;
-  size?: number;
+  size?: number | string;
 }
 
 const { name, class: className, size } = Astro.props;
