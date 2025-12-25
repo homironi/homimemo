@@ -2,6 +2,7 @@
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import JsonLd from "@/components/JsonLd.astro";
+import RelatedArticles from "@/components/RelatedArticles.astro";
 import ShareButtons from "@/components/ShareButtons.astro";
 import TableOfContents from "@/components/toc/TableOfContents.astro";
 import { articleThumbnailNativeSize, createArticleDetailPath } from "@/lib/article";
@@ -89,7 +90,7 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
     {isArticle && 
       <>
         <hr />
-        <p>TODO：{`<RelatedArticles articleMeta={ meta }/>`}</p>
+        <RelatedArticles articleMeta={ meta }/>
       </>}
     {isArticle && <p>TODO：{`<DynamicAdSense adSenseType="display" />`}</p> }
   </main>
