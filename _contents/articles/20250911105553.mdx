@@ -21,7 +21,7 @@ description: >-
 当サイトはリポジトリを公開しています。  
 必要であれば、リポジトリもご確認いただけます！
 
-https://github.com/homironi/homimemo
+<CardPreviewUrl url="https://github.com/homironi/homimemo" />
 
 <TextBlock blockType="warning" title="2025/09/29 大幅改稿">
 「[＃特定のページのリダイレクト](#特定のページのリダイレクト)」を公開時から大幅改稿しています。  
@@ -50,13 +50,13 @@ Next.jsで`/_public/`に出力されるように設定しているので、そ�
 }
 ```
 
-https://developers.cloudflare.com/workers/static-assets/routing/static-site-generation/
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/routing/static-site-generation/" />
 
 `"binding": "ASSETS",`とすることで、Workerスクリプト内で`env.ASSETS`でアクセスできます。  
 今回は一部記事のURLリダイレクトのため、Workerからアクセスしたいのでこちらも設定しました。  
 ここを設定しておくと、CloudflareのWorkersダッシュボードからもバインディングできていることが確認できるようになります。
 
-https://developers.cloudflare.com/workers/static-assets/binding/#binding
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/binding/#binding" />
 
 <TextBlock blockType="note">
 Next.js側では以下のように設定して、`_public`フォルダに出力されるようにしています。
@@ -90,7 +90,7 @@ export default nextConfig;
 }
 ```
 
-https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/#force-trailing-slashes
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/#force-trailing-slashes" />
 
 ## Cloudflareのダッシュボードでリダイレクト設定
 
@@ -138,7 +138,7 @@ Cloudflareのダッシュボードから設定できます。
 
 `_redirects`というファイルを作成することでそのファイル内でリダイレクトを設定できます！
 
-https://developers.cloudflare.com/workers/static-assets/redirects/
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/redirects/" />
 
 以下のような感じで`元のパス リダイレクト先 リダイレクトのコード`を1行ずつ設定することで可能です。
 
@@ -154,11 +154,11 @@ Next.jsでSSGしているので`public`ディレクトリは中身がビルド�
 
 `_redirects`は`assets`のディレクトリにアップロードすべきではないそうです。
 
-https://developers.cloudflare.com/workers/static-assets/binding/#ignoring-assets
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/binding/#ignoring-assets" />
 
 どうも`_redirects`はCloudflare Pagesでもあったようで、Pagesからのmigrateドキュメントにも記載されていたので、それを参考に`public/.assetignore`に作成しました。
 
-https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/#ignoring-assets
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/#ignoring-assets" />
 
 ```txt title="public/.assetignore"
 _redirects
@@ -186,18 +186,18 @@ configuration file (`main`).
 
 ## 参照
 
-https://developers.cloudflare.com/workers/static-assets/routing/static-site-generation/
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/routing/static-site-generation/" />
 
-https://developers.cloudflare.com/workers/static-assets/binding/#binding
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/binding/#binding" />
 
-https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/#force-trailing-slashes
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/#force-trailing-slashes" />
 
-https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/" />
 
-https://developers.cloudflare.com/workers/static-assets/#how-it-works
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/#how-it-works" />
 
-https://developers.cloudflare.com/workers/static-assets/redirects/
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/redirects/" />
 
-https://developers.cloudflare.com/workers/static-assets/binding/#ignoring-assets
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/binding/#ignoring-assets" />
 
-https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/#ignoring-assets
+<CardPreviewUrl url="https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/#ignoring-assets" />

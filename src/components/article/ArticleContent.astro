@@ -1,5 +1,6 @@
 ---
 import AffiliateLink from "@/components/AffiliateLink.astro";
+import CardPreviewUrl from "@/components/CardPreviewUrl.astro";
 import Link from "@/components/Link.astro";
 import TextBlock from "@/components/TextBlock.astro";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
@@ -33,6 +34,7 @@ const { content:Content } = Astro.props;
       h6: H6,
       TextBlock,
       AffiliateLink,
+      CardPreviewUrl,
     } }
   />
 </article>
