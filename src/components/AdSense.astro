@@ -1,0 +1,95 @@
+---
+// フロントマター：サーバーサイド処理
+export type AdSenseType = "display" | "multiplex" | "in-article";
+
+interface Props {
+  adSenseType: AdSenseType;
+}
+
+const { adSenseType } = Astro.props;
+
+// 広告データの定義
+const adSenseData: Record<AdSenseType, Record<string, string>> = {
+  display: {
+    "data-ad-slot": "5147370849",
+    "data-ad-format": "auto",
+    "data-full-width-responsive": "true",
+  },
+  multiplex: {
+    "data-ad-format": "autorelaxed",
+    "data-ad-slot": "9245757321",
+  },
+  "in-article": {
+    "data-ad-layout": "in-article",
+    "data-ad-format": "fluid",
+    "data-ad-slot": "8424464392",
+  },
+};
+
+const currentAd = adSenseData[adSenseType];
+const isProd = import.meta.env.PROD;
+---
+
+<div class="ad-container">
+  {
+    isProd ? (
+      <ins
+        class="adsbygoogle"
+        style={{
+          display: "block",
+          textAlign: adSenseType === "in-article" ? "center" : "initial",
+        }}
+        data-ad-client="ca-pub-7565570537846567"
+        {...currentAd}
+      />
+    ) : (
+      <div class="ad-placeholder">
+        productionビルドでは「{adSenseType}」の広告が表示されます。
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .ad-container {
+    width: 100%;
+    min-height: 280px;
+    margin: 1rem 0;
+    overflow: hidden;
+    background-color: var(--color-main);
+  }
+
+  .ad-container::before{
+    content: "広告";
+    color: var(--text-color-pale);
+    display: block;
+  font-size: 0.75rem;
+  text-align: center;
+  padding-bottom: 4px;
+  }
+
+  .ad-placeholder {
+    width: 100%;
+    height: 280px;
+    background-color: var(--color-main-reverse);
+    color: var(--text-color-reverse);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px dashed #ccc;
+  }
+</style>
+
+<script is:inline>
+  /**
+   * 広告の初期化スクリプト
+   */
+  (function() {
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error("AdSense error:", e);
+    }
+  })();
+</script>

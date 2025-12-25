@@ -1,4 +1,5 @@
 ---
+import AdSense from "@/components/AdSense.astro";
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import JsonLd from "@/components/JsonLd.astro";
@@ -92,12 +93,12 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
         <hr />
         <RelatedArticles articleMeta={ meta }/>
       </>}
-    {isArticle && <p>TODO：{`<DynamicAdSense adSenseType="display" />`}</p> }
+    {isArticle && <AdSense adSenseType="display" /> }
   </main>
   <div class="last-side">
     <p>TODO：{`<Profile />`}</p>
     <p>TODO：{`<ArticleTagList tags={ getAllTags() } />`}</p>
-    {isArticle && <p>TODO：{`<DynamicAdSense adSenseType="display" />`}</p> }
+    {isArticle && <AdSense adSenseType="display" /> }
   </div>
 </div>
 
