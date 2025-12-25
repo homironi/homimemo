@@ -1,0 +1,69 @@
+---
+import TOCItem, { type Props as TocItemProps } from "@/components/toc/TOCItem.astro";
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+};
+
+function buildTocSource(flatNodes: MarkdownHeading[]){
+  const root: TocItemProps[] = [];
+  const stack: TocItemProps[] = [];
+
+  flatNodes.forEach((node) => {
+    const newNode : TocItemProps = { ...node, subHeadings: [] };
+    while (stack.length > 0 && stack[stack.length - 1].depth >= newNode.depth) {
+      stack.pop();
+    }
+
+    if (stack.length === 0) {
+      root.push(newNode);
+    } else {
+      stack[stack.length - 1].subHeadings?.push(newNode);
+    }
+    stack.push(newNode);
+  });
+
+  return root;
+}
+
+const { headings } = Astro.props;
+
+const tocDepthStart = 2;
+const tocDepthEnd = 3;
+const tocSource = buildTocSource(headings.filter(v=>v.depth >= tocDepthStart && v.depth <= tocDepthEnd));
+---
+
+<nav class="container">
+  <p class="title">目次</p>
+  <ol class="list">
+    {tocSource.map(v=><TOCItem {...v} />)}
+  </ol>
+</nav>
+
+<style>
+  .title {
+    margin-top: 0;
+    font-weight: normal;
+  }
+
+  .container{
+    --padding-toc: 16px;
+
+    margin: 0;
+    padding: var(--padding-toc);
+    max-height: calc(100vh - var(--padding-toc) * 4);
+    overflow: auto;
+  }
+
+  .list{
+    list-style: none;
+  }
+
+  @media screen and (width <= 500px){
+    .container{
+      height: calc(40vh - var(--padding-toc) * 4);
+    }
+  }
+
+</style>

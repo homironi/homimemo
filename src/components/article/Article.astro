@@ -1,9 +1,11 @@
 ---
 import JsonLd from "@/components/JsonLd.astro";
+import TableOfContents from "@/components/toc/TableOfContents.astro";
 import { articleThumbnailNativeSize } from "@/lib/article";
 import { createArticleJsonLd, createStaticArticleJsonLd } from "@/lib/jsonLd";
 import { defaultArticleThumbnail } from "@/lib/util";
 import { isArticleMeta, type ArticleMeta, type StaticPageMetaWithSlug } from "@/schemas/article/meta";
+import type { MarkdownHeading } from "astro";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import ArticleContent from "./ArticleContent.astro";
 
@@ -12,10 +14,11 @@ export type ArticleComponentMeta = ArticleMeta | StaticPageMetaWithSlug;
 interface Props {
   meta: ArticleComponentMeta;
   content: AstroComponentFactory;
+  headings: MarkdownHeading[];
   shareSlug: string;
 };
 
-const { meta, content } = Astro.props;
+const { meta, content, headings } = Astro.props;
 
 // 通常の記事どうか：falseなら固定記事（aboutやcontact）
 const isArticle = isArticleMeta(meta);
@@ -30,7 +33,7 @@ const isArticle = isArticleMeta(meta);
 <div class="container">
   <div class="first-side">
     <div class="toc-container">
-      <p>TODO：目次</p>
+      <TableOfContents headings={headings} />
     </div>
   </div>
   <main class="article">

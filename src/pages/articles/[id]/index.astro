@@ -33,7 +33,7 @@ if(!articleEntry)
   throw Error("article entry is not found.");
 }
 
-const { Content } = await render(articleEntry);
+const { Content, headings } = await render(articleEntry);
 ---
 
 <Layout
@@ -45,6 +45,7 @@ const { Content } = await render(articleEntry);
   <Article
     meta={meta}
     content={Content}
+    headings={headings}
     shareSlug={ createArticleDetailPath(id) }
   />
 </Layout>
