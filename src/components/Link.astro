@@ -1,15 +1,43 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import { Debug } from "astro:components";
+import Favicon from "./Favicon.astro";
+import Icon from "./Icon.astro";
 
-interface Props extends HTMLAttributes<"a">{};
+interface Props extends HTMLAttributes<"a">{
+  href: string;
+};
 
 if(!Astro.slots.has("default")){
   throw Error("子要素は必須です。子要素がありません");
 }
 
-const {...props} = Astro.props;
+const { href,...props } = Astro.props;
+const text = await Astro.slots.render("default");
 ---
 
-<Debug props={props}/>
-<a>TODO：Link(<slot/>)</a>
+<a
+{...props}
+href={href}
+target="_blank"
+rel="noopener"
+class="link"
+>
+  <Favicon href={href} />
+  <slot/>
+  <span class:list={["icon"]}>
+    <Icon name="openInNew" size={16} title="新しいウィンドウで開きます" />
+  </span>
+</a>
+
+<style>
+  .link {
+    align-items: baseline;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-all;
+  }
+
+  .icon {
+    vertical-align: middle;
+  }
+</style>
