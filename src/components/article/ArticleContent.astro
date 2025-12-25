@@ -1,4 +1,6 @@
 ---
+import AffiliateLink from "@/components/AffiliateLink.astro";
+import TextBlock from "@/components/TextBlock.astro";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import "./blockquote.css"; // 引用のスタイルを適用するためにインポート
 import "./inlineCode.css"; // インラインコードのスタイルを適用するためにインポート
@@ -25,8 +27,8 @@ const { content:Content } = Astro.props;
       // h5: createHeadingComponent("h5"),
       // h6: createHeadingComponent("h6"),
       // div: ArticleDiv,
-      // TextBlock,
-      // AffiliateLink,
+      TextBlock,
+      AffiliateLink,
     } }
   />
 </article>

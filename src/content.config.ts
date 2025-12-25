@@ -12,7 +12,7 @@ const tagsCollection = defineCollection({
 
 const articlesCollection = defineCollection({
   loader: glob({
-    pattern: "**/*.md",
+    pattern: "**/*.mdx",
     base: "./_contents/articles",
     // 記事のIDをentryのidとして扱うようにする
     generateId: ({data}) => {
