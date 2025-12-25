@@ -2,6 +2,7 @@
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import JsonLd from "@/components/JsonLd.astro";
+import ShareButtons from "@/components/ShareButtons.astro";
 import TableOfContents from "@/components/toc/TableOfContents.astro";
 import { articleThumbnailNativeSize, createArticleDetailPath } from "@/lib/article";
 import { articlesListPagePath } from "@/lib/article/listPage";
@@ -23,7 +24,7 @@ interface Props {
   shareSlug: string;
 };
 
-const { meta, content, contentLength, headings } = Astro.props;
+const { meta, content, contentLength, headings, shareSlug } = Astro.props;
 
 // 通常の記事どうか：falseなら固定記事（aboutやcontact）
 const isArticle = isArticleMeta(meta);
@@ -79,12 +80,12 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
       fetchpriority="high"
       loading="eager"
     />
-    <p>TODO：ShareButtons</p>
+    <ShareButtons slug={shareSlug} title={meta.title} />
     <hr />
     <ArticleContent content={content} />
     <hr />
     <p>SNSやブログで記事をご紹介いただけたらうれしいです！</p>
-    <p>TODO：ShareButtons</p>
+    <ShareButtons slug={shareSlug} title={meta.title} />
     {isArticle && 
       <>
         <hr />
