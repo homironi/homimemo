@@ -1,0 +1,12 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import HeadingBase from "./HeadingBase.astro";
+
+interface Props extends HTMLAttributes<"h6"> {};
+
+const { ...props } = Astro.props;
+---
+
+<HeadingBase tag="h6" {...props}>
+  <slot/>
+</HeadingBase>

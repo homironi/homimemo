@@ -4,7 +4,6 @@ import partytown from "@astrojs/partytown";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import { rehypeGfmTaskList } from "./src/lib/rehype/gfmTaskList";
 
@@ -37,7 +36,6 @@ export default defineConfig({
   markdown: {
     rehypePlugins: [
       rehypeSlug,
-      () => rehypeAutolinkHeadings({behavior: "wrap"}),
       rehypeGfmTaskList,
     ],
   }
