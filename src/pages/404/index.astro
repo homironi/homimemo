@@ -1,0 +1,109 @@
+---
+import Layout from "../_layout.astro";
+
+interface Props {
+  errorCode: string;
+  errorTitle: string;
+  errorMessage: string;
+};
+---
+
+<style>
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    padding: 2rem;
+  }
+
+  .content {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .icon {
+    width: 128px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .error-code {
+    font-size: 3rem;
+    color: var(--color-sub);
+    font-weight: 900;
+  }
+
+  .error-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .message {
+    font-size: 1rem;
+    color: var(--text-color-pale);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .message p {
+    margin-bottom: 1rem;
+  }
+
+  .message p:last-child {
+    margin-bottom: 0;
+  }
+
+  .message a {
+    color: var(--color-sub);
+    text-decoration: underline;
+  }
+
+  .message a:hover {
+    color: var(--color-sub-dark);
+  }
+
+  @media screen and (width <= 500px) {
+    .container {
+      min-height: 40vh;
+      padding: 1rem;
+    }
+    
+    .title {
+      font-size: 2rem;
+    }
+    
+    .error-code {
+      font-size: 2.5rem;
+    }
+    
+    .error-title {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+<Layout
+title="404 Not Found"
+>
+  <div class="container">
+      <div class="content">
+        <img src="/images/items/chara_error.svg" class="icon" />
+        <h1 class="title">
+          <span class="error-code">404</span>
+          <span class="error-title">Not Found</span>
+        </h1>
+        <div class="message">ページが削除された可能性があります。</div>
+      </div>
+    </div>
+</Layout>
