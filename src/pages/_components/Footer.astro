@@ -1,4 +1,5 @@
 ---
+import Image from "@/components/Image.astro";
 import Links from "@/components/Links.astro";
 import type { NavigationLink } from "./Header.astro";
 
@@ -27,7 +28,7 @@ const nowYear = new Date().getFullYear();
   <Links color="white" />
   <div class="logo-container">
     <a href="/">
-      <img src="/images/logo.svg" alt="Logo" width={ 256 } height={ 64 } />
+      <Image src="/images/logo.svg" alt="Logo" width={ 256 } height={ 64 } />
     </a>
   </div>
   <p class="copy-light" translate="no">

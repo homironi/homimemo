@@ -1,4 +1,5 @@
 ---
+import Image from "./Image.astro";
 import Links from "./Links.astro";
 
 const profileLink="/profile/";
@@ -8,7 +9,7 @@ const profileLink="/profile/";
   <h2>運営者</h2>
   <p><a href={ profileLink }>ほみ</a></p>
   <a href={ profileLink }>
-    <img
+    <Image
       src="/images/profile.webp"
       alt="ほみのプロフィール画像"
       width={ 128 }

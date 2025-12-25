@@ -3,6 +3,7 @@ import GitHubLogo from "@/components/GitHubLogo.astro";
 import Icon from "@/components/Icon.astro";
 import NoteLogo from "@/components/NoteLogo.astro";
 import XLogo from "@/components/XLogo.astro";
+import Image from "./Image.astro";
 
 interface Props {
   /**
@@ -83,7 +84,13 @@ const iconClassName = `icon ${colorClassName}`;
     class="link"
     title="Ko-fiというサイトを通じて運営者にココアを買えます"
     >
-      <img alt="Ko-fiのロゴ" src="/images/logos/ko-fi/kofi_symbol.svg" class="ko-fi-logo" width="32px" height="32px" />
+      <Image
+      alt="Ko-fiのロゴ"
+      src="/images/logos/ko-fi/kofi_symbol.svg"
+      class="ko-fi-logo"
+      width="32px" 
+      height="32px"
+      />
     </div>
   </a>
 </div>

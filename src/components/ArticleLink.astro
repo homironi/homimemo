@@ -4,13 +4,12 @@ import { formatDate } from "@/lib/date";
 import { defaultArticleThumbnail } from "@/lib/util";
 import type { ArticleMeta } from "@/schemas/article/meta";
 import Icon from "./Icon.astro";
+import type { ImageOption } from "./Image.astro";
+import Image from "./Image.astro";
 
 interface Props {
   meta: ArticleMeta;
-  imgOption?: {
-    loading?: "eager" | "lazy" | undefined;
-    fetchpriority?: "high" | "low" | "auto" | undefined;
-  };
+  imgOption?: ImageOption;
 };
 
 const { meta, imgOption } = Astro.props;
@@ -23,14 +22,13 @@ const lastModDate = formatDate(meta.lastModDate, "YYYY/MM/DD");
   <a href={ createArticleDetailPath(meta.id) } class="link">
     <div class="image-container">
       <div class="image-container-2" }>
-        <img
+        <Image
           src={ meta.thumbnail ?? defaultArticleThumbnail }
           alt={ meta.title }
           width={ articleThumbnailNativeSize.width }
           height={ articleThumbnailNativeSize.height }
           class="image"
-          fetchpriority={ imgOption?.fetchpriority }
-          loading={ imgOption?.loading }
+          {...imgOption}
         />
       </div>
     </div>
