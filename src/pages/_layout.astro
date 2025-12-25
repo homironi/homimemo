@@ -11,6 +11,7 @@ import "./_globalElement.css";
 import "./_globals.css";
 import Header, { type NavigationLink } from "./_components/Header.astro";
 import { articlesListPagePath } from "@/lib/article/listPage";
+import Footer from "./_components/Footer.astro";
 
 interface Props {
   title?: string;
@@ -47,6 +48,10 @@ const headerLinks: NavigationLink[] = [
   links.tags,
   links.about,
   links.profile,
+];
+
+const footerLinks: NavigationLink[] = [
+  ...Object.values(links),
 ];
 ---
 
@@ -102,7 +107,7 @@ const headerLinks: NavigationLink[] = [
     <Header links={headerLinks} />
     <p>ページタイトル：{title}</p>
     <slot/>
-    <p>todo{"<Footer links={ footerLinks } />"}</p>
+    <Footer links={ footerLinks } />
     <p>todo{`{process.env.NODE_ENV === "production" && (
       <GoogleTagManager gtmId="G-V6P1VWVXYK" />
     )}`}</p>
