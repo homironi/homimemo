@@ -1,0 +1,21 @@
+---
+import { iconMap, type IconName } from "@/assets/icons/iconMap";
+import { Icon as AstroIcon } from "astro-icon/components";
+
+interface Props {
+  name: IconName;
+  class?: string;
+  size?: number;
+}
+
+const { name, class: className, size } = Astro.props;
+
+const actualName = iconMap[name];
+---
+
+<AstroIcon 
+  name={actualName}
+  class={className}
+  width={size}
+  height={size}
+/>

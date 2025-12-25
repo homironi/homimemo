@@ -50,7 +50,7 @@ jobs:
           # 差分があるか確認
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "Changes detected! Committing..."
-            git add public/**.svg src/assets/**.svg
+            git add src/assets/icons/**.svg
             git commit -m "[update] optimize svg"
             git push
           else
