@@ -1,0 +1,102 @@
+---
+import Icon from "@/components/Icon.astro";
+import { createTagListPagePath } from "@/lib/article/listPage";
+import { formatDate } from "@/lib/date";
+import { isArticleMeta } from "@/schemas/article/meta";
+import { getEntries } from "astro:content";
+import type { ArticleComponentMeta } from "./Article.astro";
+
+interface Props {
+  meta : ArticleComponentMeta;
+  contentLength : number;
+};
+
+const { meta, contentLength } = Astro.props;
+
+// 通常の記事かどうか：falseなら固定記事（aboutやcontact）
+const isArticle = isArticleMeta(meta);
+
+const publishDateText = formatDate(meta.publishDate, "YYYY/MM/DD");
+const lastModDateText = formatDate(meta.lastModDate, "YYYY/MM/DD");
+const readPerMinutes = 400;
+const readTime = Math.round(contentLength / readPerMinutes);
+const tags = isArticle ? await getEntries(meta.tags) : [];
+
+const iconSize = 24;
+---
+
+<div class="container">
+  <div class="date-container">
+    <span>
+      <Icon name="publishDate" class="icon" size={iconSize} />
+      <time datetime={ formatDate(meta.publishDate, "YYYY-MM-DD") }>
+        {publishDateText}
+      </time>
+    </span>
+    {/* 日付が違う時だけ更新があったとして更新日時を表示する。同じ日の場合は表示しない */}
+    {publishDateText !== lastModDateText && (
+      <span>
+        <Icon name="lastModeDate" class="icon" size={iconSize} />
+        <time datetime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>
+          {lastModDateText}
+        </time>
+      </span>
+    )}
+  </div>
+  {isArticle && tags && (
+  <>
+    <Icon name="label" class="icon" size={iconSize} />
+    {tags.length > 0 ? (
+      <ul class="list">
+        {tags.map((tag) => (
+          <li>
+            <a href={createTagListPagePath(tag.id)} class="link">
+              {tag.data.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <span class="empty">no tag</span>
+    )}
+  </>
+)}
+  <p class="text"><Icon name="article" class="icon" size={iconSize}/>{contentLength} 文字</p>
+  <p class="text"><Icon name="menuBook" class="icon" size={iconSize}/>{` ${readTime} 分（${readPerMinutes} 文字 / 分）`}</p>
+</div>
+
+<style>
+  .container{
+    margin-bottom: 16px;
+    color: var(--text-color-pale);
+  }
+
+  .icon {
+    fill: var(--text-color-pale);
+    vertical-align: middle;
+  }
+
+  .date-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .text {
+    margin: 0;
+  }
+
+  .link,
+  .empty{
+    color: var(--text-color-pale);
+  }
+
+  .list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  };
+</style>
