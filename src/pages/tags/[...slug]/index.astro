@@ -1,0 +1,72 @@
+---
+import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
+import {
+createTagListPagePath,
+createTagsPathBase,
+getPageLength,
+tagsPagePath
+} from "@/lib/article/listPage";
+import { filterArticlesByTag, getAllArticles, getAllTags } from "@/lib/collection";
+import ArticleListPageLayout from "@/pages/_layout/ArticleListPageLayout.astro";
+import type { ArticleMeta, TagMetaWithSlug } from "@/schemas/article/meta";
+
+interface Props {
+  currentPage: number;
+  articles: ArticleMeta[];
+  tag: TagMetaWithSlug;
+};
+
+/**
+ * Astroの静的パラメータ生成
+ * https://docs.astro.build/ja/reference/routing-reference/#getstaticpaths
+ */
+export async function getStaticPaths(){
+  const allArticles = (await getAllArticles()).sort(
+    (a, b) => b.data.lastModDate.getTime() - a.data.lastModDate.getTime()
+  );
+  
+    return (await getAllTags())
+    .map((tag) => {
+      const tagArticles = filterArticlesByTag(allArticles.map(v=>v.data), tag.id)
+      .sort((a, b) => b.lastModDate.getTime() - a.lastModDate.getTime());
+      
+      return getPageLength(tagArticles.length).map(i =>{
+        return {
+          params:{
+            // 「/tags/タグ/」のルートからのパス形式で入ってくるので、最初のslugに含めない「/tag/」の部分は消す
+            slug: createTagListPagePath(tag.id, i).replace(new RegExp(`^${tagsPagePath}`), ""),
+          },
+          props: {
+            currentPage: i,
+            articles: tagArticles,
+            tag: { ...tag.data, slug: tag.id },
+          },
+        };
+      });
+    })
+    .flat();
+}
+
+const { currentPage, articles, tag } = Astro.props;
+
+const title = `${tag.name}の記事一覧`;
+const description = `${tag.name}の記事の一覧ページです。${ tag.description ?? "" }`;
+const firstTagPagePath = createTagListPagePath(tag.slug, 1);
+
+const breadcrumbs: BreadcrumbElement[] = [
+  {
+    name: title,
+    href: firstTagPagePath,
+  },
+];
+---
+
+<ArticleListPageLayout
+title={title}
+description={description}
+articles={articles}
+breadcrumbs={breadcrumbs}
+listPagePathBase={createTagsPathBase(tag.slug)}
+currentPageNumber={currentPage}
+firstPagePath={firstTagPagePath}
+/>

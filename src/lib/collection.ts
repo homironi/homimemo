@@ -24,6 +24,16 @@ export async function getArticle(id: string): Promise<ArticleMeta> {
 }
 
 /**
+ * 記事配列から指定されたタグを持つ記事のみをフィルタリングする
+ * @param articles 記事の配列
+ * @param tagId 指定タグのID
+ * @returns フィルタリングされた記事の配列
+ */
+export function filterArticlesByTag(articles: ArticleMeta[], tagId: string): ArticleMeta[] {
+  return articles.filter(article => article.tags.map(v => v.id).includes(tagId));
+}
+
+/**
  * すべての静的ページを取得する
  * @returns 静的ページの配列
  */

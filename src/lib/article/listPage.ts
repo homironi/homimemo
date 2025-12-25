@@ -4,6 +4,7 @@ export const articlePagePerNum = 12;
 
 export const articleListPagePath = "/articles/";
 export const articleListPagePathBase = `${articleListPagePath}page/`;
+export const tagsPagePath = "/tags/";
 
 // 記事一覧ページの最初のページのパス
 export const articlesListPagePath = createArticleListPagePath(1);
@@ -24,8 +25,8 @@ export function getPageLength(length: number): number[] {
  * @param tagSlug タグのスラッグ
  * @returns タグごとの一覧ページの「page」抜きのパス
  */
-function createTagsPagePath(tagSlug: string): string {
-  return `/tags/${tagSlug}/`;
+export function createTagsPagePath(tagSlug: string): string {
+  return `${tagsPagePath}${tagSlug}/`;
 }
 
 /**
@@ -34,7 +35,7 @@ function createTagsPagePath(tagSlug: string): string {
  * @returns タグ一覧ページのベースパス
  */
 export function createTagsPathBase(tagSlug: string): string {
-  return `${createTagsPagePath(tagSlug)}/page/`;
+  return `${createTagsPagePath(tagSlug)}page/`;
 }
 
 /**
@@ -52,7 +53,7 @@ export function createTagListPagePath(tagSlug: string, page?: number): string {
 }
 
 /**
- * 全記事一覧ページの最初のページのパスを作成する
+ * 全記事一覧ページのパスを作成する
  * @param page ページ番号
  * @returns 全記事一覧ページのパス
  */
