@@ -1,10 +1,6 @@
+import { articleSchema, pageSchema, tagSchema } from "@/schemas/article/meta";
 import { glob } from "astro/loaders";
-import { defineCollection, reference, z } from "astro:content";
-
-const tagSchema = z.object({
-  name: z.string().min(1),
-  description: z.string().optional(),
-});
+import { defineCollection } from "astro:content";
 
 const tagsCollection = defineCollection({
   loader: glob({
@@ -13,24 +9,6 @@ const tagsCollection = defineCollection({
   }),
   schema: tagSchema,
 });
-
-const baseContentSchema = z.object({
-  title: z.string(),
-  draft: z.boolean(),
-  publishDate: z.coerce.date(),
-  lastModDate: z.coerce.date(),
-  thumbnail: z.string().optional(),
-  description: z.string(),
-});
-
-const articleSchema = baseContentSchema.extend({
-  id: z.string(),
-  tags: z.array(reference("tags")),
-  draft: z.boolean(),
-  thumbnail: z.string().optional(),
-});
-
-export type ArticleMeta = z.infer<typeof articleSchema>;
 
 const articlesCollection = defineCollection({
   loader: glob({
@@ -43,9 +21,6 @@ const articlesCollection = defineCollection({
     },
   }),
   schema: articleSchema,
-});
-
-const pageSchema = baseContentSchema.extend({
 });
 
 const pagesCollection = defineCollection({

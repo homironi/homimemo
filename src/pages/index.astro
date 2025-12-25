@@ -1,11 +1,11 @@
 ---
 import ArticleLink from "@/components/ArticleLink.astro";
-import type { ArticleMeta } from "@/content.config";
 import { noticeData } from "@/data/notice";
 import { recommendedArticles } from "@/data/recommendedArticle";
 import { createArticleDetailPath } from "@/lib/article";
 import { getAllArticles } from "@/lib/collection";
 import { formatDate } from "@/lib/date";
+import type { ArticleMeta } from "@/schemas/article/meta";
 import Layout from "./_layout.astro";
 
 const noticeMax = 2;
