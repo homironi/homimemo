@@ -5,6 +5,10 @@ import { createArticleDetailPath } from "@/lib/article";
  */
 export const noticeData = [
   {
+    date: "2025/12/26",
+    html: "サイトをAstroに移行しました（近日中に記事公開予定）",
+  },
+  {
     date: "2025/09/03",
     html: "サイトをCloudflare Workersに移行しました",
   },
