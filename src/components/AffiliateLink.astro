@@ -1,4 +1,6 @@
 ---
+import Image from "./Image.astro";
+
 interface Props {
   name : string;
   imageLink? : string;
@@ -19,7 +21,7 @@ const {name,imageLink,links} = Astro.props;
   {imageLink && imageLink.trim() !== "" && 
     <div class="image-container">
       <div class="image-container-2">
-        <img src={ imageLink } alt={ name } class="image" />
+        <Image src={ imageLink } alt={ name } class="image" />
       </div>
     </div>
   }

@@ -1,7 +1,7 @@
 ---
-import type { HTMLAttributes } from "astro/types";
+import Image, { type Props as ImageProps } from "./Image.astro";
 
-interface Props extends HTMLAttributes<"img"> {
+interface Props extends ImageProps {
   href: string;
   alt?: string;
 };
@@ -10,7 +10,7 @@ const { href, alt, ...props } = Astro.props;
 const faviconOrigin = /https?:\/\//.test(href) ? new URL(href).origin : Astro.site; 
 ---
 
-<img
+<Image
 {...props}
 src=`https://www.google.com/s2/favicons?domain=${faviconOrigin}`
 alt={alt}

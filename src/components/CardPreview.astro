@@ -1,5 +1,6 @@
 ---
 import { noImageUrl } from "@/lib/util";
+import Image from "./Image.astro";
 
 export interface Props {
   url: string;
@@ -17,7 +18,7 @@ const validImageUrl = imageUrl?.trim() ?? noImageUrl;
     <div class="image-container">
       {/* テキストのサイズに合わせて画像を拡縮するためにラップ */}
       <div class="image-container-2">
-        <img src={ validImageUrl } alt={ title } class="image" />
+        <Image src={ validImageUrl } alt={ title } class="image" />
       </div>
     </div>
     <div class="texts">

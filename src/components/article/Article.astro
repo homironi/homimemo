@@ -3,6 +3,7 @@ import AdSense from "@/components/AdSense.astro";
 import ArticleTagList from "@/components/ArticleTagList.astro";
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Image from "@/components/Image.astro";
 import JsonLd from "@/components/JsonLd.astro";
 import Profile from "@/components/Profile.astro";
 import RelatedArticles from "@/components/RelatedArticles.astro";
@@ -77,7 +78,7 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
     <Breadcrumbs breadcrumbs={ breadcrumbs } />
     <h1>{meta.title}</h1>
     <ArticleMetaComponent meta={ meta } contentLength={ contentLength } />
-    <img
+    <Image
       src={ meta.thumbnail ?? defaultArticleThumbnail }
       alt={ meta.title }
       width={ articleThumbnailNativeSize.width }
