@@ -31,29 +31,22 @@ const { blockType, title } = Astro.props;
 <div
 class=`${"text-block"} text-block-${blockType}`
 >
-  <Icon name={iconMap[blockType]} size={24} class="icon" />
-  {title && <p class="title">{title}</p>}
+  <p class="title"><span class="icon-wrapper"><Icon name={iconMap[blockType]} size={24} /></span>{title}</p>
   <div class="content"><slot/></div>
 </div>
 
 <style>
   /* TextBlockコンポーネントのスタイル */
   .text-block {
-    position: relative;
     border-radius: 8px;
-    padding: 16px 16px 16px 48px;
+    padding: 16px;
     margin: 16px 0;
     border: 1px solid transparent;
     transition: all 0.2s ease;
   }
 
-  /* アイコンのベーススタイル */
-  .icon {
-    position: absolute;
-    left: 16px;
-    top: 16px;
-    width: 24px;
-    height: 24px;
+  .icon-wrapper{
+    padding-right: 4px;
   }
 
   /* タイトルスタイル */
