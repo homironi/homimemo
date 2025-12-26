@@ -33,8 +33,8 @@ const lastModDate = formatDate(meta.lastModDate, "YYYY/MM/DD");
       </div>
     </div>
     <div class="text-container">
-      <div class="title">{meta.title}</div>
-      <div class="description">{meta.description}</div>
+      <p class="title">{meta.title}</p>
+      <p class="description">{meta.description}</p>
       <div class="date-container">
         {lastModDate !== publishDate && (
           <span>
@@ -123,6 +123,9 @@ const lastModDate = formatDate(meta.lastModDate, "YYYY/MM/DD");
   .description{
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     margin: 0.5em 0;
   }
 
