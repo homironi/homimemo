@@ -1,6 +1,0 @@
-.heading > a {
-  color: var(--text-color);
-  text-decoration: none;
-  border-left: 4px solid var(--color-sub);
-  padding-left: 4px;
-}
