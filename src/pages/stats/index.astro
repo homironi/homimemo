@@ -1,0 +1,91 @@
+---
+import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Icon from "@/components/Icon.astro";
+import { createTagListPagePath } from "@/lib/article/listPage";
+import { filterArticlesByTag, getAllArticles, getAllTags } from "@/lib/collection";
+import { formatDate } from "@/lib/date";
+import Archive, { createArchiveByYear } from "./_components/Archive.astro";
+import type { Props as ArticleRatioListProps } from "./_components/ArticleRatioList.astro";
+import ArticleRatioList from "./_components/ArticleRatioList.astro";
+import Layout from "./_layout.astro";
+
+const title = "サイト統計";
+const description = "サイトのデータをまとめたページです。";
+
+const breadcrumbs: BreadcrumbElement[] = [
+  {
+    name: title,
+    href: "/stats/",
+  },
+];
+
+const articles = (await getAllArticles()).map(v => v.data);
+const articlesLength = articles.length;
+const archive = createArchiveByYear(articles);
+
+const tagsRatioListData : ArticleRatioListProps["list"] = (await getAllTags())
+.map(tag=>{
+  const filteredArticles = filterArticlesByTag(articles, tag.id).length;
+  return {
+    tag: tag,
+    length: filteredArticles,
+  };})
+.sort((a, b)=> b.length - a.length)
+.map(({tag, length})=>{
+  return {
+    key : tag.id,
+    allArticlesLength: articlesLength,
+    length: length,
+    href: createTagListPagePath(tag.id),
+    name :  tag.data.name,
+  };
+});
+
+const now = new Date();
+---
+
+<Layout
+title={title}
+description={description}
+>
+  <Breadcrumbs breadcrumbs={breadcrumbs}/>
+  <h1>🎉サイト統計🎉</h1>
+  <time datetime={ formatDate(now, "YYYY-MM-DD") }>{formatDate(now, "YYYY/MM/DD")}現在</time>
+  <h2>サイト公開日</h2>
+  <div class="date-container">
+    <span class="date-icon"><Icon name="homironiStamp"/></span>
+    <p class="date">2023/08/23</p>
+  </div>
+  <h2>全記事数</h2>
+  <p>{articlesLength}件</p>
+  <h2>年ごとの記事数</h2>
+  <Archive archive={ archive } />
+  <h2>タグごとの記事数</h2>
+  <ArticleRatioList list={ tagsRatioListData } />
+</Layout>
+
+<style>
+  .date-container {
+    width: 128px;
+    height: 128px;
+    text-align: center;
+    position: relative;
+  }
+
+  .date-icon {
+    color: var(--color-stamp-red);
+    width: 100%;
+    height: 100%;
+  }
+
+  .date {
+    position: absolute;
+    line-height: 2rem;
+    top: calc(50% - 1rem);
+    left: 0;
+    width: 100%;
+    margin: 0;
+    font-weight: bold;
+  }
+</style>
