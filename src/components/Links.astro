@@ -1,7 +1,6 @@
 ---
 import GitHubLogo from "@/components/GitHubLogo.astro";
 import Icon from "@/components/Icon.astro";
-import NoteLogo from "@/components/NoteLogo.astro";
 import XLogo from "@/components/XLogo.astro";
 import Image from "./Image.astro";
 
@@ -39,6 +38,14 @@ const iconClassName = `icon ${colorClassName}`;
 
 <div class="container">
   <a
+    href="https://bsky.app/profile/homironi.com"
+    target="_blank"
+    class="link"
+    title="ほみのBlueskyアカウント"
+  >
+    <span class={ iconClassName }><Icon name="blueskyLogo" class={ iconClassName } size={32} /></span>
+  </a>
+  <a
     href="https://x.com/homironi"
     target="_blank"
     class="link"
@@ -54,14 +61,14 @@ const iconClassName = `icon ${colorClassName}`;
   >
     <GitHubLogo color={ color } class="icon" size={26} />
   </a>
-  <a
+  <!-- <a
     href="https://note.com/homironi"
     target="_blank"
     class="link"
     title="ほみのnoteアカウント"
   >
     <NoteLogo color={ color } class="note" size={48} />
-  </a>
+  </a> -->
   <a
     href="/rss.xml"
     target="_blank"
