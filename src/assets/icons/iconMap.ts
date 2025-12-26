@@ -34,6 +34,7 @@ export const iconMap = {
   xLogo : "logos/x/logo",
   githubLogo : "logos/GitHub/github-mark",
   noteLogo : "logos/note/icon",
+  blueskyLogo : "logos/Bluesky/bluesky_media_kit_logo_transparent_4",
 };
 
 export type IconName = keyof typeof iconMap;
