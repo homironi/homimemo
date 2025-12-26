@@ -1,0 +1,58 @@
+---
+import Article, { type ArticleComponentMeta } from "@/components/article/Article.astro";
+import { countMarkdownCharacters, createArticleDetailPath } from "@/lib/article";
+import { getAllArticles } from "@/lib/collection";
+import Layout from "@/pages/_layout.astro";
+import { getEntries, getEntry, render } from "astro:content";
+
+interface Props {
+  meta: ArticleComponentMeta;
+};
+
+/**
+ * Astroの静的パラメータ生成
+ * https://docs.astro.build/ja/reference/routing-reference/#getstaticpaths
+ */
+export async function getStaticPaths(){
+  const articles = await getAllArticles();
+  return Promise.all(articles.map(async ({id, data})=>{
+    const tags = await getEntries(data.tags);
+    return {
+      params: { id },
+      props: { meta: {...data, tags} },
+    };
+  }));
+}
+
+const { id } = Astro.params;
+const { meta } = Astro.props;
+
+const articleEntry = await getEntry("articles", id);
+if(!articleEntry)
+{
+  throw Error("article entry is not found.");
+}
+
+const { Content, headings } = await render(articleEntry);
+
+if(!articleEntry.body){
+  throw Error("article body(=raw markdown content) is not found.");
+}
+
+const contentLength = countMarkdownCharacters(articleEntry.body);
+---
+
+<Layout
+  title={meta.title}
+  description={meta.description}
+  thumbnail={meta.thumbnail}
+  ogType="article"
+>
+  <Article
+    meta={meta}
+    content={Content}
+    contentLength={contentLength}
+    headings={headings}
+    shareSlug={ createArticleDetailPath(id) }
+  />
+</Layout>

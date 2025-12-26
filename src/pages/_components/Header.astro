@@ -1,0 +1,108 @@
+---
+import Image from "@/components/Image.astro";
+
+export type NavigationLink = {
+  href: string;
+  label: string;
+};
+
+interface Props {
+  links: NavigationLink[];
+};
+
+const { links } = Astro.props;
+---
+
+<style>
+  .container{
+    background-color: var(--color-main);
+    border-bottom: 1px solid var(--border-color-main);
+  }
+
+  .logo-container{
+    position: relative;
+  }
+
+  .logo-link {
+    display: inline-block;
+  }
+
+  .logo{
+    height: 48px;
+    width: auto;
+    object-fit: cover;
+    padding: 4px;
+  }
+  
+  .list{
+    margin: 0;
+    padding: 0;
+  }
+
+  .item {
+    list-style: none;
+    display: inline-block;
+  }
+
+  .item::after {
+    display: block;
+    position: relative;
+    content: "";
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    background-color: var(--color-sub);
+  }
+
+  .item:hover::after {
+    transform: scaleX(1);
+  }
+
+  .link {
+    text-decoration: none;
+    display: block;
+    padding: 12px;
+    padding-top: 16px;
+  }
+
+  .container,
+  .link {
+    color: var(--text-color);
+  }
+
+  .link:hover {
+      color: var(--text-color-hover);
+  }
+
+</style>
+
+<header class="container">
+  <div class="logo-container">
+    <a href="/" class="logo-link">
+      <Image
+        src="/images/logo.svg"
+        alt="ほみろにのロゴ"
+        width={ 256 }
+        height={ 64 }
+        class="logo"
+        fetchpriority="high"
+        loading="eager"
+      />
+    </a>
+  </div>
+  <nav>
+    <ul class="list">
+      {links.map((link) => (
+        <li class="item">
+          <a href={ link.href } class="link">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+

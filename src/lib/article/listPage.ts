@@ -1,10 +1,10 @@
-import { TagMeta } from "@/schemas/article/meta";
 
 // 記事一覧の1ページあたりの表示件数
 export const articlePagePerNum = 12;
 
-const articleListPagePath = "/articles/";
+export const articleListPagePath = "/articles/";
 export const articleListPagePathBase = `${articleListPagePath}page/`;
+export const tagsPagePath = "/tags/";
 
 // 記事一覧ページの最初のページのパス
 export const articlesListPagePath = createArticleListPagePath(1);
@@ -22,38 +22,38 @@ export function getPageLength(length: number): number[] {
 
 /**
  * タグごとの一覧ページの「page」抜きのパスを作成する
- * @param tag タグ情報
+ * @param tagSlug タグのスラッグ
  * @returns タグごとの一覧ページの「page」抜きのパス
  */
-function createTagsPagePath(tag: TagMeta): string {
-  return `/tags/${tag.slug}/`;
+export function createTagsPagePath(tagSlug: string): string {
+  return `${tagsPagePath}${tagSlug}/`;
 }
 
 /**
  * タグごとの一覧ページのベースパスを作成する
- * @param tag タグ情報
+ * @param tagSlug タグのスラッグ
  * @returns タグ一覧ページのベースパス
  */
-export function createTagsPathBase(tag: TagMeta): string {
-  return `${createTagsPagePath(tag)}/page/`;
+export function createTagsPathBase(tagSlug: string): string {
+  return `${createTagsPagePath(tagSlug)}page/`;
 }
 
 /**
  * タグごとの一覧ページのパスを作成する
- * @param tag タグ情報
+ * @param tagSlug タグのスラッグ
  * @param page ページ番号
  * @returns タグ一覧ページのパス
  */
-export function createTagListPagePath(tag: TagMeta, page?: number): string {
+export function createTagListPagePath(tagSlug: string, page?: number): string {
   if(!page || page === 1){
-    return createTagsPagePath(tag);
+    return createTagsPagePath(tagSlug);
   }
 
-  return `${createTagsPathBase(tag)}${page}/`;
+  return `${createTagsPathBase(tagSlug)}${page}/`;
 }
 
 /**
- * 全記事一覧ページの最初のページのパスを作成する
+ * 全記事一覧ページのパスを作成する
  * @param page ページ番号
  * @returns 全記事一覧ページのパス
  */

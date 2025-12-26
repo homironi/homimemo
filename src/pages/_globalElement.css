@@ -1,0 +1,171 @@
+:root {
+    /* color */
+  
+    --color-main-white: #fcf9f7;
+    --color-main-black: #444141;
+    --color-main: var(--color-main-white);
+    --color-main-reverse: var(--color-main-black);
+    --color-main-hover: #f7f4f2;
+    --color-main-dark: #ebe6e3;
+    --border-color-main: #f3e8e4;
+    --color-sub: #79cdee;
+    --color-sub-background: #76c7e8; /* 白文字の背景として使えるsub色の背景色 */
+    --color-sub-pale: #a9dcf0;
+    --color-sub-light: #dcf5ff;
+    --color-sub-dark: #79bcd6;
+    --color-sub-alpha: #79cdeee3;
+    --color-accent: #fdb515;
+    --color-black-area: #333333;
+    --color-black-area-hover: #555555;
+    --color-stamp-red: #e50d11;
+
+    /* text color */
+
+    --text-color-white: #ffffff;
+    --text-color-white-pale: #D9D9D9;
+    --text-color-white-hover: var(--text-color-white-pale);
+    --text-color-black: #111111;
+    --text-color-black-pale: #555555;
+    --text-color-black-hover: #474747;
+    --text-color:var(--text-color-black);
+    --text-color-pale:var(--text-color-black-pale);
+    --text-color-hover:var(--text-color-black-hover);
+    --text-color-reverse:var(--text-color-white);
+    --text-color-reverse-hover:var(--text-color-white-hover);
+
+    /* text-block color */
+  
+    --color-block-info: #c8e5ff;
+    --icon-color-info: #2875da;
+    --color-block-warning: #f7eec7;
+    --icon-color-warning: #e2a22a;
+    --color-block-error: #f7c7c7;
+    --icon-color-error: #e22a2a;
+    --color-block-success: #d4edda;
+    --icon-color-success: #28a745;
+    --color-block-note: #f8f9fa;
+    --icon-color-note: #6c757d;
+    --color-block-tip: #f7eec7;
+    --icon-color-tip: #e2a22a;
+    --color-block-question: #e7e8fc;
+    --icon-color-question: #6f42c1;
+    --color-block-quote: #ececec;
+    --icon-color-quote: #acacac;
+    --text-color-quote: #5a5a5a;
+  
+    /* table color */
+  
+    --color-table-header: var(--color-sub);
+    --text-color-table-header: var(--text-color-black);
+    --text-color-table-border: var(--color-main);
+    --color-table-background-odd: var(--color-main);
+    --color-table-background-even: #e8f2fa;
+    --color-table-background-hover: #d3e3ee;
+
+    /* prism code color
+     * https://github.com/ericwbailey/a11y-syntax-highlighting
+     */
+
+    --color-prism-no-token: #545454;
+    --color-prism-comment: #802200;
+    --color-prism-blue: #326BAD;
+    --color-prism-cyan: #1F7C93;
+    --color-prism-green: #008000;
+    --color-prism-gray: #696969;
+    --color-prism-orange: #A85D00;
+    --color-prism-purple: #9400D3;
+    --color-prism-red: #D91E18;
+    --color-prism-yellow: #856514;
+    
+    /* code color */
+
+    --color-code-main: var(--color-sub);
+    --color-code-background: #FEFEFE;
+    --color-code-background-even: #f2f9fc;
+    --color-code-border: #dfdfdf;
+    --color-code-tool-background: #f8f9fa;
+    --color-inline-code-text: var(--color-prism-red);
+    --color-inline-code-border: rgba(0 0 0 / 10%);
+
+    /* background image */
+  
+    --path-background-image: url("/images/background.svg");
+
+    /* property */;
+
+    --grid-column: 12;
+    --article-thumbnail-width: 1200px;
+    --border-radius: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* color */
+
+    --color-main: var(--color-main-black);
+    --color-main-reverse: var(--color-main-white);
+    --color-main-hover: #505050;
+    --color-main-dark: #525252;
+    --border-color-main: #333130;
+    
+    /* text color */
+
+    --text-color:var(--text-color-white);
+    --text-color-pale:var(--text-color-white-pale);
+    --text-color-hover:var(--text-color-white-hover);
+    --text-color-reverse:var(--text-color-black);
+    --text-color-reverse-hover:var(--text-color-black-hover);
+
+    /* table color */
+
+    --color-table-background-even: #484b4d;
+    --color-table-background-hover: #767e83;
+
+    /* text-block color */
+
+    --color-block-info: #1a3b4a;
+    --icon-color-info: #64b5f6;
+    --color-block-warning: #3d3318;
+    --icon-color-warning: #ffb74d;
+    --color-block-error: #4a1a1a;
+    --icon-color-error: #f48fb1;
+    --color-block-success: #1e3a2a;
+    --icon-color-success: #81c784;
+    --color-block-note: #2d2d2d;
+    --icon-color-note: #b0bec5;
+    --color-block-tip: #3d3318;
+    --icon-color-tip: #ffb74d;
+    --color-block-question: #2e2548;
+    --icon-color-question: #b39ddb;
+    --color-block-quote: #3a3a3a;
+    --icon-color-quote: #6b6b6b;
+    --text-color-quote: #d0d0d0;
+
+    /* prism code color
+     * https://github.com/ericwbailey/a11y-syntax-highlighting
+     */
+
+    --color-prism-no-token: #F8F8F2;
+    --color-prism-comment: #D4D0AB;
+    --color-prism-blue: #6BBEFF;
+    --color-prism-cyan: #66DDEC;
+    --color-prism-green: #ABE338;
+    --color-prism-gray: #F8F8F2;
+    --color-prism-orange: #F5AB32;
+    --color-prism-purple: #DCC6E0;
+    --color-prism-red: #FFA07A;
+    --color-prism-yellow: #FFD700	;
+
+    /* code color */
+
+    --color-code-background: #2b2b2b;
+    --color-code-background-even: #2e3235;
+    --color-code-border: #505050;
+    --color-code-tool-background: #21262d;
+    --color-inline-code-border: rgba(255 255 255 / 15%);
+
+    /* background image */
+    
+    --path-background-image: url("/images/background_dark.svg");
+  }
+}

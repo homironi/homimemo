@@ -1,0 +1,19 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+export type ImageLoadingOption = "eager" | "lazy" | undefined;
+export type ImageFetchPriority = "high" | "low" | "auto" | undefined;
+export interface ImageOption{
+  loading?: ImageLoadingOption;
+  fetchpriority?: ImageFetchPriority;
+};
+
+export type Props = Omit<HTMLAttributes<"img">, "loading"> & ImageOption;
+
+const { loading = "lazy", ...props } = Astro.props;
+---
+
+<img
+  {...props}
+  loading={ loading }
+/>

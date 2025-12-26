@@ -1,0 +1,79 @@
+---
+import type { Props as CardPreviewProps } from "@/components/CardPreview.astro";
+import CardPreview from "@/components/CardPreview.astro";
+import Link from "@/components/Link.astro";
+import { getSiteArticleUrl } from "@/lib/article";
+import { getArticle } from "@/lib/collection";
+import { createTitleFromTemplate } from "@/lib/util";
+import { z } from "astro:content";
+
+interface Props {
+  url: string;
+};
+
+const OGPScannerResponseSchema = z.object({
+  html: z.object({
+    title: z.optional(z.nullable(z.string())),
+    description: z.optional(z.nullable(z.string())),
+  }),
+  ogp: z.object({
+    "og:title": z.optional(z.array(z.string())),
+    "og:description": z.optional(z.array(z.string())),
+    "og:image": z.optional(z.array(z.string())),
+  }),
+});
+
+async function getCardPreviewProps(
+  url: string
+): Promise<CardPreviewProps | null> {
+  // 自サイト内の記事の場合は比較的簡単にMetaからとれるのでそちらを使う
+  const siteArticleId = getSiteArticleUrl(new URL(url));
+  if (siteArticleId) {
+    const meta = await getArticle(siteArticleId);
+    if (meta) {
+      return {
+        url,
+        title: createTitleFromTemplate(meta.title),
+        description: meta.description,
+        imageUrl: meta.thumbnail,
+      };
+    }
+  }
+
+  const response = await fetch(
+    `https://ogp-scanner.kunon.jp/v1/ogp_info?url=${url}`
+  );
+  const json = await response.json().catch(() => null);
+  if (json) {
+    const scanData = OGPScannerResponseSchema.safeParse(json);
+    if (scanData.success) {
+      const cardData: CardPreviewProps = {
+        url,
+        title:
+          scanData.data.ogp?.["og:title"]?.[0] ??
+          scanData.data.html?.title ??
+          url,
+        description:
+          scanData.data.ogp?.["og:description"]?.[0] ??
+          scanData.data.html?.description ??
+          undefined,
+        imageUrl: scanData.data.ogp?.["og:image"]?.[0],
+      };
+
+      return cardData;
+    }
+  }
+
+  return null;
+}
+
+const { url } = Astro.props;
+
+const cardPreviewProps = await getCardPreviewProps(url);
+
+---
+
+{cardPreviewProps 
+  ? <CardPreview {...cardPreviewProps}/>
+  : <p><Link href={url}>{url}</Link></p>
+}

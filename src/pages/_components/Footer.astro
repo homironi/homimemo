@@ -1,0 +1,91 @@
+---
+import Image from "@/components/Image.astro";
+import Links from "@/components/Links.astro";
+import type { NavigationLink } from "./Header.astro";
+
+interface Props {
+  links: NavigationLink[];
+};
+
+const {links} = Astro.props;
+
+const nowYear = new Date().getFullYear();
+---
+
+<footer class="container">
+  <nav>
+    <ul class="navigation">
+      {links.map((link) => (
+        <li class="navigation-item">
+          <a href={ link.href } class="navigation-link">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+  <hr />
+  <Links color="white" />
+  <div class="logo-container">
+    <a href="/">
+      <Image src="/images/logo.svg" alt="Logo" width={ 256 } height={ 64 } />
+    </a>
+  </div>
+  <p class="copy-light" translate="no">
+    © 2023 - {nowYear.toString()} homironi
+  </p>
+</footer>
+
+<style>
+  .container{
+    background-color: var(--color-black-area);
+    padding: 24px;
+  }
+
+  .container,
+  .navigation-link {
+    color: var(--text-color-white);
+  }
+
+  .navigation {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0;
+    gap : 1rem;
+  }
+
+  .navigation-item {
+    list-style: none;
+    display: inherit;
+  }
+
+  .navigation-item::before {
+    content: ">";
+    margin-right: 2px;
+  }
+
+  .navigation-link {
+    text-decoration: none;
+  }
+
+  .navigation-link:hover {
+    color: var(--text-color-white-hover);
+  }
+
+  .logo-container {
+    width: 200px;
+    aspect-ratio: 3/1;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .copy-light {
+    text-align: center;
+  }
+
+  @media screen and (width <= 500px) {
+    .navigation {
+      flex-direction: column;
+    }
+  }
+</style>

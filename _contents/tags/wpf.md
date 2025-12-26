@@ -1,4 +1,3 @@
 ---
 name: WPF
-slug: wpf
 ---

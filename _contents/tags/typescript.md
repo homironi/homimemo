@@ -1,4 +1,3 @@
 ---
 name: TypeScript
-slug: typescript
 ---

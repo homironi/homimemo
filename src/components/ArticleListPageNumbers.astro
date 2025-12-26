@@ -1,0 +1,177 @@
+---
+import { getPageLength } from "@/lib/article/listPage";
+import Icon from "./Icon.astro";
+import IconPageNation from "./IconPageNation.astro";
+
+interface Props{
+  listPagePathBase: string;
+  currentPageNumber: number;
+  allArticlesLength: number;
+  firstPagePath?: string;
+};
+
+function getViewPageNumbers(pageNumbers:number[], currentPageIndex:number, viewNum:number):number[]{
+  const pageNumbersLength = pageNumbers.length;
+  if(pageNumbersLength  <= viewNum){
+    return pageNumbers;
+  }
+  
+  if(currentPageIndex < viewNum){
+    return pageNumbers.slice(0, viewNum);
+  }
+
+  const pageNumbersLastIndex = pageNumbersLength - 1;
+  if(currentPageIndex + 1 > pageNumbersLastIndex){
+    return pageNumbers.slice(-viewNum);
+  }
+
+  // current前後をとる
+  return pageNumbers.slice(currentPageIndex - (Math.floor(viewNum / 2)), currentPageIndex + (Math.floor(viewNum / 2) + 1));
+}
+
+const {
+  listPagePathBase,
+  currentPageNumber,
+  allArticlesLength,
+  firstPagePath,
+} = Astro.props;
+
+
+const pageNumbers = getPageLength(allArticlesLength);
+if (pageNumbers.length === 0) {
+  pageNumbers.push(currentPageNumber);
+}
+
+const linkPathBase = listPagePathBase.endsWith("/")
+  ? listPagePathBase
+  : `${listPagePathBase}/`;
+
+function getPageHref(page : number) : string{
+  if(page === 1 && firstPagePath){
+    return firstPagePath.endsWith("/") ? firstPagePath : `${firstPagePath}/`;
+  }
+
+  return `${linkPathBase}${page}/`;
+}
+
+function getPageNumberAt(index : number): number{
+  const num = pageNumbers.at(index);
+  if(!num){
+    throw new Error(`page number at ${index} is undefined. ${pageNumbers}`);
+  }
+
+  return num;
+}
+const firstPageNumber = getPageNumberAt(0);
+const lastPageNumber = getPageNumberAt(pageNumbers.length - 1);
+
+const currentPageIndex = pageNumbers.findIndex(num => num === currentPageNumber);
+
+const prePageNumber = getPageNumberAt(currentPageIndex - 1 < 0 ? 0 : currentPageIndex - 1);
+const nextPageNumberIndex = currentPageIndex + 1 >= pageNumbers.length
+  ? pageNumbers.length - 1 
+  : currentPageIndex + 1;
+const nextPageNumber = getPageNumberAt(nextPageNumberIndex);
+
+const viewPageNumbers:number[] = getViewPageNumbers(pageNumbers, currentPageIndex, 3);
+---
+
+<div class="container">
+  <IconPageNation
+    isActive={ currentPageNumber !== firstPageNumber }
+    href={ getPageHref(firstPageNumber) }
+    title="最初の一覧ページのリンク"
+  >
+    <Icon name="firstPage" />
+  </IconPageNation>
+  <IconPageNation
+    isActive={ currentPageNumber !== prePageNumber }
+    href={ getPageHref(prePageNumber) }
+    title="一つ前の一覧ページのリンク"
+  >
+    <Icon name="chevronLeft" />
+  </IconPageNation>
+  <ol class="list">
+    {viewPageNumbers.map((pageNumber) => {
+      const linkPath = getPageHref(pageNumber);
+      const isCurrent = pageNumber === currentPageNumber;
+
+      return (
+        <li class="item">
+          <a
+            href={ linkPath }
+            class={ isCurrent ? "link-current" : "link" }
+          >
+            {pageNumber}
+          </a>
+        </li>
+      );
+    })}
+  </ol>
+  <IconPageNation
+    isActive={ currentPageNumber !== nextPageNumber }
+    href={ getPageHref(nextPageNumber) }
+    title="次の一覧ページのリンク"
+  >
+    <Icon name="chevronRight" />
+  </IconPageNation>
+  <IconPageNation
+    isActive={ currentPageNumber !== lastPageNumber }
+    href={ getPageHref(lastPageNumber) }
+    title="最後の一覧ページのリンク"
+  >
+    <Icon name="lastPage" />
+  </IconPageNation>
+</div>
+
+<style>
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .list {
+    list-style: none;
+    padding: 0;
+    display: inline-flex;
+    gap: 4px;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin: 16px 0;
+  }
+
+  .item {
+    flex-shrink: 0;
+  }
+
+  .item:hover {
+    transform: scale(1.1);
+  }
+
+  .link,
+  .link-current {
+    text-decoration: none;
+    display: inline-block;
+    align-content: center;
+    text-align: center;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    font-weight: bold;
+    border: solid 2px var(--color-sub);
+    border-radius: 50%;
+  }
+
+  .link {
+    background-color: initial; 
+    color: var(--color-sub);
+  }
+
+  .link-current {
+    background-color: var(--color-sub); 
+    color: var(--text-color-white);
+  }
+</style>

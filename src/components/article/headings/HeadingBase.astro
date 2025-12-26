@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Headings = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+interface Props extends HTMLAttributes<Headings> {
+  tag:Headings;
+}
+
+const { id, tag:Tag, ...props } = Astro.props;
+const href = `#${id}`;
+---
+
+<Tag id={id} {...props}>
+  {id ? <a href={href}><slot/></a> : <slot/>}
+</Tag>

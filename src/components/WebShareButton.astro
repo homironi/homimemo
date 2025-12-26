@@ -1,0 +1,70 @@
+---
+
+import Button from "./Button.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  url: string;
+  title: string;
+  text?: string;
+};
+
+const { url, title, text = "" } = Astro.props;
+const handleShare = async () => {
+    if (navigator.share) {
+      await navigator.share({
+        title: title,
+        text: text,
+        url: url,
+      });
+    }
+  };
+---
+
+<Button
+id="web-share-button"
+title="シェア"
+data-url={url}
+data-title={title}
+data-text={text}
+>
+  <span class="icon"><Icon name="share" class="icon" size={28} /></span>
+</Button>
+
+<style>
+  .icon{
+    color: var(--text-color);
+  }
+  
+  .hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  const shareButton = document.getElementById("web-share-button");
+
+  if (shareButton) {
+    if (!navigator.share) {
+      // ブラウザが非対応の場合はボタンを隠す
+      shareButton.classList.add("hidden");
+    } else {
+      shareButton.addEventListener("click", async () => {
+        // data属性から値を取得
+        const { url, title, text } = shareButton.dataset;
+
+        try {
+          await navigator.share({
+            title: title,
+            text: text,
+            url: url,
+          });
+        } catch (error) {
+          if (error instanceof Error && error.name !== "AbortError") {
+            console.error("共有エラー:", error);
+          }
+        }
+      });
+    }
+  }
+</script>

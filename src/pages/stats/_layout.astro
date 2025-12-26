@@ -1,0 +1,32 @@
+---
+import BaseLayout, { type Props as LayoutProps } from "../_layout.astro";
+
+export interface Props extends LayoutProps{};
+
+const props = Astro.props;
+---
+
+<BaseLayout {...props}>
+  <div class="container">
+    <slot/>
+  </div>
+</BaseLayout>
+
+<style>
+  .container {
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    list-style-position: inside;
+  }
+
+  @media screen and (width <= 500px){
+    .container {
+      padding: 4px;
+    }
+  }
+</style>

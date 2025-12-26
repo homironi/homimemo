@@ -1,0 +1,40 @@
+---
+import AffiliateLink from "@/components/AffiliateLink.astro";
+import CardPreviewUrl from "@/components/CardPreviewUrl.astro";
+import Link from "@/components/Link.astro";
+import TextBlock from "@/components/TextBlock.astro";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import "./blockquote.css"; // 引用のスタイルを適用するためにインポート
+import H1 from "./headings/H1.astro";
+import H2 from "./headings/H2.astro";
+import H3 from "./headings/H3.astro";
+import H4 from "./headings/H4.astro";
+import H5 from "./headings/H5.astro";
+import H6 from "./headings/H6.astro";
+import "./inlineCode.css"; // インラインコードのスタイルを適用するためにインポート
+import "./list.css";
+import "./table.css";
+
+interface Props {
+  content: AstroComponentFactory;
+};
+
+const { content:Content } = Astro.props;
+---
+
+<article class="article-contents-container">
+  <Content
+    components={ {
+      a: Link,
+      h1: H1,
+      h2: H2,
+      h3: H3,
+      h4: H4,
+      h5: H5,
+      h6: H6,
+      TextBlock,
+      AffiliateLink,
+      CardPreviewUrl,
+    } }
+  />
+</article>

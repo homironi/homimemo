@@ -1,0 +1,33 @@
+---
+import { createTitleFromTemplate, createUrlFromSlug } from "@/lib/util";
+import CopyUrlButton from "./CopyUrlButton.astro";
+import WebShareButton from "./WebShareButton.astro";
+import XShareButton from "./XShareButton.astro";
+
+interface Props {
+  slug: string;
+  title: string;
+};
+
+const { slug, title } = Astro.props;
+const shareUrl = createUrlFromSlug(slug);
+const shareTitle = createTitleFromTemplate(title);
+---
+
+<p class="text">＼この記事をシェアする／</p>
+<div class="container">
+  <CopyUrlButton url={ shareUrl } />
+  <WebShareButton url={ shareUrl } title={ shareTitle } />
+  <XShareButton url={ shareUrl } title={ shareTitle } />
+</div>
+
+<style>
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .text {
+    margin-bottom: 0;
+  }
+</style>

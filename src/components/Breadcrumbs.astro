@@ -1,0 +1,74 @@
+---
+import type { BreadcrumbList, WithContext } from "schema-dts";
+import JsonLd from "./JsonLd.astro";
+
+interface Props {
+  breadcrumbs: BreadcrumbElement[];
+};
+
+export type BreadcrumbElement = {
+  name: string;
+  href: string;
+  isCurrent?: boolean;
+};
+
+const { breadcrumbs } = Astro.props;
+
+const items: BreadcrumbElement[] = [
+  {
+    name: "ホーム",
+    href: "/",
+  },
+  ...breadcrumbs,
+];
+
+function createJsonLd(items:BreadcrumbElement[]): WithContext<BreadcrumbList>{
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map(({name, href}, index)=>{
+      return {
+        "@type": "ListItem",
+        name,
+        item: `${Astro.site}${href}`,
+        position: index + 1,
+      };
+    })
+  };
+}
+
+---
+
+<Fragment slot="head">
+  <JsonLd schema={ createJsonLd(items) } />
+</Fragment>
+
+<nav>
+  <ol class="list">
+    {items.map((item) => {
+      return (
+        <li class="li">
+          <a href={ item.href }>
+            <span>{item.name}</span>
+          </a>
+        </li>
+      );
+    })}
+  </ol>
+</nav>
+
+<style>
+  .list{
+    padding: 0;
+  }
+
+  .li{
+    display: inline-block;
+  }
+
+  .li:not(:last-child)::after{
+    content: ">";
+    margin: 0 4px;
+    color: var(--text-color-pale);
+  }
+</style>

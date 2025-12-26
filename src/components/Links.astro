@@ -1,0 +1,141 @@
+---
+import GitHubLogo from "@/components/GitHubLogo.astro";
+import Icon from "@/components/Icon.astro";
+import NoteLogo from "@/components/NoteLogo.astro";
+import XLogo from "@/components/XLogo.astro";
+import Image from "./Image.astro";
+
+interface Props {
+  /**
+   * アイコンの色
+   * テーマに合わせるなら、背景白系の場所は"default"、背景黒系なら"reverse"を指定
+   * テーマに関係なく、背景白系なら"black"、背景黒系なら"white"を指定
+   */
+  color?: "default" | "reverse" | "white" | "black";
+};
+
+const {color = "default"} = Astro.props;
+
+let colorClassName;
+
+switch (color) {
+  case "reverse":
+    colorClassName = "icon-color-reverse";
+    break;
+  case "white":
+    colorClassName = "icon-color-white";
+    break;
+  case "black":
+    colorClassName = "icon-color-black";
+    break;
+  case "default":
+  default:
+    colorClassName = "icon-color";
+    break;
+}
+
+const iconClassName = `icon ${colorClassName}`;
+---
+
+<div class="container">
+  <a
+    href="https://x.com/homironi"
+    target="_blank"
+    class="link"
+    title="ほみのXアカウント"
+  >
+    <XLogo color={ color } class="icon" size={24} />
+  </a>
+  <a
+    href="https://github.com/homironi"
+    target="_blank"
+    class="link"
+    title="ほみのGitHubアカウント"
+  >
+    <GitHubLogo color={ color } class="icon" size={26} />
+  </a>
+  <a
+    href="https://note.com/homironi"
+    target="_blank"
+    class="link"
+    title="ほみのnoteアカウント"
+  >
+    <NoteLogo color={ color } class="note" size={48} />
+  </a>
+  <a
+    href="/rss.xml"
+    target="_blank"
+    class="link"
+    title="当サイト記事のrss.xml"
+    >
+    <span class={ iconClassName }><Icon name="rss" class={ iconClassName } size={32} /></span>
+  </a>
+  <a
+    href="https://github.com/homironi/homimemo"
+    target="_blank"
+    class="link"
+    title="当サイトのリポジトリ"
+    >
+    <span class={ iconClassName }><Icon name="code" class={ iconClassName } size={32} /></span>
+  </a>
+  <a
+    href="https://ko-fi.com/homironi"
+    target="_blank"
+    class="link"
+    title="Ko-fiというサイトを通じて運営者にココアを買えます"
+    >
+      <Image
+      alt="Ko-fiのロゴ"
+      src="/images/logos/ko-fi/kofi_symbol.svg"
+      class="ko-fi-logo"
+      width="32px" 
+      height="32px"
+      />
+    </div>
+  </a>
+</div>
+
+<style>
+  .container{
+    display: inline-flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .link{
+    font-size: 1.6rem;
+  }
+
+  .icon {
+    width: 1.2em;
+    height: 1.2em;
+  }
+
+  .note {
+    width: 1.9em;
+    height: 1.9em;
+  }
+
+  .icon-color {
+    color: var(--text-color);
+  }
+
+  .icon-color-reverse {
+    color: var(--text-color-reverse);
+  }
+
+  .icon-color-white{
+    color: var(--text-color-white);
+  }
+
+  .icon-color-black{
+    color: var(--text-color-black);
+  }
+
+  .ko-fi-logo{
+    vertical-align: middle;
+    width: 32px;
+    height: 32px;
+  }
+</style>

@@ -1,93 +1,42 @@
-import {
-  array,
-  boolean,
-  date,
-  InferOutput,
-  minLength,
-  nonEmpty,
-  object,
-  optional,
-  pipe,
-  safeParse,
-  string,
-  transform
-} from "valibot";
+import { reference, z } from "astro:content";
 
-export const CategoryMetaSchema = object({
-  name: pipe(string(), minLength(1, "カテゴリ名が設定されていません")),
-  slug: pipe(string(), minLength(1, "slug が設定されていません")),
-  description: optional(string()),
+export const tagSchema = z.object({
+  name: z.string().min(1),
+  description: z.string().optional(),
 });
 
-export const CategoriesMetaSchema = array(CategoryMetaSchema);
-export type CategoryMeta = InferOutput<typeof CategoryMetaSchema>;
+export type TagMeta = z.infer<typeof tagSchema>;
+export type TagMetaWithSlug = TagMeta & { slug:string };
 
-export const TagMetaSchema = object({
-  name: pipe(string(), minLength(1)),
-  slug: pipe(string(), minLength(1)),
-  description: optional(string()),
+const baseContentSchema = z.object({
+  title: z.string(),
+  draft: z.boolean(),
+  publishDate: z.coerce.date(),
+  lastModDate: z.coerce.date(),
+  thumbnail: z.string().optional(),
+  description: z.string(),
 });
 
-export const TagsMetaSchema = array(TagMetaSchema);
-export type TagMeta = InferOutput<typeof TagMetaSchema>;
+export const articleSchema = baseContentSchema.extend({
+  id: z.string(),
+  tags: z.array(reference("tags")),
+  draft: z.boolean(),
+  thumbnail: z.string().optional(),
+});
 
-const metaSchemaBase = {
-  title: pipe(string(), minLength(1)),
-  draft: boolean(),
-  publishDate: date(),
-  lastModDate: date(),
-  thumbnail: optional(pipe(string(), nonEmpty())),
-  description: pipe(string(), minLength(1)),
-};
-
-export const articleMetaSchemaBase = {
-  ...metaSchemaBase,
-  id: pipe(string(), minLength(1)),
-};
+export type ArticleMeta = z.infer<typeof articleSchema>;
 
 /**
- * 記事のメタデータJSONからArticleMetaに変換するスキーマ
- */
-export const ArticleMetaFromJsonSchema = object({
-  ...articleMetaSchemaBase,
-  publishDate: pipe(
-    string(),
-    transform((date) => new Date(date))
-  ),
-  lastModDate: pipe(
-    string(),
-    transform((date) => new Date(date))
-  ),
-  tags: TagsMetaSchema,
-});
-
-/**
- * 記事のメタデータのスキーマ
- */
-export const ArticleMetaSchema = object({
-  ...articleMetaSchemaBase,
-  tags: TagsMetaSchema,
-});
-
-// 記事のメタデータの型
-export type ArticleMeta = InferOutput<typeof ArticleMetaSchema>;
-
-/**
- * @see ArticleMeta かどうかを確認する
+ * ArticleMeta かどうかを確認する
  * @param data 確認したいデータ
- * @returns @see ArticleMeta かどうか
+ * @returns ArticleMeta かどうか
  */
 export function isArticleMeta(data:unknown) : data is ArticleMeta{
-  return safeParse(ArticleMetaSchema, data).success;
+  return articleSchema.safeParse(data).success;
 }
 
-/**
- * 固定記事のメタデータのスキーマ
- */
-export const StaticArticleMetaSchema = object({
-  ...metaSchemaBase,
-  slug: pipe(string(), minLength(1)),
+export const pageSchema = baseContentSchema.extend({
 });
 
-// 固定の記事のメタデータの型
-export type StaticArticleMeta = InferOutput<typeof StaticArticleMetaSchema>;
+export type StaticPageMeta = z.infer<typeof pageSchema>;
+export type StaticPageMetaWithSlug = StaticPageMeta & { slug:string }; 

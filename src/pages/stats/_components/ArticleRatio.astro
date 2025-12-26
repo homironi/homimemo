@@ -1,0 +1,17 @@
+---
+import PercentBar from "@/components/PercentBar.astro";
+
+export interface Props {
+  allArticlesLength: number;
+  length : number;
+  href : string;
+  name : string;
+};
+
+const { allArticlesLength, length, href, name } = Astro.props;
+
+const ratio = Math.ceil(length / allArticlesLength * 100 * 10) / 10;
+---
+
+<a href={ href }>{name}</a>：{length}件 {ratio}%
+<PercentBar max={ allArticlesLength } current={ length } />

@@ -1,0 +1,95 @@
+---
+id: bxj2h07i5im3gmwgjdtfkrsj
+draft: false
+title: git-filter-repoでコミット履歴のユーザー名とメールアドレスを変更する
+tags:
+  - develop-other
+  - git
+description: git-filter-repoを使用してコミット履歴の改変を行いました。その時のメモです。
+publishDate: 2025-11-25T12:00:48.789Z
+lastModDate: 2025-11-25T12:00:48.789Z
+thumbnail: /images/header/articles/bxj2h07i5im3gmwgjdtfkrsj.webp
+---
+
+過去を変えたい、そう思ったことはないでしょうか？
+
+Gitではコミット履歴という過去にユーザー名やメールアドレス、その他にもいろいろな情報が残されています。  
+今回はコミット履歴のユーザー名とメールアドレスを変更したいと思い、調べながらやったのでそのメモを残しておきます。
+
+<TextBlock blockType="warning">
+今回はGitHubのリポジトリです。Gitの記事としているもののGitHubが出てきますがご了承ください。
+</TextBlock>
+
+## 環境
+
+- Windows11
+- PowerShell 7.5.4
+- GitHubのリポジトリ
+
+## GitHubのドキュメント推奨の方法
+
+<CardPreviewUrl url="https://docs.github.com/ja/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository" />
+
+GitHubのドキュメントでは`git-filter-repo`での改ざんが紹介されていたので、それに従いました。  
+brewでのインストールが紹介されていますが、Windowsユーザーでもbrew以外の方法で使用可能です。
+
+## git-filter-repoをWindowsで使えるようにする
+
+まずは`git-filter-repo`のリポジトリで案内されている通り、[`INSTALL.md`](https://github.com/newren/git-filter-repo/blob/main/INSTALL.md)を確認しました。
+
+1. INSTALL.mdで案内される[`git-filter-repo`](https://github.com/newren/git-filter-repo/blob/main/git-filter-repo)というファイルをダウンロード
+2. `git-filter-repo.txt`としてダウンロードされるので`git-filter-repo`にRename（`.txt`拡張子が不要）
+3. `git-filter-repo`をリポジトリルートに移動
+
+これで`python git-filter-repo --hogehoge`で使えるようになります。  
+さすがにずっとおいとくのは邪魔なので、改ざんが終わったあとに削除しました。
+
+## 改ざんする
+
+一応先に使用されているユーザー名とメールアドレスを確認しておきました。
+
+```shell title="使用されているユーザー名とメールアドレスを抽出して確認"
+git log --all --pretty=format:"%an <%ae>" | sort -u
+```
+
+▲ 参考：[Githubのコミット履歴を一括で書き換える方法 ＞ 対象リポジトリでコマンド実行](https://qiita.com/to-fmak/items/95db5355757ba3aa16a5#%E5%AF%BE%E8%B1%A1%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%A7%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E5%AE%9F%E8%A1%8C)
+
+
+`mailMap.txt`を作成。  
+`mailMap.txt`もリポジトリルートに配置します（どこでもいいですが、パスが長くなって面倒なので一時的にリポジトリルートに置いてました）。
+
+中身は以下のような感じです。
+
+```txt title="mailMap.txt"
+newUserName <new@mail.adress> oldUserName <old@mail.adress>
+```
+
+```txt title="ユーザー名に関係なくメールアドレスの一致によって変更する時のmailMap.txt"
+newUserName <new@mail.adress> <old@mail.adress>
+```
+
+▲ 参考：[Gitのコミットログのname, emailを書き換える方法 ＞ git-filter-repoとは ＞ 3. マッピングファイルを編集](https://zenn.dev/hideoka/articles/1cda51b9cdfdd8#3.-%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E7%B7%A8%E9%9B%86)
+
+`mailMap.txt`の準備もできたら、実行します。
+
+```shell
+python git-filter-repo --mailmap mailMap.txt --force
+```
+
+これでローカルの改ざんが完了します。  
+あとはこれをリモートのリポジトリにも反映すれば完了です！  
+気合入れてforce pushしておきましょう。
+
+## 参考
+
+<CardPreviewUrl url="https://github.com/newren/git-filter-repo" />
+
+<CardPreviewUrl url="https://github.com/newren/git-filter-repo/blob/main/INSTALL.md" />
+
+<CardPreviewUrl url="https://miraxto.com/posts/git-filter-repo/" />
+
+<CardPreviewUrl url="https://qiita.com/to-fmak/items/95db5355757ba3aa16a5" />
+
+<CardPreviewUrl url="https://zenn.dev/hideoka/articles/1cda51b9cdfdd8" />
+
+<CardPreviewUrl url="https://docs.github.com/ja/enterprise-cloud@latest/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository" />

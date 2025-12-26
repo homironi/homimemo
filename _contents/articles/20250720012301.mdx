@@ -1,0 +1,567 @@
+---
+id: 82d57nxjh81l1o5fbuouf21z
+title: このサイトでのマークダウン記法ガイド
+draft: false
+publishDate: 2025-07-20T01:28:00.000Z
+lastModDate: 2025-10-14T01:37:56.000Z
+description: この個人サイトでカスタマイズしているマークダウン記法の自分用メモ。TextBlockコンポーネントなど独自拡張の使い方をまとめています。
+thumbnail: /images/header/articles/82d57nxjh81l1o5fbuouf21z.webp
+tags:
+  - make-web
+  - about-site
+---
+
+個人サイトで使っているマークダウン記法のメモ。特にカスタマイズしているTextBlockコンポーネントの使い方を忘れないように記録しておきます！
+
+## 見出し
+
+マークダウンでは `#` を使って見出しを作成します。`#` の数で見出しのレベルが決まります。
+
+```markdown
+## 見出し2
+### 見出し3
+#### 見出し4
+##### 見出し5
+###### 見出し6
+```
+
+実際の表示：
+
+## 見出し2
+### 見出し3
+#### 見出し4
+##### 見出し5
+###### 見出し6
+
+## テキストの装飾
+
+### インラインコード
+
+バッククォート（`）で囲むことで、インラインコードを表示できます。
+
+```markdown
+これは `inline code` です。
+```
+
+実際の表示：これは `inline code` です。
+
+### 太字と斜体
+
+```markdown
+**太字のテキスト**
+*斜体のテキスト*
+***太字かつ斜体***
+```
+
+実際の表示：
+**太字のテキスト**
+*斜体のテキスト*
+***太字かつ斜体***
+
+## リンク
+
+### 通常のリンク
+
+```markdown
+[Googleへのリンク](https://www.google.com/)
+```
+
+実際の表示：[Googleへのリンク](https://www.google.com/)
+
+### URLの直接表示（インライン）
+
+```markdown
+https://www.youtube.com/
+```
+
+実際の表示：https://www.google.com/
+
+## URLのカード表示
+
+`CardPreviewUrl`を使うことで、OGPなどを利用してカード形式でURLを表示します。  
+カード表示するための情報が取得できない場合は通常のリンクと同じように表示します。
+
+```markdown
+<CardPreviewUrl url="https://www.google.com/" />
+
+<CardPreviewUrl url="https://www.youtube.com/" />
+
+<CardPreviewUrl url="https://example.com/invalid-url-example/" />
+
+<CardPreviewUrl url="https://homironi.com/" />
+
+<CardPreviewUrl url="https://homironi.com/articles/82d57nxjh81l1o5fbuouf21z" />
+```
+
+実際の表示：
+
+<CardPreviewUrl url="https://www.google.com/" />
+
+<CardPreviewUrl url="https://www.youtube.com/" />
+
+<CardPreviewUrl url="https://example.com/invalid-url-example/" />
+
+<CardPreviewUrl url="https://homironi.com/" />
+
+<CardPreviewUrl url="https://homironi.com/articles/82d57nxjh81l1o5fbuouf21z" />
+
+## 引用
+
+### 1行の引用
+
+```markdown
+> これは1行の引用です。
+```
+
+実際の表示：
+> これは1行の引用です。
+
+### 複数行の引用
+
+```markdown
+> 複数行の引用の1行目です。  
+> 複数行の引用の2行目です。  
+> 複数行の引用の3行目です。
+```
+
+実際の表示：
+> 複数行の引用の1行目です。  
+> 複数行の引用の2行目です。  
+> 複数行の引用の3行目です。
+
+## コードブロック
+
+言語名を指定することで、シンタックスハイライトが適用されます。
+
+````markdown
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+// Just a lil' script to show off that inline JS gets highlighted window.console && console.log('foo');
+</script>
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.png" />
+<title>Prism</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<script src="prefixfree.min.js"></script>
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']]; </script>
+<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+```
+````
+
+実際の表示：
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+// Just a lil' script to show off that inline JS gets highlighted window.console && console.log('foo');
+</script>
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.png" />
+<title>Prism</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<script src="prefixfree.min.js"></script>
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']]; </script>
+<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+```
+
+### C#の例
+
+````markdown
+```cs
+var hoge = "hogehoge";
+var fuga = "fugafuga";
+Console.WriteLine(hoge + fuga);
+```
+````
+
+実際の表示：
+```cs
+var hoge = "hogehoge";
+var fuga = "fugafuga";
+Console.WriteLine(hoge + fuga);
+```
+
+### ファイル名表示
+
+ファイル名を表示することもできます。
+
+````markdown
+```cs title="hoge.cs"
+var hoge = "hogehoge";
+var fuga = "fugafuga";
+Console.WriteLine(hoge + fuga);
+```
+````
+
+実際の表示：
+```cs title="hoge.cs"
+var hoge = "hogehoge";
+var fuga = "fugafuga";
+Console.WriteLine(hoge + fuga);
+```
+
+### diff
+
+差分表示も対応しています。
+
+````markdown
+```diff
++var hoge = "hogehoge";
+-var hoge = "hoge";
+var fuga = "fugafuga";
+Console.WriteLine(hoge + fuga);
+```
+````
+
+実際の表示：
+```diff
++var hoge = "hogehoge";
+-var hoge = "hoge";
+var fuga = "fugafuga";
+Console.WriteLine(hoge + fuga);
+```
+
+▼ C#のハイライトを適用したうえでのdiff
+
+````markdown
+```diff lang="cs"
++var sum = 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1;
++var sub = 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1;
++var hoge = "hogehoge";
+-var hoge = "hoge";
+-var piyo = "piyo";
+var fuga = "fugafuga";
+Console.WriteLine(hoge + fuga);
+```
+````
+
+実際の表示：
+```diff lang="cs"
++var sum = 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1;
++var sub = 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1 - 1;
++var hoge = "hogehoge";
+-var hoge = "hoge";
+-var piyo = "piyo";
+var fuga = "fugafuga";
+Console.WriteLine(hoge + fuga);
+```
+
+## テーブル
+
+マークダウンでテーブルを作成することもできます：
+
+```markdown
+| 列1 | 列2 | 列3 |
+|-----|-----|-----|
+| データ1 | データ2 | データ3 |
+| データ4 | データ5 | データ6 |
+| データ7 | データ8 | データ9 |
+```
+
+実際の表示：
+
+| 列1 | 列2 | 列3 |
+|-----|-----|-----|
+| データ1 | データ2 | データ3 |
+| データ4 | データ5 | データ6 |
+| データ7 | データ8 | データ9 |
+
+## 水平線
+
+3つ以上のハイフン、アスタリスク、アンダースコアで水平線を作成できます：
+
+```markdown
+---
+```
+
+実際の表示：
+
+---
+
+## リスト
+
+### 箇条書きリスト
+
+```markdown
+- リストアイテム1
+- リストアイテム2
+  - ネストされたアイテム
+    - さらにネスト
+- リストアイテム3
+```
+
+実際の表示：
+- リストアイテム1
+- リストアイテム2
+  - ネストされたアイテム
+    - さらにネスト
+- リストアイテム3
+
+### 番号付きリスト
+
+```markdown
+1. 最初の項目
+2. 2番目の項目
+3. 3番目の項目
+```
+
+実際の表示：
+1. 最初の項目
+2. 2番目の項目
+3. 3番目の項目
+
+### チェックリスト
+
+```markdown
+- [ ] 未完了のタスク
+  - [ ] ネストされた未完了タスク
+    - [ ] 更にネストされた未完了タスク
+- [x] 完了したタスク
+  - [x] ネスタされた完了タスク
+- [x] もう一つの完了タスク
+```
+
+実際の表示：
+- [ ] 未完了のタスク
+  - [ ] ネストされた未完了タスク
+    - [ ] 更にネストされた未完了タスク
+- [x] 完了したタスク
+  - [x] ネスタされた完了タスク
+- [x] もう一つの完了タスク
+
+## TextBlockコンポーネント
+
+当サイトでは、特別な情報ブロックを表示するためのTextBlockコンポーネントが使用できます。
+
+### 情報ブロック（info）
+
+```markdown
+<TextBlock blockType="info" title="情報">
+これは情報を表示するTextBlockです。重要な情報やお知らせを表示する際に使用します。
+</TextBlock>
+```
+
+実際の表示：
+<TextBlock blockType="info" title="情報">
+これは情報を表示するTextBlockです。重要な情報やお知らせを表示する際に使用します。
+</TextBlock>
+
+### 警告ブロック（warning）
+
+```markdown
+<TextBlock blockType="warning" title="注意">
+これは注意を促すTextBlockです。読者が注意すべき事項を伝える際に使用します。
+</TextBlock>
+```
+
+実際の表示：
+<TextBlock blockType="warning" title="注意">
+これは注意を促すTextBlockです。読者が注意すべき事項を伝える際に使用します。
+</TextBlock>
+
+### エラーブロック（error）
+
+```markdown
+<TextBlock blockType="error" title="エラー">
+これはエラーを表示するTextBlockです。問題やエラーについて警告する際に使用します。
+</TextBlock>
+```
+
+実際の表示：
+<TextBlock blockType="error" title="エラー">
+これはエラーを表示するTextBlockです。問題やエラーについて警告する際に使用します。
+</TextBlock>
+
+### 成功ブロック（success）
+
+```markdown
+<TextBlock blockType="success" title="成功">
+これは成功を表示するTextBlockです。正常に完了したタスクや良い結果を伝える際に使用します。
+</TextBlock>
+```
+
+実際の表示：
+<TextBlock blockType="success" title="成功">
+これは成功を表示するTextBlockです。正常に完了したタスクや良い結果を伝える際に使用します。
+</TextBlock>
+
+### メモブロック（note）
+
+```markdown
+<TextBlock blockType="note" title="メモ">
+これはメモを表示するTextBlockです。補足情報や覚えておくべき点を伝える際に使用します。
+</TextBlock>
+```
+
+実際の表示：
+<TextBlock blockType="note" title="メモ">
+これはメモを表示するTextBlockです。補足情報や覚えておくべき点を伝える際に使用します。
+</TextBlock>
+
+### ヒントブロック（tip）
+
+```markdown
+<TextBlock blockType="tip" title="ヒント">
+これはヒントを表示するTextBlockです。便利な機能や効率的な方法を読者に教える際に使用します。
+</TextBlock>
+```
+
+実際の表示：
+<TextBlock blockType="tip" title="ヒント">
+これはヒントを表示するTextBlockです。便利な機能や効率的な方法を読者に教える際に使用します。
+</TextBlock>
+
+### 質問ブロック（question）
+
+```markdown
+<TextBlock blockType="question" title="質問">
+これは質問を表示するTextBlockです。よくある質問やFAQを表示する際に使用します。
+</TextBlock>
+```
+
+実際の表示：
+<TextBlock blockType="question" title="質問">
+これは質問を表示するTextBlockです。よくある質問やFAQを表示する際に使用します。
+</TextBlock>
+
+### タイトルなしのTextBlock
+
+タイトルを省略することもできます：
+
+```markdown
+<TextBlock blockType="info">
+タイトルがないTextBlockの例です。シンプルな情報表示に適しています。
+</TextBlock>
+```
+
+実際の表示：
+<TextBlock blockType="info">
+タイトルがないTextBlockの例です。シンプルな情報表示に適しています。
+</TextBlock>
+
+### 複雑なコンテンツを含むTextBlock
+
+TextBlock内では、マークダウンの記法を使用できます：
+
+```markdown
+<TextBlock blockType="warning" title="重要な注意事項">
+
+このTextBlockには複数の要素を含めることができます：
+
+- リストアイテム1
+- リストアイテム2
+- リストアイテム3
+
+また、**太字**や*斜体*、`コード`なども使用できます。
+
+ただし、以下の点にご注意ください：
+1. 適切な使用を心がける
+2. 読みやすさを重視する
+3. 必要以上に使用しない
+
+</TextBlock>
+```
+
+実際の表示：
+<TextBlock blockType="warning" title="重要な注意事項">
+
+このTextBlockには複数の要素を含めることができます：
+
+- リストアイテム1
+- リストアイテム2
+- リストアイテム3
+
+また、**太字**や*斜体*、`コード`なども使用できます。
+
+ただし、以下の点にご注意ください：
+1. 適切な使用を心がける
+2. 読みやすさを重視する
+3. 必要以上に使用しない
+
+</TextBlock>
+
+## アフィリエイトリンク
+
+複数のサイトの広告リンクを貼りやすいように用意してみました。  
+これはお試し表示なので、以下のリンクはすべて`https://example.com/`以下に飛ばしています。  
+各アフィリエイト用のリンクを用意して渡すことで、いい感じの表示にできるようにしました。
+
+### 画像あり
+
+```md
+<AffiliateLink
+  name="名前"
+  imageLink="https://placehold.jp/150x150.png"
+  links={{ 
+    amazon:"https://example.com/Amazonのリンク", 
+    rakuten:"https://example.com/楽天のリンク",
+    yahoo: "https://example.com/Yahoo!ショッピングのリンク"
+  }}
+/>
+```
+
+`name`には例えば書籍の名前や商品名を渡します。  
+`imageLink`には商品画像のURLを渡します。  
+
+実際の表示：
+
+<AffiliateLink
+  name="名前"
+  imageLink="https://placehold.jp/150x150.png"
+  links={{ 
+    amazon:"https://example.com/Amazonのリンク", 
+    rakuten:"https://example.com/楽天のリンク",
+    yahoo: "https://example.com/Yahoo!ショッピングのリンク"
+  }}
+/>
+
+### 画像なし
+
+画像の著作権などの問題のクリアが簡単でない場合は、`imageLink`を渡さないことで画像なしにすることもできます。  
+書籍は[版元ドットコム](https://www.hanmoto.com/)で書影の利用が可能なら[openBD](https://openbd.jp/)でも得られるであろう書影URLを指定。  
+もし版元ドットコムで書影が「利用不可」となっている場合は一応出版社のサイトを確認します。  
+それでもだめ、もしくは問い合わせ必須という場合に関しては画像なしにするか自分でイメージイラストでも用意しようかと思っています。  
+（作るにあたって調べてみたら、自分の紹介したかった書籍は版元ドットコムの書影利用不可＆問い合わせ必須が多かったです）
+
+```md
+<AffiliateLink
+  name="名前"
+  links={{ 
+    amazon:"https://example.com/Amazonのリンク", 
+    rakuten:"https://example.com/楽天のリンク",
+    yahoo: "https://example.com/Yahoo!ショッピングのリンク"
+  }}
+/>
+```
+
+実際の表示：
+
+<AffiliateLink
+  name="名前"
+  links={{ 
+    amazon:"https://example.com/Amazonのリンク", 
+    rakuten:"https://example.com/楽天のリンク",
+    yahoo: "https://example.com/Yahoo!ショッピングのリンク"
+  }}
+/>
+
+ある程度ジャンルごとにイラストを用意しておいて、画像なしになりそうならそのジャンルに合ったイラスト（ただし商品と誤解されないもの）を表示するようにしてもよいかもしれませんね。  
+画像がないとちょっとさみしいので検討中です！
+
+## 備考
+
+基本的なマークダウン記法は標準通り。
+
+<TextBlock blockType="note" title="自分用メモ">
+TextBlockの種類を忘れがちなので、この記事を見返せばすぐに思い出せる。
+</TextBlock>

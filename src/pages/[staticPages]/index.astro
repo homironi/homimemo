@@ -1,0 +1,49 @@
+---
+import Article from "@/components/article/Article.astro";
+import { countMarkdownCharacters, createArticleDetailPath } from "@/lib/article";
+import { getAllStaticPages } from "@/lib/collection";
+import Layout from "@/pages/_layout.astro";
+import { render, type CollectionEntry } from "astro:content";
+
+interface Props {
+  entry : CollectionEntry<"pages">;
+};
+
+/**
+ * Astroの静的パラメータ生成
+ */
+export async function getStaticPaths(){
+  const pages = await getAllStaticPages();
+  return Promise.all(pages.map(async (entry)=>{
+    return {
+      params: { staticPages: entry.id },
+      props: { entry },
+    };
+  }));
+}
+
+const { entry } = Astro.props;
+
+const { Content, headings } = await render(entry);
+
+if(!entry.body){
+  throw Error("entry body(=raw markdown content) is not found.");
+}
+
+const contentLength = countMarkdownCharacters(entry.body);
+---
+
+<Layout
+  title={entry.data.title}
+  description={entry.data.description}
+  thumbnail={entry.data.thumbnail}
+  ogType="article"
+>
+  <Article
+    meta={{...entry.data, slug: entry.id }}
+    content={Content}
+    contentLength={contentLength}
+    headings={headings}
+    shareSlug={ createArticleDetailPath(entry.id) }
+  />
+</Layout>

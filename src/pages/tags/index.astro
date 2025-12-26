@@ -1,0 +1,67 @@
+---
+import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Icon from "@/components/Icon.astro";
+import { createTagListPagePath, tagsPagePath } from "@/lib/article/listPage";
+import { filterArticlesByTag, getAllArticles, getAllTags } from "@/lib/collection";
+import Layout from "../_layout.astro";
+
+const title = "タグ一覧";
+const description ="サイト内で扱っているタグの一覧ページです。";
+
+const breadcrumbs: BreadcrumbElement[] = [
+  {
+    name: title,
+    href: tagsPagePath,
+  },
+];
+
+const tags = (await getAllTags()).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const allArticles = (await getAllArticles()).map(v=>v.data);
+---
+
+<Layout
+title={title}
+description={description}
+>
+  <div class="container">
+    <Breadcrumbs breadcrumbs={breadcrumbs}/>
+    <h1 class="title">{title}</h1>
+    <ul class="tags">
+      {tags.map(tag=>(
+      <li>
+        <div>
+          <a href={ createTagListPagePath(tag.id) } >
+            <Icon name="label" size="1rem" />{tag.data.name}：{filterArticlesByTag(allArticles, tag.id).length}記事
+          </a>
+        </div>
+      </li>))}
+    </ul>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: 16px;
+  }
+
+  .title{
+    text-align: center;
+    margin: 2rem 0 0;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+  }
+
+  @media screen and (width <= 500px){
+    .container {
+      padding: 4px;
+    }
+  }
+</style>

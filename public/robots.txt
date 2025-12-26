@@ -1,5 +1,4 @@
-Sitemap: https://homironi.com/sitemap.xml
+Sitemap: https://homironi.com/sitemap-index.xml
 
 User-agent: *
 Allow: /
-Disallow: /admin/

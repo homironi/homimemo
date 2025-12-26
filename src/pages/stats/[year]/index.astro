@@ -1,0 +1,116 @@
+---
+import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { createArticleDetailPath } from "@/lib/article";
+import { createTagListPagePath } from "@/lib/article/listPage";
+import { filterArticlesByTag, getAllArticles, getAllTags } from "@/lib/collection";
+import { formatDate } from "@/lib/date";
+import type { ArticleMeta } from "@/schemas/article/meta";
+import type { Props as ArticleRatioListProps } from "../_components/ArticleRatioList.astro";
+import ArticleRatioList from "../_components/ArticleRatioList.astro";
+import Layout from "../_layout.astro";
+
+interface ArticleByMonth{
+  month: string;
+  articles?: ArticleMeta[];
+};
+
+interface Props {
+  yearArticles: ArticleMeta[];
+  articlesByMonth: ArticleByMonth[];
+  allArticlesLength: number;
+};
+
+/**
+ * Astroの静的パラメータ生成
+ */
+export async function getStaticPaths(){
+  const existYears = [...(new Set((await getAllArticles())
+  .map(article => article.data.publishDate.getFullYear())
+  .sort((a, b) => a - b)))];
+  
+  const allArticles: ArticleMeta[] = (await getAllArticles()).map(v=>(v.data));
+
+  return existYears.map(year => {
+  const yearArticles: ArticleMeta[] = allArticles.filter(article => article.publishDate.getFullYear() === year);
+  const articlesByMonthRaw = Object.entries(Object.groupBy(yearArticles.toSorted((a, b) => a.publishDate.getTime() - b.publishDate.getTime()), article => article.publishDate.getMonth() + 1 ));
+  const articlesByMonth: ArticleByMonth[] = articlesByMonthRaw.map(v=>({
+    month: v[0],
+    articles: v[1],
+  }));
+
+  return {
+    params: { year: year.toString() },
+    props: {
+      yearArticles,
+      articlesByMonth,
+      allArticlesLength: allArticles.length,
+    },
+  };
+});
+}
+
+const { year } = Astro.params;
+const { yearArticles, articlesByMonth, allArticlesLength } = Astro.props;
+
+const title = `${year}年のサイト統計`;
+const description = `${year}年のサイトのデータをまとめたページです。`;
+
+const breadcrumbs: BreadcrumbElement[] = [
+  {
+    name: "サイト統計",
+    href: "/stats/",
+  },
+  {
+    name: title,
+    href: `/stats/${year}/`,
+  },
+];
+
+const tagsRatioListData : ArticleRatioListProps["list"] = (await getAllTags())
+.map(tag=>{
+  const filteredArticlesNum = filterArticlesByTag(yearArticles, tag.id).length;
+  return {
+    tag: tag,
+    length: filteredArticlesNum,
+  };})
+.filter(v => v.length >= 1)
+.sort((a, b)=> b.length - a.length)
+.map(({tag, length})=>{
+  return {
+    allArticlesLength: yearArticles.length,
+    length: length,
+    href: createTagListPagePath(tag.id),
+    name :  tag.data.name,
+  };
+});
+
+const now = new Date();
+---
+
+<Layout
+title={title}
+description={description}
+>
+  <Breadcrumbs breadcrumbs={breadcrumbs}/>
+  <h1>🎉サイト統計 {year}年🎉</h1>
+  <time datetime={ formatDate(now, "YYYY-MM-DD") }>{formatDate(now, "YYYY/MM/DD")}現在</time>
+  <h2>{year}年の記事数</h2>
+  <p>{yearArticles.length} 件</p>
+  <p>なんと全ての年の記事{allArticlesLength}件のうち、{Math.round(yearArticles.length / allArticlesLength * 100 * 10) / 10} %が{year}年に書かれました！</p>
+  <h2>{year}年のタグごとの記事数</h2>
+  <ArticleRatioList list={ tagsRatioListData } />
+  <h2>{year}年の記事</h2>
+  <div>
+    {articlesByMonth.map(({month, articles}) => {
+      return (
+        <details>
+          <summary>{month}月：{articles?.length}件</summary>
+          <ul>
+            {articles?.map(meta => <li><a href={ createArticleDetailPath(meta.id) }>{meta.title}</a></li>)}
+          </ul>
+        </details>
+      );
+    })}
+  </div>
+</Layout>

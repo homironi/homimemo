@@ -1,0 +1,100 @@
+---
+import { articleThumbnailNativeSize, createArticleDetailPath } from "@/lib/article";
+import { formatDate } from "@/lib/date";
+import { defaultArticleThumbnail } from "@/lib/util";
+import type { ArticleMeta } from "@/schemas/article/meta";
+import Icon from "./Icon.astro";
+import type { ImageOption } from "./Image.astro";
+import Image from "./Image.astro";
+
+export interface Props {
+  meta: ArticleMeta;
+  imgOption?: ImageOption;
+};
+
+const { meta, imgOption } = Astro.props;
+
+const publishDate = formatDate(meta.publishDate, "YYYY/MM/DD");
+const lastModDate = formatDate(meta.lastModDate, "YYYY/MM/DD");
+---
+
+<div class="container">
+  <a href={ createArticleDetailPath(meta.id) } class="link">
+    <Image
+      src={ meta.thumbnail ?? defaultArticleThumbnail }
+      alt={ meta.title }
+      width={ articleThumbnailNativeSize.width }
+      height={ articleThumbnailNativeSize.height }
+      {...imgOption}
+    />
+    <div class="text-container">
+      <h2 class="title">{meta.title}</h2>
+      <div class="date-container">
+        {lastModDate !== publishDate && (
+          <span class="last-mod-date">
+            <Icon name="lastModeDate" class="icon" />
+            <time datetime={ formatDate(meta.lastModDate, "YYYY-MM-DD") }>
+              {lastModDate}
+            </time>
+          </span>
+        )}
+        <span>
+          <Icon name="publishDate" class="icon" />
+          <time datetime={ formatDate(meta.publishDate, "YYYY-MM-DD") }>
+            {publishDate}
+          </time>
+        </span>
+      </div>
+    </div>
+  </a>
+</div>
+
+<style>
+  .container{
+    background-color: var(--color-main);
+    border: 1px solid var(--border-color-main);
+    max-width: var(--article-thumbnail-width);
+    transition: transform 0.3s;
+  }
+
+  .container:hover{
+    transform: scale(1.02);
+  }
+
+  .link{
+    text-decoration: none;
+  }
+
+  .text-container{
+    padding: 0.5rem;
+  }
+
+  .title{
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    height: 3rem;
+  }
+
+  .date-container{
+    text-align: right;
+    color: var(--text-color-pale);
+    font-size: 0.8rem;
+  }
+
+  .icon{
+    fill: var(--text-color-pale);
+    width: 1rem;
+    height: 1rem;
+    vertical-align: -0.2em;
+  }
+
+  .last-mod-date{
+    margin-right: 0.5rem;
+  }
+</style>

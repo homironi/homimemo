@@ -1,0 +1,32 @@
+---
+import Button from "./Button.astro";
+import XLogo from "./XLogo.astro";
+
+interface Props {
+  url: string;
+  title: string;
+}
+
+const { url, title } = Astro.props;
+
+const tweetText = encodeURIComponent(`${title}\n${url}`);
+const xShareUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
+---
+
+<Button>
+  <a
+    href={xShareUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    title="Xでシェア"
+    class="container"
+  >
+    <XLogo size={24}/>
+  </a>
+</Button>
+
+<style>
+  .container{
+    width: 28px;
+  }
+</style>

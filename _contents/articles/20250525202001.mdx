@@ -1,0 +1,106 @@
+---
+id: fdjs9rs2bn7ugq9rf8ysa28h
+title: 【CSS】色をまとめてダークテーマも対応！
+description: >-
+  CSSにおいて、色の管理とダークテーマへの対応方法について解説しています。色を名前で管理することで、手間を省きながら見た目を統一させることができます。また、ダークモード対応についてもメモしています！
+publishDate: 2024-03-07T15:00:00.000Z
+lastModDate: 2024-03-07T15:00:00.000Z
+draft: false
+tags:
+  - make-web
+  - css
+  - about-site
+thumbnail: /images/header/articles/fdjs9rs2bn7ugq9rf8ysa28h.webp
+---
+
+css では主に見た目の部分を調整することができます。
+
+その中で色を設定することも多くあるでしょう。
+
+直に 16 進数などで色を指定することもできますが、  
+予め色を決めて名前をつけておいてその名前で呼び出すととても便利でしょう。
+
+例えば、同じ色を複数の場所で使用することがあるとします。
+
+その時に同じ色を使う所が 100 個もあったら？
+
+手作業ですべてを変更するのはとてもとてもとても大変です。
+
+そこで、色を名前で管理することで  
+1 箇所だけ変更すればまとめて変更が反映されるようにしてみます！
+
+## カスタムプロパティで色を管理
+
+[CSS カスタムプロパティ（変数）の使用](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties)
+
+以下のように記述することで`--hoge`という名前で`#000000`という色を管理できます。
+
+```css
+--hoge-color: #000000;
+```
+
+名前は`--【任意の名前】`の形式で指定する必要があります。
+
+そして、これをどこでも使用できるようにするために、`:root`という擬似的なクラス内に記述します。
+
+```css
+:root {
+    --hoge-color: #000000;
+}
+```
+
+[:root 擬似クラスの使用](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties#root_%E6%93%AC%E4%BC%BC%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AE%E4%BD%BF%E7%94%A8)
+
+この名前を使って色を指定する際は、以下のように記述します。
+
+```css
+.nanika {
+    color: var(--hoge-color);
+}
+```
+
+`var(【プロパティ名】)`という形で指定できます。
+
+同じ色を使用するところで同じように`--hoge-color`を指定することで、`#000000`を別の色に変えるのも 1 箇所の変更でよくなります。
+
+## ダークテーマ対応
+
+上記のように色をカスタムプロパティで管理するようにすることができれば、あとは簡単です。
+
+ダークモードの時は、`--hoge-color`をダークモードの時に設定したい色に変えればいいのです。
+
+### ダークモードの判定
+
+[prefers-color-scheme](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme)というメディア特性を利用します。
+
+以下のように`@media (prefers-color-scheme: dark)`でくくった中に、ダークモードの時に使用したい色に変更します。
+
+```css
+@media (prefers-color-scheme: dark) {
+    .hoge {
+        --hoge-color: #ffffff;
+    }
+}
+```
+
+これでダークモードの時は別の色が設定されるので、お手軽にダークモード対応ができます。
+
+### light-dark()
+
+まだ実験的な機能ですが、便利そうなものを見つけたのでメモしておきます。
+
+[light-dark()](https://developer.mozilla.org/ja/docs/Web/CSS/color_value/light-dark)という関数です。
+
+```css
+color: light-dark(var(--light), var(--dark));
+```
+
+こんな感じで使えるので、細かく指定したい部分に役立ちそうです！
+
+## 参考
+
+[CSS カスタムプロパティ（変数）の使用](https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties)
+
+[prefers-color-scheme](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme)
+
+[light-dark()](https://developer.mozilla.org/ja/docs/Web/CSS/color_value/light-dark)

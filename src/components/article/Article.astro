@@ -1,0 +1,191 @@
+---
+import AdSense from "@/components/AdSense.astro";
+import ArticleTagList from "@/components/ArticleTagList.astro";
+import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Image from "@/components/Image.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import Profile from "@/components/Profile.astro";
+import RelatedArticles from "@/components/RelatedArticles.astro";
+import ShareButtons from "@/components/ShareButtons.astro";
+import TableOfContents from "@/components/toc/TableOfContents.astro";
+import { articleThumbnailNativeSize, createArticleDetailPath } from "@/lib/article";
+import { articlesListPagePath } from "@/lib/article/listPage";
+import { getAllTagWithSlugs } from "@/lib/collection";
+import { createArticleJsonLd, createStaticArticleJsonLd } from "@/lib/jsonLd";
+import { defaultArticleThumbnail } from "@/lib/util";
+import { isArticleMeta, type ArticleMeta, type StaticPageMetaWithSlug } from "@/schemas/article/meta";
+import type { MarkdownHeading } from "astro";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import ArticleContent from "./ArticleContent.astro";
+import ArticleMetaComponent from "./ArticleMetaComponent.astro";
+
+export type ArticleComponentMeta = ArticleMeta | StaticPageMetaWithSlug;
+
+interface Props {
+  meta: ArticleComponentMeta;
+  content: AstroComponentFactory;
+  contentLength: number;
+  headings: MarkdownHeading[];
+  shareSlug: string;
+};
+
+const { meta, content, contentLength, headings, shareSlug } = Astro.props;
+
+// 通常の記事どうか：falseなら固定記事（aboutやcontact）
+const isArticle = isArticleMeta(meta);
+
+function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
+  if (isArticleMeta(meta)) {
+    return [
+      {
+        name: "記事一覧",
+        href: articlesListPagePath,
+      },
+      {
+        name: meta.title,
+        href: createArticleDetailPath(meta.id),
+        isCurrent: true,
+      },
+    ];
+  } else {
+    return [
+      {
+        name: meta.title,
+        href: `/${meta.slug}/`,
+        isCurrent: true,
+      },
+    ];
+  }
+}
+
+const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
+---
+
+<Fragment slot="head">
+  { isArticle
+      ? <JsonLd schema={ createArticleJsonLd(meta) } />
+      : <JsonLd schema={ createStaticArticleJsonLd(meta) } />
+    }
+</Fragment>
+<div class="container">
+  <div class="first-side">
+    <div class="toc-container">
+      <TableOfContents headings={headings} />
+    </div>
+  </div>
+  <main class="article">
+    <Breadcrumbs breadcrumbs={ breadcrumbs } />
+    <h1>{meta.title}</h1>
+    <ArticleMetaComponent meta={ meta } contentLength={ contentLength } />
+    <Image
+      src={ meta.thumbnail ?? defaultArticleThumbnail }
+      alt={ meta.title }
+      width={ articleThumbnailNativeSize.width }
+      height={ articleThumbnailNativeSize.height }
+      fetchpriority="high"
+      loading="eager"
+    />
+    <ShareButtons slug={shareSlug} title={meta.title} />
+    <hr />
+    <ArticleContent content={content} />
+    <hr />
+    <p>SNSやブログで記事をご紹介いただけたらうれしいです！</p>
+    <ShareButtons slug={shareSlug} title={meta.title} />
+    {isArticle && 
+      <>
+        <hr />
+        <RelatedArticles articleMeta={ meta }/>
+      </>}
+    {isArticle && <AdSense adSenseType="display" /> }
+  </main>
+  <div class="last-side">
+    <Profile />
+    <ArticleTagList tags={ await getAllTagWithSlugs() } />
+    {isArticle && <AdSense adSenseType="display" /> }
+  </div>
+</div>
+
+<style>
+  .container{
+    display: grid;
+    grid-template-columns: repeat(var(--grid-column), 1fr);
+    gap: 32px;
+    margin: 16px;
+    align-items: start;
+  }
+
+  .first-side{
+    grid-column: span 3;
+    position: sticky;
+    top: 16px;
+  }
+
+  .toc-container{
+    background-color: var(--color-main);
+    border:1px solid var(--border-color-main);
+  }
+
+  .share-buttons-container {
+    margin: 1rem 0;
+  }
+
+  .article{
+    grid-column: span 6;
+    padding: 24px;
+    background-color: var(--color-main);
+    border:1px solid var(--border-color-main);
+  }
+
+  .last-side{
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ads-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ads-container::before{
+    content: "PR";
+  }
+
+  @media screen and (width <= 1280px){
+    .container{
+      gap: 16px;
+    }
+
+    .article{
+      grid-column: span 9;
+    }
+
+    .last-side{
+      grid-column: 4 / span 9;
+    }
+  }
+
+  @media screen and (width <= 500px){
+    .container{
+      margin: 16px 0;
+    }
+
+    .first-side,
+    .article,
+    .last-side {
+      grid-column: span 12;
+    }
+
+    .first-side{
+      position: relative;
+      top: initial;
+    }
+    
+    .article{
+      padding: 16px;
+    }
+  }
+</style>
