@@ -9,6 +9,7 @@
     --color-main-dark: #ebe6e3;
     --border-color-main: #f3e8e4;
     --color-sub: #79cdee;
+    --color-sub-background: #76c7e8; /* 白文字の背景として使えるsub色の背景色 */
     --color-sub-pale: #a9dcf0;
     --color-sub-light: #dcf5ff;
     --color-sub-dark: #79bcd6;
