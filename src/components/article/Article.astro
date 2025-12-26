@@ -92,6 +92,7 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
     <hr />
     <p>SNSやブログで記事をご紹介いただけたらうれしいです！</p>
     <ShareButtons slug={shareSlug} title={meta.title} />
+    <p><a class="support" href="https://ko-fi.com/homironi"><Image src="/images/logos/ko-fi/kofi_symbol.svg"/>ko-fi</a>でサポートも受け付けています！</p>
     {isArticle && 
       <>
         <hr />
@@ -154,6 +155,12 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
     content: "PR";
   }
 
+  .support :global(img){
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+  }
+
   @media screen and (width <= 1280px){
     .container{
       gap: 16px;
@@ -168,7 +175,7 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
     }
   }
 
-  @media screen and (width <= 500px){
+  @media screen and (width <= 780px){
     .container{
       margin: 16px 0;
     }
