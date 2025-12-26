@@ -28,12 +28,10 @@ const iconMap = {
 const { blockType, title } = Astro.props;
 ---
 
-<div
-class=`${"text-block"} text-block-${blockType}`
->
+<aside class=`text-block text-block-${blockType}`>
   <p class="title"><span class="icon-wrapper"><Icon name={iconMap[blockType]} size={24} /></span>{title}</p>
   <div class="content"><slot/></div>
-</div>
+</aside>
 
 <style>
   /* TextBlockコンポーネントのスタイル */
