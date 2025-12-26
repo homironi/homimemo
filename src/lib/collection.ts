@@ -24,6 +24,14 @@ export async function getArticle(id: string): Promise<ArticleMeta> {
 }
 
 /**
+ * すべての静的ページを取得する
+ * @returns 静的ページの配列
+ */
+export function getAllStaticPages(){
+  return getCollection("pages");
+}
+
+/**
  * すべてのタグを取得する
  * @returns タグの配列
  */
