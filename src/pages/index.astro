@@ -10,7 +10,7 @@ import Layout from "./_layout.astro";
 
 const noticeMax = 2;
 const recommendedArticleMax = 4;
-const newArticlesMax = 10;
+const newArticlesMax = 8;
 const articleChangelogMax = 4;
 
 const allArticles= await getAllArticles();
@@ -65,7 +65,7 @@ const latestArticles : ArticleMeta[] = allArticles
 ---
 
 <Layout>
-  <div class="container">
+  <main class="container">
     <h2 class="title">お知らせ</h2>
     <ul class="list">
       {noticeData.slice(0, noticeMax).map(({date, html}) => <li class="item">{date}：<Fragment set:html={html}/></li>)}
@@ -83,7 +83,7 @@ const latestArticles : ArticleMeta[] = allArticles
     <ul class="list">
       {latestArticles.map(v => <li class="item"><ArticleLink meta={v} /></li>)}
     </ul>
-  </div>
+  </main>
 </Layout>
 
 <style>
