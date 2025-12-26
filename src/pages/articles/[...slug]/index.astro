@@ -1,0 +1,60 @@
+---
+import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
+import { articleListPagePath, articleListPagePathBase, articlesListPagePath, createArticleListPagePath, getPageLength } from "@/lib/article/listPage";
+import { getAllArticles } from "@/lib/collection";
+import ArticleListPageLayout from "@/pages/_layout/ArticleListPageLayout.astro";
+import type { ArticleMeta } from "@/schemas/article/meta";
+
+interface Props {
+  currentPage: number;
+  articles: ArticleMeta[];
+};
+
+/**
+ * Astroの静的パラメータ生成
+ * https://docs.astro.build/ja/reference/routing-reference/#getstaticpaths
+ */
+export async function getStaticPaths(){
+  const allArticles = (await getAllArticles()).sort(
+    (a, b) => b.data.lastModDate.getTime() - a.data.lastModDate.getTime()
+  );
+  const numbers = getPageLength((allArticles).length);
+  return numbers
+    .map((i) => {
+      // 「/articles/」のルートからのパス形式で入ってくるので、最初のslugに含めない部分は消す
+      const slug = createArticleListPagePath(i).replace(new RegExp(`^${articleListPagePath}`), "");
+      
+      return{
+        params:{
+          // 空文字でもビルドはされますが、undefinedが期待されるという旨の警告が出るので、空文字はundefinedにする
+          slug: slug === "" ? undefined : slug,
+        },
+        props: {
+          currentPage: i,
+          articles: allArticles.map(v=>v.data),
+        },
+      };
+    });
+}
+
+const { currentPage, articles } = Astro.props;
+
+const title = "記事一覧";
+
+const breadcrumbs: BreadcrumbElement[] = [
+  {
+    name: title,
+    href: articlesListPagePath,
+  },
+];
+---
+
+<ArticleListPageLayout
+title={title}
+description=`すべての記事一覧の${currentPage}ページ目です。`
+articles={articles}
+breadcrumbs={breadcrumbs}
+listPagePathBase={articleListPagePathBase}
+currentPageNumber={currentPage}
+firstPagePath={articlesListPagePath}
+/>
