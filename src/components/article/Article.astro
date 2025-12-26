@@ -1,5 +1,6 @@
 ---
 import AdSense from "@/components/AdSense.astro";
+import ArticleTagList from "@/components/ArticleTagList.astro";
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import JsonLd from "@/components/JsonLd.astro";
@@ -9,6 +10,7 @@ import ShareButtons from "@/components/ShareButtons.astro";
 import TableOfContents from "@/components/toc/TableOfContents.astro";
 import { articleThumbnailNativeSize, createArticleDetailPath } from "@/lib/article";
 import { articlesListPagePath } from "@/lib/article/listPage";
+import { getAllTagWithSlugs } from "@/lib/collection";
 import { createArticleJsonLd, createStaticArticleJsonLd } from "@/lib/jsonLd";
 import { defaultArticleThumbnail } from "@/lib/util";
 import { isArticleMeta, type ArticleMeta, type StaticPageMetaWithSlug } from "@/schemas/article/meta";
@@ -98,7 +100,7 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
   </main>
   <div class="last-side">
     <Profile />
-    <p>TODO：{`<ArticleTagList tags={ getAllTags() } />`}</p>
+    <ArticleTagList tags={ await getAllTagWithSlugs() } />
     {isArticle && <AdSense adSenseType="display" /> }
   </div>
 </div>

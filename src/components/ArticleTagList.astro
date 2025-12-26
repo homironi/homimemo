@@ -1,0 +1,51 @@
+---
+import { createTagListPagePath } from "@/lib/article/listPage";
+import type { TagMetaWithSlug } from "@/schemas/article/meta";
+
+interface Props{
+  tags: TagMetaWithSlug[];
+};
+
+const { tags } = Astro.props;
+---
+
+<div class="container">
+  <p>タグ一覧</p>
+  <ul class="list">
+    {tags.map((tag) => (
+      <li class="item">
+        <a href={ createTagListPagePath(tag.slug) } class="link">
+          {tag.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .container{
+    padding: 24px;
+    background-color: var(--color-main);
+    border:1px solid var(--border-color-main);
+  }
+
+  .list{
+    list-style: flex;
+    padding: 0;
+    margin: 0;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .item{
+    display: inline-block;
+  }
+
+  .link{
+    display: inline-block;
+    padding: 1rem;
+    background-color: var(--color-main-dark);
+    border-radius: 2rem;
+  }
+</style>

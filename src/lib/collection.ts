@@ -1,4 +1,4 @@
-import type { ArticleMeta } from "@/schemas/article/meta";
+import type { ArticleMeta, TagMetaWithSlug } from "@/schemas/article/meta";
 import { getCollection, getEntry } from "astro:content";
 
 /**
@@ -21,4 +21,25 @@ export async function getArticle(id: string): Promise<ArticleMeta> {
   }
 
   return entry.data;
+}
+
+/**
+ * すべてのタグを取得する
+ * @returns タグの配列
+ */
+export function getAllTags(){
+  return getCollection("tags");
+}
+
+/**
+ * すべてのタグをスラッグ付きで取得する
+ * @returns スラッグ付きタグの配列
+ */
+export async function getAllTagWithSlugs(): Promise<TagMetaWithSlug[]> {
+  const tags = await getAllTags();
+
+  return tags.map(tag => ({
+    ...tag.data,
+    slug: tag.id,
+  }));
 }
