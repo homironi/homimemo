@@ -7,6 +7,8 @@ import { defineConfig } from "astro/config";
 import rehypeSlug from "rehype-slug";
 import { rehypeGfmTaskList } from "./src/lib/rehype/gfmTaskList";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://homironi.com",
@@ -17,21 +19,16 @@ export default defineConfig({
     format: "directory",
   },
 
-  integrations: [
-    icon({
-      iconDir: "src/assets/icons",
-    }),
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      }
-    }),
-    expressiveCode({
-      // 指定はデフォルトのテーマですが、ビルド時にテーマが含まれるように必ず明示的にテーマを指定する
-      themes: ["github-dark", "github-light"],
-    }),
-    mdx(),
-],
+  integrations: [icon({
+    iconDir: "src/assets/icons",
+  }), partytown({
+    config: {
+      forward: ["dataLayer.push"],
+    }
+  }), expressiveCode({
+    // 指定はデフォルトのテーマですが、ビルド時にテーマが含まれるように必ず明示的にテーマを指定する
+    themes: ["github-dark", "github-light"],
+  }), mdx(), sitemap()],
 
   markdown: {
     rehypePlugins: [
