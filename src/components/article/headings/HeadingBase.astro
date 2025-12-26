@@ -7,8 +7,9 @@ interface Props extends HTMLAttributes<Headings> {
 }
 
 const { id, tag:Tag, ...props } = Astro.props;
+const href = `#${id}`;
 ---
 
 <Tag id={id} {...props}>
-  {id ? <a href=`#${id}`><slot/></a> : <slot/>}
-</>
+  {id ? <a href={href}><slot/></a> : <slot/>}
+</Tag>
