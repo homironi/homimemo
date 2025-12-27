@@ -1,32 +1,27 @@
 ---
-import BaseLayout, { type Props as LayoutProps } from "@/layout/baseLayout.astro";
+import Breadcrumbs, { type BreadcrumbElement } from "@/components/Breadcrumbs.astro";
+import BaseLayout, { type Props as LayoutProps } from "@/layout/singleLayout.astro";
 
-export interface Props extends LayoutProps{};
+export interface Props extends LayoutProps{
+  breadcrumbs: BreadcrumbElement[];
+};
 
-const props = Astro.props;
+const { breadcrumbs, ...props } = Astro.props;
 ---
 
 <BaseLayout {...props}>
-  <div class="container">
+  <Breadcrumbs breadcrumbs={breadcrumbs}/>
+  <main class="container">
     <slot/>
-  </div>
+  </main>
 </BaseLayout>
 
 <style>
   .container {
-    margin: 0 auto;
-    max-width: 1280px;
-    padding: 16px;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
     list-style-position: inside;
-  }
-
-  @media screen and (width <= 780px){
-    .container {
-      padding: 4px;
-    }
   }
 </style>
