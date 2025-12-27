@@ -1,6 +1,5 @@
 ---
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import Icon from "@/components/Icon.astro";
 import { createTagListPagePath } from "@/lib/article/listPage";
 import { filterArticlesByTag, getAllArticles, getAllTags } from "@/lib/collection";
@@ -48,8 +47,8 @@ const now = new Date();
 <Layout
 title={title}
 description={description}
+breadcrumbs={breadcrumbs}
 >
-  <Breadcrumbs breadcrumbs={breadcrumbs}/>
   <h1>🎉サイト統計🎉</h1>
   <time datetime={ formatDate(now, "YYYY-MM-DD") }>{formatDate(now, "YYYY/MM/DD")}現在</time>
   <h2>サイト公開日</h2>
