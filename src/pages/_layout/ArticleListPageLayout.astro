@@ -3,9 +3,9 @@ import ArticleCard, { type Props as ArticleCardProps } from "@/components/Articl
 import ArticleListPageNumbers from "@/components/ArticleListPageNumbers.astro";
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Layout from "@/layout/baseLayout.astro";
 import { articlePagePerNum } from "@/lib/article/listPage";
 import type { ArticleMeta } from "@/schemas/article/meta";
-import Layout from "../_layout.astro";
 
 interface Props{
   title: string;

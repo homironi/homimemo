@@ -1,6 +1,7 @@
 ---
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Layout from "@/layout/baseLayout.astro";
 import { createArticleDetailPath } from "@/lib/article";
 import { createTagListPagePath } from "@/lib/article/listPage";
 import { filterArticlesByTag, getAllArticles, getAllTags } from "@/lib/collection";
@@ -8,7 +9,6 @@ import { formatDate } from "@/lib/date";
 import type { ArticleMeta } from "@/schemas/article/meta";
 import type { Props as ArticleRatioListProps } from "../_components/ArticleRatioList.astro";
 import ArticleRatioList from "../_components/ArticleRatioList.astro";
-import Layout from "../_layout.astro";
 
 interface ArticleByMonth{
   month: string;

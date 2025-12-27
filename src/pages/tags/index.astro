@@ -2,9 +2,9 @@
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import Icon from "@/components/Icon.astro";
+import Layout from "@/layout/baseLayout.astro";
 import { createTagListPagePath, tagsPagePath } from "@/lib/article/listPage";
 import { filterArticlesByTag, getAllArticles, getAllTags } from "@/lib/collection";
-import Layout from "../_layout.astro";
 
 const title = "タグ一覧";
 const description ="サイト内で扱っているタグの一覧ページです。";
