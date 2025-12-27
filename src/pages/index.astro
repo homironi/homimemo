@@ -2,7 +2,7 @@
 import ArticleLink from "@/components/ArticleLink.astro";
 import { noticeData } from "@/data/notice";
 import { recommendedArticles } from "@/data/recommendedArticle";
-import Layout from "@/layout/baseLayout.astro";
+import Layout from "@/layout/singleLayout.astro";
 import { createArticleDetailPath } from "@/lib/article";
 import { getAllArticles } from "@/lib/collection";
 import { formatDate } from "@/lib/date";
@@ -65,7 +65,7 @@ const latestArticles : ArticleMeta[] = allArticles
 ---
 
 <Layout>
-  <main class="container">
+  <main>
     <h2 class="title">お知らせ</h2>
     <ul class="list">
       {noticeData.slice(0, noticeMax).map(({date, html}) => <li class="item">{date}：<Fragment set:html={html}/></li>)}
@@ -87,12 +87,6 @@ const latestArticles : ArticleMeta[] = allArticles
 </Layout>
 
 <style>
-  .container{
-    margin: 0 auto;
-    padding: 16px;
-    max-width: 1280px;
-  }
-
   .title{
     margin: 2rem 0 0;
   }
@@ -105,10 +99,5 @@ const latestArticles : ArticleMeta[] = allArticles
     display: block;
     border-bottom: 4px dotted var(--color-main-dark);
     padding: 8px 0;
-  }
-
-  @media screen and (width <= 780px) {
-    .container {
-    }
   }
 </style>

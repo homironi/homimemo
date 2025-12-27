@@ -1,0 +1,20 @@
+---
+import BaseLayout, { type Props as BaseLayoutProps } from "./baseLayout.astro";
+
+export interface Props extends BaseLayoutProps{};
+
+const props = Astro.props;
+---
+<BaseLayout {...props}>
+  <div class="container">
+    <slot/>
+  </div>
+</BaseLayout>
+
+<style>
+  .container{
+    margin: 0 auto;
+    padding: 16px;
+    max-width: 1280px;
+  }
+</style>

@@ -2,7 +2,7 @@
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import Icon from "@/components/Icon.astro";
-import Layout from "@/layout/baseLayout.astro";
+import Layout from "@/layout/singleLayout.astro";
 import { createTagListPagePath, tagsPagePath } from "@/lib/article/listPage";
 import { filterArticlesByTag, getAllArticles, getAllTags } from "@/lib/collection";
 
@@ -24,7 +24,7 @@ const allArticles = (await getAllArticles()).map(v=>v.data);
 title={title}
 description={description}
 >
-  <div class="container">
+  <main>
     <Breadcrumbs breadcrumbs={breadcrumbs}/>
     <h1 class="title">{title}</h1>
     <ul class="tags">
@@ -37,16 +37,10 @@ description={description}
         </div>
       </li>))}
     </ul>
-  </div>
+  </main>
 </Layout>
 
 <style>
-  .container {
-    margin: 0 auto;
-    max-width: 1280px;
-    padding: 16px;
-  }
-
   .title{
     text-align: center;
     margin: 2rem 0 0;
@@ -57,11 +51,5 @@ description={description}
     flex-wrap: wrap;
     gap: 1rem;
     list-style: none;
-  }
-
-  @media screen and (width <= 780px){
-    .container {
-      padding: 4px;
-    }
   }
 </style>
