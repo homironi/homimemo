@@ -1,8 +1,8 @@
 ---
 import Article, { type ArticleComponentMeta } from "@/components/article/Article.astro";
+import Layout from "@/layout/baseLayout.astro";
 import { countMarkdownCharacters, createArticleDetailPath } from "@/lib/article";
 import { getAllArticles } from "@/lib/collection";
-import Layout from "@/pages/_layout.astro";
 import { getEntries, getEntry, render } from "astro:content";
 
 interface Props {
