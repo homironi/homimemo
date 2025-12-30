@@ -1,0 +1,114 @@
+---
+id: qh166qblptc3q4m1yoxqxus5
+draft: false
+title: 【個人サイトの技術 v3】Astroに移行した！
+tags:
+  - about-site
+  - make-web
+  - astro
+description: このサイトのフレームワークをAstroに移行した際の話です。
+publishDate: 2025-12-30T04:49:51.682Z
+lastModDate: 2025-12-30T04:49:51.682Z
+thumbnail: /images/header/articles/qh166qblptc3q4m1yoxqxus5.webp
+---
+
+## はじめに
+
+今回はこのサイトのフレームワークを移行したので、それについて書きます！
+
+つい数カ月前にNext.jsにフレームワークを変更しました。今回はさらにNext.js→Astroに移行したので、それについて書いていきます。
+
+リポジトリを公開しています。
+
+<CardPreviewUrl url="https://github.com/homironi/homimemo"/>
+
+過去の移行記事、あるいは未来の移行記事は[「Built with」ページ](/built-with/)にまとめています。
+
+## 移行のきっかけ
+
+Next.js 15からNext.js 16にメジャーバージョンを上げたのをきっかけにフレームワーク移行の検討をゆるやかに始めました。  
+Next.js 15から16に上げたことでファイル数が倍増したのが直接的なきっかけです。
+
+具体的にどれくらい増えたかというと、バージョンアップ前は「397ファイル」でしたが、バージョンアップだけをした後「849ファイル」に増えました。  
+実に2倍以上の増加です。
+
+これだけを決め手に移行を決めたわけではないのですが、以下の理由で移行を検討し始めました。  
+つい最近以下の記事にもした通りCloudflare Workersでのファイル数制限について考えてみたばかりだったので、「Next.js、自分のサイトにはオーバースペックじゃない？」と検討をしはじめました。
+
+<CardPreviewUrl url="https://homironi.com/articles/fi4zkau5pwe6rgah5f5iigip/"/>
+
+## 環境と技術スタック
+
+- Astro
+- TypeScript
+- マークダウンでコンテンツ管理（同じリポジトリ内で管理）
+- SSGされたファイルをCloudflare Workersで静的アセットとして配信  
+→ 動的なページ生成はない
+
+## 移行の決めて
+
+- デメリットが自分の想定するユーザー的に無視できる（してよいと思える）程度だった
+- [Content collections](https://docs.astro.build/ja/guides/content-collections/)が便利  
+→ マークダウンで記事を同じリポジトリ内で管理するスタイルと相性が良かった
+- 必要最低限のJavaScript
+
+## 運営にかかる金額は変化無し
+
+今回はフレームワークの移行だけなので、運営にかかる金額は前回と変わらずドメイン代だけです！
+
+## 移行してよかったこと
+
+ファイル数はCloudflareのビルドログ上では267ファイルになりました！  
+ファイル数だけで移行したわけではないので、他にもっと減らせるフレームワークがあったり、ファイル数が減ることだけが正義ではないですが、移行のきっかけとなった部分については憂いなく過ごせる感じになってくれてよかったです。
+
+また、ビルド時間も少し短くなりました。  
+Cloudflareのビルドログ上でも長くてもビルドで1分を超えることはありません。  
+もちろん、Next.jsのときでもたまに1分超えるくらいでそこまで不便には思っていませんでしたが、ちょっと短くなったのはうれしいです。
+
+## 移行してちょっとよくなかったこと
+
+モバイルのパフォーマンスは下がりました。
+
+Next.jsのときはPageSpeed Insightsのモバイルでも90～99などでしたが、移行後は60～80くらいになりました。  
+PageSpeed Insightsのパフォーマンスの指標は全て緑だったのがオレンジ～赤になり、パフォーマンス全体のスコアとしてオレンジくらいのスコアに変わりました。
+
+もう少し上げられるかもしれませんが、カリカリにチューニングしていないNext.jsと比べるとかなり差がでたのは事実です。
+
+## 使ったAstroのIntegration
+
+AstroにはIntegrationという概念があります。
+
+<CardPreviewUrl url="https://docs.astro.build/ja/guides/integrations-guide/"/>
+<CardPreviewUrl url="https://astro.build/integrations/"/>
+
+プラグインとかそんな感じのものですね。  
+今回は以下のものを使用しました。
+
+- [`@astrojs/mdx`](https://docs.astro.build/ja/guides/integrations-guide/mdx/)：MDXのために使用
+- [`@astrojs/partytown`](https://docs.astro.build/ja/guides/integrations-guide/partytown/)：GoogleTag用に使用しています
+- [`@astrojs/sitemap`](https://docs.astro.build/ja/guides/integrations-guide/sitemap/)：sitemapを作成するのに使用
+- [`@astrojs/rss`](https://docs.astro.build/ja/recipes/rss/)：RSSを作成するのに使用
+- [`astro-expressive-code`](https://expressive-code.com/installation/#astro)：便利なコードブロック
+- [`astro-icon`](https://www.astroicon.dev/)：アイコンの取り扱い用
+- [`@playform/compress`](https://github.com/PlayForm/Compress#readme)：アセット圧縮
+- [`@playform/inline`](https://github.com/PlayForm/Inline#readme)：クリティカルCSSのインライン化
+
+<TextBlock blockType="note">
+`@astrojs/cloudflare`がありますが使用していません。  
+SSGしたファイルを静的アセットとして配信しているだけなので、Cloudflare用のアダプタは使用していません。
+</TextBlock>
+
+## さいごに
+
+正直、移行しなくても数年間毎日記事を書いてようやくファイル数上限が見えてくる可能性がある、というくらいだったので必要にせまられての移行ではありませんでした。  
+しかし、他にもメリットあるし、せっかくならAstro経験のためにも移行してみるか～ということで移行しました。
+
+動的なサイトとか、商業的な目的がある場合はNext.jsで作ることを選ぶかもしれませんが、このブログのような静的なサイトならAstroもいいな～という経験を得ました！
+
+このサイトは運営者「ほみ」の好奇心だけで運営されています！  
+今後ともどうぞよろしくお願いします！
+
+## 関連
+
+<CardPreviewUrl url="https://astro.build/"/>
+<CardPreviewUrl url="https://homironi.com/articles/fi4zkau5pwe6rgah5f5iigip/"/>
