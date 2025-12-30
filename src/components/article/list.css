@@ -3,12 +3,7 @@
 /* リスト共通スタイル */
 .article-contents-container ul,
 .article-contents-container ol{
-  list-style-position: inside;
-}
-
-.article-contents-container li > ul,
-.article-contents-container li > ol{
-  padding-left: 1.5em;
+  padding-left: 1.5rem;
 }
 
 .article-contents-container ul li,
