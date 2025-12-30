@@ -20,7 +20,8 @@ async function run(){
       required: true,
       choices: tagData.map(tag => {
         return {
-          value: tag.name,
+          value: tag.slug,
+          name: tag.name,
           description: tag.description,
         };
       }),
