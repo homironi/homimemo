@@ -29,7 +29,10 @@ export default defineConfig({
   }), expressiveCode({
     // 指定はデフォルトのテーマですが、ビルド時にテーマが含まれるように必ず明示的にテーマを指定する
     themes: ["github-dark", "github-light"],
-  }), mdx(), sitemap(), playformInline(), playformCompress()],
+  }), mdx(), sitemap(), playformInline(),playformCompress({
+    // media screen のCSSが効かなくなってしまったのでCSSは無効にする
+    CSS: false,
+  })],
 
   markdown: {
     rehypePlugins: [
