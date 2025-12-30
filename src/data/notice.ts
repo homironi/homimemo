@@ -6,7 +6,7 @@ import { createArticleDetailPath } from "@/lib/article";
 export const noticeData = [
   {
     date: "2025/12/26",
-    html: "サイトのフレームワークをAstroに移行しました（近日中に記事公開予定）",
+    html: `<a href="${createArticleDetailPath("qh166qblptc3q4m1yoxqxus5")}">サイトのフレームワークをAstroに移行しました（近日中に記事公開予定）</a>`,
   },
   {
     date: "2025/09/03",
