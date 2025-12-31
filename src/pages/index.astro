@@ -68,7 +68,14 @@ const latestArticles : ArticleMeta[] = allArticles
   <main>
     <h2 class="title">お知らせ</h2>
     <ul class="list">
-      {noticeData.slice(0, noticeMax).map(({date, html}) => <li class="item">{date}：<Fragment set:html={html}/></li>)}
+      {noticeData.slice(0, noticeMax).map(({date, text, link}) => {
+        return (
+          <li class="item">{date}：{ link
+            ? <a href={link}>{text}</a>
+            : <span>{text}</span>
+            }</li>
+        );
+      })}
     </ul>
     <h2 class="title">更新履歴</h2>
     <ul class="list">
