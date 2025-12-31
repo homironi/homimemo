@@ -6,25 +6,26 @@ import { createArticleDetailPath } from "@/lib/article";
 export const noticeData = [
   {
     date: "2025/12/26",
-    html: `<a href="${createArticleDetailPath("qh166qblptc3q4m1yoxqxus5")}">サイトのフレームワークをAstroに移行しました</a>`,
+    text: "サイトのフレームワークをAstroに移行しました",
+    link: createArticleDetailPath("qh166qblptc3q4m1yoxqxus5"),
   },
   {
     date: "2025/09/03",
-    html: "サイトをCloudflare Workersに移行しました",
+    text: "サイトをCloudflare Workersに移行しました",
   },
   {
     date: "2025/07/13",
-    html: `<a href="${createArticleDetailPath("u7ax9hdyzzu3zkp5grbjazmt")}">サイトをNext.jsを中心としたSSGにリニューアルしました</a>`,
+    text: "サイトをNext.jsを中心としたSSGにリニューアルしました",
+    link: createArticleDetailPath("u7ax9hdyzzu3zkp5grbjazmt"),
   },
   {
     date: "2023/12/04",
-    html: (
-      `<a href="${createArticleDetailPath("fdjs9rs2bn7ugq9rf8ysa28h")}">ダークテーマ対応してみました。</a>
-        OSのテーマ設定に合わせて自動で切り替わります`
-    ),
+    text: "ダークテーマ対応してみました。OSのテーマ設定に合わせて自動で切り替わります",
+    link: createArticleDetailPath("fdjs9rs2bn7ugq9rf8ysa28h"),
   },
   {
     date: "2023/08/23",
-    html: `<a href="${createArticleDetailPath("qnhckrrtrx8xv662s0ox840y")}">サイト公開</a>`,
+    text: "サイト公開",
+    link: createArticleDetailPath("qnhckrrtrx8xv662s0ox840y"),
   },
 ];
