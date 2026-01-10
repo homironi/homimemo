@@ -1,0 +1,59 @@
+---
+id: 4homlzesx1rdeazrxsb7t0ec
+draft: false
+title: Astro × Expressive Code でのSSG時は明示的にテーマを指定する
+tags:
+  - astro
+  - about-site
+description: 「Theme `github-dark` is not included in this bundle. You may want to load it from external source.」AstroでExpressive Codeを使う際に明示的にテーマを指定しないとビルド後のファイルにテーマのファイルが含まれずエラーが出たので、そのメモです。
+publishDate: 2026-01-10T04:37:31.708Z
+lastModDate: 2026-01-10T04:37:31.708Z
+thumbnail: /images/header/articles/4homlzesx1rdeazrxsb7t0ec.webp
+---
+
+## 導入時の手順と環境
+
+<CardPreviewUrl url="https://expressive-code.com/installation/#astro" />
+
+公式の手順に則り、AstroのIntegrationを使って導入しました。
+
+- AstroのIntegrationでインストール
+- SSG
+
+## エラー内容
+
+特に設定を変更せず、`astro build`をしたところ以下のエラーが出ました。
+
+```shell title="Astroでのビルド時のエラー"
+Theme `github-dark` is not included in this bundle. You may want to load it from external source.
+```
+
+## 解消
+
+以下のように明示的にテーマを指定するだけでエラーは解消されました！
+
+```js title="astro.config.mjs"
+themes: ["github-dark", "github-light"],
+```
+
+Astroには限らないかもしれませんが、SSGなのでビルド時にテーマのファイルが含まれなくなってしまってエラーになっていた感じかなと思います。  
+前述の通り、明示的にテーマを指定するだけで解消できました！
+
+## 余談：Expressive Codeめっちゃいい
+
+今回、このサイトをAstroへフレームワークを変更した際に遭遇したエラーのメモでした。
+
+Expressive Codeも始めて使ったのですが、お手軽に便利なコードブロックができていい感じです！  
+
+今回フレームワーク変更にあたってコードブロックのコピー機能が鍵でした。  
+もともとコードブロックは[`prismjs`](https://prismjs.com/)を使用していました。  
+コピー機能などは自分で入れていたのですが、せっかくだしコピー機能もあるようなもっとお手軽にできるものはないかなーと調べたところでExpressive Codeを見つけました。
+
+コピーボタンがもとからあったり、エディターっぽいコードブロックに加えてターミナル風のコードブロックもあったり。  
+フレームワーク変更前に自分で実装していた部分もいい感じにしてくれます。  
+Integrationとして追加するだけで簡単にできるので、今後Astro以外のフレームワークに変更することになっても使い続けたいなと思っています。
+
+## 参照
+
+<CardPreviewUrl url="https://expressive-code.com/" />
+<CardPreviewUrl url="https://expressive-code.com/guides/themes/" />
