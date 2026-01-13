@@ -1,11 +1,15 @@
 ---
-import { productLinks, rakutenWidgetHtml, type AffiliateProductLinkKey } from "@/data/affiliateLinks";
+import { rakutenWidgetHtml } from "@/data/affiliateLinks";
+import { getEntry } from "astro:content";
 
-export type Props = { type: "rakutenWidget" } | { type: "productLink"; id: AffiliateProductLinkKey };
+export type Props = { type: "rakutenWidget" } | { type: "productLink"; id: string };
 
 const props = Astro.props; 
 
-const affiliateHtml = props.type === "rakutenWidget" ? rakutenWidgetHtml : productLinks[props.id];
+const affiliateHtml = props.type === "rakutenWidget" ? rakutenWidgetHtml : (await getEntry("affiliates", props.id))?.body;
+if(!affiliateHtml){
+  throw new Error(`Not found affiliate html.${props.type === "productLink" && ` id: ${props.id}`}`);
+}
 ---
 
 <div class="container">
