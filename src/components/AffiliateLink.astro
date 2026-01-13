@@ -1,27 +1,28 @@
 ---
-import { productLinks, rakutenWidgetHtml, type AffiliateProductLinkKey } from "@/data/affiliateLinks";
+import { rakutenWidgetHtml } from "@/data/affiliateLinks";
+import { getEntry } from "astro:content";
 
-export type Props = { type: "rakutenWidget" } | { type: "productLink"; id: AffiliateProductLinkKey };
+export type Props = { type: "rakutenWidget" } | { type: "productLink"; id: string };
 
 const props = Astro.props; 
 
-const affiliateHtml = props.type === "rakutenWidget" ? rakutenWidgetHtml : productLinks[props.id];
+const affiliateHtml = props.type === "rakutenWidget" ? rakutenWidgetHtml : (await getEntry("affiliates", props.id))?.body;
+if(!affiliateHtml){
+  throw new Error(`Not found affiliate html.${props.type === "productLink" && ` id: ${props.id}`}`);
+}
 ---
 
 <div class="container">
-  <!-- 固定サイズの場合でも中央に配置するために、divで囲って親でcenterを指定 -->
-  <div>
-    <Fragment set:html={affiliateHtml} />
-  </div>
+  <Fragment set:html={affiliateHtml} />
 </div>
 
 <style>
   .container {
+    margin: 0 auto;
     padding: 8px;
     max-width: 100%;
     background-color: var(--color-main);
     border: solid 1px var(--border-color-main);
-    text-align: center;
   }
   
   .container::before{
