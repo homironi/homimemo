@@ -1,9 +1,9 @@
 ---
-import AffiliateLink from "@/components/AffiliateLink.astro";
 import CardPreviewUrl from "@/components/CardPreviewUrl.astro";
 import Link from "@/components/Link.astro";
 import TextBlock from "@/components/TextBlock.astro";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import ArticleAffiliate from "./ArticleAffiliate.astro";
 import "./blockquote.css"; // 引用のスタイルを適用するためにインポート
 import H1 from "./headings/H1.astro";
 import H2 from "./headings/H2.astro";
@@ -33,7 +33,7 @@ const { content:Content } = Astro.props;
       h5: H5,
       h6: H6,
       TextBlock,
-      AffiliateLink,
+      ArticleAffiliate,
       CardPreviewUrl,
     } }
   />
