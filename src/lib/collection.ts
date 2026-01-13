@@ -61,3 +61,11 @@ export async function getAllTagWithSlugs(): Promise<TagMetaWithSlug[]> {
     slug: tag.id,
   }));
 }
+
+/**
+ * 全てのAffiliateリンクを取得する
+ * @returns Affiliateリンクの配列
+ */
+export async function getAllAffiliate() {
+  return getCollection("affiliates");
+}

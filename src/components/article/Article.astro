@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import Image from "@/components/Image.astro";
 import JsonLd from "@/components/JsonLd.astro";
 import Profile from "@/components/Profile.astro";
+import RelatedAffiliate from "@/components/RelatedAffiliate.astro";
 import RelatedArticles from "@/components/RelatedArticles.astro";
 import ShareButtons from "@/components/ShareButtons.astro";
 import TableOfContents from "@/components/toc/TableOfContents.astro";
@@ -95,6 +96,8 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
     <p><a class="support" href="https://ko-fi.com/homironi"><Image src="/images/logos/ko-fi/kofi_symbol.svg" alt="ko-fiのロゴ"/>ko-fi</a>でサポートも受け付けています！</p>
     {isArticle && 
       <>
+        <hr />
+        <RelatedAffiliate articleMeta={ meta }/>
         <hr />
         <RelatedArticles articleMeta={ meta }/>
       </>}
