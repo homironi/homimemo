@@ -1,0 +1,14 @@
+---
+import AffiliateLink from "@/components/AffiliateLink.astro";
+import type { AffiliateProductLinkKey } from "@/data/affiliateLinks";
+
+// AffiliateLinkをidだけで記事から使いやすいようにしただけのComponent
+
+interface Props {
+  id: AffiliateProductLinkKey;
+};
+
+const props = Astro.props;
+---
+
+<AffiliateLink type="productLink" id={props.id} />
