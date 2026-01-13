@@ -1,5 +1,5 @@
 ---
-import AdSense from "@/components/AdSense.astro";
+import AffiliateLink from "@/components/AffiliateLink.astro";
 import ArticleTagList from "@/components/ArticleTagList.astro";
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
@@ -98,12 +98,11 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
         <hr />
         <RelatedArticles articleMeta={ meta }/>
       </>}
-    {isArticle && <AdSense adSenseType="display" /> }
   </main>
   <div class="last-side">
     <Profile />
     <ArticleTagList tags={ await getAllTagWithSlugs() } />
-    {isArticle && <AdSense adSenseType="display" /> }
+    {isArticle && <AffiliateLink type="rakutenWidget" />}
   </div>
 </div>
 

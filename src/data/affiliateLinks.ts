@@ -1,0 +1,45 @@
+/* eslint-disable @stylistic/quote-props */
+/* eslint-disable no-useless-escape */
+export const rakutenWidgetHtml ="<script type=\"text/javascript\">rakuten_design=\"slide\";rakuten_affiliateId=\"3ed98550.78e0222b.3ed98551.4ba9c48e\";rakuten_items=\"ctsmatch\";rakuten_genreId=\"0\";rakuten_size=\"300x160\";rakuten_target=\"_blank\";rakuten_theme=\"gray\";rakuten_border=\"off\";rakuten_auto_mode=\"on\";rakuten_genre_title=\"off\";rakuten_recommend=\"on\";rakuten_ts=\"1768271158260\";</script><script type=\"text/javascript\" src=\"https://xml.affiliate.rakuten.co.jp/widget/js/rakuten_widget.js?20230106\"></script>";
+
+// https://www.amazon.co.jp/dp/ の後の部分をキーにしたもしもアフィリエイトのかんたんリンク
+export const productLinks = {
+  "4862461530": `<!-- START MoshimoAffiliateEasyLink -->
+<script type="text/javascript">
+(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
+b[a]=b[a]||function(){arguments.currentScript=c.currentScript
+||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
+c.getElementById(a)||(d=c.createElement(f),d.src=g,
+d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
+(window,document,"script","//dn.msmstatic.com/site/cardlink/bundle.js?20220329","msmaflink");
+msmaflink({"n":"カラー\u0026ライト ~リアリズムのための色彩と光の描き方~","b":"","t":"","d":"https:\/\/m.media-amazon.com","c_p":"\/images\/I","p":["\/5104Chs4QjL._SL500_.jpg","\/51Gl2apgkZL._SL500_.jpg","\/51sN5Ivip3L._SL500_.jpg","\/51Q5FPHqU2L._SL500_.jpg","\/51UPxY77FKL._SL500_.jpg","\/51zCrNnYF+L._SL500_.jpg","\/51qRO3r-fjL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/4862461530","t":"amazon","r_v":""},"v":"2.1","b_l":[{"u_bc":"#ff9900","u_tx":"Amazonで見る","u_url":"https:\/\/www.amazon.co.jp\/dp\/4862461530","s_n":"amazon","u_so":0,"a_id":5172690,"p_id":170,"pc_id":185,"pl_id":27060,"id":2},{"id":1,"u_tx":"楽天市場で見る","u_bc":"#bf0000","u_url":"https:\/\/search.rakuten.co.jp\/search\/mall\/%E3%82%AB%E3%83%A9%E3%83%BC%26%E3%83%A9%E3%82%A4%E3%83%88%20~%E3%83%AA%E3%82%A2%E3%83%AA%E3%82%BA%E3%83%A0%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E8%89%B2%E5%BD%A9%E3%81%A8%E5%85%89%E3%81%AE%E6%8F%8F%E3%81%8D%E6%96%B9~\/","a_id":4675710,"p_id":54,"pl_id":27059,"pc_id":54,"s_n":"rakuten","u_so":1}],"eid":"TL1PP","s":"s"});
+</script>
+<div id="msmaflink-TL1PP">リンク</div>
+<!-- MoshimoAffiliateEasyLink END -->`,
+"4837308201": `<!-- START MoshimoAffiliateEasyLink -->
+<script type="text/javascript">
+(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
+b[a]=b[a]||function(){arguments.currentScript=c.currentScript
+||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
+c.getElementById(a)||(d=c.createElement(f),d.src=g,
+d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
+(window,document,"script","//dn.msmstatic.com/site/cardlink/bundle.js?20220329","msmaflink");
+msmaflink({"n":"光と色のチュートリアル","b":"","t":"","d":"https:\/\/m.media-amazon.com","c_p":"\/images\/I","p":["\/514ufWVUKEL._SL500_.jpg","\/51TwVEJLAKL._SL500_.jpg","\/41zEV+x2xBL._SL500_.jpg","\/51s6GjeigZL._SL500_.jpg","\/416g94sryXL._SL500_.jpg","\/51LczRdCpcL._SL500_.jpg","\/416kNWF7DBL._SL500_.jpg","\/51GsfKWFQLL._SL500_.jpg","\/51LczRdCpcL._SL500_.jpg","\/51+AGYkkLUL._SL500_.jpg","\/416kNWF7DBL._SL500_.jpg","\/41HsLrDdY6L._SL500_.jpg","\/41swCoXwv8L._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/4837308201","t":"amazon","r_v":""},"v":"2.1","b_l":[{"u_bc":"#ff9900","u_tx":"Amazonで見る","u_url":"https:\/\/www.amazon.co.jp\/dp\/4837308201","s_n":"amazon","u_so":0,"a_id":5172690,"p_id":170,"pc_id":185,"pl_id":27060,"id":2},{"id":1,"u_tx":"楽天市場で見る","u_bc":"#bf0000","u_url":"https:\/\/search.rakuten.co.jp\/search\/mall\/%E5%85%89%E3%81%A8%E8%89%B2%E3%81%AE%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB\/","a_id":4675710,"p_id":54,"pl_id":27059,"pc_id":54,"s_n":"rakuten","u_so":1}],"eid":"aPp9D","s":"s"});
+</script>
+<div id="msmaflink-aPp9D">リンク</div>
+<!-- MoshimoAffiliateEasyLink END -->`,
+"B09HGS49L9": `<!-- START MoshimoAffiliateEasyLink -->
+<script type="text/javascript">
+(function(b,c,f,g,a,d,e){b.MoshimoAffiliateObject=a;
+b[a]=b[a]||function(){arguments.currentScript=c.currentScript
+||c.scripts[c.scripts.length-2];(b[a].q=b[a].q||[]).push(arguments)};
+c.getElementById(a)||(d=c.createElement(f),d.src=g,
+d.id=a,e=c.getElementsByTagName("body")[0],e.appendChild(d))})
+(window,document,"script","//dn.msmstatic.com/site/cardlink/bundle.js?20220329","msmaflink");
+msmaflink({"n":"Vision","b":"","t":"","d":"https:\/\/m.media-amazon.com","c_p":"","p":["\/images\/I\/41XBtGgnGmL._SL500_.jpg"],"u":{"u":"https:\/\/www.amazon.co.jp\/dp\/B09HGS49L9","t":"amazon","r_v":""},"v":"2.1","b_l":[{"u_bc":"#ff9900","u_tx":"Amazonで見る","u_url":"https:\/\/www.amazon.co.jp\/dp\/B09HGS49L9","s_n":"amazon","u_so":0,"a_id":5172690,"p_id":170,"pc_id":185,"pl_id":27060,"id":2},{"id":1,"u_tx":"楽天市場で見る","u_bc":"#bf0000","u_url":"https:\/\/search.rakuten.co.jp\/search\/mall\/Vision\/","a_id":4675710,"p_id":54,"pl_id":27059,"pc_id":54,"s_n":"rakuten","u_so":1}],"eid":"Va0Q0","s":"s"});
+</script>
+<div id="msmaflink-Va0Q0">リンク</div>
+<!-- MoshimoAffiliateEasyLink END -->`,
+};
+
+export type AffiliateProductLinkKey = keyof typeof productLinks;
