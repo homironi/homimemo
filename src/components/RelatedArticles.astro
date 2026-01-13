@@ -33,7 +33,6 @@ const relatedArticles: ArticleMeta[] = (await Promise.all(otherArticles
       matchingTagsCount
     };
   })))
-  .filter(({matchingTagsCount})=> 0 < matchingTagsCount)
   .sort((a, b) => {
     if(b.matchingTagsCount !== a.matchingTagsCount)
     {
