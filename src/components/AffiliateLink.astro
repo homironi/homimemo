@@ -1,106 +1,30 @@
 ---
-import Image from "./Image.astro";
+import { productLinks, rakutenWidgetHtml, type AffiliateProductLinkKey } from "@/data/affiliateLinks";
 
-interface Props {
-  name : string;
-  imageLink? : string;
-  links: {
-    amazon? : string;
-    rakuten? : string;
-    yahoo? : string;
-  };
-};
+export type Props = { type: "rakutenWidget" } | { type: "productLink"; id: AffiliateProductLinkKey };
 
-const {name,imageLink,links} = Astro.props;
-  const amazonLink = links.amazon?.trim() ?? null;
-  const rakutenLink = links.rakuten?.trim() ?? null;
-  const yahooLink = links.yahoo?.trim() ?? null;
+const props = Astro.props; 
+
+const affiliateHtml = props.type === "rakutenWidget" ? rakutenWidgetHtml : productLinks[props.id];
 ---
 
 <div class="container">
-  {imageLink && imageLink.trim() !== "" && 
-    <div class="image-container">
-      <div class="image-container-2">
-        <Image src={ imageLink } alt={ name } class="image" />
-      </div>
-    </div>
-  }
-  <div class="info">
-    <p>{name}</p>
-    <div class="links">
-      {amazonLink && <a href={ amazonLink } class={ "amazon link" }>Amazonで見る</a>}
-      {rakutenLink && <a href={ rakutenLink } class={ "rakuten link" }>楽天市場で見る</a>}
-      {yahooLink && <a href={ yahooLink } class={ "yahoo link" }>Yahoo!ショッピングで見る</a>}
-    </div>
-  </div>
+  <Fragment set:html={affiliateHtml} />
 </div>
 
 <style>
   .container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
     padding: 8px;
+    max-width: 100%;
     background-color: var(--color-main);
-    border: 1px solid var(--border-color-main);
-    border-radius: var(--border-radius);
+    border: solid 1px var(--border-color-main);
   }
-
-  .image-container-2{
-    position: absolute;
-    top: 0;
-    inset-inline: 0;
-    bottom: 0;
-  }
-
-  .image-container{
-    flex: 1 1 180px;
-    position: relative;
-    min-width: 120px;
-    min-height: 120px;
-  }
-
-  .image{
-    width: 100%;
-    height: 100%;
-  }
-
-  .info {
-    flex: 1 1 180px;
-    display: flex;
-    flex-flow: column wrap;
-  }
-
-  .links {
-    display: flex;
-    flex-flow: column wrap;
-    gap: 4px;
-    text-align: center;
-  }
-
-  .link {
+  
+  .container::before{
+    content: "広告";
+    color: var(--text-color-pale);
     display: block;
-    padding: 8px 16px;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-  }
-
-  .link:hover {
-    text-decoration: underline;
-  }
-
-  .amazon {
-    background-color: #FF9900;
-    color: var(--text-color-black);
-  }
-
-  .rakuten {
-    background-color: #BF0000;
-    color: var(--text-color-white);
-  }
-
-  .yahoo {
-    background-color: #FF0133;
-    color: var(--text-color-black);
+    font-size: 0.75rem;
+    padding-bottom: 4px;
   }
 </style>
