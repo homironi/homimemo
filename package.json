@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
     "new-article": "tsx scripts/createNewArticle.ts",
+    "update-article": "tsx scripts/updateArticle.ts",
     "svg": "svgo --folder ./src/assets/icons --recursive "
   },
   "dependencies": {
