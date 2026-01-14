@@ -32,4 +32,9 @@ if(!affiliateHtml){
     font-size: 0.75rem;
     padding-bottom: 4px;
   }
+
+  :global(.easyLink-info-btn-amazon) {
+    /* 生成されるかんたんリンクの文字色を強制的に上書きするため、importantを使用 */
+    color: var(--text-color-black) !important;
+  }
 </style>

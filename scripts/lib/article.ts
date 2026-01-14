@@ -17,6 +17,25 @@ export function getAllArticleFilePaths(){
 }
 
 /**
+ * 記事IDから記事のファイルパスを取得する
+ * @param id 記事ID
+ * @returns 記事のファイルパス
+ */
+export function getArticleFilePath(id: string) {
+  const filePath = getAllArticleFilePaths().find(file => {
+    const raw = fs.readFileSync(file, "utf-8");
+    const { data } = matter(raw);
+    return data.id === id;
+  });
+
+  if (!filePath) {
+    throw new Error(`記事が見つかりません: ${id}`);
+  }
+
+  return filePath;
+}
+
+/**
  * 使用済みの記事IDSetを取得する
  * @returns 使用済みの記事IDSet
  */
