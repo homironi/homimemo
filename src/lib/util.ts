@@ -50,7 +50,7 @@ export function createOGData(
   thumbnail?: string
 ): OpenGraph {
   const url = createUrlFromSlug(slug || "/");
-  const titleText = title ? createTitleFromTemplate(title) : siteName;
+  const titleText = title ? title : siteName;
   const imageUrl = thumbnail || defaultArticleThumbnail;
   return {
     title: titleText,
@@ -91,7 +91,7 @@ export function createTwitterCardData(
   return {
     card: "summary",
     site: siteName,
-    title: title ? createTitleFromTemplate(title) : siteName,
+    title: title ? title : siteName,
     description: description || defaultDescription,
     images: [
       imageUrl.startsWith("http") ? imageUrl : createUrlFromSlug(imageUrl), // 自身のサイトの場合はフルURLに変換
