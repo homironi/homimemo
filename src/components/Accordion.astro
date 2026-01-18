@@ -16,21 +16,23 @@ const props = Astro.props;
 </details>
 
 <style>
-  details{
+  summary{
+    padding: 0.5rem;
+    background-color: var(--color-main);
     border: 1px solid var(--border-color-main);
     border-radius: var(--border-radius);
   }
 
-  summary{
-    padding: 0.5rem;
-  }
-
-  details[open]>summary{
-    border-bottom: 1px solid var(--border-color-main);
-    background-color: var(--color-sub-alpha);
+  details[open] > summary{
+    border-bottom: none;
+    background-color: color-mix(in srgb, var(--color-main), var(--color-sub) 10%);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
   }
 
   .details-container{
     padding: 0.5rem 1rem;
+    background-color: var(--color-main);
+    border: 1px solid var(--border-color-main);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
   }
 </style>
