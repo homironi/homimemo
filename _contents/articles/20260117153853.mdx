@@ -1,0 +1,381 @@
+---
+id: 2vd9ngqdzc0q2146b91l2z3c
+draft: false
+title: レイヤーの合成モードメモ
+tags:
+  - illust
+description: ペイントソフトなどのレイヤーの合成モード（ブレンドモード）について、どんな計算が行われているのかや、ソフトごとの名称の違いをメモしています。
+publishDate: 2026-01-18T03:45:42.857Z
+lastModDate: 2026-01-18T03:45:42.857Z
+thumbnail: /images/header/articles/2vd9ngqdzc0q2146b91l2z3c.webp
+---
+
+ソフトごとに合成モードの表記が違うことがあるので、それのまとめついでに計算内容などもまとめてみました。  
+明るくなる、暗くなる、というざっくりしたことはわかるけど実際どんな計算で色が計算されているんだろう、ということを中心に書いています。
+
+CLIP STUDIO PAINT をメインで使っているので、その表示を中心に書きます。
+
+## 表示名
+
+Affinityは他2つのソフトとは名前が結構違いました。  
+
+Photoshopの「覆い焼き（リニア） - 加算」は「覆い焼き（リニア）」と表記されることも多いので、加算ということを忘れがち。
+
+|CLIP STUDIO PAINT|Photoshop|Affinity|
+|--|--|--|
+|加算|覆い焼き（リニア） - 加算|追加|
+|比較（暗）|比較（暗）|暗くする|
+|比較（明）|比較（明）|明るくする|
+|カラー比較（暗）|カラー比較（暗）|色を暗くする|
+|カラー比較（明）|カラー比較（明）|色を明るくする|
+
+## いろいろ前提など
+
+基本的にCLIP STUDIO PAINT PRO での内容中心に書いています。  
+ソフトによってない合成モードが出てきたり、操作の説明をする場合には違う操作が必要な場合があるので、ご注意ください。
+
+<TextBlock blockType="warning">
+わかり易く説明するために厳密には違う書き方をすることもあります。ご了承ください。
+</TextBlock>
+
+### 全て共通の話
+
+- 設定レイヤー：対象の合成モードを設定しているレイヤー
+- RGBは0～255の範囲に収められます。
+- 合成の結果、0を下回れば0に、255を超えたら255になります。
+
+### 正規化
+
+RGBがとる値の範囲は0～255です。  
+しかし、乗算や除算などではそのままRGBの値を計算すると値の大きさが変わってしまいます。  
+この大きさが変わらないように調整することを正規化と呼びます。
+
+<Accordion summary="乗算で説明してみます（※長いので折りたたみ）">
+
+細かいところは乗算の項目で書いているので、今は「乗算は色の値を掛け算して255で割った値がRGBの各値になる」と理解していてください。
+
+RGBを分数として考えてみるとわかりやすいかもしれません。  
+R250、G250、B250 と R100、G100、B100 を例にします。
+
+R100というのは0～255のうち、100の量Rがあるということです。  
+この例えでいくとR100は255分の100という値だと考えることができます。  
+R250なら255分の250です。
+
+これを分数で掛け算したとき、255分の250 * 255分の100 = （255の2乗）分の25000（25000 / 255 * 255）です。  
+この計算をより簡単に行うには、255を掛けておくことによって 250 * 100 とすることができます。計算しやすくなりました。  
+そして、250 * 100で得た25000という値は255を先に掛けておいたのでもとの大きさにもどすために255で割ります。  
+計算をRGBの値0～255でそのままやる代わりに、最後に255で割りました。  
+</Accordion>
+
+すなわち「**計算しやすい大きさで計算したあと本来の大きさに戻す**」ということを正規化とこの記事では呼びます。   
+**センチメートルで計算して、メートルに直すみたいな**感覚です。
+
+### 色調補正
+
+この記事ではレイヤーの合成モードの話ですが、関係ありそうな色調補正レイヤーを紹介します。  
+内容はCLIP STUDIO PAINTの内容ですが、他のソフトにも同様の調整ができる方法があると思うので、必要な場合は調べてみてください。
+
+#### 色の反転
+
+色を反転させることができます。  
+合成モードの話の中でも「色を反転させてそれをうんたらかんたら～」という説明も出てきます。  
+実際にどうなるんだろう、と手元で確認したい場合は「レイヤー右クリック ＞ 新規色調補正レイヤー ＞ 階調の反転」で確認できます（CLIP STUDIO PAINT）。  
+
+色調の反転レイヤー以下全てに反映されますが、他のレイヤーと同じようにクリッピングやマスクなどで範囲を限定することもできます。
+
+## 通常
+
+レイヤーの順番にそのまま重なる通常のレイヤー。
+
+## 加算
+
+下のレイヤーの色をこの設定がされたレイヤーの色でチャンネルごとに加算（足し算）します。  
+
+白（R255、G255、B255）を足すと255を超えられないので、下のレイヤー色に関わらず白になります。  
+
+黒（R0、G0、B0）を足すと0を足すことになるので、下のレイヤー色がそのまま表示されます。
+
+設定レイヤー：R20、G100、B20  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
+下のレイヤー：R10、G20、B220  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
+
+結果：R30、G120、B240  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/1e78f0" />
+
+## 減算
+
+下のレイヤーの色からこの設定がされたレイヤーの色をチャンネルごとに減算（引き算）します。  
+
+白（R255、G255、B255）を引くと0を下回れないので、下のレイヤー色に関わらず黒になります。  
+
+黒（R0、G0、B0）を引くと引かれる値が0なので、下のレイヤー色がそのまま表示されます。
+
+設定レイヤー：R20、G100、B20  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
+下のレイヤー：R10、G20、B220  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
+
+結果：R0、G0、B200  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/0000c8" />
+
+## 乗算
+
+この設定がされたレイヤーと下のレイヤーの色をチャンネルごとに乗算します。  
+掛け算した値を255で割った値が結果のRGB値です。
+
+もとの色より暗い色になります。  
+
+白（R255、G255、B255）を合成すると（掛け算後に255で割って正規化することを考慮すると）1を掛けるのと同じなので、下のレイヤーの色がそのまま表示されます。  
+
+黒（R0、G0、B0）を合成すると（掛け算後に255で割って正規化することを考慮すると）0を掛けるのと同じなので、下のレイヤー色に関わらず黒になります。  
+陰影などによく使います。
+
+設定レイヤー：R20、G100、B20  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
+下のレイヤー：R10、G20、B220  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
+
+結果（四捨五入）：R1、G8、B17  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/010811" />
+
+## 除算
+
+この設定がされたレイヤーと下のレイヤーの色をチャンネルごとに除算します。  
+割り算した値に255をかけます。
+
+乗算と逆で、除算をするので明るい色を得やすいです。
+
+白（R255、G255、B255）を合成すると（割り算後に255を掛けて正規化することを考慮すると）1で割るのと同じなので、下のレイヤーの色がそのまま表示されます。  
+
+黒（R0、G0、B0）を合成すると（割り算後に255を掛けて正規化することを考慮すると）0で割るのと同じ。いわゆる0除算（矛盾なく定義できない計算）なのでソフトによっては怪しい挙動が確認できる。だいたい下のレイヤー色に関わらず白になります。  
+R1、G1、B1だと割り算後の値は変わらず、その後正規化のために255を掛けるので、下のレイヤー色に関わらず白になります。
+
+設定レイヤー：R20、G100、B20  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
+下のレイヤー：R10、G20、B220  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
+
+結果（四捨五入）：R128、G51、B255  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/8033ff" />
+
+## 比較（暗）
+
+この設定がされたレイヤーと下のレイヤーの色をチャンネルごとに比較し、暗い方（RGB値の低い方）を選びます。
+
+設定レイヤー：R20、G100、B20  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
+下のレイヤー：R10、G20、B220  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
+
+結果：R10、G20、B20  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/0a1414" />
+
+## 焼き込みカラー
+
+下のレイヤーの色を反転し、この設定がされたレイヤーを除算で合成し、さらにその結果を反転します。  
+もとより暗い色を得ます。
+
+設定レイヤー：R171、G248、B248  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/abf8f8" />
+下のレイヤー：R205、G122、B122  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/cd7a7a" />
+
+<Accordion summary="途中結果">
+1. 下のレイヤーを反転（最大値-値）：R50、G133、B133  
+    <CardPreviewUrl url="https://www.colordic.org/colorsample/328585" />
+1. ↑に設定レイヤーを除算合成：R75、G137、B137  
+    <CardPreviewUrl url="https://www.colordic.org/colorsample/4b8989" />
+</Accordion>
+
+結果：R180、G118、B118  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/b47676" />
+
+## 焼き込み（リニア）
+
+焼き込みカラーの結果に、更に設定レイヤーの色を乗算します。  
+
+設定レイヤー：R171、G248、B248  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/abf8f8" />
+下のレイヤー：R205、G122、B122  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/cd7a7a" />
+
+<Accordion summary="焼き込みカラーまでの結果">
+焼き込みカラーまでの結果：R180、G118、B118  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/b47676" />
+</Accordion>
+
+結果：R121、G115、B115  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/797373" />
+
+## 比較（明）
+
+この設定がされたレイヤーと下のレイヤーの色をチャンネルごとに比較し、明るい方（RGB値の高い方）を選びます。
+
+設定レイヤー：R20、G100、B20  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
+下のレイヤー：R10、G20、B220  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
+
+結果：R20、G100、B220  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/1464dc" />
+
+## スクリーン
+
+下のレイヤーの色を反転し、反転させた設定レイヤーをさらに乗算で合成、更にそれを反転します。
+
+もとの色より明るい色になります。
+
+白（R255、G255、B255）を合成すると、下のレイヤーの色に関わらず白になります。
+
+黒（R0、G0、B0）を合成すると、下のレイヤーの色がそのまま表示されます。
+
+設定レイヤー：R20、G100、B20  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
+下のレイヤー：R10、G20、B220  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
+
+<Accordion summary="途中結果">
+1. 下のレイヤーを反転：R245、G235、B35  
+    <CardPreviewUrl url="https://www.colordic.org/colorsample/f5eb23" />
+1. 設定レイヤーを反転：R235、G155、B235  
+    <CardPreviewUrl url="https://www.colordic.org/colorsample/eb9beb" />
+1. 設定レイヤーを反転したもの↑を乗算で下のレイヤーに合成：R226、G143、B32  
+    <CardPreviewUrl url="https://www.colordic.org/colorsample/ff8f20" />
+</Accordion>
+
+結果：R29、G112、B223  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/1d70df" />
+
+## 覆い焼きカラー
+
+この設定がされたレイヤーの色を反転し、それを除算で合成します。  
+
+もとの色より明るい色になります。
+
+白（R255、G255、B255）を合成すると、下のレイヤーの色に関わらず白になります。
+
+黒（R0、G0、B0）を合成すると、下のレイヤーの色がそのまま表示されます。
+
+設定レイヤー：R20、G100、B20  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
+下のレイヤー：R10、G20、B220  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
+
+<Accordion summary="途中結果">
+1. 設定レイヤーを反転：R235、G155、B235  
+    <CardPreviewUrl url="https://www.colordic.org/colorsample/eb9beb" />
+</Accordion>
+
+結果：R11、G33、B239  
+<CardPreviewUrl url="https://www.colordic.org/colorsample/0b21ef" />
+
+## 覆い焼き（発光）
+
+CLIP STUDIO PAINT 特有のモードっぽいです。  
+アルファ値が影響して、半透明部分がより強い覆い焼きカラーの効果を得られるようです。
+
+## 加算（発光）
+
+CLIP STUDIO PAINT 特有のモードっぽいです。  
+アルファ値が影響して、半透明部分がより強い加算の効果を得られるようです。
+
+## コントラスト系
+
+色が明るいか暗いかで、設定レイヤーモードごとに応じた計算がされます。  
+
+CLIP STUDIO PAINTでは明記されているのをみつけられませんでしたが、PhotoshopやAffinityでは「50%のグレー」より明るいか暗いかという判別をしているようです。  
+
+Affinityでは[「グレーが50％ちょうどの色は変化しません」](https://www.affinity.studio/ja_jp/help/layers-layer-blend-modes/#heading------------)と記されていました。  
+実際CLIP STUDIO PAINTなどでも50%のグレーだとコントラスト系の合成モードでは下のレイヤーの色がそのまま表示されます。
+
+### オーバーレイ
+
+下のレイヤーの色を基準に、暗い色を重ねるとより暗く、明るい色を重ねるとより明るくなります。
+
+下のレイヤーの黒（R0、G0、B0）と白（R255、G255、B255）はそれぞれより暗くなることもより明るくなることもできないので、そのまま表示されます。
+
+CLIP STUDIO PAINT では暗くする際は乗算、明るくする際はスクリーンのように合成されます。
+
+### ソフトライト
+
+この設定がされたレイヤーの輝度によって結果が変わります。
+
+CLIP STUDIO PAINT では暗くする際は焼き込み、明るくする際は覆い焼きのように合成されます。
+
+### ハードライト
+
+この設定がされたレイヤーの輝度によって結果が変わります。
+
+CLIP STUDIO PAINT では暗くする際は乗算、明るくする際はスクリーンのように明るくなります。
+
+### ビビッドライト
+
+この設定がされたレイヤーの色によって結果が変わります。
+
+CLIP STUDIO PAINT では暗くする際は焼き込みカラー、明るくする際は覆い焼きカラーの効果が適用されます。
+
+### リニアライト
+
+この設定がされたレイヤーの色によって結果が変わります。
+
+CLIP STUDIO PAINT では暗くする際は焼き込み（リニア）、明るくする際は加算の効果が適用されます。
+
+### ピンライト
+
+この設定がされたレイヤーの色によって結果が変わります。
+
+CLIP STUDIO PAINT では以下のようになります。  
+設定レイヤーの色が暗く下のレイヤーがそれより明るい部分は比較（暗）、設定レイヤーよりも明るい色は変更されない。  
+設定レイヤーの色が明るく下のレイヤーがそれより暗い色の部分なら比較（明）、設定レイヤーよりも暗い色は変更されない。
+
+### ハードミックス
+
+コントラスト系として分類しましたが、これだけは他と違う計算がされます。50%グレーはここでは忘れてください。
+
+レイヤーを加算合成した後、255以上なら255、255未満なら0に値が置き換えられます。  
+つまりRGB値が0か255のどちらかの値になり、以下の8色のいずれかになります。
+
+- `rgb(0, 0, 0)`
+- `rgb(255, 0, 0)`
+- `rgb(255, 255, 0)`
+- `rgb(0, 255, 0)`
+- `rgb(0, 255, 255)`
+- `rgb(0, 0, 255)`
+- `rgb(255, 0, 255)`
+- `rgb(255, 255, 255)`
+
+## その他使うものだけ紹介
+
+### カラー
+
+> 下のレイヤーの輝度の値を維持したまま、設定レイヤーの色相と彩度を適用します。
+
+引用：[CLIP STUDIO PAINT ユーザーガイド | 公式マニュアル ＞ 合成モードを設定する ＞ 合成モードの種類 ＞ カラー](https://help.clip-studio.com/ja-jp/manual_jp/180_layers/%E5%90%88%E6%88%90%E3%83%A2%E3%83%BC%E3%83%89%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B.htm)
+
+色のバリューをチラ見するのに使います。  
+白で塗りつぶしたレイヤーにこのカラーを設定すると、単純な明度ではなく彩度と色相も考慮した色の明るさを確認するのに便利です。
+
+## この記事では説明しなかったもの
+
+以下のものは自分はほぼ使わないので説明しませんでした。  
+気になる方は各ソフトの説明などをみてみてください！
+
+- 差の絶対値
+- 除外
+- カラー比較（暗）
+- カラー比較（明）
+- 色相
+- 彩度
+- 輝度
+
+## つぶやき
+
+加算の表示名が結構ソフトによって違うのでその違いの一覧がほしい、という動機で書き始めた記事でした！  
+Affinityはもはや「追加」という名称なので、本当にソフトによって違いが出やすいですね。
+
+## 参照
+
+[Photoshop 描画モードの説明](https://helpx.adobe.com/jp/photoshop/desktop/repair-retouch/adjust-light-tone/blending-mode-descriptions.html)
+<CardPreviewUrl url="https://help.clip-studio.com/ja-jp/manual_jp/180_layers/%E5%90%88%E6%88%90%E3%83%A2%E3%83%BC%E3%83%89%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B.htm"/>
+<CardPreviewUrl url="https://www.affinity.studio/ja_jp/help/layers-layer-blend-modes/"/>
