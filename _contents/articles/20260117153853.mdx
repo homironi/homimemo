@@ -55,7 +55,7 @@ RGBがとる値の範囲は0～255です。
 細かいところは乗算の項目で書いているので、今は「乗算は色の値を掛け算して255で割った値がRGBの各値になる」と理解していてください。
 
 RGBを分数として考えてみるとわかりやすいかもしれません。  
-R250、G250、B250 と R100、G100、B100 を例にします。
+`rgb(250, 250, 250)`と`rgb(100, 100, 100)`を例にします。
 
 R100というのは0～255のうち、100の量Rがあるということです。  
 この例えでいくとR100は255分の100という値だと考えることができます。  
@@ -91,32 +91,32 @@ R250なら255分の250です。
 
 下のレイヤーの色をこの設定がされたレイヤーの色でチャンネルごとに加算（足し算）します。  
 
-白（R255、G255、B255）を足すと255を超えられないので、下のレイヤー色に関わらず白になります。  
+白（`rgb(255, 255, 255)`）を足すと255を超えられないので、下のレイヤー色に関わらず白になります。  
 
-黒（R0、G0、B0）を足すと0を足すことになるので、下のレイヤー色がそのまま表示されます。
+黒（`rgb(0, 0, 0)`）を足すと0を足すことになるので、下のレイヤー色がそのまま表示されます。
 
-設定レイヤー：R20、G100、B20  
+設定レイヤー：`rgb(20, 100, 20)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
-下のレイヤー：R10、G20、B220  
+下のレイヤー：`rgb(10, 20, 220)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
 
-結果：R30、G120、B240  
+結果：`rgb(30, 120, 240)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/1e78f0" />
 
 ## 減算
 
 下のレイヤーの色からこの設定がされたレイヤーの色をチャンネルごとに減算（引き算）します。  
 
-白（R255、G255、B255）を引くと0を下回れないので、下のレイヤー色に関わらず黒になります。  
+白（`rgb(255, 255, 255)`）を引くと0を下回れないので、下のレイヤー色に関わらず黒になります。  
 
-黒（R0、G0、B0）を引くと引かれる値が0なので、下のレイヤー色がそのまま表示されます。
+黒（`rgb(0, 0, 0)`）を引くと引かれる値が0なので、下のレイヤー色がそのまま表示されます。
 
-設定レイヤー：R20、G100、B20  
+設定レイヤー：`rgb(20, 100, 20)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
-下のレイヤー：R10、G20、B220  
+下のレイヤー：`rgb(10, 20, 220)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
 
-結果：R0、G0、B200  
+結果：`rgb(0, 0, 200)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/0000c8" />
 
 ## 乗算
@@ -126,17 +126,17 @@ R250なら255分の250です。
 
 もとの色より暗い色になります。  
 
-白（R255、G255、B255）を合成すると（掛け算後に255で割って正規化することを考慮すると）1を掛けるのと同じなので、下のレイヤーの色がそのまま表示されます。  
+白（`rgb(255, 255, 255)`）を合成すると（掛け算後に255で割って正規化することを考慮すると）1を掛けるのと同じなので、下のレイヤーの色がそのまま表示されます。  
 
-黒（R0、G0、B0）を合成すると（掛け算後に255で割って正規化することを考慮すると）0を掛けるのと同じなので、下のレイヤー色に関わらず黒になります。  
+黒（`rgb(0, 0, 0)`）を合成すると（掛け算後に255で割って正規化することを考慮すると）0を掛けるのと同じなので、下のレイヤー色に関わらず黒になります。  
 陰影などによく使います。
 
-設定レイヤー：R20、G100、B20  
+設定レイヤー：`rgb(20, 100, 20)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
-下のレイヤー：R10、G20、B220  
+下のレイヤー：`rgb(10, 20, 220)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
 
-結果（四捨五入）：R1、G8、B17  
+結果（四捨五入）：`rgb(1, 8, 17)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/010811" />
 
 ## 除算
@@ -146,29 +146,29 @@ R250なら255分の250です。
 
 乗算と逆で、除算をするので明るい色を得やすいです。
 
-白（R255、G255、B255）を合成すると（割り算後に255を掛けて正規化することを考慮すると）1で割るのと同じなので、下のレイヤーの色がそのまま表示されます。  
+白（`rgb(255, 255, 255)`）を合成すると（割り算後に255を掛けて正規化することを考慮すると）1で割るのと同じなので、下のレイヤーの色がそのまま表示されます。  
 
-黒（R0、G0、B0）を合成すると（割り算後に255を掛けて正規化することを考慮すると）0で割るのと同じ。いわゆる0除算（矛盾なく定義できない計算）なのでソフトによっては怪しい挙動が確認できる。だいたい下のレイヤー色に関わらず白になります。  
-R1、G1、B1だと割り算後の値は変わらず、その後正規化のために255を掛けるので、下のレイヤー色に関わらず白になります。
+黒（`rgb(0, 0, 0)`）を合成すると（割り算後に255を掛けて正規化することを考慮すると）0で割るのと同じ。いわゆる0除算（矛盾なく定義できない計算）なのでソフトによっては怪しい挙動が確認できる。だいたい下のレイヤー色に関わらず白になります。  
+`rgb(1, 1, 1)`だと割り算後の値は変わらず、その後正規化のために255を掛けるので、下のレイヤー色に関わらず白になります。
 
-設定レイヤー：R20、G100、B20  
+設定レイヤー：`rgb(20, 100, 20)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
-下のレイヤー：R10、G20、B220  
+下のレイヤー：`rgb(10, 20, 220)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
 
-結果（四捨五入）：R128、G51、B255  
+結果（四捨五入）：`rgb(128, 51, 255)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/8033ff" />
 
 ## 比較（暗）
 
 この設定がされたレイヤーと下のレイヤーの色をチャンネルごとに比較し、暗い方（RGB値の低い方）を選びます。
 
-設定レイヤー：R20、G100、B20  
+設定レイヤー：`rgb(20, 100, 20)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
-下のレイヤー：R10、G20、B220  
+下のレイヤー：`rgb(10, 20, 220)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
 
-結果：R10、G20、B20  
+結果：`rgb(10, 20, 20)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/0a1414" />
 
 ## 焼き込みカラー
@@ -176,48 +176,48 @@ R1、G1、B1だと割り算後の値は変わらず、その後正規化のた�
 下のレイヤーの色を反転し、この設定がされたレイヤーを除算で合成し、さらにその結果を反転します。  
 もとより暗い色を得ます。
 
-設定レイヤー：R171、G248、B248  
+設定レイヤー：`rgb(171, 248, 248)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/abf8f8" />
-下のレイヤー：R205、G122、B122  
+下のレイヤー：`rgb(205, 122, 122)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/cd7a7a" />
 
 <Accordion summary="途中結果">
-1. 下のレイヤーを反転（最大値-値）：R50、G133、B133  
+1. 下のレイヤーを反転（最大値-値）：`rgb(50, 133, 133)`  
     <CardPreviewUrl url="https://www.colordic.org/colorsample/328585" />
-1. ↑に設定レイヤーを除算合成：R75、G137、B137  
+1. ↑に設定レイヤーを除算合成：`rgb(75, 137, 137)`  
     <CardPreviewUrl url="https://www.colordic.org/colorsample/4b8989" />
 </Accordion>
 
-結果：R180、G118、B118  
+結果：`rgb(180, 118, 118)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/b47676" />
 
 ## 焼き込み（リニア）
 
 焼き込みカラーの結果に、更に設定レイヤーの色を乗算します。  
 
-設定レイヤー：R171、G248、B248  
+設定レイヤー：`rgb(171, 248, 248)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/abf8f8" />
-下のレイヤー：R205、G122、B122  
+下のレイヤー：`rgb(205, 122, 122)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/cd7a7a" />
 
 <Accordion summary="焼き込みカラーまでの結果">
-焼き込みカラーまでの結果：R180、G118、B118  
+焼き込みカラーまでの結果：`rgb(180, 118, 118)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/b47676" />
 </Accordion>
 
-結果：R121、G115、B115  
+結果：`rgb(121, 115, 115)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/797373" />
 
 ## 比較（明）
 
 この設定がされたレイヤーと下のレイヤーの色をチャンネルごとに比較し、明るい方（RGB値の高い方）を選びます。
 
-設定レイヤー：R20、G100、B20  
+設定レイヤー：`rgb(20, 100, 20)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
-下のレイヤー：R10、G20、B220  
+下のレイヤー：`rgb(10, 20, 220)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
 
-結果：R20、G100、B220  
+結果：`rgb(20, 100, 220)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/1464dc" />
 
 ## スクリーン
@@ -226,25 +226,25 @@ R1、G1、B1だと割り算後の値は変わらず、その後正規化のた�
 
 もとの色より明るい色になります。
 
-白（R255、G255、B255）を合成すると、下のレイヤーの色に関わらず白になります。
+白（`rgb(255, 255, 255)`）を合成すると、下のレイヤーの色に関わらず白になります。
 
-黒（R0、G0、B0）を合成すると、下のレイヤーの色がそのまま表示されます。
+黒（`rgb(0, 0, 0)`）を合成すると、下のレイヤーの色がそのまま表示されます。
 
-設定レイヤー：R20、G100、B20  
+設定レイヤー：`rgb(20, 100, 20)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
-下のレイヤー：R10、G20、B220  
+下のレイヤー：`rgb(10, 20, 220)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
 
 <Accordion summary="途中結果">
-1. 下のレイヤーを反転：R245、G235、B35  
+1. 下のレイヤーを反転：`rgb(245, 235, 35)`  
     <CardPreviewUrl url="https://www.colordic.org/colorsample/f5eb23" />
-1. 設定レイヤーを反転：R235、G155、B235  
+1. 設定レイヤーを反転：`rgb(235, 155, 235)`  
     <CardPreviewUrl url="https://www.colordic.org/colorsample/eb9beb" />
-1. 設定レイヤーを反転したもの↑を乗算で下のレイヤーに合成：R226、G143、B32  
+1. 設定レイヤーを反転したもの↑を乗算で下のレイヤーに合成：`rgb(226, 143, 32)`  
     <CardPreviewUrl url="https://www.colordic.org/colorsample/ff8f20" />
 </Accordion>
 
-結果：R29、G112、B223  
+結果：`rgb(29, 112, 223)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/1d70df" />
 
 ## 覆い焼きカラー
@@ -253,21 +253,21 @@ R1、G1、B1だと割り算後の値は変わらず、その後正規化のた�
 
 もとの色より明るい色になります。
 
-白（R255、G255、B255）を合成すると、下のレイヤーの色に関わらず白になります。
+白（`rgb(255, 255, 255)`）を合成すると、下のレイヤーの色に関わらず白になります。
 
-黒（R0、G0、B0）を合成すると、下のレイヤーの色がそのまま表示されます。
+黒（`rgb(0, 0, 0)`）を合成すると、下のレイヤーの色がそのまま表示されます。
 
-設定レイヤー：R20、G100、B20  
+設定レイヤー：`rgb(20, 100, 20)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/146414" />
-下のレイヤー：R10、G20、B220  
+下のレイヤー：`rgb(10, 20, 220)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/0a14dc" />
 
 <Accordion summary="途中結果">
-1. 設定レイヤーを反転：R235、G155、B235  
+1. 設定レイヤーを反転：`rgb(235, 155, 235)`  
     <CardPreviewUrl url="https://www.colordic.org/colorsample/eb9beb" />
 </Accordion>
 
-結果：R11、G33、B239  
+結果：`rgb(11, 33, 239)`  
 <CardPreviewUrl url="https://www.colordic.org/colorsample/0b21ef" />
 
 ## 覆い焼き（発光）
@@ -293,7 +293,7 @@ Affinityでは[「グレーが50％ちょうどの色は変化しません」](h
 
 下のレイヤーの色を基準に、暗い色を重ねるとより暗く、明るい色を重ねるとより明るくなります。
 
-下のレイヤーの黒（R0、G0、B0）と白（R255、G255、B255）はそれぞれより暗くなることもより明るくなることもできないので、そのまま表示されます。
+下のレイヤーの黒（`rgb(0, 0, 0)`）と白（`rgb(255, 255, 255)`）はそれぞれより暗くなることもより明るくなることもできないので、そのまま表示されます。
 
 CLIP STUDIO PAINT では暗くする際は乗算、明るくする際はスクリーンのように合成されます。
 
