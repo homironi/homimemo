@@ -1,4 +1,5 @@
 ---
+import Accordion from "@/components/Accordion.astro";
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import { createArticleDetailPath } from "@/lib/article";
 import { createTagListPagePath } from "@/lib/article/listPage";
@@ -103,12 +104,11 @@ breadcrumbs={breadcrumbs}
   <div>
     {articlesByMonth.map(({month, articles}) => {
       return (
-        <details>
-          <summary>{month}月：{articles?.length}件</summary>
+        <Accordion summary={`${month}月：${articles?.length}件`}>
           <ul>
             {articles?.map(meta => <li><a href={ createArticleDetailPath(meta.id) }>{meta.title}</a></li>)}
           </ul>
-        </details>
+        </Accordion>
       );
     })}
   </div>
