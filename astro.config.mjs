@@ -7,6 +7,7 @@ import playformInline from "@playform/inline";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
+import rehypeGithubColor from "rehype-github-color";
 import rehypeSlug from "rehype-slug";
 import { rehypeGfmTaskList } from "./src/lib/rehype/gfmTaskList";
 
@@ -38,6 +39,7 @@ export default defineConfig({
     rehypePlugins: [
       rehypeSlug,
       rehypeGfmTaskList,
+      rehypeGithubColor,
     ],
   }
 });
