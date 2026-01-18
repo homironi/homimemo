@@ -75,6 +75,9 @@ importers:
       rehype-code-titles:
         specifier: ^1.2.1
         version: 1.2.1
+      rehype-github-color:
+        specifier: ^1.0.0
+        version: 1.0.0
       rehype-slug:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3401,6 +3404,9 @@ packages:
 
   rehype-expressive-code@0.41.5:
     resolution: {integrity: sha512-SzKJyu7heDpkt+XE/AqeWsYMSMocE/5mpJXD6CMgstqJHSE9bxGNcLp3zL9Wne3M5iBsS4GJyOD2syV77kRveA==}
+
+  rehype-github-color@1.0.0:
+    resolution: {integrity: sha512-ixAVSvr+KvW8+HKLJXLnQg7lkJeB51h65kI42b5uvxGQlPUPKU5YWuyQe08pgx8mGNdoFyDZpxOaRcAdVRE+fw==}
 
   rehype-parse@9.0.1:
     resolution: {integrity: sha512-ksCzCD0Fgfh7trPDxr2rSylbwq9iYDkSn8TCDmEJ49ljEUBxDVCzCHv7QNzZOfODanX4+bWQ4WZqLCRWYLfhag==}
@@ -8050,6 +8056,12 @@ snapshots:
   rehype-expressive-code@0.41.5:
     dependencies:
       expressive-code: 0.41.5
+
+  rehype-github-color@1.0.0:
+    dependencies:
+      '@types/hast': 3.0.4
+      hast-util-to-string: 3.0.1
+      unist-util-visit: 5.0.0
 
   rehype-parse@9.0.1:
     dependencies:
