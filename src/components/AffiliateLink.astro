@@ -4,7 +4,9 @@ import { getEntry } from "astro:content";
 
 export type Props = { type: "rakutenWidget" } | { type: "productLink"; id: string };
 
-const props = Astro.props; 
+const props = Astro.props;
+
+const isProduction = import.meta.env.PROD;
 
 const affiliateHtml = props.type === "rakutenWidget" ? rakutenWidgetHtml : (await getEntry("affiliates", props.id))?.body;
 if(!affiliateHtml){
@@ -13,7 +15,9 @@ if(!affiliateHtml){
 ---
 
 <div class="container">
-  <Fragment set:html={affiliateHtml} />
+  {isProduction 
+  ? <Fragment set:html={affiliateHtml} /> 
+  : <p>{props.type}{props.type === "productLink" && `, id:${props.id} title:${(await getEntry("affiliates", props.id))?.data.title}`}</p> }
 </div>
 
 <style>
