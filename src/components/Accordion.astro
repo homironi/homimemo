@@ -1,0 +1,36 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"details"> {
+  summary: string;
+};
+
+const props = Astro.props;
+---
+
+<details>
+  <summary>{props.summary}</summary>
+  <div class="details-container">
+    <slot/>
+  </div>
+</details>
+
+<style>
+  details{
+    border: 1px solid var(--border-color-main);
+    border-radius: var(--border-radius);
+  }
+
+  summary{
+    padding: 0.5rem;
+  }
+
+  details[open]>summary{
+    border-bottom: 1px solid var(--border-color-main);
+    background-color: var(--color-sub-alpha);
+  }
+
+  .details-container{
+    padding: 0.5rem 1rem;
+  }
+</style>

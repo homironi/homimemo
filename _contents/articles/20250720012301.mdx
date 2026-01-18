@@ -1,11 +1,11 @@
 ---
-id: 82d57nxjh81l1o5fbuouf21z
 title: このサイトでのマークダウン記法ガイド
 draft: false
 publishDate: 2025-07-20T01:28:00.000Z
-lastModDate: 2025-12-27T17:50:12.000Z
-description: この個人サイトでカスタマイズしているマークダウン記法の自分用メモ。TextBlockコンポーネントなど独自拡張の使い方をまとめています。
+lastModDate: 2026-01-18T06:04:26.709Z
 thumbnail: /images/header/articles/82d57nxjh81l1o5fbuouf21z.webp
+description: この個人サイトでカスタマイズしているマークダウン記法の自分用メモ。TextBlockコンポーネントなど独自拡張の使い方をまとめています。
+id: 82d57nxjh81l1o5fbuouf21z
 tags:
   - make-web
   - about-site
@@ -516,6 +516,30 @@ TextBlock内では、マークダウンの記法を使用できます：
 実際の表示：
 
 <ArticleAffiliate id="B09HGS49L9" />
+
+## Accordion
+
+```md title="マークダウン"
+<Accordion summary="summaryとして表示する文字列">
+中身の内容。  
+<TextBlock blockType="info" title="AccordionでTextBlock">
+Accordionの内部でも`TextBlock`なども使用できる。
+</TextBlock>
+
+その他の**太字**なども使える。
+</Accordion>
+```
+
+実際の表示：
+
+<Accordion summary="summaryとして表示する文字列">
+中身の内容。  
+<TextBlock blockType="info" title="AccordionでTextBlock">
+Accordionの内部でも`TextBlock`なども使用できる。
+</TextBlock>
+
+その他の**太字**なども使える。
+</Accordion>
 
 ## 備考
 
