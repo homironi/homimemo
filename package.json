@@ -2,7 +2,7 @@
   "name": "homimemo",
   "type": "module",
   "version": "3.0.0",
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.28.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -17,22 +17,22 @@
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/partytown": "^2.1.4",
-    "@astrojs/rss": "^4.0.14",
-    "@astrojs/sitemap": "^3.6.0",
-    "astro": "^5.16.5",
-    "astro-expressive-code": "^0.41.5",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
+    "astro": "^5.16.11",
+    "astro-expressive-code": "^0.41.6",
     "astro-icon": "^1.1.5",
     "schema-dts": "^1.1.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
-    "@eslint/js": "^9.39.1",
-    "@inquirer/prompts": "^8.1.0",
-    "@playform/compress": "^0.2.0",
-    "@stylistic/eslint-plugin": "^5.6.1",
+    "@eslint/js": "^9.39.2",
+    "@inquirer/prompts": "^8.2.0",
+    "@playform/compress": "^0.2.1",
+    "@stylistic/eslint-plugin": "^5.7.0",
     "@types/hast": "^3.0.4",
-    "eslint": "^9.39.1",
-    "eslint-plugin-jsdoc": "^61.5.0",
+    "eslint": "^9.39.2",
+    "eslint-plugin-jsdoc": "^62.2.0",
     "gray-matter": "^4.0.3",
     "jiti": "^2.6.1",
     "nanoid": "^5.1.6",
@@ -44,9 +44,9 @@
     "stylelint-config-standard": "^39.0.1",
     "svgo": "^4.0.0",
     "tsx": "^4.21.0",
-    "typescript-eslint": "^8.49.0",
+    "typescript-eslint": "^8.53.1",
     "unist-util-visit": "^5.0.0",
-    "wrangler": "^4.54.0",
+    "wrangler": "^4.59.2",
     "zod": "^3.25.76"
   }
 }
