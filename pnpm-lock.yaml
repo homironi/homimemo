@@ -60,9 +60,6 @@ importers:
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
-      jiti:
-        specifier: ^2.6.1
-        version: 2.6.1
       nanoid:
         specifier: ^5.1.6
         version: 5.1.6
@@ -6881,7 +6878,8 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  jiti@2.6.1: {}
+  jiti@2.6.1:
+    optional: true
 
   js-tokens@4.0.0: {}
 
