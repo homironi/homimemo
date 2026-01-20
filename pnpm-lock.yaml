@@ -69,9 +69,6 @@ importers:
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
-      rehype-code-titles:
-        specifier: ^1.2.1
-        version: 1.2.1
       rehype-github-color:
         specifier: ^1.0.0
         version: 1.0.0
@@ -3304,10 +3301,6 @@ packages:
   regexp.prototype.flags@1.5.4:
     resolution: {integrity: sha512-dYqgNSZbDwkaJ2ceRd9ojCGjBq+mOm9LmtXnAnEGyHhN/5R7iDW2TRw3h+o/jCFxus3P2LfWIIiwowAjANm7IA==}
     engines: {node: '>= 0.4'}
-
-  rehype-code-titles@1.2.1:
-    resolution: {integrity: sha512-MhDkbRT4SKepZKDBGr9aSUBQyzK6N7NUzj05CzraxCxPSDkeP9ETb+X89JNYOntPC4VE7IvqSD5j1IKTJjAsEA==}
-    engines: {node: '>=16'}
 
   rehype-expressive-code@0.41.6:
     resolution: {integrity: sha512-aBMX8kxPtjmDSFUdZlAWJkMvsQ4ZMASfee90JWIAV8tweltXLzkWC3q++43ToTelI8ac5iC0B3/S/Cl4Ql1y2g==}
@@ -7878,10 +7871,6 @@ snapshots:
       get-proto: 1.0.1
       gopd: 1.2.0
       set-function-name: 2.0.2
-
-  rehype-code-titles@1.2.1:
-    dependencies:
-      unist-util-visit: 5.0.0
 
   rehype-expressive-code@0.41.6:
     dependencies:
