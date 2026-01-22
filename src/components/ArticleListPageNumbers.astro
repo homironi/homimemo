@@ -91,7 +91,7 @@ const viewPageNumbers:number[] = getViewPageNumbers(pageNumbers, currentPageInde
   >
     <Icon name="chevronLeft" />
   </IconPageNation>
-  <ol class="list">
+  <ol class="list" title="ページネーションリンクリスト">
     {viewPageNumbers.map((pageNumber) => {
       const linkPath = getPageHref(pageNumber);
       const isCurrent = pageNumber === currentPageNumber;
