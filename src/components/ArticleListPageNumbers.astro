@@ -16,7 +16,7 @@ function getViewPageNumbers(pageNumbers:number[], currentPageIndex:number, viewN
     return pageNumbers;
   }
   
-  if(currentPageIndex < viewNum){
+  if(currentPageIndex < viewNum - 1){
     return pageNumbers.slice(0, viewNum);
   }
 
@@ -91,7 +91,7 @@ const viewPageNumbers:number[] = getViewPageNumbers(pageNumbers, currentPageInde
   >
     <Icon name="chevronLeft" />
   </IconPageNation>
-  <ol class="list">
+  <ol class="list" title="ページネーションリンクリスト">
     {viewPageNumbers.map((pageNumber) => {
       const linkPath = getPageHref(pageNumber);
       const isCurrent = pageNumber === currentPageNumber;
