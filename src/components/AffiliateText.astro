@@ -1,0 +1,39 @@
+---
+interface Props {
+  asp: "valuecommerce";
+  url: string;
+}
+
+const { asp, url } = Astro.props;
+
+const fullUrl = url.startsWith("//") ? `https:${url}` : url;
+const urlObj = new URL(fullUrl);
+const params = urlObj.searchParams;
+
+let imgSrc : string | null = null;
+
+switch (asp) {
+  case "valuecommerce":
+    imgSrc = `https://ad.jp.ap.valuecommerce.com/servlet/gifbanner?sid=${params.get("sid")}&pid=${params.get("pid")}`;
+    break;
+
+  default:
+    console.warn(`Unknown ASP type: ${asp}`);
+}
+---
+
+<a href={url} rel="nofollow sponsored" target="_blank" class="inline-affiliate">
+  {imgSrc && <img src={imgSrc} width="1" height="1" style="display:none;" alt="" loading="lazy" />}
+  <slot />
+</a>
+
+<style>
+  /* .inline-affiliate {
+    color: var(--color-link, #0066cc);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .inline-affiliate:hover {
+    text-decoration-thickness: 2px;
+  } */
+</style>
