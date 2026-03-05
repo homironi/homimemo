@@ -62,12 +62,10 @@ const footerLinks: NavigationLink[] = [
 <html lang="ja">
   <head>
     { import.meta.env.PROD && (
-      <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-V6P1VWVXYK"></script>
-      <script is:inline type="text/partytown">
+      <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-V6P1VWVXYK"></script>
+      <script is:inline>
         window.dataLayer = window.dataLayer || [];
-        window.gtag = function gtag() {
-          dataLayer.push(arguments);
-        };
+        function gtag(){dataLayer.push(arguments);}
         gtag("js", new Date());
 
         gtag("config", "G-V6P1VWVXYK");
