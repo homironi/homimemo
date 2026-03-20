@@ -17,11 +17,15 @@ const baseContentSchema = z.object({
   description: z.string(),
 });
 
+export const ARTICLE_TYPES = ["TechArticle", "BlogPosting"] as const;
+
 export const articleSchema = baseContentSchema.extend({
   id: z.string(),
   tags: z.array(reference("tags")),
   draft: z.boolean(),
   thumbnail: z.string().optional(),
+  // https://schema.org/Article から使いそうなものだけ抜粋
+  articleType: z.enum(ARTICLE_TYPES),
 });
 
 export type ArticleMeta = z.infer<typeof articleSchema>;

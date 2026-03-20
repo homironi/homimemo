@@ -1,3 +1,4 @@
+import { ARTICLE_TYPES } from "@/schemas/article/meta";
 import z from "zod";
 
 export const tagSchema = z.object({
@@ -22,6 +23,7 @@ export const articleSchema = baseContentSchema.extend({
   tags: z.array(z.string()),
   draft: z.boolean(),
   thumbnail: z.string().optional(),
+  articleType: z.enum(ARTICLE_TYPES),
 });
 
 export type ArticleMeta = z.infer<typeof articleSchema>;
