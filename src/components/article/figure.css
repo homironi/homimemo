@@ -1,0 +1,7 @@
+.article-contents-container figure {
+  margin: 0;
+}
+
+.article-contents-container figcaption {
+  color: var(--text-color-pale);
+}

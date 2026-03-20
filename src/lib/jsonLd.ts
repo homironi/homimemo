@@ -1,5 +1,5 @@
 import type { ArticleMeta, StaticPageMetaWithSlug } from "@/schemas/article/meta";
-import type { Person, TechArticle, WebPage, WithContext } from "schema-dts";
+import type { Article, Person, WebPage, WithContext } from "schema-dts";
 
 export const author : Person = {
   "@type": "Person",
@@ -14,10 +14,10 @@ export const author : Person = {
  * @param meta 記事のMeta情報
  * @returns Json-LD形式の記事データ
  */
-export function createArticleJsonLd(meta:ArticleMeta):WithContext<TechArticle>{
+export function createArticleJsonLd(meta:ArticleMeta):WithContext<Article>{
   return {
     "@context": "https://schema.org",
-    "@type": "TechArticle",
+    "@type": meta.articleType,
     author: author,
     dateModified: meta.lastModDate.toISOString(),
     datePublished: meta.publishDate.toISOString(),
