@@ -1,5 +1,6 @@
 import { formatDate } from "@/lib/date";
-import { checkbox, confirm, input } from "@inquirer/prompts";
+import { ARTICLE_TYPES } from "@/schemas/article/meta";
+import { checkbox, confirm, input, select } from "@inquirer/prompts";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
@@ -14,6 +15,12 @@ async function run(){
 
   try{
     const draft = await confirm({message: "記事を下書きにしますか？", default: false});
+    const articleType = await select({
+      message: "記事のタイプを選択してください：",
+      choices: ARTICLE_TYPES.map((type) => ({
+        value: type,
+      })),
+    });
     const title = await input({message: "記事タイトルを入力してください：", default: "新規記事タイトル", required: true});
     const tags = await checkbox({
       message: "記事タグを選択してください（1つ以上必要です）：",
@@ -38,7 +45,8 @@ async function run(){
       description: "ここにdescription",
       publishDate: date,
       lastModDate: date,
-      thumbnail: `/images/header/articles/${id}.webp`
+      thumbnail: `/images/header/articles/${id}.webp`,
+      articleType,
     };
 
     const fileName = `${formatDate(date, "YYYYMMDDHHmmss")}.mdx`;
