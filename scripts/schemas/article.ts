@@ -1,4 +1,3 @@
-import { ARTICLE_TYPES } from "@/schemas/article/meta";
 import z from "zod";
 
 export const tagSchema = z.object({
@@ -17,6 +16,8 @@ const baseContentSchema = z.object({
   thumbnail: z.string().optional(),
   description: z.string(),
 });
+
+export const ARTICLE_TYPES = ["TechArticle", "BlogPosting"] as const;
 
 export const articleSchema = baseContentSchema.extend({
   id: z.string(),

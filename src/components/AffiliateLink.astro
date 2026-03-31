@@ -37,8 +37,18 @@ if(!affiliateHtml){
     padding-bottom: 4px;
   }
 
+  /* 生成されるかんたんリンクの文字色を強制的に上書きするため、以降importantを使用 */
   :global(.easyLink-info-btn-amazon) {
-    /* 生成されるかんたんリンクの文字色を強制的に上書きするため、importantを使用 */
     color: var(--text-color-black) !important;
+  }
+
+  :global(div.easyLink-box) {
+    background-color: var(--color-main) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color-main) !important;
+  }
+
+  :global(div.easyLink-box div.easyLink-info p.easyLink-info-name a) {
+    color: var(--text-color) !important;
   }
 </style>

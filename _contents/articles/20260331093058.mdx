@@ -1,0 +1,108 @@
+---
+id: 00358szeedxyy00jrf3n6pkn
+draft: false
+title: Inquirerで対話型CLIを作る
+tags:
+  - about-site
+  - typescript
+description: Inquirerを使用して対話型CLIツールの作り方をメモ！ TypeScript環境でtsxを使い、手軽に実行できる方法や、実際のコード例を紹介しています。
+publishDate: 2026-03-31T00:30:58.536Z
+lastModDate: 2026-03-31T00:30:58.536Z
+thumbnail: /images/header/articles/00358szeedxyy00jrf3n6pkn.webp
+articleType: TechArticle
+---
+
+Inquirerというライブラリが非常に便利なのでメモ。
+
+## Inquirerで対話型のやり取りが簡単に作れる
+
+自分のサイトの記事マークダウン作成などで使っています。  
+以下のような感じで対話型で入力していくものを簡単に作れます。
+
+```cmd
+pnpm new-article
+✔ 記事を下書きにしますか？ No
+✔ 記事のタイプを選択してください： TechArticle
+✔ 記事タイトルを入力してください： 新規記事のタイトル
+✔ 記事タグを選択してください（1つ以上必要です）： このサイトについて
+_contents\articles\20260331095339.mdxに作成しました
+```
+
+## 実際にこのサイトの記事マークダウン作成に使っているもの
+
+単純な`Y / N`や事前に用意した選択肢から選ぶ、文字列入力など、かなり豊富な入力方法が用意されています。  
+importなどをちょっと端折ってますが、以下のようなものを使っています。
+
+```ts title="scripts/createNewArticle.ts"
+const tagData = generateAllTagArray();
+
+try{
+  const draft = await confirm({message: "記事を下書きにしますか？", default: false});
+  const articleType = await select({
+    message: "記事のタイプを選択してください：",
+    choices: ARTICLE_TYPES.map((type) => ({
+      value: type,
+    })),
+  });
+  const title = await input({message: "記事タイトルを入力してください：", default: "新規記事タイトル", required: true});
+  const tags = await checkbox({
+    message: "記事タグを選択してください（1つ以上必要です）：",
+    required: true,
+    choices: tagData.map(tag => {
+      return {
+        value: tag.slug,
+        name: tag.name,
+        description: tag.description,
+      };
+    }),
+  });
+
+  const id = generateArticleId(getUseIdSet());
+  const date = new Date();
+
+  const meta : ArticleMeta = {
+    id,
+    draft,
+    title,
+    tags,
+    description: "ここにdescription",
+    publishDate: date,
+    lastModDate: date,
+    thumbnail: `/images/header/articles/${id}.webp`,
+    articleType,
+  };
+
+  const fileName = `${formatDate(date, "YYYYMMDDHHmmss")}.mdx`;
+  const newData = matter.stringify("ここに本文", meta);
+  const filePath =path.join(articleDirectoryName, fileName);
+  fs.writeFileSync(filePath, newData);
+
+  console.log(`${filePath}に作成しました`);
+}catch(error){
+  console.error(error);
+  console.log("記事作成を中断しました");
+}
+```
+
+## tsxと組み合わせて使ってます
+
+TypeScriptで書いているので、`tsx`を使って実行しています。
+
+https://github.com/privatenumber/tsx
+
+これを組み合わせることで以下のようにコマンド一つで簡単に使えるようになります。
+
+```json title="package.json"
+{
+  "scripts": {
+    "new-article": "tsx scripts/createNewArticle.ts"
+  }
+}
+```
+
+## 参考
+
+https://github.com/SBoudrias/Inquirer.js
+
+https://github.com/privatenumber/tsx
+
