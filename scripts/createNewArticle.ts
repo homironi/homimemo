@@ -1,12 +1,11 @@
 import { formatDate } from "@/lib/date";
-import { ARTICLE_TYPES } from "@/schemas/article/meta";
 import { checkbox, confirm, input, select } from "@inquirer/prompts";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import { articleDirectoryName, generateAllTagArray, getUseIdSet } from "./lib/article";
 import { generateArticleId } from "./lib/articleId";
-import type { ArticleMeta } from "./schemas/article";
+import { ARTICLE_TYPES, type ArticleMeta } from "./schemas/article";
 
 run();
 
