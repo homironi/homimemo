@@ -11,15 +11,15 @@ jobs:
     permissions:
       issues: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v5
       
       - name: Install pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 22
           cache: "pnpm"
 
       - name: Install dependencies
@@ -30,7 +30,7 @@ jobs:
 
       - name: Restore lychee cache
         id: restore-cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v3
         with:
           path: .lycheecache
           key: cache-lychee-${{ github.sha }}
@@ -42,7 +42,7 @@ jobs:
           args: _public
 
       - name: Save lychee cache
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v3
         if: always()
         with:
           path: .lycheecache
