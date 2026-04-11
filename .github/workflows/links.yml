@@ -39,7 +39,7 @@ jobs:
       - name: Run lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          workingDirectory: _public
+          args: lychee.toml _public
 
       - name: Save lychee cache
         uses: actions/cache/save@v3
