@@ -3,3 +3,14 @@
 
 # サイトのルートディレクトリを指定
 root_dir = "./_public"
+
+exclude = [
+    # HTTP/2エラーが出るドメイン
+    'https://www\.adobe\.com/.*',
+    'https://helpx\.adobe\.com/.*',
+    'https://www\.autodesk\.com/.*',
+    # Googleのfaviconサービス
+    'https://www\.google\.com/s2/favicons.*'
+]
+
+accept = [200, 403, 429]
