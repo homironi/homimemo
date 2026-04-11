@@ -65,3 +65,20 @@ https://homironi.com/
 ## コード規約
 
 基本はLinterで設定する。
+
+## リンク切れ確認
+
+https://lychee.cli.rs/
+
+ワークフローでPR作成時などに確認できるが、Windowsでローカルでlycheeを入れて使うことも可能。
+
+```cli
+winget install lycheeverse.lychee
+```
+
+`lychee.toml`で設定を用意しているのでリポジトリルートで以下のコマンドを実行することも可能。  
+ビルドしてから行うこと。
+
+```cli
+pnpm build && lychee _public
+```
