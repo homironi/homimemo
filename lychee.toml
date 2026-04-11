@@ -1,0 +1,5 @@
+# lychee.toml
+# https://lychee.cli.rs/guides/config/
+
+# サイトのルートディレクトリを指定
+root_dir = "./_public"
