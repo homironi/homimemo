@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   pull_request:
       types: [opened, synchronize]
+  schedule:
+    - cron: "0 0 * * 1"
 
 jobs:
   linkChecker:
@@ -37,9 +39,11 @@ jobs:
           restore-keys: cache-lychee-
 
       - name: Run lychee
+        id: lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          args: _public
+          args: "_public --cache"
+          fail: false
 
       - name: Save lychee cache
         uses: actions/cache/save@v5
@@ -47,3 +51,14 @@ jobs:
         with:
           path: .lycheecache
           key: ${{ steps.restore-cache.outputs.cache-primary-key }}
+
+      - name: Create Issue From File
+        # 「リンク切れがあり」かつ「イベントが schedule または workflow_dispatch の場合」のみ実行
+        if: |
+          steps.lychee.outputs.exit_code != 0 && 
+          (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: Link Checker Report
+          content-filepath: ./lychee/out.md
+          labels: report, automated issue
