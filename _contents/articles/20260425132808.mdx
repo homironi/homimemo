@@ -1,0 +1,135 @@
+---
+id: tjw6wj7e3m9zqg4ma4nhk8tb
+draft: false
+title: サイトにリンク切れチェックを入れるようにした
+tags:
+  - about-site
+  - git-hub-actions
+description: GitHubActionsでサイトのリンク切れチェックを行うようにしました。lycheeとGitHubActionsを利用したリンク切れチェックの紹介です。
+publishDate: 2026-04-25T04:28:08.115Z
+lastModDate: 2026-04-25T04:28:08.115Z
+thumbnail: /images/header/articles/tjw6wj7e3m9zqg4ma4nhk8tb.webp
+articleType: TechArticle
+---
+
+## リンク切れチェックを入れた
+
+このサイトのリポジトリに毎週月曜日にリンク切れのURLがないかどうかを確認してくれるGitHubActionsのワークフローを追加しました！  
+記事で参考にしたURLを載せていたところ、記事どころかサイトごとなくなっていたものがあったので、これを機にリンク切れチェックを入れてみました。
+
+このサイトは静的サイトでAstroを使用してビルドしたものを、lycheeでリンク切れのチェックをしています。  
+Astroに対するプラグインなどではなく、ビルドしたものに対してリンク切れチェックを行っているので、いろんな方法で使いやすいと思います。  
+
+今回はGitHubActionsを使いましたが、lycheeはGitHubActions以外にもいろいろな実行方法があるので公式サイトをみてみると、より合う方法があるかもしれません。
+
+<CardPreviewUrl url="https://lychee.cli.rs/"/>
+
+## コード全体
+
+ビルドされたHTMLなどのファイルは`_public`に出力されるように設定されています。  
+そのため、以下のようにルートディレクトリの設定なども必要でした。
+
+```toml title="lychee.toml"
+# lychee.toml
+# https://lychee.cli.rs/guides/config/
+
+# サイトのルートディレクトリを指定
+root_dir = "./_public"
+
+exclude = [
+    # こちらでどうにもできないエラーがでるURLなどはここで除外
+]
+
+accept = [200, 403, 429]
+```
+
+上記の`lychee.toml`がリポジトリルートにある状態で、以下のようなワークフローが動作すると、`lychee.toml`を考慮して実行してくれます。
+
+```yml title="links.yml"
+name: Links
+
+on:
+  workflow_dispatch: # 手動実行
+  pull_request: # PRでの実行
+      types: [opened, synchronize]
+  schedule: # 時間指定での実行：毎週月曜日に実行される
+    - cron: "0 0 * * 1" # Runs at 00:00, only on Monday
+
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    permissions: # lycheeでイシューを作成させる場合に必要な権限
+      issues: write
+    steps:
+      - uses: actions/checkout@v6
+      
+      # ビルドの準備なので人によって変わる可能性あり
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
+      # ビルドの準備なので人によって変わる可能性あり
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      # ビルドの準備なので人によって変わる可能性あり
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # ビルドなので人によって変わる可能性あり
+      - name: Build
+        run: pnpm build
+
+      # lycheeのキャッシュが保存されていたら復元
+      - name: Restore lychee cache
+        id: restore-cache
+        uses: actions/cache/restore@v5
+        with:
+          path: .lycheecache
+          key: cache-lychee-${{ github.sha }}
+          restore-keys: cache-lychee-
+
+      # lycheeの実行
+      - name: Run lychee
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # ビルドしたら_publicフォルダに出力されるようにしているので、その中身に対して実行するように設定。
+          # キャッシュも設定
+          args: "_public --cache"
+          fail: false
+
+      # lycheeのキャッシュの保存
+      - name: Save lychee cache
+        uses: actions/cache/save@v5
+        if: always()
+        with:
+          path: .lycheecache
+          key: ${{ steps.restore-cache.outputs.cache-primary-key }}
+
+      - name: Create Issue From File
+        # 「リンク切れがあり」かつ「イベントが schedule または workflow_dispatch の場合」のみ実行
+        # ここはお好みで。自分はPRの時の問題はイシュー作成せずに対応したかったので除外しています。
+        if: |
+          steps.lychee.outputs.exit_code != 0 && 
+          (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: Link Checker Report
+          content-filepath: ./lychee/out.md
+          labels: report, automated issue
+```
+
+## 余談
+
+サイトのコードや記事はVS Codeで書いています。  
+今回初めてGitHubActionsの`schedule`を使用したのですが、いつ実行されるかがVS Code上に表示されてくれて便利だなーと思いました。
+
+![VS Code に表示されたscheduleの時間のスクリーンショット](/images/article/tjw6wj7e3m9zqg4ma4nhk8tb/vscode_schedule_time.webp)
+
+## 参考
+
+<CardPreviewUrl url="https://github.com/lycheeverse/lychee-action"/>
+<CardPreviewUrl url="https://lychee.cli.rs/"/>
