@@ -1,23 +1,22 @@
 ---
-import { rakutenWidgetHtml } from "@/data/affiliateLinks";
 import { getEntry } from "astro:content";
 
-export type Props = { type: "rakutenWidget" } | { type: "productLink"; id: string };
+export type Props = { id: string };
 
 const props = Astro.props;
 
 const isProduction = import.meta.env.PROD;
 
-const affiliateHtml = props.type === "rakutenWidget" ? rakutenWidgetHtml : (await getEntry("affiliates", props.id))?.body;
+const affiliateHtml = (await getEntry("affiliates", props.id))?.body;
 if(!affiliateHtml){
-  throw new Error(`Not found affiliate html.${props.type === "productLink" && ` id: ${props.id}`}`);
+  throw new Error(`Not found affiliate html. id: ${props.id}`);
 }
 ---
 
 <div class="container">
   {isProduction 
   ? <Fragment set:html={affiliateHtml} /> 
-  : <p>{props.type}{props.type === "productLink" && `, id:${props.id} title:${(await getEntry("affiliates", props.id))?.data.title}`}</p> }
+  : <p>id:{props.id} title:${(await getEntry("affiliates", props.id))?.data.title}</p> }
 </div>
 
 <style>
