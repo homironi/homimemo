@@ -2,7 +2,7 @@
 import { getAllAffiliate } from "@/lib/collection";
 import type { ArticleMeta } from "@/schemas/article/meta";
 import { getEntries } from "astro:content";
-import ArticleAffiliate from "./article/ArticleAffiliate.astro";
+import AffiliateLink from "./AffiliateLink.astro";
 
 interface Props {
   articleMeta : ArticleMeta;
@@ -44,7 +44,7 @@ const relatedAffiliateIds: string[] = (await Promise.all(all
     {relatedAffiliateIds.map(id=>{
       return (
         <li class="item">
-          <ArticleAffiliate id={id} />
+          <AffiliateLink id={id} />
         </li>
       );
     })}
