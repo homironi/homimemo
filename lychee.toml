@@ -5,6 +5,8 @@
 root_dir = "./_public"
 
 exclude = [
+    # og:imageのURLはあるのに404になっているので一時除外
+    'https://expressive-code\.com/open-graph/.*\.png',
     # HTTP/2エラーが出るドメイン
     'https://www\.adobe\.com/.*',
     'https://helpx\.adobe\.com/.*',
