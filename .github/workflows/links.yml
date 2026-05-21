@@ -10,8 +10,6 @@ on:
 jobs:
   linkChecker:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
     steps:
       - uses: actions/checkout@v6
       
@@ -51,14 +49,3 @@ jobs:
         with:
           path: .lycheecache
           key: ${{ steps.restore-cache.outputs.cache-primary-key }}
-
-      - name: Create Issue From File
-        # 「リンク切れがあり」かつ「イベントが schedule または workflow_dispatch の場合」のみ実行
-        if: |
-          steps.lychee.outputs.exit_code != 0 && 
-          (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
-        uses: peter-evans/create-issue-from-file@v5
-        with:
-          title: Link Checker Report
-          content-filepath: ./lychee/out.md
-          labels: report, automated issue
