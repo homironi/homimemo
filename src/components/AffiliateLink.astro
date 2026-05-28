@@ -16,7 +16,7 @@ if(!affiliateHtml){
 <div class="container">
   {isProduction 
   ? <Fragment set:html={affiliateHtml} /> 
-  : <p>id:{props.id} title:${(await getEntry("affiliates", props.id))?.data.title}</p> }
+  : <p>id:{props.id} title:{(await getEntry("affiliates", props.id))?.data.title}</p> }
 </div>
 
 <style>
