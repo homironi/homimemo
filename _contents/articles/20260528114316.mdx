@@ -1,0 +1,60 @@
+---
+id: 2poqf6jm550ewaf8uran06ak
+draft: false
+title: サイトの404をいくつか解消した（きっと）
+tags:
+  - about-site
+  - astro
+  - make-web
+description: 少し前にこのサイトの404をいくつか解消しました。その時のメモと日記です。
+publishDate: 2026-05-28T11:43:16.033Z
+lastModDate: 2026-05-28T11:43:16.033Z
+thumbnail: /images/header/articles/2poqf6jm550ewaf8uran06ak.webp
+articleType: TechArticle
+---
+
+最近（と言いつつ少し前）、いくつかのページで404ページが表示されているのを観測したので、ちょこっと解消しました。
+
+そこまで技術的な話はなく、ほぼ日記です。
+
+## 環境
+
+- Cloudflare Workers（SSGしたものを静的アセットとして配信）
+- Astro 5.18.1
+- `@astrojs/partytown` 2.1.6
+
+## 404だったもの
+
+- 削除した記事へのリンクを持つ記事  
+→ [サイトにリンク切れチェックを入れるようにした](/articles/tjw6wj7e3m9zqg4ma4nhk8tb/) で解決
+- `/~partytown/partytown-sandbox-sw.html`  
+→ 使わなくなっていたので消しました。以降、この話です。
+
+## partytown による404
+
+どうも`/~partytown/partytown-sandbox-sw.html`の404が元で稀に404ページが表示されてしまっていたようです。  
+
+> Hard reload gets a 404, soft refresh works fine.  
+> Google翻訳：ハードリロードすると404エラーになりますが、ソフトリフレッシュは正常に動作します。  
+
+引用：https://github.com/QwikDev/partytown/issues/107#issuecomment-1872932971
+
+[AstroのIntegration](https://docs.astro.build/ja/guides/integrations-guide/partytown/)経由で使用していたのですが、そもそも使用しなくなっていたので消しました。
+
+`"/~partytown/partytown-sandbox-sw.html" 404`で検索するといくつか引っかかりました。
+
+- https://github.com/QwikDev/partytown/issues/107
+- https://github.com/QwikDev/partytown/issues/546
+- https://github.com/QwikDev/partytown/issues/283
+
+どうもまだ解決されていないようです。  
+自分は途中から使わなくなったものの、Integrationとして入れたまま残してしまっていたので消しました。
+
+## おわり
+
+たまにGoogle Analyticsをみているのですが、404ページが表示されていたのを何度かみかけて流石におかしいなと気付きました。  
+これを機にリンク切れチェックも入れられたのでほこほこです。
+
+## 関連
+
+<CardPreviewUrl url="https://homironi.com/articles/tjw6wj7e3m9zqg4ma4nhk8tb/" />
