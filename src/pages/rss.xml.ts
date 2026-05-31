@@ -22,16 +22,19 @@ export async function GET(context: APIContext) {
     title: siteName,
     description: "ほみろにの新着情報",
     site: siteOrigin,
-    items: articles.map((article) => ({
-      title: article.data.title,
-      pubDate: new Date(article.data.publishDate),
-      description: article.data.description,
-      link: createArticleDetailPath(article.id),
-      customData: `
-        <enclosure url="${siteOrigin}${article.data.thumbnail || defaultArticleThumbnail}" length="0" type="image/webp" />
-        <guid isPermaLink="false">${article.id}</guid>
-      `,
-    })),
+    items: articles.map((article) => {
+      const imageUrl=new URL(article.data.thumbnail || defaultArticleThumbnail,siteOrigin);
+      return({
+        title: article.data.title,
+        pubDate: new Date(article.data.publishDate),
+        description: article.data.description,
+        link: createArticleDetailPath(article.id),
+        customData: `
+          <enclosure url="${imageUrl.href}" length="0" type="image/webp" />
+          <guid isPermaLink="false">${article.id}</guid>
+        `,
+      });
+    }),
     customData: `
     <language>ja</language>
     <copyright>© 2023-${now.getFullYear().toString()} homironi</copyright>
