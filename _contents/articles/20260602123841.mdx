@@ -1,0 +1,69 @@
+---
+id: sanedrgdppjkrqd3oied02se
+draft: false
+title: HomiFeed Fetcherについて
+tags:
+  - make-web
+description: HomiFeedのFetcherについての説明ページです。HomiFeedは自作の自分用フィードリーダーです。HomiFeedは自分以外のアクセスを阻むよう認証を設定しているため、誰でもアクセスできる個人サイトに記事としてFetcherについての説明を用意しています。
+publishDate: 2026-06-02T10:06:30.401Z
+lastModDate: 2026-06-02T10:06:30.401Z
+thumbnail: /images/header/articles/sanedrgdppjkrqd3oied02se.webp
+articleType: TechArticle
+---
+この記事は自作の自分用フィードリーダーHomiFeedのFetcherについての説明です。  
+
+アプリは自分用のため認証の奥にあり、公開し広く使えるようにしていません。  
+そのため、こちらの個人サイトの記事で説明ページを設けました。  
+
+HomiFeedそのものについて興味を持ってくださった方は、今後HomiFeedの内容を紹介する記事の作成を予定していますのでそちらをご覧ください。  
+記事を公開したらここにリンクを貼ります。
+
+## HomiFeed Fetcher とは
+
+HomiFeed Fetcherは、フィードを定期的に取得します。  
+サイトの記事そのものは読み込んでおらず、フィードに含まれるタイトル・description・リンクを取得して一覧表示するものです。  
+
+HomiFeed Fetcherは以下のUser-Agentでアクセスします。
+
+```txt title="User-Agent"
+HomiFeed (https://homironi.com/articles/sanedrgdppjkrqd3oied02se/)
+```
+
+## アクセス頻度
+
+同じフィードへのアクセスは最短でも1時間に1回です。  
+また1日1回の定期取得のほか、手動での更新操作があった場合にのみ再取得を行います。  
+操作がなければその間はアクセスしません。
+
+ただし、ネットワークの遅延や購読登録時などは、一時的に通常時よりも頻繁に取得しているように見える場合があります。
+
+## ETagおよびLast-Modifiedヘッダー
+
+ETagおよびLast-Modifiedヘッダーに対応しており、前回取得時から変更がない場合はコンテンツの再ダウンロードを行いません。
+
+## WebSub（旧PubSubHubbub）
+
+現在はWebSubのサポートはされていません。今後対応したいと考えています。
+
+## フィードの内容について
+
+フィードに含まれるタイトル・description・リンクを取得して一覧表示するものです。  
+あくまでサイトの新着情報を確認するためにフィードから情報を取得します。  
+
+## robots.txt
+
+フィードの取得前に`robots.txt`を確認し、それに従います。
+
+## ブロックしたい場合
+
+以下のようにrobots.txtに記載することでアクセスをブロックできます。
+
+```txt title="robots.txt"
+User-agent: HomiFeed
+Disallow: /
+```
+
+## お問い合わせ
+
+問題がありましたら、大変お手数おかけしますが[お問い合わせページ](/contact/)からご連絡いただけますと幸いです。  
+迅速に対象フィードの取得を停止いたします。
