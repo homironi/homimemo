@@ -5,7 +5,8 @@
   "packageManager": "pnpm@10.33.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "pnpm run build:redirects && astro build",
+    "build:redirects": "tsx scripts/generateRedirects.ts",
     "preview": "pnpm build && wrangler dev",
     "astro": "astro",
     "lint": "eslint .",
