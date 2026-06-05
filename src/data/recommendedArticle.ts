@@ -6,9 +6,8 @@ import { type ArticleMeta } from "@/schemas/article/meta";
  * @see recommendedArticles おすすめ記事Meta
  */
 export const recommendedArticleIds : string[] = [
-  "4m0x8paz57s6xzdv6llba90r",
-  "1rzo1xgl9sna9y2apleb8of4",
-  "y9gwahvcxi4fkbq52ws3a5q6",
+  "88d7hu7jso7m0691ue2rvfn4",
+  "qh166qblptc3q4m1yoxqxus5",
 ];
 
 /**
