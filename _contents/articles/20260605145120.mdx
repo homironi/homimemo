@@ -1,0 +1,79 @@
+---
+id: r0l5zp5uylavn6uc35ri4nly
+draft: false
+title: フィードのURLメモ
+tags:
+  - memo
+description: 自分用のフィードリーダーを作った際に新たなフィードも探しました。その時に「これもあるんだ！」と思ったものもあったのでメモ。
+publishDate: 2026-06-05T09:36:20.206Z
+lastModDate: 2026-06-05T09:36:20.206Z
+thumbnail: /images/header/articles/r0l5zp5uylavn6uc35ri4nly.webp
+articleType: TechArticle
+---
+
+自分用のフィードリーダーを作った際に新たなフィードも探しました。  
+その時に「これもあるんだ！」と思ったものもあったのでメモ。
+
+## Steamニュースハブ
+
+ニュースハブの「リンク」のプルダウンから「RSS」を選ぶとリンクに飛びます。  
+フィードのURLの形式は以下のようになっています。  
+`【ここにAppId】`という部分は書いた通り、ゲームごとに振られているIDです。  
+ストアページとかでも`略/app/appId/`みたいな感じで使われています。
+
+```txt title="AppIdごとのSeamニュースハブのフィードURL"
+https://store.steampowered.com/feeds/news/app/【ここにAppId】/?cc=JP&l=japanese
+```
+
+例：Satisfactoryのページ（楽しい工場ゲームです！）
+
+- ストアページ：https://store.steampowered.com/app/526870/Satisfactory/
+- ニュースハブのページ：https://store.steampowered.com/news/app/526870
+
+```txt title="Satisfactoryのニュースハブのフィード"
+https://store.steampowered.com/feeds/news/app/526870/?cc=JP&l=japanese
+```
+
+## YouTubeチャンネルごとのフィード
+
+自分専用リーダーでは読みませんでしたが（robots.txtで禁止されていたら読まないことにしているため）「へーあるんだー」とびっくりしたので書いておきます。
+
+チャンネルIDは`@hogehoge`のようなチャンネル運営者が変更できるやつ（ハンドル？）ではなく、YouTube側が振ったIDです。  
+
+チャンネルIDの取得方法（他にもありますが開発者ツール以外の方法）：
+1. チャンネルのページを開く
+2. 概要の部分を`さらに表示`
+3. `チャンネルを共有`
+4. `チャンネルIDをコピー`
+
+開発者ツールだと`rss`で検索するのが早いと思います（`alternate`はRSS以外もいくつかあるため）。
+
+以下のようなURLがフィードのURLです。
+
+```txt title="チャンネルごとのYouTubeのフィードURL"
+https://www.youtube.com/feeds/videos.xml?channel_id=【ここにチャンネルID】
+```
+
+例：キタニタツヤ / Tatsuya Kitani のチャンネル（最近は[火種](https://youtu.be/hA_9r-3jkSg?si=qYzYaSo1SHjD-cG1)が好きです）
+
+```txt title="キタニタツヤのYouTubeのフィードURL"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCgP3GbgbuVzAhlctGU5yuPA
+```
+
+ショートなども混ざってます。その動画の概要欄の内容まで含まれているのでフィードリーダーで追いたい人にはよいかも。
+
+## O'Reilly Japanの新刊
+
+[O'Reilly Japanの書籍情報](https://www.oreilly.co.jp/catalog/)のフィードです。
+
+https://www.oreilly.co.jp/catalog/
+
+フィード内の各itemにはいっている日時は公開日というよりかは発売日です。なので未来の日時も出てきます。
+
+```txt title="O'Reilly Japanの新刊フィード"
+https://www.oreilly.co.jp/catalog/soon.xml
+```
+
+書籍のサイトは新刊情報とか相性良さそう、とよく買うところをいくつか調べてみましたが書籍情報を出してるとこは他は見当たりませんでした。  
+あったところも新刊情報ではなく、そこの出版社が運営するメディアの記事のフィードでした。  
+なのでオライリーがあるのを見つけた時めっちゃテンション上がりました。
