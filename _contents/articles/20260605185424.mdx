@@ -1,0 +1,452 @@
+---
+id: 88d7hu7jso7m0691ue2rvfn4
+draft: false
+title: 自分用フィードリーダーHomiFeedをつくった
+tags:
+  - cloudflare
+  - make-web
+  - react
+  - typescript
+description: 自分用のフィードリーダーをつくって使い始めたのでメモ。
+publishDate: 2026-06-05T09:54:24.767Z
+lastModDate: 2026-06-05T09:54:24.767Z
+thumbnail: /images/header/articles/88d7hu7jso7m0691ue2rvfn4.webp
+articleType: TechArticle
+---
+
+自分用のフィードリーダーHomiFeedをつくりました。  
+使えるようになってきたのでスクリーンショットとかとともにご紹介。
+
+## 技術スタック
+
+ざっくり書きます。折りたたみで`package.json`からバージョン付きで抜粋したものも後述。
+
+- 配信：Cloudflare workers  
+[CloudflareのHonoテンプレート](https://developers.cloudflare.com/workers/framework-guides/web-apps/more-web-frameworks/hono/)から始めました
+- 定期実行：Cloudflare Workers Cron Triggers
+- バックエンド：Hono
+- スキーマ検証：Valibot
+  - [HonoのValibotを使ったミドルウェア](https://github.com/honojs/middleware/tree/main/packages/valibot-validator)があったのでそれを使っています
+- DB：Cloudflare D1
+- ORM：Drizzle
+- 認証：Better Auth  
+今回他に使うやつとのドキュメントが結構ありました
+  - [Hono：Better Auth on Cloudflare](https://hono.dev/examples/better-auth-on-cloudflare)
+  - [Better Auth：Drizzle ORM Adapter](https://better-auth.com/docs/adapters/drizzle)
+  - [Better Auth：Hono Integration](https://better-auth.com/docs/integrations/hono)
+- vite + React + Tanstack Router
+- Tanstack Query
+- shadcn/ui
+- [Feedsmith](https://feedsmith.dev/)
+- [robots-parser](https://github.com/samclarke/robots-parser)
+
+<Accordion summary="package.jsonからバージョン付きで一部抜粋">
+
+eslintとかもありましたが細かいのは除外しています。
+
+### dependencies
+
+- @better-auth/drizzle-adapter 1.6.11
+- @hono/valibot-validator 0.6.1
+- @tanstack/react-query 5.100.14
+- @tanstack/react-router 1.170.8
+- @tanstack/react-router-devtools 1.167.0
+- better-auth 1.6.11
+- drizzle-orm 0.45.2
+- feedsmith 2.9.4
+- hono 4.12.23
+- lucide-react 1.16.0
+- react 19.2.1
+- robots-parser 3.0.1
+- shadcn 4.8.1
+- valibot 1.4.1
+
+### devDependencies
+
+- @cloudflare/vite-plugin 1.39.0
+- @cloudflare/vitest-pool-workers 0.16.10
+- @tailwindcss/vite 4.3.0
+- @tanstack/router-plugin 1.168.11
+- @vitejs/plugin-react 5.2.0
+- drizzle-kit 0.31.10
+- tailwindcss 4.3.0
+- typescript 5.8.3
+- typescript-eslint 8.60.0
+- ulidx 2.4.1
+- vite 6.4.2
+- vitest 4.1.7
+
+</Accordion>
+
+## 作成の動機
+
+### フィードリーダーがほしいの動機
+
+- 自分がみたいサイトの新着記事をみたい！
+- ツイッター（現X。永遠にツイッターと呼んでしまう……）で新着を見るのが辛い（おすすめをみたくない）  
+→ おすすめがみたくなさすぎてツイッターの読む専アカウントを消した（このサイト用にとったアカウントは残していますが、なにもつぶやいてないしみていない）
+
+### フィードリーダー自作しようの動機
+
+- 無料で好きなだけ使い倒せるやつがほしい
+- 試しに使ったやつがナビゲーションがちょっと辛い（URLが変わらないのでブラウザバックするとえらいとこに飛ぶ）
+- つくるのたのしそう
+
+## スクリーンショット
+
+UIはshadcn/uiを使いました。ささっといい感じにできてよきです。  
+今回は載せていませんがスマホのUIもいい感じです。
+
+### 全体のスクリーンショット
+
+![HomiFeed全体のスクリーンショット](/images/article/88d7hu7jso7m0691ue2rvfn4/ss.webp)
+
+アイコンはRSSのアイコンの根本を葉っぱに置き換えてかわいくしときました。
+
+サイドバーのフォルダアイコンのスクリーンショット。開閉も反映されます。  
+![サイドバーのフォルダアイコンのスクリーンショット。開閉も表示されている](/images/article/88d7hu7jso7m0691ue2rvfn4/folder_opn_close.webp)
+
+文字色と同じ白だと一瞬存在が認知できなかったので、アイコンと同じ色にしてみています。
+
+### 投稿のスクリーンショット
+
+![投稿の表示](/images/article/88d7hu7jso7m0691ue2rvfn4/post.webp)
+
+タイトル、description、フィードの元サイト、投稿の公開日時を表示しています。  
+タイトルとdescription部分は記事へのリンクが、フィードの元サイトの表示部分は小さいですがフィード元へのリンクがついています。
+
+後で読む、としてマークできる機能もあります。  
+後で読むとしてマークした投稿だけを表示できるページも用意しました。  
+![「後で読む」としてマークできる画面のスクリーンショット](/images/article/88d7hu7jso7m0691ue2rvfn4/read-later.webp)
+
+取得できた投稿が無い時の表示。かわいいのでクロワッサンのアイコンを入れました。  
+![取得できた投稿が無い時の表示。かわいいのでクロワッサンのアイコンも入っている](/images/article/88d7hu7jso7m0691ue2rvfn4/empty-posts.webp)
+
+### フィードの購読スクリーンショット
+
+試しにこのサイトのフィードのURLを入れると購読可能であると表示されます。  
+![このサイトのRSSのURLを入れたフィード追加画面のスクリーンショット](/images/article/88d7hu7jso7m0691ue2rvfn4/add-feed-homironi.webp)
+
+フィードのfetchやパース、robots.txtでアクセスが禁止されているという時には以下のスクリーンショットのようにどこで失敗しているか確認できます。  
+![YouTubeのチャンネルのフィードURLを入れたフィード追加画面のスクリーンショット。robots.txtによってアクセスが禁止されていることを確認できる](/images/article/88d7hu7jso7m0691ue2rvfn4/add-feed-yt.webp)
+
+### OPMLのインポートスクリーンショット
+
+OPMLのインポートだけ実装してあります。  
+エクスポートは気が向いたら実装しようと思い、TODOにしてあります。  
+![OPMLのインポート画面。ファイルをアップロードできる。エクスポートはTODOと表示されている](/images/article/88d7hu7jso7m0691ue2rvfn4/opml.webp)
+
+## フィードの投稿取得タイミング
+
+[Fetcherについて](/articles/sanedrgdppjkrqd3oied02se/)でも書いてます。
+
+1日1回Cloudflare WorkersのCron Triggersを使ってポーリング。  
+あとはフロントエンドから更新ボタンが押された時に再取得。ポーリング含め、最終取得から1時間経過していなければ再取得は行わないようになっています。つまり操作が無い時は1日1回のポーリング以外は行いません。  
+ユーザー数は自分だけと考えるとそこそこリクエスト数を抑えられているかなと思います。
+
+## フィードのパース
+
+[Feedsmith](https://feedsmith.dev/)で基本的に問題なくできました。めっちゃ便利です。
+
+あとはdescriptionにHTMLタグが入っているものがあったので、そのあたりは正規表現で置き換えるようにしたらいい感じになりました。  
+HTMLとしてパースしてわっしょいわっしょいしていくのはライブラリを入れるとかCloudflare Workersとの相性とかいろいろ面倒だし、descriptionだけの用途だったので過剰かなということで正規表現での置換にしました。
+
+<Accordion summary="コードメモ">
+
+```ts
+const HTML_TAGS = [
+  "a", "abbr", "address", "article", "aside",
+  "b", "blockquote", "br", "button",
+  "caption", "cite", "code", "col", "colgroup",
+  "dd", "del", "details", "dfn", "div", "dl", "dt",
+  "em",
+  "figcaption", "figure", "footer", "form",
+  "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hr", "html",
+  "i", "iframe", "img", "input",
+  "kbd",
+  "label", "li",
+  "main", "mark", "meta",
+  "nav",
+  "ol",
+  "p", "picture", "pre",
+  "q",
+  "s", "section", "select", "small", "span", "strong", "sub", "summary", "sup",
+  "table", "tbody", "td", "textarea", "tfoot", "th", "thead", "time", "tr",
+  "u", "ul",
+  "var",
+  "wbr",
+].join("|");
+
+const HTML_TAG_RE = new RegExp(`<\\/?(?:${HTML_TAGS})(?:\\s[^>]*)?\\s*/?>`, "gi");
+
+const NAMED_ENTITIES: Record<string, string> = {
+  "&apos;": "'",
+  "&mdash;": "—",
+  "&ndash;": "–",
+  "&hellip;": "…",
+  "&laquo;": "«",
+  "&raquo;": "»",
+  "&lsquo;": "\u2018",
+  "&rsquo;": "\u2019",
+  "&ldquo;": "\u201C",
+  "&rdquo;": "\u201D",
+};
+const NAMED_ENTITY_RE = new RegExp(
+  Object.keys(NAMED_ENTITIES).map(k => k.replace(/&/g, "&").replace(/;/g, ";")).join("|"),
+  "g",
+);
+
+/**
+ * descriptionなどからHTMLタグっぽいテキストを除去する
+ * @param html HTMLタグが含まれているかもしれないテキスト
+ * @returns HTMLタグっぽいものを除いたテキスト。空文字になったらnull
+ */
+export function extractDescription(html: string | null | undefined): string | null {
+  if (!html) return null;
+
+  const text = html
+    .replace(/<br\s*\/?>/gi, " ") // <br>をスペースに（タグ除去前に）
+    .replace(HTML_TAG_RE, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(NAMED_ENTITY_RE, match => NAMED_ENTITIES[match] ?? match)
+    .replace(/&#(?:x[\da-f]+|\d+);/gi, decodeNumericEntity)
+    .replace(/[\u200B-\u200D\uFEFF]/g, "") // ゼロ幅文字を除去（\s+より前に）
+    // eslint-disable-next-line no-irregular-whitespace
+    .replace(/　/g, " ") // 全角スペース
+    .replace(/\s+/g, " ")
+    .trim();
+
+  return text || null;
+}
+
+function decodeNumericEntity(entity: string): string {
+  const match = entity.match(/&#(x[\da-f]+|\d+);/i);
+  if (!match) return entity;
+  const code = match[1].startsWith("x") || match[1].startsWith("X")
+    ? parseInt(match[1].slice(1), 16)
+    : parseInt(match[1], 10);
+  return String.fromCodePoint(code);
+}
+```
+
+テストも書いたので少なくとも見かけたパターンは潰せました。
+
+```ts title="テストでいくつか確認"
+
+const TEST_DESCRIPTIONS: {
+  name: string;
+  html: string | null;
+  expected: string | null;
+}[] = [
+  {
+    name: "HTMLエンティティ &nbsp;",
+    html: "<p>foo&nbsp;bar</p>",
+    expected: "foo bar",
+  },
+  {
+    name: "HTMLエンティティ &amp;",
+    html: "<p>foo&amp;bar</p>",
+    expected: "foo&bar",
+  },
+  {
+    name: "HTMLエンティティ &lt; &gt;（コード系フィード想定）",
+    html: "<p>List&lt;String&gt;</p>",
+    expected: "List<String>",
+  },
+  {
+    name: "HTMLエンティティ &quot;",
+    html: "<p>&quot;hello&quot;</p>",
+    expected: "\"hello\"",
+  },
+  {
+    name: "改行がスペースになる",
+    html: "1行目\n2行目\n3行目",
+    expected: "1行目 2行目 3行目",
+  },
+  {
+    name: "タグのみでテキストなし",
+    html: "<p><img src=\"https://example.com/image.jpg\" /></p>",
+    expected: null,
+  },
+  {
+    name: "nullはnullを返す",
+    html: null,
+    expected: null,
+  },
+  {
+    name: "<p><img/></p>タグの外にテキスト",
+    html: "<p><img src=\"https://example.com/image.jpg\" /></p>サンプルのテキストです。",
+    expected: "サンプルのテキストです。",
+  },
+  {
+    name: "ulとli",
+    html: `<ul>
+<li>サンプルのliの1つ目</li>
+<li>サンプルのliの2つ目</li>
+<li>サンプルのliの3つ目</li>
+</ul>`,
+    expected: "サンプルのliの1つ目 サンプルのliの2つ目 サンプルのliの3つ目",
+  },
+  {
+    name: "<p><strong></strong></p>",
+    html: `<p>1個目のpテキスト</p>
+<p>2個目のpテキスト「<strong>ここはstrongの中</strong>」strongの外</p>
+<p>3個目のpテキスト</p>
+<p>4個目のpテキスト</p>`,
+    expected: "1個目のpテキスト 2個目のpテキスト「ここはstrongの中」strongの外 3個目のpテキスト 4個目のpテキスト",
+  },
+  {
+    name: "数値文字参照のデコード",
+    html: "十進数&#46;&#46;&#46; 十六進数&#x2F;&#x2F;&#x2F; 制御文字&#x200B;は除去",
+    expected: "十進数... 十六進数/// 制御文字は除去",
+  },
+  {
+    name: "<br>をスペースに",
+    html: "foo<br>bar<br/>baz<br />qux",
+    expected: "foo bar baz qux",
+  },
+  {
+    name: "名前付きエンティティ",
+    html: "<p>hello&mdash;world&ndash;foo&hellip;bar&apos;baz</p>",
+    expected: "hello—world–foo…bar'baz",
+  },
+  {
+    name: "クォート系エンティティ",
+    html: "<p>&lsquo;hello&rsquo; &ldquo;world&rdquo;</p>",
+    expected: "\u2018hello\u2019 \u201Cworld\u201D",
+  },
+  {
+    name: "全角スペース",
+    html: "foo　bar　baz",
+    expected: "foo bar baz",
+  },
+  {
+    name: "全角スペースと改行の混在",
+    html: "foo　bar\nbaz",
+    expected: "foo bar baz",
+  },
+  {
+    name: "空文字はnullを返す",
+    html: "",
+    expected: null,
+  },
+  {
+    name: "空白のみはnullを返す",
+    html: "   \n  ",
+    expected: null,
+  },
+  {
+    name: "ゼロ幅文字がテキスト中に混入",
+    html: "foo\u200Bbar\uFEFFbaz",
+    expected: "foobarbaz",
+  },
+  {
+    name: "タグなどがなくても改行はスペースに",
+    html: `1行目
+    2行目
+    3行目`,
+    expected: "1行目 2行目 3行目",
+  },
+];
+
+describe("extractDescription", () => {
+  it.for(TEST_DESCRIPTIONS)("$name", ({ html, expected }) => {
+    const actual = extractDescription(html);
+    expect(actual).toBe(expected);
+  });
+});
+```
+
+</Accordion>
+
+## OPML
+
+これはさくっとフォルダの対応だけ入れつつ、フィードと同じく[Feedsmith](https://feedsmith.dev/)でインポート処理をつくりました。  
+Feedsmithだけでいい感じにできました。
+
+## シークレット管理
+
+ダッシュボードから追加したら何かが足りなかったのか反映されず、おとなしくCLIで`pnpm wrangler login`からの`wrangler secret set HOGE_HOGE`でやったら反映されました。  
+また同じことをしそうなのでメモしときます。
+
+## 定期実行
+
+Cloudflare WorkersのCron Triggersで1日1回以下の内容を実行します。
+
+- 誰も購読していないフィードデータの削除
+- 保存期間（32日間）を過ぎた投稿データの削除
+- フィードの取得
+
+## 認証
+
+Better AuthのGoogleアカウントログインとafterのhookでアドレス確認→自分のアドレス以外は削除（Googleログインなので事前にとれないので後から）という感じにしています。  
+さらにそれより前にフィードリーダー全体にCloudflare Accessでの認証もかけています。こちらも自分のメールアドレスのログインルールを入れています。
+
+Cloudflare Access → Better Auth のGoogleログインの2段階です。
+
+Cloudflare Accessのおかげもあってbotも弾けてます。  
+最初はbotがphpファイルとかを探しに来てましたが、HonoのAPIなども含めすべて認証必須にしたうえでCloudflare Accessの奥に隠し、そもそもphpとか使っていない技術にアクセスしてくるものはすべて悪いやつというルールを設定したら0になりました。  
+Cloudflareがバンバン弾いてくれてます。
+
+## 未対応だけどやりたいこと
+
+### WebSub対応
+
+WebSubの存在自体知らなかったんですが、ポーリングを最低限にできそうでいいなーと思ったのでやりたいです。  
+旧称は`PubSubHubbub（パブサブハブバブ）`です。ふざけてるのかなと思ってしまう文字の並びにいつもニコニコと文字列を見ています。こういう文字列がめっちゃすき。
+
+まずはこのサイトのフィードをWebSub（[Google PubSubHubbub Hub](https://pubsubhubbub.appspot.com/)を使うと厳密にはPubSubHubbubなんだろうか）に対応させて、それを使いながら実装してみようと思っています。
+
+<TextBlock blockType="note" title="もにょもにょ">
+WebSubと検索すると不要論がでてきて自分としてはちょっとしょんもり。フィード配信にはめっちゃいいと思うので全く不要であるというのは（SEOの観点でしかみてないと思うので仕方ないと思いつつ）なんだかもにょもにょ……と思いました。  
+どうやら昔はGoogleのインデックスが早くなるみたいなそういうのがあったらしいですね。
+</TextBlock >
+
+実際、フィード自体がおそらくユーザーが減っていてそのフィードのためにWebSub対応とかは過剰なんだろうなあ、と思っています。  
+自分もフィードリーダーで使いたいから実装してみようかな、というだけでそれがなければこのサイトのフィードでWebSub対応は過剰なので「やりたい」以外の理由ではやらない気がします。
+
+<TextBlock blockType="note" title="WebSub">
+WebSubはフィード配信元（publishers：多分Pubの部分）、フィードの購読者（subscribers：多分Subの部分。ポーリングするやつ）、配信元と購読者をつなぐHubが出てきます。  
+本来はSubscriber→Publisherにポーリングしますが、WebSub対応されているとポーリングが減らせます。ポーリングが減るということはフィードへのアクセスが減る→サイトのアクセスが減る→負荷がちょいさがる、というわけです。  
+Subscriber→PublisherだったところにHub（[Google PubSubHubbub Hub](https://pubsubhubbub.appspot.com/)など）が入り中継役をしてくれます。  
+Publisherは事前にHubに登録し、記事の公開などフィード更新時に更新をHubに通知。  
+Hubは受け取った通知をSubscriberに送ります。  
+Push型のテクノロジーとか呼ばれていることもあるみたいです。
+</TextBlock >
+
+例えば毎時ポーリングから、1日1回ポーリングで後はHubからの更新を受け取るだけ、みたいな感じにすることができます。HomiFeedではWebSub対応をしたら、対応サイトは1日1回ポーリングとHubからの更新通知のみにしようかなと思っています。  
+現状は1日1回ポーリングと最低1時間でUIから更新リクエストが飛ぶまではポーリングしない、という感じなのでそこまで劇的に減るわけではないですが、やってみたいので気が向いたらやります。
+
+### ミュートワード
+
+やるかわかんないですが気が向いたら。
+
+みてるフィードでよく取り上げられるものでできるだけみないようにしたいキーワードとかもあるので、気が向いたらやろうかなと思っています。  
+
+### 言語フィルタリング
+
+これはミュートワードよりもさらに気が向いたらのやつです。
+
+英語のフィードがあるのですが、翻訳かけちゃいたいけど日本語と混ざっていると日本語が変に翻訳されて情報がちょっと減ることがあります。  
+これを言語で一時的にフィルタリングできたら英語のフィードだけ翻訳かけてみる、がしやすいなあと。  
+フォルダ分けもしてますが言語でもフォルダ分けするとなんか分けすぎてえらいことになってしまうのでヌヌヌです。  
+フォルダに加えてフィルタリングできるタグという機能を入れて代用するのもありかなあと思いつつ、そもそも別にまあいっかと思っているので今はメモだけしといて気が向いたら、という感じです。
+
+## さいごに
+
+たのしかったです。最近はAndroidのネイティブアプリもKotlinでちょこちょこやってます。  
+手書きのノートアプリを作りたくてあれこれGoogleのSDKを組み合わせてKotlinでがっちょんわっしょいしています。
+
+フィードアプリは悲しみから作り始めたものでしたが、実際使ってみて既存のフィードリーダーから移行できて問題なく使えています。  
+自分の中で新着情報はフィードリーダーの時代がきました。
+
+気が向いたら「フィードを配信してほしい、せひ！」という記事でも書こうかなあ。
+
+## 関連
+
+<CardPreviewUrl url="https://homironi.com/articles/sanedrgdppjkrqd3oied02se/"/>
+<CardPreviewUrl url="https://homironi.com/articles/r0l5zp5uylavn6uc35ri4nly/"/>
