@@ -6,7 +6,7 @@ export const tagSchema = z.object({
 });
 
 export type TagMeta = z.infer<typeof tagSchema>;
-export type TagMetaWithSlug = TagMeta & { slug:string };
+export type TagMetaWithSlug = TagMeta & { slug: string };
 
 const baseContentSchema = z.object({
   title: z.string(),
@@ -35,7 +35,7 @@ export type ArticleMeta = z.infer<typeof articleSchema>;
  * @param data 確認したいデータ
  * @returns ArticleMeta かどうか
  */
-export function isArticleMeta(data:unknown) : data is ArticleMeta{
+export function isArticleMeta(data: unknown): data is ArticleMeta {
   return articleSchema.safeParse(data).success;
 }
 
@@ -43,4 +43,4 @@ export const pageSchema = baseContentSchema.extend({
 });
 
 export type StaticPageMeta = z.infer<typeof pageSchema>;
-export type StaticPageMetaWithSlug = StaticPageMeta & { slug:string }; 
+export type StaticPageMetaWithSlug = StaticPageMeta & { slug: string };

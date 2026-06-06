@@ -1,26 +1,27 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+
 import Favicon from "./Favicon.astro";
 import Icon from "./Icon.astro";
 
-interface Props extends HTMLAttributes<"a">{
-  href: string;
+interface Props extends HTMLAttributes<"a"> {
+  href: string
 };
 
-if(!Astro.slots.has("default")){
+if (!Astro.slots.has("default")) {
   throw Error("子要素は必須です。子要素がありません");
 }
 
-const { href,...props } = Astro.props;
+const { href, ...props } = Astro.props;
 const text = await Astro.slots.render("default");
 ---
 
 <a
-{...props}
-href={href}
-target="_blank"
-rel="noopener"
-class="link"
+  {...props}
+  href={href}
+  target="_blank"
+  rel="noopener"
+  class="link"
 >
   <Favicon href={href} alt=`${text}のfavicon`/>
   <slot/>

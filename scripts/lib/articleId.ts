@@ -10,7 +10,7 @@ const customNanoid = customAlphabet(articleIdCharacters, articleIdLength);
  * @returns ユニークな記事ID
  * @description 使用済みIDセットには生成したIDを追加するなどはしないので、必要であれば取得したIDをセットする
  */
-export function generateArticleId(usedIds:Set<string>): string {
+export function generateArticleId(usedIds: Set<string>): string {
   let id: string = "";
   do {
     id = customNanoid();

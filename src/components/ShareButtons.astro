@@ -1,12 +1,13 @@
 ---
 import { createTitleFromTemplate, createUrlFromSlug } from "@/lib/util";
+
 import CopyUrlButton from "./CopyUrlButton.astro";
 import WebShareButton from "./WebShareButton.astro";
 import XShareButton from "./XShareButton.astro";
 
 interface Props {
-  slug: string;
-  title: string;
+  slug: string
+  title: string
 };
 
 const { slug, title } = Astro.props;

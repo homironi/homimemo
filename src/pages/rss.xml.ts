@@ -1,8 +1,9 @@
+import rss from "@astrojs/rss";
+import type { APIContext } from "astro";
+
 import { createArticleDetailPath } from "@/lib/article";
 import { getAllArticles } from "@/lib/collection";
 import { defaultArticleThumbnail, siteName } from "@/lib/util";
-import rss from "@astrojs/rss";
-import type { APIContext } from "astro";
 
 /**
  * RSSフィードの生成
@@ -12,19 +13,19 @@ import type { APIContext } from "astro";
 export async function GET(context: APIContext) {
   const articles = await getAllArticles();
   const siteOrigin = context.site;
-  if(!siteOrigin) {
+  if (!siteOrigin) {
     throw new Error("Site origin is not defined in the context.");
   }
 
-  const now =new Date();
+  const now = new Date();
 
   return rss({
     title: siteName,
     description: "ほみろにの新着情報",
     site: siteOrigin,
     items: articles.map((article) => {
-      const imageUrl=new URL(article.data.thumbnail || defaultArticleThumbnail,siteOrigin);
-      return({
+      const imageUrl = new URL(article.data.thumbnail || defaultArticleThumbnail, siteOrigin);
+      return ({
         title: article.data.title,
         pubDate: new Date(article.data.publishDate),
         description: article.data.description,

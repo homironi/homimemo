@@ -1,24 +1,26 @@
 ---
-import TOCItem, { type Props as TocItemProps } from "@/components/toc/TOCItem.astro";
 import type { MarkdownHeading } from "astro";
 
+import TOCItem, { type Props as TocItemProps } from "@/components/toc/TOCItem.astro";
+
 interface Props {
-  headings: MarkdownHeading[];
+  headings: MarkdownHeading[]
 };
 
-function buildTocSource(flatNodes: MarkdownHeading[]){
+function buildTocSource(flatNodes: MarkdownHeading[]) {
   const root: TocItemProps[] = [];
   const stack: TocItemProps[] = [];
 
   flatNodes.forEach((node) => {
-    const newNode : TocItemProps = { ...node, subHeadings: [] };
+    const newNode: TocItemProps = { ...node, subHeadings: [] };
     while (stack.length > 0 && stack[stack.length - 1].depth >= newNode.depth) {
       stack.pop();
     }
 
     if (stack.length === 0) {
       root.push(newNode);
-    } else {
+    }
+ else {
       stack[stack.length - 1].subHeadings?.push(newNode);
     }
     stack.push(newNode);
@@ -31,13 +33,13 @@ const { headings } = Astro.props;
 
 const tocDepthStart = 2;
 const tocDepthEnd = 3;
-const tocSource = buildTocSource(headings.filter(v=>v.depth >= tocDepthStart && v.depth <= tocDepthEnd));
+const tocSource = buildTocSource(headings.filter(v => v.depth >= tocDepthStart && v.depth <= tocDepthEnd));
 ---
 
 <nav class="container">
   <p class="title">目次</p>
   <ol class="list">
-    {tocSource.map(v=><TOCItem {...v} />)}
+    {tocSource.map(v => <TOCItem {...v} />)}
   </ol>
 </nav>
 

@@ -1,9 +1,10 @@
 ---
 import type { MarkdownHeading } from "astro";
+
 import RecursiveTOCItem from "./TOCItem.astro";
 
 export interface Props extends MarkdownHeading {
-  subHeadings?: Props[];
+  subHeadings?: Props[]
 };
 
 const { slug, text, subHeadings } = Astro.props;
@@ -11,11 +12,12 @@ const { slug, text, subHeadings } = Astro.props;
 
 <li>
   <a href={`#${slug}`} class="link">{text}</a>
-  {subHeadings && subHeadings.length > 0 &&
-  <ol class="sub-list">
-    {subHeadings.map(sub=><RecursiveTOCItem {...sub} />)}
-  </ol>
-  }
+  {subHeadings && subHeadings.length > 0
+    && (
+<ol class="sub-list">
+    {subHeadings.map(sub => <RecursiveTOCItem {...sub} />)}
+</ol>
+)}
 </li>
 
 <style>

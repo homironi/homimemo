@@ -2,8 +2,8 @@
 import { createTagListPagePath } from "@/lib/article/listPage";
 import type { TagMetaWithSlug } from "@/schemas/article/meta";
 
-interface Props{
-  tags: TagMetaWithSlug[];
+interface Props {
+  tags: TagMetaWithSlug[]
 };
 
 const { tags } = Astro.props;
@@ -12,7 +12,7 @@ const { tags } = Astro.props;
 <div class="container">
   <p>タグ一覧</p>
   <ul class="list">
-    {tags.map((tag) => (
+    {tags.map(tag => (
       <li class="item">
         <a href={ createTagListPagePath(tag.slug) } class="link">
           {tag.name}

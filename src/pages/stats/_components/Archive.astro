@@ -3,8 +3,8 @@ import Icon from "@/components/Icon.astro";
 import type { ArticleMeta } from "@/schemas/article/meta";
 
 interface YearArchive {
-  year: number;
-  count: number;
+  year: number
+  count: number
 };
 
 /**
@@ -12,20 +12,20 @@ interface YearArchive {
  * @param articles 記事
  * @returns ArchiveComponent用のデータ
  */
-export function createArchiveByYear(articles: ArticleMeta[]): YearArchive[]{
-  const archive  =  articles.reduce((acc, current)=>{
+export function createArchiveByYear(articles: ArticleMeta[]): YearArchive[] {
+  const archive = articles.reduce((acc, current) => {
     const year = current.publishDate.getFullYear();
     acc.set(year, (acc.get(year) || 0) + 1);
     return acc;
   }, new Map<number, number>());
-  
+
   return Array.from(archive)
-    .map<YearArchive>(entry => ({year: entry[0], count: entry[1] }))
+    .map<YearArchive>(entry => ({ year: entry[0], count: entry[1] }))
     .sort((a, b) => b.year - a.year);
 };
 
 interface Props {
-  archive: YearArchive[];
+  archive: YearArchive[]
 };
 
 const { archive } = Astro.props;
@@ -33,7 +33,7 @@ const { archive } = Astro.props;
 
 <div class="container">
   {archive.map(yearData => (
-    <a  class="year-container" href={ `/stats/${yearData.year}/` }>
+    <a class="year-container" href={ `/stats/${yearData.year}/` }>
       <Icon name="homironiRoundStar" class="icon" />
       <div class="text-container">
         <p>{yearData.year}</p>

@@ -1,12 +1,14 @@
-import { createTagListPagePath } from "@/lib/article/listPage";
 import fs from "fs";
 import path from "path";
+
+import { createTagListPagePath } from "@/lib/article/listPage";
+
 import { generateAllTagArray } from "./lib/article";
 
 type Redirect = {
-  from: string;
-  to: string;
-  statusCode: number;
+  from: string
+  to: string
+  statusCode: number
 };
 
 const outputPath = path.join("public", "_redirects");
@@ -43,14 +45,14 @@ const tagArticlesFirstPageRedirects: Redirect[] = generateAllTagArray().map(tag 
   statusCode: 301,
 }));
 
-const rawRedirects : Redirect[] = [
+const rawRedirects: Redirect[] = [
   ...manualRedirects,
-  ...tagArticlesFirstPageRedirects
+  ...tagArticlesFirstPageRedirects,
 ];
 
 // リダイレクト元のスラッシュありにもなしにもリダイレクト設定を追加
 // 基本スラッシュありで設定していますが、リダイレクト元URLがスラッシュなしの場合も対応するため
-const nonSlashRedirects: Redirect[] = rawRedirects.map(redirect => {
+const nonSlashRedirects: Redirect[] = rawRedirects.map((redirect) => {
   if (redirect.from.endsWith("/")) {
     return {
       from: redirect.from.slice(0, -1),
@@ -60,7 +62,7 @@ const nonSlashRedirects: Redirect[] = rawRedirects.map(redirect => {
   }
   return null;
 }).filter((redirect): redirect is Redirect => redirect !== null);
-const slashRedirects = rawRedirects.map(redirect => {
+const slashRedirects = rawRedirects.map((redirect) => {
   if (!redirect.from.endsWith("/")) {
     return {
       from: `${redirect.from}/`,
@@ -79,8 +81,8 @@ console.log("Generated the following redirects:", redirects);
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(
-  outputPath, 
-  redirects.map(redirect => `${redirect.from} ${redirect.to} ${redirect.statusCode}`).join("\n") + "\n"
+  outputPath,
+  redirects.map(redirect => `${redirect.from} ${redirect.to} ${redirect.statusCode}`).join("\n") + "\n",
 );
 
 console.log(`End redirects file at ${outputPath}`);

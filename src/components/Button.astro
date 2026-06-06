@@ -3,7 +3,7 @@ import type { HTMLAttributes } from "astro/types";
 
 export type ButtonVariants = "outlined" | "filled" | "text";
 interface Props extends HTMLAttributes<"button"> {
-  variant?: ButtonVariants;
+  variant?: ButtonVariants
 };
 
 const buttonVariantClassName: { [key in ButtonVariants]: string } = {
@@ -14,7 +14,7 @@ const buttonVariantClassName: { [key in ButtonVariants]: string } = {
 
 const { variant, ...props } = Astro.props;
 
-const className = `button ${ buttonVariantClassName[variant ?? "filled"] }`;
+const className = `button ${buttonVariantClassName[variant ?? "filled"]}`;
 ---
 
 <button

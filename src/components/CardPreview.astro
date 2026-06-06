@@ -1,12 +1,13 @@
 ---
 import { noImageUrl } from "@/lib/util";
+
 import Image from "./Image.astro";
 
 export interface Props {
-  url: string;
-  title: string;
-  description?: string;
-  imageUrl?: string;
+  url: string
+  title: string
+  description?: string
+  imageUrl?: string
 };
 
 const { url, title, description, imageUrl } = Astro.props;

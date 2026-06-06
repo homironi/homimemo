@@ -2,12 +2,12 @@
 import Image from "@/components/Image.astro";
 
 export type NavigationLink = {
-  href: string;
-  label: string;
+  href: string
+  label: string
 };
 
 interface Props {
-  links: NavigationLink[];
+  links: NavigationLink[]
 };
 
 const { links } = Astro.props;
@@ -33,7 +33,7 @@ const { links } = Astro.props;
     object-fit: cover;
     padding: 4px;
   }
-  
+
   .list{
     margin: 0;
     padding: 0;
@@ -95,7 +95,7 @@ const { links } = Astro.props;
   </div>
   <nav>
     <ul class="list">
-      {links.map((link) => (
+      {links.map(link => (
         <li class="item">
           <a href={ link.href } class="link">
             {link.label}
@@ -105,4 +105,3 @@ const { links } = Astro.props;
     </ul>
   </nav>
 </header>
-

@@ -1,12 +1,6 @@
 ---
 import Image from "@/components/Image.astro";
 import Layout from "@/layout/baseLayout.astro";
-
-interface Props {
-  errorCode: string;
-  errorTitle: string;
-  errorMessage: string;
-};
 ---
 
 <style>
@@ -79,15 +73,15 @@ interface Props {
       min-height: 40vh;
       padding: 1rem;
     }
-    
+
     .title {
       font-size: 2rem;
     }
-    
+
     .error-code {
       font-size: 2.5rem;
     }
-    
+
     .error-title {
       font-size: 1.25rem;
     }
@@ -95,7 +89,7 @@ interface Props {
 </style>
 
 <Layout
-title="404 Not Found"
+  title="404 Not Found"
 >
   <div class="container">
       <div class="content">
@@ -106,5 +100,5 @@ title="404 Not Found"
         </h1>
         <div class="message">ページが削除された可能性があります。</div>
       </div>
-    </div>
+  </div>
 </Layout>
