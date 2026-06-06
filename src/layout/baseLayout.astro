@@ -68,7 +68,8 @@ const footerLinks: NavigationLink[] = [
       <script is:inline>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
-          dataLayer.push(...args);
+          // eslint-disable-next-line prefer-rest-params
+          dataLayer.push(arguments);
         }
         gtag("js", new Date());
 
