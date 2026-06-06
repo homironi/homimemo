@@ -8,6 +8,7 @@ import { defineConfig } from "astro/config";
 import rehypeGithubColor from "rehype-github-color";
 import rehypeSlug from "rehype-slug";
 import { rehypeGfmTaskList } from "./src/lib/rehype/gfmTaskList";
+import { unified } from "@astrojs/markdown-remark";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,22 +19,32 @@ export default defineConfig({
   build: {
     format: "directory",
   },
-
-  integrations: [icon({
-    iconDir: "src/assets/icons",
-  }), expressiveCode({
-    // 指定はデフォルトのテーマですが、ビルド時にテーマが含まれるように必ず明示的にテーマを指定する
-    themes: ["github-dark", "github-light"],
-  }), mdx(), sitemap(), playformCompress({
-    // media screen のCSSが効かなくなってしまったのでCSSは無効にする
-    CSS: false,
-  })],
-
+  
   markdown: {
-    rehypePlugins: [
-      rehypeSlug,
-      rehypeGfmTaskList,
-      rehypeGithubColor,
-    ],
-  }
+    processor: unified({
+      rehypePlugins: [
+        rehypeSlug,
+        rehypeGfmTaskList,
+        rehypeGithubColor,
+      ],
+    }),
+  },
+
+  integrations: [
+    icon({
+      iconDir: "src/assets/icons",
+    }),
+    // Astro6に上げたら「`markdown.remarkPlugins`, `markdown.rehypePlugins`, and `markdown.remarkRehype` are deprecated. Pass them to `unified({...})` from `@astrojs/markdown-remark` directly instead.」
+    // 警告なだけなのでAstro8まではほっといてもよい
+    expressiveCode({
+      // 指定はデフォルトのテーマですが、ビルド時にテーマが含まれるように必ず明示的にテーマを指定する
+      themes: ["github-dark", "github-light"],
+    }),
+    mdx(),
+    sitemap(),
+    playformCompress({
+      // media screen のCSSが効かなくなってしまったのでCSSは無効にする
+      CSS: false,
+    }),
+  ],
 });
