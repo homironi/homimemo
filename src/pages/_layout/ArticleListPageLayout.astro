@@ -7,14 +7,14 @@ import Layout from "@/layout/baseLayout.astro";
 import { articlePagePerNum } from "@/lib/article/listPage";
 import type { ArticleMeta } from "@/schemas/article/meta";
 
-interface Props{
-  title: string;
-  description: string;
-  articles: ArticleMeta[];
-  breadcrumbs: BreadcrumbElement[];
-  listPagePathBase: string;
-  currentPageNumber: number;
-  firstPagePath?: string;
+interface Props {
+  title: string
+  description: string
+  articles: ArticleMeta[]
+  breadcrumbs: BreadcrumbElement[]
+  listPagePathBase: string
+  currentPageNumber: number
+  firstPagePath?: string
 };
 
 const {
@@ -33,33 +33,38 @@ const pageArticles = articles.slice(startNum, endNum);
 ---
 
 <Layout
-title={title}
-description={description}
-ogType="website"
+  title={title}
+  description={description}
+  ogType="website"
 >
   <div class="container">
     <Breadcrumbs breadcrumbs={ breadcrumbs } />
     <h1>{title}</h1>
     {description && <p>{description}</p>}
-    {articles.length === 0 ? (
+    {articles.length === 0
+? (
       <p>記事は見つかりませんでした。</p>
-    ) : (
+    )
+: (
       <>
         <p>{`全 ${articles.length} 件（${startNum + 1} 件目 ～ ${Math.min(
           endNum,
-          articles.length
-        )} 件目）`}</p>
+          articles.length,
+        )} 件目）`}
+        </p>
         <ol class="list">
           {pageArticles.map((article, index) => {
-            const imgOption : ArticleCardProps["imgOption"] = index < 4 
+            const imgOption: ArticleCardProps["imgOption"] = index < 4
               ? {
                 loading: "eager",
                 fetchpriority: "high",
-              } 
+              }
               : undefined;
-            return <li class="item">
+            return (
+<li class="item">
               <ArticleCard meta={ article } imgOption={ imgOption } />
-            </li>;
+</li>
+);
           })}
         </ol>
         <ArticleListPageNumbers

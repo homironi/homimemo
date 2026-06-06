@@ -2,6 +2,7 @@
 import GitHubLogo from "@/components/GitHubLogo.astro";
 import Icon from "@/components/Icon.astro";
 import XLogo from "@/components/XLogo.astro";
+
 import Image from "./Image.astro";
 
 interface Props {
@@ -10,10 +11,10 @@ interface Props {
    * テーマに合わせるなら、背景白系の場所は"default"、背景黒系なら"reverse"を指定
    * テーマに関係なく、背景白系なら"black"、背景黒系なら"white"を指定
    */
-  color?: "default" | "reverse" | "white" | "black";
+  color?: "default" | "reverse" | "white" | "black"
 };
 
-const {color = "default"} = Astro.props;
+const { color = "default" } = Astro.props;
 
 let colorClassName;
 
@@ -74,7 +75,7 @@ const iconClassName = `icon ${colorClassName}`;
     target="_blank"
     class="link"
     title="当サイト記事のrss.xml"
-    >
+  >
     <span class={ iconClassName }><Icon name="rss" class={ iconClassName } size={32} /></span>
   </a>
   <a
@@ -82,7 +83,7 @@ const iconClassName = `icon ${colorClassName}`;
     target="_blank"
     class="link"
     title="当サイトのリポジトリ"
-    >
+  >
     <span class={ iconClassName }><Icon name="code" class={ iconClassName } size={32} /></span>
   </a>
   <a
@@ -90,13 +91,13 @@ const iconClassName = `icon ${colorClassName}`;
     target="_blank"
     class="link"
     title="Ko-fiというサイトを通じて運営者にココアを買えます"
-    >
+  >
       <Image
-      alt="Ko-fiのロゴ"
-      src="/images/logos/ko-fi/kofi_symbol.svg"
-      class="ko-fi-logo"
-      width="32px" 
-      height="32px"
+        alt="Ko-fiのロゴ"
+        src="/images/logos/ko-fi/kofi_symbol.svg"
+        class="ko-fi-logo"
+        width="32px"
+        height="32px"
       />
   </a>
 </div>

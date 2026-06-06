@@ -2,12 +2,12 @@
 import Icon from "./Icon.astro";
 
 interface Props {
-  color?: "default" | "reverse" | "white" | "black";
-  class?: string;
-  size: number | string;
+  color?: "default" | "reverse" | "white" | "black"
+  class?: string
+  size: number | string
 };
 
-const {color = "default", class:className, size} = Astro.props;
+const { color = "default", class: className, size } = Astro.props;
 
 let colorClassName;
 

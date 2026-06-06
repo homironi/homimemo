@@ -1,11 +1,11 @@
 ---
 interface Props {
-  href:string,
-  isActive:boolean,
-  title: string,
+  href: string
+  isActive: boolean
+  title: string
 };
 
-const { isActive, href,title } = Astro.props;
+const { isActive, href, title } = Astro.props;
 ---
 
 {isActive
@@ -16,9 +16,9 @@ const { isActive, href,title } = Astro.props;
   title={ title }
 >
   <slot/>
-</a>)
-: <span class={ "icon icon-disabled" } />
-}
+</a>
+)
+: <span class="icon icon-disabled" />}
 
 <style>
   .icon {

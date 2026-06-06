@@ -61,11 +61,11 @@ export function countMarkdownCharacters(markdown: string): number {
 
   // 太字・斜体記法
   text = text.replace(/\*\*\*(.+?)\*\*\*/g, "$1"); // 太字斜体
-  text = text.replace(/\*\*(.+?)\*\*/g, "$1");     // 太字
-  text = text.replace(/\*(.+?)\*/g, "$1");         // 斜体
-  text = text.replace(/___(.+?)___/g, "$1");       // 太字斜体
-  text = text.replace(/__(.+?)__/g, "$1");         // 太字
-  text = text.replace(/_(.+?)_/g, "$1");           // 斜体
+  text = text.replace(/\*\*(.+?)\*\*/g, "$1"); // 太字
+  text = text.replace(/\*(.+?)\*/g, "$1"); // 斜体
+  text = text.replace(/___(.+?)___/g, "$1"); // 太字斜体
+  text = text.replace(/__(.+?)__/g, "$1"); // 太字
+  text = text.replace(/_(.+?)_/g, "$1"); // 斜体
 
   // 取り消し線
   text = text.replace(/~~(.+?)~~/g, "$1");
@@ -75,7 +75,7 @@ export function countMarkdownCharacters(markdown: string): number {
 
   // 画像記法 ![alt](URL)
   text = text.replace(/!\[[^\]]*\]\([^)]+\)/g, "");
-  
+
   // チェックリスト（- [ ] または - [x] で始まる行）
   text = text.replace(/^[\s]*[-*+]\s*\[[\sx]\]\s*/gmi, "");
 
@@ -118,6 +118,6 @@ export function countMarkdownCharacters(markdown: string): number {
   // 余分な空白行を整理
   text = text.replace(/\n\s*\n/g, "\n");
   text = text.trim();
-  
+
   return text.length;
 }

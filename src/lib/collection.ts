@@ -1,11 +1,12 @@
-import type { ArticleMeta, TagMetaWithSlug } from "@/schemas/article/meta";
 import { getCollection, getEntry } from "astro:content";
+
+import type { ArticleMeta, TagMetaWithSlug } from "@/schemas/article/meta";
 
 /**
  * すべての記事を取得する
  * @returns 記事の配列
  */
-export function getAllArticles(){
+export function getAllArticles() {
   return getCollection("articles");
 }
 
@@ -37,7 +38,7 @@ export function filterArticlesByTag(articles: ArticleMeta[], tagId: string): Art
  * すべての静的ページを取得する
  * @returns 静的ページの配列
  */
-export function getAllStaticPages(){
+export function getAllStaticPages() {
   return getCollection("pages");
 }
 
@@ -45,7 +46,7 @@ export function getAllStaticPages(){
  * すべてのタグを取得する
  * @returns タグの配列
  */
-export function getAllTags(){
+export function getAllTags() {
   return getCollection("tags");
 }
 

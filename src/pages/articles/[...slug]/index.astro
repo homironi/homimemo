@@ -6,32 +6,33 @@ import ArticleListPageLayout from "@/pages/_layout/ArticleListPageLayout.astro";
 import type { ArticleMeta } from "@/schemas/article/meta";
 
 interface Props {
-  currentPage: number;
-  articles: ArticleMeta[];
+  currentPage: number
+  articles: ArticleMeta[]
 };
 
 /**
  * Astroの静的パラメータ生成
  * https://docs.astro.build/ja/reference/routing-reference/#getstaticpaths
+ * @returns Astroの静的パラメータ
  */
-export async function getStaticPaths(){
+export async function getStaticPaths() {
   const allArticles = (await getAllArticles()).sort(
-    (a, b) => b.data.lastModDate.getTime() - a.data.lastModDate.getTime()
+    (a, b) => b.data.lastModDate.getTime() - a.data.lastModDate.getTime(),
   );
   const numbers = getPageLength((allArticles).length);
   return numbers
     .map((i) => {
       // 「/articles/」のルートからのパス形式で入ってくるので、最初のslugに含めない部分は消す
       const slug = createArticleListPagePath(i).replace(new RegExp(`^${articleListPagePath}`), "");
-      
-      return{
-        params:{
+
+      return {
+        params: {
           // 空文字でもビルドはされますが、undefinedが期待されるという旨の警告が出るので、空文字はundefinedにする
           slug: slug === "" ? undefined : slug,
         },
         props: {
           currentPage: i,
-          articles: allArticles.map(v=>v.data),
+          articles: allArticles.map(v => v.data),
         },
       };
     });
@@ -50,11 +51,11 @@ const breadcrumbs: BreadcrumbElement[] = [
 ---
 
 <ArticleListPageLayout
-title={title}
-description=`すべての記事一覧の${currentPage}ページ目です。`
-articles={articles}
-breadcrumbs={breadcrumbs}
-listPagePathBase={articleListPagePathBase}
-currentPageNumber={currentPage}
-firstPagePath={articlesListPagePath}
+  title={title}
+  description=`すべての記事一覧の${currentPage}ページ目です。`
+  articles={articles}
+  breadcrumbs={breadcrumbs}
+  listPagePathBase={articleListPagePathBase}
+  currentPageNumber={currentPage}
+  firstPagePath={articlesListPagePath}
 />

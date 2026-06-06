@@ -1,11 +1,13 @@
 ---
+import { getEntries } from "astro:content";
+
 import { getAllAffiliate } from "@/lib/collection";
 import type { ArticleMeta } from "@/schemas/article/meta";
-import { getEntries } from "astro:content";
+
 import AffiliateLink from "./AffiliateLink.astro";
 
 interface Props {
-  articleMeta : ArticleMeta;
+  articleMeta: ArticleMeta
 };
 
 const { articleMeta } = Astro.props;
@@ -16,18 +18,18 @@ const all = await getAllAffiliate();
 
 // タグの一致数を計算し、優先度付けして選択
 const relatedAffiliateIds: string[] = (await Promise.all(all
-  .map(async affiliate => {
+  .map(async (affiliate) => {
     // 現在の記事のタグと対象Affiliateのタグの共通部分を計算
     const currentTags = (await getEntries(articleMeta.tags)) ?? [];
     const targetTags = (await getEntries(affiliate.data.tags ?? [])) ?? [];
-    
-    const matchingTagsCount = currentTags.filter(tag => 
-      targetTags.some(targetTag=> targetTag.id === tag.id)
+
+    const matchingTagsCount = currentTags.filter(tag =>
+      targetTags.some(targetTag => targetTag.id === tag.id),
     ).length;
-    
+
     return {
       affiliate,
-      matchingTagsCount
+      matchingTagsCount,
     };
   })))
   .sort((a, b) => {
@@ -41,7 +43,7 @@ const relatedAffiliateIds: string[] = (await Promise.all(all
 <div>
   <p class="title">広告</p>
   <ul class="list">
-    {relatedAffiliateIds.map(id=>{
+    {relatedAffiliateIds.map((id) => {
       return (
         <li class="item">
           <AffiliateLink id={id} />

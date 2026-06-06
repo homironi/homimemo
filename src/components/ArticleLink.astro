@@ -3,13 +3,14 @@ import { articleThumbnailNativeSize, createArticleDetailPath } from "@/lib/artic
 import { formatDate } from "@/lib/date";
 import { defaultArticleThumbnail } from "@/lib/util";
 import type { ArticleMeta } from "@/schemas/article/meta";
+
 import Icon from "./Icon.astro";
 import type { ImageOption } from "./Image.astro";
 import Image from "./Image.astro";
 
 interface Props {
-  meta: ArticleMeta;
-  imgOption?: ImageOption;
+  meta: ArticleMeta
+  imgOption?: ImageOption
 };
 
 const { meta, imgOption } = Astro.props;

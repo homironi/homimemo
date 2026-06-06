@@ -1,4 +1,3 @@
-
 // 記事一覧の1ページあたりの表示件数
 export const articlePagePerNum = 12;
 
@@ -45,7 +44,7 @@ export function createTagsPathBase(tagSlug: string): string {
  * @returns タグ一覧ページのパス
  */
 export function createTagListPagePath(tagSlug: string, page?: number): string {
-  if(!page || page === 1){
+  if (!page || page === 1) {
     return createTagsPagePath(tagSlug);
   }
 
@@ -58,7 +57,7 @@ export function createTagListPagePath(tagSlug: string, page?: number): string {
  * @returns 全記事一覧ページのパス
  */
 export function createArticleListPagePath(page: number): string {
-  if(page === 1){
+  if (page === 1) {
     return articleListPagePath;
   }
 

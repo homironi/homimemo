@@ -1,5 +1,6 @@
 ---
-import { 
+import { articlesListPagePath } from "@/lib/article/listPage";
+import {
   createOGData,
   createTitleFromTemplate,
   defaultDescription,
@@ -7,21 +8,22 @@ import {
   type OpenGraphImage,
   createTwitterCardData,
 } from "@/lib/util";
+
 import "./_globalElement.css";
 import "./_globals.css";
-import Header, { type NavigationLink } from "./_components/Header.astro";
-import { articlesListPagePath } from "@/lib/article/listPage";
 import Footer from "./_components/Footer.astro";
-import "@/styles/rehype-github-color.css"
+import Header, { type NavigationLink } from "./_components/Header.astro";
+
+import "@/styles/rehype-github-color.css";
 
 export interface Props {
-  title?: string;
-  description?: string;
-  thumbnail?: string;
-  ogType?: "website" | "article";
+  title?: string
+  description?: string
+  thumbnail?: string
+  ogType?: "website" | "article"
 }
 
-const { 
+const {
   description,
   thumbnail,
   ogType = "website",
@@ -65,7 +67,9 @@ const footerLinks: NavigationLink[] = [
       <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-V6P1VWVXYK"></script>
       <script is:inline>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() {
+          dataLayer.push(...args);
+        }
         gtag("js", new Date());
 
         gtag("config", "G-V6P1VWVXYK");
@@ -79,7 +83,7 @@ const footerLinks: NavigationLink[] = [
     <meta name="author" content="homi">
     <meta name="publisher" content="homi">
     <meta name="creator" content="homironi">
-    
+
     <meta name="format-detection" content="telephone=no, address=no, email=no">
 
     <title>{title}</title>

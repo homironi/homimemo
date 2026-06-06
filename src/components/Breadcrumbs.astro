@@ -1,15 +1,16 @@
 ---
 import type { BreadcrumbList, WithContext } from "schema-dts";
+
 import JsonLd from "./JsonLd.astro";
 
 interface Props {
-  breadcrumbs: BreadcrumbElement[];
+  breadcrumbs: BreadcrumbElement[]
 };
 
 export type BreadcrumbElement = {
-  name: string;
-  href: string;
-  isCurrent?: boolean;
+  name: string
+  href: string
+  isCurrent?: boolean
 };
 
 const { breadcrumbs } = Astro.props;
@@ -22,18 +23,18 @@ const items: BreadcrumbElement[] = [
   ...breadcrumbs,
 ];
 
-function createJsonLd(items:BreadcrumbElement[]): WithContext<BreadcrumbList>{
+function createJsonLd(items: BreadcrumbElement[]): WithContext<BreadcrumbList> {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: items.map(({name, href}, index)=>{
+    itemListElement: items.map(({ name, href }, index) => {
       return {
         "@type": "ListItem",
         name,
         item: `${Astro.site}${href}`,
         position: index + 1,
       };
-    })
+    }),
   };
 }
 
