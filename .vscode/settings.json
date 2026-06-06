@@ -1,10 +1,6 @@
 {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.fixAll": "explicit",
-        "source.fixAll.stylelint": "explicit"
-    },
     "eslint.validate": [
+        "astro",
         "javascript",
         "typescript",
         "typescriptreact",
@@ -20,6 +16,7 @@
         "postcss"
     ],
     "editor.tabSize": 2,
+	"files.eol": "\n",
     "[mdx]": {
         "editor.tabSize": 4
     }
