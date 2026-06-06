@@ -7,7 +7,7 @@ const config = {
       name: "removeAttrs",
       params: {
         attrs: ["fill", "width", "height"],
-      }
+      },
     },
   ],
 };

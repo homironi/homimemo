@@ -17,7 +17,7 @@ const articlesCollection = defineCollection({
     pattern: "**/*.mdx",
     base: "./_contents/articles",
     // 記事のIDをentryのidとして扱うようにする
-    generateId: ({data}) => {
+    generateId: ({ data }) => {
       const valid = articleSchema.parse(data);
       return valid.id;
     },
@@ -38,7 +38,7 @@ const affiliateCollection = defineCollection({
   loader: glob({
     pattern: "**/*.md",
     base: "./_contents/affiliate",
-    generateId: ({entry}) => {
+    generateId: ({ entry }) => {
       // idに大文字が入ることがある都合上、ファイル名（拡張子なし）をslug化させずそのまま使う
       return path.basename(entry, path.extname(entry));
     },

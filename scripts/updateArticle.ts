@@ -5,8 +5,8 @@ import { articleSchema, type ArticleMeta } from "./schemas/article";
 
 run();
 
-async function run(){
-  try{
+async function run() {
+  try {
     const args = process.argv.slice(2);
     const idIndex = args.indexOf("--id");
     const id = idIndex !== -1 ? args[idIndex + 1] : null;
@@ -31,7 +31,8 @@ async function run(){
     fs.writeFileSync(articleFilePath, newData);
 
     console.log(`${id}（${articleFilePath} ）を更新しました`);
-  }catch(error){
+  }
+  catch (error) {
     console.error(error);
     console.log("記事更新を中断しました");
   }

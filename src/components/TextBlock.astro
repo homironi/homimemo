@@ -1,18 +1,18 @@
 ---
 import Icon from "./Icon.astro";
 
-export type TextBlockType =
-| "info"
-| "warning"
-| "error"
-| "success"
-| "note"
-| "tip"
-| "question";
+export type TextBlockType
+= | "info"
+  | "warning"
+  | "error"
+  | "success"
+  | "note"
+  | "tip"
+  | "question";
 
 interface Props {
-  blockType: TextBlockType;
-  title?: string;
+  blockType: TextBlockType
+  title?: string
 };
 
 const iconMap = {

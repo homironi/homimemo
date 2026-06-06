@@ -4,10 +4,10 @@ import Links from "@/components/Links.astro";
 import type { NavigationLink } from "./Header.astro";
 
 interface Props {
-  links: NavigationLink[];
+  links: NavigationLink[]
 };
 
-const {links} = Astro.props;
+const { links } = Astro.props;
 
 const nowYear = new Date().getFullYear();
 ---
@@ -15,7 +15,7 @@ const nowYear = new Date().getFullYear();
 <footer class="container">
   <nav>
     <ul class="navigation">
-      {links.map((link) => (
+      {links.map(link => (
         <li class="navigation-item">
           <a href={ link.href } class="navigation-link">
             {link.label}

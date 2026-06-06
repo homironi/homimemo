@@ -19,7 +19,7 @@ export default defineConfig({
   build: {
     format: "directory",
   },
-  
+
   markdown: {
     processor: unified({
       rehypePlugins: [

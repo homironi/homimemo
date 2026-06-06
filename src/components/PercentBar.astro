@@ -1,7 +1,7 @@
 ---
 interface Props {
-  max: number;
-  current: number;
+  max: number
+  current: number
 };
 
 const { max, current } = Astro.props;
@@ -10,7 +10,7 @@ const ratio = current / max * 100;
 ---
 
 <div class="container" >
-  <div style={ {width: `${ratio < 0 ? 0 : ratio}%`} } class="bar" />
+  <div style={ { width: `${ratio < 0 ? 0 : ratio}%` } } class="bar" />
 </div>
 
 <style>

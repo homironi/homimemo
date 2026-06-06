@@ -13,9 +13,9 @@ const recommendedArticleMax = 4;
 const newArticlesMax = 8;
 const articleChangelogMax = 4;
 
-const allArticles= await getAllArticles();
+const allArticles = await getAllArticles();
 
-const articleChangelog : string[] =  allArticles
+const articleChangelog: string[] = allArticles
 .sort((a, b) => {
   return b.data.lastModDate.getTime() - a.data.lastModDate.getTime();
 })
@@ -29,8 +29,8 @@ const articleChangelog : string[] =  allArticles
     {
       date: article.data.publishDate.getTime(),
       html: `
-          <time dateTime="${ publishedDate }">${formatDate(article.data.publishDate, "YYYY/MM/DD")}</time>：
-          【記事公開】<a href="${ createArticleDetailPath(article.id) }">${article.data.title}</a>
+          <time dateTime="${publishedDate}">${formatDate(article.data.publishDate, "YYYY/MM/DD")}</time>：
+          【記事公開】<a href="${createArticleDetailPath(article.id)}">${article.data.title}</a>
         `,
     },
   ];
@@ -39,8 +39,8 @@ const articleChangelog : string[] =  allArticles
     data.push({
       date: article.data.lastModDate.getTime(),
       html: `
-          <time dateTime="${ modifiedDate }">${formatDate(article.data.lastModDate, "YYYY/MM/DD")}</time>：
-          【記事更新】<a href="${ createArticleDetailPath(article.id) }">${article.data.title}</a>
+          <time dateTime="${modifiedDate}">${formatDate(article.data.lastModDate, "YYYY/MM/DD")}</time>：
+          【記事更新】<a href="${createArticleDetailPath(article.id)}">${article.data.title}</a>
         `,
     });
   }
@@ -52,28 +52,24 @@ const articleChangelog : string[] =  allArticles
 .slice(0, articleChangelogMax)
 .map(v => v.html);
 
-const recommendedArticlesList : ArticleMeta[] = (await recommendedArticles)
+const recommendedArticlesList: ArticleMeta[] = (await recommendedArticles)
   .slice(0, recommendedArticleMax);
 
-
-const latestArticles : ArticleMeta[] = allArticles
+const latestArticles: ArticleMeta[] = allArticles
 .sort((a, b) => {
   return b.data.publishDate.getTime() - a.data.publishDate.getTime();
 })
 .slice(0, newArticlesMax)
-.map(article=> article.data );
+.map(article => article.data);
 ---
 
 <Layout>
   <main>
     <h2 class="title">お知らせ</h2>
     <ul class="list">
-      {noticeData.slice(0, noticeMax).map(({date, text, link}) => {
+      {noticeData.slice(0, noticeMax).map(({ date, text, link }) => {
         return (
-          <li class="item">{date}：{ link
-            ? <a href={link}>{text}</a>
-            : <span>{text}</span>
-            }</li>
+          <li class="item">{date}：{ link ? <a href={link}>{text}</a> : <span>{text}</span>}</li>
         );
       })}
     </ul>
@@ -83,8 +79,7 @@ const latestArticles : ArticleMeta[] = allArticles
     </ul>
     <h2 class="title">おすすめ</h2>
     <ul class="list">
-      {recommendedArticlesList.map(v => <li class="item"><ArticleLink meta={v} imgOption={ {loading: "eager", fetchpriority: "high"} } /></li>)}
-    </ul>
+      {recommendedArticlesList.map(v => <li class="item"><ArticleLink meta={v} imgOption={ { loading: "eager", fetchpriority: "high" } } /></li>)}
     </ul>
     <h2 class="title">新着記事</h2>
     <ul class="list">

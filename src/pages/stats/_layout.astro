@@ -2,8 +2,8 @@
 import Breadcrumbs, { type BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import BaseLayout, { type Props as LayoutProps } from "@/layout/singleLayout.astro";
 
-export interface Props extends LayoutProps{
-  breadcrumbs: BreadcrumbElement[];
+export interface Props extends LayoutProps {
+  breadcrumbs: BreadcrumbElement[]
 };
 
 const { breadcrumbs, ...props } = Astro.props;

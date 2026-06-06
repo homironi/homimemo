@@ -3,25 +3,25 @@ import { getPageLength } from "@/lib/article/listPage";
 import Icon from "./Icon.astro";
 import IconPageNation from "./IconPageNation.astro";
 
-interface Props{
-  listPagePathBase: string;
-  currentPageNumber: number;
-  allArticlesLength: number;
-  firstPagePath?: string;
+interface Props {
+  listPagePathBase: string
+  currentPageNumber: number
+  allArticlesLength: number
+  firstPagePath?: string
 };
 
-function getViewPageNumbers(pageNumbers:number[], currentPageIndex:number, viewNum:number):number[]{
+function getViewPageNumbers(pageNumbers: number[], currentPageIndex: number, viewNum: number): number[] {
   const pageNumbersLength = pageNumbers.length;
-  if(pageNumbersLength  <= viewNum){
+  if (pageNumbersLength <= viewNum) {
     return pageNumbers;
   }
-  
-  if(currentPageIndex < viewNum - 1){
+
+  if (currentPageIndex < viewNum - 1) {
     return pageNumbers.slice(0, viewNum);
   }
 
   const pageNumbersLastIndex = pageNumbersLength - 1;
-  if(currentPageIndex + 1 > pageNumbersLastIndex){
+  if (currentPageIndex + 1 > pageNumbersLastIndex) {
     return pageNumbers.slice(-viewNum);
   }
 
@@ -36,7 +36,6 @@ const {
   firstPagePath,
 } = Astro.props;
 
-
 const pageNumbers = getPageLength(allArticlesLength);
 if (pageNumbers.length === 0) {
   pageNumbers.push(currentPageNumber);
@@ -46,17 +45,17 @@ const linkPathBase = listPagePathBase.endsWith("/")
   ? listPagePathBase
   : `${listPagePathBase}/`;
 
-function getPageHref(page : number) : string{
-  if(page === 1 && firstPagePath){
+function getPageHref(page: number): string {
+  if (page === 1 && firstPagePath) {
     return firstPagePath.endsWith("/") ? firstPagePath : `${firstPagePath}/`;
   }
 
   return `${linkPathBase}${page}/`;
 }
 
-function getPageNumberAt(index : number): number{
+function getPageNumberAt(index: number): number {
   const num = pageNumbers.at(index);
-  if(!num){
+  if (!num) {
     throw new Error(`page number at ${index} is undefined. ${pageNumbers}`);
   }
 
@@ -69,11 +68,11 @@ const currentPageIndex = pageNumbers.findIndex(num => num === currentPageNumber)
 
 const prePageNumber = getPageNumberAt(currentPageIndex - 1 < 0 ? 0 : currentPageIndex - 1);
 const nextPageNumberIndex = currentPageIndex + 1 >= pageNumbers.length
-  ? pageNumbers.length - 1 
+  ? pageNumbers.length - 1
   : currentPageIndex + 1;
 const nextPageNumber = getPageNumberAt(nextPageNumberIndex);
 
-const viewPageNumbers:number[] = getViewPageNumbers(pageNumbers, currentPageIndex, 3);
+const viewPageNumbers: number[] = getViewPageNumbers(pageNumbers, currentPageIndex, 3);
 ---
 
 <div class="container">
@@ -166,12 +165,12 @@ const viewPageNumbers:number[] = getViewPageNumbers(pageNumbers, currentPageInde
   }
 
   .link {
-    background-color: initial; 
+    background-color: initial;
     color: var(--color-sub);
   }
 
   .link-current {
-    background-color: var(--color-sub); 
+    background-color: var(--color-sub);
     color: var(--text-color-white);
   }
 </style>

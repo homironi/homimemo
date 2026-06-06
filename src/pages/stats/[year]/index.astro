@@ -10,31 +10,32 @@ import type { Props as ArticleRatioListProps } from "../_components/ArticleRatio
 import ArticleRatioList from "../_components/ArticleRatioList.astro";
 import Layout from "../_layout.astro";
 
-interface ArticleByMonth{
-  month: string;
-  articles?: ArticleMeta[];
+interface ArticleByMonth {
+  month: string
+  articles?: ArticleMeta[]
 };
 
 interface Props {
-  yearArticles: ArticleMeta[];
-  articlesByMonth: ArticleByMonth[];
-  allArticlesLength: number;
+  yearArticles: ArticleMeta[]
+  articlesByMonth: ArticleByMonth[]
+  allArticlesLength: number
 };
 
 /**
  * Astroの静的パラメータ生成
+ * @returns Astroの静的パラメータ
  */
-export async function getStaticPaths(){
+export async function getStaticPaths() {
   const existYears = [...(new Set((await getAllArticles())
   .map(article => article.data.publishDate.getFullYear())
   .sort((a, b) => a - b)))];
-  
-  const allArticles: ArticleMeta[] = (await getAllArticles()).map(v=>(v.data));
 
-  return existYears.map(year => {
+  const allArticles: ArticleMeta[] = (await getAllArticles()).map(v => (v.data));
+
+  return existYears.map((year) => {
   const yearArticles: ArticleMeta[] = allArticles.filter(article => article.publishDate.getFullYear() === year);
-  const articlesByMonthRaw = Object.entries(Object.groupBy(yearArticles.toSorted((a, b) => a.publishDate.getTime() - b.publishDate.getTime()), article => article.publishDate.getMonth() + 1 ));
-  const articlesByMonth: ArticleByMonth[] = articlesByMonthRaw.map(v=>({
+  const articlesByMonthRaw = Object.entries(Object.groupBy(yearArticles.toSorted((a, b) => a.publishDate.getTime() - b.publishDate.getTime()), article => article.publishDate.getMonth() + 1));
+  const articlesByMonth: ArticleByMonth[] = articlesByMonthRaw.map(v => ({
     month: v[0],
     articles: v[1],
   }));
@@ -67,21 +68,22 @@ const breadcrumbs: BreadcrumbElement[] = [
   },
 ];
 
-const tagsRatioListData : ArticleRatioListProps["list"] = (await getAllTags())
-.map(tag=>{
+const tagsRatioListData: ArticleRatioListProps["list"] = (await getAllTags())
+.map((tag) => {
   const filteredArticlesNum = filterArticlesByTag(yearArticles, tag.id).length;
   return {
     tag: tag,
     length: filteredArticlesNum,
-  };})
+  };
+})
 .filter(v => v.length >= 1)
-.sort((a, b)=> b.length - a.length)
-.map(({tag, length})=>{
+.sort((a, b) => b.length - a.length)
+.map(({ tag, length }) => {
   return {
     allArticlesLength: yearArticles.length,
     length: length,
     href: createTagListPagePath(tag.id),
-    name :  tag.data.name,
+    name: tag.data.name,
   };
 });
 
@@ -89,9 +91,9 @@ const now = new Date();
 ---
 
 <Layout
-title={title}
-description={description}
-breadcrumbs={breadcrumbs}
+  title={title}
+  description={description}
+  breadcrumbs={breadcrumbs}
 >
   <h1>🎉サイト統計 {year}年🎉</h1>
   <time datetime={ formatDate(now, "YYYY-MM-DD") }>{formatDate(now, "YYYY/MM/DD")}現在</time>
@@ -102,7 +104,7 @@ breadcrumbs={breadcrumbs}
   <ArticleRatioList list={ tagsRatioListData } />
   <h2>{year}年の記事</h2>
   <div>
-    {articlesByMonth.map(({month, articles}) => {
+    {articlesByMonth.map(({ month, articles }) => {
       return (
         <Accordion summary={`${month}月：${articles?.length}件`}>
           <ul>

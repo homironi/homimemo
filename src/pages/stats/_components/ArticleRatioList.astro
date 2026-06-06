@@ -2,14 +2,14 @@
 import ArticleRatio, { type Props as ArticleRatioProps } from "./ArticleRatio.astro";
 
 export interface Props {
-  list : ArticleRatioProps[];
+  list: ArticleRatioProps[]
 };
 
 const { list } = Astro.props;
 ---
 
 <ul class="list">
-  {list.map(({ allArticlesLength, length, href, name })=>{
+  {list.map(({ allArticlesLength, length, href, name }) => {
     return (
       <li class="li">
         <ArticleRatio
@@ -18,7 +18,8 @@ const { list } = Astro.props;
           href={ href }
           name={ name }
         />
-      </li>);
+      </li>
+);
   })}
 </ul>
 

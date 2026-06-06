@@ -2,21 +2,21 @@
 import Image, { type Props as ImageProps } from "./Image.astro";
 
 interface Props extends ImageProps {
-  href: string;
-  alt?: string;
+  href: string
+  alt?: string
 };
 
 const { href, alt, ...props } = Astro.props;
-const faviconOrigin = /https?:\/\//.test(href) ? new URL(href).origin : Astro.site; 
+const faviconOrigin = /https?:\/\//.test(href) ? new URL(href).origin : Astro.site;
 ---
 
 <Image
-{...props}
-src=`https://www.google.com/s2/favicons?domain=${faviconOrigin}`
-alt={alt}
-width={16}
-height={16}
-class="favicon"
+  {...props}
+  src=`https://www.google.com/s2/favicons?domain=${faviconOrigin}`
+  alt={alt}
+  width={16}
+  height={16}
+  class="favicon"
 />
 
 <style>

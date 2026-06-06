@@ -1,7 +1,7 @@
 ---
 interface Props {
-  asp: "valuecommerce";
-  url: string;
+  asp: "valuecommerce"
+  url: string
 }
 
 const { asp, url } = Astro.props;
@@ -10,15 +10,12 @@ const fullUrl = url.startsWith("//") ? `https:${url}` : url;
 const urlObj = new URL(fullUrl);
 const params = urlObj.searchParams;
 
-let imgSrc : string | null = null;
+let imgSrc: string | null = null;
 
 switch (asp) {
   case "valuecommerce":
     imgSrc = `https://ad.jp.ap.valuecommerce.com/servlet/gifbanner?sid=${params.get("sid")}&pid=${params.get("pid")}`;
     break;
-
-  default:
-    console.warn(`Unknown ASP type: ${asp}`);
 }
 ---
 

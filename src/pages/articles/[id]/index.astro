@@ -6,20 +6,21 @@ import { getAllArticles } from "@/lib/collection";
 import { getEntries, getEntry, render } from "astro:content";
 
 interface Props {
-  meta: ArticleComponentMeta;
+  meta: ArticleComponentMeta
 };
 
 /**
  * Astroの静的パラメータ生成
  * https://docs.astro.build/ja/reference/routing-reference/#getstaticpaths
+ * @returns Astroの静的パラメータ
  */
-export async function getStaticPaths(){
+export async function getStaticPaths() {
   const articles = await getAllArticles();
-  return Promise.all(articles.map(async ({id, data})=>{
+  return Promise.all(articles.map(async ({ id, data }) => {
     const tags = await getEntries(data.tags);
     return {
       params: { id },
-      props: { meta: {...data, tags} },
+      props: { meta: { ...data, tags } },
     };
   }));
 }
@@ -28,14 +29,13 @@ const { id } = Astro.params;
 const { meta } = Astro.props;
 
 const articleEntry = await getEntry("articles", id);
-if(!articleEntry)
-{
+if (!articleEntry) {
   throw Error("article entry is not found.");
 }
 
 const { Content, headings } = await render(articleEntry);
 
-if(!articleEntry.body){
+if (!articleEntry.body) {
   throw Error("article body(=raw markdown content) is not found.");
 }
 

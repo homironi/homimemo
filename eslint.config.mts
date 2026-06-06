@@ -22,7 +22,6 @@ const commonPluginsAndRules = {
     "@stylistic/linebreak-style": ["error", "unix"],
     "@stylistic/quote-props": ["error", "as-needed"],
     "jsdoc/require-jsdoc": ["error", { publicOnly: true }],
-    "@stylistic/jsx-one-expression-per-line": "off", // AstroはJSXではないので無効化
   },
 } satisfies Partial<Linter.Config>;
 

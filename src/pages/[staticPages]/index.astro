@@ -6,27 +6,28 @@ import { getAllStaticPages } from "@/lib/collection";
 import { render, type CollectionEntry } from "astro:content";
 
 interface Props {
-  entry : CollectionEntry<"pages">;
+  entry: CollectionEntry<"pages">
 };
 
 /**
  * Astroの静的パラメータ生成
+ * @returns Astroの静的パラメータ
  */
-export async function getStaticPaths(){
+export async function getStaticPaths() {
   const pages = await getAllStaticPages();
-  return Promise.all(pages.map(async (entry)=>{
+  return Promise.all(pages.map(async (entry) => {
     return {
       params: { staticPages: entry.id },
       props: { entry },
     };
   }));
-}
+} ;
 
 const { entry } = Astro.props;
 
 const { Content, headings } = await render(entry);
 
-if(!entry.body){
+if (!entry.body) {
   throw Error("entry body(=raw markdown content) is not found.");
 }
 
@@ -40,7 +41,7 @@ const contentLength = countMarkdownCharacters(entry.body);
   ogType="article"
 >
   <Article
-    meta={{...entry.data, slug: entry.id }}
+    meta={{ ...entry.data, slug: entry.id }}
     content={Content}
     contentLength={contentLength}
     headings={headings}

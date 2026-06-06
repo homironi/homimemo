@@ -23,21 +23,22 @@ const articles = (await getAllArticles()).map(v => v.data);
 const articlesLength = articles.length;
 const archive = createArchiveByYear(articles);
 
-const tagsRatioListData : ArticleRatioListProps["list"] = (await getAllTags())
-.map(tag=>{
+const tagsRatioListData: ArticleRatioListProps["list"] = (await getAllTags())
+.map((tag) => {
   const filteredArticles = filterArticlesByTag(articles, tag.id).length;
   return {
     tag: tag,
     length: filteredArticles,
-  };})
-.sort((a, b)=> b.length - a.length)
-.map(({tag, length})=>{
+  };
+})
+.sort((a, b) => b.length - a.length)
+.map(({ tag, length }) => {
   return {
-    key : tag.id,
+    key: tag.id,
     allArticlesLength: articlesLength,
     length: length,
     href: createTagListPagePath(tag.id),
-    name :  tag.data.name,
+    name: tag.data.name,
   };
 });
 
@@ -45,9 +46,9 @@ const now = new Date();
 ---
 
 <Layout
-title={title}
-description={description}
-breadcrumbs={breadcrumbs}
+  title={title}
+  description={description}
+  breadcrumbs={breadcrumbs}
 >
   <h1>🎉サイト統計🎉</h1>
   <time datetime={ formatDate(now, "YYYY-MM-DD") }>{formatDate(now, "YYYY/MM/DD")}現在</time>

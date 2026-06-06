@@ -1,7 +1,7 @@
-export type SupportedDateFormat =
-  | "YYYY/MM/DD" 
-  | "YYYY-MM-DD"
-  | "YYYYMMDDHHmmss";
+export type SupportedDateFormat
+  = | "YYYY/MM/DD"
+    | "YYYY-MM-DD"
+    | "YYYYMMDDHHmmss";
 
 /**
  * 日付オブジェクトを文字列に変換する関数
@@ -29,7 +29,7 @@ export function formatDate(date: Date, format: SupportedDateFormat): string {
 
       return `${YYYY}${MM}${DD}${HH}${mm}${ss}`;
     }
-      
+
     default:
       // SupportedDateFormatに新しいフォーマットを追加した場合、switch文にケースを追加し忘れたらコンパイルエラーになるようにして気付きやすくするためのコード
       // eslint-disable-next-line no-case-declarations, @typescript-eslint/no-unused-vars

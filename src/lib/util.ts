@@ -24,15 +24,15 @@ export function createUrlFromSlug(slug: string) {
 }
 
 export interface OpenGraphImage {
-  url: string;
-  alt: string;
+  url: string
+  alt: string
 }
 
 export interface OpenGraph {
-  title: string;
-  description: string;
-  url: string;
-  images: OpenGraphImage[];
+  title: string
+  description: string
+  url: string
+  images: OpenGraphImage[]
 }
 
 /**
@@ -47,7 +47,7 @@ export function createOGData(
   title?: string,
   description?: string,
   slug?: string,
-  thumbnail?: string
+  thumbnail?: string,
 ): OpenGraph {
   const url = createUrlFromSlug(slug || "/");
   const titleText = title ? title : siteName;
@@ -68,11 +68,11 @@ export function createOGData(
 }
 
 export interface TwitterCard {
-  card: string;
-  site: string;
-  title: string;
-  description: string;
-  images: string[];
+  card: string
+  site: string
+  title: string
+  description: string
+  images: string[]
 }
 
 /**
@@ -85,7 +85,7 @@ export interface TwitterCard {
 export function createTwitterCardData(
   title?: string,
   description?: string,
-  thumbnail?: string
+  thumbnail?: string,
 ): TwitterCard {
   const imageUrl = thumbnail || defaultArticleThumbnail;
   return {

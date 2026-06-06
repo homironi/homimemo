@@ -4,10 +4,10 @@ import { Icon as AstroIcon } from "astro-icon/components";
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"svg"> {
-  name: IconName;
-  title?: string;
-  desc?: string;
-  size?: number | string;
+  name: IconName
+  title?: string
+  desc?: string
+  size?: number | string
 }
 
 const { name, class: className, size, ...props } = Astro.props;
@@ -17,12 +17,12 @@ const actualName = iconMap[name];
 
 {/* 同じページ内で複数回使う時に2回目以降が表示されなくならないようにis:inlineを設定 */}
 <AstroIcon
-{...props}
-name={actualName}
-class:list={[["icon"], [className]]}
-width={size}
-height={size}
-is:inline
+  {...props}
+  name={actualName}
+  class:list={[["icon"], [className]]}
+  width={size}
+  height={size}
+  is:inline
 />
 
 <style>

@@ -7,8 +7,8 @@ import { getEntries } from "astro:content";
 import type { ArticleComponentMeta } from "./Article.astro";
 
 interface Props {
-  meta : ArticleComponentMeta;
-  contentLength : number;
+  meta: ArticleComponentMeta
+  contentLength: number
 };
 
 const { meta, contentLength } = Astro.props;
@@ -46,9 +46,10 @@ const iconSize = 24;
   {isArticle && tags && (
   <>
     <Icon name="label" class="icon" size={iconSize} />
-    {tags.length > 0 ? (
+    {tags.length > 0
+? (
       <ul class="list">
-        {tags.map((tag) => (
+        {tags.map(tag => (
           <li>
             <a href={createTagListPagePath(tag.id)} class="link">
               {tag.data.name}
@@ -56,7 +57,8 @@ const iconSize = 24;
           </li>
         ))}
       </ul>
-    ) : (
+    )
+: (
       <span class="empty">no tag</span>
     )}
   </>

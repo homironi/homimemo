@@ -23,11 +23,11 @@ import ArticleMetaComponent from "./ArticleMetaComponent.astro";
 export type ArticleComponentMeta = ArticleMeta | StaticPageMetaWithSlug;
 
 interface Props {
-  meta: ArticleComponentMeta;
-  content: AstroComponentFactory;
-  contentLength: number;
-  headings: MarkdownHeading[];
-  shareSlug: string;
+  meta: ArticleComponentMeta
+  content: AstroComponentFactory
+  contentLength: number
+  headings: MarkdownHeading[]
+  shareSlug: string
 };
 
 const { meta, content, contentLength, headings, shareSlug } = Astro.props;
@@ -48,7 +48,8 @@ function createBreadcrumbs(meta: ArticleComponentMeta): BreadcrumbElement[] {
         isCurrent: true,
       },
     ];
-  } else {
+  }
+ else {
     return [
       {
         name: meta.title,
@@ -65,8 +66,7 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
 <Fragment slot="head">
   { isArticle
       ? <JsonLd schema={ createArticleJsonLd(meta) } />
-      : <JsonLd schema={ createStaticArticleJsonLd(meta) } />
-    }
+      : <JsonLd schema={ createStaticArticleJsonLd(meta) } />}
 </Fragment>
 <div class="container">
   <div class="first-side">
@@ -94,13 +94,15 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
     <p>SNSやブログで記事をご紹介いただけたらうれしいです！</p>
     <ShareButtons slug={shareSlug} title={meta.title} />
     <p><a class="support" href="https://ko-fi.com/homironi"><Image src="/images/logos/ko-fi/kofi_symbol.svg" alt="ko-fiのロゴ"/>ko-fi</a>でサポートも受け付けています！</p>
-    {isArticle && 
-      <>
+    {isArticle
+      && (
+<>
         <hr />
         <RelatedAffiliate articleMeta={ meta }/>
         <hr />
         <RelatedArticles articleMeta={ meta }/>
-      </>}
+</>
+)}
   </main>
   <div class="last-side">
     <Profile />
@@ -191,7 +193,7 @@ const breadcrumbs: BreadcrumbElement[] = createBreadcrumbs(meta);
       position: relative;
       top: initial;
     }
-    
+
     .article{
       padding: 16px;
     }

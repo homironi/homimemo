@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from "astro/types";
 import HeadingBase from "./HeadingBase.astro";
 
-interface Props extends HTMLAttributes<"h5"> {};
+type Props = HTMLAttributes<"h5">;
 
 const { ...props } = Astro.props;
 ---

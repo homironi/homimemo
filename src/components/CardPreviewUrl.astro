@@ -8,7 +8,7 @@ import { createTitleFromTemplate } from "@/lib/util";
 import { z } from "astro:content";
 
 interface Props {
-  url: string;
+  url: string
 };
 
 const OGPScannerResponseSchema = z.object({
@@ -24,7 +24,7 @@ const OGPScannerResponseSchema = z.object({
 });
 
 async function getCardPreviewProps(
-  url: string
+  url: string,
 ): Promise<CardPreviewProps | null> {
   // 自サイト内の記事の場合は比較的簡単にMetaからとれるのでそちらを使う
   const siteArticleId = getSiteArticleUrl(new URL(url));
@@ -41,7 +41,7 @@ async function getCardPreviewProps(
   }
 
   const response = await fetch(
-    `https://ogp-scanner.kunon.jp/v1/ogp_info?url=${url}`
+    `https://ogp-scanner.kunon.jp/v1/ogp_info?url=${url}`,
   );
   const json = await response.json().catch(() => null);
   if (json) {
@@ -50,13 +50,13 @@ async function getCardPreviewProps(
       const cardData: CardPreviewProps = {
         url,
         title:
-          scanData.data.ogp?.["og:title"]?.[0] ??
-          scanData.data.html?.title ??
-          url,
+          scanData.data.ogp?.["og:title"]?.[0]
+          ?? scanData.data.html?.title
+          ?? url,
         description:
-          scanData.data.ogp?.["og:description"]?.[0] ??
-          scanData.data.html?.description ??
-          undefined,
+          scanData.data.ogp?.["og:description"]?.[0]
+          ?? scanData.data.html?.description
+          ?? undefined,
         imageUrl: scanData.data.ogp?.["og:image"]?.[0],
       };
 
@@ -73,7 +73,6 @@ const cardPreviewProps = await getCardPreviewProps(url);
 
 ---
 
-{cardPreviewProps 
+{cardPreviewProps
   ? <CardPreview {...cardPreviewProps}/>
-  : <p><Link href={url}>{url}</Link></p>
-}
+  : <p><Link href={url}>{url}</Link></p>}

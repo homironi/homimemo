@@ -1,12 +1,12 @@
 import type { ArticleMeta, StaticPageMetaWithSlug } from "@/schemas/article/meta";
 import type { Article, Person, WebPage, WithContext } from "schema-dts";
 
-export const author : Person = {
+export const author: Person = {
   "@type": "Person",
   name: "homi",
   alternateName: "homironi",
   image: [`${import.meta.env.SITE}/images/profile.webp`],
-  url: `${import.meta.env.SITE}/profile/`
+  url: `${import.meta.env.SITE}/profile/`,
 };
 
 /**
@@ -14,7 +14,7 @@ export const author : Person = {
  * @param meta 記事のMeta情報
  * @returns Json-LD形式の記事データ
  */
-export function createArticleJsonLd(meta:ArticleMeta):WithContext<Article>{
+export function createArticleJsonLd(meta: ArticleMeta): WithContext<Article> {
   return {
     "@context": "https://schema.org",
     "@type": meta.articleType,
@@ -25,7 +25,6 @@ export function createArticleJsonLd(meta:ArticleMeta):WithContext<Article>{
     image: meta.thumbnail ? `${import.meta.env.SITE}${meta.thumbnail}` : undefined,
   };
 }
-
 
 const staticArticleJsonLdMap = new Map<string, Omit<WithContext<WebPage>, "@context">>([
   ["about", {
@@ -45,11 +44,11 @@ const staticArticleJsonLdMap = new Map<string, Omit<WithContext<WebPage>, "@cont
  * @param meta 静的記事のMeta情報
  * @returns Json-LD形式の静的記事データ
  */
-export function createStaticArticleJsonLd(meta: StaticPageMetaWithSlug): WithContext<WebPage>{
-  const data:Omit<WithContext<WebPage>, "@context"> = staticArticleJsonLdMap.get(meta.slug)
+export function createStaticArticleJsonLd(meta: StaticPageMetaWithSlug): WithContext<WebPage> {
+  const data: Omit<WithContext<WebPage>, "@context"> = staticArticleJsonLdMap.get(meta.slug)
     ?? {
-    "@type": "WebPage",
-  };
+      "@type": "WebPage",
+    };
 
   return {
     ...data,
