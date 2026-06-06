@@ -1,8 +1,10 @@
-import { affiliateSchema } from "@/schemas/affiliate";
-import { articleSchema, pageSchema, tagSchema } from "@/schemas/article/meta";
+import path from "path";
+
 import { glob } from "astro/loaders";
 import { defineCollection } from "astro:content";
-import path from "path";
+
+import { affiliateSchema } from "@/schemas/affiliate";
+import { articleSchema, pageSchema, tagSchema } from "@/schemas/article/meta";
 
 const tagsCollection = defineCollection({
   loader: glob({

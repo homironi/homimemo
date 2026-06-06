@@ -1,6 +1,8 @@
 import fs from "fs";
-import matter from "gray-matter";
 import path from "path";
+
+import matter from "gray-matter";
+
 import { type TagMeta, tagSchema } from "../schemas/article";
 
 export const articleDirectoryName = path.join("_contents", "articles");

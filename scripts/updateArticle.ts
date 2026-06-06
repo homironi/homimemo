@@ -1,5 +1,7 @@
 import fs from "fs";
-import matter from "gray-matter";
+
+import matter, { stringify } from "gray-matter";
+
 import { getArticleFilePath } from "./lib/article";
 import { articleSchema, type ArticleMeta } from "./schemas/article";
 
@@ -27,7 +29,7 @@ async function run() {
       lastModDate: date,
     };
 
-    const newData = matter.stringify(matterResult.content, newMeta);
+    const newData = stringify(matterResult.content, newMeta);
     fs.writeFileSync(articleFilePath, newData);
 
     console.log(`${id}（${articleFilePath} ）を更新しました`);

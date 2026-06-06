@@ -1,9 +1,11 @@
 ---
+import { getEntries } from "astro:content";
+
 import Icon from "@/components/Icon.astro";
 import { createTagListPagePath } from "@/lib/article/listPage";
 import { formatDate } from "@/lib/date";
 import { isArticleMeta } from "@/schemas/article/meta";
-import { getEntries } from "astro:content";
+
 import type { ArticleComponentMeta } from "./Article.astro";
 
 interface Props {

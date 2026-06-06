@@ -1,5 +1,6 @@
-import type { ArticleMeta, StaticPageMetaWithSlug } from "@/schemas/article/meta";
 import type { Article, Person, WebPage, WithContext } from "schema-dts";
+
+import type { ArticleMeta, StaticPageMetaWithSlug } from "@/schemas/article/meta";
 
 export const author: Person = {
   "@type": "Person",

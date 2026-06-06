@@ -1,8 +1,9 @@
+import rss from "@astrojs/rss";
+import type { APIContext } from "astro";
+
 import { createArticleDetailPath } from "@/lib/article";
 import { getAllArticles } from "@/lib/collection";
 import { defaultArticleThumbnail, siteName } from "@/lib/util";
-import rss from "@astrojs/rss";
-import type { APIContext } from "astro";
 
 /**
  * RSSフィードの生成

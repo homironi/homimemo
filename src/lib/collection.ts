@@ -1,5 +1,6 @@
-import type { ArticleMeta, TagMetaWithSlug } from "@/schemas/article/meta";
 import { getCollection, getEntry } from "astro:content";
+
+import type { ArticleMeta, TagMetaWithSlug } from "@/schemas/article/meta";
 
 /**
  * すべての記事を取得する

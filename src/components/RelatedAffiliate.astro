@@ -1,7 +1,9 @@
 ---
+import { getEntries } from "astro:content";
+
 import { getAllAffiliate } from "@/lib/collection";
 import type { ArticleMeta } from "@/schemas/article/meta";
-import { getEntries } from "astro:content";
+
 import AffiliateLink from "./AffiliateLink.astro";
 
 interface Props {

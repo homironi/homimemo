@@ -32,7 +32,7 @@ export function formatDate(date: Date, format: SupportedDateFormat): string {
 
     default:
       // SupportedDateFormatに新しいフォーマットを追加した場合、switch文にケースを追加し忘れたらコンパイルエラーになるようにして気付きやすくするためのコード
-      // eslint-disable-next-line no-case-declarations, @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line no-case-declarations
       const _exhaustiveCheck: never = format;
       throw new Error(`Unsupported date format: ${format}`);
   }

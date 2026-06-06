@@ -1,11 +1,14 @@
 ---
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
 import Accordion from "@/components/Accordion.astro";
 import CardPreviewUrl from "@/components/CardPreviewUrl.astro";
 import Link from "@/components/Link.astro";
 import TextBlock from "@/components/TextBlock.astro";
-import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
 import AffiliateLink from "../AffiliateLink.astro";
 import AffiliateText from "../AffiliateText.astro";
+
 import "./blockquote.css"; // 引用のスタイルを適用するためにインポート
 import "./figure.css";
 import H1 from "./headings/H1.astro";

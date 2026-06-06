@@ -1,6 +1,7 @@
-import type { Element } from "hast";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+
+import type { Element } from "hast";
 
 /**
  * SVGファイルを読み込んでHAST Element形式に変換する

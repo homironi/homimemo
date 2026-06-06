@@ -1,6 +1,8 @@
-import { createTagListPagePath } from "@/lib/article/listPage";
 import fs from "fs";
 import path from "path";
+
+import { createTagListPagePath } from "@/lib/article/listPage";
+
 import { generateAllTagArray } from "./lib/article";
 
 type Redirect = {

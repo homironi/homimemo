@@ -1,4 +1,5 @@
 ---
+import { articlesListPagePath } from "@/lib/article/listPage";
 import {
   createOGData,
   createTitleFromTemplate,
@@ -7,11 +8,12 @@ import {
   type OpenGraphImage,
   createTwitterCardData,
 } from "@/lib/util";
+
 import "./_globalElement.css";
 import "./_globals.css";
-import Header, { type NavigationLink } from "./_components/Header.astro";
-import { articlesListPagePath } from "@/lib/article/listPage";
 import Footer from "./_components/Footer.astro";
+import Header, { type NavigationLink } from "./_components/Header.astro";
+
 import "@/styles/rehype-github-color.css";
 
 export interface Props {

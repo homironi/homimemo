@@ -4,11 +4,11 @@ import typescriptEslintParser from "@typescript-eslint/parser";
 import astroParser from "astro-eslint-parser";
 import type { Linter } from "eslint";
 import { defineConfig } from "eslint/config";
-import eslintPluginAstro from "eslint-plugin-astro";
+import { configs as eslintPluginAstroConfig } from "eslint-plugin-astro";
 import { importX } from "eslint-plugin-import-x";
 import jsdocPlugin from "eslint-plugin-jsdoc";
 import unusedImports from "eslint-plugin-unused-imports";
-import tseslint from "typescript-eslint";
+import { configs as tseslintConfig } from "typescript-eslint";
 
 // js/ts/astro共通のプラグインとルール
 const commonPluginsAndRules = {
@@ -75,9 +75,9 @@ export default defineConfig([
     ],
   },
   js.configs.recommended,
-  tseslint.configs.recommended,
+  tseslintConfig.recommended,
   stylistic.configs.recommended,
-  eslintPluginAstro.configs["flat/recommended"],
+  eslintPluginAstroConfig["flat/recommended"],
   jsdocPlugin.configs["flat/recommended-typescript"],
   importX.flatConfigs.recommended,
   importX.flatConfigs.typescript,

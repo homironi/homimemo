@@ -1,14 +1,7 @@
 ---
 import Icon from "./Icon.astro";
 
-export type TextBlockType
-= | "info"
-  | "warning"
-  | "error"
-  | "success"
-  | "note"
-  | "tip"
-  | "question";
+export type TextBlockType = | "info" | "warning" | "error" | "success" | "note" | "tip" | "question";
 
 interface Props {
   blockType: TextBlockType
@@ -26,9 +19,10 @@ const iconMap = {
 };
 
 const { blockType, title } = Astro.props;
+const className = `text-block-${blockType}`;
 ---
 
-<aside class=`text-block text-block-${blockType}`>
+<aside class:list={["text-block", className]}>
   <p class="title"><span class="icon-wrapper"><Icon name={iconMap[blockType]} size={24} /></span>{title}</p>
   <div class="content"><slot/></div>
 </aside>

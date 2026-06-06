@@ -1,4 +1,7 @@
 ---
+import type { MarkdownHeading } from "astro";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
 import ArticleTagList from "@/components/ArticleTagList.astro";
 import type { BreadcrumbElement } from "@/components/Breadcrumbs.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
@@ -15,8 +18,7 @@ import { getAllTagWithSlugs } from "@/lib/collection";
 import { createArticleJsonLd, createStaticArticleJsonLd } from "@/lib/jsonLd";
 import { defaultArticleThumbnail } from "@/lib/util";
 import { isArticleMeta, type ArticleMeta, type StaticPageMetaWithSlug } from "@/schemas/article/meta";
-import type { MarkdownHeading } from "astro";
-import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
 import ArticleContent from "./ArticleContent.astro";
 import ArticleMetaComponent from "./ArticleMetaComponent.astro";
 

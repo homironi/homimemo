@@ -1,8 +1,11 @@
-import { formatDate } from "@/lib/date";
-import { checkbox, confirm, input, select } from "@inquirer/prompts";
 import fs from "fs";
-import matter from "gray-matter";
 import path from "path";
+
+import { checkbox, confirm, input, select } from "@inquirer/prompts";
+import { stringify } from "gray-matter";
+
+import { formatDate } from "@/lib/date";
+
 import { articleDirectoryName, generateAllTagArray, getUseIdSet } from "./lib/article";
 import { generateArticleId } from "./lib/articleId";
 import { ARTICLE_TYPES, type ArticleMeta } from "./schemas/article";
@@ -49,7 +52,7 @@ async function run() {
     };
 
     const fileName = `${formatDate(date, "YYYYMMDDHHmmss")}.mdx`;
-    const newData = matter.stringify("ここに本文", meta);
+    const newData = stringify("ここに本文", meta);
     const filePath = path.join(articleDirectoryName, fileName);
     fs.writeFileSync(filePath, newData);
 

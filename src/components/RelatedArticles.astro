@@ -1,7 +1,9 @@
 ---
+import { getEntries } from "astro:content";
+
 import { getAllArticles } from "@/lib/collection";
 import type { ArticleMeta } from "@/schemas/article/meta";
-import { getEntries } from "astro:content";
+
 import ArticleLink from "./ArticleLink.astro";
 
 interface Props {

@@ -1,14 +1,15 @@
 // @ts-check
+import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import playformCompress from "@playform/compress";
+import { defineConfig } from "astro/config";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
-import { defineConfig } from "astro/config";
 import rehypeGithubColor from "rehype-github-color";
 import rehypeSlug from "rehype-slug";
+
 import { rehypeGfmTaskList } from "./src/lib/rehype/gfmTaskList";
-import { unified } from "@astrojs/markdown-remark";
 
 // https://astro.build/config
 export default defineConfig({
