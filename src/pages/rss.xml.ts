@@ -11,7 +11,8 @@ import { defaultArticleThumbnail, siteName } from "@/lib/util";
  * @returns RSSフィードXML
  */
 export async function GET(context: APIContext) {
-  const articles = await getAllArticles();
+  // 最新記事順にソート
+  const articles = (await getAllArticles()).sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
   const siteOrigin = context.site;
   if (!siteOrigin) {
     throw new Error("Site origin is not defined in the context.");
