@@ -55,7 +55,7 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.61.0",
     "unist-util-visit": "^5.1.0",
-    "wrangler": "^4.100.0",
+    "wrangler": "^4.98.0",
     "zod": "^4.4.3"
   }
 }
