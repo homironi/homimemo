@@ -1,4 +1,5 @@
-import { reference, z } from "astro:content";
+import { z } from "astro/zod";
+import { reference } from "astro:content";
 
 export const tagSchema = z.object({
   name: z.string().min(1),
