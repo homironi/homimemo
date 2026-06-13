@@ -16,11 +16,11 @@
     "svg": "svgo --folder ./src/assets/icons --recursive "
   },
   "dependencies": {
-    "@astrojs/mdx": "^6.0.2",
+    "@astrojs/mdx": "^6.0.3",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.3",
-    "astro": "^6.4.4",
-    "astro-expressive-code": "^0.42.0",
+    "astro": "^6.4.6",
+    "astro-expressive-code": "^0.43.1",
     "astro-icon": "^1.1.5",
     "schema-dts": "^1.1.5"
   },
@@ -52,7 +52,7 @@
     "tsx": "^4.22.4",
     "typescript-eslint": "^8.60.1",
     "unist-util-visit": "^5.1.0",
-    "wrangler": "^4.98.0",
+    "wrangler": "^4.100.0",
     "zod": "^3.25.76"
   }
 }
