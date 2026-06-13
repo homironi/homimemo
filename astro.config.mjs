@@ -35,8 +35,6 @@ export default defineConfig({
     icon({
       iconDir: "src/assets/icons",
     }),
-    // Astro6に上げたら「`markdown.remarkPlugins`, `markdown.rehypePlugins`, and `markdown.remarkRehype` are deprecated. Pass them to `unified({...})` from `@astrojs/markdown-remark` directly instead.」
-    // 警告なだけなのでAstro8まではほっといてもよい
     expressiveCode({
       // 指定はデフォルトのテーマですが、ビルド時にテーマが含まれるように必ず明示的にテーマを指定する
       themes: ["github-dark", "github-light"],
