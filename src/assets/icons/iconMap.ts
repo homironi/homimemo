@@ -24,6 +24,7 @@ export const iconMap = {
   rss: "google-materials/rss_feed_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24",
   share: "google-materials/share_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24",
   note: "google-materials/sticky_note_2_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24",
+  wallArt: "google-materials/wall_art_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24",
   warning: "google-materials/warning_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24",
 
   // homironi icons
