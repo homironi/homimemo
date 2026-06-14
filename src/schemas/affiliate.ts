@@ -1,4 +1,5 @@
-import { reference, z } from "astro:content";
+import { z } from "astro/zod";
+import { reference } from "astro:content";
 
 export const affiliateSchema = z.object({
   title: z.string(),

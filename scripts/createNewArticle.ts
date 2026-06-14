@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 import { checkbox, confirm, input, select } from "@inquirer/prompts";
-import { stringify } from "gray-matter";
+import matter from "gray-matter";
 
 import { formatDate } from "@/lib/date";
 
@@ -52,7 +52,8 @@ async function run() {
     };
 
     const fileName = `${formatDate(date, "YYYYMMDDHHmmss")}.mdx`;
-    const newData = stringify("ここに本文", meta);
+    // eslint-disable-next-line import-x/no-named-as-default-member
+    const newData = matter.stringify("ここに本文", meta);
     const filePath = path.join(articleDirectoryName, fileName);
     fs.writeFileSync(filePath, newData);
 
