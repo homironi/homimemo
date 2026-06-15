@@ -6,7 +6,7 @@ tags:
   - make-web
 description: HomiFeedのFetcherについての説明ページです。HomiFeedは自作の自分用フィードリーダーです。HomiFeedは自分以外のアクセスを阻むよう認証を設定しているため、誰でもアクセスできる個人サイトに記事としてFetcherについての説明を用意しています。
 publishDate: 2026-06-02T10:06:30.401Z
-lastModDate: 2026-06-02T10:06:30.401Z
+lastModDate: 2026-06-15T22:30:30.401Z
 thumbnail: /images/header/articles/sanedrgdppjkrqd3oied02se.webp
 articleType: TechArticle
 ---
@@ -53,16 +53,9 @@ ETagおよびLast-Modifiedヘッダーに対応しており、前回取得時か
 
 ## robots.txt
 
-フィードの取得前に`robots.txt`を確認し、それに従います。
-
-## ブロックしたい場合
-
-以下のようにrobots.txtに記載することでアクセスをブロックできます。
-
-```txt title="robots.txt"
-User-agent: HomiFeed
-Disallow: /
-```
+`robots.txt`を確認しません。  
+フィードを配信しているということは、フィードを購読されることを意図していると捉えています。  
+また、`robots.txt`自体は検索エンジンなどのクローラー向けであり、フィードを取得するFetcherは該当しないと捉えています。
 
 ## お問い合わせ
 
