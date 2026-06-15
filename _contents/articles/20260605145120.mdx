@@ -6,7 +6,7 @@ tags:
   - memo
 description: 自分用のフィードリーダーを作った際に新たなフィードも探しました。その時に「これもあるんだ！」と思ったものもあったのでメモ。
 publishDate: 2026-06-05T09:36:20.206Z
-lastModDate: 2026-06-05T09:36:20.206Z
+lastModDate: 2026-06-15T22:45:20.206Z
 thumbnail: /images/header/articles/r0l5zp5uylavn6uc35ri4nly.webp
 articleType: TechArticle
 ---
@@ -36,8 +36,6 @@ https://store.steampowered.com/feeds/news/app/526870/?cc=JP&l=japanese
 
 ## YouTubeチャンネルごとのフィード
 
-自分専用リーダーでは読みませんでしたが（robots.txtで禁止されていたら読まないことにしているため）「へーあるんだー」とびっくりしたので書いておきます。
-
 チャンネルIDは`@hogehoge`のようなチャンネル運営者が変更できるやつ（ハンドル？）ではなく、YouTube側が振ったIDです。  
 
 チャンネルIDの取得方法（他にもありますが開発者ツール以外の方法）：
@@ -61,6 +59,28 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCgP3GbgbuVzAhlctGU5yuPA
 ```
 
 ショートなども混ざってます。その動画の概要欄の内容まで含まれているのでフィードリーダーで追いたい人にはよいかも。
+
+## GitHubのリポジトリのReleaseなど
+
+リポジトリのReleaseページのURLに`.atom`を追加するとフィードが取得できます。
+
+`https://github.com/【リポジトリオーナー】/【リポジトリ名】/releases`がReleaseページなので、そこに`.atom`を追加します。
+
+```txt title="リポジトリのReleaseフィードURL"
+https://github.com/【リポジトリオーナー】/【リポジトリ名】/releases.atom
+```
+
+例：AstroのReleaseのフィード
+
+```txt title="AstroのReleaseのフィードURL"
+https://github.com/withastro/astro/releases.atom
+```
+
+`type="application/atom+xml"`で載ってました。  
+調べてみたらReleaseやタグ以外にもユーザーなどいろいろなページで`.atom`で用意されているみたいです。  
+自分のダッシュボード（`https://github.com/`）のFeedもみられるみたいでとても便利。
+
+<CardPreviewUrl url="https://medium.com/@vilcins/rss-feeds-for-your-github-releases-tags-and-activity-cbda2c51373" />
 
 ## 書籍の新刊
 
