@@ -1,0 +1,191 @@
+---
+id: ci03a2mqa96c0pe8vlix9y0h
+draft: false
+title: 【Android】ComposeのPreviewに関するメモ
+tags:
+  - develop-android
+description: AndroidのJetpackComposeのPreviewのParameterやWrapperに関するメモです。
+publishDate: 2026-07-04T06:55:28.182Z
+lastModDate: 2026-07-04T06:55:28.182Z
+thumbnail: /images/header/articles/ci03a2mqa96c0pe8vlix9y0h.webp
+articleType: TechArticle
+---
+最近は自分用のAndroidの手描きノートアプリをちまちま作ってます。
+Jetpack Compose （UI）と Jetpack Ink （手描き）を主軸にしているのでComposeのPreviewもちょこちょこ書くのですが、毎回「これどうやって書くんだっけなあ、どっか書いたなあ」と探しているので覚えるがてらのメモです。
+
+
+## バージョン
+
+- `androidx.compose:compose-bom 2026.06.01`
+
+[PreviewWrapper](https://developer.android.com/reference/kotlin/androidx/compose/ui/tooling/preview/PreviewWrapper) は`androidx.compose.ui:ui-*:1.11.0`からなのでこれより前のバージョンを使う場合はないのでご注意ください。
+
+## Preview自体の書き方
+
+[公式のドキュメント](https://developer.android.com/develop/ui/compose/tooling/previews?hl=ja)がわかりやすいです。
+
+コードを見たほうがわかりやすいと思います。
+
+```kt
+@Composable
+fun SimpleComposable() {
+    Text("Hello World")
+}
+
+@Preview
+@Composable
+private fun SimpleComposablePreview() {
+    SimpleComposable()
+}
+```
+
+`SimpleComposable`がComposeの定義で、`SimpleComposablePreview`がPreview用の定義です。
+
+Android Studioのファイルを開いている時の右上あたりで`Split`とかにするとコードとPreviewを両方表示できます。  
+![Android Studioのファイルを開いている時の右上あたりでSplitを選ぶとPreviewとコード両方を見られる](/images/article/ci03a2mqa96c0pe8vlix9y0h/ide.webp)
+
+Android Studioをダークテーマにしているのでちょっとみにくいですが、Previewが表示されています。  
+![Hello WorldのPreviewのスクリーンショット](/images/article/ci03a2mqa96c0pe8vlix9y0h/simplePreview.webp)
+
+Preview用のComposable関数に`@Preview`のAnnotationをつけるだけなので、非常に手軽にPreviewできます。  
+ただ、背景ほしいなあ、とかLightとDark両方みたいなあ、ということのほうが多いので基本的には別のPreview系Annotationを使っています。  
+`@Preview`の引数でもいろいろ指定できるんですが、もともとある複数のAnnotationをまとめたAnnotationや、プロジェクト用に使い回せるように定義しておくほうが便利です。
+
+`@PreviewLightDark`は名前の通りLightとDark両方のテーマでPreviewできます。ただ、ThemeでWrapしておく必要があります。  
+ということでWrapperも定義して適用できます。
+
+## PreviewWrapperでWrapper付きでPreviewする
+
+シンプルなサンプルは[公式ドキュメント](https://developer.android.com/reference/kotlin/androidx/compose/ui/tooling/preview/PreviewWrapper)がわかりやすいです。
+
+以下は実際に自分の手描きノートアプリで使っているものです。
+
+`@PreviewLightDark`があり、WrapperでThemeの中になっているのでTheme違いでPreviewできます。  
+先にPreviewのスクリーンショット。
+
+![PreviewWrapperを使ったPreviewのスクリーンショット](/images/article/ci03a2mqa96c0pe8vlix9y0h/PreviewWrapperProvider.webp)
+
+```kt title="Theme付きのPreviewWrapperProvider"
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.PreviewWrapperProvider
+
+// 自分のプロジェクトのThemeに置き換えてください
+import com.homironi.hominote.core.ui.theme.HominoteTheme
+
+class ThemePreviewWrapper : PreviewWrapperProvider {
+    @Composable
+    override fun Wrap(content: @Composable (() -> Unit)) {
+        // 自分のプロジェクトのThemeに置き換えてください
+        HominoteTheme {
+            content()
+        }
+    }
+}
+```
+
+さらにTheme付きPreviewWrapperProviderにSurfaceも追加したものです。  
+ThemeでWrapした中にあるので、ThemeのSurfaceの色を反映してくれます。
+
+```kt title="Theme付きPreviewWrapperProviderを拡張してSurfaceも追加したPreviewWrapperProvider"
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.PreviewWrapperProvider
+
+class ThemeWithSurfaceWrapper : PreviewWrapperProvider {
+    private val themeWrapper = ThemePreviewWrapper()
+
+    @Composable
+    override fun Wrap(content: @Composable (() -> Unit)) {
+        themeWrapper.Wrap {
+            Surface {
+                content()
+            }
+        }
+    }
+}
+```
+
+あとは`@PreviewWrapper(wrapper = ThemeWithSurfaceWrapper::class)`でwrapperにPreviewWrapperProviderクラスを渡すだけです。  
+以下は、自分の手描きノートアプリのツールバーで使っている部分です。
+
+```kt title="PreviewWrapperProviderを使う"
+@PreviewWrapper(wrapper = ThemeWithSurfaceWrapper::class)
+@PreviewLightDark
+@Composable
+private fun PadToolBarPreview() {
+    PadToolBar(
+        uiState = PadUiState(),
+        onEvent = {},
+        shouldAdaptStrokeColor = false,
+    )
+} 
+```
+
+## PreviewParameterでパラメータ違いのPreviewする
+
+[公式ドキュメントはこちら。](https://developer.android.com/develop/ui/compose/tooling/previews?hl=ja#preview-data)  
+シンプルなサンプルは公式をご覧ください。
+
+`PreviewParameterProvider<T>`を継承したクラスを用意し、PreviewのComposableの引数で`@PreviewParameter`に使います。  
+以下は自分の手描きノートアプリより。  
+アプリ内のテーマ設定のボタン群UIです。
+
+先にPreviewのスクリーンショット。  
+![PreviewParameterでパラメータ違いのPreviewをしたスクリーンショット](/images/article/ci03a2mqa96c0pe8vlix9y0h/PreviewParameter.webp)
+
+
+名前を考えるのが面倒でPreview対象のComposableの名前にサフィックスとしてPreviewとかPreviewProviderとか追加する名前付けにしている影響で、めーーちゃ長いクラス名ですがまあよそで呼ぶわけでもないので御愛嬌。
+
+```kt title="ParameterProviderの定義"
+private data class ThemeModeSegmentedButtonsPreviewParam(
+    val selected: ThemeMode,
+)
+
+private class ThemeModeSegmentedButtonsPreviewParamProvider :
+    PreviewParameterProvider<ThemeModeSegmentedButtonsPreviewParam> {
+    private val previewParams = ThemeMode.entries.map { mode ->
+        ThemeModeSegmentedButtonsPreviewParam(selected = mode)
+    }
+
+    override val values = previewParams.asSequence()
+    override fun getDisplayName(index: Int): String? {
+        return previewParams.getOrNull(index)?.selected?.label()
+    }
+}
+```
+
+overrideの部分が大事です。`override val values`の分Previewがまとめてできます。  
+このvaluesの要素1つ1つが順番にPreviewComposableに渡されるので、それをPreviewしたいComposableに渡します。
+
+`override fun getDisplayName`は表示名を制御できます。複数Parameterの時はこれもなにかoverrideしておくとPreviewを見る時にわかりやすいです。  
+例では`previewParams.getOrNull(index)?.selected?.label()`としています。  
+UI用に`selected`（ThemeMode型）に`label()`という拡張関数を用意していたのでそれを流用しています。  
+ここはParameterから引っ張ってきておくとどれかわかりやすいと思っています。
+
+`previewData`というPreviewComposableの引数が大事です。ただの引数に`@PreviewParameter`のAnnotationをつけているだけなので、引数名とかは大事ではないです。  
+引数からComposableに渡す引数に値を設定することで、Parameter違いのPreviewができます。  
+この定義一つでParameter分Previewを出してくれます。複数のパターンとかがあるときのPreviewに便利です。
+
+```kt title="PreviewParameterを使う"
+@PreviewWrapper(ThemeWithSurfaceWrapper::class)
+@PreviewLightDark
+@Composable
+private fun ThemeModeSegmentedButtonsPreview(
+    @PreviewParameter(ThemeModeSegmentedButtonsPreviewParamProvider::class) previewData: ThemeModeSegmentedButtonsPreviewParam,
+) {
+    SettingsThemeModeSegmentedButtons(
+        selected = previewData.selected,
+        onSelected = {},
+    )
+}
+```
+
+## おわりに
+
+これで「どこでやったっけなー」と探さずに済みます……。
+
+## 関連
+
+<CardPreviewUrl url="https://developer.android.com/develop/ui/compose/tooling/previews?hl=ja" />
+<CardPreviewUrl url="https://developer.android.com/reference/kotlin/androidx/compose/ui/tooling/preview/PreviewWrapper" />
+<CardPreviewUrl url="https://developer.android.com/develop/ui/compose/tooling/previews?hl=ja#preview-data" />
