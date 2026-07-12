@@ -1,7 +1,7 @@
 import js from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
 import typescriptEslintParser from "@typescript-eslint/parser";
-import astroParser from "astro-eslint-parser";
+import * as astroParser from "astro-eslint-parser";
 import type { Linter } from "eslint";
 import { defineConfig } from "eslint/config";
 import { configs as eslintPluginAstroConfig } from "eslint-plugin-astro";
