@@ -97,7 +97,7 @@ jobs:
           # ビルドしたら_publicフォルダに出力されるようにしているので、その中身に対して実行するように設定。
           # キャッシュも設定
           args: "_public --cache"
-          fail: false
+          fail: true
 
       # lycheeのキャッシュの保存
       - name: Save lychee cache
