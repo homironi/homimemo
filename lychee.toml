@@ -17,7 +17,10 @@ exclude = [
     '\.*cdn\.samsung\.com/etc/designs/.*',
     # Cloudflareの管理外の画像パス：
     # og:image自体が"/img/cf-social-card.png"になっているので除外する
-    '.*/img/cf-social-card\.png'
+    '.*/img/cf-social-card\.png',
+    # サイトマップとRSSは自サイトのみ、かつ、存在するリンク（ただし公開直前だと公開URLではまだ存在しないリンク）なので除外
+    'rss\.xml',
+    '.*sitemap.*'
 ]
 
 accept = [200, 403, 429]
