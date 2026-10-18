@@ -20,4 +20,10 @@ exclude = [
     '.*/img/cf-social-card\.png'
 ]
 
+exclude_path = [
+    # サイトマップとRSSは自サイトのみ、かつ、存在するリンク（ただし公開直前だと公開URLではまだ存在しないリンク）なので除外
+    'rss\.xml',
+    '.*sitemap.*'
+]
+
 accept = [200, 403, 429]
