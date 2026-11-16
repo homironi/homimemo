@@ -26,4 +26,4 @@ exclude_path = [
     '.*sitemap.*'
 ]
 
-accept = [200, 403, 429]
+accept = [200, 402, 403, 429]
